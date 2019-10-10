@@ -50,7 +50,11 @@ class RouteServiceProvider extends ServiceProvider
      * @return void
      */
     protected function mapWebRoutes()
-    {
+    {        
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path("routes/web.php"));
+
         $contents = array_diff(scandir(base_path("routes/web/")), array('..', '.'));
 
         foreach ($contents as $route) {
