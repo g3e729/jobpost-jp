@@ -14,35 +14,35 @@
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
 
-    <li class="nav-item {{ request()->is('/') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.index') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>ホーム</span>
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('students') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/students') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.students.index') }}">
         <i class="fas fa-fw fa-users"></i>
         <span>生徒</span>
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('companies') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/companies') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.companies.index') }}">
         <i class="fas fa-fw fa-building"></i>
         <span>企業</span>
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('staffs') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/staffs') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.staffs.index') }}">
         <i class="fas fa-fw fa-id-badge"></i>
         <span>スタッフ</span>
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('recruitments') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/recruitments') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.recruitments.index') }}">
         <i class="fas fa-fw fa-table"></i>
         <span>求人</span>
