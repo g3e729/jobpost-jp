@@ -1,0 +1,13 @@
+.l-container {
+  margin: 0 auto;
+  width: $content-width;
+  box-sizing: border-box;
+}
+
+.l-container-narrow {
+  width: $content-width-narrow;
+}
+
+.l-container-wide {
+  width: calc(100% - 40px);
+}

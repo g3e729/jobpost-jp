@@ -1,0 +1,32 @@
+// sass-lint:disable clean-import-paths
+@charset 'utf-8';
+
+// Import Bootstrap
+@import '../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+@import 'setting';
+@import 'base/mixin';
+@import 'base/base';
+@import 'layout/container';
+@import 'layout/clearfix';
+
+@import 'utilities/animation';
+@import 'utilities/background';
+@import 'utilities/display';
+@import 'utilities/text';
+@import 'utilities/border';
+@import 'utilities/progress';
+@import 'utilities/rotate';
+
+// Custom Components
+@import 'components/dropdowns.scss';
+@import 'components/topbar.scss';
+@import 'components/sidebar.scss';
+@import 'components/buttons.scss';
+@import 'components/cards.scss';
+@import 'components/charts.scss';
+@import 'components/login.scss';
+@import 'components/error.scss';
+@import 'components/modal.scss';
+@import 'components/footer.scss';
