@@ -81,5 +81,7 @@
   <script src="{{ asset('js/chart.min.js') }}"></script>
 
   <script src="{{ asset('js/app.js') }}" async></script>
+
+  @yield('js')
 </body>
 </html>

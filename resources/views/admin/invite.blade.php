@@ -34,4 +34,56 @@
 	    </div>
 	  </form>
 	</div>
+
+  <div class="modal modal-sm fade" id="js-registerModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to add account?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <button id="js-modalSubmit" type="button" class="btn btn-primary">確認する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('js')
+  <script>
+    window.addEventListener('load', function() {
+      const forms = document.querySelectorAll('.needs-validation');
+      const modalSubmit = document.querySelector('#js-modalSubmit');
+      const modal = document.querySelector('#js-registerModal');
+
+      // Loop over them and prevent submission
+      Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          $(modal).modal('show');
+
+          event.preventDefault();
+        }, false);
+
+        modalSubmit.addEventListener('click', function(event) {
+          $(modal).modal('hide');
+
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          } else {
+            $(form).unbind('submit').submit();
+          }
+
+          form.classList.add('was-validated');
+        });
+      });
+    }, false);
+
+  </script>
 @endsection

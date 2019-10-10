@@ -44,32 +44,3 @@ $(document).on('click', 'a.scroll-to-top', function(e) {
   }, 1000, 'easeInOutExpo');
   e.preventDefault();
 });
-
-window.addEventListener('load', function() {
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation');
-  const modalSubmit = document.querySelector('#js-modalSubmit');
-  const modal = document.querySelector('#js-registerModal');
-
-  // Loop over them and prevent submission
-  Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {
-      $(modal).modal('show');
-
-      event.preventDefault();
-    }, false);
-
-    modalSubmit.addEventListener('click', function(event) {
-      $(modal).modal('hide');
-
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      } else {
-        $(form).unbind('submit').submit();
-      }
-
-      form.classList.add('was-validated');
-    });
-  });
-}, false);
