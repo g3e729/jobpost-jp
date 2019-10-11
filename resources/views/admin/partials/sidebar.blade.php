@@ -21,22 +21,22 @@
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('admin/students') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/students*') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.students.index') }}">
         <i class="fas fa-fw fa-users"></i>
         <span>生徒</span>
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('admin/companies') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/companies*') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.companies.index') }}">
         <i class="fas fa-fw fa-building"></i>
         <span>企業</span>
       </a>
     </li>
   
-    <li class="nav-item {{ request()->is('admin/staffs') ? 'active' : ''}}">
-      <a class="nav-link" href="{{ route('admin.staffs.index') }}">
+    <li class="nav-item {{ request()->is('admin/employees*') ? 'active' : ''}}">
+      <a class="nav-link" href="{{ route('admin.employees.index') }}">
         <i class="fas fa-fw fa-id-badge"></i>
         <span>スタッフ</span>
       </a>

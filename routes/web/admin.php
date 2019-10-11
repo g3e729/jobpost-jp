@@ -1,18 +1,14 @@
 <?php
 
 Route::group([
-    'namespace'  => '',
+    'namespace'  => 'Admin',
     'prefix'     => 'admin',
     'as'         => 'admin.',
     // 'middleware' => ['auth', 'role:admin'],
 ], function () {
-	Route::get('/', function () {
-		return view('admin.index');
-	})->name('index');
+	Route::get('/', 'HomeController@index')->name('index');
 
-	Route::get('companies', function () {
-		return view('admin.companies.index');
-	})->name('companies.index');
+	Route::resource('companies', 'CompanyController')->only('index', 'show', 'edit', 'update');
 
 	Route::get('invite', function () {
 		return view('admin.invite');
@@ -38,35 +34,11 @@ Route::group([
 		return view('admin.posts.update');
 	})->name('recruitments.update');
 
-	Route::get('staffs', function () {
-		return view('admin.employees.index');
-	})->name('staffs.index');
+	Route::resource('employees', 'EmployeeController')->only('index', 'show', 'edit', 'update');
 
-	Route::get('staffs/{employee}', function () {
-		return view('admin.employees.show');
-	})->name('staffs.show');
-
-	Route::get('staffs/{employee}/edit', function () {
-		return view('admin.employees.edit');
-	})->name('staffs.edit');
-
-	Route::patch('staffs/{employee}', function () {
-		return view('admin.employees.update');
-	})->name('staffs.update');
-
-	Route::get('students', function () {
-		return view('admin.students.index');
-	})->name('students.index');
-
-	Route::get('students/{student}', function () {
-		return view('admin.students.show');
-	})->name('students.show');
-
-	Route::get('students/{student}/edit', function () {
-		return view('admin.students.edit');
-	})->name('students.edit');
-
-	Route::patch('students/{student}', function () {
-		return view('admin.students.update');
-	})->name('students.update');
+	Route::resource('students', 'StudentController', [
+        'parameters' => [
+            'seeker_profile' => 'student',
+        ],
+    ])->only('index', 'show', 'edit', 'update');
 });

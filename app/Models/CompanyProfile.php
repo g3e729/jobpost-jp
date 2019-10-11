@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompanyProfile extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     /**
      * Get posts.
      *

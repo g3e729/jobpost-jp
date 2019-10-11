@@ -27,7 +27,7 @@
               </div>
               
               <div class="card-actions card-actions position-absolute">
-                <a href="/students/1/edit" class="card-link">詳細</a>
+                <a href="{{ route('admin.students.edit', 1) }}" class="card-link">詳細</a>
                 <a href="/messages" class="card-link">編集</a>
               </div>
             </div>

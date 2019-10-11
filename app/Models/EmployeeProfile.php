@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SeekerProfile extends Model
+class EmployeeProfile extends Model
 {
     public function user()
     {
