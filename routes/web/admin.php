@@ -4,7 +4,7 @@ Route::group([
     'namespace'  => '',
     'prefix'     => 'admin',
     'as'         => 'admin.',
-    // 'middleware' => ['auth', 'role:admin'],
+    'middleware' => ['auth', 'role:admin'],
 ], function () {
 	Route::get('/', function () {
 		return view('admin.index');
