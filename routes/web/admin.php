@@ -38,7 +38,7 @@ Route::group([
 
 	Route::resource('students', 'StudentController', [
         'parameters' => [
-            'seeker_profile' => 'student',
+            // 'seeker_profile' => 'student',
         ],
     ])->only('index', 'show', 'edit', 'update');
 });

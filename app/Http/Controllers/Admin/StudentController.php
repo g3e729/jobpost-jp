@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\SeekerProfile;
+use App\Models\SeekerProfile as Student;
+use App\Services\SeekerService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -10,21 +11,27 @@ class StudentController extends BaseController
 {
 	public function index()
 	{
-		return view('admin.students.index');
+		$students = (new SeekerService)->all();
+		
+		return view('admin.students.index', compact('students'));
 	}
 	
-	public function show(SeekerProfile $seeker_profile)
+	public function show(Student $student)
 	{
-		return view('admin.students.show');
+		$student = (new SeekerService)->setAttribute($student);
+
+		return view('admin.students.show', compact('student'));
 	}
 	
-	public function edit(/*SeekerProfile $seeker_profile*/)
+	public function edit(Student $student)
 	{
-		return view('admin.students.edit');
+		$student = (new SeekerService)->setAttribute($student);
+
+		return view('admin.students.edit', compact('student'));
 	}
 	
-	public function update(Request $request/*, SeekerProfile $seeker_profile*/)
+	public function update(Request $request, Student $student)
 	{
-		return redirect()->route('admin.students.show', $seeker_profile);
+		return redirect()->route('admin.students.show', $student);
 	}
 }

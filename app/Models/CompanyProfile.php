@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompanyProfile extends Model
 {
+    const ROLE = 'company';
+
     public function user()
     {
         return $this->belongsTo(User::class);

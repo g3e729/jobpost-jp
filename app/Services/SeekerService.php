@@ -2,21 +2,20 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use App\Models\CompanyProfile;
+use App\Models\SeekerProfile;
 use App\Services\UserService;
 use Exception;
 
-class CompanyService extends BaseService
+class SeekerService extends BaseService
 {
     // single model
     protected $item;
 
     public function __construct($item = null)
     {
-        parent::__construct(CompanyProfile::class);
-
-        if ($item instanceof CompanyProfile) {
+        parent::__construct(SeekerProfile::class);
+        
+        if ($item instanceof SeekerProfile) {
             $this->item = $item;
         }
     }
@@ -32,7 +31,7 @@ class CompanyService extends BaseService
             return $item;
         }
 
-        if ($data instanceof CompanyProfile) {
+        if ($data instanceof SeekerProfile) {
             return setter($data);
         }
 

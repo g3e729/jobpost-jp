@@ -10,11 +10,11 @@
               <img src="https://i.pravatar.cc/300" class="card-image card-image-x2 rounded-circle">
             </div>
             <div class="card-body-main mt-3">
-              <h3 class="text-center">田中義人</h3>
+              <h3 class="text-center">{{ $student->name }}</h3>
               
               <div class="card-badges text-center">
                 
-                <span class="badge badge-pill badge-light">メールアドレス : Kredo.@kredo.com</span>
+                <span class="badge badge-pill badge-light">メールアドレス : {{ $student->email }}</span>
                 
                 <span class="badge badge-pill badge-light">期 : 9</span>
                 
