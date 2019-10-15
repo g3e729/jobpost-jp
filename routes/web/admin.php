@@ -7,8 +7,8 @@ Route::group([
     // 'middleware' => ['auth', 'role:admin'],
 ], function () {
 	Route::get('/', function () {
-		return view('admin.index');
-	})->name('index');
+		return view('admin.students.index');
+	})->name('students.index');
 
 	Route::get('companies', function () {
 		return view('admin.companies.index');
