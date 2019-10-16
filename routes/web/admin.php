@@ -35,7 +35,7 @@ Route::group([
 	})->name('profile');
 
 	Route::get('recruitments', function () {
-		return view('admin.posts.index');
+		return view('admin.posts.index', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('recruitments.index');
 
 	Route::get('recruitments/{post}', function () {

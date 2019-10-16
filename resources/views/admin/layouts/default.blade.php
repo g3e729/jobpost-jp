@@ -78,7 +78,8 @@
   {{-- <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script> --}}
 
   <!-- Page level plugins -->
-  <script src="{{ asset('js/chart.min.js') }}"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 
   <script src="{{ asset('js/app.js') }}" async></script>
 

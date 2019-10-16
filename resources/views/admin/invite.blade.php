@@ -57,33 +57,31 @@
 
 @section('js')
   <script>
-    window.addEventListener('load', function() {
-      const forms = document.querySelectorAll('.needs-validation');
-      const modalSubmit = document.querySelector('#js-modalSubmit');
-      const modal = document.querySelector('#js-registerModal');
+    const forms = document.querySelectorAll('.needs-validation');
+    const modalSubmit = document.querySelector('#js-modalSubmit');
+    const modal = document.querySelector('#js-registerModal');
 
-      // Loop over them and prevent submission
-      Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          $(modal).modal('show');
+    // Loop over them and prevent submission
+    Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        $(modal).modal('show');
 
+        event.preventDefault();
+      }, false);
+
+      modalSubmit.addEventListener('click', function(event) {
+        $(modal).modal('hide');
+
+        if (form.checkValidity() === false) {
           event.preventDefault();
-        }, false);
+          event.stopPropagation();
+        } else {
+          $(form).unbind('submit').submit();
+        }
 
-        modalSubmit.addEventListener('click', function(event) {
-          $(modal).modal('hide');
-
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          } else {
-            $(form).unbind('submit').submit();
-          }
-
-          form.classList.add('was-validated');
-        });
+        form.classList.add('was-validated');
       });
-    }, false);
+    });
 
   </script>
 @endsection

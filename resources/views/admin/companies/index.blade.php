@@ -34,7 +34,7 @@
 
                 <li class="list-group-item p-1">
                   <div class="font-weight-bold">プラン</div>
-                  <span class="text-muted">{{ Str::random(1) }}</span>
+                  <span class="text-muted">{{ $faker->randomElement($array = array ('A', 'B', 'C')) }}</span>
                 </li>
 
                 <li class="list-group-item p-1">
