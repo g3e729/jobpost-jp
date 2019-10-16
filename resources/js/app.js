@@ -44,3 +44,10 @@ $(document).on('click', 'a.scroll-to-top', function(e) {
   }, 1000, 'easeInOutExpo');
   e.preventDefault();
 });
+
+// Reset form
+const formClear = document.querySelector('#js-form-clear');
+formClear.addEventListener('click', function(evt) {
+  evt.preventDefault();
+  this.closest('form').reset(); 
+});

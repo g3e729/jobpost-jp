@@ -19,7 +19,7 @@
 	      </div>
 	    </div>
 	    <div class="form-group pb-3 row">
-	      <label for="formEmail" class="col-4 col-form-label col-form-label">メールアドレス</label>
+	      <label for="formEmail" class="col-4 col-form-label">メールアドレス</label>
 	      <div class="col-8">
 	        <input type="email" class="form-control" id="formEmail" name="formEmail" placeholder="" required>
 	        <div class="invalid-tooltip">

@@ -4,7 +4,7 @@
   <div class="l-container">
     <div class="student-detail">
       <div class="student-detail-top py-4">
-        <div class="card card-student-detail">
+        <div class="shadow-sm card card-student-detail">
           <div class="card-body">
             <div class="card-body-img text-center">
               <img src="https://i.pravatar.cc/300" class="card-image card-image-x2 rounded-circle">
@@ -12,7 +12,7 @@
             <div class="card-body-main mt-3">
               <h3 class="text-center">田中義人</h3>
               
-              <div class="card-badges text-center">
+              <div class="card-badges text-center h6">
                 
                 <span class="badge badge-pill badge-light">メールアドレス : Kredo.@kredo.com</span>
                 
@@ -26,9 +26,10 @@
                 
               </div>
               
-              <div class="card-actions card-actions position-absolute">
-                <a href="/students/1/edit" class="card-link">詳細</a>
-                <a href="/messages" class="card-link">編集</a>
+              <div class="card-actions card-actions-right position-absolute">
+                <a href="/students/1/edit" class="card-link">編集</a>
+                <a href="/messages" class="card-link">メッセージ</a>
+                <a href="/students/1/delete" class="card-link text-muted">削除</a>
               </div>
             </div>
           </div>

@@ -52,10 +52,17 @@
     }
   }
 
-  &.card-student-detail {
-    .card-actions {
+  .card-actions {
+    &.card-actions-right {
       top: 1.25rem;
       right: 1.25rem;
+    }
+  }
+  
+  &.card-hover {
+    transition: box-shadow $anim-duration $anim-ease;
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !important;
     }
   }
 }

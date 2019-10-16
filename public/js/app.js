@@ -141,6 +141,12 @@ $(document).on('click', 'a.scroll-to-top', function (e) {
     scrollTop: $($anchor.attr('href')).offset().top
   }, 1000, 'easeInOutExpo');
   e.preventDefault();
+}); // Reset form
+
+var formClear = document.querySelector('#js-form-clear');
+formClear.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  this.closest('form').reset();
 });
 
 /***/ }),
