@@ -7,12 +7,20 @@ Route::group([
     'middleware' => ['auth', 'role:admin'],
 ], function () {
 	Route::get('/', function () {
-		return view('admin.index');
-	})->name('index');
+		return view('admin.students.index');
+	})->name('students.index');
 
 	Route::get('companies', function () {
-		return view('admin.companies.index');
-	})->name('companies.index');
+		return view('admin.companies.index', ['faker' => Faker\Factory::create('ja_JP')]);
+  })->name('companies.index');
+  
+  Route::get('companies/{companies}', function () {
+		return view('admin.companies.show');
+  })->name('companies.show');
+
+  Route::get('companies/{company}/edit', function () {
+		return view('admin.companies.edit');
+	})->name('companies.edit');
 
 	Route::get('invite', function () {
 		return view('admin.invite');

@@ -2,7 +2,7 @@
     <form class="py-2 mb-4">
       <h2 class="py-4 text-center">Search Students</h2>
       <div class="form-group pb-3 row">
-        <label for="formName" class="col-2 col-form-label col-form-label">ユーザー名</label>
+        <label for="formName" class="col-2 col-form-label">ユーザー名</label>
         <div class="col-10">
           <input type="text" class="form-control" id="formName" name="formName" placeholder="Please enter a name">
         </div>
@@ -52,7 +52,7 @@
         </div>
         <div class="col-3">
           <div class="form-group">
-            <label for="formEnglish">English level</label>
+            <label for="formEnglish">英語レベル</label>
             <select class="form-control" id="formEnglish" name="formEnglish">
               <option value="" selected hidden disabled>Choose english level</option>
               <option value="1">1</option>
