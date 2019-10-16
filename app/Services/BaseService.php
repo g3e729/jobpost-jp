@@ -30,12 +30,13 @@ class BaseService
      *
      * @return mixed
      */
-    public function all()
+    public function all($paginate = true)
     {
         try {
-            return $this->model::all();
+            return $this->model::paginate(config('site_settings.per_page'));
         } catch (Exception $e) {
-            return $e;
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return collect([]);
         }
     }
 
@@ -51,7 +52,8 @@ class BaseService
         try {
             return $this->model::whereId($id)->first();
         } catch (Exception $e) {
-            return $e;
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
         }
     }
 
@@ -66,7 +68,23 @@ class BaseService
             $this->item = $this->model::create($fields);
             return $this->item;
         } catch (Exception $e) {
-            return $e;
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Register new model
+     *
+     * @return mixed
+     */
+    public function search($value, $paginate = true)
+    {
+        try {
+            return $this->model::search($value)->paginate(config('site_settings.per_page'));
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return collect([]);
         }
     }
 }

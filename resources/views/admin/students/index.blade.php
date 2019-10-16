@@ -9,6 +9,10 @@
 
   <div class="l-container l-container-wide">
     <div class="row py-4">
+
+      @if (! $students->count())
+        <p>No result.</p>
+      @endif
       
       @foreach($students as $student)
         <div class="col-3 mb-4">
@@ -63,5 +67,5 @@
     </div>
   </div>
 
-  @include('admin.partials.pagination')
+  @include('admin.partials.pagination', ['data' => $students])
 @endsection

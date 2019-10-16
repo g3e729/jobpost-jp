@@ -20,37 +20,6 @@ class SeekerService extends BaseService
         }
     }
 
-    public function setAttribute($data = null)
-    {
-        function setter($item)
-        {
-            $user = $item->user;
-            $item->email = $user->email;
-            $item->name = $user->name;
-
-            return $item;
-        }
-
-        if ($data instanceof SeekerProfile) {
-            return setter($data);
-        }
-
-        $data->each(function ($item) {
-            $item = setter($item);
-        });
-
-        return $data;
-    }
-
-    public function all()
-    {
-        try {
-            return $this->setAttribute(parent::all());
-        } catch (Exception $e) {
-            return $e;
-        }
-    }
-
     public function create($fields = [])
     {
         $userService = (new UserService);

@@ -9,11 +9,17 @@ use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
-	public function index()
+	public function index(Request $request)
 	{
-		$students = (new SeekerService)->all();
+		$search = $request->get('search', null);
+
+		if (! empty($search)) {
+			$students = (new SeekerService)->search($search);
+		} else {
+			$students = (new SeekerService)->all();
+		}
 		
-		return view('admin.students.index', compact('students'));
+		return view('admin.students.index', compact('search', 'students'));
 	}
 	
 	public function show(Student $student)

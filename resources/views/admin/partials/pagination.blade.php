@@ -1,4 +1,5 @@
-<nav aria-label="Page Navigation">
+{{ $data->appends(request()->except('page'))->links() }}
+{{-- <nav aria-label="Page Navigation">
 	<ul class="pagination justify-content-center py-4">
 	  <li class="page-item disabled"><a class="page-link" href="#">前</a></li>
 	  
@@ -10,4 +11,4 @@
 	  
 	  <li class="page-item"><a class="page-link" href="#">次</a></li>
 	</ul>
-</nav>
+</nav> --}}

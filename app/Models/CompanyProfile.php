@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\HasUserModel;
 
-class CompanyProfile extends Model
+class CompanyProfile extends HasUserModel
 {
     const ROLE = 'company';
 
-    public function user()
+    public static function boot()
     {
-        return $this->belongsTo(User::class);
+        parent::boot();
     }
     
     /**

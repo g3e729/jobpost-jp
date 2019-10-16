@@ -65,7 +65,7 @@ class SeekerProfilesTableSeeder extends Seeder
             $name = $fname[rand(0, count($fname) - 1)];
             $name .= ' ' . $lname[rand(0, count($lname) - 1)];
             $fields['name'] .= ucwords($name);
-            $fields['email'] = strtolower($fields['name']) . '+' . $i . $fields['email'];
+            $fields['email'] = str_replace(' ', '', strtolower($fields['name'])) . '+' . $i . $fields['email'];
 
             (new SeekerService)->create($fields);
         }
