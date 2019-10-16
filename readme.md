@@ -18,9 +18,9 @@ Setup
 `composer install`
 
 5. Setup Environment<br>
-`[create database]`
-`[create .env file to your directory]`
-`php artisan migrate --seed`
+`[create database]`<br>
+`[create .env file to your directory]`<br>
+`php artisan migrate --seed`<br>
 
 6. Install Node Modules<br>
 `npm install`
