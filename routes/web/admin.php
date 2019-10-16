@@ -20,7 +20,11 @@ Route::group([
 
   Route::get('companies/{company}/edit', function () {
 		return view('admin.companies.edit');
-	})->name('companies.edit');
+  })->name('companies.edit');
+  
+  Route::patch('companies/{company}', function () {
+		return view('admin.companies.update');
+	})->name('companies.update');
 
 	Route::get('invite', function () {
 		return view('admin.invite');
@@ -47,7 +51,7 @@ Route::group([
 	})->name('recruitments.update');
 
 	Route::get('staffs', function () {
-		return view('admin.employees.index');
+		return view('admin.employees.index', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('staffs.index');
 
 	Route::get('staffs/{employee}', function () {

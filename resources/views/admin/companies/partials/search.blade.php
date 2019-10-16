@@ -1,4 +1,4 @@
-<div class="l-container">
+
   <form class="py-2 mb-4">
     <h2 class="py-4 text-center">Search Companies</h2>
     <div class="form-group pb-3 row">
@@ -51,4 +51,3 @@
       </div>
     </div>
   </form>
-</div>
