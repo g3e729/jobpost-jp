@@ -2,16 +2,22 @@
 
 @section('content')
 	<div class="l-container l-container-narrow">
-	  <form class="needs-validation py-2 mb-4" novalidate>
+    @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">
+      {{ session()->get('success') }}
+    </div>
+    @endif
+	  <form class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.invite.store') }}" novalidate>
+      @csrf
 	    <h2 class="py-4 text-center">アカウント作成</h2>
 	    <div class="form-group pb-3 row">
 	      <label for="formType" class="col-4 col-form-label">アカウントタイプ</label>
 	      <div class="col-8">
-	        <select class="custom-select" id="formType" name="formType" required>
-	          <option value="" selected hidden disabled>Choose account type</option>
-	          <option value="student">Student</option>
-	          <option value="company">Company</option>
-	          <option value="staff">Staff</option>
+	        <select class="custom-select" id="formType" name="type" required>
+	          <option value="0" selected hidden disabled>Choose account type</option>
+            @foreach($types as $value => $type)
+	          <option value="{{ $value }}">{{ ucwords($type) }}</option>
+            @endforeach
 	        </select>
 	        <div class="invalid-tooltip">
 	          Please choose an account type.
@@ -21,7 +27,7 @@
 	    <div class="form-group pb-3 row">
 	      <label for="formEmail" class="col-4 col-form-label">メールアドレス</label>
 	      <div class="col-8">
-	        <input type="email" class="form-control" id="formEmail" name="formEmail" placeholder="" required>
+	        <input type="email" class="form-control" id="formEmail" name="email" placeholder="" required>
 	        <div class="invalid-tooltip">
 	          Please enter an email address.
 	        </div>
