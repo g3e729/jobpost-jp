@@ -19,7 +19,7 @@
         @for($i = 0; $i < 10; $i++)
         <tr>
           <td>
-            <a href="/notification/1">{{ $faker->realText(30) }}</a>
+            <a href="{{ route('admin.notifications.show', $i) }}">{{ $faker->realText(30) }}</a>
           </td>
           <td>{{ $faker->dateTime->format('Y-m-d') }}</td>
         </tr>
