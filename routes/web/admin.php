@@ -80,5 +80,21 @@ Route::group([
 
 	Route::patch('students/{student}', function () {
 		return view('admin.students.update');
-	})->name('students.update');
+  })->name('students.update');
+  
+  Route::get('notifications', function () {
+		return view('admin.notifications.index', ['faker' => Faker\Factory::create('ja_JP')]);
+	})->name('notifications.index');
+
+	Route::get('notifications/{notification}', function () {
+		return view('admin.notifications.show');
+	})->name('notifications.show');
+
+	Route::get('notifications/{notification}/edit', function () {
+		return view('admin.notifications.edit');
+	})->name('notifications.edit');
+
+	Route::patch('notifications/{notification}', function () {
+		return view('admin.notifications.update');
+	})->name('notifications.update');
 });
