@@ -1,5 +1,24 @@
 .progress-form {
   left: -15px;
   top: 0;
-  width: calc(100% + 15px);
+  width: 100%;
+}
+
+.progress-bar-anim {
+  animation: progress-expand-3 1s ease forwards;
+}
+
+$progress: 5;
+@for $i from 1 through $progress {
+  @keyframes progress-expand-#{$i} {
+    0% {
+      width: 0;
+      opacity: 0;
+    }
+  
+    100% {
+      width: 100% / $i;
+      opacity: 1;
+    }
+  }  
 }

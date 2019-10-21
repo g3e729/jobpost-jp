@@ -14,7 +14,7 @@
 	      <label for="formType" class="col-4 col-form-label">アカウントタイプ</label>
 	      <div class="col-8">
 	        <select class="custom-select" id="formType" name="type" required>
-	          <option value="0" selected hidden disabled>Choose account type</option>
+	          <option value="" selected hidden disabled>Choose account type</option>
             @foreach($types as $value => $type)
 	          <option value="{{ $value }}">{{ ucwords($type) }}</option>
             @endforeach
@@ -76,10 +76,17 @@
         event.preventDefault();
       }, false);
 
+      form.addEventListener('change', function(event) {
+        this.type.setCustomValidity(this.type.value === "" ? "Please choose an account type." : "");
+      }, false);
+
       modalSubmit.addEventListener('click', function(event) {
         $(modal).modal('hide');
 
+        form.type.setCustomValidity(form.type.value === "" ? "Please choose an account type." : "");
+
         if (form.checkValidity() === false) {
+          
           event.preventDefault();
           event.stopPropagation();
         } else {
