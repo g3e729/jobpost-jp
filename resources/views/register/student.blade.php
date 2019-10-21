@@ -1,11 +1,17 @@
 @extends('layouts.register')
 
 @section('content')
-  <div class="text-center">
-    <h1 class="h4">新規登録</h1>
+  <div class="form-header">
+    <div class="progress progress-form" style="height: 10px;">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+    </div>
+
+    <div class="py-4 text-center alt-font">
+      <h1 class="h4">新規登録</h1>
+    </div>
   </div>
 
-  <form class="user needs-validation pt-5 mb-4" method="POST" novalidate>
+  <form class="user needs-validation pt-3 pb-5 px-5 mb-4" method="POST" novalidate>
     
     <div class="form-group pb-3 row">
       <label for="formNameJP" class="col-4 col-form-label">名前(Japanese)</label>
@@ -60,15 +66,11 @@
 
     <div class="form-group row">
       <div class="col-6 pt-4 mx-auto">
-        <button type="submit" class="btn btn-primary btn-rounded w-100">送信</button>
+        <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
       </div>
     </div>
 
   </form>
-
-  <div class="progress progress-form position-absolute" style="height: 10px;">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
-  </div>
 @endsection
 
 @section('js')

@@ -9,7 +9,7 @@
     @endif
 	  <form class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.invite.store') }}" novalidate>
       @csrf
-	    <h2 class="py-4 text-center">アカウント作成</h2>
+	    <h2 class="py-4 text-center alt-font">アカウント作成</h2>
 	    <div class="form-group pb-3 row">
 	      <label for="formType" class="col-4 col-form-label">アカウントタイプ</label>
 	      <div class="col-8">
@@ -35,7 +35,7 @@
 	    </div>
 	    <div class="form-group row">
 	      <div class="col-6 py-4 mx-auto">
-	        <button type="submit" class="btn btn-primary w-100">送信</button>
+	        <button type="submit" class="alt-font btn btn-primary w-100">送信</button>
 	      </div>
 	    </div>
 	  </form>
@@ -54,8 +54,8 @@
           Are you sure you want to add account?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <button id="js-modalSubmit" type="button" class="btn btn-primary">確認する</button>
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <button id="js-modalSubmit" type="button" class="alt-font btn btn-primary">確認する</button>
         </div>
       </div>
     </div>
