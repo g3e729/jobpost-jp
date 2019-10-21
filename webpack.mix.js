@@ -16,3 +16,5 @@ mix.copy('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', 'public/js/bo
 mix.js('resources/js/app.js', 'public/js');
 // mix.copy('node_modules/@fontawesome/css/all.min.css', 'public/css/fontawesome.min.css');
 mix.sass('resources/sass/app.scss', 'public/css');
+
+mix.react('resources/js/web.js', 'public/js')
