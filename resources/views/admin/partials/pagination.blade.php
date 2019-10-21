@@ -1,4 +1,7 @@
-{{ $data->appends(request()->except('page'))->links() }}
+
+@if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
+	{{ $data->appends(request()->except('page'))->links() }}
+@endif
 {{-- <nav aria-label="Page Navigation">
 	<ul class="pagination justify-content-center py-4">
 	  <li class="page-item disabled"><a class="page-link" href="#">前</a></li>

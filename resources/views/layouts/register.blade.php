@@ -28,47 +28,29 @@
 
 <!-- Custom fonts for this template-->
 <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 
 </head>
-<body>
-  <div id="wrapper">
-    @include('admin.partials.sidebar')
-    <div id="content-wrapper" class="d-flex flex-column">
-      <div id="content">
-        @include('admin.partials.nav')
-        @yield('content')
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <form action="{{ route('logout') }}" method="POST">
-          @csrf
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card card-form ox-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/OqtafYT5kTw/600x800');"></div>
+              <div class="col-6 card-form-right">
+                <div class="p-5 position-relative">
+                  @yield('content')
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">閉じる</button>
-            <button class="btn btn-primary" type="submit" href="login.html">ログアウト</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -79,6 +61,9 @@
 
   <!-- Core plugin JavaScript-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
   <script src="{{ asset('js/app.js') }}" async></script>
 

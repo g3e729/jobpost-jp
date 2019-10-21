@@ -16,7 +16,7 @@
       
       @foreach($students as $student)
         <div class="col-3 mb-4">
-          <div class="card card-student">
+          <div class="shadow-sm card card-student card-hover">
             <div class="card-body">
               <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
               <div class="card-body-top">

@@ -10,6 +10,8 @@ Route::group([
 
 	Route::resource('companies', 'CompanyController')->only('index', 'show', 'edit', 'update');
 
+	Route::resource('invite', 'InvitationController')->only('create', 'store');
+
 	Route::get('invite', function () {
 		return view('admin.invite');
 	})->name('invite');

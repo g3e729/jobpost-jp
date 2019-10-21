@@ -11,28 +11,19 @@ class StudentController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$search = $request->get('search', null);
-
-		if (! empty($search)) {
-			$students = (new SeekerService)->search($search);
-		} else {
-			$students = (new SeekerService)->all();
-		}
+		$students = (new SeekerService)->search($request->only('search', 'course_id', 'pre_english_level'));
+		$courses = Student::getCourses();
 		
-		return view('admin.students.index', compact('search', 'students'));
+		return view('admin.students.index', compact('courses', 'students'));
 	}
 	
 	public function show(Student $student)
 	{
-		$student = (new SeekerService)->setAttribute($student);
-
 		return view('admin.students.show', compact('student'));
 	}
 	
 	public function edit(Student $student)
 	{
-		$student = (new SeekerService)->setAttribute($student);
-
 		return view('admin.students.edit', compact('student'));
 	}
 	

@@ -4,6 +4,7 @@
 .sidebar {
   width: $sidebar-collapsed-width;
   min-height: 100vh;
+  transition: width $anim-duration $anim-ease;
   .nav-item {
     position: relative;
     &:last-child {
@@ -98,8 +99,8 @@
     }
   }
   &.toggled {
-    width: 0 !important;
-    overflow: hidden;
+    overflow: visible;
+    width: $sidebar-collapsed-width !important;
     #sidebarToggle::after {
       content: '\f105';
       font-family: 'Font Awesome 5 Free';
@@ -204,8 +205,6 @@
       text-align: left;
     }
     &.toggled {
-      overflow: visible;
-      width: $sidebar-collapsed-width !important;
       .nav-item {
         // Accordion
         .collapse {

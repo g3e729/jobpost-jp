@@ -37,51 +37,16 @@
 </head>
 <body>
   <div id="wrapper">
-    @include('admin.partials.sidebar')
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
-        @include('admin.partials.nav')
-        @yield('content')
+	    <div class="row p-5" style="background: #fff">
+	        <div class="col-md-12 text-center p-5 mt-5">
+				<img src="{{ asset('img/logo-kredo-sp.png') }}" alt="Kredo" class="mt-5 mb-3">
+        		@yield('content')
+	        </div>
+	    </div>
       </div>
     </div>
   </div>
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <form action="{{ route('logout') }}" method="POST">
-          @csrf
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">閉じる</button>
-            <button class="btn btn-primary" type="submit" href="login.html">ログアウト</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-  <script src="{{ asset('js/app.js') }}" async></script>
-
-  @yield('js')
 </body>
 </html>

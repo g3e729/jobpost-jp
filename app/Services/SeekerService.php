@@ -36,4 +36,38 @@ class SeekerService extends BaseService
 
         return null;
     }
+
+    /**
+     * Register new model
+     *
+     * @return mixed
+     */
+    public function search($fields, $paginated = true)
+    {
+
+        try {
+            $fields = array_filter($fields);
+            $que = (new $this->model);
+
+            foreach ($fields as $column => $value) {
+                switch ($column) {
+                    case 'search':
+                        $que = $que->search($fields['search']);
+                    break;
+                    default:
+                        $que = $que->where($column, $value);
+                    break;
+                }
+            }
+
+            if ($paginated) {
+                return $que->paginate(config('site_settings.per_page'));
+            }
+
+            return $que->get();
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return collect([]);
+        }
+    }
 }

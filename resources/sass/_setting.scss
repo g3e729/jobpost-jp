@@ -48,7 +48,7 @@ $yiq-contrasted-threshold: 195 !default;
 // Typography
 $base-font-color: $gray-900 !default;
 
-$base-font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'Noto Color Emoji' !default;
+$base-font-family: 'Sawarabi Mincho', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'Noto Color Emoji' !default;
 
 $font-weight-light: 300 !default;
 // $font-weight-base: 400;
@@ -88,3 +88,7 @@ $dropdown-border-color: $border-color;
 
 $content-width: 775px;
 $content-width-narrow: ($content-width / 4) * 3;
+
+// Animation 
+$anim-duration: 0.3s;
+$anim-ease: ease-in-out;

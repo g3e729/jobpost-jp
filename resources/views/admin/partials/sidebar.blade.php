@@ -13,13 +13,6 @@
 
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
-
-    <li class="nav-item {{ request()->is('admin') ? 'active' : ''}}">
-      <a class="nav-link" href="{{ route('admin.index') }}">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>ホーム</span>
-      </a>
-    </li>
   
     <li class="nav-item {{ request()->is('admin/students*') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.students.index') }}">
@@ -41,14 +34,41 @@
         <span>スタッフ</span>
       </a>
     </li>
+
+    <li class="nav-item {{ request()->is('admin/notifications') ? 'active' : ''}}">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-bell"></i>
+        <span>お知らせ</span>
+      </a>
+    </li>
   
     <li class="nav-item {{ request()->is('admin/recruitments') ? 'active' : ''}}">
       <a class="nav-link" href="{{ route('admin.recruitments.index') }}">
         <i class="fas fa-fw fa-table"></i>
-        <span>求人</span>
+        <span>募集</span>
       </a>
     </li>
-  
+
+    <li class="nav-item {{ request()->is('admin/account') ? 'active' : ''}}">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCreate" aria-expanded="false" aria-controls="collapseCreate">
+        <i class="fas fa-fw fa-plus"></i>
+        <span>新規作成</span>
+      </a>
+      <div id="collapseCreate" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('admin.invite.create')}}">アカウント</a>
+          <a class="collapse-item" href="#">お知らせ</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin/payments') ? 'active' : ''}}">
+      <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-money-bill-alt"></i>
+        <span>入金確認</span>
+      </a>
+    </li>
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
 

@@ -72,19 +72,4 @@ class BaseService
             return null;
         }
     }
-
-    /**
-     * Register new model
-     *
-     * @return mixed
-     */
-    public function search($value, $paginate = true)
-    {
-        try {
-            return $this->model::search($value)->paginate(config('site_settings.per_page'));
-        } catch (Exception $e) {
-            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
-            return collect([]);
-        }
-    }
 }
