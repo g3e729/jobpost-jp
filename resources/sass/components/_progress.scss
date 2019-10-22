@@ -4,12 +4,12 @@
   width: 100%;
 }
 
-.progress-bar-anim {
-  animation: progress-expand-3 1s ease forwards;
-}
-
-$progress: 5;
+$progress: 3;
 @for $i from 1 through $progress {
+  .progress-bar-anim-#{$i} {
+    animation: progress-expand-#{$i} 1s ease forwards;
+  }
+
   @keyframes progress-expand-#{$i} {
     0% {
       width: 0;
@@ -17,8 +17,8 @@ $progress: 5;
     }
   
     100% {
-      width: 100% / $i;
+      width: ($i / $progress) * 100%;
       opacity: 1;
     }
-  }  
+  }
 }
