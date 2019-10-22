@@ -1,7 +1,7 @@
 @extends('layouts.register')
 
 @php
-$currForm = 2; // Steps 1, 2, or 3
+$currForm = 1; // Steps 1, 2, or 3
 $progressVal = ($currForm / 3) * 100;
 
 @endphp
@@ -324,127 +324,60 @@ $progressVal = ($currForm / 3) * 100;
 
   @else
   <form class="form-user3 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
-    
-    <div class="form-group pb-3 row">
-      <label for="formPassword" class="col-4 col-form-label">パスワード</label>
-      <div class="col-8">
-        <input type="password" class="form-control" id="formPassword" name="password" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter a password.
-        </div>
-      </div>
-    </div>
 
-    <div class="form-group pb-3 row">
-      <label for="formPassword" class="col-4 col-form-label">パスワードの確認</label>
+    <div class="pb-3 row">
+      <div class="col-4">緊急連絡先</div>
       <div class="col-8">
-        <input type="password" class="form-control" id="formPasswordConfirm" name="passwordconfirm" placeholder="" required>
-        <div class="invalid-tooltip">
-          Passwords do not match.
+        <div class="form-group position-relative">
+          <label for="formRelName" class="form-label pt-0">名前</label>
+          <input type="text" class="form-control" id="formRelName" name="relname" placeholder="">
         </div>
-      </div>
-    </div>
 
-    <hr class="form-divider d-block mb-4">
-
-    <div class="form-group pb-3 row">
-      <label for="formNameJP" class="col-4 col-form-label">名前(Japanese)</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="formNameJP" name="namejp" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter name. 
+        <div class="form-group position-relative">
+          <label for="formRelRelationship" class="form-label pt-0">続柄</label>
+          <input type="text" class="form-control" id="formRelRelationship" name="relrelationship" placeholder="">
         </div>
-      </div>
-    </div>
 
-    <div class="form-group pb-3 row">
-      <label for="formNameEN" class="col-4 col-form-label">名前(English)</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="formNameEN" name="nameen" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter name.
+        <div class="form-group position-relative">
+          <label for="formRelNumber" class="form-label pt-0">電話番号</label>
+          <input type="text" class="form-control" id="formRelNumber" name="relnumber" placeholder="">
         </div>
-      </div>
-    </div>
 
-    <div class="form-group pb-3 row">
-      <label for="formBirthDate" class="col-4 col-form-label">生年月日</label>
-      <div class="col-8">
-        <div class="input-group">
-          <input type="text" class="form-control js-datepicker" id="formBirthDate" name="birthdate" placeholder="" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="fas fa-fw fa-calendar-alt"></i>
-            </div>
-          </div>
-          <div class="invalid-tooltip">
-            Please enter birthdate.
-          </div>
+        <div class="form-group position-relative">
+          <label for="formRelEmail" class="form-label pt-0">メールアドレス</label>
+          <input type="email" class="form-control" id="formRelEmail" name="relemail" placeholder="">
         </div>
+
       </div>
     </div>
 
     <div class="pb-3 row">
-      <div class="col-4">住所</div>
+      <div class="col-4">既往症の有無</div>
       <div class="col-8">
         <div class="form-group position-relative">
-          <label for="formAddress1" class="form-label pt-0">番地まで</label>
-          <input type="text" class="form-control" id="formAddress1" name="address1" placeholder="" required>
+          <label for="formDiseaseHad" class="form-label pt-0">ありなし</label>
+          <select class="form-control" id="formDiseaseHad" name="diseasehad" data-action="change" data-condition="" data-text="Please choose.">
+            <option value="" selected hidden disabled>Presence of pre-existing disease</option>
+            <option value="disease-no">No</option>
+            <option value="disease-yes">Yes</option>
+          </select>
           <div class="invalid-tooltip">
-            Please enter an address.
+            Please choose.
           </div>
         </div>
 
         <div class="form-group position-relative">
-          <label for="formAddress2" class="form-label pt-0">ビル名、部屋番号</label>
-          <input type="text" class="form-control" id="formAddress2" name="address2" placeholder="" required>
-          <div class="invalid-tooltip">
-            Please enter your building name / room number.
-          </div>
-        </div>
-
-        <div class="form-group position-relative">
-          <label for="formAddress3" class="form-label pt-0">郵便番号</label>
-          <input type="text" class="form-control" id="formAddress3" name="address3" placeholder="" required>
-          <div class="invalid-tooltip">
-            Please enter your postal code.
-          </div>
+          <label for="formDiseaseContent" class="form-label pt-0">内容</label>
+          <textarea class="form-control" id="formDiseaseContent" name="diseasecontent" placeholder="" rows="4" style="min-height: 100px;"></textarea>
         </div>
 
       </div>
     </div>
 
     <div class="form-group pb-3 row">
-      <label for="formSex" class="col-4 col-form-label">性別</label>
+      <label for="formRemarks" class="col-4 col-form-label">備考</label>
       <div class="col-8">
-        <select class="form-control" id="formSex" name="sex">
-          <option value="" selected hidden disabled>Choose sex</option>
-          <option value="sex-male">男性</option>
-          <option value="sex-female">女性</option>
-        </select>
-        <div class="invalid-tooltip">
-          Please choose your sex orientation.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formPhone" class="col-4 col-form-label">電話番号</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="formPhone" name="phone" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter a phone number.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formPassportNumber" class="col-4 col-form-label">パスポート番号</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="formPassportNumber" name="passport" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter your passport number.
-        </div>
+        <textarea class="form-control" id="formRemarks" name="remarks" placeholder="" rows="4" style="min-height: 100px;"></textarea>
       </div>
     </div>
 
