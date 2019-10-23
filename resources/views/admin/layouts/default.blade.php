@@ -35,7 +35,7 @@
 <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 
 </head>
-<body>
+<body id="js-page-top">
   <div id="wrapper">
     @include('admin.partials.sidebar')
     <div id="content-wrapper" class="d-flex flex-column">
@@ -47,7 +47,7 @@
   </div>
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+  <a id="js-scroll-top" class="scroll-top rounded" href="#js-page-top">
     <i class="fas fa-angle-up"></i>
   </a>
 

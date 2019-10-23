@@ -74,7 +74,7 @@
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    <button class="sidebar-toggle rounded-circle border-0" id="js-sidebar-toggle"></button>
   </div>
 
 </ul>

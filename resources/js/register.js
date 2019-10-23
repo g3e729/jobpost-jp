@@ -1,3 +1,3 @@
-import formValidation from './components/formValidation';
+import FormValidation from './components/form-validation';
 
-formValidation('.needs-validation');
+new FormValidation({selector: '.needs-validation'});
