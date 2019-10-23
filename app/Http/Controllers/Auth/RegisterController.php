@@ -18,7 +18,7 @@ class RegisterController extends Controller
 
     	$type = Invitation::getTypes($invitation->type);
 
-    	return view('register.'.$type);
+      return view('register.'.$type, ['type' => $type]);
     }
 
     public function store()

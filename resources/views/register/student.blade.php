@@ -389,26 +389,6 @@ $progressVal = ($currForm / 3) * 100;
 
   </form>
   @endif
-
-  <div class="modal fade" id="js-registerModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">アカウントの追加を確認</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to register account?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <button id="js-modalSubmit" type="button" class="alt-font btn btn-primary">確認する</button>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 
 @section('js')

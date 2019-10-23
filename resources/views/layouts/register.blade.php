@@ -36,13 +36,31 @@
 
 </head>
 <body class="bg-gradient-primary">
+
+  @php
+    $image = '';
+
+    switch ($type) {
+      case 'student':
+        $image = 'OqtafYT5kTw';
+        break;
+      case 'staff':
+        $image = 'iusJ25iYu1c';
+        break;
+      case 'company':
+        $image = 'ow1mML1sOi0';
+        break;
+      default:
+        $image = 'random';
+    }
+  @endphp
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="card card-form ox-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <div class="row">
-              <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/OqtafYT5kTw/600x800');"></div>
+              <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/{{ $image }}/600x800');"></div>
               <div class="col-6 card-form-right">
                 <div class="position-relative">
                   @yield('content')
