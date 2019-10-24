@@ -1,22 +1,16 @@
 <?php
 
 Route::group([
-    'namespace'  => '',
+    'namespace'  => 'Admin',
     'prefix'     => 'admin',
     'as'         => 'admin.',
     'middleware' => ['auth', 'role:admin'],
 ], function () {
-	Route::get('/', function () {
-		return view('admin.students.index');
-	})->name('students.index');
+	Route::get('/', 'HomeController@index')->name('index');
 
-	Route::get('companies', function () {
-		return view('admin.companies.index', ['faker' => Faker\Factory::create('ja_JP')]);
-  })->name('companies.index');
+  Route::resource('companies', 'CompanyController')->only('index', 'show', 'edit', 'update');
   
-  Route::get('companies/{companies}', function () {
-		return view('admin.companies.show');
-  })->name('companies.show');
+  Route::resource('invite', 'InvitationController')->only('create', 'store');
 
   Route::get('companies/{company}/edit', function () {
 		return view('admin.companies.edit');
@@ -49,6 +43,14 @@ Route::group([
 	Route::patch('recruitments/{post}', function () {
 		return view('admin.posts.update');
 	})->name('recruitments.update');
+
+  Route::resource('employees', 'EmployeeController')->only('index', 'show', 'edit', 'update');
+
+  Route::resource('students', 'StudentController', [
+    'parameters' => [
+        'seeker_profile' => 'student',
+    ],
+  ])->only('index', 'show', 'edit', 'update');
 
 	Route::get('staffs', function () {
 		return view('admin.employees.index', ['faker' => Faker\Factory::create('ja_JP')]);

@@ -58,11 +58,24 @@
       right: 1.25rem;
     }
   }
+
+  .card-form-left {
+    max-height: 90vh;
+  }
+
+  .card-form-right {
+    max-height: 90vh;
+    overflow: scroll;
+  }
   
   &.card-hover {
     transition: box-shadow $anim-duration $anim-ease;
     &:hover {
       box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !important;
     }
+  }
+
+  &.card-form {
+    max-height: 90vh;
   }
 }

@@ -26,16 +26,30 @@ class BaseService
     }
 
     /**
+     * Register new model
+     *
+     * @return mixed
+     */
+    public function all()
+    {
+        try {
+            return $this->model::all();
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+
+    /**
      * find item
      *
      * @param $id
      *
      * @return void
      */
-    public function find($id = null)
+    public function find($id)
     {
         try {
-            return $this->model::find($id);
+            return $this->model::whereId($id)->first();
         } catch (Exception $e) {
             return $e;
         }

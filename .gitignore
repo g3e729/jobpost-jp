@@ -21,3 +21,7 @@ Homestead.json
 
 # Mac generated file
 .DS_Store
+
+# Patch/diff file
+*.patch
+*.diff

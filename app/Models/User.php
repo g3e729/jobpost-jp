@@ -70,6 +70,10 @@ class User extends Authenticatable
             return $this->hasOne(SeekerProfile::class);
         }
 
+        if ($this->hasRole('employee')) {
+            return $this->hasOne(EmployeeProfile::class);
+        }
+
         return $this->hasOne(CompanyProfile::class);
     }
 
