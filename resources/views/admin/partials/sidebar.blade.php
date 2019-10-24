@@ -36,7 +36,7 @@
     </li>
 
     <li class="nav-item {{ request()->is('admin/notifications') ? 'active' : ''}}">
-      <a class="nav-link alt-font" href="#">
+      <a class="nav-link alt-font" href="{{ route('admin.notifications.index') }}">
         <i class="fas fa-fw fa-bell"></i>
         <span>お知らせ</span>
       </a>
