@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Services\CompanyService;
+use App\Models\CompanyProfile;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,13 @@ class CompanyController extends BaseController
 {
 	public function index()
 	{
-		$to_return = [
-		    'status' => 200,
-		    'data' => (new CompanyService)->all()
-		];
-		
-		return response()->json($to_return);
+		return (new CompanyService)->all()->toJson();
+	}
+	
+	public function show(CompanyProfile $company)
+	{
+		$company = (new CompanyService)->setAttribute($company);
+
+		return $company->toJson();
 	}
 }

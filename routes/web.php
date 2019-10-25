@@ -16,3 +16,5 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('register', 'Auth\RegisterController')->only('create', 'store');
+
+Route::view('/react/{path?}', 'app');
