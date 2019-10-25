@@ -6,14 +6,16 @@ use App\Models\EmployeeProfile as Employee;
 use App\Services\EmployeeService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 class EmployeeController extends BaseController
 {
 	public function index()
 	{
-		$employees = (new EmployeeService)->all();
+    $employees = (new EmployeeService)->all();
+    $faker = Faker::create('ja_JP');
 
-		return view('admin.employees.index', compact('employees'));
+    return view('admin.employees.index', compact('employees', 'faker'));
 	}
 	
 	public function show(Employee $employee)
