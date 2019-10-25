@@ -35,7 +35,7 @@
 	    </div>
 	    <div class="form-group row">
 	      <div class="col-6 py-4 mx-auto">
-	        <button type="submit" class="alt-font btn btn-primary w-100">送信</button>
+	        <button type="submit" class="alt-font btn btn-primary btn-submit w-100">送信</button>
 	      </div>
 	    </div>
 	  </form>

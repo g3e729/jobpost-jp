@@ -114,5 +114,21 @@ Route::group([
 
 	Route::patch('messages/{message}', function () {
 		return view('admin.messages.update');
-	})->name('messages.update');
+  })->name('messages.update');
+  
+  Route::get('payments', function () {
+		return view('admin.payments.index', ['faker' => Faker\Factory::create('ja_JP')]);
+	})->name('payments.index');
+
+	Route::get('payments/{payment}', function () {
+		return view('admin.payments.show');
+	})->name('payments.show');
+
+	Route::get('payments/{payment}/edit', function () {
+		return view('admin.payments.edit');
+	})->name('payments.edit');
+
+	Route::patch('payments/{payment}', function () {
+		return view('admin.payments.update');
+	})->name('payments.update');
 });

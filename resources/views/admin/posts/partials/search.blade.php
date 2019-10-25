@@ -68,10 +68,10 @@
     </div>
     <div class="form-group row pt-4 justify-content-center">
       <div class="col-3">
-        <button type="submit" class="btn btn-primary w-100">検索</button>
+        <button type="submit" class="alt-font btn btn-primary btn-submit w-100">検索</button>
       </div>
       <div class="col-3">
-        <button id="js-form-clear" class="btn btn-secondary w-75">リセット</button>
+        <button type="reset" class="alt-font btn btn-secondary w-75">リセット</button>
       </div>
     </div>
   </form>

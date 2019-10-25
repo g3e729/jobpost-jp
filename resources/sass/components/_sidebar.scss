@@ -279,6 +279,7 @@
   .nav-item {
     .nav-link {
       color: $gray-600;
+      transition: color $anim-duration $anim-ease;
       i {
         color: $gray-400;
       }

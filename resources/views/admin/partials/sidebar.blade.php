@@ -70,7 +70,7 @@
     </li>
 
     <li class="nav-item {{ request()->is('admin/payments') ? 'active' : ''}}">
-      <a class="nav-link alt-font" href="#">
+      <a class="nav-link alt-font" href="{{ route('admin.payments.index') }}">
         <i class="fas fa-fw fa-money-bill-alt"></i>
         <span>入金確認</span>
       </a>
