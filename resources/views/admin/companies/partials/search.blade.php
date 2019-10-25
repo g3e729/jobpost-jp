@@ -1,4 +1,4 @@
-<div class="l-container">
+
   <form class="py-2 mb-4">
     <h2 class="py-4 text-center alt-font">Search Companies</h2>
     <div class="form-group pb-3 row">
@@ -47,8 +47,7 @@
         <button type="submit" class="alt-font btn btn-primary w-100">検索</button>
       </div>
       <div class="col-3">
-        <button id="js-form-clear" class="alt-font btn btn-secondary w-75">リセット</button>
+        <button type="reset" class="alt-font btn btn-secondary w-75">リセット</button>
       </div>
     </div>
   </form>
-</div>

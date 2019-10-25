@@ -79,7 +79,7 @@
       }
     }
   }
-  #sidebarToggle {
+  .sidebar-toggle {
     width: 2.5rem;
     height: 2.5rem;
     text-align: center;
@@ -101,7 +101,7 @@
   &.toggled {
     overflow: visible;
     width: $sidebar-collapsed-width !important;
-    #sidebarToggle::after {
+    .sidebar-toggle::after {
       content: '\f105';
       font-family: 'Font Awesome 5 Free';
       margin-left: 0.25rem;
@@ -305,7 +305,7 @@
     }
   }
   // Color the sidebar toggler
-  #sidebarToggle {
+  .sidebar-toggle {
     background-color: $gray-200;
     &::after {
       color: $gray-500;
@@ -356,7 +356,7 @@
     }
   }
   // Color the sidebar toggler
-  #sidebarToggle {
+  .sidebar-toggle {
     background-color: fade-out($white, 0.8);
     &::after {
       color: fade-out($white, 0.5);
@@ -366,7 +366,7 @@
     }
   }
   &.toggled {
-    #sidebarToggle::after {
+    .sidebar-toggle::after {
       color: fade-out($white, 0.5);
     }
   }

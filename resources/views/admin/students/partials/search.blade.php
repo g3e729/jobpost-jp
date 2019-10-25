@@ -71,7 +71,7 @@
           <button type="submit" class="alt-font btn btn-primary w-100">検索</button>
         </div>
         <div class="col-3">
-          <button id="js-form-clear" class="alt-font btn btn-secondary w-75">リセット</button>
+          <button type="reset" class="alt-font btn btn-secondary w-75">リセット</button>
         </div>
       </div>
     </form>
