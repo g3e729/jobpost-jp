@@ -1,6 +1,6 @@
 
   <form class="py-2 mb-4">
-    <h2 class="py-4 text-center">Search Notification</h2>
+    <h2 class="py-4 text-center alt-font">Search Notification</h2>
     <div class="form-group pb-3 row">
       <label for="formName" class="col-2 col-form-label">お知らせ</label>
       <div class="col-10">

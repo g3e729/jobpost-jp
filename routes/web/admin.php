@@ -98,5 +98,21 @@ Route::group([
 
 	Route::patch('notifications/{notification}', function () {
 		return view('admin.notifications.update');
-	})->name('notifications.update');
+  })->name('notifications.update');
+  
+  Route::get('messages', function () {
+		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
+	})->name('messages.index');
+
+	Route::get('messages/{message}', function () {
+		return view('admin.messages.show');
+	})->name('messages.show');
+
+	Route::get('messages/{message}/edit', function () {
+		return view('admin.messages.edit');
+	})->name('messages.edit');
+
+	Route::patch('messages/{message}', function () {
+		return view('admin.messages.update');
+	})->name('messages.update');
 });

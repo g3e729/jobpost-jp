@@ -35,21 +35,28 @@
       </a>
     </li>
 
-    <li class="nav-item {{ request()->is('admin/notifications') ? 'active' : ''}}">
-      <a class="nav-link alt-font" href="{{ route('admin.notifications.index') }}">
-        <i class="fas fa-fw fa-bell"></i>
-        <span>お知らせ</span>
-      </a>
-    </li>
-  
-    <li class="nav-item {{ request()->is('admin/recruitments') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/recruitments*') ? 'active' : ''}}">
       <a class="nav-link alt-font" href="{{ route('admin.recruitments.index') }}">
         <i class="fas fa-fw fa-table"></i>
         <span>募集</span>
       </a>
     </li>
 
-    <li class="nav-item {{ request()->is('admin/account') ? 'active' : ''}}">
+    <li class="nav-item {{ request()->is('admin/notifications*') && !request()->is('admin/notifications/add') ? 'active' : ''}}">
+      <a class="nav-link alt-font" href="{{ route('admin.notifications.index') }}">
+        <i class="fas fa-fw fa-bell"></i>
+        <span>お知らせ</span>
+      </a>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin/messages*') ? 'active' : ''}}">
+      <a class="nav-link alt-font" href="{{ route('admin.messages.index') }}">
+        <i class="fas fa-fw fa-comment-dots"></i>
+        <span>メッセージ</span>
+      </a>
+    </li>
+
+    <li class="nav-item {{ request()->is('admin/invite*') || request()->is('admin/notifications/add') ? 'active' : ''}}">
       <a class="nav-link alt-font collapsed" href="#" data-toggle="collapse" data-target="#collapseCreate" aria-expanded="false" aria-controls="collapseCreate">
         <i class="fas fa-fw fa-plus"></i>
         <span>新規作成</span>

@@ -1,6 +1,6 @@
 
   <form class="py-2 mb-4">
-    <h2 class="py-4 text-center">Search Jobs</h2>
+    <h2 class="py-4 text-center alt-font">Search Jobs</h2>
     <div class="form-group pb-3 row">
       <label for="formName" class="col-2 col-form-label">求人</label>
       <div class="col-10">

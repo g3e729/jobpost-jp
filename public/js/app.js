@@ -10813,18 +10813,41 @@ function () {
     this.body = document.querySelector('body');
     this.sidebar = document.querySelector('.sidebar');
     this.window = window;
+    this.init();
     this.initEvents();
   }
 
   _createClass(ToggleSidenav, [{
+    key: "init",
+    value: function init() {
+      if (!localStorage.getItem('sidebar-state')) {
+        localStorage.setItem('sidebar-state', 'open');
+      }
+
+      if (localStorage.getItem('sidebar-state') && localStorage.getItem('sidebar-state') === 'close') {
+        this.body.classList.add('sidebar-toggled');
+        this.sidebar.classList.add('toggled');
+      }
+    }
+  }, {
     key: "initEvents",
     value: function initEvents() {
       var _this = this;
 
       this.element.addEventListener('click', function (_) {
-        _this.body.classList.toggle('sidebar-toggled');
+        if (_this.body.classList.contains('sidebar-toggled')) {
+          _this.body.classList.remove('sidebar-toggled');
 
-        _this.sidebar.classList.toggle('toggled');
+          _this.sidebar.classList.remove('toggled');
+
+          localStorage.setItem('sidebar-state', 'open');
+        } else {
+          _this.body.classList.add('sidebar-toggled');
+
+          _this.sidebar.classList.add('toggled');
+
+          localStorage.setItem('sidebar-state', 'close');
+        }
 
         if (_this.sidebar.classList.contains('toggled')) {
           _this.sidebar.querySelector('.collapse').classList.remove('show');
