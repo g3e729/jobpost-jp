@@ -11,3 +11,8 @@
 .l-container-wide {
   width: calc(100% - 40px);
 }
+
+.l-container-full {
+  min-width: 1000px;
+  width: 100%;
+}
