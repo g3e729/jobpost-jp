@@ -60,7 +60,7 @@ class EmployeeService extends BaseService
         if (! $user) {
             $this->item = $userService->create(array_only($fields, ['name', 'email', 'password']));
 
-            $userService->attachRole('employee');
+            $userService->attachRole($this->model::ROLE);
             $this->item->profile()->create(array_except($fields, ['name', 'email', 'password']));
 
             return $this->item->profile;

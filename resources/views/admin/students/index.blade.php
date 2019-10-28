@@ -9,18 +9,22 @@
 
   <div class="l-container l-container-wide">
     <div class="row py-4">
+
+      @if (! $students->count())
+        <p>No result.</p>
+      @endif
       
-      @for($i = 0; $i < rand(6, 12); $i++)
+      @foreach($students as $student)
         <div class="col-3 mb-4">
           <div class="shadow-sm card card-student card-hover">
             <div class="card-body">
               <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
               <div class="card-body-top">
-                <h5 class="card-title">田中義人</h5>
+                <h5 class="card-title">{{ $student->name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">在学中</h6>
                 <div class="card-actions">
-                  <a href="{{ route('admin.students.show', $i) }}" class="card-link">詳細</a>
-                  <a href="{{ route('admin.students.edit', $i) }}" class="card-link">編集</a>
+                  <a href="{{ route('admin.students.show', $student) }}" class="card-link">詳細</a>
+                  <a href="{{ route('admin.students.edit', $student) }}" class="card-link">編集</a>
                 </div>
               </div>
               <div class="card-body-main mt-2">
@@ -29,7 +33,7 @@
                   
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">メールアドレス</div>
-                    <span class="text-muted">Kredo.@kredo.com</span>
+                    <span class="text-muted">{{ $student->email }}</span>
                   </li>
                   
                   <li class="list-group-item p-1">
@@ -58,10 +62,10 @@
             </div>
           </div>
         </div>
-      @endfor
+      @endforeach
       
     </div>
   </div>
 
-  @include('admin.partials.pagination')
+  @include('admin.partials.pagination', ['data' => $students])
 @endsection
