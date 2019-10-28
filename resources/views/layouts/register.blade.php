@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
 
 <!-- Custom fonts for this template-->
-<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho|Noto+Sans+JP&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -36,15 +36,33 @@
 
 </head>
 <body class="bg-gradient-primary">
+
+  @php
+    $image = '';
+
+    switch ($type) {
+      case 'student':
+        $image = 'OqtafYT5kTw';
+        break;
+      case 'staff':
+        $image = 'iusJ25iYu1c';
+        break;
+      case 'company':
+        $image = 'ow1mML1sOi0';
+        break;
+      default:
+        $image = 'random';
+    }
+  @endphp
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="card card-form ox-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <div class="row">
-              <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/OqtafYT5kTw/600x800');"></div>
+              <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/{{ $image }}/600x800');"></div>
               <div class="col-6 card-form-right">
-                <div class="p-5 position-relative">
+                <div class="position-relative">
                   @yield('content')
                 </div>
               </div>

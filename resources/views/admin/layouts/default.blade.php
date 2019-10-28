@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
 
 <!-- Custom fonts for this template-->
-<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho|Noto+Sans+JP&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
 
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -35,7 +35,7 @@
 <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 
 </head>
-<body>
+<body id="js-page-top">
   <div id="wrapper">
     @include('admin.partials.sidebar')
     <div id="content-wrapper" class="d-flex flex-column">
@@ -47,7 +47,7 @@
   </div>
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+  <a id="js-scroll-top" class="scroll-top rounded" href="#js-page-top">
     <i class="fas fa-angle-up"></i>
   </a>
 
@@ -65,8 +65,8 @@
           </div>
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">閉じる</button>
-            <button class="btn btn-primary" type="submit" href="login.html">ログアウト</button>
+            <button class="alt-font btn btn-secondary" type="button" data-dismiss="modal">閉じる</button>
+            <button class="alt-font btn btn-primary" type="submit" href="login.html">ログアウト</button>
           </div>
         </form>
       </div>
@@ -79,6 +79,11 @@
 
   <!-- Core plugin JavaScript-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
+  <!-- Page level plugins -->
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 
   <script src="{{ asset('js/app.js') }}" async></script>
 

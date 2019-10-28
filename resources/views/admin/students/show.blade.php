@@ -26,9 +26,8 @@
                 
               </div>
               
-              <div class="card-actions card-actions position-absolute">
+              <div class="card-actions card-actions-right position-absolute">
                 <a href="{{ route('admin.students.edit', 1) }}" class="card-link">詳細</a>
-                <a href="/messages" class="card-link">編集</a>
                 <a href="/messages" class="card-link">メッセージ</a>
                 <a href="/students/1/delete" class="card-link text-muted">削除</a>
               </div>
@@ -39,16 +38,16 @@
       <div class="student-detail-main pb-4">
         <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="pills-basic-tab" data-toggle="pill" href="#pills-basic" role="tab" aria-controls="pills-basic" aria-selected="true">基本情報</a>
+            <a class="nav-link alt-font active" id="pills-basic-tab" data-toggle="pill" href="#pills-basic" role="tab" aria-controls="pills-basic" aria-selected="true">基本情報</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">プロフィール</a>
+            <a class="nav-link alt-font" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">プロフィール</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="pills-skills-tab" data-toggle="pill" href="#pills-skills" role="tab" aria-controls="pills-skills" aria-selected="false">スキル</a>
+            <a class="nav-link alt-font" id="pills-skills-tab" data-toggle="pill" href="#pills-skills" role="tab" aria-controls="pills-skills" aria-selected="false">スキル</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="pills-grades-tab" data-toggle="pill" href="#pills-grades" role="tab" aria-controls="pills-grades" aria-selected="false">成績</a>
+            <a class="nav-link alt-font" id="pills-grades-tab" data-toggle="pill" href="#pills-grades" role="tab" aria-controls="pills-grades" aria-selected="false">成績</a>
           </li>
         </ul>
         <div class="tab-content my-4" id="pills-tabContent">

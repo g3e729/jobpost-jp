@@ -14,7 +14,7 @@
         <div class="col-3 mb-4">
         <div class="shadow-sm card card-company card-hover">
           <div class="card-body">
-            <img src="http://placehold.jp/006699/cccc00/150x150.jpg" class="card-image float-left rounded-circle">
+            <img src="{{ $faker->imageUrl(240, 240, 'city') }}" class="card-image float-left rounded-circle">
             <div class="card-body-top">
               <h5 class="card-title h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">IT</h6>
@@ -34,7 +34,7 @@
 
                 <li class="list-group-item p-1">
                   <div class="font-weight-bold">プラン</div>
-                  <span class="text-muted">{{ Str::random(1) }}</span>
+                  <span class="text-muted">{{ $faker->randomElement($array = array ('A', 'B', 'C')) }}</span>
                 </li>
 
                 <li class="list-group-item p-1">
