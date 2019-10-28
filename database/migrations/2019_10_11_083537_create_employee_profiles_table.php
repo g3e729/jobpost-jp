@@ -22,7 +22,6 @@ class CreateEmployeeProfilesTable extends Migration
             $table->string('passport_number')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('position_id')->default(0);
-            $table->integer('period')->default(0);
             $table->timestamps();
         });
     }

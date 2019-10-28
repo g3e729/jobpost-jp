@@ -20,16 +20,31 @@ class CreateSeekerProfilesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->string('sex')->nullable();
-            $table->text('description')->nullable();
-            $table->string('contact_number')->nullable();
             $table->text('address')->nullable();
+            $table->string('sex')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->integer('study_aboard_fee')->nullable();
+            $table->string('passport_number')->nullable();
+            
+            $table->integer('type_of_room')->nullable();
+            $table->timestamp('enrollment_date')->nullable();
+            $table->timestamp('graduation_date')->nullable();
+            $table->integer('status_id')->nullable();
+            $table->integer('course_id')->nullable();
+            $table->integer('study_period')->default(0);
+            $table->integer('travel_ticket')->default(0);
+            $table->integer('for_pickup')->default(0);
+
+            $table->text('description')->nullable();
             $table->string('city')->nullable();
             $table->string('country', 3)->nullable();
             $table->timestamp('birthday')->nullable();
             $table->string('avatar')->nullable();
             $table->text('portfolio')->nullable();
             $table->string('github')->nullable();
+            
+            $table->integer('pre_english_level')->default(0);
+            $table->integer('pre_it_level')->default(0);
             $table->timestamps();
         });
     }

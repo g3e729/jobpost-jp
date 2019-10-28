@@ -67,22 +67,6 @@ Route::group([
 	Route::patch('staffs/{employee}', function () {
 		return view('admin.employees.update');
 	})->name('staffs.update');
-
-	Route::get('students', function () {
-		return view('admin.students.index');
-	})->name('students.index');
-
-	Route::get('students/{student}', function () {
-		return view('admin.students.show');
-	})->name('students.show');
-
-	Route::get('students/{student}/edit', function () {
-		return view('admin.students.edit');
-	})->name('students.edit');
-
-	Route::patch('students/{student}', function () {
-		return view('admin.students.update');
-  })->name('students.update');
   
   Route::get('notifications', function () {
 		return view('admin.notifications.index', ['faker' => Faker\Factory::create('ja_JP')]);
