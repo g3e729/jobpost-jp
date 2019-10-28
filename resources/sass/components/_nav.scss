@@ -1,5 +1,19 @@
-.nav-pills {
-  .nav-link.active {
-    box-shadow: $box-shadow-button;
+.nav {
+  &.nav-pills {
+    .nav-link.active {
+      box-shadow: $box-shadow-button;
+    }
+  }
+
+  &.nav-users {
+    .nav-link.active {
+      background-color: rgba($primary, 0.8);
+      color: $light;
+
+      time {
+        color: #333;
+      }
+    }
   }
 }
+
