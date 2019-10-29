@@ -40,7 +40,8 @@
                   <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
                   <td>
                     <div class="payment-actions d-flex justify-content-between">
-                      <a href="/payment/{{ $i }}/confirm" class="btn btn-link p-0">確認</a>
+                      <a href="{{ route('admin.payments.show', $i) }}" class="btn btn-link p-0">詳細</a>
+                      <a href="{{ route('admin.payments.delete', $i) }}" class="btn btn-link p-0">削除</a>
                     </div>
                   </td>
                 </tr>
@@ -71,8 +72,7 @@
                   <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
                   <td>
                     <div class="payment-actions d-flex justify-content-between">
-                      <a href="/payment/{{ $i }}/confirm" class="btn btn-link p-0">確認</a>
-                      <a href="/payment/{{ $i }}/delete" class="btn btn-link p-0">編集</a>
+                      <a href="{{ route('admin.payments.show', $i) }}" class="btn btn-link p-0">詳細</a>
                     </div>
                   </td>
                 </tr>
