@@ -5,6 +5,8 @@
   width: $sidebar-collapsed-width;
   min-height: 100vh;
   transition: width $anim-duration $anim-ease;
+  box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+  z-index: 1;
   .nav-item {
     position: relative;
     &:last-child {

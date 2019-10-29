@@ -118,5 +118,9 @@ Route::group([
 
 	Route::patch('payments/{payment}', function () {
 		return view('admin.payments.update');
-	})->name('payments.update');
+  })->name('payments.update');
+  
+  Route::delete('payments', function () {
+		return view('admin.payments.delete');
+  })->name('payments.delete');
 });

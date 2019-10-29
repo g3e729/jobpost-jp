@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<nav class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index.html">
@@ -14,6 +14,7 @@
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
   
+  <ul class="nav">
     <li class="nav-item {{ request()->is('admin/students*') ? 'active' : ''}}">
       <a class="nav-link alt-font" href="{{ route('admin.students.index') }}">
         <i class="fas fa-fw fa-users"></i>
@@ -69,12 +70,19 @@
       </div>
     </li>
 
-    <li class="nav-item {{ request()->is('admin/payments') ? 'active' : ''}}">
-      <a class="nav-link alt-font" href="{{ route('admin.payments.index') }}">
+    <li class="nav-item {{ request()->is('admin/payments*') || request()->is('admin/tickets*') ? 'active' : ''}}">
+      <a class="nav-link alt-font collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment">
         <i class="fas fa-fw fa-money-bill-alt"></i>
         <span>入金確認</span>
       </a>
+      <div id="collapsePayment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item alt-font" href="{{ route('admin.payments.index') }}">入金確認</a>
+          <a class="collapse-item alt-font" href="#">チケット購入履歴</a></a>
+        </div>
+      </div>
     </li>
+  </ul>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
@@ -84,5 +92,5 @@
     <button class="sidebar-toggle rounded-circle border-0" id="js-sidebar-toggle"></button>
   </div>
 
-</ul>
+</nav>
 <!-- End of Sidebar -->
