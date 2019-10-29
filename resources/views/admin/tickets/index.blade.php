@@ -4,7 +4,7 @@
   <div class="l-container">
     <div class="payments py-2">
       <div class="payments-top py-4">
-        <h2 class="text-center alt-font">入金確認</h2>
+        <h2 class="text-center alt-font">チケット購入履歴</h2>
       </div>
 
       <div class="payments-bottom pb-4">
@@ -33,14 +33,13 @@
                     <img src="{{ $faker->imageUrl(240, 240, 'city') }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
                     <div class="ml-3">
                       <h3 class="font-weight-bold h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h3>
-                      <p class="text-muted mb-0">{{ $faker->text(50) }}</p>
+                      <p class="text-muted mb-0">{{ $faker->randomElement($array = array ('15', '30', '45')) }}枚チケットを購入しました</p>
                       <time>{{ $faker->dateTime->format('Y-m-d') }}</time>
                     </div>
                   </td>
                   <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
                   <td>
                     <div class="payment-actions d-flex justify-content-between">
-                      <a href="{{ route('admin.payments.show', $i) }}" class="btn btn-link p-0">詳細</a>
                       <a href="{{ route('admin.payments.delete', $i) }}" class="btn btn-link p-0">削除</a>
                     </div>
                   </td>
@@ -55,7 +54,6 @@
                 <tr>
                   <th width="450px">アカウント</th>
                   <th>価格</th>
-                  <th width="90px">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,11 +68,6 @@
                     </div>
                   </td>
                   <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
-                  <td>
-                    <div class="payment-actions d-flex justify-content-between">
-                      <a href="{{ route('admin.payments.show', $i) }}" class="btn btn-link p-0">詳細</a>
-                    </div>
-                  </td>
                 </tr>
                 @endfor
               </tbody>

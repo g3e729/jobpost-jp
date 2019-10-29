@@ -44,7 +44,7 @@
     </table>
   </div>
 
-  @include('admin.partials.pagination')
+  @include('admin.partials.pagination', ['data' => collect()])
 @endsection
 
 @section('js')

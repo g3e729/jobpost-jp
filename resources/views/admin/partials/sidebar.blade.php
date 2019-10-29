@@ -78,7 +78,7 @@
       <div id="collapsePayment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <a class="collapse-item alt-font" href="{{ route('admin.payments.index') }}">入金確認</a>
-          <a class="collapse-item alt-font" href="#">チケット購入履歴</a></a>
+          <a class="collapse-item alt-font" href="{{ route('admin.tickets.index') }}">チケット購入履歴</a></a>
         </div>
       </div>
     </li>

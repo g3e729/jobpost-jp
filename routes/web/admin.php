@@ -123,4 +123,24 @@ Route::group([
   Route::delete('payments', function () {
 		return view('admin.payments.delete');
   })->name('payments.delete');
+
+  Route::get('tickets', function () {
+    return view('admin.tickets.index', ['faker' => Faker\Factory::create('ja_JP')]);
+  })->name('tickets.index');
+  
+  Route::get('tickets/{ticket}', function () {
+    return view('admin.tickets.show');
+  })->name('tickets.show');
+  
+  Route::get('tickets/{ticket}/edit', function () {
+    return view('admin.tickets.edit');
+  })->name('tickets.edit');
+  
+  Route::patch('tickets/{ticket}', function () {
+    return view('admin.tickets.update');
+  })->name('tickets.update');
+  
+  Route::delete('tickets', function () {
+    return view('admin.tickets.delete');
+  })->name('tickets.delete');
 });
