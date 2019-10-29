@@ -51,22 +51,6 @@ Route::group([
         'seeker_profile' => 'student',
     ],
   ])->only('index', 'show', 'edit', 'update');
-
-	Route::get('staffs', function () {
-		return view('admin.employees.index', ['faker' => Faker\Factory::create('ja_JP')]);
-	})->name('staffs.index');
-
-	Route::get('staffs/{employee}', function () {
-		return view('admin.employees.show');
-	})->name('staffs.show');
-
-	Route::get('staffs/{employee}/edit', function () {
-		return view('admin.employees.edit');
-	})->name('staffs.edit');
-
-	Route::patch('staffs/{employee}', function () {
-		return view('admin.employees.update');
-	})->name('staffs.update');
   
   Route::get('notifications', function () {
 		return view('admin.notifications.index', ['faker' => Faker\Factory::create('ja_JP')]);

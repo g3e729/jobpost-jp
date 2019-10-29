@@ -45,6 +45,6 @@ class Invitation extends Model
 			return $invitation_types[$index] ?? null;
 		}
 
-		return collect(self::$types);
+		return collect($invitation_types);
 	}
 }

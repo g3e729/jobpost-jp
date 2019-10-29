@@ -10,13 +10,13 @@
   <div class="l-container l-container-wide">
     <div class="row py-4">
       
-      @for($i = 0; $i < rand(6, 12); $i++)
+      @foreach($employees as $employee)
       <div class="col-3 mb-4">
         <div class="shadow-sm card card-staff card-hover">
           <div class="card-body">
-            <img src="{{ $faker->imageUrl(240, 240, 'people') }}" class="card-image float-left rounded-circle">
+            <img src="{{-- {{ $employee->imageUrl(240, 240, 'people') }} --}}" class="card-image float-left rounded-circle">
             <div class="card-body-top">
-              <h5 class="card-title">{{ $faker->name }}</h5>
+              <h5 class="card-title">{{ $employee->name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">アドミン</h6>
               <div class="card-actions">
                 <a href="/staff/1" class="card-link">詳細</a>
@@ -29,7 +29,7 @@
                 
                 <li class="list-group-item p-1">
                   <div class="font-weight-bold">メールアドレス</div>
-                  <span class="text-muted">{{ $faker->email }}</span>
+                  <span class="text-muted">{{ $employee->email }}</span>
                 </li>
                 
                 <li class="list-group-item p-1">
@@ -39,12 +39,12 @@
                 
                 <li class="list-group-item p-1">
                   <div class="font-weight-bold">生年月日</div>
-                  <span class="text-muted">{{ $faker->dateTimeThisCentury->format('Y-m-d') }}</span>
+                  <span class="text-muted">{{ $employee->birthday->format('Y-m-d') }}</span>
                 </li>
                 
                 <li class="list-group-item p-1">
                   <div class="font-weight-bold">電話番号</div>
-                  <span class="text-muted">{{ $faker->phoneNumber }}</span>
+                  <span class="text-muted">{{ $employee->contact_number }}</span>
                 </li>
                 
                 <li class="list-group-item p-1">
@@ -58,10 +58,10 @@
           </div>
         </div>
       </div>
-      @endfor
+      @endforeach
 
     </div>
   </div>
 
-  @include('admin.partials.pagination')
+  @include('admin.partials.pagination', ['data' => $employees])
 @endsection
