@@ -16,12 +16,18 @@ class CreateEmployeeProfilesTable extends Migration
         Schema::create('employee_profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
+            $table->string('japanese_name')->nullable();
             $table->string('sex')->nullable();
             $table->string('contact_number')->nullable();
+            $table->string('prefecture')->nullable();
+            $table->string('address1')->nullable();
+            $table->string('address2')->nullable();
+            $table->string('address3')->nullable();
+            $table->string('country')->nullable();
             $table->string('status')->default(0);
-            $table->string('passport_number')->nullable();
             $table->string('avatar')->nullable();
-            $table->integer('position_id')->default(0);
+            $table->string('position_id')->nullable();
+            $table->timestamp('birthday')->nullable();
             $table->timestamps();
         });
     }

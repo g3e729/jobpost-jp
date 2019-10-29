@@ -11,6 +11,7 @@ class EmployeeService extends BaseService
 {
     // single model
     protected $item;
+    protected $user;
 
     public function __construct($item = null)
     {
@@ -21,51 +22,43 @@ class EmployeeService extends BaseService
         }
     }
 
-    public function setAttribute($data = null)
-    {
-        function setter($item)
-        {
-            $user = $item->user;
-            $item->email = $user->email;
-            $item->name = $user->name;
-
-            return $item;
-        }
-
-        if ($data instanceof EmployeeProfile) {
-            return setter($data);
-        }
-
-        $data->each(function ($item) {
-            $item = setter($item);
-        });
-
-        return $data;
-    }
-
-    public function all()
-    {
-        try {
-            return $this->setAttribute(parent::all());
-        } catch (Exception $e) {
-            return $e;
-        }
-    }
-
     public function create($fields = [])
+    {
+        $this->createUser($fields);
+
+        if (! $this->user) {
+            return null;
+        }
+
+        $profile_fields = array_except($fields, ['name', 'email', 'password']);
+
+        if (! count($profile_fields)) {
+            return $this->item;
+        }
+
+        if ($this->user->profile) {
+            $this->user->profile->update($profile_fields);
+        } else {
+            $this->user->profile()->create($profile_fields);
+        }
+
+        $this->user = $this->user->load('profile');
+        $this->item = $this->user->profile;
+
+        return $this->item;
+    }
+
+    private function createUser($fields = [])
     {
         $userService = (new UserService);
         $user = $userService->findEmail($fields['email']);
 
         if (! $user) {
-            $this->item = $userService->create(array_only($fields, ['name', 'email', 'password']));
+            $user = $userService->create(array_only($fields, ['name', 'email', 'password']));
 
             $userService->attachRole($this->model::ROLE);
-            $this->item->profile()->create(array_except($fields, ['name', 'email', 'password']));
-
-            return $this->item->profile;
         }
 
-        return null;
+        $this->user = $user;
     }
 }

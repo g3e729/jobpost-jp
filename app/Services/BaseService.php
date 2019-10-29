@@ -50,7 +50,8 @@ class BaseService
     public function find($id)
     {
         try {
-            return $this->model::whereId($id)->first();
+            $this->item = $this->model::whereId($id)->first();
+            return $this->item;
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return null;
@@ -66,6 +67,22 @@ class BaseService
     {
         try {
             $this->item = $this->model::create($fields);
+            return $this->item;
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Register new model
+     *
+     * @return mixed
+     */
+    public function update(array $fields)
+    {
+        try {
+            $this->item->update($fields);
             return $this->item;
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
