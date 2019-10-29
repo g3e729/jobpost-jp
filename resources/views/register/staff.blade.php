@@ -93,16 +93,75 @@ $progressVal = ($currForm / 3) * 100;
     <div class="pb-3 row">
       <div class="col-4">住所</div>
       <div class="col-8">
+
         <div class="form-group position-relative">
-          <label for="formStaffAddress1" class="form-label pt-0">番地まで</label>
-          <input type="text" class="form-control" id="formStaffAddress1" name="staffaddress1" placeholder="" required>
+          <label for="formStaffAddress0" class="form-label pt-0">Prefecture</label>
+          <select class="form-control" id="formStaffAddress0" name="staffaddress0" data-action="change" data-condition="" data-text="Please choose your prefecture.">
+            <option value="" selected hidden disabled>Choose prefecture</option>
+            <option id='prefecure-hokkaido'>北海道</option>
+            <option id='prefecture-tohoku-0'>東北 - 青森</option>
+            <option id='prefecture-tohoku-1'>東北 - 岩手</option>
+            <option id='prefecture-tohoku-2'>東北 - 秋田</option>
+            <option id='prefecture-tohoku-3'>東北 - 山形</option>
+            <option id='prefecture-tohoku-4'>東北 - 宮城</option>
+            <option id='prefecture-tohoku-5'>東北 - 福島</option>
+            <option id='prefecture-kanto-0'>関東 - 東京</option>
+            <option id='prefecture-kanto-1'>関東 - 千葉</option>
+            <option id='prefecture-kanto-2'>関東 - 神奈川</option>
+            <option id='prefecture-kanto-3'>関東 - 茨城</option>
+            <option id='prefecture-kanto-4'>関東 - 栃木</option>
+            <option id='prefecture-kanto-5'>関東 - 群馬</option>
+            <option id='prefecture-kanto-6'>関東 - 埼玉</option>
+            <option id='prefecture-chubu-0'>中部 - 新潟</option>
+            <option id='prefecture-chubu-1'>中部 - 富山</option>
+            <option id='prefecture-chubu-2'>中部 - 石川</option>
+            <option id='prefecture-chubu-3'>中部 - 長野</option>
+            <option id='prefecture-chubu-4'>中部 - 山梨</option>
+            <option id='prefecture-chubu-5'>中部 - 静岡</option>
+            <option id='prefecture-chubu-6'>中部 - 愛知</option>
+            <option id='prefecture-chubu-7'>中部 - 岐阜</option>
+            <option id='prefecture-chubu-8'>中部 - 福井</option>
+            <option id='prefecture-kansai-0'>関西 - 滋賀</option>
+            <option id='prefecture-kansai-1'>関西 - 三重</option>
+            <option id='prefecture-kansai-2'>関西 - 京都</option>
+            <option id='prefecture-kansai-3'>関西 - 大阪</option>
+            <option id='prefecture-kansai-4'>関西 - 奈良</option>
+            <option id='prefecture-kansai-5'>関西 - 兵庫</option>
+            <option id='prefecture-kansai-6'>関西 - 和歌山</option>
+            <option id='prefecture-chugoku-0'>中国 - 鳥取</option>
+            <option id='prefecture-chugoku-1'>中国 - 岡山</option>
+            <option id='prefecture-chugoku-2'>中国 - 広島</option>
+            <option id='prefecture-chugoku-3'>中国 - 島根</option>
+            <option id='prefecture-chugoku-4'>中国 - 山口</option>
+            <option id='prefecture-shikoku-0'>四国 - 徳島</option>
+            <option id='prefecture-shikoku-1'>四国 - 香川</option>
+            <option id='prefecture-shikoku-2'>四国 - 愛媛</option>
+            <option id='prefecture-shikoku-3'>四国 - 高知</option>
+            <option id='prefecture-kyushu-0'>九州 - 福岡</option>
+            <option id='prefecture-kyushu-1'>九州 - 大分</option>
+            <option id='prefecture-kyushu-2'>九州 - 佐賀</option>
+            <option id='prefecture-kyushu-3'>九州 - 長崎</option>
+            <option id='prefecture-kyushu-4'>九州 - 熊本</option>
+            <option id='prefecture-kyushu-5'>九州 - 宮崎</option>
+            <option id='prefecture-kyushu-6'>九州 - 鹿児島</option>
+            <option id='prefecture-kyushu-7'>九州 - 沖縄</option>
+            <option id='prefecture-overseas'>海外</option>
+          </select>
           <div class="invalid-tooltip">
-            Please enter an address.
+            Please choose your prefecture.
           </div>
         </div>
 
         <div class="form-group position-relative">
-          <label for="formStaffAddress2" class="form-label pt-0">ビル名、部屋番号</label>
+          <label for="formStaffAddress1" class="form-label pt-0">番地</label>
+          <input type="text" class="form-control" id="formStaffAddress1" name="staffaddress1" placeholder="" required>
+          <div class="invalid-tooltip">
+            Please enter your house number.
+          </div>
+        </div>
+
+        <div class="form-group position-relative">
+          <label for="formStaffAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
           <input type="text" class="form-control" id="formStaffAddress2" name="staffaddress2" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter your building name / room number.

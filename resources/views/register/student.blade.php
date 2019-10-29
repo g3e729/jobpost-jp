@@ -1,15 +1,15 @@
 @extends('layouts.register')
 
 @php
-$currForm = 1; // Steps 1, 2, or 3
-$progressVal = ($currForm / 3) * 100;
+$currForm = 1; // Steps 1, 2
+$progressVal = ($currForm / 2) * 100;
 
 @endphp
 
 @section('content')
   <div class="form-header">
     <div class="progress progress-form" style="height: 18px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $currForm }}" role="progressbar" aria-valuenow="{{ $progressVal }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progressVal.'%' }}">{{ $currForm }}/3</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $currForm }}" role="progressbar" aria-valuenow="{{ $progressVal }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progressVal.'%' }}">{{ $currForm }}/2</div>
     </div>
 
     <div class="py-4 text-center alt-font">
@@ -59,7 +59,7 @@ $progressVal = ($currForm / 3) * 100;
       <div class="col-8">
         <input type="text" class="form-control" id="formNameJP" name="namejp" placeholder="" required>
         <div class="invalid-tooltip">
-          Please enter name. 
+          Please enter Japanese name. 
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@ $progressVal = ($currForm / 3) * 100;
       <div class="col-8">
         <input type="text" class="form-control" id="formNameEN" name="nameen" placeholder="" required>
         <div class="invalid-tooltip">
-          Please enter name.
+          Please enter English name.
         </div>
       </div>
     </div>
@@ -95,15 +95,73 @@ $progressVal = ($currForm / 3) * 100;
       <div class="col-4">住所</div>
       <div class="col-8">
         <div class="form-group position-relative">
-          <label for="formAddress1" class="form-label pt-0">番地まで</label>
-          <input type="text" class="form-control" id="formAddress1" name="address1" placeholder="" required>
+          <label for="formAddress0" class="form-label pt-0">Prefecture</label>
+          <select class="form-control" id="formAddress0" name="address0" data-action="change" data-condition="" data-text="Please choose your prefecture.">
+            <option value="" selected hidden disabled>Choose prefecture</option>
+            <option id='prefecure-hokkaido'>北海道</option>
+            <option id='prefecture-tohoku-0'>東北 - 青森</option>
+            <option id='prefecture-tohoku-1'>東北 - 岩手</option>
+            <option id='prefecture-tohoku-2'>東北 - 秋田</option>
+            <option id='prefecture-tohoku-3'>東北 - 山形</option>
+            <option id='prefecture-tohoku-4'>東北 - 宮城</option>
+            <option id='prefecture-tohoku-5'>東北 - 福島</option>
+            <option id='prefecture-kanto-0'>関東 - 東京</option>
+            <option id='prefecture-kanto-1'>関東 - 千葉</option>
+            <option id='prefecture-kanto-2'>関東 - 神奈川</option>
+            <option id='prefecture-kanto-3'>関東 - 茨城</option>
+            <option id='prefecture-kanto-4'>関東 - 栃木</option>
+            <option id='prefecture-kanto-5'>関東 - 群馬</option>
+            <option id='prefecture-kanto-6'>関東 - 埼玉</option>
+            <option id='prefecture-chubu-0'>中部 - 新潟</option>
+            <option id='prefecture-chubu-1'>中部 - 富山</option>
+            <option id='prefecture-chubu-2'>中部 - 石川</option>
+            <option id='prefecture-chubu-3'>中部 - 長野</option>
+            <option id='prefecture-chubu-4'>中部 - 山梨</option>
+            <option id='prefecture-chubu-5'>中部 - 静岡</option>
+            <option id='prefecture-chubu-6'>中部 - 愛知</option>
+            <option id='prefecture-chubu-7'>中部 - 岐阜</option>
+            <option id='prefecture-chubu-8'>中部 - 福井</option>
+            <option id='prefecture-kansai-0'>関西 - 滋賀</option>
+            <option id='prefecture-kansai-1'>関西 - 三重</option>
+            <option id='prefecture-kansai-2'>関西 - 京都</option>
+            <option id='prefecture-kansai-3'>関西 - 大阪</option>
+            <option id='prefecture-kansai-4'>関西 - 奈良</option>
+            <option id='prefecture-kansai-5'>関西 - 兵庫</option>
+            <option id='prefecture-kansai-6'>関西 - 和歌山</option>
+            <option id='prefecture-chugoku-0'>中国 - 鳥取</option>
+            <option id='prefecture-chugoku-1'>中国 - 岡山</option>
+            <option id='prefecture-chugoku-2'>中国 - 広島</option>
+            <option id='prefecture-chugoku-3'>中国 - 島根</option>
+            <option id='prefecture-chugoku-4'>中国 - 山口</option>
+            <option id='prefecture-shikoku-0'>四国 - 徳島</option>
+            <option id='prefecture-shikoku-1'>四国 - 香川</option>
+            <option id='prefecture-shikoku-2'>四国 - 愛媛</option>
+            <option id='prefecture-shikoku-3'>四国 - 高知</option>
+            <option id='prefecture-kyushu-0'>九州 - 福岡</option>
+            <option id='prefecture-kyushu-1'>九州 - 大分</option>
+            <option id='prefecture-kyushu-2'>九州 - 佐賀</option>
+            <option id='prefecture-kyushu-3'>九州 - 長崎</option>
+            <option id='prefecture-kyushu-4'>九州 - 熊本</option>
+            <option id='prefecture-kyushu-5'>九州 - 宮崎</option>
+            <option id='prefecture-kyushu-6'>九州 - 鹿児島</option>
+            <option id='prefecture-kyushu-7'>九州 - 沖縄</option>
+            <option id='prefecture-overseas'>海外</option>
+          </select>
           <div class="invalid-tooltip">
-            Please enter an address.
+            Please choose your prefecture.
           </div>
         </div>
 
         <div class="form-group position-relative">
-          <label for="formAddress2" class="form-label pt-0">ビル名、部屋番号</label>
+          <label for="formAddress1" class="form-label pt-0">番地</label>
+          <input type="text" class="form-control" id="formAddress1" name="address1" placeholder="" required>
+          <div class="invalid-tooltip">
+            Please enter your house number.
+          </div>
+        </div>
+
+        <div class="form-group position-relative">
+          <label for="formAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
           <input type="text" class="form-control" id="formAddress2" name="address2" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter your building name / room number.
@@ -112,7 +170,7 @@ $progressVal = ($currForm / 3) * 100;
 
         <div class="form-group position-relative">
           <label for="formAddress3" class="form-label pt-0">郵便番号</label>
-          <input type="text" class="form-control" id="formAddress3" name="address3" placeholder="" required>
+          <input type="number" class="form-control" id="formAddress3" name="address3" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter your postal code.
           </div>
@@ -126,8 +184,8 @@ $progressVal = ($currForm / 3) * 100;
       <div class="col-8">
         <select class="form-control" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
           <option value="" selected hidden disabled>Choose sex</option>
-          <option value="sex-male">男性</option>
-          <option value="sex-female">女性</option>
+          <option value="sex-man">男</option>
+          <option value="sex-woman">女</option>
         </select>
         <div class="invalid-tooltip">
           Please choose your sex orientation.
@@ -145,16 +203,6 @@ $progressVal = ($currForm / 3) * 100;
       </div>
     </div>
 
-    <div class="form-group pb-3 row">
-      <label for="formPassportNumber" class="col-4 col-form-label">パスポート番号</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="formPassportNumber" name="passport" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter your passport number.
-        </div>
-      </div>
-    </div>
-
     <div class="form-group row">
       <div class="col-6 pt-4 mx-auto">
         <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
@@ -163,20 +211,13 @@ $progressVal = ($currForm / 3) * 100;
 
   </form>
 
-  @elseif ($currForm == 2)
+  @else
   <form class="form-user2 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
 
     <div class="form-group pb-3 row">
-      <label for="formRoomType" class="col-4 col-form-label">部屋タイプ</label>
+      <label for="formFee" class="col-4 col-form-label">留学費用</label>
       <div class="col-8">
-        <select class="form-control" id="formRoomType" name="room" data-action="change" data-condition="" data-text="Please choose your room type.">
-          <option value="" selected hidden disabled>Choose room</option>
-          <option value="room-a">Room A</option>
-          <option value="room-b">Room B</option>
-        </select>
-        <div class="invalid-tooltip">
-          Please choose your room type.
-        </div>
+        <input type="number" class="form-control" id="formFee" name="fee" min="0" placeholder="">
       </div>
     </div>
 
@@ -215,162 +256,29 @@ $progressVal = ($currForm / 3) * 100;
     </div>
 
     <div class="form-group pb-3 row">
-      <label for="formCheckInDate" class="col-4 col-form-label">チェックイン日</label>
+      <label for="formStatus" class="col-4 col-form-label">ステータス</label>
       <div class="col-8">
-        <div class="input-group">
-          <input type="text" class="form-control js-datepicker" id="formCheckInDate" name="checkin" placeholder="" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="fas fa-fw fa-calendar-alt"></i>
-            </div>
-          </div>
-          <div class="invalid-tooltip">
-            Please enter check-in date.
-          </div>
-        </div>
+        <select class="form-control" id="formStatus" name="status">
+          <option value="" selected hidden disabled>Choose status</option>
+          <option value="status-0">入学前 / Pre-Student</option>
+          <option value="status-1">生徒 / Student</option>
+          <option value="status-2">卒業 / Graduate</option>
+        </select>
       </div>
     </div>
 
     <div class="form-group pb-3 row">
-      <label for="formCheckOutDate" class="col-4 col-form-label">チェックアウト日</label>
+      <label for="formOccupation" class="col-4 col-form-label">ご職業</label>
       <div class="col-8">
-        <div class="input-group">
-          <input type="text" class="form-control js-datepicker" id="formCheckOutDate" name="checkout" placeholder="" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <i class="fas fa-fw fa-calendar-alt"></i>
-            </div>
-          </div>
-          <div class="invalid-tooltip">
-            Please enter check-out date.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formCourse" class="col-4 col-form-label">希望コース</label>
-      <div class="col-8">
-        <select class="form-control" id="formCourse" name="course" data-action="change" data-condition="" data-text="Please choose your desired course.">
-          <option value="" selected hidden disabled>Choose course</option>
-          <option value="course-a">Course A</option>
-          <option value="course-b">Course B</option>
+        <select class="form-control" id="formOccupation" name="occupation" data-action="change" data-condition="" data-text="Please enter occupation.">
+          <option value="" selected hidden disabled>Choose occupation</option>
+          <option value="occupation-0">学生 / Student</option>
+          <option value="occupation-1">就業者 / Worker</option>
+          <option value="occupation-2">フリー / Part-time worker</option>
         </select>
         <div class="invalid-tooltip">
-          Please choose your desired course.
+          Please enter occupation.
         </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formDuration" class="col-4 col-form-label">留学期間(週間)</label>
-      <div class="col-8">
-        <select class="form-control" id="formDuration" name="duration" data-action="change" data-condition="" data-text="Please choose your study duration.">
-          <option value="" selected hidden disabled>Choose duration</option>
-          <option value="duration-a">Duration A</option>
-          <option value="duration-b">Duration B</option>
-        </select>
-        <div class="invalid-tooltip">
-          Please choose your study duration.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formArrangement" class="col-4 col-form-label">航空券手配・海外保険手配</label>
-      <div class="col-8">
-        <select class="form-control" id="formArrangement" name="arrangement" data-action="change" data-condition="" data-text="Please choose your ticket arrangement.">
-          <option value="" selected hidden disabled>Choose arrangement</option>
-          <option value="arrangement-a">Arrangement A</option>
-          <option value="arrangement-b">Arrangement B</option>
-        </select>
-        <div class="invalid-tooltip">
-          Please choose your ticket arrangement.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formPickup" class="col-4 col-form-label">空港までのお迎え希望</label>
-      <div class="col-8">
-        <select class="form-control" id="formPickup" name="pickup" data-action="change" data-condition="" data-text="Please choose if you want to be pickup.">
-          <option value="" selected hidden disabled>Choose pickup</option>
-          <option value="pickup-a">Pickup A</option>
-          <option value="pickup-b">Pickup B</option>
-        </select>
-        <div class="invalid-tooltip">
-          Please choose if you want to be pickup.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formProfession" class="col-4 col-form-label">ご職業</label>
-      <div class="col-8">
-        <input type="text" class="form-control" id="formProfession" name="profession" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter profession.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-6 pt-4 mx-auto">
-        <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
-      </div>
-    </div>
-
-  </form>
-
-  @else
-  <form class="form-user3 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
-
-    <div class="pb-3 row">
-      <div class="col-4">緊急連絡先</div>
-      <div class="col-8">
-        <div class="form-group position-relative">
-          <label for="formRelName" class="form-label pt-0">名前</label>
-          <input type="text" class="form-control" id="formRelName" name="relname" placeholder="">
-        </div>
-
-        <div class="form-group position-relative">
-          <label for="formRelRelationship" class="form-label pt-0">続柄</label>
-          <input type="text" class="form-control" id="formRelRelationship" name="relrelationship" placeholder="">
-        </div>
-
-        <div class="form-group position-relative">
-          <label for="formRelNumber" class="form-label pt-0">電話番号</label>
-          <input type="text" class="form-control" id="formRelNumber" name="relnumber" placeholder="">
-        </div>
-
-        <div class="form-group position-relative">
-          <label for="formRelEmail" class="form-label pt-0">メールアドレス</label>
-          <input type="email" class="form-control" id="formRelEmail" name="relemail" placeholder="">
-        </div>
-
-      </div>
-    </div>
-
-    <div class="pb-3 row">
-      <div class="col-4">既往症の有無</div>
-      <div class="col-8">
-        <div class="form-group position-relative">
-          <label for="formDiseaseHad" class="form-label pt-0">ありなし</label>
-          <select class="form-control" id="formDiseaseHad" name="diseasehad" data-action="change" data-condition="" data-text="Please choose.">
-            <option value="" selected hidden disabled>Presence of pre-existing disease</option>
-            <option value="disease-no">No</option>
-            <option value="disease-yes">Yes</option>
-          </select>
-          <div class="invalid-tooltip">
-            Please choose.
-          </div>
-        </div>
-
-        <div class="form-group position-relative">
-          <label for="formDiseaseContent" class="form-label pt-0">内容</label>
-          <textarea class="form-control" id="formDiseaseContent" name="diseasecontent" placeholder="" rows="4" style="min-height: 100px;"></textarea>
-        </div>
-
       </div>
     </div>
 

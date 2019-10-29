@@ -4,7 +4,7 @@
   width: 100%;
 }
 
-$progress: 3;
+$progress: 2;
 @for $i from 1 through $progress {
   .progress-bar-anim-#{$i} {
     animation: progress-expand-#{$i} 1s ease forwards;
