@@ -38,6 +38,12 @@ for ($i = 0; $i < 5; $i++) {
                   <time>{{ $chat->date }}</time>
                 </p>
               </a>
+
+              <div class="chat-actions">
+                <a href="{{ route('admin.messages.delete', $chat->id) }}" class="chat-link js-chat-delete">
+                  <i class="fa fa-trash-alt text-muted"></i>
+                </a>
+              </div>
             </li>
             @endforeach
           </ul>
@@ -122,4 +128,48 @@ for ($i = 0; $i < 5; $i++) {
       @endif
     </div>
   </div>
+
+  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">削除</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          このトークルームをを削除しますか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('js')
+  <script>
+    const deleteButtons = document.querySelectorAll('.js-chat-delete');
+    const modalSubmit = document.querySelector('#js-modal-submit');
+    const modal = document.querySelector('#js-delete-modal');
+    let currTarget;
+
+    deleteButtons.forEach(btn => {
+      btn.addEventListener('click', function(event) {
+        $(modal).modal('show');
+        currTarget = event.currentTarget.href;
+
+        event.preventDefault();
+      })
+    });
+
+    modalSubmit.addEventListener('click', function(event) {
+      $(modal).modal('hide');
+      window.location.replace(currTarget);
+    });
+
+  </script>
 @endsection

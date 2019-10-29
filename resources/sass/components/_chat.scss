@@ -67,6 +67,12 @@
       color: #8796af;
     }
   }
+
+  .chat-actions {
+    position: absolute;
+    right: 1rem;
+    top: calc(50% - 6px);
+  }
 }
 
 /************************************************

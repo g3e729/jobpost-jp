@@ -52,7 +52,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal fade" id="js-logout-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <form action="{{ route('logout') }}" method="POST">
@@ -65,7 +65,7 @@
           </div>
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
-            <button class="alt-font btn btn-secondary" type="button" data-dismiss="modal">閉じる</button>
+            <button class="alt-font btn btn-secondary" type="button" data-dismiss="modal">キャンセル</button>
             <button class="alt-font btn btn-primary" type="submit" href="login.html">ログアウト</button>
           </div>
         </form>

@@ -99,6 +99,10 @@ Route::group([
 	Route::patch('messages/{message}', function () {
 		return view('admin.messages.update');
   })->name('messages.update');
+
+  Route::delete('messages', function () {
+		return view('admin.messages.delete');
+  })->name('messages.delete');
   
   Route::get('payments', function () {
 		return view('admin.payments.index', ['faker' => Faker\Factory::create('ja_JP')]);

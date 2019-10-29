@@ -41,7 +41,7 @@
 	  </form>
 	</div>
 
-  <div class="modal fade" id="js-registerModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal fade" id="js-register-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -54,8 +54,8 @@
           Are you sure you want to add account?
         </div>
         <div class="modal-footer">
-          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <button id="js-modalSubmit" type="button" class="alt-font btn btn-primary">確認する</button>
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
         </div>
       </div>
     </div>
@@ -65,8 +65,8 @@
 @section('js')
   <script>
     const forms = document.querySelectorAll('.needs-validation');
-    const modalSubmit = document.querySelector('#js-modalSubmit');
-    const modal = document.querySelector('#js-registerModal');
+    const modalSubmit = document.querySelector('#js-modal-submit');
+    const modal = document.querySelector('#js-register-modal');
 
     // Loop over them and prevent submission
     Array.prototype.filter.call(forms, function(form) {
