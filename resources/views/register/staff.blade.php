@@ -1,24 +1,21 @@
 @extends('layouts.register')
 
 @php
-$currForm = 1; // Steps 1, 2, or 3
-$progressVal = ($currForm / 3) * 100;
+$currForm = 1; // Steps 1, 2
+$progressVal = ($currForm / 2) * 100;
 
 @endphp
 
 @section('content')
   <div class="form-header">
     <div class="progress progress-form" style="height: 18px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $currForm }}" role="progressbar" aria-valuenow="{{ $progressVal }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progressVal.'%' }}">{{ $currForm }}/3</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $currForm }}" role="progressbar" aria-valuenow="{{ $progressVal }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progressVal.'%' }}">{{ $currForm }}/2</div>
     </div>
 
     <div class="py-4 text-center alt-font">
       <h1 class="h5">新規登録
         @if ($currForm == 1)
         <span class="d-block h4">パスワード</span>
-
-        @elseif ($currForm == 2)
-        <span class="d-block h4">基本情報</span>
 
         @else
         <span class="d-block h4">その他</span>
@@ -28,7 +25,7 @@ $progressVal = ($currForm / 3) * 100;
   </div>
 
   @if ($currForm == 1)
-  <form class="form-staff1 needs-validation p-5 mb-4" action="" method="POST" novalidate>
+  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
     
     <div class="form-group pb-3 row">
       <label for="formPassword" class="col-4 col-form-label">パスワード</label>
@@ -52,19 +49,10 @@ $progressVal = ($currForm / 3) * 100;
       </div>
     </div>
 
-    <div class="form-group row">
-      <div class="col-6 pt-4 mx-auto">
-        <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
-      </div>
-    </div>
-
-  </form>
-
-  @elseif ($currForm == 2)
-  <form class="form-staff2 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
+    <hr class="form-divider d-block mb-4">
 
     <div class="form-group pb-3 row">
-      <label for="formStaffName" class="col-4 col-form-label">名前(Japanese)</label>
+      <label for="formStaffName" class="col-4 col-form-label">名前</label>
       <div class="col-8">
         <input type="text" class="form-control" id="formStaffName" name="staffname" placeholder="" required>
         <div class="invalid-tooltip">
@@ -93,7 +81,6 @@ $progressVal = ($currForm / 3) * 100;
     <div class="pb-3 row">
       <div class="col-4">住所</div>
       <div class="col-8">
-
         <div class="form-group position-relative">
           <label for="formStaffAddress0" class="form-label pt-0">Prefecture</label>
           <select class="form-control" id="formStaffAddress0" name="staffaddress0" data-action="change" data-condition="" data-text="Please choose your prefecture.">
@@ -170,7 +157,7 @@ $progressVal = ($currForm / 3) * 100;
 
         <div class="form-group position-relative">
           <label for="formStaffAddress3" class="form-label pt-0">郵便番号</label>
-          <input type="text" class="form-control" id="formStaffAddress3" name="staffaddress3" placeholder="" required>
+          <input type="number" class="form-control" id="formStaffAddress3" name="staffaddress3" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter your postal code.
           </div>
@@ -184,8 +171,8 @@ $progressVal = ($currForm / 3) * 100;
       <div class="col-8">
         <select class="form-control" id="formStaffSex" name="staffsex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
           <option value="" selected hidden disabled>Choose sex</option>
-          <option value="sex-male">男性</option>
-          <option value="sex-female">女性</option>
+          <option value="sex-man">男</option>
+          <option value="sex-woman">女</option>
         </select>
         <div class="invalid-tooltip">
           Please choose your sex orientation.
@@ -196,20 +183,7 @@ $progressVal = ($currForm / 3) * 100;
     <div class="form-group pb-3 row">
       <label for="formStaffPhone" class="col-4 col-form-label">電話番号</label>
       <div class="col-8">
-        <input type="text" class="form-control" id="formStaffPhone" name="staffphone" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter a phone number.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formStaffAvatar" class="col-4 col-form-label">アバタ</label>
-      <div class="col-8">
-        <input type="file" class="form-control" id="formStaffAvatar" name="staffavatar" accept="image/png, image/jpeg" required>
-        <div class="invalid-tooltip">
-          Please choose your avatar.
-        </div>
+        <input type="text" class="form-control" id="formStaffPhone" name="staffphone" placeholder="">
       </div>
     </div>
 
@@ -222,26 +196,20 @@ $progressVal = ($currForm / 3) * 100;
   </form>
 
   @else
-  <form class="form-staff3 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
+  <form class="form-staff2 needs-validation pt-3 pb-5 px-5 mb-4" action="" method="POST" novalidate>
 
     <div class="form-group pb-3 row">
-      <label for="formStaffPassport" class="col-3 col-form-label">パスポート番号</label>
-      <div class="col-9">
-        <input type="text" class="form-control" id="formPassport" name="staffpassport" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter your passport number.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formStaffStatus" class="col-3 col-form-label">ステータス</label>
-      <div class="col-9">
+      <label for="formStaffStatus" class="col-4 col-form-label">ステータス</label>
+      <div class="col-8">
         <select class="form-control" id="formStaffStatus" name="formStaffstatus" data-action="change" data-condition="" data-text="Please choose your status.">
           <option value="" selected hidden disabled>Choose status</option>
-          <option value="pre-matriculation">Pre-Matriculation</option>
-          <option value="student">Student</option>
-          <option value="graduated">Graduated</option>
+          <option id='status-0'>無休インターン : Unpaid intern</option>
+          <option id='status-1'>有給インターン : Paid intern</option>
+          <option id='status-2'>契約社員 : Contract employee</option>
+          <option id='status-3'>社員 : Employee</option>
+          <option id='status-4'>パートタイム : Part time</option>
+          <option id='status-5'>フルタイム : Full time</option>
+          <option id='status-6'>退職 : Retirement</option>
         </select>
         <div class="invalid-tooltip">
           Please choose your status.
@@ -250,45 +218,39 @@ $progressVal = ($currForm / 3) * 100;
     </div>
 
     <div class="form-group pb-3 row">
-      <label for="formStaffFee" class="col-3 col-form-label">留学費用</label>
-      <div class="col-9">
-        <input type="number" class="form-control" id="formStaffFee" name="stafffee" min="1" placeholder="" required>
+      <label for="formStaffAvatar" class="col-4 col-form-label">アバター</label>
+      <div class="col-8">
+        <input type="file" class="form-control" id="formStaffAvatar" name="staffavatar" accept="image/png, image/jpeg" required>
         <div class="invalid-tooltip">
-          Please enter student fee.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formStaffCountry" class="col-3 col-form-label">国籍</label>
-      <div class="col-9">
-        <input type="text" class="form-control" id="formCountry" name="staffcountry" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter your country.
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group pb-3 row">
-      <label for="formStaffPosition" class="col-3 col-form-label">ポジション</label>
-      <div class="col-9">
-        <input type="text" class="form-control" id="formPosition" name="staffposition" placeholder="" required>
-        <div class="invalid-tooltip">
-          Please enter your position.
+          Please choose your avatar.
         </div>
       </div>
     </div>
     
     <div class="form-group pb-3 row">
-      <label for="formStaffRange" class="col-3 col-form-label">雇用期間</label>
-      <div class="col-9">
-        <div class="input-group input-daterange js-datepicker">
-          <input type="text" class="form-control text-left" id="formStaffRangeFrom" name="staffrangefrom" placeholder="">
-          <div class="input-group-text">
-            <i class="fas fa-fw fa-arrows-alt-h"></i>
-          </div>
-          <input type="text" class="form-control text-left" id="formStaffRangeTo" name="staffrangeto" placeholder="">
-        </div>
+      <label for="formStaffCountry" class="col-4 col-form-label">国籍</label>
+      <div class="col-8">
+        <select class="form-control" id="formStaffCountry" name="staffcountry">
+          <option value="" selected hidden disabled>Choose country</option>
+          <option id='country-0'>日本人 : Japan</option>
+          <option id='country-1'>フィリピン人 : Filipino</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group pb-3 row">
+      <label for="formStaffPosition" class="col-4 col-form-label">ポジション</label>
+      <div class="col-8">
+        <select class="form-control" id="formPosition" name="staffposition">
+          <option value="" selected hidden disabled>Choose position</option>
+          <option id='position-0'>IT</option>
+          <option id='position-1'>ESL</option>
+          <option id='position-2'>Housekeeper</option>
+          <option id='position-3'>Admin</option>
+          <option id='position-4'>Marketing</option>
+          <option id='position-5'>Sales</option>
+          <option id='position-6'>Student support</option>
+        </select>
       </div>
     </div>
 

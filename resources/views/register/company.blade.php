@@ -1,15 +1,15 @@
 @extends('layouts.register')
 
 @php
-$currForm = 1; // Steps 1, 2, or 3
-$progressVal = ($currForm / 3) * 100;
+$currForm = 1; // Steps 1, 2
+$progressVal = ($currForm / 2) * 100;
 
 @endphp
 
 @section('content')
   <div class="form-header">
     <div class="progress progress-form" style="height: 18px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $currForm }}" role="progressbar" aria-valuenow="{{ $progressVal }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progressVal.'%' }}">{{ $currForm }}/3</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $currForm }}" role="progressbar" aria-valuenow="{{ $progressVal }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progressVal.'%' }}">{{ $currForm }}/2</div>
     </div>
 
     <div class="py-4 text-center alt-font">

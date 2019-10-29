@@ -17,9 +17,6 @@ $progressVal = ($currForm / 2) * 100;
         @if ($currForm == 1)
         <span class="d-block h4">基本情報</span>
 
-        @elseif ($currForm == 2)
-        <span class="d-block h4">教育</span>
-
         @else
         <span class="d-block h4">その他</span>
         @endif
