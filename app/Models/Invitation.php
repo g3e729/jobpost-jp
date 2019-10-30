@@ -24,7 +24,7 @@ class Invitation extends Model
 	static protected $types = [
 		1 => 'student',
 		2 => 'company',
-		3 => 'staff'
+		3 => 'employee'
 	];
 
     protected static function boot()

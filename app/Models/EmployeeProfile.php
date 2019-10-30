@@ -67,6 +67,16 @@ class EmployeeProfile extends HasUserModel
         });
     }
 
+    public function getPositionAttribute()
+    {
+        return ucwords(self::$positions[$this->position_id]);
+    }
+
+    public function getEmploymentStatusAttribute()
+    {
+        return ucwords(self::$employment_status[$this->status]);
+    }
+
     static function getEmploymentStatus($index = null)
     {
         $employment_status = self::$employment_status;

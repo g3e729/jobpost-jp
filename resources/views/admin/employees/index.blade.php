@@ -21,7 +21,7 @@
               <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
               <div class="card-body-top">
                 <h5 class="card-title">{{ $employee->display_name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">アドミン</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $employee->position }}</h6>
                 <div class="card-actions">
                   <a href="{{ route('admin.employees.show', $employee) }}" class="card-link">詳細</a>
                   <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">編集</a>
@@ -38,7 +38,7 @@
                   
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">ステータス</div>
-                    <span class="text-muted">有給インターン</span>
+                    <span class="text-muted">{{ $employee->employment_status }}</span>
                   </li>
                   
                   <li class="list-group-item p-1">
@@ -49,11 +49,6 @@
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">電話番号</div>
                     <span class="text-muted">{{ $employee->contact_number }}</span>
-                  </li>
-                  
-                  <li class="list-group-item p-1">
-                    <div class="font-weight-bold">雇用期間</div>
-                    <span class="text-muted">2020年03月20日 ~ 2020年03月20日</span>
                   </li>
                   
                 </ul>

@@ -76,7 +76,7 @@ class RegisterController extends Controller
         return redirect()->route('login')->with('message', 'You have successfully registered!');;
     }
 
-    private function staff($step, $request)
+    private function employee($step, $request)
     {
         switch ($step) {
             case 1:

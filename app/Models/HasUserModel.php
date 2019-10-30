@@ -10,7 +10,7 @@ class HasUserModel extends Model
     {
         parent::boot();
         static::retrieved(function ($model) {
-            $model->display_name = empty(str_replace(' ', '', $model->user->japanese_name)) ? $model->user->name : $model->japanese_name;
+            $model->display_name = empty(str_replace(' ', '', $model->user->japanese_name)) ? $model->user->name : $model->user->japanese_name;
             $model->email = $model->user->email;
             $model->japanese_name = $model->user->japanese_name;
             $model->name = $model->user->name;

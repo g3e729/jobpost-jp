@@ -35,7 +35,7 @@ class RegisterRequest extends FormRequest
         dd(__method__);
     }
 
-    private function staff($step)
+    private function employee($step)
     {
         $rules = [
             1 => [

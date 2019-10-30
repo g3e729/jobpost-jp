@@ -12,9 +12,12 @@ class EmployeeController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$employees = (new EmployeeService)->search($request->only('search'));
+        $countries = getCountries();
+        $employment_status = Employee::getEmploymentStatus();
+        $positions = Employee::getPositions();
+		$employees = (new EmployeeService)->search($request->all());
 
-	    return view('admin.employees.index', compact('employees', 'faker'));
+	    return view('admin.employees.index', compact('countries', 'employees', 'employment_status', 'positions'));
 	}
 	
 	public function show(Employee $employee)

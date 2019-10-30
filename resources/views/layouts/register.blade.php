@@ -44,7 +44,7 @@
       case 'student':
         $image = 'OqtafYT5kTw';
         break;
-      case 'staff':
+      case 'employee':
         $image = 'iusJ25iYu1c';
         break;
       case 'company':
