@@ -19,8 +19,6 @@ class EmployeeController extends BaseController
 	
 	public function show(Employee $employee)
 	{
-		$employee = (new EmployeeService)->setAttribute($employee);
-
 		return view('admin.employees.show', compact('employee'));
 	}
 	

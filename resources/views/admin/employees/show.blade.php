@@ -2,6 +2,12 @@
 
 @section('content')
   <div class="l-container l-container-wide">
-  	[{{ $employee->name }}, {{ $employee->email }}]
+  	Japanese Name: {{ $employee->japanese_name }}
+  	<br/>
+  	Name: {{ $employee->name }}
+  	<br/>
+  	Email: {{ $employee->email }}
+  	<br/>
+  	Birthday: {{ $employee->birthday }}
   </div>
 @endsection

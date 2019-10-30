@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class HasUserModel extends Model
 {
-
-    public function getEmailAttribute()
-	{
-		return $this->user->email;
-	}
-
-    public function getNameAttribute()
-	{
-		return $this->user->name;
-	}
+    public static function boot()
+    {
+        parent::boot();
+        static::retrieved(function ($model) {
+            $model->email = $model->user->email;
+            $model->name = $model->user->name;
+            $model->display_name = empty(str_replace(' ', '', $model->japanese_name)) ? $model->user->name : $model->japanese_name;
+        });
+    }
 	
     public function user()
     {

@@ -16,11 +16,11 @@
           <div class="card-body">
             <img src="{{-- {{ $employee->imageUrl(240, 240, 'people') }} --}}" class="card-image float-left rounded-circle">
             <div class="card-body-top">
-              <h5 class="card-title">{{ $employee->name }}</h5>
+              <h5 class="card-title">{{ $employee->display_name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">アドミン</h6>
               <div class="card-actions">
-                <a href="/staff/1" class="card-link">詳細</a>
-                <a href="/staff/1/edit" class="card-link">編集</a>
+                <a href="{{ route('admin.employees.show', $employee) }}" class="card-link">詳細</a>
+                <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">編集</a>
               </div>
             </div>
             <div class="card-body-main mt-2">
