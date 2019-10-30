@@ -40,7 +40,7 @@
                   <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
                   <td>
                     <div class="payment-actions d-flex justify-content-between">
-                      <a href="{{ route('admin.payments.delete', $i) }}" class="btn btn-link p-0">削除</a>
+                      <a href="{{ route('admin.tickets.delete', $i) }}" class="btn btn-link p-0 js-ticket-delete">削除</a>
                     </div>
                   </td>
                 </tr>
@@ -79,22 +79,69 @@
   </div>
 
   @include('admin.partials.pagination', ['data' => collect()])
+
+  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">削除</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          株式会社Rettyのチケット３０枚購入を削除しても良いですか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('js')
   <script>
     const sortTables = document.querySelectorAll('.js-sortable');
+    const deleteButtons = document.querySelectorAll('.js-ticket-delete');
+    const modalSubmit = document.querySelector('#js-modal-submit');
+    const modal = document.querySelector('#js-delete-modal');
+    let currTarget;
 
-    sortTables.forEach((sortTable) => {
-      $(sortTable).DataTable({
+    deleteButtons.forEach(btn => {
+      btn.addEventListener('click', function(event) {
+        $(modal).modal('show');
+        currTarget = event.currentTarget.href;
+
+        event.preventDefault();
+      })
+    });
+
+    modalSubmit.addEventListener('click', function(event) {
+      $(modal).modal('hide');
+      window.location.replace(currTarget);
+    });
+
+    sortTables.forEach((sortTable, index) => {
+      let sortParam = {
         info: false,
         order: [[ 0, "asc" ]],
         paging: false,
-        searching: false,
-        columnDefs: [
-          { targets: [2], orderable: false }
-        ],
-      });
+        searching: false
+      };
+
+      if (index === 0) {
+        sortParam = {
+          info: false,
+          order: [[ 0, "asc" ]],
+          paging: false,
+          searching: false,
+          columnDefs: [{ targets: [2], orderable: false }]
+        }
+      }
+
+      $(sortTable).DataTable(sortParam);
     });
   </script>
 @endsection
