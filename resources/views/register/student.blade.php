@@ -137,8 +137,8 @@
         <div class="col-8">
           <select class="form-control" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
             <option value="" selected hidden disabled>Choose sex</option>
-            <option value="sex-man">男</option>
-            <option value="sex-woman">女</option>
+            <option value="m">男</option>
+            <option value="f">女</option>
           </select>
           <div class="invalid-tooltip">
             Please choose your sex orientation.

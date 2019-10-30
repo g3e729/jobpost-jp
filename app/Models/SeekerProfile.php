@@ -10,6 +10,8 @@ class SeekerProfile extends HasUserModel
 
     protected $dates = [
         'birthday',
+        'enrollment_date',
+        'graduation_date',
         'created_at',
         'updated_at',
     ];
