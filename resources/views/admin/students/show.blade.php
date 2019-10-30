@@ -10,7 +10,7 @@
               <img src="https://i.pravatar.cc/300" class="card-image card-image-x2 rounded-circle">
             </div>
             <div class="card-body-main mt-3">
-              <h3 class="text-center">{{ $student->name }}</h3>
+              <h3 class="text-center">{{ $student->display_name }}</h3>
               
               <div class="card-badges text-center h6">
                 
@@ -56,110 +56,110 @@
               <tbody>
                 <tr>
                   <td style="width: 25%" class="font-weight-bold">名前(Japanese)</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->japanese_name }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">名前(English)</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->name }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">生年月日</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->birthday->format('Y年m月d日') }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">住所</td>
                   <td>
                     <dl>
                       <dt>番地まで</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ $student->address1 }}</dd>
                       <dt>ビル名、部屋番号</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ $student->address2 }}</dd>
                       <dt>郵便番号</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ $student->address3 }}</dd>
                     </dl>
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">性別</td>
-                  <td>placeholder</td>
+                  <td>{{ getSex($student->sex) }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">電話番号</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->contact_number }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">メールアドレス</td>
-                  <td>placeholder</td>
+                  <td>{{ '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">年齢</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->birthday->diff(now())->format('%y') }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">パスポート番号</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->passport_number }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">ステータス</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->student_status }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">留学費用</td>
-                  <td>placeholder</td>
+                  <td>{{ price($student->study_aboard_fee) }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">部屋タイプ</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->type_of_room ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">入学日</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->enrollment_date ? $student->enrollment_date->format('Y年m月d日') : '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">卒業日</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->graduation_date ? $student->graduation_date->format('Y年m月d日') :'--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">チェックイン日</td>
-                  <td>placeholder</td>
+                  <td>{{ '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">チェックアウト日</td>
-                  <td>placeholder</td>
+                  <td>{{ '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">希望コース</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->course ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">留学期間(週間)</td>
-                  <td>placeholder</td>
+                  <td>{{ '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">航空券手配・海外保険手配</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->travel_ticket ? 'yes' : 'no' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">空港までのお迎え希望</td>
-                  <td>placeholder</td>
+                  <td>{{ $student->for_pickup ? 'yes' : 'no' }}</td>
                 </tr>
 
                 <tr>
                   <td class="font-weight-bold">ご職業</td>
-                  <td>placeholder</td>
+                  <td>{{ '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">緊急連絡先</td>
                   <td>
                     <dl>
                       <dt>名前</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ '--' }}</dd>
                       <dt>続柄</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ '--' }}</dd>
                       <dt>電話番号</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ '--' }}</dd>
                       <dt>メールアドレス</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ '--' }}</dd>
                     </dl>
                   </td>
                 </tr>
@@ -168,15 +168,15 @@
                   <td>
                     <dl>
                       <dt>ありなし</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ '--' }}</dd>
                       <dt>内容</dt>
-                      <dd>placeholder</dd>
+                      <dd>{{ '--' }}</dd>
                     </dl>
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">備考</td>
-                  <td>placeholder</td>
+                  <td>{{ '--' }}</td>
                 </tr>
               </tbody>
             </table>
@@ -187,7 +187,7 @@
                 <td>
                   <dl class="mb-0">
                     <dt>自己紹介</dt>
-                    <dd>placeholder</dd>
+                    <dd>{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
@@ -195,7 +195,7 @@
                 <td>
                   <dl class="mb-0">
                     <dt>やってみたいこと</dt>
-                    <dd>placeholder</dd>
+                    <dd>{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
@@ -206,13 +206,13 @@
                     <dd>
                       <dl class="mt-3">
                         <dt class="text-muted">企業名</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">役職</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">在籍期間</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">業務内容</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -225,13 +225,13 @@
                     <dd>
                       <dl class="mt-3">
                         <dt class="text-muted">学校名</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">学部、専攻、学科</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">卒業</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">学んだこと</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -260,25 +260,25 @@
                     <dd>
                       <dl class="mt-3">
                         <dt class="text-muted">C#</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">PHP</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Ruby</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Python2</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Python3</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Javascript</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">HTML5+CSS3</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Sass</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">SQL</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Bash</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -289,21 +289,21 @@
                     <dd>
                       <dl class="mt-3">
                         <dt class="text-muted">Laravel</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Ruby on Rails</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Django</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Flask</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Unity</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Vue.js</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Bootstrap</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">TensorFlow</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -331,13 +331,13 @@
                     <dd>
                       <dl class="mt-3">
                         <dt class="text-muted">Web開発（サーバサイドエンジニア）</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">Web開発（フロントエンドエンジニア）</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">研究開発（画像処理,自然言語処理,機械学習,AIなど）</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">コンシューマーゲーム開発</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -357,7 +357,7 @@
                 <td>
                   <dl>
                     <dt>TOEIC</dt>
-                    <dd>placeholder</dd>
+                    <dd>{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
@@ -368,11 +368,11 @@
                     <dd>
                       <dl class="mt-3">
                         <dt class="text-muted">タイトル</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">内容</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                         <dt class="text-muted">URL</dt>
-                        <dd>placeholder</dd>
+                        <dd>{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -402,16 +402,16 @@
                 <td>
                   <dl>
                     <dt>受講済み</dt>
-                    <dd>placeholder</dd>
-                    <dd>placeholder</dd>
+                    <dd>{{ '--' }}</dd>
+                    <dd>{{ '--' }}</dd>
                     <dt>受講中</dt>
-                    <dd>placeholder</dd>
+                    <dd>{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">ITレベル</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
             </table>
             <table class="table mb-4">
@@ -422,27 +422,27 @@
               </tr>
               <tr>
                 <td style="width: 25%" class="font-weight-bold">Reading</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Listening</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Total</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Speaking</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Writing</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">英語レベル</td>
-                <td>placeholder</td>
+                <td>{{ '--' }}</td>
               </tr>
             </table>
           </div>

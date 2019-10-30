@@ -8,18 +8,69 @@ class SeekerProfile extends HasUserModel
 {
 	const ROLE = 'seeker';
 
+    protected $dates = [
+        'birthday',
+        'enrollment_date',
+        'graduation_date',
+        'created_at',
+        'updated_at',
+    ];
+    
+    protected $fillable = [
+        'sex',
+        'contact_number',
+        'study_aboard_fee',
+        'passport_number',
+                    
+        'type_of_room',
+        'enrollment_date',
+        'graduation_date',
+        'status',
+        'course_id',
+        'study_period',
+        'travel_ticket',
+        'for_pickup',
+
+        'description',
+        'prefecture',
+        'address1',
+        'address2',
+        'address3',
+        'city',
+        'country',
+        'birthday',
+        'avatar',
+        'portfolio',
+        'github',
+                    
+        'pre_english_level',
+        'pre_it_level'
+    ];
+
 	static protected $courses = [
-		1 => 'basic',
-		2 => 'rails-standard',
-		3 => 'rails-advance',
-		4 => 'rails-expert',
-		5 => 'develop-standard',
-		6 => 'develop-advance',
-		7 => 'design-standard',
-		8 => 'design-advance',
-		9 => 'python-standard',
-		10 => 'python-advance'
+		1 => 'Basic',
+		2 => 'Rails Standard',
+		3 => 'Rails Advance',
+		4 => 'Rails Expert',
+		5 => 'Develop Standard',
+		6 => 'Develop Advance',
+		7 => 'Design Standard',
+		8 => 'Design Advance',
+		9 => 'Python Standard',
+		10 => 'Python Advance'
 	];
+
+    static protected $student_status = [
+		1 => '入学前 / Pre-Student',
+		2 => '生徒 / Student',
+		3 => '卒業 / Graduate'
+    ];
+
+    static protected $occupations = [
+		1 => '学生 / Student',
+		2 => '就業者 / Worker',
+		3 => 'フリー / Part-time worker'
+    ];
 
     public static function boot()
     {
@@ -36,19 +87,37 @@ class SeekerProfile extends HasUserModel
         return $this->hasOne(Course::class, 'id', 'course_id');
     }
 
-	public function getStatusAttribute()
-	{
-		switch ($this->status_id) {
-			case 1:
-				return 'pre-student';
-			break;
-			case 2:
-				return 'graduate';
-			break;
-			default:
-				return 'student';
-		}
-	}
+    public function getCourseAttribute()
+    {
+        return isset(self::$courses[$this->course_id]) ? ucwords(self::$courses[$this->course_id]) : null;
+    }
+
+    public function getStudentStatusAttribute()
+    {
+        return isset(self::$student_status[$this->status]) ? ucwords(self::$student_status[$this->status]) : null;
+    }
+
+    static function getStudentStatus($index = null)
+    {
+        $student_status = self::$student_status;
+
+        if ($index) {
+            return $student_status[$index] ?? null;
+        }
+
+        return collect($student_status);
+    }
+
+    static function getOccupations($index = null)
+    {
+        $occupations = self::$occupations;
+
+        if ($index) {
+            return $occupations[$index] ?? null;
+        }
+
+        return collect($occupations);
+    }
 
     public function scopeSearch($query, $value)
     {

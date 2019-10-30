@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
 use App\Models\EmployeeProfile;
+use App\Models\SeekerProfile;
 use App\Services\EmployeeService;
+use App\Services\SeekerService;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
@@ -37,16 +39,9 @@ class RegisterController extends Controller
             'type'
         );
 
-        switch ($step) {
-            case 1:
-                $data['prefectures'] = getPrefecture();
-            break;
-            case 2:
-                $data['countries'] = getCountries();
-                $data['employment_status'] = EmployeeProfile::getEmploymentStatus();
-                $data['positions'] = EmployeeProfile::getPositions();
-            break;
-        }
+        $method = 'form'.ucwords($type);
+
+        $data = $this->$method($step, $data);
 
         return view('register.'.$type, $data);
     }
@@ -81,18 +76,70 @@ class RegisterController extends Controller
         switch ($step) {
             case 1:
                 $profile = (new EmployeeService)->create(
-                    $request->except('_token', 'step', 'code', 'passwordconfirm', 'type')
+                    $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
             break;
             case 2:
                 $service = (new EmployeeService)->find($request->get('profile_id'));
 
                 $profile = $service->update(
-                    $request->except('_token', 'code', 'email', 'passwordconfirm', 'step', 'type')
+                    $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
             break;
         }
 
         return $profile;
+    }
+
+    private function student($step, $request)
+    {
+        switch ($step) {
+            case 1:
+                $profile = (new SeekerService)->create(
+                    $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
+                );
+            break;
+            case 2:
+                $service = (new SeekerService)->find($request->get('profile_id'));
+
+                $profile = $service->update(
+                    $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
+                );
+            break;
+        }
+
+        return $profile;
+    }
+
+    private function formEmployee($step, $data = [])
+    {
+        switch ($step) {
+            case 1:
+                $data['prefectures'] = getPrefecture();
+            break;
+            case 2:
+                $data['countries'] = getCountries();
+                $data['employment_status'] = EmployeeProfile::getEmploymentStatus();
+                $data['positions'] = EmployeeProfile::getPositions();
+            break;
+        }
+
+        return $data;
+    }
+
+    private function formStudent($step, $data = [])
+    {
+        switch ($step) {
+            case 1:
+                $data['prefectures'] = getPrefecture();
+            break;
+            case 2:
+                // $data['countries'] = getCountries();
+                $data['student_status'] = SeekerProfile::getStudentStatus();
+                $data['occupations'] = SeekerProfile::getOccupations();
+            break;
+        }
+
+        return $data;
     }
 }

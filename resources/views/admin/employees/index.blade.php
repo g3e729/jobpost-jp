@@ -21,7 +21,7 @@
               <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
               <div class="card-body-top">
                 <h5 class="card-title">{{ $employee->display_name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ $employee->position }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $employee->position ?? '--' }}</h6>
                 <div class="card-actions">
                   <a href="{{ route('admin.employees.show', $employee) }}" class="card-link">詳細</a>
                   <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">編集</a>

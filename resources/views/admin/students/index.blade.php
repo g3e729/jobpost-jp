@@ -20,8 +20,8 @@
             <div class="card-body">
               <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
               <div class="card-body-top">
-                <h5 class="card-title">{{ $student->name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">在学中</h6>
+                <h5 class="card-title">{{ $student->display_name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $student->student_status ?? '--' }}</h6>
                 <div class="card-actions">
                   <a href="{{ route('admin.students.show', $student) }}" class="card-link">詳細</a>
                   <a href="{{ route('admin.students.edit', $student) }}" class="card-link">編集</a>
@@ -43,17 +43,12 @@
                   
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">コース</div>
-                    <span class="text-muted">PHP</span>
-                  </li>
-                  
-                  <li class="list-group-item p-1">
-                    <div class="font-weight-bold">ステータス</div>
-                    <span class="text-muted">在学中</span>
+                    <span class="text-muted">{{ $student->course ?? '--' }}</span>
                   </li>
                   
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">英語</div>
-                    <span class="text-muted">CEFR - B1</span>
+                    <span class="text-muted">{{ $student->pre_english_level ?? '--' }}</span>
                   </li>
                   
                 </ul>
