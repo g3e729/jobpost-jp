@@ -72,18 +72,6 @@ Route::group([
 		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('messages.index');
 
-	Route::get('messages/{message}', function () {
-		return view('admin.messages.show');
-	})->name('messages.show');
-
-	Route::get('messages/{message}/edit', function () {
-		return view('admin.messages.edit');
-	})->name('messages.edit');
-
-	Route::patch('messages/{message}', function () {
-		return view('admin.messages.update');
-  })->name('messages.update');
-
   Route::delete('messages', function () {
 		return view('admin.messages.delete');
   })->name('messages.delete');
@@ -108,21 +96,13 @@ Route::group([
 		return view('admin.payments.delete');
   })->name('payments.delete');
 
+  Route::delete('payments/{payment}?ticket={ticket}', function () {
+    return view('admin.payments.ticket.delete');
+  })->name('payments.ticket.delete');
+
   Route::get('tickets', function () {
     return view('admin.tickets.index', ['faker' => Faker\Factory::create('ja_JP')]);
   })->name('tickets.index');
-  
-  Route::get('tickets/{ticket}', function () {
-    return view('admin.tickets.show');
-  })->name('tickets.show');
-  
-  Route::get('tickets/{ticket}/edit', function () {
-    return view('admin.tickets.edit');
-  })->name('tickets.edit');
-  
-  Route::patch('tickets/{ticket}', function () {
-    return view('admin.tickets.update');
-  })->name('tickets.update');
   
   Route::delete('tickets', function () {
     return view('admin.tickets.delete');
