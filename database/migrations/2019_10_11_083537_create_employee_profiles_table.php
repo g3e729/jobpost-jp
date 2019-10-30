@@ -16,7 +16,6 @@ class CreateEmployeeProfilesTable extends Migration
         Schema::create('employee_profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('japanese_name')->nullable();
             $table->string('sex')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('prefecture')->nullable();

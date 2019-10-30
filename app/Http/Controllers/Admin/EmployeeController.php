@@ -10,11 +10,11 @@ use Faker\Factory as Faker;
 
 class EmployeeController extends BaseController
 {
-	public function index()
+	public function index(Request $request)
 	{
-    $employees = (new EmployeeService)->all();
+		$employees = (new EmployeeService)->search($request->only('search'));
 
-    return view('admin.employees.index', compact('employees', 'faker'));
+	    return view('admin.employees.index', compact('employees', 'faker'));
 	}
 	
 	public function show(Employee $employee)

@@ -13,9 +13,14 @@ class RegisterController extends Controller
 {
     public function create(Request $request)
     {
+        $invitation = Invitation::where('code', $request->get('code'))->first();
+
+        if (! $invitation) {
+            abort(404);
+        }
+        
         $step = $request->get('step', 1);
         $progress = ($step / 2) * 100;
-        $invitation = Invitation::where('code', $request->get('code'))->first();
         $profile_id = $request->get('profile_id', 0);
 
         if (! $invitation) {
@@ -48,20 +53,27 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $type = $request->get('type');
+        $invitation = Invitation::where('code', $request->get('code'))->first();
+
+        if (! $invitation) {
+            abort(404);
+        }
+
         $step = $request->get('step', 1);
-        $type = Invitation::getTypes($type);
+        $type = Invitation::getTypes($invitation->type);
         
         $profile = $this->$type($step, $request);
         $profile_id = $profile->id ?? 0;
         $step++;
-        $code = $request->get('code');
+        $code = $invitation->code;
 
         if ($step < 3) {
             return redirect()->route('register.create', compact('code', 'step', 'profile_id'));
         }
 
-        return redirect()->route('login');
+        $invitation->delete();
+
+        return redirect()->route('login')->with('message', 'You have successfully registered!');;
     }
 
     private function staff($step, $request)
@@ -76,7 +88,7 @@ class RegisterController extends Controller
                 $service = (new EmployeeService)->find($request->get('profile_id'));
 
                 $profile = $service->update(
-                    $request->except('_token', 'step', 'code', 'passwordconfirm', 'type')
+                    $request->except('_token', 'code', 'email', 'passwordconfirm', 'step', 'type')
                 );
             break;
         }

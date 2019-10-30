@@ -1,10 +1,10 @@
 
-  <form class="py-2 mb-4">
+  <form class="py-2 mb-4" method="GET" action="">
     <h2 class="py-4 text-center alt-font">Search Staff</h2>
     <div class="form-group pb-3 row">
       <label for="formName" class="col-2 col-form-label">スタッフ</label>
       <div class="col-10">
-        <input type="text" class="form-control" id="formName" name="formName" placeholder="Please enter staff name">
+        <input type="text" class="form-control" id="formName" name="search" placeholder="Please enter staff name" value="{{ request()->get('search') }}">
       </div>
     </div>
     <div class="pb-3 row">

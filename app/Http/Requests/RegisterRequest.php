@@ -52,7 +52,7 @@ class RegisterRequest extends FormRequest
             ],
             2 => [
                 'country' => 'required',
-                'position' => 'required',
+                'position_id' => 'required',
                 'status' => 'required'
             ],
         ];

@@ -176,7 +176,7 @@
       <div class="form-group pb-3 row">
         <label for="formStaffPosition" class="col-4 col-form-label">ポジション</label>
         <div class="col-8">
-          <select class="form-control" id="formPosition" name="position">
+          <select class="form-control" id="formPosition" name="position_id">
             <option value="" selected hidden disabled>Choose position</option>
             @foreach($positions as $index => $name)
               <option value="{{ $index }}">{{ $name }}</option>
@@ -225,7 +225,7 @@
   <script src="{{ asset('js/register.js') }}"></script>
   <script>
     $('.js-datepicker').datepicker({
-      format: 'yyyy-mm-dd'
+      format: 'yyyy-mm-dd',
     });
   </script>
 @endsection

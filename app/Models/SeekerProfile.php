@@ -24,6 +24,11 @@ class SeekerProfile extends HasUserModel
     public static function boot()
     {
         parent::boot();
+        static::updating(function ($model) {
+            foreach(['email', 'name', 'japanese_name', 'display_name'] as $attribute) {
+                unset($model->$attribute);
+            }
+        });
     }
 	
     public function course()

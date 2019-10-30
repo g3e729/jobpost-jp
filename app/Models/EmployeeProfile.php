@@ -22,6 +22,7 @@ class EmployeeProfile extends HasUserModel
         'address1',
         'address2',
         'address3',
+        'country',
         'status',
         'passport_number',
         'avatar',
@@ -52,6 +53,18 @@ class EmployeeProfile extends HasUserModel
     public static function boot()
     {
         parent::boot();
+        static::updating(function ($model) {
+            foreach(['email', 'name', 'japanese_name', 'display_name'] as $attribute) {
+                unset($model->$attribute);
+            }
+        });
+    }
+
+    public function scopeSearch($query, $value)
+    {
+        return $query->whereHas('user', function ($q) use ($value) {
+            $q->where('japanese_name', 'LIKE', "%{$value}%")->orWhere('name', 'LIKE', "%{$value}%");
+        });
     }
 
     static function getEmploymentStatus($index = null)

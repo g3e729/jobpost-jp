@@ -36,12 +36,7 @@ class SeekerService extends BaseService
 
         return null;
     }
-
-    /**
-     * Register new model
-     *
-     * @return mixed
-     */
+    
     public function search($fields, $paginated = true)
     {
 

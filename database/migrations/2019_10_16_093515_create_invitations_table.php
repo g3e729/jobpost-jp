@@ -18,6 +18,7 @@ class CreateInvitationsTable extends Migration
             $table->string('email');
             $table->string('code');
             $table->integer('type')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
