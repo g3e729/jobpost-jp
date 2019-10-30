@@ -15,7 +15,6 @@ class EmployeeProfile extends HasUserModel
     ];
     
     protected $fillable = [
-        'japanese_name',
         'sex',
         'contact_number',
         'prefecture',
@@ -69,12 +68,12 @@ class EmployeeProfile extends HasUserModel
 
     public function getPositionAttribute()
     {
-        return ucwords(self::$positions[$this->position_id]);
+        return isset(self::$positions[$this->position_id]) ? ucwords(self::$positions[$this->position_id]) : null;
     }
 
     public function getEmploymentStatusAttribute()
     {
-        return ucwords(self::$employment_status[$this->status]);
+        return isset(self::$employment_status[$this->status]) ? ucwords(self::$employment_status[$this->status]) : null;
     }
 
     static function getEmploymentStatus($index = null)

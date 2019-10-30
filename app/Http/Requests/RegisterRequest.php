@@ -62,7 +62,27 @@ class RegisterRequest extends FormRequest
 
     private function student($step)
     {
+        $rules = [
+            1 => [
+                'name' => 'required',
+                'japanese_name' => 'required',
+                'password' => 'required|confirmed',
+                'birthday' => 'required',
+                'prefecture' => 'required',
+                'address1' => 'required',
+                'address2' => 'required',
+                'address3' => 'required',
+                'sex' => 'required',
+                'contact_number' => 'required'
+            ],
+            2 => [
+                'enrollment_date' => 'required',
+                'graduation_date' => 'required',
+                'status' => 'required',
+                'occupation' => 'required'
+            ],
+        ];
 
-        dd(__method__);
+        return $rules[$step] ?? [];
     }
 }

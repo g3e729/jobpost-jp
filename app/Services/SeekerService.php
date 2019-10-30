@@ -22,19 +22,28 @@ class SeekerService extends BaseService
 
     public function create($fields = [])
     {
-        $userService = (new UserService);
-        $user = $userService->findEmail($fields['email']);
+        $this->createUser($fields);
 
-        if (! $user) {
-            $this->item = $userService->create(array_only($fields, ['name', 'email', 'password']));
-
-            $userService->attachRole($this->model::ROLE);
-            $this->item->profile()->create(array_except($fields, ['name', 'email', 'password']));
-
-            return $this->item->profile;
+        if (! $this->user) {
+            return null;
         }
 
-        return null;
+        $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
+
+        if (! count($profile_fields)) {
+            return $this->item;
+        }
+
+        if ($this->user->profile) {
+            $this->user->profile->update($profile_fields);
+        } else {
+            $this->user->profile()->create($profile_fields);
+        }
+
+        $this->user = $this->user->load('profile');
+        $this->item = $this->user->profile;
+
+        return $this->item;
     }
     
     public function search($fields, $paginated = true)
@@ -64,5 +73,19 @@ class SeekerService extends BaseService
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return collect([]);
         }
+    }
+
+    private function createUser($fields = [])
+    {
+        $userService = (new UserService);
+        $user = $userService->findEmail($fields['email']);
+
+        if (! $user) {
+            $user = $userService->create(array_only($fields, ['name', 'japanese_name', 'email', 'password']));
+
+            $userService->attachRole($this->model::ROLE);
+        }
+
+        $this->user = $user;
     }
 }

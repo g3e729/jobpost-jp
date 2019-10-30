@@ -57,7 +57,7 @@
         <div class="col-8">
           <input type="text" class="form-control" id="formStaffName" name="japanese_name" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter name. 
+            Please enter Japanese name. 
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
         <div class="col-8">
           <input type="text" class="form-control" id="formStaffName" name="name" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter name. 
+            Please enter English name. 
           </div>
         </div>
       </div>
