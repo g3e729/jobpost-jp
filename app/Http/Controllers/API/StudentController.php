@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers\API;
 
-// use App\Services\StudentService;
 use App\Models\SeekerProfile;
+use App\Services\SeekerService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
-	public function index()
+	public function index(Request $request)
 	{
-		return null;
-		// return (new StudentService)->all()->toJson();
+		return (new SeekerService)->search($request->except('_token'))->toJson();
 	}
 	
 	public function show(SeekerProfile $seeker_profile)
 	{
-		return null;
-		// return $seeker_profile->toJson();
+		return $seeker_profile->toJson();
 	}
 }
