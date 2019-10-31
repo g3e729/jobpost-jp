@@ -34,7 +34,11 @@ Route::group([
 
 	Route::get('recruitments/{post}', function () {
 		return view('admin.posts.show');
-	})->name('recruitments.show');
+  })->name('recruitments.show');
+  
+  Route::delete('recruitments/{post}', function () {
+		return view('admin.posts.delete');
+  })->name('recruitments.delete');
 
 	Route::get('recruitments/{post}/edit', function () {
 		return view('admin.posts.edit');

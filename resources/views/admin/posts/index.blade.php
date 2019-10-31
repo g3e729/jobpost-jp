@@ -29,7 +29,7 @@
               <p class="small text-muted mb-0">自社★C2Cマッチングプラット</p>
               <div class="d-flex justify-content-between">
                 <p class="small mt-1">フォーム開発</p>
-                <a href="/recruitment/1" class="btn btn-link p-0">詳細</a>
+                <a href="{{ route('admin.recruitments.show', $i) }}" class="btn btn-link p-0">詳細</a>
               </div>
             </div>
           </td>

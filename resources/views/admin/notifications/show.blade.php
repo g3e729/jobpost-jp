@@ -14,8 +14,10 @@
           <a href="/notification/1/delete" class="card-link text-muted">削除</a>
         </div>
       </div>
-      <div class="card-footer bg-primary px-5">
-        <small class="text-white">2019年 9月 12日</small>
+      <div class="card-footer bg-primary px-5 d-flex justify-content-between">
+        <div class="text-white small"><strong>通知日</strong> : 2019年 9月 12日</div>
+        <div class="text-white small"><strong>ジャンル</strong> : ブログ</div>
+        <div class="text-white small"><strong>対象</strong> : 生徒</div>
       </div>
     </div>
   </div>
