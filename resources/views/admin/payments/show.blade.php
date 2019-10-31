@@ -66,7 +66,7 @@ $company_avatar = $faker->imageUrl(240, 240, 'city');
               @if (!$is_confirm)
               <td>
                 <div class="payment-actions d-flex justify-content-between">
-                  <a href="{{ route('admin.payments.ticket.delete', [0, $i]) }}" class="btn btn-link p-0 js-ticket-delete">削除</a>
+                  <a href="{{ route('admin.payments.ticket.delete', [0, $i]) }}" class="btn btn-link p-0 js-ticket-delete" data-type="delete">削除</a>
                 </div>
               </td>
               @endif
@@ -78,7 +78,7 @@ $company_avatar = $faker->imageUrl(240, 240, 'city');
 
         <div class="text-right">
           @if (!$is_confirm)
-          <a href="#" class="btn btn-primary btn-submit my-3 w-25">入金確認</a>
+          <a href="{{ route('admin.payments.show', 0) }}" id="js-payment-submit" class="btn btn-primary btn-submit my-3 w-25" data-type="submit">入金確認</a>
           @else
           <a href="{{ route('admin.tickets.index') }}" class="btn btn-primary btn-submit my-3 w-25">入金確認済み</a>
           @endif
@@ -87,17 +87,17 @@ $company_avatar = $faker->imageUrl(240, 240, 'city');
     </div>
   </div>
 
-  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal fade" id="js-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">削除</h5>
+          <h5 class="modal-title" id="modalLabel">...</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          株式会社Rettyのチケット３０枚購入を削除しても良いですか？？
+          ...
         </div>
         <div class="modal-footer">
           <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
@@ -111,12 +111,22 @@ $company_avatar = $faker->imageUrl(240, 240, 'city');
 @section('js')
   <script>
     const deleteButtons = document.querySelectorAll('.js-ticket-delete');
+    const submitButton = document.querySelector('#js-payment-submit');
     const modalSubmit = document.querySelector('#js-modal-submit');
-    const modal = document.querySelector('#js-delete-modal');
+    const modal = document.querySelector('#js-modal');
+    const pageButtons = [...deleteButtons, submitButton];
     let currTarget;
 
-    deleteButtons.forEach(btn => {
+    pageButtons.forEach(btn => {
       btn.addEventListener('click', function(event) {
+        if (this.dataset.type === 'delete') {
+          modal.querySelector('.modal-title').textContent = '削除';
+          modal.querySelector('.modal-body').textContent = `{{ $company_name }} sure want to delete purchase of {{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0'  }} tickets?`; // KAM: Finalize format
+        } else {
+          modal.querySelector('.modal-title').textContent = '確認する';
+          modal.querySelector('.modal-body').textContent = `{{ $company_name }} willing to renew subscription?`; // KAM: Finalize format
+        }
+
         $(modal).modal('show');
         currTarget = event.currentTarget.href;
 
