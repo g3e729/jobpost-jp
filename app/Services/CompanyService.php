@@ -11,6 +11,7 @@ class CompanyService extends BaseService
 {
     // single model
     protected $item;
+    protected $user;
 
     public function __construct($item = null)
     {
@@ -21,51 +22,74 @@ class CompanyService extends BaseService
         }
     }
 
-    public function setAttribute($data = null)
+    public function create($fields = [])
     {
-        function setter($item)
-        {
-            $user = $item->user;
-            $item->email = $user->email;
-            $item->name = $user->name;
+        $this->createUser($fields);
 
-            return $item;
+        if (! $this->user) {
+            return null;
         }
 
-        if ($data instanceof CompanyProfile) {
-            return setter($data);
+        $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
+
+        if (! count($profile_fields)) {
+            return $this->item;
         }
 
-        $data->each(function ($item) {
-            $item = setter($item);
-        });
+        if ($this->user->profile) {
+            $this->user->profile->update($profile_fields);
+        } else {
+            $this->user->profile()->create($profile_fields);
+        }
 
-        return $data;
+        $this->user = $this->user->load('profile');
+        $this->item = $this->user->profile;
+
+        return $this->item;
     }
-
-    public function all()
+    
+    public function search($fields, $paginated = true)
     {
         try {
-            return $this->setAttribute(parent::all());
+            $fields = array_filter($fields);
+            $que = (new $this->model);
+
+            foreach ($fields as $column => $value) {
+                switch ($column) {
+                    case 'search':
+                        $que = $que->search($fields['search']);
+                    break;
+                    default:
+                        $que = $que->where($column, $value);
+                    break;
+                }
+            }
+
+            if ($paginated) {
+                return $que->paginate(config('site_settings.per_page'));
+            }
+
+            return $que->get();
         } catch (Exception $e) {
-            return $e;
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return collect([]);
         }
     }
 
-    public function create($fields = [])
+    private function createUser($fields = [])
     {
         $userService = (new UserService);
         $user = $userService->findEmail($fields['email']);
 
+        $user_fields = array_only($fields, ['email', 'password']);
+        $user_fields['name'] = $fields['name'] ?? $fields['company_name'];
+
         if (! $user) {
-            $this->item = $userService->create(array_only($fields, ['name', 'email', 'password']));
+            $user = $userService->create($user_fields);
 
             $userService->attachRole($this->model::ROLE);
-            $this->item->profile()->create(array_except($fields, ['name', 'email', 'password']));
-
-            return $this->item->profile;
         }
 
-        return null;
+        $this->user = $user;
     }
 }

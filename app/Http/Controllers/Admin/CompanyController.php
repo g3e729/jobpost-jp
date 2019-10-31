@@ -6,22 +6,20 @@ use App\Models\CompanyProfile as Company;
 use App\Services\CompanyService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use Faker\Factory as Faker;
 
 class CompanyController extends BaseController
 {
-	public function index()
+	public function index(Request $request)
 	{
-    $companies = (new CompanyService)->all();
-    $faker = Faker::create('ja_JP');
+		$companies = (new CompanyService)->search($request->all());
+		$industries = Company::getIndustries();
+        $prefectures = getPrefecture();
 
-		return view('admin.companies.index', compact('companies', 'faker'));
+		return view('admin.companies.index', compact('companies', 'industries', 'prefectures'));
 	}
 	
 	public function show(Company $company)
 	{
-		$company = (new CompanyService)->setAttribute($company);
-
 		return view('admin.companies.show', compact('company'));
 	}
 	

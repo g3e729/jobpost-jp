@@ -8,6 +8,6 @@
   	<br/>
   	Email: {{ $employee->email }}
   	<br/>
-  	Birthday: {{ $employee->birthday }}
+  	Birthday: {{ $employee->birthday->format('Y年m月d日') }}
   </div>
 @endsection

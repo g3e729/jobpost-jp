@@ -2,6 +2,12 @@
 
 @section('content')
   <div class="l-container l-container-wide">
-  	[{{ $company->company_name }}, {{ $company->email }}]
+  	Company Name: {{ $company->company_name }}
+  	<br/>
+  	CEO: {{ $company->ceo }}
+  	<br/>
+  	Email: {{ $company->email }}
+  	<br/>
+  	Birthday: {{ $company->established_date->format('Y年m月d日') }}
   </div>
 @endsection

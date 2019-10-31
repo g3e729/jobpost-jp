@@ -81,11 +81,6 @@ class SeekerProfile extends HasUserModel
             }
         });
     }
-	
-    public function course()
-    {
-        return $this->hasOne(Course::class, 'id', 'course_id');
-    }
 
     public function getCourseAttribute()
     {
@@ -95,6 +90,13 @@ class SeekerProfile extends HasUserModel
     public function getStudentStatusAttribute()
     {
         return isset(self::$student_status[$this->status]) ? ucwords(self::$student_status[$this->status]) : null;
+    }
+
+    public function scopeSearch($query, $value)
+    {
+        return $query->whereHas('user', function ($q) use ($value) {
+            $q->where('japanese_name', 'LIKE', "%{$value}%")->orWhere('name', 'LIKE', "%{$value}%");
+        });
     }
 
     static function getStudentStatus($index = null)
@@ -117,13 +119,6 @@ class SeekerProfile extends HasUserModel
         }
 
         return collect($occupations);
-    }
-
-    public function scopeSearch($query, $value)
-    {
-        return $query->whereHas('user', function ($q) use ($value) {
-        	$q->where('name', 'LIKE', "%{$value}%");
-        });
     }
 
 	static function getCourses($index = null)

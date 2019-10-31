@@ -31,8 +31,27 @@ class RegisterRequest extends FormRequest
 
     private function company($step)
     {
+        $rules = [
+            1 => [
+                'company_name' => 'required',
+                'password' => 'required|confirmed',
+                'prefecture' => 'required',
+                'address1' => 'required',
+                'address2' => 'required',
+                'address3' => 'required',
+                'ceo' => 'required',
+                'number_of_employees' => '',
+                'contact_number' => 'required'
+            ],
+            2 => [
+                'description' => 'required',
+                'industry_id' => 'required',
+                'homepage' => '',
+                'established_date' => 'required'
+            ],
+        ];
 
-        dd(__method__);
+        return $rules[$step] ?? [];
     }
 
     private function employee($step)

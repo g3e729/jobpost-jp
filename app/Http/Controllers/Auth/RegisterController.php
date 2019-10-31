@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
+use App\Models\CompanyProfile;
 use App\Models\EmployeeProfile;
 use App\Models\SeekerProfile;
+use App\Services\CompanyService;
 use App\Services\EmployeeService;
 use App\Services\SeekerService;
 use App\Http\Requests\RegisterRequest;
@@ -24,11 +26,6 @@ class RegisterController extends Controller
         $step = $request->get('step', 1);
         $progress = ($step / 2) * 100;
         $profile_id = $request->get('profile_id', 0);
-
-        if (! $invitation) {
-            abort(404);
-        }
-
         $type = Invitation::getTypes($invitation->type);
 
         $data = compact(
@@ -71,6 +68,26 @@ class RegisterController extends Controller
         return redirect()->route('login')->with('message', 'You have successfully registered!');;
     }
 
+    private function company($step, $request)
+    {
+        switch ($step) {
+            case 1:
+                $profile = (new CompanyService)->create(
+                    $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
+                );
+            break;
+            case 2:
+                $service = (new CompanyService)->find($request->get('profile_id'));
+
+                $profile = $service->update(
+                    $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
+                );
+            break;
+        }
+
+        return $profile;
+    }
+
     private function employee($step, $request)
     {
         switch ($step) {
@@ -109,6 +126,21 @@ class RegisterController extends Controller
         }
 
         return $profile;
+    }
+
+    private function formCompany($step, $data = [])
+    {
+        switch ($step) {
+            case 1:
+                $data['prefectures'] = getPrefecture();
+            break;
+            case 2:
+                // $data['countries'] = getCountries();
+                $data['industries'] = CompanyProfile::getIndustries();
+            break;
+        }
+
+        return $data;
     }
 
     private function formEmployee($step, $data = [])

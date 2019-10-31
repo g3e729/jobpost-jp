@@ -97,7 +97,7 @@
             <select class="form-control" id="formStaffAddress0" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
-                <option value="{{ $index }}">{{ $name }}</option>
+                <option value="{{ $index }}">{{ ucwords($name) }}</option>
               @endforeach
             </select>
             <div class="invalid-tooltip">
@@ -167,7 +167,7 @@
           <select class="form-control" id="formStaffCountry" name="country">
             <option value="" selected hidden disabled>Choose country</option>
             @foreach($countries as $index => $name)
-              <option value="{{ $index }}">{{ $name }}</option>
+              <option value="{{ $index }}">{{ ucwords($name) }}</option>
             @endforeach
           </select>
         </div>
@@ -179,7 +179,7 @@
           <select class="form-control" id="formPosition" name="position_id">
             <option value="" selected hidden disabled>Choose position</option>
             @foreach($positions as $index => $name)
-              <option value="{{ $index }}">{{ $name }}</option>
+              <option value="{{ $index }}">{{ ucwords($name) }}</option>
             @endforeach
           </select>
         </div>
@@ -191,7 +191,7 @@
           <select class="form-control" id="formStaffStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
             <option value="" selected hidden disabled>Choose status</option>
             @foreach($employment_status as $index => $name)
-              <option value="{{ $index }}">{{ $name }}</option>
+              <option value="{{ $index }}">{{ ucwords($name) }}</option>
             @endforeach
           </select>
           <div class="invalid-tooltip">
