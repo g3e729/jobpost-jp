@@ -54,7 +54,11 @@ Route::group([
   
   Route::get('notifications', function () {
 		return view('admin.notifications.index', ['faker' => Faker\Factory::create('ja_JP')]);
-	})->name('notifications.index');
+  })->name('notifications.index');
+  
+  Route::get('notifications/create', function () {
+		return view('admin.notifications.create');
+  })->name('notifications.create');
 
 	Route::get('notifications/{notification}', function () {
 		return view('admin.notifications.show');
