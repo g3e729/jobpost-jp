@@ -24,7 +24,6 @@ class CreateEmployeeProfilesTable extends Migration
             $table->string('address3')->nullable();
             $table->string('country')->nullable();
             $table->string('status')->default(0);
-            $table->string('avatar')->nullable();
             $table->string('position_id')->nullable();
             $table->timestamp('birthday')->nullable();
             $table->timestamps();

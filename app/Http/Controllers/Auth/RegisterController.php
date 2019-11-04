@@ -14,6 +14,8 @@ use App\Services\UserService;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class RegisterController extends Controller
 {
     public function create(Request $request)
@@ -24,7 +26,7 @@ class RegisterController extends Controller
             abort(404);
         }
 
-        if ($invitation->created_at->diffInMonths(now()) >= 2 || (new UserService)->findEmail($invitation->email)) {
+        if ($invitation->created_at->diffInMonths(now()) >= 2) {
             $invitation->delete();
             abort(404);
         }
@@ -59,7 +61,7 @@ class RegisterController extends Controller
 
         $step = $request->get('step', 1);
         $type = Invitation::getTypes($invitation->type);
-        
+
         $profile = $this->$type($step, $request);
         session(['profile_id' => $profile->id ?? 0]);
         $step++;
@@ -89,6 +91,32 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
+
+                if ($request->has('avatar')) {
+                    $file = $request->avatar->store('public/avatar');
+                    $file = explode('/', $file);
+
+                    $profile->files()->create([
+                        'url' => asset('/storage/avatar/' . array_last($file)),
+                        'file_name' => $request->avatar->getClientOriginalName(),
+                        'type' => 'avatar',
+                        'mime_type' => $request->avatar->getMimeType(),
+                        'size' => $request->avatar->getSize(),
+                    ]);
+                }
+
+                if ($request->has('cover_photo')) {
+                    $file = $request->cover_photo->store('public/cover_photo');
+                    $file = explode('/', $file);
+
+                    $profile->files()->create([
+                        'url' => asset('/storage/cover_photo/' . array_last($file)),
+                        'file_name' => $request->cover_photo->getClientOriginalName(),
+                        'type' => 'cover_photo',
+                        'mime_type' => $request->cover_photo->getMimeType(),
+                        'size' => $request->cover_photo->getSize(),
+                    ]);
+                }
             break;
         }
 
@@ -106,9 +134,22 @@ class RegisterController extends Controller
             case 2:
                 $profile = (new EmployeeService)->find(session('profile_id', 0));
 
-                $service->update(
+                $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
+
+                if ($request->has('avatar')) {
+                    $file = $request->avatar->store('public/avatar');
+                    $file = explode('/', $file);
+
+                    $profile->files()->create([
+                        'url' => asset('/storage/avatar/' . array_last($file)),
+                        'file_name' => $request->avatar->getClientOriginalName(),
+                        'type' => 'avatar',
+                        'mime_type' => $request->avatar->getMimeType(),
+                        'size' => $request->avatar->getSize(),
+                    ]);
+                }
             break;
         }
 
@@ -126,9 +167,22 @@ class RegisterController extends Controller
             case 2:
                 $profile = (new SeekerService)->find(session('profile_id', 0));
 
-                $service->update(
+                $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
+
+                if ($request->has('avatar')) {
+                    $file = $request->avatar->store('public/avatar');
+                    $file = explode('/', $file);
+
+                    $profile->files()->create([
+                        'url' => asset('/storage/avatar/' . array_last($file)),
+                        'file_name' => $request->avatar->getClientOriginalName(),
+                        'type' => 'avatar',
+                        'mime_type' => $request->avatar->getMimeType(),
+                        'size' => $request->avatar->getSize(),
+                    ]);
+                }
             break;
         }
 

@@ -42,7 +42,6 @@ class CreateSeekerProfilesTable extends Migration
             $table->string('city')->nullable();
             $table->string('country', 3)->nullable();
             $table->timestamp('birthday')->nullable();
-            $table->string('avatar')->nullable();
             $table->text('portfolio')->nullable();
             $table->string('github')->nullable();
             

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\HasUserModel;
+use App\Traits\HasUser;
+use Illuminate\Database\Eloquent\Model;
 
-class EmployeeProfile extends HasUserModel
+class EmployeeProfile extends Model
 {
+    use HasUser;
+
 	const ROLE = 'employee';
 
     protected $dates = [
@@ -24,7 +27,6 @@ class EmployeeProfile extends HasUserModel
         'country',
         'status',
         'passport_number',
-        'avatar',
         'position_id',
         'birthday',
     ];

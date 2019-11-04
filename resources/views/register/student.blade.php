@@ -16,8 +16,18 @@
       </h1>
     </div>
   </div>
+  
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
 
-  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" novalidate>
+  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
     
     <input type="hidden" name="step" value="{{ $step }}">
@@ -55,7 +65,7 @@
       <div class="form-group pb-3 row">
         <label for="formNameJP" class="col-4 col-form-label">名前(Japanese)</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formNameJP" name="japanese_name" placeholder="" required>
+          <input type="text" class="form-control" id="formNameJP" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter Japanese name. 
           </div>
@@ -65,7 +75,7 @@
       <div class="form-group pb-3 row">
         <label for="formNameEN" class="col-4 col-form-label">名前(English)</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formNameEN" name="name" placeholder="" required>
+          <input type="text" class="form-control" id="formNameEN" name="name" value="{{ old('name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter English name.
           </div>
@@ -76,7 +86,7 @@
         <label for="formBirthDate" class="col-4 col-form-label">生年月日</label>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control js-datepicker" id="formBirthDate" name="birthday" placeholder="" required>
+            <input type="text" class="form-control js-datepicker" id="formBirthDate" name="birthday" value="{{ old('birthday') }}" placeholder="" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="fas fa-fw fa-calendar-alt"></i>
@@ -107,7 +117,7 @@
 
           <div class="form-group position-relative">
             <label for="formAddress1" class="form-label pt-0">番地</label>
-            <input type="text" class="form-control" id="formAddress1" name="address1" placeholder="" required>
+            <input type="text" class="form-control" id="formAddress1" name="address1" value="{{ old('address1') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your house number.
             </div>
@@ -115,7 +125,7 @@
 
           <div class="form-group position-relative">
             <label for="formAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
-            <input type="text" class="form-control" id="formAddress2" name="address2" placeholder="" required>
+            <input type="text" class="form-control" id="formAddress2" name="address2" value="{{ old('address2') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your building name / room number.
             </div>
@@ -123,7 +133,7 @@
 
           <div class="form-group position-relative">
             <label for="formAddress3" class="form-label pt-0">郵便番号</label>
-            <input type="number" class="form-control" id="formAddress3" name="address3" placeholder="" required>
+            <input type="number" class="form-control" id="formAddress3" name="address3" value="{{ old('address3') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your postal code.
             </div>
@@ -149,16 +159,10 @@
       <div class="form-group pb-3 row">
         <label for="formPhone" class="col-4 col-form-label">電話番号</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formPhone" name="contact_number" placeholder="" required>
+          <input type="text" class="form-control" id="formPhone" name="contact_number" value="{{ old('contact_number') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter a phone number.
           </div>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <div class="col-6 pt-4 mx-auto">
-          <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
         </div>
       </div>
 
@@ -167,7 +171,7 @@
       <div class="form-group pb-3 row">
         <label for="formFee" class="col-4 col-form-label">留学費用</label>
         <div class="col-8">
-          <input type="number" class="form-control" id="formFee" name="study_aboard_fee" min="0" placeholder="">
+          <input type="number" class="form-control" id="formFee" name="study_aboard_fee" min="0" value="{{ old('study_aboard_fee') }}" placeholder="">
         </div>
       </div>
 
@@ -175,7 +179,7 @@
         <label for="formEnrollDate" class="col-4 col-form-label">入学日</label>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control js-datepicker" id="formEnrollDate" name="enrollment_date" placeholder="" required>
+            <input type="text" class="form-control js-datepicker" id="formEnrollDate" name="enrollment_date" value="{{ old('enrollment_date') }}" placeholder="" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="fas fa-fw fa-calendar-alt"></i>
@@ -192,7 +196,7 @@
         <label for="formGraduationDate" class="col-4 col-form-label">卒業日</label>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control js-datepicker" id="formGraduationDate" name="graduation_date" placeholder="" required>
+            <input type="text" class="form-control js-datepicker" id="formGraduationDate" name="graduation_date" value="{{ old('graduation_date') }}" placeholder="" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="fas fa-fw fa-calendar-alt"></i>
@@ -235,18 +239,28 @@
       <div class="form-group pb-3 row">
         <label for="formRemarks" class="col-4 col-form-label">備考</label>
         <div class="col-8">
-          <textarea class="form-control" id="formRemarks" name="description" placeholder="" rows="4" style="min-height: 100px;"></textarea>
+          <textarea class="form-control" id="formRemarks" name="description" value="{{ old('description') }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
         </div>
       </div>
 
-      <div class="form-group row">
-        <div class="col-6 pt-4 mx-auto">
-          <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
+      <div class="form-group pb-3 row">
+        <label for="formStaffAvatar" class="col-4 col-form-label">アバター</label>
+        <div class="col-8">
+          <input type="file" class="form-control" id="formStaffAvatar" name="avatar" accept="image/png, image/jpeg" required>
+          <div class="invalid-tooltip">
+            Please choose your avatar.
+          </div>
         </div>
       </div>
 
     @endif
 
+    <div class="form-group row">
+      <div class="col-6 pt-4 mx-auto">
+        <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
+      </div>
+    </div>
+    
   </form>
 @endsection
 

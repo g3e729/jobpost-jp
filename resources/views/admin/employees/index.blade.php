@@ -18,7 +18,7 @@
         <div class="col-3 mb-4">
           <div class="shadow-sm card card-staff card-hover">
             <div class="card-body">
-              <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
+              <img src="{{ $employee->avatar }}" class="card-image float-left rounded-circle">
               <div class="card-body-top">
                 <h5 class="card-title">{{ $employee->display_name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ $employee->position ?? '--' }}</h6>

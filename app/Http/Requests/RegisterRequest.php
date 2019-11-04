@@ -47,7 +47,20 @@ class RegisterRequest extends FormRequest
                 'description' => 'required',
                 'industry_id' => 'required',
                 'homepage' => '',
-                'established_date' => 'required'
+                'established_date' => 'required',
+
+                'avatar' => [
+                    'file',
+                    'image',
+                    'mimes:jpeg,png',
+                    'max:1500',
+                ],
+                'cover_photo' => [
+                    'file',
+                    'image',
+                    'mimes:jpeg,png',
+                    'max:1500',
+                ]
             ],
         ];
 
@@ -72,7 +85,14 @@ class RegisterRequest extends FormRequest
             2 => [
                 'country' => 'required',
                 'position_id' => 'required',
-                'status' => 'required'
+                'status' => 'required',
+                
+                'avatar' => [
+                    'file',
+                    'image',
+                    'mimes:jpeg,png',
+                    'max:1500',
+                ],
             ],
         ];
 
@@ -98,7 +118,14 @@ class RegisterRequest extends FormRequest
                 'enrollment_date' => 'required',
                 'graduation_date' => 'required',
                 'status' => 'required',
-                'occupation' => 'required'
+                'occupation' => 'required',
+                
+                'avatar' => [
+                    'file',
+                    'image',
+                    'mimes:jpeg,png',
+                    'max:1500',
+                ],
             ],
         ];
 
