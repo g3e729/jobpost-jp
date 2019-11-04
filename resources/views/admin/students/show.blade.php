@@ -28,7 +28,7 @@
               
               <div class="card-actions card-actions-right position-absolute">
                 <a href="{{ route('admin.students.edit', 1) }}" class="card-link">詳細</a>
-                <a href="/messages" class="card-link">メッセージ</a>
+                <a href="{{ route('admin.messages.show', 1) }}" class="card-link">メッセージ</a>
                 <a href="/students/1/delete" class="card-link text-muted">削除</a>
               </div>
             </div>
