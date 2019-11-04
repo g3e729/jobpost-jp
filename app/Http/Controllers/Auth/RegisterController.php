@@ -10,6 +10,7 @@ use App\Models\SeekerProfile;
 use App\Services\CompanyService;
 use App\Services\EmployeeService;
 use App\Services\SeekerService;
+use App\Services\UserService;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
@@ -22,10 +23,15 @@ class RegisterController extends Controller
         if (! $invitation) {
             abort(404);
         }
+
+        if ($invitation->created_at->diffInMonths(now()) >= 2 || (new UserService)->findEmail($invitation->email)) {
+            $invitation->delete();
+            abort(404);
+        }
         
         $step = $request->get('step', 1);
         $progress = ($step / 2) * 100;
-        $profile_id = $request->get('profile_id', 0);
+        $profile_id = session('profile_id', 0);
         $type = Invitation::getTypes($invitation->type);
 
         $data = compact(
@@ -55,15 +61,16 @@ class RegisterController extends Controller
         $type = Invitation::getTypes($invitation->type);
         
         $profile = $this->$type($step, $request);
-        $profile_id = $profile->id ?? 0;
+        session(['profile_id' => $profile->id ?? 0]);
         $step++;
         $code = $invitation->code;
 
         if ($step < 3) {
-            return redirect()->route('register.create', compact('code', 'step', 'profile_id'));
+            return redirect()->route('register.create', compact('code', 'step'));
         }
 
         $invitation->delete();
+        session()->forget('profile_id');
 
         return redirect()->route('login')->with('message', 'You have successfully registered!');;
     }
@@ -77,9 +84,9 @@ class RegisterController extends Controller
                 );
             break;
             case 2:
-                $service = (new CompanyService)->find($request->get('profile_id'));
+                $profile = (new CompanyService)->find(session('profile_id', 0));
 
-                $profile = $service->update(
+                $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
             break;
@@ -97,9 +104,9 @@ class RegisterController extends Controller
                 );
             break;
             case 2:
-                $service = (new EmployeeService)->find($request->get('profile_id'));
+                $profile = (new EmployeeService)->find(session('profile_id', 0));
 
-                $profile = $service->update(
+                $service->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
             break;
@@ -117,9 +124,9 @@ class RegisterController extends Controller
                 );
             break;
             case 2:
-                $service = (new SeekerService)->find($request->get('profile_id'));
+                $profile = (new SeekerService)->find(session('profile_id', 0));
 
-                $profile = $service->update(
+                $service->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
             break;
