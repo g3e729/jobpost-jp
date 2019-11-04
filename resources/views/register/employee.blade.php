@@ -1,31 +1,6 @@
 @extends('layouts.register')
 
 @section('content')
-  <div class="form-header">
-    <div class="progress progress-form" style="height: 18px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $step }}" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progress.'%' }}">{{ $step }}/2</div>
-    </div>
-
-    <div class="py-4 text-center alt-font">
-      <h1 class="h5">新規登録
-      @if ($step == 1)
-        <span class="d-block h4">パスワード</span>
-      @else
-        <span class="d-block h4">その他</span>
-      @endif
-      </h1>
-    </div>
-  </div>
-  
-  @if ($errors->any())
-    <div class="alert alert-danger">
-      <ul>
-        @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
-  @endif
 
   <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
@@ -49,9 +24,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formPassword" class="col-4 col-form-label">パスワードの確認</label>
+        <label for="formPasswordConfirmation" class="col-4 col-form-label">パスワードの確認</label>
         <div class="col-8">
-          <input type="password" class="form-control" id="formPasswordConfirm" name="password_confirmation" placeholder="" required
+          <input type="password" class="form-control" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
             data-action="input" data-condition="password" data-text="Passwords do not match."
           >
           <div class="invalid-tooltip">
@@ -63,9 +38,9 @@
       <hr class="form-divider d-block mb-4">
 
       <div class="form-group pb-3 row">
-        <label for="formStaffName" class="col-4 col-form-label">名前(Japanese)</label>
+        <label for="formJapaneseName" class="col-4 col-form-label">名前(Japanese)</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formStaffName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
+          <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter Japanese name. 
           </div>
@@ -73,9 +48,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffName" class="col-4 col-form-label">名前(English)</label>
+        <label for="formName" class="col-4 col-form-label">名前(English)</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formStaffName" name="name" value="{{ old('name') }}" placeholder="" required>
+          <input type="text" class="form-control" id="formName" name="name" value="{{ old('name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter English name. 
           </div>
@@ -83,10 +58,10 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffBirthdate" class="col-4 col-form-label">生年月日</label>
+        <label for="formBirthday" class="col-4 col-form-label">生年月日</label>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control js-datepicker" id="formStaffBirthdate" name="birthday" value="{{ old('birthday') }}" placeholder="" required>
+            <input type="text" class="form-control js-datepicker" id="formBirthday" name="birthday" value="{{ old('birthday') }}" placeholder="" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="fas fa-fw fa-calendar-alt"></i>
@@ -103,8 +78,8 @@
         <div class="col-4">住所</div>
         <div class="col-8">
           <div class="form-group position-relative">
-            <label for="formStaffAddress0" class="form-label pt-0">Prefecture</label>
-            <select class="form-control" id="formStaffAddress0" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
+            <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
+            <select class="form-control" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
                 <option value="{{ $index }}">{{ $name }}</option>
@@ -116,24 +91,24 @@
           </div>
 
           <div class="form-group position-relative">
-            <label for="formStaffAddress1" class="form-label pt-0">番地</label>
-            <input type="text" class="form-control" id="formStaffAddress1" name="address1" value="{{ old('address1') }}" placeholder="" required>
+            <label for="formAddress1" class="form-label pt-0">番地</label>
+            <input type="text" class="form-control" id="formAddress1" name="address1" value="{{ old('address1') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your house number.
             </div>
           </div>
 
           <div class="form-group position-relative">
-            <label for="formStaffAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
-            <input type="text" class="form-control" id="formStaffAddress2" name="address2" value="{{ old('address2') }}" placeholder="" required>
+            <label for="formAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
+            <input type="text" class="form-control" id="formAddress2" name="address2" value="{{ old('address2') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your building name / room number.
             </div>
           </div>
 
           <div class="form-group position-relative">
-            <label for="formStaffAddress3" class="form-label pt-0">郵便番号</label>
-            <input type="number" class="form-control" id="formStaffAddress3" name="address3" value="{{ old('address3') }}" placeholder="" required>
+            <label for="formAddress3" class="form-label pt-0">郵便番号</label>
+            <input type="number" class="form-control" id="formAddress3" name="address3" value="{{ old('address3') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your postal code.
             </div>
@@ -143,9 +118,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffSex" class="col-4 col-form-label">性別</label>
+        <label for="formSex" class="col-4 col-form-label">性別</label>
         <div class="col-8">
-          <select class="form-control" id="formStaffSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
+          <select class="form-control" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
             <option value="" selected hidden disabled>Choose sex</option>
             <option value="m">男</option>
             <option value="f">女</option>
@@ -157,18 +132,18 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffPhone" class="col-4 col-form-label">電話番号</label>
+        <label for="formContactNumber" class="col-4 col-form-label">電話番号</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formStaffPhone" name="contact_number" value="{{ old('contact_number') }}" placeholder="">
+          <input type="text" class="form-control" id="formContactNumber" name="contact_number" value="{{ old('contact_number') }}" placeholder="">
         </div>
       </div>
 
     @else
 
       <div class="form-group pb-3 row">
-        <label for="formStaffCountry" class="col-4 col-form-label">国籍</label>
+        <label for="formCountry" class="col-4 col-form-label">国籍</label>
         <div class="col-8">
-          <select class="form-control" id="formStaffCountry" name="country">
+          <select class="form-control" id="formCountry" name="country">
             <option value="" selected hidden disabled>Choose country</option>
             @foreach($countries as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>
@@ -178,9 +153,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffPosition" class="col-4 col-form-label">ポジション</label>
+        <label for="formPositionId" class="col-4 col-form-label">ポジション</label>
         <div class="col-8">
-          <select class="form-control" id="formPosition" name="position_id">
+          <select class="form-control" id="formPositionId" name="position_id">
             <option value="" selected hidden disabled>Choose position</option>
             @foreach($positions as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>
@@ -190,9 +165,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffStatus" class="col-4 col-form-label">ステータス</label>
+        <label for="formStatus" class="col-4 col-form-label">ステータス</label>
         <div class="col-8">
-          <select class="form-control" id="formStaffStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
+          <select class="form-control" id="formStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
             <option value="" selected hidden disabled>Choose status</option>
             @foreach($employment_status as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>
@@ -205,9 +180,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStaffAvatar" class="col-4 col-form-label">アバター</label>
+        <label for="formAvatar" class="col-4 col-form-label">アバター</label>
         <div class="col-8">
-          <input type="file" class="form-control" id="formStaffAvatar" name="avatar" accept="image/png, image/jpeg" required>
+          <input type="file" class="form-control" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
             Please choose your avatar.
           </div>
@@ -223,13 +198,4 @@
     </div>
 
   </form>
-@endsection
-
-@section('js')
-  <script src="{{ asset('js/register.js') }}"></script>
-  <script>
-    $('.js-datepicker').datepicker({
-      format: 'yyyy-mm-dd',
-    });
-  </script>
 @endsection

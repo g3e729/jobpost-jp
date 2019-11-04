@@ -36,7 +36,22 @@ class RegisterController extends Controller
         $profile_id = session('profile_id', 0);
         $type = Invitation::getTypes($invitation->type);
 
+        $image = 'random';
+
+        switch ($type) {
+          case 'student':
+            $image = 'OqtafYT5kTw';
+            break;
+          case 'employee':
+            $image = 'iusJ25iYu1c';
+            break;
+          case 'company':
+            $image = 'ow1mML1sOi0';
+            break;
+        }
+
         $data = compact(
+            'image',
             'invitation',
             'profile_id',
             'progress',

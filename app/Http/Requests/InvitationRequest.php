@@ -25,8 +25,8 @@ class InvitationRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required|min:1|max:' . Invitation::getTypes()->count(),
-            'email' => 'required'
+            'type' => 'required',
+            'email' => 'required|unique:users,email'
         ];
     }
 }

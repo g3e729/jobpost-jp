@@ -2,11 +2,23 @@
 
 @section('content')
 	<div class="l-container l-container-narrow">
+
     @if (session()->has('success'))
-    <div class="alert alert-success" role="alert">
-      {{ session()->get('success') }}
-    </div>
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
     @endif
+
+    @if ($errors->any())
+      <div class="alert alert-danger pb-0">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
 	  <form class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.invite.store') }}" novalidate>
       @csrf
 	    <h2 class="py-4 text-center alt-font">アカウント作成</h2>

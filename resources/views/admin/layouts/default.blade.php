@@ -11,31 +11,31 @@
   <meta charset="UTF-8">
   <title>Kredo Admin</title>
   <meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta property="og:locale" content="ja_JP">
-<meta property="fb:admins" content="">
-<meta property="og:title" content="">
-<meta property="og:description" content="">
-<meta property="og:url" content="">
-<meta property="og:site_name" content="">
-<meta property="og:type" content="blog">
-<meta property="og:image" content="/assets/images/common/logo_ogp.png">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="fb:admins" content="">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:type" content="blog">
+  <meta property="og:image" content="/assets/images/common/logo_ogp.png">
 
-<link rel="shortcut icon" href="/assets/images/common/favicon.ico">
-<link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/assets/images/common/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
 
-<!-- Custom fonts for this template-->
-<link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho|Noto+Sans+JP&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+  <!-- Custom fonts for this template-->
+  <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho|Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-<script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
-
+  <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
+
 <body id="js-page-top">
   <div id="wrapper">
     @include('admin.partials.sidebar')
