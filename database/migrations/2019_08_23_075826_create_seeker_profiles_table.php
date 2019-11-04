@@ -22,7 +22,7 @@ class CreateSeekerProfilesTable extends Migration
                 ->onDelete('cascade');
             $table->string('sex')->nullable();
             $table->string('contact_number')->nullable();
-            $table->double('study_aboard_fee', 20, 2)->nullable();
+            $table->double('study_abroad_fee', 20, 2)->nullable();
             $table->string('passport_number')->nullable();
             
             $table->integer('type_of_room')->nullable();
