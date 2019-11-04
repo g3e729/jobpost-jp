@@ -44,7 +44,7 @@ trait HasUser
     {
         $url = $this->files()->where('type', 'avatar')->first()->url ?? null;
 
-        return $url ?? null;
+        return $url ?? asset('img/avatar-default.png');
     }
 	
     public function user()

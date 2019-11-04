@@ -18,7 +18,7 @@
         <div class="col-3 mb-4">
         <div class="shadow-sm card card-company card-hover">
           <div class="card-body">
-            <img src="https://i.pravatar.cc/300" class="card-image float-left rounded-circle">
+            <img src="{{ $company->avatar }}" class="card-image float-left rounded-circle">
             <div class="card-body-top">
               <h5 class="card-title h6">{{ $company->company_name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ $company->industry ?? '--' }}</h6>
