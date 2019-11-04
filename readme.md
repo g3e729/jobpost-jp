@@ -25,5 +25,8 @@ Setup
 6. Install Node Modules<br>
 `npm install`
 
-6. Render your css and js files<br>
+7. Render your css and js files<br>
 `npm run dev` or `npm run production`
+
+7. Setup file storage<br>
+`php artisan storage:link`

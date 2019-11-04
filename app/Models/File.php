@@ -13,7 +13,10 @@ class File extends Model
 
     protected $fillable = [
         'url',
+        'file_name',
         'type',
+        'mime_type',
+        'size',
         'fileable_id',
         'fileable_type'
     ];

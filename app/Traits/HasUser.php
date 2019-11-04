@@ -42,7 +42,9 @@ trait HasUser
 
     public function getAvatarAttribute()
     {
-        return $this->files()->where('type', 'avatar')->first()->url ?? null;
+        $url = $this->files()->where('type', 'avatar')->first()->url ?? null;
+
+        return $url ?? null;
     }
 	
     public function user()

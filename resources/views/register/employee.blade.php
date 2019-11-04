@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" novalidate>
+  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
     
     <input type="hidden" name="step" value="{{ $step }}">
@@ -200,7 +200,7 @@
         </div>
       </div>
 
-      {{-- <div class="form-group pb-3 row">
+      <div class="form-group pb-3 row">
         <label for="formStaffAvatar" class="col-4 col-form-label">アバター</label>
         <div class="col-8">
           <input type="file" class="form-control" id="formStaffAvatar" name="avatar" accept="image/png, image/jpeg" required>
@@ -208,7 +208,7 @@
             Please choose your avatar.
           </div>
         </div>
-      </div> --}}
+      </div>
 
       <div class="form-group row">
         <div class="col-6 pt-4 mx-auto">

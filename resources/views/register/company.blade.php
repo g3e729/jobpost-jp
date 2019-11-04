@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" novalidate>
+  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
     
     <input type="hidden" name="step" value="{{ $step }}">
@@ -155,7 +155,7 @@
         </div>
       </div>
 
-      {{-- <div class="form-group pb-3 row">
+      <div class="form-group pb-3 row">
         <label for="formCompanyAvatar" class="col-4 col-form-label">アバター</label>
         <div class="col-8">
           <input type="file" class="form-control" id="formCompanyAvatar" name="avatar" accept="image/png, image/jpeg" required>
@@ -163,9 +163,9 @@
             Please enter your company avatar.
           </div>
         </div>
-      </div> --}}
+      </div>
 
-      {{-- <div class="form-group pb-3 row">
+      <div class="form-group pb-3 row">
         <label for="formCompanyEyecatch" class="col-4 col-form-label">アイキャッチ</label>
         <div class="col-8">
           <input type="file" class="form-control" id="formCompanyEyecatch" name="cover_photo" accept="image/png, image/jpeg" required>
@@ -173,7 +173,7 @@
             Please enter your company eyecatch.
           </div>
         </div>
-      </div> --}}
+      </div>
 
       <div class="form-group pb-3 row">
         <label for="formCompanyIndustry" class="col-4 col-form-label">業種、業界</label>
