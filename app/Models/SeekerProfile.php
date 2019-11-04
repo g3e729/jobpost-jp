@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\HasUserModel;
+use App\Traits\HasUser;
+use Illuminate\Database\Eloquent\Model;
 
-class SeekerProfile extends HasUserModel
+class SeekerProfile extends Model
 {
+    use HasUser;
+    
 	const ROLE = 'seeker';
 
     protected $dates = [
@@ -80,6 +83,11 @@ class SeekerProfile extends HasUserModel
                 unset($model->$attribute);
             }
         });
+    }
+
+    public function avatar()
+    {
+        return $this->morphOne(File::class, 'fileable');
     }
 
     public function getCourseAttribute()

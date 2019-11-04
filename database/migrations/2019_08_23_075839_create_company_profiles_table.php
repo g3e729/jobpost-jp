@@ -30,7 +30,6 @@ class CreateCompanyProfilesTable extends Migration
             $table->string('city')->nullable();
             $table->string('country', 3)->nullable();
             $table->string('industry_id')->nullable();
-            $table->string('avatar')->nullable();
             $table->string('cover_photo')->nullable();
             $table->string('homepage')->nullable();
             $table->string('ceo')->nullable();

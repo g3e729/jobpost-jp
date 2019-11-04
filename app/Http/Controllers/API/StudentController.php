@@ -11,11 +11,11 @@ class StudentController extends BaseController
 {
 	public function index(Request $request)
 	{
-		return (new SeekerService)->search($request->except('_token'))->toJson();
+		return (new SeekerService)->search($request->except('_token'))->forApi();
 	}
 	
 	public function show(SeekerProfile $seeker_profile)
 	{
-		return $seeker_profile->toJson();
+		return $seeker_profile->forApi();
 	}
 }

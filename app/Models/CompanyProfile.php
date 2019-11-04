@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\HasUserModel;
+use App\Traits\HasUser;
+use Illuminate\Database\Eloquent\Model;
 
-class CompanyProfile extends HasUserModel
+class CompanyProfile extends Model
 {
+    use HasUser;
+    
     const ROLE = 'company';
 
     protected $dates = [
@@ -47,6 +50,11 @@ class CompanyProfile extends HasUserModel
                 unset($model->$attribute);
             }
         });
+    }
+
+    public function avatar()
+    {
+        return $this->morphOne(File::class, 'fileable');
     }
     
     /**
