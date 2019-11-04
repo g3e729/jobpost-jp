@@ -46,6 +46,13 @@ trait HasUser
 
         return $url ?? asset('img/avatar-default.png');
     }
+
+    public function getCoverPhotoAttribute()
+    {
+        $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
+
+        return $url ?? null;
+    }
 	
     public function user()
     {

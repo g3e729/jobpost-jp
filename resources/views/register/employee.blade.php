@@ -16,6 +16,16 @@
       </h1>
     </div>
   </div>
+  
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
 
   <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
@@ -55,7 +65,7 @@
       <div class="form-group pb-3 row">
         <label for="formStaffName" class="col-4 col-form-label">名前(Japanese)</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formStaffName" name="japanese_name" placeholder="" required>
+          <input type="text" class="form-control" id="formStaffName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter Japanese name. 
           </div>
@@ -65,7 +75,7 @@
       <div class="form-group pb-3 row">
         <label for="formStaffName" class="col-4 col-form-label">名前(English)</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formStaffName" name="name" placeholder="" required>
+          <input type="text" class="form-control" id="formStaffName" name="name" value="{{ old('name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter English name. 
           </div>
@@ -76,7 +86,7 @@
         <label for="formStaffBirthdate" class="col-4 col-form-label">生年月日</label>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control js-datepicker" id="formStaffBirthdate" name="birthday" placeholder="" required>
+            <input type="text" class="form-control js-datepicker" id="formStaffBirthdate" name="birthday" value="{{ old('birthday') }}" placeholder="" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <i class="fas fa-fw fa-calendar-alt"></i>
@@ -107,7 +117,7 @@
 
           <div class="form-group position-relative">
             <label for="formStaffAddress1" class="form-label pt-0">番地</label>
-            <input type="text" class="form-control" id="formStaffAddress1" name="address1" placeholder="" required>
+            <input type="text" class="form-control" id="formStaffAddress1" name="address1" value="{{ old('address1') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your house number.
             </div>
@@ -115,7 +125,7 @@
 
           <div class="form-group position-relative">
             <label for="formStaffAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
-            <input type="text" class="form-control" id="formStaffAddress2" name="address2" placeholder="" required>
+            <input type="text" class="form-control" id="formStaffAddress2" name="address2" value="{{ old('address2') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your building name / room number.
             </div>
@@ -123,7 +133,7 @@
 
           <div class="form-group position-relative">
             <label for="formStaffAddress3" class="form-label pt-0">郵便番号</label>
-            <input type="number" class="form-control" id="formStaffAddress3" name="address3" placeholder="" required>
+            <input type="number" class="form-control" id="formStaffAddress3" name="address3" value="{{ old('address3') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your postal code.
             </div>
@@ -149,13 +159,7 @@
       <div class="form-group pb-3 row">
         <label for="formStaffPhone" class="col-4 col-form-label">電話番号</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formStaffPhone" name="contact_number" placeholder="">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <div class="col-6 pt-4 mx-auto">
-          <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
+          <input type="text" class="form-control" id="formStaffPhone" name="contact_number" value="{{ old('contact_number') }}" placeholder="">
         </div>
       </div>
 
@@ -210,13 +214,13 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <div class="col-6 pt-4 mx-auto">
-          <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
-        </div>
-      </div>
-
     @endif
+
+    <div class="form-group row">
+      <div class="col-6 pt-4 mx-auto">
+        <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
+      </div>
+    </div>
 
   </form>
 @endsection
