@@ -40,8 +40,7 @@ class SeekerService extends BaseService
             $this->user->profile()->create($profile_fields);
         }
 
-        $this->user = $this->user->load('profile');
-        $this->item = $this->user->profile;
+        $this->item = $this->model::where('user_id', $this->user->id)->first();
 
         return $this->item;
     }
