@@ -18,56 +18,93 @@
               </div>
             </div>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">タイトル</span>
-              <span class="p-3">...title</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">ポジション</span>
-              <span class="p-3">...position</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">開発環境</span>
-              <span class="p-3">...Development environment</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">こんなことやります</span>
-              <span class="p-3">...do this</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">応募要件</span>
-              <span class="p-3">...Application requirements</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">募集人数</span>
-              <span class="p-3">...Number of applicants</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">勤務時間</span>
-              <span class="p-3">...Working hours</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">諸手当</span>
-              <span class="p-3">...Allowances</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">昇給・昇格</span>
-              <span class="p-3">...Salary increase / promotion</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">試用期間</span>
-              <span class="p-3">...Trial period</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">住所</span>
-              <span class="p-3">...Street address</span>
-            </li>
-            <li class="list-group-item d-flex p-0">
-              <span class="w-25 bg-light text-dark p-3">最寄駅</span>
-              <span class="p-3">...nearest station</span>
-            </li>
-          </ul>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td width="200px" class="bg-light text-dark p-3 font-weight-bold">タイトル</td>
+                <td>自社★C2Cマッチングプラットフォーム開発</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">ポジション</td>
+                <td>バックエンド</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">開発環境</td>
+                <td>
+                  <dl>
+                    <dt>言語</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt>フレームワーク</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt>データベース</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt>環境</dt>
+                    <dd>{{ '--' }}</dd>
+                  </dl>
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">こんなことやります</td>
+                <td>
+                  <span style="white-space: pre-line;">ベテラン/若手/転籍/復職など、様々なメンバーを
+                    纏めるリーダー候補
+                    を募集中！
+                    組込・制御系設計開発のリーダーとして若手を含
+                    むメンバーの取り纏
+                    め、進捗/工数管理等をしていただきます。
+                    （主なプロジェクト例）
+                    ・情報機器関連の組込開発
+                    ・自動車ECU/カーナビゲーションの組込開発
+                    ・産業用工作機械のソフトウェア開発
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">応募要件</td>
+                <td>...Application requirements</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">募集人数</td>
+                <td>...Number of applicants...</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">勤務時間</td>
+                <td>...Working hours</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">諸手当</td>
+                <td>...Allowances</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">昇給・昇格</td>
+                <td>...Salary increase / promotion</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">試用期間</td>
+                <td>...Trial period...</td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">住所</td>
+                <td>
+                  <dl>
+                    <dt>Prefecture</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt>番地</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt>ビル名 / 部屋番号</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt>郵便番号</dt>
+                    <dd>{{ '--' }}</dd>
+                  </dl>
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-light text-dark p-3 font-weight-bold">最寄駅</td>
+                <td>六本木駅</td>
+              </tr>
+            </tbody>
+          </table>
           <div class="card-body">
             <div class="row py-4 justify-content-center">
               <div class="col-3">
