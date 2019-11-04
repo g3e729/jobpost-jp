@@ -18,19 +18,19 @@
               </div>
             </div>
           </div>
-          <table class="table table-hover">
+          <table class="table">
             <tbody>
               <tr>
-                <td width="200px" class="bg-light text-dark p-3 font-weight-bold">タイトル</td>
-                <td>自社★C2Cマッチングプラットフォーム開発</td>
+                <td width="160px" class="bg-light text-dark p-3 font-weight-bold">タイトル</td>
+                <td colspan="3">自社★C2Cマッチングプラットフォーム開発</td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">ポジション</td>
-                <td>バックエンド</td>
+                <td colspan="3">バックエンド</td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">開発環境</td>
-                <td>
+                <td colspan="3">
                   <dl>
                     <dt>言語</dt>
                     <dd>{{ '--' }}</dd>
@@ -45,7 +45,7 @@
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">こんなことやります</td>
-                <td>
+                <td colspan="3">
                   <span style="white-space: pre-line;">ベテラン/若手/転籍/復職など、様々なメンバーを
                     纏めるリーダー候補
                     を募集中！
@@ -59,34 +59,76 @@
                   </span>
                 </td>
               </tr>
-
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">応募要件</td>
-                <td>...Application requirements</td>
+                <td colspan="3">
+                  <span style="white-space: pre-line;">何らかのシステム開発経験　実務３年以上
+                    周囲とのコミュニケーションを図りながら業務対応可能な方
+                    決まった作業をキチンとこなすことが出来る方
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">募集人数</td>
-                <td>...Number of applicants...</td>
+                <td>5人</td>
+                <td width="160px" class="bg-light text-dark p-3 font-weight-bold">想定年収</td>
+                <td>４００万円</td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">勤務時間</td>
-                <td>...Working hours</td>
+                <td>
+                  <span style="white-space: pre-line;">10:00〜19:00
+                    （コアタイム 11:00~16:00）
+                  </span>
+                </td>
+                <td width="160px" class="bg-light text-dark p-3 font-weight-bold">休日休暇</td>
+                <td>
+                  <span style="white-space: pre-line;">・完全週休2日制（土日）
+                    ・祝日
+                    ・年末年始休暇
+                    ・有給休暇
+                    ・慶弔休暇
+                    ・GW休暇
+                    ・夏期休暇
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">諸手当</td>
-                <td>...Allowances</td>
+                <td>交通費支給（上限2万円）</td>
+                <td width="160px" class="bg-light text-dark p-3 font-weight-bold">インセンティブ</td>
+                <td>なし</td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">昇給・昇格</td>
-                <td>...Salary increase / promotion</td>
+                <td>昇格査定あり：年2回（12月、6月）</td>
+                <td width="160px" class="bg-light text-dark p-3 font-weight-bold">保険</td>
+                <td>
+                  <span style="white-space: pre-line;">健康保険
+                    厚生年金加入
+                    雇用保険
+                    労災保険適用
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">試用期間</td>
-                <td>...Trial period...</td>
+                <td>6ヶ月</td>
+                <td width="160px" class="bg-light text-dark p-3 font-weight-bold">選考フロー</td>
+                <td>
+                  <span style="white-space: pre-line;">カジュアル面談：人事、エンジニアチームリーダー
+                    ▼
+                    2次：社長
+                    ▼
+                    内定
+
+                    ※選考フロー、面接回数は状況に応じて変更になる可能性があります
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">住所</td>
-                <td>
+                <td colspan="3">
                   <dl>
                     <dt>Prefecture</dt>
                     <dd>{{ '--' }}</dd>
@@ -101,7 +143,7 @@
               </tr>
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">最寄駅</td>
-                <td>六本木駅</td>
+                <td colspan="3">六本木駅</td>
               </tr>
             </tbody>
           </table>

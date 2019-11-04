@@ -97,7 +97,7 @@
             <select class="form-control" id="formAddress0" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
-                <option value="{{ $index }}">{{ ucwords($name) }}</option>
+                <option value="{{ $index }}">{{ $name }}</option>
               @endforeach
             </select>
             <div class="invalid-tooltip">
@@ -211,7 +211,7 @@
           <select class="form-control" id="formStatus" name="status">
             <option value="" selected hidden disabled>Choose status</option>
               @foreach($student_status as $index => $name)
-                <option value="{{ $index }}">{{ ucwords($name) }}</option>
+                <option value="{{ $index }}">{{ mb_convert_case($name, MB_CASE_TITLE, 'UTF-8') }}</option>
               @endforeach
           </select>
         </div>
@@ -223,7 +223,7 @@
           <select class="form-control" id="formOccupation" name="occupation" data-action="change" data-condition="" data-text="Please enter occupation.">
             <option value="" selected hidden disabled>Choose occupation</option>
               @foreach($occupations as $index => $name)
-                <option value="{{ $index }}">{{ ucwords($name) }}</option>
+                <option value="{{ $index }}">{{ mb_convert_case($name, MB_CASE_TITLE, 'UTF-8') }}</option>
               @endforeach
           </select>
           <div class="invalid-tooltip">

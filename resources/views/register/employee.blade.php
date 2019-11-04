@@ -97,7 +97,7 @@
             <select class="form-control" id="formStaffAddress0" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
-                <option value="{{ $index }}">{{ ucwords($name) }}</option>
+                <option value="{{ $index }}">{{ $name }}</option>
               @endforeach
             </select>
             <div class="invalid-tooltip">

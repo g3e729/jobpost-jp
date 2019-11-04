@@ -14,15 +14,15 @@
               
               <div class="card-badges text-center h6">
                 
-                <span class="badge badge-pill badge-light">メールアドレス : {{ $student->email }}</span>
+                <span class="badge badge-pill badge-secondary">メールアドレス : {{ $student->email }}</span>
                 
-                <span class="badge badge-pill badge-light">期 : 9</span>
+                <span class="badge badge-pill badge-secondary">期 : 9</span>
                 
-                <span class="badge badge-pill badge-light">コース : PHP</span>
+                <span class="badge badge-pill badge-secondary">コース : PHP</span>
                 
-                <span class="badge badge-pill badge-light">ステータス : 在学中</span>
+                <span class="badge badge-pill badge-secondary">ステータス : 在学中</span>
                 
-                <span class="badge badge-pill badge-light">英語 : CEFR - B1</span>
+                <span class="badge badge-pill badge-secondary">英語 : CEFR - B1</span>
                 
               </div>
               
@@ -170,24 +170,24 @@
                       <dt>ありなし</dt>
                       <dd>{{ '--' }}</dd>
                       <dt>内容</dt>
-                      <dd>{{ '--' }}</dd>
+                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
                     </dl>
                   </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">備考</td>
-                  <td>{{ '--' }}</td>
+                  <td style="white-space: pre-line;">{{ '--' }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="tab-pane w-75 mx-auto fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <table class="table">
               <tr>
                 <td>
                   <dl class="mb-0">
                     <dt>自己紹介</dt>
-                    <dd>{{ '--' }}</dd>
+                    <dd style="white-space: pre-line;">{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
@@ -195,7 +195,7 @@
                 <td>
                   <dl class="mb-0">
                     <dt>やってみたいこと</dt>
-                    <dd>{{ '--' }}</dd>
+                    <dd style="white-space: pre-line;">{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
@@ -212,7 +212,7 @@
                         <dt class="text-muted">在籍期間</dt>
                         <dd>{{ '--' }}</dd>
                         <dt class="text-muted">業務内容</dt>
-                        <dd>{{ '--' }}</dd>
+                        <dd style="white-space: pre-line;">{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -231,7 +231,7 @@
                         <dt class="text-muted">卒業</dt>
                         <dd>{{ '--' }}</dd>
                         <dt class="text-muted">学んだこと</dt>
-                        <dd>{{ '--' }}</dd>
+                        <dd style="white-space: pre-line;">{{ '--' }}</dd>
                       </dl>
                     </dd>
                   </dl>
@@ -249,9 +249,28 @@
                   </dl>
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <dl class="mb-0">
+                    <dt>画像</dt>
+                    <dd>
+                      <dl class="mt-3">
+                        <dt class="text-muted">アバター</dt>
+                        <dd>
+                          <img class="rounded-circle border border-secondary my-3" src="https://i.pravatar.cc/300" style="max-height: 120px; border-width: 2px !important;">
+                        </dd>
+                        <dt class="text-muted">アイキャッチ</dt>
+                        <dd>
+                          <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
+                        </dd>
+                      </dl>
+                    </dd>
+                  </dl>
+                </td>
+              </tr>
             </table>
           </div>
-          <div class="tab-pane w-75 mx-auto fade" id="pills-skills" role="tabpanel" aria-labelledby="pills-skills-tab">
+          <div class="tab-pane fade" id="pills-skills" role="tabpanel" aria-labelledby="pills-skills-tab">
             <table class="table">
               <tr>
                 <td width="50%">
@@ -370,9 +389,13 @@
                         <dt class="text-muted">タイトル</dt>
                         <dd>{{ '--' }}</dd>
                         <dt class="text-muted">内容</dt>
-                        <dd>{{ '--' }}</dd>
+                        <dd style="white-space: pre-line;">{{ '--' }}</dd>
                         <dt class="text-muted">URL</dt>
                         <dd>{{ '--' }}</dd>
+                        <dt class="text-muted">画像</dt>
+                        <dd>
+                          <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
+                        </dd>
                       </dl>
                     </dd>
                   </dl>
