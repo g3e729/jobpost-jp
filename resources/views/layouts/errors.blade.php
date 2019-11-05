@@ -9,7 +9,7 @@
 <html class="no-js" prefix="og: http://ogp.me/ns#"><!--<![endif]-->
 <head>
   <meta charset="UTF-8">
-  <title>Error | Kredo</title>
+  <title>@yield('pageTitle') - {{ config('app.name') }}</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">

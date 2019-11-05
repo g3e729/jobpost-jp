@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', $student->display_name)
+
 @section('content')
   <div class="l-container">
     <div class="student-detail">

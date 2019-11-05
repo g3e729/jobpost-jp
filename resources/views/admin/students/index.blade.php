@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', 'Students')
+
 @section('content')
   <div class="l-container">
     @include('admin.students.partials.search')
