@@ -5,15 +5,19 @@ Route::get('/', function () {
 });
 
 // Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::group([
+    'namespace'  => 'Auth',
+], function () {
+	Route::get('login', 'LoginController@showLoginForm')->name('login');
+	Route::post('login', 'LoginController@login');
+	Route::post('logout', 'LoginController@logout')->name('logout');
 
-// Password Reset Routes...
-// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+	// Password Reset Routes...
+	Route::get('password/request', 'ForgotPasswordController@create')->name('password.request');
+	Route::post('password/request', 'ForgotPasswordController@store');
+	Route::get('password/reset/{token}', 'ForgotPasswordController@edit')->name('password.reset');
+	Route::patch('password/update', 'ForgotPasswordController@update')->name('password.update');
+});
 
 Route::resource('register', 'Auth\RegisterController')->only('create', 'store');
 

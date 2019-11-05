@@ -40,7 +40,7 @@
       <div id="content">
 	    <div class="row p-5" style="background: #fff">
 	        <div class="col-md-12 text-center p-5 mt-5">
-				<img src="{{ asset('img/logo-kredo-sp.png') }}" alt="Kredo" class="mt-5 mb-3">
+				    <img src="{{ asset('img/logo-kredo-sp.png') }}" alt="Kredo" class="mt-5 mb-3">
         		@yield('content')
 	        </div>
 	    </div>

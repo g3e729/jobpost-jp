@@ -89,7 +89,7 @@ class RegisterController extends Controller
         $invitation->delete();
         session()->forget('profile_id');
 
-        return redirect()->route('login')->with('message', 'You have successfully registered!');;
+        return redirect()->route('login')->with('message', 'You have successfully registered!');
     }
 
     private function company($step, $request)

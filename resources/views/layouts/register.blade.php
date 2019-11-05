@@ -43,6 +43,7 @@
           <div class="card-body p-0">
             <div class="row">
               <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/{{ $image }}/600x800');"></div>
+
               <div class="col-6 card-form-right">
                 <div class="position-relative">
 
@@ -73,8 +74,10 @@
                   @endif
 
                   @yield('content')
+
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -82,7 +85,6 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
@@ -93,8 +95,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
   <script src="{{ asset('js/app.js') }}" async></script>
-
   <script src="{{ asset('js/register.js') }}"></script>
+  
   <script>
     $('.js-datepicker').datepicker({
       format: 'yyyy-mm-dd',
