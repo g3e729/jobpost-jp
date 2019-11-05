@@ -28,6 +28,10 @@
               <td>{{ $employee->japanese_name }}</td>
             </tr>
             <tr>
+              <td class="font-weight-bold">名前(English)</td>
+              <td>{{ $employee->name }}</td>
+            </tr>
+            <tr>
               <td class="font-weight-bold">生年月日</td>
               <td>{{ $employee->birthday->format('Y年m月d日') }}</td>
             </tr>

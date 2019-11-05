@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'per_page' => env('per_page', 10),
+	'per_page' => env('PER_PAGE', 10),
 ];

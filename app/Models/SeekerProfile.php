@@ -22,7 +22,7 @@ class SeekerProfile extends Model
     protected $fillable = [
         'sex',
         'contact_number',
-        'study_aboard_fee',
+        'study_abroad_fee',
         'passport_number',
                     
         'type_of_room',
