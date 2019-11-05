@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', 'Notifications')
+
 @section('content')
   <div class="l-container">
     @include('admin.notifications.partials.search')

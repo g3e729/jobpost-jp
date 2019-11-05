@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', 'Messages')
+
 @php
 
 $chats = [];

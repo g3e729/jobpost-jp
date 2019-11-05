@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', $company->display_name)
+
 @section('content')
   <div class="l-container">
     <div class="company-detail">
