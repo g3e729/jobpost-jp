@@ -7,7 +7,7 @@
         <div class="shadow-sm card card-student-detail">
           <div class="card-body">
             <div class="card-body-img text-center">
-              <img src="https://i.pravatar.cc/300" class="card-image card-image-x2 rounded-circle">
+              <img src="{{ $student->avatar }}" class="card-image card-image-x2 rounded-circle">
             </div>
             <div class="card-body-main mt-3">
               <h3 class="text-center">{{ $student->display_name }}</h3>
@@ -257,7 +257,7 @@
                       <dl class="mt-3">
                         <dt class="text-muted">アバター</dt>
                         <dd>
-                          <img class="rounded-circle border border-secondary my-3" src="https://i.pravatar.cc/300" style="max-height: 120px; border-width: 2px !important;">
+                          <img class="rounded-circle border border-secondary my-3" src="{{ $student->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
                         </dd>
                         <dt class="text-muted">アイキャッチ</dt>
                         <dd>

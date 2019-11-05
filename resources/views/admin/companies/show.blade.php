@@ -7,7 +7,7 @@
           <div class="shadow-sm card card-company-detail">
             <div class="card-body">
               <div class="card-body-img text-center">
-                <img src="https://i.pravatar.cc/300" class="card-image card-image-x2 rounded-circle">
+                <img src="{{ $company->avatar }}" class="card-image card-image-x2 rounded-circle">
               </div>
               <div class="card-body-main mt-3">
                 <h3 class="text-center">{{ $company->display_name }}</h3>
@@ -88,7 +88,7 @@
                 <tr>
                   <td class="font-weight-bold">アバター</td>
                   <td>
-                    <img class="rounded-circle border border-secondary my-3" src="https://i.pravatar.cc/300" style="max-height: 120px; border-width: 2px !important;">
+                    <img class="rounded-circle border border-secondary my-3" src="{{ $company->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
                   </td>
                 </tr>
                 <tr>
