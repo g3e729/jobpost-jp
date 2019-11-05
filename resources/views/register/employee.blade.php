@@ -14,7 +14,7 @@
     @if ($step == 1)
 
       <div class="form-group pb-3 row">
-        <label for="formPassword" class="col-4 col-form-label">パスワード</label>
+        <label for="formPassword" class="col-4 col-form-label font-weight-bold">パスワード</label>
         <div class="col-8">
           <input type="password" class="form-control" id="formPassword" name="password" placeholder="" required>
           <div class="invalid-tooltip">
@@ -24,7 +24,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formPasswordConfirmation" class="col-4 col-form-label">パスワードの確認</label>
+        <label for="formPasswordConfirmation" class="col-4 col-form-label font-weight-bold">パスワードの確認</label>
         <div class="col-8">
           <input type="password" class="form-control" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
             data-action="input" data-condition="password" data-text="Passwords do not match."
@@ -38,7 +38,7 @@
       <hr class="form-divider d-block mb-4">
 
       <div class="form-group pb-3 row">
-        <label for="formJapaneseName" class="col-4 col-form-label">名前(Japanese)</label>
+        <label for="formJapaneseName" class="col-4 col-form-label font-weight-bold">名前(Japanese)</label>
         <div class="col-8">
           <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -48,7 +48,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formName" class="col-4 col-form-label">名前(English)</label>
+        <label for="formName" class="col-4 col-form-label font-weight-bold">名前(English)</label>
         <div class="col-8">
           <input type="text" class="form-control" id="formName" name="name" value="{{ old('name') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -58,7 +58,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formBirthday" class="col-4 col-form-label">生年月日</label>
+        <label for="formBirthday" class="col-4 col-form-label font-weight-bold">生年月日</label>
         <div class="col-8">
           <div class="input-group">
             <input type="text" class="form-control js-datepicker" id="formBirthday" name="birthday" value="{{ old('birthday') }}" placeholder="" required>
@@ -75,7 +75,7 @@
       </div>
 
       <div class="pb-3 row">
-        <div class="col-4">住所</div>
+        <div class="col-4 font-weight-bold">住所</div>
         <div class="col-8">
           <div class="form-group position-relative">
             <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
@@ -118,7 +118,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formSex" class="col-4 col-form-label">性別</label>
+        <label for="formSex" class="col-4 col-form-label font-weight-bold">性別</label>
         <div class="col-8">
           <select class="form-control" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
             <option value="" selected hidden disabled>Choose sex</option>
@@ -132,7 +132,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formContactNumber" class="col-4 col-form-label">電話番号</label>
+        <label for="formContactNumber" class="col-4 col-form-label font-weight-bold">電話番号</label>
         <div class="col-8">
           <input type="text" class="form-control" id="formContactNumber" name="contact_number" value="{{ old('contact_number') }}" placeholder="">
         </div>
@@ -141,7 +141,7 @@
     @else
 
       <div class="form-group pb-3 row">
-        <label for="formCountry" class="col-4 col-form-label">国籍</label>
+        <label for="formCountry" class="col-4 col-form-label font-weight-bold">国籍</label>
         <div class="col-8">
           <select class="form-control" id="formCountry" name="country">
             <option value="" selected hidden disabled>Choose country</option>
@@ -153,7 +153,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formPositionId" class="col-4 col-form-label">ポジション</label>
+        <label for="formPositionId" class="col-4 col-form-label font-weight-bold">ポジション</label>
         <div class="col-8">
           <select class="form-control" id="formPositionId" name="position_id">
             <option value="" selected hidden disabled>Choose position</option>
@@ -165,7 +165,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStatus" class="col-4 col-form-label">ステータス</label>
+        <label for="formStatus" class="col-4 col-form-label font-weight-bold">ステータス</label>
         <div class="col-8">
           <select class="form-control" id="formStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
             <option value="" selected hidden disabled>Choose status</option>
@@ -180,7 +180,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formAvatar" class="col-4 col-form-label">アバター</label>
+        <label for="formAvatar" class="col-4 col-form-label font-weight-bold">アバター</label>
         <div class="col-8">
           <input type="file" class="form-control" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">

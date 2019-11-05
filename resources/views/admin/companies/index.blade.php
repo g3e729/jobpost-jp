@@ -3,17 +3,19 @@
 @section('pageTitle', 'Companies')
 
 @section('content')
+  @if ($companies->count())
   <div class="l-container">
     @include('admin.companies.partials.search')
   </div>
 
   <hr class="content-divider d-block">
+  @endif
 
   <div class="l-container l-container-wide">
     <div class="row py-4">
 
       @if (! $companies->count())
-        <p>No result.</p>
+      @include('admin.partials.notfound')
       @endif
       
       @foreach($companies as $company)
@@ -69,5 +71,7 @@
     </div>
   </div>
 
+  @if ($companies->count())
   @include('admin.partials.pagination', ['data' => $companies])
+  @endif
 @endsection

@@ -15,14 +15,17 @@
               <h3 class="text-center">{{ $employee->display_name }}</h3>
 
               <div class="card-actions card-actions-right position-absolute">
-                <a href="#" class="card-link">更新する</a>
+                <a href="{{ route('admin.employees.show', $employee) }}" class="card-link mr-3">
+                  <i class="fas fa-chevron-circle-left"></i> Back
+                </a>
+                <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="employee-detail-main pb-4">
-        <form class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
+        <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
           @csrf
           <div class="form-group pb-3 row">
             <label for="formTitle" class="col-3 col-form-label">名前(Japanese)</label>
@@ -188,3 +191,12 @@
   </div>
 @endsection
 
+@section('js')
+  <script src="{{ asset('js/register.js') }}"></script>
+  <script>
+    $('.js-datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+    });
+
+  </script>
+@endsection
