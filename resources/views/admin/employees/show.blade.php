@@ -13,7 +13,7 @@
               <h3 class="text-center">{{ $employee->display_name }}</h3>
 
               <div class="card-actions card-actions-right position-absolute">
-                <a href="{{ route('admin.employees.edit', 1) }}" class="card-link">詳細</a>
+                <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">詳細</a>
                 <a href="/employees/1/delete" class="card-link text-muted">削除</a>
               </div>
             </div>

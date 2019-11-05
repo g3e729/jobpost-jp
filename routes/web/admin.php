@@ -17,14 +17,6 @@ Route::group([
 		],
 	])->only('index', 'show', 'edit', 'update');
 
-	Route::get('companies/{company}/edit', function () {
-		return view('admin.companies.edit');
-	})->name('companies.edit');
-
-	Route::patch('companies/{company}', function () {
-		return view('admin.companies.update');
-	})->name('companies.update');
-
 	Route::get('invite', function () {
 		return view('admin.invite');
 	})->name('invite');

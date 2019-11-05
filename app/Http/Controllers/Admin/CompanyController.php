@@ -25,10 +25,8 @@ class CompanyController extends BaseController
 	
 	public function edit(Company $company)
 	{
-		$company = (new CompanyService)->setAttribute($company);
-
-		return view('admin.companies.show', compact('company'));
-	}
+		return view('admin.companies.edit', compact('company'));
+  }
 	
 	public function update(Request $request, Company $company)
 	{
