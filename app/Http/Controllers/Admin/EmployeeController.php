@@ -27,7 +27,12 @@ class EmployeeController extends BaseController
 	
 	public function edit(Employee $employee)
 	{
-		return view('admin.employees.edit', compact('employee'));
+    $countries = getCountries();
+    $employment_status = Employee::getEmploymentStatus();
+    $positions = Employee::getPositions();
+    $prefectures = getPrefecture();
+
+		return view('admin.employees.edit', compact('employee', 'countries', 'employment_status', 'positions', 'prefectures'));
 	}
 	
 	public function update(Request $request, Employee $employee)

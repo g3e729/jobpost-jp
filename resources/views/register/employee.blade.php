@@ -170,7 +170,7 @@
           <select class="form-control" id="formStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
             <option value="" selected hidden disabled>Choose status</option>
             @foreach($employment_status as $index => $name)
-              <option value="{{ $index }}">{{ ucwords($name) }}</option>
+              <option value="{{ $index }}">{{ mb_convert_case($name, MB_CASE_TITLE, 'UTF-8') }}</option>
             @endforeach
           </select>
           <div class="invalid-tooltip">
