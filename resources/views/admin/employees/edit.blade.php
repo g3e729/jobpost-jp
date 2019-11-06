@@ -28,7 +28,7 @@
         <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
           @csrf
           <div class="form-group pb-3 row">
-            <label for="formTitle" class="col-3 col-form-label font-weight-bold">名前(Japanese)</label>
+            <label for="formJapaneseName" class="col-3 col-form-label font-weight-bold">名前(Japanese)</label>
             <div class="col-9">
               <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ $employee->japanese_name }}" placeholder="" required>
               <div class="invalid-tooltip">
@@ -73,11 +73,7 @@
                   data-condition="" data-text="Please choose your prefecture.">
                   <option value="" selected hidden disabled>Choose prefecture</option>
                   @foreach($prefectures as $index => $name)
-                    @if ($index === $employee->prefecture)
-                      <option value="{{ $index }}" selected>{{ $name }}</option>
-                    @else
-                      <option value="{{ $index }}">{{ $name }}</option>
-                    @endif
+                    <option value="{{ $index }}" {{ ($index == $employee->prefecture) ? 'selected' : null }}>{{ $name }}</option>
                   @endforeach
                 </select>
                 <div class="invalid-tooltip">
@@ -183,11 +179,11 @@
           <div class="form-group pb-3 row">
             <label for="formAvatar" class="col-3 col-form-label font-weight-bold">アバター</label>
             <div class="col-9" data-group="avatar">
-              <input type="file" class="form-control-file" id="js-avatar-file" name="avatar" accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
+              <input data-avatar="file" type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">
-                <input type="text" class="form-control" id="js-avatar-name" value="{{ $employee->avatar ?? null }}" disabled required>
+                <input data-avatar="name" type="text" class="form-control" value="{{ $employee->avatar ?? null }}" disabled required>
                 <div class="input-group-append">
-                  <button id="js-avatar-browse" type="button" class="alt-font btn btn-primary">Browse</button>
+                  <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
                 </div>
                 <div class="invalid-tooltip">
                   Please choose your avatar.
@@ -195,7 +191,7 @@
               </div>
 
               <div class="mt-3">
-                <img class="avatar avatar-md border border-secondary my-3" id="js-avatar-preview" src="{{ $employee->avatar ?? 'https://placehold.it/80x80' }}">
+                <img data-avatar="preview" class="avatar avatar-md border border-secondary my-3" src="{{ $employee->avatar ?? 'https://placehold.it/80x80' }}">
               </div>
             </div>
           </div>

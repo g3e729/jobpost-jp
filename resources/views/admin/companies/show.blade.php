@@ -37,11 +37,15 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <td style="width: 25%" class="font-weight-bold">会社紹介</td>
+                  <td style="width: 25%" class="font-weight-bold">名前</td>
+                  <td style="white-space: pre-line;">{{ $company->display_name }}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">会社紹介</td>
                   <td style="white-space: pre-line;">{{ $company->description }}</td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">HPアドレス</td>
+                  <td class="font-weight-bold">HP(URL)</td>
                   <td>{{ $company->homepage }}</td>
                 </tr>
                 <tr>
@@ -72,7 +76,7 @@
                   <td>{{ $company->established_date->format('Y年m月d日') }}</td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">業種・業界</td>
+                  <td class="font-weight-bold">業種、業界</td>
                   <td>{{ $company->industry_id }}</td>
                 </tr>
                 <tr>

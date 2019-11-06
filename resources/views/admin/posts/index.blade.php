@@ -3,7 +3,7 @@
 @section('pageTitle', 'Posts')
 
 @section('content')
-  <div class="l-container l-container-wide">
+  <div class="l-container">
     @include('admin.posts.partials.search')
   </div>
 

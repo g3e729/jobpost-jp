@@ -14,7 +14,7 @@
     @if ($step == 1)
       
       <div class="form-group pb-3 row">
-        <label for="formPassword" class="col-4 col-form-label">パスワード</label>
+        <label for="formPassword" class="col-4 col-form-label font-weight-bold">パスワード</label>
         <div class="col-8">
           <input type="password" class="form-control" id="formPassword" name="password" placeholder="" required>
           <div class="invalid-tooltip">
@@ -24,7 +24,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formPasswordConfirmation" class="col-4 col-form-label">パスワードの確認</label>
+        <label for="formPasswordConfirmation" class="col-4 col-form-label font-weight-bold">パスワードの確認</label>
         <div class="col-8">
           <input type="password" class="form-control" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
             data-action="input" data-condition="password" data-text="Passwords do not match."
@@ -38,7 +38,7 @@
       <hr class="form-divider d-block mb-4">
 
       <div class="form-group pb-3 row">
-        <label for="formCompanyName" class="col-4 col-form-label">名前</label>
+        <label for="formCompanyName" class="col-4 col-form-label font-weight-bold">名前</label>
         <div class="col-8">
           <input type="text" class="form-control" id="formCompanyName" name="company_name" value="{{ old('company_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -48,7 +48,7 @@
       </div>
 
       <div class="pb-3 row">
-        <div class="col-4">住所</div>
+        <div class="col-4 font-weight-bold">住所</div>
         <div class="col-8">
           <div class="form-group position-relative">
             <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
@@ -91,7 +91,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formCeo" class="col-4 col-form-label">創業者</label>
+        <label for="formCeo" class="col-4 col-form-label font-weight-bold">創業者</label>
         <div class="col-8">
           <input type="text" class="form-control" id="formCeo" name="ceo" value="{{ old('ceo') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -101,7 +101,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formNumberOfEmployees" class="col-4 col-form-label">社員数</label>
+        <label for="formNumberOfEmployees" class="col-4 col-form-label font-weight-bold">社員数</label>
         <div class="col-8">
           <input type="number" class="form-control" id="formNumberOfEmployees" name="number_of_employees" min="1" value="{{ old('number_of_employees') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -111,7 +111,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formContactNumber" class="col-4 col-form-label">電話番号</label>
+        <label for="formContactNumber" class="col-4 col-form-label font-weight-bold">電話番号</label>
         <div class="col-8">
           <input type="text" class="form-control" id="formContactNumber" name="contact_number" value="{{ old('contact_number') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -123,7 +123,7 @@
     @else
 
       <div class="form-group pb-3 row">
-        <label for="formIntro" class="col-4 col-form-label">会社紹介文</label>
+        <label for="formIntro" class="col-4 col-form-label font-weight-bold">会社紹介文</label>
         <div class="col-8">
           <textarea class="form-control" id="formIntro" name="description" placeholder="" rows="4" style="min-height: 100px;" required>{{ old('description') }}</textarea>
           <div class="invalid-tooltip">
@@ -133,7 +133,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formAvatar" class="col-4 col-form-label">アバター</label>
+        <label for="formAvatar" class="col-4 col-form-label font-weight-bold">アバター</label>
         <div class="col-8">
           <input type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
@@ -143,9 +143,9 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formCoverPhoto" class="col-4 col-form-label">アイキャッチ</label>
+        <label for="formCoverPhoto" class="col-4 col-form-label font-weight-bold">アイキャッチ</label>
         <div class="col-8">
-          <input type="file" class="form-control" id="formCoverPhoto" name="cover_photo" accept="image/png, image/jpeg" required>
+          <input type="file" class="form-control-file" id="formCoverPhoto" name="cover_photo" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
             Please enter your company eyecatch.
           </div>
@@ -153,7 +153,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formIndustryId" class="col-4 col-form-label">業種、業界</label>
+        <label for="formIndustryId" class="col-4 col-form-label font-weight-bold">業種、業界</label>
         <div class="col-8">
           <select class="form-control" id="formIndustryId" name="industry_id" data-action="change" data-condition="" data-text="Please choose your industry.">
             <option value="" selected hidden disabled>Choose industry</option>
@@ -168,7 +168,7 @@
       </div>
       
       <div class="form-group pb-3 row">
-        <label for="formHomepage" class="col-4 col-form-label">HP(URL)</label>
+        <label for="formHomepage" class="col-4 col-form-label font-weight-bold">HP(URL)</label>
         <div class="col-8">
           <input type="url" class="form-control" id="formHomepage" name="homepage" value="{{ old('homepage') }}" placeholder="" required>
           <div class="invalid-tooltip">
@@ -178,7 +178,7 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formEstablishedDate" class="col-4 col-form-label">設立年月</label>
+        <label for="formEstablishedDate" class="col-4 col-form-label font-weight-bold">設立年月</label>
         <div class="col-8">
           <div class="input-group">
             <input type="text" class="form-control js-datepicker" id="formEstablishedDate" name="established_date" value="{{ old('established_date') }}" placeholder="" required>
