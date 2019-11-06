@@ -7,7 +7,7 @@
         <div class="shadow-sm card card-recruitment-detail">
           <div class="card-body">
             <div class="card-body-img text-center">
-              <img src="https://lorempixel.com/240/240/city/" class="card-image card-image-x2 rounded-circle">
+              <img src="https://lorempixel.com/240/240/city/" class="avatar avatar-md">
             </div>
             <div class="card-body-main mt-3">
               <h3 class="text-center">自社★C2Cマッチングプラットフォーム開発</h3>

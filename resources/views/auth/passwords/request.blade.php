@@ -34,7 +34,7 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="alt-font btn btn-primary">{{ __('パスワードリセットリンクの送信') }}</button>
+                <button type="submit" class="alt-font btn btn-primary btn-submit">{{ __('パスワードリセットリンクの送信') }}</button>
               </div>
             </div>
 

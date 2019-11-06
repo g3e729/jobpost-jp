@@ -9,7 +9,7 @@
         <div class="shadow-sm card card-employee-detail">
           <div class="card-body">
             <div class="card-body-img text-center">
-              <img src="{{ $employee->avatar }}" class="card-image card-image-x2 rounded-circle">
+              <img src="{{ $employee->avatar }}" class="avatar avatar-md">
             </div>
             <div class="card-body-main mt-3">
               <h3 class="text-center">{{ $employee->display_name }}</h3>
@@ -28,7 +28,7 @@
         <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
           @csrf
           <div class="form-group pb-3 row">
-            <label for="formTitle" class="col-3 col-form-label">名前(Japanese)</label>
+            <label for="formTitle" class="col-3 col-form-label font-weight-bold">名前(Japanese)</label>
             <div class="col-9">
               <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ $employee->japanese_name }}" placeholder="" required>
               <div class="invalid-tooltip">
@@ -38,7 +38,7 @@
           </div>
           
           <div class="form-group pb-3 row">
-            <label for="formName" class="col-3 col-form-label">名前(English)</label>
+            <label for="formName" class="col-3 col-form-label font-weight-bold">名前(English)</label>
             <div class="col-9">
               <input type="text" class="form-control" id="formName" name="name" value="{{ $employee->name }}" placeholder="" required>
               <div class="invalid-tooltip">
@@ -48,7 +48,7 @@
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formBirthday" class="col-3 col-form-label">生年月日</label>
+            <label for="formBirthday" class="col-3 col-form-label font-weight-bold">生年月日</label>
             <div class="col-9">
               <div class="input-group">
                 <input type="text" class="form-control js-datepicker" id="formBirthday" name="birthday" value="{{ $employee->birthday->format('Y-m-d') }}" placeholder="" required>
@@ -65,7 +65,7 @@
           </div>
 
           <div class="pb-3 row">
-            <div class="col-3">住所</div>
+            <div class="col-3 font-weight-bold">住所</div>
             <div class="col-9">
               <div class="form-group position-relative">
                 <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
@@ -113,7 +113,7 @@
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formSex" class="col-3 col-form-label">性別</label>
+            <label for="formSex" class="col-3 col-form-label font-weight-bold">性別</label>
             <div class="col-9">
               <select class="form-control" id="formSex" name="sex" data-action="change" data-condition=""
                 data-text="Please choose your sex orientation.">
@@ -128,21 +128,21 @@
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formContactNumber" class="col-3 col-form-label">電話番号</label>
+            <label for="formContactNumber" class="col-3 col-form-label font-weight-bold">電話番号</label>
             <div class="col-9">
               <input type="text" class="form-control" id="formContactNumber" name="contact_number" value="{{ $employee->contact_number }}" placeholder="">
             </div>
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formEmail" class="col-3 col-form-label">メールアドレス</label>
+            <label for="formEmail" class="col-3 col-form-label font-weight-bold">メールアドレス</label>
             <div class="col-9">
               <input type="text" class="form-control" id="formEmail" name="email" value="{{ $employee->email }}" placeholder="">
             </div>
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formStatus" class="col-3 col-form-label">ステータス</label>
+            <label for="formStatus" class="col-3 col-form-label font-weight-bold">ステータス</label>
             <div class="col-9">
               <select class="form-control" id="formStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
                 <option value="" selected hidden disabled>Choose status</option>
@@ -157,7 +157,7 @@
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formCountry" class="col-3 col-form-label">国籍</label>
+            <label for="formCountry" class="col-3 col-form-label font-weight-bold">国籍</label>
             <div class="col-9">
               <select class="form-control" id="formCountry" name="country">
                 <option value="" selected hidden disabled>Choose country</option>
@@ -169,7 +169,7 @@
           </div>
 
           <div class="form-group pb-3 row">
-            <label for="formPositionId" class="col-3 col-form-label">ポジション</label>
+            <label for="formPositionId" class="col-3 col-form-label font-weight-bold">ポジション</label>
             <div class="col-9">
               <select class="form-control" id="formPositionId" name="position_id">
                 <option value="" selected hidden disabled>Choose position</option>
@@ -179,7 +179,27 @@
               </select>
             </div>
           </div>
-    
+
+          <div class="form-group pb-3 row">
+            <label for="formAvatar" class="col-3 col-form-label font-weight-bold">アバター</label>
+            <div class="col-9" data-group="avatar">
+              <input type="file" class="form-control-file" id="js-avatar-file" name="avatar" accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
+              <div class="input-group">
+                <input type="text" class="form-control" id="js-avatar-name" value="{{ $employee->avatar ?? null }}" disabled required>
+                <div class="input-group-append">
+                  <button id="js-avatar-browse" type="button" class="alt-font btn btn-primary">Browse</button>
+                </div>
+                <div class="invalid-tooltip">
+                  Please choose your avatar.
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <img class="avatar avatar-md border border-secondary my-3" id="js-avatar-preview" src="{{ $employee->avatar ?? 'https://placehold.it/80x80' }}">
+              </div>
+            </div>
+          </div>
+
           <div class="form-group row">
             <div class="col-6 py-4 mx-auto">
               <button type="submit" class="alt-font btn btn-primary btn-submit w-100">送信</button>
@@ -193,10 +213,10 @@
 
 @section('js')
   <script src="{{ asset('js/register.js') }}"></script>
+  <script src="{{ asset('js/imageupload.js') }}"></script>
   <script>
     $('.js-datepicker').datepicker({
       format: 'yyyy-mm-dd',
     });
-
   </script>
 @endsection

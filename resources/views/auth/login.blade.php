@@ -54,7 +54,7 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-8 offset-md-4">
-                <button type="submit" class="alt-font btn btn-primary">{{ __('ログインする') }}</button>
+                <button type="submit" class="alt-font btn btn-primary btn-submit">{{ __('ログインする') }}</button>
               </div>
             </div>
 

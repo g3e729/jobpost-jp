@@ -9,7 +9,7 @@
         <div class="shadow-sm card card-employee-detail">
           <div class="card-body">
             <div class="card-body-img text-center">
-              <img src="{{ $employee->avatar }}" class="card-image card-image-x2 rounded-circle">
+              <img src="{{ $employee->avatar }}" class="avatar avatar-md">
             </div>
             <div class="card-body-main mt-3">
               <h3 class="text-center">{{ $employee->display_name }}</h3>
@@ -65,10 +65,6 @@
               <td>{{ $employee->email }}</td>
             </tr>
             <tr>
-              <td class="font-weight-bold">パスポート番号</td>
-              <td>{{ $employee->passport_number }}</td>
-            </tr>
-            <tr>
               <td class="font-weight-bold">ステータス</td>
               <td>{{ $employee->status }}</td>
             </tr>
@@ -83,7 +79,7 @@
             <tr>
               <td class="font-weight-bold">アバター</td>
               <td>
-                <img class="rounded-circle border border-secondary my-3" src="{{ $employee->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
+                <img class="avatar avatar-md border border-secondary my-3" src="{{ $employee->avatar }}">
               </td>
             </tr>
           </tbody>

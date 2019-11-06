@@ -221,7 +221,7 @@
       <div class="form-group pb-3 row">
         <label for="formAvatar" class="col-4 col-form-label">アバター</label>
         <div class="col-8">
-          <input type="file" class="form-control" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
+          <input type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
             Please choose your avatar.
           </div>
@@ -232,7 +232,7 @@
 
     <div class="form-group row">
       <div class="col-6 pt-4 mx-auto">
-        <button type="submit" class="alt-font btn btn-primary btn-rounded w-100">送信</button>
+        <button type="submit" class="alt-font btn btn-primary btn-submit btn-rounded w-100">送信</button>
       </div>
     </div>
     

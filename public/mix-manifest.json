@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/imageupload.js": "/js/imageupload.js",
     "/js/register.js": "/js/register.js",
     "/js/web.js": "/js/web.js",
     "/js/jquery.min.js": "/js/jquery.min.js",
