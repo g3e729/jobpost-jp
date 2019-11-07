@@ -44,7 +44,7 @@ class CompanyController extends BaseController
         $userService = (new UserService($company->user));
         $userService->destroy();
 
-        return redirect()->route('admin.employees.index')
+        return redirect()->route('admin.companies.index')
             ->with('success', "Success! Company is deleted!");
     }
 }

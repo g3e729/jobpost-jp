@@ -15,8 +15,14 @@
                 <h3 class="text-center">{{ $company->display_name }}</h3>
                 
                 <div class="card-actions card-actions-right position-absolute">
-                  <a href="{{ route('admin.companies.edit', $company) }}" class="card-link">詳細</a>
-                  <a href="/companies/1/delete" class="card-link text-muted">削除</a>
+                  <a href="{{ route('admin.companies.edit', $company) }}" class="card-link h6 mr-3">詳細</a>
+                  <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none h6 text-muted">削除</button>
+                  <form id="deleteForm" method="POST" action="{{ route('admin.companies.destroy', $company) }}" novalidate style="visibility: hidden; position: absolute;">
+                    @csrf
+                    {{ method_field('DELETE') }}
+                    
+                    <button type="submit">削除</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -233,4 +239,46 @@
         </div>
       </div>
   </div>
+
+  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">削除</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          この会社を削除してもよろしいですか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('js')
+  <script>
+    const deleteButton = document.querySelector('#js-item-delete');
+    const modalSubmit = document.querySelector('#js-modal-submit');
+    const modal = document.querySelector('#js-delete-modal');
+    let currTarget;
+
+    deleteButton.addEventListener('click', function(event) {
+      $(modal).modal('show');
+      currTarget = event.currentTarget.getAttribute('form');
+
+      event.preventDefault();
+    });
+
+    modalSubmit.addEventListener('click', function(event) {
+      $(modal).modal('hide');
+      document.querySelector(`#${currTarget}`).submit();
+    });
+
+  </script>
 @endsection

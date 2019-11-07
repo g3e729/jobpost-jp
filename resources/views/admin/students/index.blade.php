@@ -12,6 +12,13 @@
   @endif
 
   <div class="l-container l-container-wide">
+
+    @if (session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
+    @endif
+    
     <div class="row py-4">
 
       @if (! $students->count())

@@ -29,9 +29,15 @@
               </div>
               
               <div class="card-actions card-actions-right position-absolute">
-                <a href="{{ route('admin.students.edit', $student) }}" class="card-link">詳細</a>
-                <a href="{{ route('admin.messages.show', $student) }}" class="card-link">メッセージ</a>
-                <a href="/students/1/delete" class="card-link text-muted">削除</a>
+                <a href="{{ route('admin.students.edit', $student) }}" class="card-link h6 mr-3">詳細</a>
+                <a href="{{ route('admin.messages.show', $student) }}" class="card-link h6 mr-3">メッセージ</a>
+                <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none h6 text-muted">削除</button>
+                <form id="deleteForm" method="POST" action="{{ route('admin.students.destroy', $student) }}" novalidate style="visibility: hidden; position: absolute;">
+                  @csrf
+                  {{ method_field('DELETE') }}
+                  
+                  <button type="submit">削除</button>
+                </form>
               </div>
             </div>
           </div>
@@ -119,86 +125,65 @@
           <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <table class="table">
               <tr>
+                <td style="width: 25%" class="font-weight-bold">自己紹介</td>
+                <td>{{ '--' }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">やってみたいこと</td>
+                <td>{{ '--' }}</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">職歴</td>
                 <td>
-                  <dl class="mb-0">
-                    <dt>自己紹介</dt>
+                  <dl>
+                    <dt class="text-muted">企業名</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt class="text-muted">役職</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt class="text-muted">在籍期間</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt class="text-muted">業務内容</dt>
                     <dd style="white-space: pre-line;">{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
               <tr>
+                <td class="font-weight-bold">学歴</td>
                 <td>
-                  <dl class="mb-0">
-                    <dt>やってみたいこと</dt>
+                  <dl>
+                    <dt class="text-muted">学校名</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt class="text-muted">学部、専攻、学科</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt class="text-muted">卒業</dt>
+                    <dd>{{ '--' }}</dd>
+                    <dt class="text-muted">学んだこと</dt>
                     <dd style="white-space: pre-line;">{{ '--' }}</dd>
                   </dl>
                 </td>
               </tr>
               <tr>
+                <td class="font-weight-bold">ムービー</td>
                 <td>
-                  <dl class="mb-0">
-                    <dt>職歴</dt>
-                    <dd>
-                      <dl class="mt-3">
-                        <dt class="text-muted">企業名</dt>
-                        <dd>{{ '--' }}</dd>
-                        <dt class="text-muted">役職</dt>
-                        <dd>{{ '--' }}</dd>
-                        <dt class="text-muted">在籍期間</dt>
-                        <dd>{{ '--' }}</dd>
-                        <dt class="text-muted">業務内容</dt>
-                        <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      </dl>
-                    </dd>
-                  </dl>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                      allowfullscreen></iframe>
+                  </div>
                 </td>
               </tr>
               <tr>
+                <td class="font-weight-bold">画像</td>
                 <td>
-                  <dl class="mb-0">
-                    <dt>学歴</dt>
+                  <dl>
+                    <dt class="text-muted">アバター</dt>
                     <dd>
-                      <dl class="mt-3">
-                        <dt class="text-muted">学校名</dt>
-                        <dd>{{ '--' }}</dd>
-                        <dt class="text-muted">学部、専攻、学科</dt>
-                        <dd>{{ '--' }}</dd>
-                        <dt class="text-muted">卒業</dt>
-                        <dd>{{ '--' }}</dd>
-                        <dt class="text-muted">学んだこと</dt>
-                        <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      </dl>
+                      <img class="avatar avatar-md" src="{{ $student->avatar }}"
+                        style="height: 150px; width: 150px; border-width: 2px !important;">
                     </dd>
-                  </dl>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <dl class="mb-0">
-                    <dt>ムービー</dt>
+                    <dt class="text-muted">アイキャッチ</dt>
                     <dd>
-                      <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" allowfullscreen></iframe>
-                      </div>
-                    </dd>
-                  </dl>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <dl class="mb-0">
-                    <dt>画像</dt>
-                    <dd>
-                      <dl class="mt-3">
-                        <dt class="text-muted">アバター</dt>
-                        <dd>
-                          <img class="avatar avatar-md" src="{{ $student->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
-                        </dd>
-                        <dt class="text-muted">アイキャッチ</dt>
-                        <dd>
-                          <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                        </dd>
-                      </dl>
+                      <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/"
+                        style="border-width: 2px !important;">
                     </dd>
                   </dl>
                 </td>
@@ -408,4 +393,46 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">削除</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          この生徒を削除してもよろしいですか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('js')
+  <script>
+    const deleteButton = document.querySelector('#js-item-delete');
+    const modalSubmit = document.querySelector('#js-modal-submit');
+    const modal = document.querySelector('#js-delete-modal');
+    let currTarget;
+
+    deleteButton.addEventListener('click', function(event) {
+      $(modal).modal('show');
+      currTarget = event.currentTarget.getAttribute('form');
+
+      event.preventDefault();
+    });
+
+    modalSubmit.addEventListener('click', function(event) {
+      $(modal).modal('hide');
+      document.querySelector(`#${currTarget}`).submit();
+    });
+
+  </script>
 @endsection

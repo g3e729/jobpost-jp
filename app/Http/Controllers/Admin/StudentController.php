@@ -44,7 +44,7 @@ class StudentController extends BaseController
         $userService = (new UserService($student->user));
         $userService->destroy();
 
-        return redirect()->route('admin.employees.index')
+        return redirect()->route('admin.students.index')
             ->with('success', "Success! Student is deleted!");
     }
 }
