@@ -100,7 +100,7 @@
                 <tr>
                   <td class="font-weight-bold">アイキャッチ</td>
                   <td>
-                    <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
+                    <img class="img-fluid border border-secondary my-3 w-100" src="{{ $company->cover_photo ?? 'https://placehold.it/450x450' }}" style="border-width: 2px !important;">
                   </td>
                 </tr>
               </tbody>

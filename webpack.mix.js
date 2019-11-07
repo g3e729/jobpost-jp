@@ -15,7 +15,7 @@ mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
 mix.copy('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', 'public/js/bootstrap.bundle.min.js');
 mix.js('resources/js/app.js', 'public/js');
 mix.js('resources/js/register.js', 'public/js');
-mix.js('resources/js/imageupload.js', 'public/js');
+mix.js('resources/js/editform.js', 'public/js');
 // mix.copy('node_modules/@fontawesome/css/all.min.css', 'public/css/fontawesome.min.css');
 mix.sass('resources/sass/app.scss', 'public/css');
 

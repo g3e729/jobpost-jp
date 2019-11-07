@@ -1,6 +1,6 @@
 'use strict';
 
-class ImageUpload {
+export default class ImageUpload {
   constructor(params) {
     this.selectorBrowse = params.browse;
     this.selectorFile = params.file;
@@ -40,10 +40,3 @@ class ImageUpload {
     })
   }
 }
-
-new ImageUpload({
-  browse: '[data-avatar="browse"]',
-  file: '[data-avatar="file"]',
-  name: '[data-avatar="name"]',
-  preview: '[data-avatar="preview"]',
-});

@@ -209,10 +209,5 @@
 
 @section('js')
   <script src="{{ asset('js/register.js') }}"></script>
-  <script src="{{ asset('js/imageupload.js') }}"></script>
-  <script>
-    $('.js-datepicker').datepicker({
-      format: 'yyyy-mm-dd',
-    });
-  </script>
+  <script src="{{ asset('js/editform.js') }}"></script>
 @endsection

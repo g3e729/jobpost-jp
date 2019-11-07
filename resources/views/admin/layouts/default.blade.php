@@ -88,6 +88,12 @@
 
   <script src="{{ asset('js/app.js') }}" async></script>
 
+  <script>
+    $('.js-datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+    });
+  </script>
+
   @yield('js')
 </body>
 </html>
