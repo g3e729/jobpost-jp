@@ -8,18 +8,14 @@ Route::group([
 ], function () {
 	Route::get('/', 'HomeController@index')->name('index');
 
-	Route::resource('companies', 'CompanyController')->only('index', 'show', 'edit', 'update');
+	Route::resource('companies', 'CompanyController');
 	Route::resource('invite', 'InvitationController')->only('create', 'store');
-	Route::resource('employees', 'EmployeeController')->only('index', 'show', 'edit', 'update');
+	Route::resource('employees', 'EmployeeController');
 	Route::resource('students', 'StudentController', [
 		'parameters' => [
 			'seeker_profile' => 'student',
 		],
-	])->only('index', 'show', 'edit', 'update');
-
-	Route::get('invite', function () {
-		return view('admin.invite');
-	})->name('invite');
+	]);
 
 	Route::get('profile', function () {
 		return view('admin.profile');

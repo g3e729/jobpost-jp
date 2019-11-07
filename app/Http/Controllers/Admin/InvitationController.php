@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Http\Requests\InvitationRequest;
+use App\Http\Requests\Admin\InvitationRequest;
 use App\Models\Invitation;
 use App\Mail\SendInvite;
 

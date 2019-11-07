@@ -4,18 +4,25 @@
 
 @section('content')
   @if ($employees->count())
-  <div class="l-container">
-    @include('admin.employees.partials.search')
-  </div>
+    <div class="l-container">
+      @include('admin.employees.partials.search')
+    </div>
 
-  <hr class="content-divider d-block">
+    <hr class="content-divider d-block">
   @endif
 
   <div class="l-container l-container-wide">
+
+    @if (session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
+    @endif
+
     <div class="row py-4">
 
       @if (! $employees->count())
-      @include('admin.partials.notfound')
+        @include('admin.partials.notfound')
       @endif
       
       @foreach($employees as $employee)

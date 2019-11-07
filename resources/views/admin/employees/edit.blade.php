@@ -25,8 +25,21 @@
         </div>
       </div>
       <div class="employee-detail-main pb-4">
-        <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
+
+        @if ($errors->any())
+          <div class="alert alert-danger pb-0">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
+        <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.employees.update', $employee) }}" enctype="multipart/form-data" novalidate>
           @csrf
+          {{ method_field('PATCH') }}
+
           <div class="form-group pb-3 row">
             <label for="formJapaneseName" class="col-3 col-form-label font-weight-bold">名前(Japanese)</label>
             <div class="col-9">

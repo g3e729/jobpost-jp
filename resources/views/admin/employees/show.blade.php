@@ -4,6 +4,13 @@
 
 @section('content')
   <div class="l-container">
+    
+    @if (session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
+    @endif
+
     <div class="employee-detail">
       <div class="employee-detail-top py-4">
         <div class="shadow-sm card card-employee-detail">
@@ -16,7 +23,12 @@
 
               <div class="card-actions card-actions-right position-absolute">
                 <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">詳細</a>
-                <a href="/employees/1/delete" class="card-link text-muted">削除</a>
+                <form method="POST" action="{{ route('admin.employees.destroy', $employee) }}" novalidate>
+                  @csrf
+                  {{ method_field('DELETE') }}
+                  
+                  <button type="submit" class="btn card-link text-muted">削除</button>
+                </form>
               </div>
             </div>
           </div>
@@ -42,7 +54,7 @@
               <td>
                 <dl>
                   <dt>Prefecture</dt>
-                  <dd>{{ $employee->prefecture }}</dd>
+                  <dd>{{ getPrefecture($employee->prefecture) }}</dd>
                   <dt>番地</dt>
                   <dd>{{ $employee->address1 }}</dd>
                   <dt>ビル名 / 部屋番号</dt>
@@ -66,21 +78,15 @@
             </tr>
             <tr>
               <td class="font-weight-bold">ステータス</td>
-              <td>{{ $employee->status }}</td>
+              <td>{{ $employee->employment_status }}</td>
             </tr>
             <tr>
               <td class="font-weight-bold">国籍</td>
-              <td>{{ $employee->country }}</td>
+              <td>{{ getCountries($employee->country) }}</td>
             </tr>
             <tr>
               <td class="font-weight-bold">ポジション</td>
-              <td>{{ $employee->position_id }}</td>
-            </tr>
-            <tr>
-              <td class="font-weight-bold">アバター</td>
-              <td>
-                <img class="avatar avatar-md border border-secondary my-3" src="{{ $employee->avatar }}">
-              </td>
+              <td>{{ $employee->position }}</td>
             </tr>
           </tbody>
         </table>

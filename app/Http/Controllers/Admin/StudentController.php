@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\SeekerProfile as Student;
 use App\Services\SeekerService;
+use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -31,4 +32,13 @@ class StudentController extends BaseController
 	{
 		return redirect()->route('admin.students.show', $student);
 	}
+    
+    public function destroy(Student $student)
+    {
+        $userService = (new UserService($student->user));
+        $userService->destroy();
+
+        return redirect()->route('admin.employees.index')
+            ->with('success', "Success! Student is deleted!");
+    }
 }

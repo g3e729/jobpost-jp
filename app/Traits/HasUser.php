@@ -43,6 +43,11 @@ trait HasUser
     public function getAvatarAttribute()
     {
         $url = $this->files()->where('type', 'avatar')->first()->url ?? null;
+        $file_headers = @get_headers($url);
+
+        // if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
+        //     $url = null;
+        // }
 
         return $url ?? asset('img/avatar-default.png');
     }

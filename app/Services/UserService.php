@@ -44,4 +44,15 @@ class UserService extends BaseService
 
         return false;
     }
+
+    public function destroy()
+    {
+        $profile = $this->item->profile;
+
+        // delete file in storage
+        $profile->files()->delete();
+        $profile->delete();
+
+        return $this->item->delete();
+    }
 }
