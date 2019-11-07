@@ -26,11 +26,12 @@ class CompanyController extends BaseController
 	
 	public function edit(Company $company, Request $request)
 	{
+      $step = $request->get('step', 1);
 	    $countries = getCountries();
 	    $industries = Company::getIndustries();
 	    $prefectures = getPrefecture();
 
-		return view('admin.companies.edit', compact('company', 'countries', 'industries', 'prefectures'));
+		return view('admin.companies.edit', compact('company', 'countries', 'industries', 'prefectures', 'step'));
   	}
 	
 	public function update(Request $request, Company $company)
