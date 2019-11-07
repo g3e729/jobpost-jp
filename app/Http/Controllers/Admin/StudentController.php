@@ -23,9 +23,15 @@ class StudentController extends BaseController
 		return view('admin.students.show', compact('student'));
 	}
 	
-	public function edit(Student $student)
+	public function edit(Student $student, Request $request)
 	{
-		return view('admin.students.edit', compact('student'));
+    $step = $request->get('step', 1);
+    $student_status = $student->getStudentStatus();
+    $occupations = $student->getOccupations();
+    $countries = getCountries();
+    $prefectures = getPrefecture();
+
+		return view('admin.students.edit', compact('student', 'student_status', 'occupations', 'countries', 'prefectures','step'));
 	}
 	
 	public function update(Request $request, Student $student)

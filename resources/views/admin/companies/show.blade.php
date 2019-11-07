@@ -72,6 +72,10 @@
                   <td>{{ $company->number_of_employees }}</td>
                 </tr>
                 <tr>
+                  <td class="font-weight-bold">メールアドレス</td>
+                  <td>{{ $company->email }}</td>
+                </tr>
+                <tr>
                   <td class="font-weight-bold">設立年月</td>
                   <td>{{ $company->established_date->format('Y年m月d日') }}</td>
                 </tr>

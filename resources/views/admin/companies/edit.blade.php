@@ -144,6 +144,16 @@
             </div>
 
             <div class="form-group pb-3 row">
+              <label for="formEmail" class="col-3 col-form-label font-weight-bold">メールアドレス</label>
+              <div class="col-9">
+                <input type="text" class="form-control" id="formEmail" name="email" value="{{ $company->email }}" placeholder="" required>
+                <div class="invalid-tooltip">
+                  Please enter your email.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group pb-3 row">
               <label for="formEstablishedDate" class="col-3 col-form-label font-weight-bold">設立年月</label>
               <div class="col-9">
                 <div class="input-group">

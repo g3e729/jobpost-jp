@@ -65,8 +65,8 @@
                   <td>{{ $student->name }}</td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">生年月日</td>
-                  <td>{{ $student->birthday->format('Y年m月d日') }}</td>
+                  <td class="font-weight-bold">生年月日 / 年齢 </td>
+                  <td>{{ $student->birthday->format('Y年m月d日') }} / {{ $student->birthday->diff(now())->format('%y') }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">住所</td>
@@ -91,27 +91,7 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">メールアドレス</td>
-                  <td>{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">年齢</td>
-                  <td>{{ $student->birthday->diff(now())->format('%y') }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">パスポート番号</td>
-                  <td>{{ $student->passport_number }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">ステータス</td>
-                  <td>{{ $student->student_status }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">留学費用</td>
-                  <td>{{ price($student->study_aboard_fee) }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">部屋タイプ</td>
-                  <td>{{ $student->type_of_room ?? '--' }}</td>
+                  <td>{{ $student->email }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">入学日</td>
@@ -122,63 +102,16 @@
                   <td>{{ $student->graduation_date ? $student->graduation_date->format('Y年m月d日') :'--' }}</td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">チェックイン日</td>
-                  <td>{{ '--' }}</td>
+                  <td class="font-weight-bold">ステータス</td>
+                  <td>{{ $student->status }}</td>
                 </tr>
-                <tr>
-                  <td class="font-weight-bold">チェックアウト日</td>
-                  <td>{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">希望コース</td>
-                  <td>{{ $student->course ?? '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">留学期間(週間)</td>
-                  <td>{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">航空券手配・海外保険手配</td>
-                  <td>{{ $student->travel_ticket ? 'yes' : 'no' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">空港までのお迎え希望</td>
-                  <td>{{ $student->for_pickup ? 'yes' : 'no' }}</td>
-                </tr>
-
                 <tr>
                   <td class="font-weight-bold">ご職業</td>
-                  <td>{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">緊急連絡先</td>
-                  <td>
-                    <dl>
-                      <dt>名前</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>続柄</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>電話番号</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>メールアドレス</dt>
-                      <dd>{{ '--' }}</dd>
-                    </dl>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">既往症の有無</td>
-                  <td>
-                    <dl>
-                      <dt>ありなし</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>内容</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                    </dl>
-                  </td>
+                  <td>{{ $student->occupation }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">備考</td>
-                  <td style="white-space: pre-line;">{{ '--' }}</td>
+                  <td style="white-space: pre-line;">{{ $student->remark }}</td>
                 </tr>
               </tbody>
             </table>
