@@ -3,22 +3,12 @@
 namespace App\Traits;
 
 use App\Models\File;
+use App\Models\SocialMediaAccount;
 use App\Models\User;
 
 trait HasUser
 {
     protected $api_attr = ['display_name', 'email', 'japanese_name', 'name'];
-
-    public static function boot()
-    {
-        parent::boot();
-        static::retrieved(function ($model) {
-            // $model->display_name = empty(str_replace(' ', '', $model->user->japanese_name)) ? $model->user->name : $model->user->japanese_name;
-            // $model->email = $model->user->email;
-            // $model->japanese_name = $model->user->japanese_name;
-            // $model->name = $model->user->name;
-        });
-    }
 
     public function getEmailAttribute()
     {
@@ -37,6 +27,10 @@ trait HasUser
 
     public function getDisplayNameAttribute()
     {
+        if ($this->user->hasRole('company')) {
+            return $this->company_name;
+        }
+
         return empty(str_replace(' ', '', $this->user->japanese_name)) ? $this->user->name : $this->user->japanese_name;
     }
 
@@ -58,6 +52,11 @@ trait HasUser
 
         return $url ?? null;
     }
+
+    public function getSocialMediaAccountsAttribute()
+    {
+        return $this->social_media->pluck('url', 'social_media');
+    }
 	
     public function user()
     {
@@ -67,6 +66,11 @@ trait HasUser
     public function files()
     {
         return $this->morphMany(File::class, 'fileable');
+    }
+
+    public function social_media()
+    {
+        return $this->morphMany(SocialMediaAccount::class, 'accountable');
     }
 
     public function forApi()
