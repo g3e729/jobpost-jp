@@ -163,29 +163,24 @@
                 </td>
               </tr>
               <tr>
+                <td class="font-weight-bold">アバター</td>
+                <td>
+                  <img class="avatar avatar-md" src="{{ $student->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">アイキャッチ</td>
+                <td>
+                  <img class="img-fluid border border-secondary my-3 w-100" src="{{ $student->cover_photo ?? 'https://placehold.it/450x450' }}" style="border-width: 2px !important;">
+                </td>
+              </tr>
+              <tr>
                 <td class="font-weight-bold">ムービー</td>
                 <td>
                   <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
                       allowfullscreen></iframe>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="font-weight-bold">画像</td>
-                <td>
-                  <dl>
-                    <dt class="text-muted">アバター</dt>
-                    <dd>
-                      <img class="avatar avatar-md" src="{{ $student->avatar }}"
-                        style="height: 150px; width: 150px; border-width: 2px !important;">
-                    </dd>
-                    <dt class="text-muted">アイキャッチ</dt>
-                    <dd>
-                      <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/"
-                        style="border-width: 2px !important;">
-                    </dd>
-                  </dl>
                 </td>
               </tr>
             </table>
@@ -372,7 +367,7 @@
                 <td>{{ '--' }}</td>
               </tr>
               <tr>
-                <td class="font-weight-bold">Total</td>
+                <td class="font-weight-bold">R&L Total</td>
                 <td>{{ '--' }}</td>
               </tr>
               <tr>
