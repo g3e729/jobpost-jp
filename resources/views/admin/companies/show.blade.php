@@ -52,14 +52,14 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">HP(URL)</td>
-                  <td>{{ $company->homepage }}</td>
+                  <td><a href="{{ $company->homepage }}" target="_blank">{{ $company->homepage }}</a></td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">住所</td>
                   <td>
                     <dl>
                       <dt>Prefecture</dt>
-                      <dd>{{ $company->prefecture }}</dd>
+                      <dd>{{ getPrefecture($company->prefecture) }}</dd>
                       <dt>番地</dt>
                       <dd>{{ $company->address1 }}</dd>
                       <dt>ビル名 / 部屋番号</dt>
@@ -87,19 +87,31 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">業種、業界</td>
-                  <td>{{ $company->industry_id }}</td>
+                  <td>{{ $company->industry }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Facebook</td>
-                  <td>{{ '--' }}</td>
+                  <td>
+                    <a href="{{ $company->social_media_accounts['facebook'] }}" target="_blank">
+                      {{ $company->social_media_accounts['facebook'] }}
+                    </a>
+                  </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Twitter</td>
-                  <td>{{ '--' }}</td>
+                  <td>
+                    <a href="{{ $company->social_media_accounts['twitter'] }}" target="_blank">
+                      {{ $company->social_media_accounts['twitter'] }}
+                    </a>
+                  </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Instagram</td>
-                  <td>{{ '--' }}</td>
+                  <td>
+                    <a href="{{ $company->social_media_accounts['instagram'] }}" target="_blank">
+                      {{ $company->social_media_accounts['instagram'] }}
+                    </a>
+                  </td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">アバター</td>
