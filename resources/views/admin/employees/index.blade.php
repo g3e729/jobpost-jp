@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', 'Employees')
+@section('pageTitle', 'スタッフ')
 
 @section('content')
   @if ($employees->count())

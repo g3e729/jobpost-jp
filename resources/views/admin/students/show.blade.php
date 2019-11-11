@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', $student->display_name)
+@section('pageTitle', "{$student->display_name}の情報")
 
 @section('content')
   <div class="l-container">
@@ -64,15 +64,15 @@
               <tbody>
                 <tr>
                   <td style="width: 25%" class="font-weight-bold">名前(Japanese)</td>
-                  <td>{{ $student->japanese_name }}</td>
+                  <td>{{ $student->japanese_name ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">名前(English)</td>
-                  <td>{{ $student->name }}</td>
+                  <td>{{ $student->name ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">生年月日 / 年齢 </td>
-                  <td>{{ $student->birthday->format('Y年m月d日') }} / {{ $student->birthday->diff(now())->format('%y') }}</td>
+                  <td>{{ $student->birthday->format('Y年m月d日') }} / {{ $student->birthday->diff(now())->format('%y') ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">住所</td>
@@ -89,35 +89,35 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">性別</td>
-                  <td>{{ getSex($student->sex) }}</td>
+                  <td>{{ getSex($student->sex) ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">電話番号</td>
-                  <td>{{ $student->contact_number }}</td>
+                  <td>{{ $student->contact_number ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">メールアドレス</td>
-                  <td>{{ $student->email }}</td>
+                  <td>{{ $student->email ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">入学日</td>
-                  <td>{{ $student->enrollment_date ? $student->enrollment_date->format('Y年m月d日') : '--' }}</td>
+                  <td>{{ $student->enrollment_date ? $student->enrollment_date->format('Y年m月d日') : '--' ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">卒業日</td>
-                  <td>{{ $student->graduation_date ? $student->graduation_date->format('Y年m月d日') :'--' }}</td>
+                  <td>{{ $student->graduation_date ? $student->graduation_date->format('Y年m月d日') :'--' ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">ステータス</td>
-                  <td>{{ $student->status }}</td>
+                  <td>{{ $student->status ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">ご職業</td>
-                  <td>{{ $student->occupation }}</td>
+                  <td>{{ $student->occupation ?? '--' }}</td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">備考</td>
-                  <td style="white-space: pre-line;">{{ $student->remark }}</td>
+                  <td style="white-space: pre-line;">{{ $student->description ?? '--' }}</td>
                 </tr>
               </tbody>
             </table>
@@ -126,11 +126,11 @@
             <table class="table">
               <tr>
                 <td style="width: 25%" class="font-weight-bold">自己紹介</td>
-                <td>{{ '--' }}</td>
+                <td>{{ '--' ?? '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">やってみたいこと</td>
-                <td>{{ '--' }}</td>
+                <td>{{ '--' ?? '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">職歴</td>
@@ -340,16 +340,20 @@
                 <td>
                   <dl>
                     <dt>受講済み</dt>
-                    <dd>{{ '--' }}</dd>
-                    <dd>{{ '--' }}</dd>
+                    @if (! $student->taken_class)
+                      <dd>{{ '--' }}</dd>
+                    @endif
+                    @foreach($student->taken_class as $class)
+                      <dd>{{ $class }}</dd>
+                    @endforeach
                     <dt>受講中</dt>
-                    <dd>{{ '--' }}</dd>
+                    <dd>{{ $student->course }}</dd>
                   </dl>
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">ITレベル</td>
-                <td>{{ '--' }}</td>
+                <td>{{ $student->it_level ?? '--' }}</td>
               </tr>
             </table>
             <table class="table mb-4">
@@ -360,11 +364,11 @@
               </tr>
               <tr>
                 <td style="width: 25%" class="font-weight-bold">Reading</td>
-                <td>{{ '--' }}</td>
+                <td>{{ $student->reading ?? '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Listening</td>
-                <td>{{ '--' }}</td>
+                <td>{{ $student->listening ?? '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">R&L Total</td>
@@ -372,15 +376,15 @@
               </tr>
               <tr>
                 <td class="font-weight-bold">Speaking</td>
-                <td>{{ '--' }}</td>
+                <td>{{ $student->speaking ?? '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Writing</td>
-                <td>{{ '--' }}</td>
+                <td>{{ $student->writing ?? '--' }}</td>
               </tr>
               <tr>
                 <td class="font-weight-bold">英語レベル</td>
-                <td>{{ '--' }}</td>
+                <td>{{ $student->english_level ?? '--' }}</td>
               </tr>
             </table>
           </div>

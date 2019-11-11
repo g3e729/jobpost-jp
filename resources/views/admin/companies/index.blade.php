@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', 'Companies')
+@section('pageTitle', '企業')
 
 @section('content')
   @if ($companies->count())

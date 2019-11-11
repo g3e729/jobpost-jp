@@ -25,18 +25,52 @@ class StudentController extends BaseController
 	
 	public function edit(Student $student, Request $request)
 	{
-    $step = $request->get('step', 1);
-    $student_status = $student->getStudentStatus();
-    $occupations = $student->getOccupations();
-    $countries = getCountries();
-    $courses = $student->getCourses();
-    $prefectures = getPrefecture();
+		$step = $request->get('step', 1);
+		$student_status = $student->getStudentStatus();
+		$occupations = $student->getOccupations();
+		$countries = getCountries();
+		$courses = $student->getCourses();
+		$prefectures = getPrefecture();
 
-		return view('admin.students.edit', compact('student', 'student_status', 'occupations', 'courses', 'countries', 'prefectures','step'));
+		return view('admin.students.edit', compact(
+			'student',
+			'student_status',
+			'occupations',
+			'courses',
+			'countries',
+			'prefectures',
+			'step')
+		);
 	}
 	
 	public function update(Request $request, Student $student)
 	{
+        $student->update(
+            $request->except('_token', '_method', 'email', 'japanese_name', 'name')
+        );
+
+        $student->user()->update(
+            $request->only('email', 'japanese_name', 'name')
+        );
+
+        if ($request->file('avatar')) {
+            $file = $request->avatar->store('public/avatar');
+            $file = explode('/', $file);
+
+            $student->files()->delete();
+
+            $student->files()->create([
+                'url' => asset('/storage/avatar/' . array_last($file)),
+                'file_name' => $request->avatar->getClientOriginalName(),
+                'type' => 'avatar',
+                'mime_type' => $request->avatar->getMimeType(),
+                'size' => $request->avatar->getSize(),
+            ]);
+        }
+
+		return redirect()->route('admin.students.show', $student)
+            ->with('success', "Success! Student details is updated!");
+
 		return redirect()->route('admin.students.show', $student);
 	}
     

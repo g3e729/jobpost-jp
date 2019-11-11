@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', 'アカウント作成')
+
 @section('content')
 	<div class="l-container l-container-narrow">
 

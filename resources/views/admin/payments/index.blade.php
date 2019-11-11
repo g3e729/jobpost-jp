@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', 'Payments')
+@section('pageTitle', '入金確認')
 
 @section('content')
   <div class="l-container">
