@@ -20,7 +20,20 @@ class StudentController extends BaseController
 
 	public function show(Student $student)
 	{
-		return view('admin.students.show', compact('student'));
+		$experiences = Student::getExperiences();
+		$frameworks = Student::getFrameworks();
+		$languages = Student::getLanguages();
+		$others = Student::getOthers();
+		$programming_languages = Student::getProgrammingLanguages();
+
+		return view('admin.students.show', compact(
+			'experiences',
+			'frameworks',
+			'languages',
+			'others',
+			'programming_languages',
+			'student')
+		);
 	}
 
 	public function edit(Student $student, Request $request)

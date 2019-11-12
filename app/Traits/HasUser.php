@@ -3,13 +3,15 @@
 namespace App\Traits;
 
 use App\Models\File;
+use App\Models\Skill;
 use App\Models\SocialMediaAccount;
 use App\Models\User;
 
 trait HasUser
 {
     static protected $api_attr = ['display_name', 'email', 'japanese_name', 'name'];
-
+    
+    // Attributes
     public function getEmailAttribute()
     {
         return $this->user->email;
@@ -41,11 +43,6 @@ trait HasUser
     public function getAvatarAttribute()
     {
         $url = $this->files()->where('type', 'avatar')->first()->url ?? null;
-        // $file_headers = @get_headers($url);
-
-        // if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
-        //     $url = null;
-        // }
 
         return $url ?? asset('img/avatar-default.png');
     }
@@ -59,9 +56,15 @@ trait HasUser
 
     public function getSocialMediaAccountsAttribute()
     {
-        return $this->social_media->pluck('url', 'social_media');
+        return $this->social_media->pluck('url', 'social_media')->toArray();
+    }
+
+    public function getStudentSkillsAttribute()
+    {
+        return $this->skills->pluck('skill_rate', 'skill_id');
     }
 	
+    // Relationships
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -75,6 +78,11 @@ trait HasUser
     public function social_media()
     {
         return $this->morphMany(SocialMediaAccount::class, 'accountable');
+    }
+
+    public function skills()
+    {
+        return $this->morphMany(Skill::class, 'skillable');
     }
 
     public function forApi()
