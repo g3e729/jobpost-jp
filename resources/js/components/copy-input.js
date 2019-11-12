@@ -26,11 +26,11 @@ export default class CopyInput {
 
       const elementTpl = document.createElement('template');
       let htmlString = `<div class="form-group row"><div class="col-3 py-4 mx-auto">
-        <button id="js-group-remove${this.next}" class="js-remove alt-font btn btn-danger w-100">Delete</button>
+        <button type="button" id="js-group-remove${this.next}" class="js-remove alt-font btn btn-danger w-100">Delete</button>
         </div></div>`;
       elementTpl.innerHTML = htmlString;
       let elementCurr = elementTpl.content.firstChild;
-    
+
       let elementClone = this.elementGroup.cloneNode(true);
       elementClone.id = `js-group-input${this.next}`;
       let elementsInput = elementClone.querySelectorAll('[data-name]');
@@ -38,7 +38,7 @@ export default class CopyInput {
       elementsInput.forEach(el => {
         el.name = `history[${this.next}][${el.dataset.name}]`;
       });
-  
+
       this.elementCopy.insertBefore(elementClone, this.elementLast.nextSibling);
       this.elementCopy.insertBefore(elementCurr, this.elementLast.nextSibling);
       this.elementLast = elementClone;
@@ -70,7 +70,7 @@ export default class CopyInput {
           if (childCountInner <= ((this.iterate -1) * 2)) {
             this.elementButton.disabled = false;
           }
-          
+
           this.elementLast = this.elementGroup;
         });
       });

@@ -30,7 +30,7 @@
     </tr>
     <tr>
       <td>
-        <div class="font-weight-bold">その他</dt>
+        <div class="font-weight-bold">その他</div>
         <ul class="list-group list-group-flush my-3">
           @if (! $student->student_skills->intersectByKeys($others)->count())
             --

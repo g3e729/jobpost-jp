@@ -41,20 +41,28 @@ class StudentController extends BaseController
     $step = $request->get('step', 1);
     $student_status = $student->getStudentStatus();
     $occupations = $student->getOccupations();
-    $experiences = $student->getExperiences();
     $countries = getCountries();
     $courses = $student->getCourses();
     $prefectures = getPrefecture();
 
+    $experiences = $student->getExperiences();
+		$frameworks = $student->getFrameworks();
+		$languages = $student->getLanguages();
+		$others = $student->getOthers();
+		$programming_languages = $student->getProgrammingLanguages();
 
 		return view('admin.students.edit', compact(
       'student',
       'student_status',
       'occupations',
-      'experiences',
       'courses',
       'countries',
       'prefectures',
+      'experiences',
+      'frameworks',
+      'languages',
+      'others',
+      'programming_languages',
       'step')
     );
 	}

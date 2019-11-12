@@ -54,7 +54,7 @@
 
     <div class="form-group row">
       <div class="col-3 py-4 mx-auto">
-        <button id="js-group-add" class="alt-font btn btn-primary btn-submit w-100">Copy</button>
+        <button type="button" id="js-group-add" class="alt-font btn btn-primary btn-submit w-100">Copy</button>
       </div>
     </div>
   </div>
