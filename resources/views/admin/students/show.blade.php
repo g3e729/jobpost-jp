@@ -15,17 +15,11 @@
               <h3 class="text-center">{{ $student->display_name }}</h3>
 
               <div class="card-badges text-center h6">
-
                 <span class="badge badge-pill badge-secondary">メールアドレス : {{ $student->email }}</span>
-
                 <span class="badge badge-pill badge-secondary">期 : 9</span>
-
                 <span class="badge badge-pill badge-secondary">コース : {{ $student->course }}</span>
-
                 <span class="badge badge-pill badge-secondary">ステータス : {{ $student->student_status }}</span>
-
-                <span class="badge badge-pill badge-secondary">英語 : CEFR - B1</span>
-
+                <span class="badge badge-pill badge-secondary">英語 : {{ $student->english_level }}</span>
               </div>
 
               <div class="card-actions card-actions-right position-absolute">

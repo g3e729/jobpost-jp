@@ -38,33 +38,35 @@ class StudentController extends BaseController
 
 	public function edit(Student $student, Request $request)
 	{
-    $step = $request->get('step', 1);
-    $student_status = $student->getStudentStatus();
-    $occupations = $student->getOccupations();
-    $countries = getCountries();
-    $courses = $student->getCourses();
-    $prefectures = getPrefecture();
+		$step = $request->get('step', 1);
+		$student_status = $student->getStudentStatus();
+		$occupations = $student->getOccupations();
+		$countries = getCountries();
+		$courses = $student->getCourses();
+		$prefectures = getPrefecture();
 
-    $experiences = $student->getExperiences();
+		$english_levels = $student->getEnglishLevels();
+		$experiences = $student->getExperiences();
 		$frameworks = $student->getFrameworks();
 		$languages = $student->getLanguages();
 		$others = $student->getOthers();
 		$programming_languages = $student->getProgrammingLanguages();
 
 		return view('admin.students.edit', compact(
-      'student',
-      'student_status',
-      'occupations',
-      'courses',
-      'countries',
-      'prefectures',
-      'experiences',
-      'frameworks',
-      'languages',
-      'others',
-      'programming_languages',
-      'step')
-    );
+			'english_levels',
+			'student',
+			'student_status',
+			'occupations',
+			'courses',
+			'countries',
+			'prefectures',
+			'experiences',
+			'frameworks',
+			'languages',
+			'others',
+			'programming_languages',
+			'step')
+		);
 	}
 
 	public function update(Request $request, Student $student)

@@ -51,7 +51,7 @@ class SeekerProfile extends Model
         'listening',
         'speaking',
         'writing',
-        'english_level'
+        'english_level_id'
     ];
 
 	static protected $courses = [
@@ -77,6 +77,15 @@ class SeekerProfile extends Model
 		1 => '学生 / Student',
 		2 => '就業者 / Worker',
 		3 => 'フリー / Part-time worker'
+    ];
+
+    static protected $english_levels = [
+        'a1' => 'CEFR - A1',
+        'a2' => 'CEFR - A2',
+        'b1' => 'CEFR - B1',
+        'b2' => 'CEFR - B2',
+        'c1' => 'CEFR - C1',
+        'c2' => 'CEFR - C2'
     ];
 
     // Skills
@@ -185,10 +194,9 @@ class SeekerProfile extends Model
         return $this->occupation_id ? self::getOccupations($this->occupation_id) : null;
     }
 
-    // Relationships
-    public function portfolios()
+    public function getEnglishLevelAttribute()
     {
-        return $this->hasMany(Portfolio::class);
+        return $this->english_level_id ? self::getEnglishLevels(strtolower($this->english_level_id)) : null;
     }
 
     // Scopes
@@ -219,6 +227,17 @@ class SeekerProfile extends Model
         }
 
         return collect($occupations);
+    }
+
+    static function getEnglishLevels($index = null)
+    {
+        $english_levels = self::$english_levels;
+
+        if ($index) {
+            return $english_levels[$index] ?? null;
+        }
+
+        return collect($english_levels);
     }
 
     static function getCourses($index = null)
@@ -286,4 +305,5 @@ class SeekerProfile extends Model
 
         return collect($languages);
     }
+    
 }

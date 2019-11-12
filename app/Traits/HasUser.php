@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\File;
+use App\Models\Portfolio;
 use App\Models\Skill;
 use App\Models\SocialMediaAccount;
 use App\Models\User;
@@ -85,6 +86,12 @@ trait HasUser
         return $this->morphMany(Skill::class, 'skillable');
     }
 
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
+
+    // API attribute json setter
     public function forApi()
     {
         foreach(self::$api_attr as $attr) {

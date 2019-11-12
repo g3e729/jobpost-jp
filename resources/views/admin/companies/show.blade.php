@@ -89,30 +89,36 @@
                   <td class="font-weight-bold">業種、業界</td>
                   <td>{{ $company->industry }}</td>
                 </tr>
-                <tr>
-                  <td class="font-weight-bold">Facebook</td>
-                  <td>
-                    <a href="{{ $company->social_media_accounts['facebook'] }}" target="_blank">
-                      {{ $company->social_media_accounts['facebook'] }}
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Twitter</td>
-                  <td>
-                    <a href="{{ $company->social_media_accounts['twitter'] }}" target="_blank">
-                      {{ $company->social_media_accounts['twitter'] }}
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Instagram</td>
-                  <td>
-                    <a href="{{ $company->social_media_accounts['instagram'] }}" target="_blank">
-                      {{ $company->social_media_accounts['instagram'] }}
-                    </a>
-                  </td>
-                </tr>
+                @if (isset($company->social_media_accounts['facebook']))
+                  <tr>
+                    <td class="font-weight-bold">Facebook</td>
+                    <td>
+                      <a href="{{ $company->social_media_accounts['facebook'] }}" target="_blank">
+                        {{ $company->social_media_accounts['facebook'] }}
+                      </a>
+                    </td>
+                  </tr>
+                @endif
+                @if (isset($company->social_media_accounts['twitter']))
+                  <tr>
+                    <td class="font-weight-bold">Twitter</td>
+                    <td>
+                      <a href="{{ $company->social_media_accounts['twitter'] }}" target="_blank">
+                        {{ $company->social_media_accounts['twitter'] }}
+                      </a>
+                    </td>
+                  </tr>
+                @endif
+                @if (isset($company->social_media_accounts['instagram']))
+                  <tr>
+                    <td class="font-weight-bold">Instagram</td>
+                    <td>
+                      <a href="{{ $company->social_media_accounts['instagram'] }}" target="_blank">
+                        {{ $company->social_media_accounts['instagram'] }}
+                      </a>
+                    </td>
+                  </tr>
+                @endif
                 <tr>
                   <td class="font-weight-bold">アバター</td>
                   <td>

@@ -65,9 +65,9 @@
         <label for="formEnglishLevel" class="form-label pt-0">現在のレベル</label>
         <select class="form-control" id="formEnglishLevel" name="english_level">
           <option value="" selected hidden disabled>Choose english level</option>
-          @for ($ctr = 1; $ctr <= 7; $ctr++)
-          <option value="{{ $ctr }}" {{ ($ctr == $student->english_level) ? 'selected' : null }}>{{ $ctr }}</option>
-          @endfor
+          @foreach ($english_levels as $id => $english_level)
+            <option value="{{ $id }}" {{ ($id == $student->english_level_id) ? 'selected' : null }}>{{ $english_level }}</option>
+          @endforeach
         </select>
       </div>
 

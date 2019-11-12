@@ -51,7 +51,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->integer('listening')->default(0);
             $table->integer('speaking')->default(0);
             $table->integer('writing')->default(0);
-            $table->integer('english_level')->default(0);
+            $table->string('english_level_id')->default(0);
             $table->integer('toiec_score')->default(0);
             $table->timestamps();
         });
