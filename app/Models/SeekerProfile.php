@@ -42,7 +42,6 @@ class SeekerProfile extends Model
         'city',
         'country',
         'birthday',
-        'avatar',
         'portfolio',
         'github',
 

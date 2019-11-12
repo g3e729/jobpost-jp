@@ -28,7 +28,6 @@ class CompanyProfile extends Model
         'city',
         'country',
         'industry_id',
-        'avatar',
         'cover_photo',
         'homepage',
         'ceo',
