@@ -234,7 +234,7 @@
   </div>
   
   <div class="pb-3 row">
-    <div class="col-3 font-weight-bold">ポートフォリオ１</div>
+    <div class="col-3 font-weight-bold">ポートフォリオ2</div>
     <div class="col-9">
       <div class="form-group position-relative">
         <label for="formPortfolio2Title" class="form-label pt-0">タイトル</label>
@@ -274,7 +274,7 @@
   </div>
 
   <div class="pb-3 row">
-    <div class="col-3 font-weight-bold">ポートフォリオ１</div>
+    <div class="col-3 font-weight-bold">ポートフォリオ3</div>
     <div class="col-9">
       <div class="form-group position-relative">
         <label for="formPortfolio3Title" class="form-label pt-0">タイトル</label>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CompanyProfile extends Model
 {
     use HasUser;
-    
+
     const ROLE = 'company';
 
     protected $dates = [
@@ -16,7 +16,7 @@ class CompanyProfile extends Model
         'established_date',
         'updated_at',
     ];
-    
+
     protected $fillable = [
         'company_name',
         'description',
@@ -56,7 +56,7 @@ class CompanyProfile extends Model
     {
         return $this->morphOne(File::class, 'fileable');
     }
-    
+
     /**
      * Get posts.
      *

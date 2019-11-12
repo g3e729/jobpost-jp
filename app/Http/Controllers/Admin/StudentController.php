@@ -28,11 +28,12 @@ class StudentController extends BaseController
     $step = $request->get('step', 1);
     $student_status = $student->getStudentStatus();
     $occupations = $student->getOccupations();
+    $experiences = $student->getExperiences();
     $countries = getCountries();
     $courses = $student->getCourses();
     $prefectures = getPrefecture();
 
-		return view('admin.students.edit', compact('student', 'student_status', 'occupations', 'courses', 'countries', 'prefectures','step'));
+		return view('admin.students.edit', compact('student', 'student_status', 'occupations', 'experiences', 'courses', 'countries', 'prefectures','step'));
 	}
 	
 	public function update(Request $request, Student $student)

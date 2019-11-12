@@ -39,7 +39,7 @@ export default class FormValidation {
 
       this.element.classList.add('was-validated');
     }, false);
-    
+
     const inputCount = [...this.actions].reduce((a, b) => { return b.dataset.action === 'input' ? a+1 : a }, 0);
     if (inputCount) {
       this.element.addEventListener('input', _ => {

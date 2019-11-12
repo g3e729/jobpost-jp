@@ -13,7 +13,7 @@ class StudentController extends BaseController
 	{
 		return (new SeekerService)->search($request->except('_token'))->forApi();
 	}
-	
+
 	public function show(SeekerProfile $seeker_profile)
 	{
 		return $seeker_profile->forApi();

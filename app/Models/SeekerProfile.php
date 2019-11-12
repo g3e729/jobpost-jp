@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SeekerProfile extends Model
 {
     use HasUser;
-    
+
 	const ROLE = 'seeker';
 
     protected $dates = [
@@ -18,13 +18,13 @@ class SeekerProfile extends Model
         'created_at',
         'updated_at',
     ];
-    
+
     protected $fillable = [
         'sex',
         'contact_number',
         'study_abroad_fee',
         'passport_number',
-                    
+
         'type_of_room',
         'enrollment_date',
         'graduation_date',
@@ -45,7 +45,7 @@ class SeekerProfile extends Model
         'avatar',
         'portfolio',
         'github',
-                    
+
         'pre_english_level',
         'pre_it_level'
     ];
@@ -60,8 +60,8 @@ class SeekerProfile extends Model
 		7 => 'Design Standard',
 		8 => 'Design Advance',
 		9 => 'Python Standard',
-		10 => 'Python Advance'
-	];
+    10 => 'Python Advance'
+  ];
 
     static protected $student_status = [
 		1 => '入学前 / Pre-Student',
@@ -73,6 +73,19 @@ class SeekerProfile extends Model
 		1 => '学生 / Student',
 		2 => '就業者 / Worker',
 		3 => 'フリー / Part-time worker'
+    ];
+
+    static protected $experiences = [
+      1 => 'プログラムコーディング',
+      2 => 'システム設計',
+      3 => '保守、追加開発',
+      4 => 'インフラ設計',
+      5 => 'インフラ構築',
+      6 => 'プロジェクトマネジメント',
+      7 => '新規開発の企画',
+      8 => '要件定義',
+      9 => 'テスト',
+      10 => '研究開発'
     ];
 
     public static function boot()
@@ -127,6 +140,17 @@ class SeekerProfile extends Model
         }
 
         return collect($occupations);
+    }
+
+    static function getExperiences($index = null)
+    {
+        $experiences = self::$experiences;
+
+        if ($index) {
+            return $experiences[$index] ?? null;
+        }
+
+        return collect($experiences);
     }
 
 	static function getCourses($index = null)

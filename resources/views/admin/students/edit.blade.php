@@ -55,7 +55,7 @@ $stepsArr = array('1', '2', '3', '4');
               <div class="col-9">
                 <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ $student->japanese_name }}" placeholder="" required>
                 <div class="invalid-tooltip">
-                  Please enter Japanese name. 
+                  Please enter Japanese name.
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@ $stepsArr = array('1', '2', '3', '4');
                 </div>
               </div>
             </div>
-        
+
             <div class="form-group pb-3 row">
               <label for="formGraduationDate" class="col-3 col-form-label font-weight-bold">卒業日</label>
               <div class="col-9">
@@ -261,41 +261,47 @@ $stepsArr = array('1', '2', '3', '4');
               </div>
             </div>
 
-            ... [todo] multiple work history...
-            <div class="pb-3 row">
-              <div class="col-3 font-weight-bold">職歴</div>
-              <div class="col-9">
-                <div class="form-group position-relative">
-                  <label for="formCompanyName" class="form-label pt-0">企業名</label>
-                  <input type="text" class="form-control" id="formCompanyName" name="company_name" value="{{ $student->company_name }}" placeholder="">
-                </div>
-
-                <div class="form-group position-relative">
-                  <label for="formCompanyRole" class="form-label pt-0">役</label>
-                  <input type="text" class="form-control" id="formCompanyRole" name="company_role" value="{{ $student->company_role }}" placeholder="">
-                </div>
-
-                <div class="form-group position-relative">
-                  <label for="formJobDescription" class="form-label pt-0">内容</label>
-                  <textarea class="form-control" id="formJobDescription" name="job_escription" value="{{ $student->job_escription }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
-                </div>
-
-                <div class="form-group position-relative">
-                  <label for="formStaffRange" class="form-label pt-0">期間</label>
-                  <div class="input-group input-daterange js-datepicker">
-                    <input type="text" class="form-control text-left" id="formStaffRangeFrom" name="staffrangefrom" placeholder="">
-                    <div class="input-group-text">
-                      <i class="fas fa-fw fa-arrows-alt-h"></i>
-                    </div>
-                    <input type="text" class="form-control text-left" id="formStaffRangeTo" name="staffrangeto" placeholder="">
+            <div id="js-group-copy" data-iterate="5">
+              <div id="js-group-input0" class="pb-3 row">
+                <div class="col-3 font-weight-bold">職歴</div>
+                <div class="col-9">
+                  <div class="form-group position-relative">
+                    <label for="formCompanyName" class="form-label pt-0">企業名</label>
+                    <input type="text" class="form-control" name="history[0][company_name]" data-name="company_name" value="{{ $student->company_name }}" placeholder="">
                   </div>
-                </div>
 
+                  <div class="form-group position-relative">
+                    <label for="formCompanyRole" class="form-label pt-0">役</label>
+                    <input type="text" class="form-control" name="history[0][company_role]" data-name="company_role" value="{{ $student->company_role }}" placeholder="">
+                  </div>
+
+                  <div class="form-group position-relative">
+                    <label for="formJobDescription" class="form-label pt-0">内容</label>
+                    <textarea class="form-control" name="history[0][job_escription]" data-name="job_escription" value="{{ $student->job_escription }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
+                  </div>
+
+                  <div class="form-group position-relative">
+                    <label for="formStaffRange" class="form-label pt-0">期間</label>
+                    <div class="input-group input-daterange js-datepicker">
+                      <input type="text" class="form-control text-left" name="history[0][staff_range_from]" data-name="staff_range_from" placeholder="">
+                      <div class="input-group-text">
+                        <i class="fas fa-fw fa-arrows-alt-h"></i>
+                      </div>
+                      <input type="text" class="form-control text-left" name="history[0][staff_range_to]" data-name="staff_range_to" placeholder="">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-3 py-4 mx-auto">
+                  <button id="js-group-add" class="alt-font btn btn-primary btn-submit w-100">Copy</button>
+                </div>
               </div>
             </div>
 
             <div class="pb-3 row">
-              <div class="col-3 font-weight-bold">職歴</div>
+              <div class="col-3 font-weight-bold">学歴</div>
               <div class="col-9">
                 <div class="form-group position-relative">
                   <label for="formSchoolName" class="form-label pt-0">学校名</label>
@@ -389,7 +395,166 @@ $stepsArr = array('1', '2', '3', '4');
             </div>
           </form>
         @elseif ($step == 3)
-          ...3rd step
+          <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
+            @csrf
+
+
+            プログラミング言語 : Programming Language
+            フレームワーク : Framework
+            その他 : ETC
+
+
+
+            ---------------
+
+
+             : Experience
+            <div class="form-group position-relative">
+              <label for="formWorkExperience" class="form-label pt-0">経験分野</label>
+              <select class="form-control" id="formWorkExperience" name="work_experience">
+                <option value="" selected hidden disabled>Choose work experience</option>
+                @foreach($experiences as $index => $name)
+                <option value="{{ $index }}" {{ ($index == $student->work_experience) ? 'selected' : null }}>{{ $name }}</option>
+                @endforeach
+              </select>
+            </div>
+
+            語学 : Language
+            TOEIC
+
+            <div class="pb-3 row">
+              <div class="col-3 font-weight-bold">ポートフォリオ１</div>
+              <div class="col-9">
+                <div class="form-group position-relative">
+                  <label for="formPortfolioTitle" class="form-label pt-0">タイトル</label>
+                  <input type="text" class="form-control" id="formPortfolioTitle" name="portfolio_title" value="{{ $student->portfolio_title }}" placeholder="">
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolioDesc" class="form-label pt-0">内容</label>
+                  <textarea class="form-control" id="formPortfolioDesc" name="portfolio_desc" placeholder="" rows="4" style="min-height: 100px;">{{ $student->portfolio_desc }}</textarea>
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolioURL" class="form-label pt-0">URL</label>
+                  <input type="url" class="form-control" id="formPortfolioURL" name="portfolio_url" value="{{ $student->portfolio_url }}" placeholder="">
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolioImg" class="form-label pt-0">画像</label>
+                  <div data-group="eyecatch">
+                    <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio_img"
+                      accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
+                    <div class="input-group">
+                      <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio_img ?? null }}" disabled>
+                      <div class="input-group-append">
+                        <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <img data-avatar="preview" class="img-fluid border border-secondary my-3"
+                        src="{{ $student->portfolio_img ?? 'https://placehold.it/240x240' }}">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pb-3 row">
+              <div class="col-3 font-weight-bold">ポートフォリオ2</div>
+              <div class="col-9">
+                <div class="form-group position-relative">
+                  <label for="formPortfolio2Title" class="form-label pt-0">タイトル</label>
+                  <input type="text" class="form-control" id="formPortfolio2Title" name="portfolio2_title" value="{{ $student->portfolio2_title }}" placeholder="">
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolio2Desc" class="form-label pt-0">内容</label>
+                  <textarea class="form-control" id="formPortfolio2Desc" name="portfolio2_desc" placeholder="" rows="4" style="min-height: 100px;">{{ $student->portfolio2_desc }}</textarea>
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolio2URL" class="form-label pt-0">URL</label>
+                  <input type="url" class="form-control" id="formPortfolio2URL" name="portfolio2_url" value="{{ $student->portfolio2_url }}" placeholder="">
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolio2Img" class="form-label pt-0">画像</label>
+                  <div data-group="eyecatch">
+                    <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio2Img" name="portfolio2_img"
+                      accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
+                    <div class="input-group">
+                      <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio2_img ?? null }}" disabled>
+                      <div class="input-group-append">
+                        <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <img data-avatar="preview" class="img-fluid border border-secondary my-3"
+                        src="{{ $student->portfolio2_img ?? 'https://placehold.it/240x240' }}">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pb-3 row">
+              <div class="col-3 font-weight-bold">ポートフォリオ3</div>
+              <div class="col-9">
+                <div class="form-group position-relative">
+                  <label for="formPortfolio3Title" class="form-label pt-0">タイトル</label>
+                  <input type="text" class="form-control" id="formPortfolio3Title" name="portfolio3_title" value="{{ $student->portfolio3_title }}" placeholder="">
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolio3Desc" class="form-label pt-0">内容</label>
+                  <textarea class="form-control" id="formPortfolio3Desc" name="portfolio3_desc" placeholder="" rows="4" style="min-height: 100px;">{{ $student->portfolio3_desc }}</textarea>
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolio3URL" class="form-label pt-0">URL</label>
+                  <input type="url" class="form-control" id="formPortfolio3URL" name="portfolio3_url" value="{{ $student->portfolio3_url }}" placeholder="">
+                </div>
+
+                <div class="form-group position-relative">
+                  <label for="formPortfolio3Img" class="form-label pt-0">画像</label>
+                  <div data-group="eyecatch">
+                    <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio3Img" name="portfolio3_img"
+                      accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
+                    <div class="input-group">
+                      <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio3_img ?? null }}" disabled>
+                      <div class="input-group-append">
+                        <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
+                      </div>
+                    </div>
+
+                    <div class="mt-3">
+                      <img data-avatar="preview" class="img-fluid border border-secondary my-3"
+                        src="{{ $student->portfolio3_img ?? 'https://placehold.it/240x240' }}">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group pb-3 row">
+              <label for="formGithub" class="col-3 col-form-label font-weight-bold">Github</label>
+              <div class="col-9">
+                <input type="url" class="form-control" id="formGithub" name="github" value="{{ $student->github }}" placeholder="">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-6 py-4 mx-auto">
+                <button type="submit" class="alt-font btn btn-primary btn-submit w-100">送信</button>
+              </div>
+            </div>
+          </form>
         @elseif ($step == 4)
           <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
             @csrf
@@ -406,7 +571,7 @@ $stepsArr = array('1', '2', '3', '4');
                     @endforeach
                   </select>
                 </div>
-                
+
                 <div class="form-group position-relative">
                   <label for="formITCurrent" class="form-label pt-0">受講中</label>
                   <select class="form-control" id="formITCurrent" name="it_current">
@@ -492,7 +657,7 @@ $stepsArr = array('1', '2', '3', '4');
     $('.js-datepicker').datepicker('destroy');
     $('.js-datepicker').datepicker({
       format: 'yyyy-mm',
-      viewMode: 'months', 
+      viewMode: 'months',
       minViewMode: 'months',
     });
   </script>
