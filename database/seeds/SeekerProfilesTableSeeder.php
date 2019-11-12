@@ -71,7 +71,6 @@ class SeekerProfilesTableSeeder extends Seeder
             'city' => null,
             'country' => null,
             'birthday' => null,
-            'portfolio' => null,
             'github' => null,
         ];
 

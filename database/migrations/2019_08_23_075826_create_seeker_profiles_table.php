@@ -42,7 +42,6 @@ class CreateSeekerProfilesTable extends Migration
             $table->string('city')->nullable();
             $table->string('country', 3)->nullable();
             $table->timestamp('birthday')->nullable();
-            $table->text('portfolio')->nullable();
             $table->string('github')->nullable();
             
             $table->integer('course_id')->default(0);
@@ -53,6 +52,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->integer('speaking')->default(0);
             $table->integer('writing')->default(0);
             $table->integer('english_level')->default(0);
+            $table->integer('toiec_score')->default(0);
             $table->timestamps();
         });
     }

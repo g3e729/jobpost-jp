@@ -42,7 +42,6 @@ class SeekerProfile extends Model
         'city',
         'country',
         'birthday',
-        'portfolio',
         'github',
 
         'taken_id',
@@ -78,6 +77,63 @@ class SeekerProfile extends Model
 		1 => '学生 / Student',
 		2 => '就業者 / Worker',
 		3 => 'フリー / Part-time worker'
+    ];
+
+    // Skills
+    static protected $programming_languages = [
+        'pl1' => 'C#',
+        'pl2' => 'PHP',
+        'pl3' => 'Ruby',
+        'pl4' => 'Python2',
+        'pl5' => 'Python3',
+        'pl6' => 'Javascript',
+        'pl7' => 'HTML5+CSS3',
+        'pl8' => 'Sass',
+        'pl9' => 'SQL',
+        'pl10' => 'Bash'
+    ];
+
+    // Skills
+    static protected $frameworks = [
+        'f1' => 'Laravel',
+        'f2' => 'Ruby on Rails',
+        'f3' => 'Django',
+        'f4' => 'Flask',
+        'f5' => 'Unity',
+        'f6' => 'Vue.js',
+        'f7' => 'Bootstrap',
+        'f8' => 'TensorFlow'
+    ];
+
+    // Skills
+    static protected $experiences = [
+        'ex1' => 'Web development (server side engineer)',
+        'ex2' => 'Web development (front-end engineer)',
+        'ex3' => 'Research and development (image processing, natural language processing, machine learning, AI, etc.)',
+        'ex4' => 'Consumer game development'
+    ];
+
+    // Skills
+    static protected $others = [
+        'o1' => 'Linux',
+        'o2' => 'Cent OS',
+        'o3' => 'Debian',
+        'o4' => 'Mac OS',
+        'o5' => 'Apache',
+        'o6' => 'nginx',
+        'o7' => 'Unicorn',
+        'o8' => 'Amazon Web Service',
+        'o9' => 'Wordpress',
+        'o10' => 'Vim'
+    ];
+
+    // Skills
+    static protected $languages = [
+        'l1' => 'Nihongo',
+        'l2' => 'English',
+        'l3' => 'Swahili',
+        'l4' => 'Svenska',
+        'l5' => 'French'
     ];
 
     protected $casts = [
@@ -126,7 +182,13 @@ class SeekerProfile extends Model
 
     public function getOccupationAttribute()
     {
-        return self::getOccupations($this->occupation_id);
+        return $this->occupation_id ? self::getOccupations($this->occupation_id) : null;
+    }
+    
+    // Relationships
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class);
     }
 
     // Scopes
@@ -159,14 +221,69 @@ class SeekerProfile extends Model
         return collect($occupations);
     }
 
-	static function getCourses($index = null)
-	{
-		$courses = self::$courses;
+    static function getCourses($index = null)
+    {
+        $courses = self::$courses;
 
-		if ($index) {
-			return $courses[$index] ?? null;
-		}
+        if ($index) {
+            return $courses[$index] ?? null;
+        }
 
-		return collect(self::$courses);
-	}
+        return collect($courses);
+    }
+
+    static function getProgrammingLanguages($index = null)
+    {
+        $programming_languages = self::$programming_languages;
+
+        if ($index) {
+            return $programming_languages[$index] ?? null;
+        }
+
+        return collect($programming_languages);
+    }
+
+    static function getFrameworks($index = null)
+    {
+        $frameworks = self::$frameworks;
+
+        if ($index) {
+            return $frameworks[$index] ?? null;
+        }
+
+        return collect($frameworks);
+    }
+
+    static function getExperiences($index = null)
+    {
+        $experiences = self::$experiences;
+
+        if ($index) {
+            return $experiences[$index] ?? null;
+        }
+
+        return collect($experiences);
+    }
+
+    static function getOthers($index = null)
+    {
+        $others = self::$others;
+
+        if ($index) {
+            return $others[$index] ?? null;
+        }
+
+        return collect($others);
+    }
+
+    static function getLanguages($index = null)
+    {
+        $languages = self::$languages;
+
+        if ($index) {
+            return $languages[$index] ?? null;
+        }
+
+        return collect($languages);
+    }
 }

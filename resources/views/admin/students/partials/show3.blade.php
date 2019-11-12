@@ -6,26 +6,10 @@
           <dt>プログラミング言語</dt>
           <dd>
             <dl class="mt-3">
-              <dt class="text-muted">C#</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">PHP</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Ruby</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Python2</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Python3</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Javascript</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">HTML5+CSS3</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Sass</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">SQL</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Bash</dt>
-              <dd>{{ '--' }}</dd>
+              @foreach($programming_languages as $id => $programming_language)
+                <dt class="text-muted">{{ ucwords($programming_language) }}</dt>
+                <dd>{{ $student->student_skills[$id] ?? 0 }}</dd>
+              @endforeach
             </dl>
           </dd>
         </dl>
@@ -35,22 +19,10 @@
           <dt>フレームワーク</dt>
           <dd>
             <dl class="mt-3">
-              <dt class="text-muted">Laravel</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Ruby on Rails</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Django</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Flask</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Unity</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Vue.js</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Bootstrap</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">TensorFlow</dt>
-              <dd>{{ '--' }}</dd>
+              @foreach($frameworks as $id => $framework)
+                <dt class="text-muted">{{ ucwords($framework) }}</dt>
+                <dd>{{ $student->student_skills[$id] ?? 0 }}</dd>
+              @endforeach
             </dl>
           </dd>
         </dl>
@@ -60,16 +32,14 @@
       <td>
         <div class="font-weight-bold">その他</dt>
         <ul class="list-group list-group-flush my-3">
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Linux</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Cent OS</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Debian</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Mac OS</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Apache</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">nginx</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Unicorn</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Amazon Web Service</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Wordpress</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Vim</li>
+          @if (! $student->student_skills->intersectByKeys($others)->count())
+            --
+          @endif
+          @foreach($others as $id => $other)
+            @if (isset($student->student_skills[$id]))
+              <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ $other }}</li>
+            @endif
+          @endforeach
         </ul>
       </td>
       <td>
@@ -77,14 +47,10 @@
           <dt>経験分野</dt>
           <dd>
             <dl class="mt-3">
-              <dt class="text-muted">Web開発（サーバサイドエンジニア）</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">Web開発（フロントエンドエンジニア）</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">研究開発（画像処理,自然言語処理,機械学習,AIなど）</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">コンシューマーゲーム開発</dt>
-              <dd>{{ '--' }}</dd>
+              @foreach($experiences as $id => $experience)
+                <dt class="text-muted">{{ ucwords($experience) }}</dt>
+                <dd>{{ $student->student_skills[$id] ?? 0 }}</dd>
+              @endforeach
             </dl>
           </dd>
         </dl>
@@ -94,17 +60,20 @@
       <td>
         <div class="font-weight-bold">語学</dt>
         <ul class="list-group list-group-flush my-3">
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Nihongo</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">English</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Swahili</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">Svenska</li>
-          <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">French</li>
+          @if (! $student->student_skills->intersectByKeys($languages)->count())
+            --
+          @endif
+          @foreach($languages as $id => $language)
+            @if (isset($student->student_skills[$id]))
+              <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ $language }}</li>
+            @endif
+          @endforeach
         </ul>
       </td>
       <td>
         <dl>
           <dt>TOEIC</dt>
-          <dd>{{ '--' }}</dd>
+          <dd>{{ $student->toiec_score ?? 0 }}</dd>
         </dl>
       </td>
     </tr>
@@ -113,18 +82,22 @@
         <dl class="mb-0">
           <dt>ポートフォリオ</dt>
           <dd>
-            <dl class="mt-3">
-              <dt class="text-muted">タイトル</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">内容</dt>
-              <dd style="white-space: pre-line;">{{ '--' }}</dd>
-              <dt class="text-muted">URL</dt>
-              <dd>{{ '--' }}</dd>
-              <dt class="text-muted">画像</dt>
-              <dd>
-                <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-              </dd>
-            </dl>
+            @foreach($student->portfolios as $portfolio)
+              <dl class="mt-3">
+                <dt class="text-muted">タイトル</dt>
+                <dd>{{ $portfolio->title ?? '--' }}</dd>
+                <dt class="text-muted">内容</dt>
+                <dd style="white-space: pre-line;">{!! $portfolio->description ?? '--' !!}</dd>
+                @if ($portfolio->url)
+                  <dt class="text-muted">URL</dt>
+                  <dd><a href="{{ $portfolio->url }}" target="_blank">{{ $portfolio->url }}</a></dd>
+                @endif
+                <dt class="text-muted">画像</dt>
+                <dd>
+                  <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
+                </dd>
+              </dl>
+            @endforeach
           </dd>
         </dl>
       </td>
@@ -134,7 +107,11 @@
         <dl class="mb-0">
           <dt>Github</dt>
           <dd>
-            <a href="https://github.com/kamligph" target="_blank">https://github.com/kamligph</a>
+            @if ($student->github)
+              <a href="{{ $student->github }}" target="_blank">{{ $student->github }}</a>
+            @else
+              --
+            @endif
           </dd>
         </dl>
       </td>
