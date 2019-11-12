@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', 'Posts')
+@section('pageTitle', '募集')
 
 @section('content')
   <div class="l-container">

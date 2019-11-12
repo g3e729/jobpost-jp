@@ -1,5 +1,7 @@
 @extends('admin.layouts.default')
 
+@section('pageTitle', 'チケット購入履歴')
+
 @section('content')
   <div class="l-container">
     <div class="payments py-2">

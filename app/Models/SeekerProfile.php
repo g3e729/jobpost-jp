@@ -29,7 +29,7 @@ class SeekerProfile extends Model
         'enrollment_date',
         'graduation_date',
         'status',
-        'course_id',
+        'occupation_id',
         'study_period',
         'travel_ticket',
         'for_pickup',
@@ -42,12 +42,17 @@ class SeekerProfile extends Model
         'city',
         'country',
         'birthday',
-        'avatar',
         'portfolio',
         'github',
 
-        'pre_english_level',
-        'pre_it_level'
+        'taken_id',
+        'course_id',
+        'it_level',
+        'reading',
+        'listening',
+        'speaking',
+        'writing',
+        'english_level'
     ];
 
 	static protected $courses = [
@@ -88,21 +93,25 @@ class SeekerProfile extends Model
       10 => '研究開発'
     ];
 
+    protected $casts = [
+        'taken_id' => 'array',
+    ];
+
     public static function boot()
     {
         parent::boot();
         static::updating(function ($model) {
+            if ($model->taken_id) {
+                $model->taken_id = json_encode([$model->taken_id]);
+            }
+
             foreach(['email', 'name', 'japanese_name', 'display_name'] as $attribute) {
                 unset($model->$attribute);
             }
         });
     }
 
-    public function avatar()
-    {
-        return $this->morphOne(File::class, 'fileable');
-    }
-
+    // Attributes
     public function getCourseAttribute()
     {
         return isset(self::$courses[$this->course_id]) ? ucwords(self::$courses[$this->course_id]) : null;
@@ -113,6 +122,27 @@ class SeekerProfile extends Model
         return isset(self::$student_status[$this->status]) ? ucwords(self::$student_status[$this->status]) : null;
     }
 
+    public function getTakenClassAttribute()
+    {
+        $courses = [];
+
+        if ($this->taken_id) {
+
+            foreach ($this->taken_id as $course_id) {
+                $courses[$course_id] = self::getCourses($course_id);
+            }
+
+        }
+
+        return $courses;
+    }
+
+    public function getOccupationAttribute()
+    {
+        return self::getOccupations($this->occupation_id);
+    }
+
+    // Scopes
     public function scopeSearch($query, $value)
     {
         return $query->whereHas('user', function ($q) use ($value) {

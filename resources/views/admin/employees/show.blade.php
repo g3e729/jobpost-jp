@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', $employee->display_name)
+@section('pageTitle', "{$employee->display_name}の情報")
 
 @section('content')
   <div class="l-container">

@@ -29,7 +29,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->timestamp('enrollment_date')->nullable();
             $table->timestamp('graduation_date')->nullable();
             $table->integer('status')->nullable();
-            $table->integer('course_id')->nullable();
+            $table->integer('occupation_id')->default(0);
             $table->integer('study_period')->default(0);
             $table->integer('travel_ticket')->default(0);
             $table->integer('for_pickup')->default(0);
@@ -45,8 +45,14 @@ class CreateSeekerProfilesTable extends Migration
             $table->text('portfolio')->nullable();
             $table->string('github')->nullable();
             
-            $table->integer('pre_english_level')->default(0);
-            $table->integer('pre_it_level')->default(0);
+            $table->integer('course_id')->default(0);
+            $table->json('taken_id')->nullable();
+            $table->integer('it_level')->default(0);
+            $table->integer('reading')->default(0);
+            $table->integer('listening')->default(0);
+            $table->integer('speaking')->default(0);
+            $table->integer('writing')->default(0);
+            $table->integer('english_level')->default(0);
             $table->timestamps();
         });
     }

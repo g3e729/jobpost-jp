@@ -47,7 +47,6 @@ class SeekerService extends BaseService
     
     public function search($fields, $paginated = true)
     {
-
         try {
             $fields = array_filter($fields);
             $que = (new $this->model);

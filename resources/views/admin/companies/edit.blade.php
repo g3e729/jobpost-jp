@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', "Edit {$company->display_name}")
+@section('pageTitle', "{$company->display_name}の情報を編集する")
 
 @section('content')
   <div class="l-container">

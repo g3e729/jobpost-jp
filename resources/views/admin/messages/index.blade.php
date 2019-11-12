@@ -1,6 +1,6 @@
 @extends('admin.layouts.default')
 
-@section('pageTitle', 'Messages')
+@section('pageTitle', 'メッセージ')
 
 @php
 

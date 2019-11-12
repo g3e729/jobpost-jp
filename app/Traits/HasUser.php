@@ -8,7 +8,7 @@ use App\Models\User;
 
 trait HasUser
 {
-    protected $api_attr = ['display_name', 'email', 'japanese_name', 'name'];
+    static protected $api_attr = ['display_name', 'email', 'japanese_name', 'name'];
 
     public function getEmailAttribute()
     {
@@ -27,6 +27,10 @@ trait HasUser
 
     public function getDisplayNameAttribute()
     {
+        if (! $this->user) {
+            return null;
+        }
+
         if ($this->user->hasRole('company')) {
             return $this->company_name;
         }
@@ -75,7 +79,7 @@ trait HasUser
 
     public function forApi()
     {
-        foreach($this->api_attr as $attr) {
+        foreach(self::$api_attr as $attr) {
             $this[$attr] = $this->$attr;
         }
 
