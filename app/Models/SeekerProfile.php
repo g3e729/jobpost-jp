@@ -207,6 +207,7 @@ class SeekerProfile extends Model
         });
     }
 
+    // Options
     static function getStudentStatus($index = null)
     {
         $student_status = self::$student_status;

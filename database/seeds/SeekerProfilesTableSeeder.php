@@ -21,6 +21,13 @@ class SeekerProfilesTableSeeder extends Seeder
         $desc = $this->desc;
         $prefectures = getPrefecture()->keys();
         $english_levels = SeekerProfile::getEnglishLevels()->keys();
+        $skills = array_merge(
+            SeekerProfile::getProgrammingLanguages()->keys()->toArray(),
+            SeekerProfile::getFrameworks()->keys()->toArray(),
+            SeekerProfile::getExperiences()->keys()->toArray(),
+            SeekerProfile::getLanguages()->keys()->toArray(),
+            SeekerProfile::getOthers()->keys()->toArray()
+        );
 
         $seeker = [
             'name' => '',
@@ -83,7 +90,7 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['it_level'] = rand(1, 7);
             $fields['github'] = 'https://github.com/' . substr(md5(microtime()), rand(0, 26), rand(3, 6));
 
-            $fields['taken_id'] = rand(1, 6);
+            $fields['taken_id'] = [rand(1, 6)];
             $fields['reading'] = rand(0, 600);
             $fields['listening'] = rand(0, 600);
             $fields['speaking'] = rand(0, 600);
@@ -92,6 +99,15 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['toiec_score'] = rand(0, 600);
 
             $profile = (new SeekerService)->create($fields);
+
+            foreach ($skills as $skill_id) {
+                $data = compact('skill_id');
+                $rate = rand(0, 5);
+
+                if ($rate) $data['skill_rate'] = $rate;
+
+                $profile->skills()->create($data);
+            }
 
             foreach ([
                 'facebook' => 'https://www.facebook.com/',
