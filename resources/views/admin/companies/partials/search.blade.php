@@ -11,9 +11,10 @@
       <div class="form-group">
         <label for="formIndustry">業種</label>
         <select class="form-control" id="formIndustry" name="industry_id">
-        @foreach($industries as $index => $name)
-          <option value="{{ $index }}" {{ request()->get('industry_id') == $index ? 'selected' : '' }}>{{ ucwords($name) }}</option>
-        @endforeach
+          <option value="" {{ empty(request()->get('industry_id')) ? 'selected' : '' }}>All Industry</option>
+          @foreach($industries as $index => $name)
+            <option value="{{ $index }}" {{ request()->get('industry_id') == $index ? 'selected' : '' }}>{{ ucwords($name) }}</option>
+          @endforeach
         </select>
       </div>
     </div>
@@ -21,7 +22,7 @@
       <div class="form-group">
         <label for="formArea">地域</label>
         <select class="form-control" id="formArea" name="prefecture">
-          <option value="" selected hidden disabled>Choose area</option>
+          <option value="" {{ empty(request()->get('prefecture')) ? 'selected' : '' }}>All Prefecture</option>
           @foreach($prefectures as $index => $name)
             <option value="{{ $index }}" {{ request()->get('prefecture') == $index ? 'selected' : '' }}>{{ ucwords($name) }}</option>
           @endforeach

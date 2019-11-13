@@ -12,9 +12,10 @@ class CompanyController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$companies = (new CompanyService)->search($request->all());
-		$industries = Company::getIndustries();
         $prefectures = getPrefecture();
+        $industries = Company::getIndustries();
+        
+		$companies = (new CompanyService)->search($request->except('page'));
 
 		return view('admin.companies.index', compact('companies', 'industries', 'prefectures'));
 	}

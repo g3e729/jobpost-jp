@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="formStaus">ステータス</label>
         <select class="form-control" id="formStaus" name="status">
-          <option value="" selected hidden disabled>Choose status</option>
+          <option value="" {{ empty(request()->get('status')) ? 'selected' : '' }}>All Status</option>
           @foreach($employment_status as $index => $name)
             <option value="{{ $index }}" {{ request()->get('status') == $index ? 'selected' : '' }}>{{ ucwords($name) }}</option>
           @endforeach
@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="formPosition">ポジション</label>
         <select class="form-control" id="formPosition" name="position_id">
-          <option value="" selected hidden disabled>Choose position</option>
+          <option value="" {{ empty(request()->get('position_id')) ? 'selected' : '' }}>All Position</option>
           @foreach($positions as $index => $name)
             <option value="{{ $index }}" {{ request()->get('position_id') == $index ? 'selected' : '' }}>{{ ucwords($name) }}</option>
           @endforeach
@@ -33,7 +33,7 @@
       <div class="form-group">
         <label for="formCountry">国籍</label>
         <select class="form-control" id="formCountry" name="country">
-          <option value="" selected hidden disabled>Choose country</option>
+          <option value="" {{ empty(request()->get('country')) ? 'selected' : '' }}>All Countries</option>
           @foreach($countries as $index => $name)
             <option value="{{ $index }}" {{ request()->get('country') == $index ? 'selected' : '' }}>{{ ucwords($name) }}</option>
           @endforeach

@@ -31,6 +31,11 @@ class EmployeeProfile extends Model
         'birthday',
     ];
 
+    static protected $get_attr = [
+        'position',
+        'employment_status'
+    ];
+
     static protected $employment_status = [
         1 => '無休インターン : Unpaid intern',
         2 => '有給インターン : Paid intern',
@@ -54,13 +59,9 @@ class EmployeeProfile extends Model
     public static function boot()
     {
         parent::boot();
-        static::updating(function ($model) {
-            foreach(['email', 'name', 'japanese_name', 'display_name'] as $attribute) {
-                unset($model->$attribute);
-            }
-        });
     }
 
+    // Scopes
     public function scopeSearch($query, $value)
     {
         return $query->whereHas('user', function ($q) use ($value) {
@@ -68,6 +69,7 @@ class EmployeeProfile extends Model
         });
     }
 
+    // Attributes
     public function getPositionAttribute()
     {
         return isset(self::$positions[$this->position_id]) ? ucwords(self::$positions[$this->position_id]) : null;
@@ -78,6 +80,7 @@ class EmployeeProfile extends Model
         return isset(self::$employment_status[$this->status]) ? ucwords(self::$employment_status[$this->status]) : null;
     }
 
+    // Options
     static function getEmploymentStatus($index = null)
     {
         $employment_status = self::$employment_status;

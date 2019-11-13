@@ -54,6 +54,14 @@ class SeekerProfile extends Model
         'english_level_id'
     ];
 
+    static protected $get_attr = [
+        'course',
+        'student_status',
+        'taken_class',
+        'occupation',
+        'english_level'
+    ];
+
 	static protected $courses = [
 		1 => 'Basic',
 		2 => 'Rails Standard',
@@ -156,10 +164,14 @@ class SeekerProfile extends Model
             if ($model->taken_id) {
                 $model->taken_id = json_encode([$model->taken_id]);
             }
+        });
+    }
 
-            foreach(['email', 'name', 'japanese_name', 'display_name'] as $attribute) {
-                unset($model->$attribute);
-            }
+    // Scopes
+    public function scopeSearch($query, $value)
+    {
+        return $query->whereHas('user', function ($q) use ($value) {
+            $q->where('japanese_name', 'LIKE', "%{$value}%")->orWhere('name', 'LIKE', "%{$value}%");
         });
     }
 
@@ -197,14 +209,6 @@ class SeekerProfile extends Model
     public function getEnglishLevelAttribute()
     {
         return $this->english_level_id ? self::getEnglishLevels(strtolower($this->english_level_id)) : null;
-    }
-
-    // Scopes
-    public function scopeSearch($query, $value)
-    {
-        return $query->whereHas('user', function ($q) use ($value) {
-            $q->where('japanese_name', 'LIKE', "%{$value}%")->orWhere('name', 'LIKE', "%{$value}%");
-        });
     }
 
     // Options
@@ -306,5 +310,4 @@ class SeekerProfile extends Model
 
         return collect($languages);
     }
-    
 }

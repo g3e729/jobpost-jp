@@ -17,7 +17,8 @@ class EmployeeController extends BaseController
         $countries = getCountries();
         $employment_status = Employee::getEmploymentStatus();
         $positions = Employee::getPositions();
-		$employees = (new EmployeeService)->search($request->all());
+        
+		$employees = (new EmployeeService)->search($request->except('page'));
 
 	    return view('admin.employees.index', compact('countries', 'employees', 'employment_status', 'positions'));
 	}

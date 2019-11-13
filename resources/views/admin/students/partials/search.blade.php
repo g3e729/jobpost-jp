@@ -36,24 +36,20 @@
         <label for="formStatus">ステータス</label>
         <select class="form-control" id="formStatus" name="status">
           <option value="" {{ empty(request()->get('status')) ? 'selected' : '' }}>All Status</option>
-          <option value="pre-matriculation">Pre-Matriculation</option>
-          <option value="student">Student</option>
-          <option value="graduated">Graduated</option>
+          @foreach($statuses as $value => $status)
+            <option value="{{ $value }}" {{ request()->get('status') == $value ? 'selected' : '' }}>{{ ucwords($status) }}</option>
+          @endforeach
         </select>
       </div>
     </div>
     <div class="col-3">
       <div class="form-group">
         <label for="formEnglish">English level</label>
-        <select class="form-control" id="formEnglish" name="pre_english_level">
-          <option value="" {{ empty(request()->get('pre_english_level')) ? 'selected' : '' }}>All English Level</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
+        <select class="form-control" id="formEnglish" name="english_level_id">
+          <option value="" {{ empty(request()->get('english_level_id')) ? 'selected' : '' }}>All English Level</option>
+          @foreach($english_levels as $value => $english_level)
+            <option value="{{ $value }}" {{ request()->get('english_level_id') == $value ? 'selected' : '' }}>{{ ucwords($english_level) }}</option>
+          @endforeach
         </select>
       </div>
     </div>

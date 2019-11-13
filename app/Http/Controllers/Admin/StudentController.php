@@ -12,10 +12,13 @@ class StudentController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$students = (new SeekerService)->search($request->only('search', 'course_id', 'pre_english_level'));
 		$courses = Student::getCourses();
+		$statuses = Student::getStudentStatus();
+		$english_levels = Student::getEnglishLevels();
+		
+		$students = (new SeekerService)->search($request->only('search', 'course_id', 'english_level_id', 'status'));
 
-		return view('admin.students.index', compact('courses', 'students'));
+		return view('admin.students.index', compact('courses', 'english_levels', 'statuses', 'students'));
 	}
 
 	public function show(Student $student)
