@@ -17,6 +17,7 @@ class File extends Model
         'type',
         'mime_type',
         'size',
+        'sort',
         'fileable_id',
         'fileable_type'
     ];

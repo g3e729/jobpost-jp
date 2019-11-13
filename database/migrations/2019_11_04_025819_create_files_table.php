@@ -20,6 +20,7 @@ class CreateFilesTable extends Migration
             $table->string('type')->nullable();
             $table->string('mime_type')->nullable();
             $table->string('size')->default(0);
+            $table->integer('sort')->default(0);
             $table->integer('fileable_id');
             $table->string('fileable_type');
             $table->timestamps();

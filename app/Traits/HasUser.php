@@ -18,7 +18,11 @@ trait HasUser
         'avatar',
         'cover_photo',
         'social_media_accounts',
-        'listed_skills'
+        'listed_skills',
+
+        'what_photos',
+        'why_photos',
+        'how_photos',
     ];
     
     // Attributes
@@ -62,6 +66,21 @@ trait HasUser
         $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
 
         return $url ?? null;
+    }
+
+    public function getWhatPhotosAttribute()
+    {
+        return $this->files()->where('type', 'what_photo')->orderBy('sort')->pluck('url', 'sort') ?? collect();
+    }
+
+    public function getWhyPhotosAttribute()
+    {
+        return $this->files()->where('type', 'why_photo')->orderBy('sort')->pluck('url', 'sort') ?? collect();
+    }
+
+    public function getHowPhotosAttribute()
+    {
+        return $this->files()->where('type', 'how_photo')->orderBy('sort')->pluck('url', 'sort') ?? collect();
     }
 
     public function getSocialMediaAccountsAttribute()
