@@ -39,7 +39,9 @@ Route::group([
 	})->name('recruitments.create');
 
 	Route::get('recruitments/{post}', function () {
-		return view('admin.posts.show');
+		return view('admin.posts.show', [
+      'index' => Request::route('post')
+    ]);
 	})->name('recruitments.show');
 
 	Route::delete('recruitments/{post}', function () {
@@ -47,7 +49,17 @@ Route::group([
 	})->name('recruitments.delete');
 
 	Route::get('recruitments/{post}/edit', function () {
-		return view('admin.posts.edit');
+		return view('admin.posts.edit', [
+      'faker' => Faker\Factory::create('ja_JP'),
+      'programming_languages' => App\Models\SeekerProfile::getProgrammingLanguages(),
+      'frameworks' => App\Models\SeekerProfile::getFrameworks(),
+      'positions' => App\Models\SeekerProfile::getPositions(),
+      'databases' => App\Models\SeekerProfile::getDatabases(),
+      'environments' => App\Models\SeekerProfile::getOthers(),
+      'employment_status' => App\Models\SeekerProfile::getEmploymentStatus(),
+      'income' => App\Models\SeekerProfile::getIncome(),
+      'prefectures' => getPrefecture()
+    ]);
 	})->name('recruitments.edit');
 
 	Route::patch('recruitments/{post}', function () {
@@ -78,8 +90,11 @@ Route::group([
 		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('messages.index');
 
-  Route::get('messages/{student}', function () {
-		return view('admin.messages.show', ['faker' => Faker\Factory::create('ja_JP')]);
+  Route::get('messages/{entity}', function () {
+		return view('admin.messages.show', [
+      'faker' => Faker\Factory::create('ja_JP'),
+      'type' => Request::input('type')
+    ]);
 	})->name('messages.show');
 
 	Route::delete('messages', function () {

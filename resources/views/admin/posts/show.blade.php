@@ -13,8 +13,8 @@
               <h3 class="text-center">自社★C2Cマッチングプラットフォーム開発</h3>
 
               <div class="card-actions card-actions-right position-absolute">
-                <a href="{{ route('admin.recruitments.edit', 0) }}" class="card-link">詳細</a>
-                <a href="{{ route('admin.recruitments.delete', 0) }}" class="card-link text-muted js-post-delete">無効にする</a>
+                <a href="{{ route('admin.recruitments.edit', $index) }}" class="card-link">詳細</a>
+                <a href="{{ route('admin.recruitments.delete', $index) }}" class="card-link text-muted js-post-delete">無効にする</a>
               </div>
             </div>
           </div>
