@@ -139,57 +139,32 @@
           <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <table class="table">
               <tbody>
-                <tr>
-                  <td style="width: 25%" class="font-weight-bold">What<br>何をやっているのか？</td>
-                  <td>
-                    <dl>
-                      <dt>説明</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      <dt>写真１</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                      <dt>写真2</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                    </dl>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Why<br>なぜやるのか</td>
-                  <td>
-                    <dl>
-                      <dt>説明</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      <dt>写真１</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                      <dt>写真2</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                    </dl>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">How<br>どうやっているか</td>
-                  <td>
-                    <dl>
-                      <dt>説明</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      <dt>写真１</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                      <dt>写真2</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                    </dl>
-                  </td>
-                </tr>
+                @foreach([
+                  'what' => '何をやっているのか？',
+                  'why' => 'なぜやるのか',
+                  'how' => 'どうやっているか'
+                ] as $type => $subtitle)
+                  @php
+                    $photos = $type . '_photos';
+                  @endphp
+                  <tr>
+                    <td style="width: 25%" class="font-weight-bold">{{ ucwords($type) }}<br>{{ $subtitle }}</td>
+                    <td>
+                      <dl>
+                        <dt>説明</dt>
+                        <dd style="white-space: pre-line;">{{ $company->what_text ?? '--' }}</dd>
+                        @foreach([0, 1] as $id)
+                          @if (isset($company->$photos[$id]))
+                            <dt>写真{{ $company->$photos->count() > 1 ? $id + 1 : 1 }}</dt>
+                            <dd>
+                              <img class="img-fluid border border-secondary my-3 w-100" src="{{ $company->$photos[$id] }}" style="border-width: 2px !important;">
+                            </dd>
+                          @endif
+                        @endforeach
+                      </dl>
+                    </td>
+                  </tr>
+                @endforeach
                 <tr>
                   <td class="font-weight-bold">特徴１</td>
                   <td style="white-space: pre-line;">{{ '--' }}</td>

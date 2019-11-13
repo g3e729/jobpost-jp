@@ -45,7 +45,7 @@ class CompanyController extends BaseController
   	}
 	
 	public function update(Request $request, Company $company)
-	{ 
+	{
         $company->update(
             $request->except('_token', '_method', 'email', 'japanese_name', 'name')
         );
@@ -89,6 +89,33 @@ class CompanyController extends BaseController
                 'mime_type' => $request->cover_photo->getMimeType(),
                 'size' => $request->cover_photo->getSize(),
             ]);
+        }
+
+        if ($request->photos) {
+
+            foreach($request->photos as $key => $files) {
+                $relation = $key . '_photo';
+                $collection = $key . '_photos';
+                $comp_files = $company->$collection;
+
+                foreach ($files as $sort => $req_file) {
+                    $file = $req_file->store('public/' . $relation);
+                    $file = explode('/', $file);
+
+                    if (isset($comp_files[$sort])) {
+                        $comp_files[$sort]->delete();
+                    }
+
+                    $company->files()->create([
+                        'url' => asset("/storage/{$relation}/" . array_last($file)),
+                        'file_name' => $req_file->getClientOriginalName(),
+                        'type' => $relation,
+                        'mime_type' => $req_file->getMimeType(),
+                        'size' => $req_file->getSize(),
+                        'sort' => $sort,
+                    ]);
+                }
+            }
         }
 
 		return redirect()->route('admin.companies.show', $company)

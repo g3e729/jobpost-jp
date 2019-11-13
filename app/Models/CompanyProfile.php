@@ -33,7 +33,11 @@ class CompanyProfile extends Model
         'ceo',
         'number_of_employees',
         'established_date',
-        'portfolio'
+        'portfolio',
+        
+        'what_text',
+        'why_text',
+        'how_text',
     ];
 
     static protected $get_attr = [
