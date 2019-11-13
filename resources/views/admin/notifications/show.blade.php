@@ -10,8 +10,8 @@
           https://kredo.jp/media/ai-programmer-survive/
         </p>
         <div class="card-actions card-actions-right position-absolute">
-          <a href="/notification/1/edit" class="card-link">編集</a>
-          <a href="/notification/1/delete" class="card-link text-muted">削除</a>
+          <a href="{{ route('admin.notifications.edit', $index) }}" class="card-link">編集</a>
+          <a href="{{ route('admin.notifications.delete', $index) }}" class="card-link text-muted">削除</a>
         </div>
       </div>
       <div class="card-footer bg-primary px-5">

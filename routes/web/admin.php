@@ -39,9 +39,7 @@ Route::group([
 	})->name('recruitments.create');
 
 	Route::get('recruitments/{post}', function () {
-		return view('admin.posts.show', [
-      'index' => Request::route('post')
-    ]);
+		return view('admin.posts.show', ['index' => Request::route('post')]);
 	})->name('recruitments.show');
 
 	Route::delete('recruitments/{post}', function () {
@@ -75,7 +73,7 @@ Route::group([
 	})->name('notifications.create');
 
 	Route::get('notifications/{notification}', function () {
-		return view('admin.notifications.show');
+		return view('admin.notifications.show', ['index' => Request::route('notification')]);
 	})->name('notifications.show');
 
 	Route::get('notifications/{notification}/edit', function () {
@@ -84,7 +82,11 @@ Route::group([
 
 	Route::patch('notifications/{notification}', function () {
 		return view('admin.notifications.update');
-	})->name('notifications.update');
+  })->name('notifications.update');
+  
+  Route::delete('notifications/{notification}', function () {
+		return view('admin.notifications.delete');
+	})->name('notifications.delete');
 
 	Route::get('messages', function () {
 		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
