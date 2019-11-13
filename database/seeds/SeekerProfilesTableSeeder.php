@@ -1,10 +1,14 @@
 <?php
 
+use App\Models\SeekerProfile;
 use App\Services\SeekerService;
+use App\Traits\SeederData;
 use Illuminate\Database\Seeder;
 
 class SeekerProfilesTableSeeder extends Seeder
 {
+    use SeederData;
+
     /**
      * Run the database seeds.
      *
@@ -12,37 +16,11 @@ class SeekerProfilesTableSeeder extends Seeder
      */
     public function run()
     {
-        $fname = [
-            'Antonio',
-            'Canny',
-            'Lovely',
-            'Emma Josie',
-            'Ejie',
-            'Francisco',
-            'Honesto',
-            'Horacio',
-            'Jaime Polo',
-            'Paul James',
-            'Peter',
-            'Roberto',
-            'Wally',
-            'Zaito',
-        ];
-
-        $lname = [
-            'Chu',
-            'Curacha',
-            'Duterte',
-            'Fuji',
-            'Go',
-            'Kintanar',
-            'Lim',
-            'Seito',
-            'Suzuki',
-            'Tan',
-            'Toyota',
-            'Yuson',
-        ];
+        $fname = $this->fname;
+        $lname = $this->lname;
+        $desc = $this->desc;
+        $prefectures = getPrefecture()->keys();
+        $english_levels = SeekerProfile::getEnglishLevels()->keys();
 
         $seeker = [
             'name' => '',
@@ -76,11 +54,16 @@ class SeekerProfilesTableSeeder extends Seeder
 
         for ($i = 1; $i < 30; $i++) {
             $fields = $seeker;
-            $name = $fname[rand(0, count($fname) - 1)];
-            $name .= ' ' . $lname[rand(0, count($lname) - 1)];
+            $t = explode(':', $fname[rand(0, count($fname) - 1)]);
+            $name = array_first($t);
+            $last_name = $lname[rand(0, count($lname) - 1)];
+            $name .= ' ' . $last_name;
+
             $fields['name'] .= ucwords($name);
             $fields['japanese_name'] = null;
             $fields['email'] = str_replace(' ', '', strtolower($fields['name'])) . '+' . $i . $fields['email'];
+            $fields['sex'] = array_last($t);
+            $fields['description'] = rand(0, 1) ? $desc[rand(0, count($desc) - 1)] : ' ' . strrev($desc[rand(0, count($desc) - 1)]);
             $fields['contact_number'] = rand(100, 999).rand(100, 999).rand(1000, 9999);
             $fields['study_abroad_fee'] = rand(1000, 99999);
             $fields['passport_number'] = rand(100, 9999).rand(1111, 9999);
@@ -89,7 +72,7 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['status'] = rand(1, 3);
             $fields['occupation_id'] = rand(1, 3);
             $fields['study_period'] = rand(0, 9);
-            $fields['prefecture'] = 'tohoku-2';
+            $fields['prefecture'] = $prefectures->random();
             $fields['address1'] = $fields['name'] . ' ' . rand(1, 99);
             $fields['address2'] = $lname[rand(0, count($lname) - 1)];
             $fields['address3'] = rand(876, 854);
@@ -98,8 +81,30 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['description'] = "Hi! I am " . ucwords($name) . "!";
             $fields['course_id'] = rand(1, 10);
             $fields['it_level'] = rand(1, 7);
+            $fields['github'] = 'https://github.com/' . substr(md5(microtime()), rand(0, 26), rand(3, 6));
+
+            $fields['taken_id'] = rand(1, 6);
+            $fields['reading'] = rand(0, 600);
+            $fields['listening'] = rand(0, 600);
+            $fields['speaking'] = rand(0, 600);
+            $fields['writing'] = rand(0, 600);
+            $fields['english_level_id'] = $english_levels->random();
+            $fields['toiec_score'] = rand(0, 600);
 
             $profile = (new SeekerService)->create($fields);
+
+            foreach ([
+                'facebook' => 'https://www.facebook.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'twitter' => 'https://twitter.com/'
+            ] as $social_media => $url) {
+                if (rand(0, 1)) continue;
+                $data = compact('social_media', 'url');
+
+                $data['url'] .= substr(md5(microtime()), rand(0, 26), rand(3, 6));
+
+                $profile->social_media()->create($data);
+            }
         }
     }
 }

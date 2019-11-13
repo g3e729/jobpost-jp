@@ -35,7 +35,6 @@ class CreateCompanyProfilesTable extends Migration
             $table->string('ceo')->nullable();
             $table->integer('number_of_employees')->nullable();
             $table->timestamp('established_date')->nullable();
-            $table->text('portfolio')->nullable();
             $table->timestamps();
         });
     }

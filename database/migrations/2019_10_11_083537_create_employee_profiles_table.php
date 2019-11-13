@@ -18,6 +18,7 @@ class CreateEmployeeProfilesTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->string('sex')->nullable();
             $table->string('contact_number')->nullable();
+            $table->string('passport_number')->nullable();
             $table->string('prefecture')->nullable();
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();

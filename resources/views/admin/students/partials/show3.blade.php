@@ -31,10 +31,10 @@
     <tr>
       <td>
         <div class="font-weight-bold">その他</div>
+        @if (! $student->student_skills->intersectByKeys($others)->count())
+          <span>--</span>
+        @endif
         <ul class="list-group list-group-flush my-3">
-          @if (! $student->student_skills->intersectByKeys($others)->count())
-            --
-          @endif
           @foreach($others as $id => $other)
             @if (isset($student->student_skills[$id]))
               <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ $other }}</li>
@@ -61,7 +61,7 @@
         <div class="font-weight-bold">語学</dt>
         <ul class="list-group list-group-flush my-3">
           @if (! $student->student_skills->intersectByKeys($languages)->count())
-            --
+            <span>--</span>
           @endif
           @foreach($languages as $id => $language)
             @if (isset($student->student_skills[$id]))
