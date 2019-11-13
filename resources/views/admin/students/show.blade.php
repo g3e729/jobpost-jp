@@ -24,7 +24,7 @@
 
               <div class="card-actions card-actions-right position-absolute">
                 <a href="{{ route('admin.students.edit', $student) }}" class="card-link h6 mr-3">詳細</a>
-                <a href="{{ route('admin.messages.show', $student) }}" class="card-link h6 mr-3">メッセージ</a>
+                <a href="{{ route('admin.messages.show', [$student, 'type' => 'student']) }}" class="card-link h6 mr-3">メッセージ</a>
                 <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none h6 text-muted">削除</button>
                 <form id="deleteForm" method="POST" action="{{ route('admin.students.destroy', $student) }}" novalidate style="visibility: hidden; position: absolute;">
                   @csrf

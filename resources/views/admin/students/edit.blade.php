@@ -19,7 +19,7 @@
                   <a href="{{ route('admin.students.show', $student) }}" class="card-link mr-3">
                     <i class="fas fa-chevron-circle-left"></i> Back
                   </a>
-                  <a href="{{ route('admin.messages.show', $student) }}" class="card-link ml-0 mr-3">メッセージ</a>
+                  <a href="{{ route('admin.messages.show', [$student, 'type' => 'student']) }}" class="card-link ml-0 mr-3">メッセージ</a>
                   <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
                 </div>
 

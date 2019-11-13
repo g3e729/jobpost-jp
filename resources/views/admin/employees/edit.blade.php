@@ -49,13 +49,13 @@
               </div>
             </div>
           </div>
-          
+
           <div class="form-group pb-3 row">
             <label for="formName" class="col-3 col-form-label font-weight-bold">名前(English)</label>
             <div class="col-9">
               <input type="text" class="form-control" id="formName" name="name" value="{{ $employee->name }}" placeholder="" required>
               <div class="invalid-tooltip">
-                Please enter English name. 
+                Please enter English name.
               </div>
             </div>
           </div>

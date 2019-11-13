@@ -23,7 +23,20 @@ Route::group([
 
 	Route::get('recruitments', function () {
 		return view('admin.posts.index', ['faker' => Faker\Factory::create('ja_JP')]);
-	})->name('recruitments.index');
+  })->name('recruitments.index');
+
+  Route::get('recruitments/create', function () {
+		return view('admin.posts.create', [
+      'programming_languages' => App\Models\SeekerProfile::getProgrammingLanguages(),
+      'frameworks' => App\Models\SeekerProfile::getFrameworks(),
+      'positions' => App\Models\SeekerProfile::getPositions(),
+      'databases' => App\Models\SeekerProfile::getDatabases(),
+      'environments' => App\Models\SeekerProfile::getOthers(),
+      'employment_status' => App\Models\SeekerProfile::getEmploymentStatus(),
+      'income' => App\Models\SeekerProfile::getIncome(),
+      'prefectures' => getPrefecture()
+    ]);
+	})->name('recruitments.create');
 
 	Route::get('recruitments/{post}', function () {
 		return view('admin.posts.show');
@@ -64,7 +77,7 @@ Route::group([
 	Route::get('messages', function () {
 		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('messages.index');
-  
+
   Route::get('messages/{student}', function () {
 		return view('admin.messages.show', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('messages.show');

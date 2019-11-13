@@ -60,7 +60,7 @@
   </div>
 
   <div class="pb-3 row">
-    <div class="col-3 font-weight-bold">職歴</div>
+    <div class="col-3 font-weight-bold">学歴</div>
     <div class="col-9">
       <div class="form-group position-relative">
         <label for="formSchoolName" class="form-label pt-0">学校名</label>

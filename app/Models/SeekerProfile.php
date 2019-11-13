@@ -90,28 +90,80 @@ class SeekerProfile extends Model
 
     // Skills
     static protected $programming_languages = [
-        'pl1' => 'C#',
-        'pl2' => 'PHP',
-        'pl3' => 'Ruby',
-        'pl4' => 'Python2',
-        'pl5' => 'Python3',
-        'pl6' => 'Javascript',
-        'pl7' => 'HTML5+CSS3',
-        'pl8' => 'Sass',
-        'pl9' => 'SQL',
-        'pl10' => 'Bash'
+        'pl1' => 'Java',
+        'pl2' => 'C',
+        'pl3' => 'C ++',
+        'pl4' => 'C#',
+        'pl5' => 'PHP',
+        'pl6' => 'Ruby',
+        'pl7' => 'Python2',
+        'pl8' => 'Python3',
+        'pl9' => 'Perl',
+        'pl10' => 'Objective-C',
+        'pl11' => 'Swift',
+        'pl12' => 'VB',
+        'pl13' => 'R',
+        'pl14' => 'Haskell',
+        'pl15' => 'Scala',
+        'pl16' => 'Go',
+        'pl17' => 'Javascript',
+        'pl18' => 'HTML5 CSS3',
+        'pl19' => 'Coffee script',
+        'pl20' => 'Haml',
+        'pl21' => 'Sass',
+        'pl22' => 'TypeScript',
+        'pl23' => 'SQL',
+        'pl24' => 'COBOL',
+        'pl25' => 'Kotlin',
+        'pl26' => 'Rust',
+        'pl27' => 'Bash',
+        'pl28' => 'Elixir',
+        'pl29' => 'F #'
     ];
 
     // Skills
     static protected $frameworks = [
-        'f1' => 'Laravel',
-        'f2' => 'Ruby on Rails',
-        'f3' => 'Django',
-        'f4' => 'Flask',
-        'f5' => 'Unity',
-        'f6' => 'Vue.js',
-        'f7' => 'Bootstrap',
-        'f8' => 'TensorFlow'
+        'f1' => 'Spring',
+        'f2' => 'Java EE',
+        'f3' => 'Symfony',
+        'f4' => 'CakePHP',
+        'f5' => 'FuelPHP',
+        'f6' => 'Zend Framework',
+        'f7' => 'Laravel',
+        'f8' => 'Phalcon',
+        'f9' => 'Slim',
+        'f10' => 'Ruby on Rails',
+        'f11' => 'Sinatra',
+        'f12' => 'Django',
+        'f13' => 'Tormado',
+        'f14' => 'Flask',
+        'f15' => 'Pyramid',
+        'f16' => 'Pylans',
+        'f17' => 'Unity',
+        'f18' => 'Unreal Engine',
+        'f19' => '.NET Framework',
+        'f20' => 'Open GL',
+        'f21' => 'Android SDK',
+        'f22' => 'iOS SDK',
+        'f23' => 'jQuery',
+        'f24' => 'Angular JS',
+        'f25' => 'React',
+        'f26' => 'Vue.js',
+        'f27' => 'Node.js',
+        'f28' => 'Backbone.js',
+        'f29' => 'Ember.js',
+        'f30' => 'Knockout.js',
+        'f31' => 'Riot.js',
+        'f32' => 'Bootstrap',
+        'f33' => 'Foundation',
+        'f34' => 'Dojo Toolkit',
+        'f35' => 'Titanium Mobile',
+        'f36' => 'Echo',
+        'f37' => 'Gin',
+        'f38' => 'Revel',
+        'f39' => 'Tensor Flow',
+        'f40' => 'Chainer',
+        'f41' => 'Keras'
     ];
 
     // Skills
@@ -147,6 +199,56 @@ class SeekerProfile extends Model
 
     protected $casts = [
         'taken_id' => 'array',
+    ];
+
+    static protected $positions = [
+        1 => 'Frontend',
+        2 => 'Backend',
+        3 => 'Designer',
+        4 => 'Data scientist',
+        5 => 'Marketing',
+        6 => 'Writer',
+        7 => 'ETC'
+    ];
+
+    static protected $databases = [
+        'd1' =>'Oracle',
+        'd2' =>'SQL Server',
+        'd3' =>'Sybase',
+        'd4' =>'MySQL',
+        'd5' =>'MariaDB',
+        'd6' =>'Postgres',
+        'd7' =>'Jet',
+        'd8' =>'SQLite'
+    ];
+
+    static protected $employment_status = [
+        1 => 'Employee',
+        2 => 'Contract employee',
+        3 => 'Internship'
+    ];
+
+    static protected $income = [
+        'i1' => '~100',
+        'i2' => '150',
+        'i3' => '200',
+        'i4' => '250',
+        'i5' => '300',
+        'i6' => '350',
+        'i7' => '400',
+        'i8' => '450',
+        'i9' => '500',
+        'i10' => '550',
+        'i11' => '600',
+        'i12' => '650',
+        'i13' => '700',
+        'i14' => '750',
+        'i15' => '800',
+        'i16' => '850',
+        'i17' => '900',
+        'i18' => '950',
+        'i19' => '1000',
+        'i20' => '1000~'
     ];
 
     public static function boot()
@@ -306,5 +408,49 @@ class SeekerProfile extends Model
 
         return collect($languages);
     }
-    
+
+    static function getPositions($index = null)
+    {
+        $positions = self::$positions;
+
+        if ($index) {
+            return $positions[$index] ?? null;
+        }
+
+        return collect($positions);
+    }
+
+    static function getDatabases($index = null)
+    {
+        $databases = self::$databases;
+
+        if ($index) {
+            return $databases[$index] ?? null;
+        }
+
+        return collect($databases);
+    }
+
+    static function getEmploymentStatus($index = null)
+    {
+        $employment_status = self::$employment_status;
+
+        if ($index) {
+            return $employment_status[$index] ?? null;
+        }
+
+        return collect($employment_status);
+    }
+
+    static function getIncome($index = null)
+    {
+        $income = self::$income;
+
+        if ($index) {
+            return $income[$index] ?? null;
+        }
+
+        return collect($income);
+    }
+
 }

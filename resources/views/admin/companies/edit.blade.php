@@ -16,10 +16,11 @@
                   <h3 class="text-center">{{ $company->display_name }}</h3>
 
                   <div class="card-actions card-actions-right position-absolute">
-                    <a href="{{ route('admin.companies.show', $company) }}" class="card-link mr-3">
+                    <a href="{{ route('admin.companies.show', $company) }}" class="card-link mr-2">
                       <i class="fas fa-chevron-circle-left"></i> Back
                     </a>
-
+                    <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link mr-2 ml-0">募集を作成する</a>
+                    <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link mr-2 ml-0">メッセージ</a>
                     <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
                   </div>
                 </div>
@@ -47,7 +48,7 @@
               </ul>
             </div>
           @endif
-          
+
           @include('admin.companies.partials.step' . $step)
 
         </div>

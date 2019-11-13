@@ -341,6 +341,7 @@
       elementTarget.style.display =  'flex';
 
       modal.querySelector('.modal-title').textContent = title;
+      modal.querySelector('.modal-body').textContent = null;
       modal.querySelector('.modal-body').appendChild(elementTarget);
 
       $(modal).modal('show');
