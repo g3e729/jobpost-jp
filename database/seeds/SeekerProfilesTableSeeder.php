@@ -84,7 +84,7 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['address2'] = $lname[rand(0, count($lname) - 1)];
             $fields['address3'] = rand(876, 854);
             $fields['country'] = 'JPN';
-            $fields['birthday'] = now()->subMonths(rand(10, 30));
+            $fields['birthday'] = now()->subYears(rand(11, 41))->subMonths(rand(1, 7))->subDays(rand(2, 30));
             $fields['description'] = "Hi! I am " . ucwords($name) . "!";
             $fields['course_id'] = rand(1, 10);
             $fields['it_level'] = rand(1, 7);

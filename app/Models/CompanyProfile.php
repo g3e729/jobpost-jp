@@ -36,6 +36,10 @@ class CompanyProfile extends Model
         'portfolio'
     ];
 
+    static protected $get_attr = [
+        'industry'
+    ];
+
     static protected $industries = [
         1 => 'IT',
         'others' => 'others'
@@ -44,36 +48,23 @@ class CompanyProfile extends Model
     public static function boot()
     {
         parent::boot();
-        static::updating(function ($model) {
-            foreach(['email', 'name', 'japanese_name', 'display_name'] as $attribute) {
-                unset($model->$attribute);
-            }
-        });
-    }
-
-    public function avatar()
-    {
-        return $this->morphOne(File::class, 'fileable');
-    }
-
-    /**
-     * Get posts.
-     *
-     * @return Illuminate\Database\Eloquent\Relations\hasMany
-     */
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
-    public function getIndustryAttribute()
-    {
-        return isset(self::$industries[$this->industry_id]) ? ucwords(self::$industries[$this->industry_id]) : null;
     }
 
     public function scopeSearch($query, $value)
     {
         return $query->where('company_name', 'LIKE', "%{$value}%");
+    }
+
+    // Attributes
+    public function getIndustryAttribute()
+    {
+        return isset(self::$industries[$this->industry_id]) ? ucwords(self::$industries[$this->industry_id]) : null;
+    }
+
+    // Relationships
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 
     static function getIndustries($index = null)

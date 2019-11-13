@@ -3,13 +3,11 @@
 @section('pageTitle', 'スタッフ')
 
 @section('content')
-  @if ($employees->count())
-    <div class="l-container">
-      @include('admin.employees.partials.search')
-    </div>
+  <div class="l-container">
+    @include('admin.employees.partials.search')
+  </div>
 
-    <hr class="content-divider d-block">
-  @endif
+  <hr class="content-divider d-block">
 
   <div class="l-container l-container-wide">
 
@@ -19,11 +17,11 @@
       </div>
     @endif
 
-    <div class="row py-4">
+    @if (! $employees->count())
+      <p class="text-center">No results</p>
+    @endif
 
-      @if (! $employees->count())
-        @include('admin.partials.notfound')
-      @endif
+    <div class="row py-4">
       
       @foreach($employees as $employee)
         <div class="col-3 mb-4">

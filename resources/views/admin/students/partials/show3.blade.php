@@ -8,7 +8,7 @@
             <dl class="mt-3">
               @foreach($programming_languages as $id => $programming_language)
                 <dt class="text-muted">{{ ucwords($programming_language) }}</dt>
-                <dd>{{ $student->student_skills[$id] ?? 0 }}</dd>
+                <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
               @endforeach
             </dl>
           </dd>
@@ -21,7 +21,7 @@
             <dl class="mt-3">
               @foreach($frameworks as $id => $framework)
                 <dt class="text-muted">{{ ucwords($framework) }}</dt>
-                <dd>{{ $student->student_skills[$id] ?? 0 }}</dd>
+                <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
               @endforeach
             </dl>
           </dd>
@@ -31,12 +31,12 @@
     <tr>
       <td>
         <div class="font-weight-bold">その他</div>
-        @if (! $student->student_skills->intersectByKeys($others)->count())
+        @if (! $student->listed_skills->intersectByKeys($others)->count())
           <span>--</span>
         @endif
         <ul class="list-group list-group-flush my-3">
           @foreach($others as $id => $other)
-            @if (isset($student->student_skills[$id]))
+            @if (isset($student->listed_skills[$id]))
               <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ $other }}</li>
             @endif
           @endforeach
@@ -49,7 +49,7 @@
             <dl class="mt-3">
               @foreach($experiences as $id => $experience)
                 <dt class="text-muted">{{ ucwords($experience) }}</dt>
-                <dd>{{ $student->student_skills[$id] ?? 0 }}</dd>
+                <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
               @endforeach
             </dl>
           </dd>
@@ -60,11 +60,11 @@
       <td>
         <div class="font-weight-bold">語学</dt>
         <ul class="list-group list-group-flush my-3">
-          @if (! $student->student_skills->intersectByKeys($languages)->count())
+          @if (! $student->listed_skills->intersectByKeys($languages)->count())
             <span>--</span>
           @endif
           @foreach($languages as $id => $language)
-            @if (isset($student->student_skills[$id]))
+            @if (isset($student->listed_skills[$id]))
               <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ $language }}</li>
             @endif
           @endforeach

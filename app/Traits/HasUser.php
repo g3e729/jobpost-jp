@@ -10,7 +10,16 @@ use App\Models\User;
 
 trait HasUser
 {
-    static protected $api_attr = ['display_name', 'email', 'japanese_name', 'name'];
+    static protected $api_attr = [
+        'email',
+        'name',
+        'japanese_name',
+        'display_name',
+        'avatar',
+        'cover_photo',
+        'social_media_accounts',
+        'listed_skills'
+    ];
     
     // Attributes
     public function getEmailAttribute()
@@ -60,7 +69,7 @@ trait HasUser
         return $this->social_media->pluck('url', 'social_media')->toArray();
     }
 
-    public function getStudentSkillsAttribute()
+    public function getListedSkillsAttribute()
     {
         return $this->skills->pluck('skill_rate', 'skill_id');
     }
@@ -94,7 +103,8 @@ trait HasUser
     // API attribute json setter
     public function forApi()
     {
-        foreach(self::$api_attr as $attr) {
+        $attributes = array_merge(self::$api_attr, $this::$get_attr);
+        foreach($attributes as $attr) {
             $this[$attr] = $this->$attr;
         }
 

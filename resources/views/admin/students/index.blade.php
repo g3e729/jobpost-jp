@@ -3,13 +3,11 @@
 @section('pageTitle', '生徒')
 
 @section('content')
-  @if ($students->count())
   <div class="l-container">
     @include('admin.students.partials.search')
   </div>
 
   <hr class="content-divider d-block">
-  @endif
 
   <div class="l-container l-container-wide">
 
@@ -18,12 +16,12 @@
         {{ session()->get('success') }}
       </div>
     @endif
+
+    @if (! $students->count())
+      <p class="text-center">No results</p>
+    @endif
     
     <div class="row py-4">
-
-      @if (! $students->count())
-      @include('admin.partials.notfound')
-      @endif
       
       @foreach($students as $student)
         <div class="col-3 mb-4">
@@ -59,7 +57,7 @@
                   
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">英語</div>
-                    <span class="text-muted">{{ $student->pre_english_level ?? '--' }}</span>
+                    <span class="text-muted">{{ $student->english_level ?? '--' }}</span>
                   </li>
                   
                 </ul>
