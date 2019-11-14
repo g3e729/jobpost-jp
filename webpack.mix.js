@@ -19,4 +19,4 @@ mix.js('resources/js/editform.js', 'public/js');
 // mix.copy('node_modules/@fontawesome/css/all.min.css', 'public/css/fontawesome.min.css');
 mix.sass('resources/sass/app.scss', 'public/css');
 
-mix.react('resources/js/web.js', 'public/js')
+mix.react('resources/js/react/web.js', 'public/js')
