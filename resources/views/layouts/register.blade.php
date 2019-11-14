@@ -35,7 +35,7 @@
   <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-awesome">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
@@ -96,7 +96,7 @@
 
   <script src="{{ asset('js/app.js') }}" async></script>
   <script src="{{ asset('js/register.js') }}"></script>
-  
+
   <script>
     $('.js-datepicker').datepicker({
       format: 'yyyy-mm-dd',

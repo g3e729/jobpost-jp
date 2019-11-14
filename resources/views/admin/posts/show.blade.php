@@ -6,16 +6,16 @@
       <div class="recruitment-detail-top py-4 mb-5">
         <div class="shadow-sm card card-recruitment-detail">
           <div class="card-body">
+            <div class="card-actions text-right">
+              <a href="{{ route('admin.recruitments.edit', $index) }}" class="card-link">詳細</a>
+              <a href="{{ route('admin.recruitments.delete', $index) }}" class="card-link text-muted js-post-delete">無効にする</a>
+            </div>
             <div class="card-body-img text-center">
               <img src="https://lorempixel.com/240/240/city/" class="avatar avatar-md">
             </div>
             <div class="card-body-main mt-3">
               <h3 class="text-center">自社★C2Cマッチングプラットフォーム開発</h3>
 
-              <div class="card-actions card-actions-right position-absolute">
-                <a href="{{ route('admin.recruitments.edit', $index) }}" class="card-link">詳細</a>
-                <a href="{{ route('admin.recruitments.delete', $index) }}" class="card-link text-muted js-post-delete">無効にする</a>
-              </div>
             </div>
           </div>
           <table class="table">

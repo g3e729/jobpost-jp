@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="l-container">
-    
+
     @if (session()->has('success'))
       <div class="alert alert-success" role="alert">
         {{ session()->get('success') }}
@@ -15,22 +15,22 @@
       <div class="employee-detail-top py-4">
         <div class="shadow-sm card card-employee-detail">
           <div class="card-body">
+            <div class="card-actions text-right">
+              <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">詳細</a>
+              <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
+              <form id="deleteForm" method="POST" action="{{ route('admin.employees.destroy', $employee) }}" novalidate style="visibility: hidden; position: absolute;">
+                @csrf
+                {{ method_field('DELETE') }}
+
+                <button type="submit">削除</button>
+              </form>
+            </div>
             <div class="card-body-img text-center">
               <img src="{{ $employee->avatar }}" class="avatar avatar-md">
             </div>
             <div class="card-body-main mt-3">
               <h3 class="text-center">{{ $employee->display_name }}</h3>
 
-              <div class="card-actions card-actions-right position-absolute">
-                <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link h6 mr-3">詳細</a>
-                <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none h6 text-muted">削除</button>
-                <form id="deleteForm" method="POST" action="{{ route('admin.employees.destroy', $employee) }}" novalidate style="visibility: hidden; position: absolute;">
-                  @csrf
-                  {{ method_field('DELETE') }}
-                  
-                  <button type="submit">削除</button>
-                </form>
-              </div>
             </div>
           </div>
         </div>

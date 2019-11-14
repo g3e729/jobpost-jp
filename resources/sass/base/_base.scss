@@ -25,6 +25,11 @@ body {
   color: $base-font-color;
   background-color: $base-background-color;
   height: 100%;
+
+  &.bg-gradient-awesome {
+    background-image: linear-gradient(40deg, #45cafc, #303f9f);
+    background-size: cover;
+  }
 }
 
 a {

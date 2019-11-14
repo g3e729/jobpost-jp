@@ -9,20 +9,20 @@
         <div class="company-detail-top py-4">
             <div class="shadow-sm card card-company-detail">
               <div class="card-body">
+                <div class="card-actions text-right">
+                  <a href="{{ route('admin.companies.show', $company) }}" class="card-link">
+                    <i class="fas fa-chevron-circle-left"></i> Back
+                  </a>
+                  <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link">募集を作成する</a>
+                  <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link mr-4">メッセージ</a>
+                  <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
+                </div>
                 <div class="card-body-img text-center">
                   <img src="{{ $company->avatar }}" class="avatar avatar-md">
                 </div>
                 <div class="card-body-main mt-3">
                   <h3 class="text-center">{{ $company->display_name }}</h3>
 
-                  <div class="card-actions card-actions-right position-absolute">
-                    <a href="{{ route('admin.companies.show', $company) }}" class="card-link mr-2">
-                      <i class="fas fa-chevron-circle-left"></i> Back
-                    </a>
-                    <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link mr-2 ml-0">募集を作成する</a>
-                    <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link mr-2 ml-0">メッセージ</a>
-                    <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
-                  </div>
                 </div>
               </div>
             </div>

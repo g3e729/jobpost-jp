@@ -8,24 +8,24 @@
       <div class="company-detail-top py-4">
           <div class="shadow-sm card card-company-detail">
             <div class="card-body">
+              <div class="card-actions text-right">
+                <a href="{{ route('admin.companies.edit', $company) }}" class="card-link">詳細</a>
+                <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link">募集を作成する</a>
+                <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link">メッセージ</a>
+                <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
+                <form id="deleteForm" method="POST" action="{{ route('admin.companies.destroy', $company) }}" novalidate style="visibility: hidden; position: absolute;">
+                  @csrf
+                  {{ method_field('DELETE') }}
+
+                  <button type="submit">削除</button>
+                </form>
+              </div>
               <div class="card-body-img text-center">
                 <img src="{{ $company->avatar }}" class="avatar avatar-md">
               </div>
               <div class="card-body-main mt-3">
                 <h3 class="text-center">{{ $company->display_name }}</h3>
 
-                <div class="card-actions card-actions-right position-absolute">
-                  <a href="{{ route('admin.companies.edit', $company) }}" class="card-link h6">詳細</a>
-                  <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link h6">募集を作成する</a>
-                  <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link h6">メッセージ</a>
-                  <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none h6 text-muted">削除</button>
-                  <form id="deleteForm" method="POST" action="{{ route('admin.companies.destroy', $company) }}" novalidate style="visibility: hidden; position: absolute;">
-                    @csrf
-                    {{ method_field('DELETE') }}
-
-                    <button type="submit">削除</button>
-                  </form>
-                </div>
               </div>
             </div>
           </div>
