@@ -20,9 +20,9 @@
     @if (! $students->count())
       <p class="text-center">No results</p>
     @endif
-    
+
     <div class="row py-4">
-      
+
       @foreach($students as $student)
         <div class="col-3 mb-4">
           <div class="shadow-sm card card-student card-hover">
@@ -37,37 +37,37 @@
                 </div>
               </div>
               <div class="card-body-main mt-2">
-                
+
                 <ul class="list-group list-group-flush">
-                  
+
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">メールアドレス</div>
                     <span class="text-muted">{{ $student->email }}</span>
                   </li>
-                  
+
                   <li class="list-group-item p-1">
-                    <div class="font-weight-bold">期</div>
-                    <span class="text-muted">{{ rand(3, 10) }}</span>
+                    <div class="font-weight-bold">入学日{{ $student->graduation_date ? ' - 卒業日' : null }}</div>
+                    <span class="text-muted">{{ $student->enrollment_date }}<br>{{ $student->enrollment_date }}</span>
                   </li>
-                  
+
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">コース</div>
                     <span class="text-muted">{{ $student->course ?? '--' }}</span>
                   </li>
-                  
+
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">英語</div>
                     <span class="text-muted">{{ $student->english_level ?? '--' }}</span>
                   </li>
-                  
+
                 </ul>
-                
+
               </div>
             </div>
           </div>
         </div>
       @endforeach
-      
+
     </div>
   </div>
 

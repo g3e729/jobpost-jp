@@ -10,7 +10,7 @@
   <hr class="content-divider d-block">
 
   <div class="l-container l-container-wide">
-    
+
     @if (session()->has('success'))
       <div class="alert alert-success" role="alert">
         {{ session()->get('success') }}
@@ -20,9 +20,9 @@
     @if (! $companies->count())
       <p class="text-center">No results</p>
     @endif
-    
+
     <div class="row py-4">
-      
+
       @foreach($companies as $company)
         <div class="col-3 mb-4">
           <div class="shadow-sm card card-company card-hover">
@@ -43,11 +43,6 @@
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">メールアドレス</div>
                     <span class="text-muted">{{ $company->email ?? '--' }}</span>
-                  </li>
-
-                  <li class="list-group-item p-1">
-                    <div class="font-weight-bold">プラン</div>
-                    <span class="text-muted">{{ $company->plan ?? '--' }}</span>
                   </li>
 
                   <li class="list-group-item p-1">
@@ -72,7 +67,7 @@
           </div>
         </div>
       @endforeach
-      
+
     </div>
   </div>
 

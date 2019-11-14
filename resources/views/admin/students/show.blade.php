@@ -16,7 +16,6 @@
 
               <div class="card-badges text-center h6">
                 <span class="badge badge-pill badge-secondary">メールアドレス : {{ $student->email }}</span>
-                <span class="badge badge-pill badge-secondary">期 : 9</span>
                 <span class="badge badge-pill badge-secondary">コース : {{ $student->course }}</span>
                 <span class="badge badge-pill badge-secondary">ステータス : {{ $student->student_status }}</span>
                 <span class="badge badge-pill badge-secondary">英語 : {{ $student->english_level }}</span>

@@ -4,7 +4,7 @@
 
   <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
-    
+
     <input type="hidden" name="step" value="{{ $step }}">
     <input type="hidden" name="code" value="{{ $invitation->code }}">
     <input type="hidden" name="email" value="{{ $invitation->email }}">
@@ -42,7 +42,7 @@
         <div class="col-8">
           <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter Japanese name. 
+            Please enter Japanese name.
           </div>
         </div>
       </div>
@@ -166,7 +166,7 @@
           </div>
         </div>
       </div>
-   
+
       <div class="form-group pb-3 row">
         <label for="formGraduationDate" class="col-4 col-form-label font-weight-bold">卒業日</label>
         <div class="col-8">
@@ -181,18 +181,6 @@
               Please enter graduation date.
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="form-group pb-3 row">
-        <label for="formStatus" class="col-4 col-form-label font-weight-bold">ステータス</label>
-        <div class="col-8">
-          <select class="form-control" id="formStatus" name="status">
-            <option value="" selected hidden disabled>Choose status</option>
-              @foreach($student_status as $index => $name)
-                <option value="{{ $index }}">{{ mb_convert_case($name, MB_CASE_TITLE, 'UTF-8') }}</option>
-              @endforeach
-          </select>
         </div>
       </div>
 
@@ -235,6 +223,6 @@
         <button type="submit" class="alt-font btn btn-primary btn-submit btn-rounded w-100">送信</button>
       </div>
     </div>
-    
+
   </form>
 @endsection
