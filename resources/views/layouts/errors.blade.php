@@ -39,10 +39,10 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
 	    <div class="row p-5" style="background: #fff">
-	        <div class="col-md-12 text-center p-5 mt-5">
-				    <img src="{{ asset('img/logo-kredo-sp.png') }}" alt="Kredo" class="mt-5 mb-3">
-        		@yield('content')
-	        </div>
+        <div class="col-md-12 text-center">
+          <img src="{{ asset('img/logo-kredo-new-sp.png') }}" alt="Kredo" class="mt-5 mb-3 w-100" style="max-width: 404px;">
+          @yield('content')
+        </div>
 	    </div>
       </div>
     </div>

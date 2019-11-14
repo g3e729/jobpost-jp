@@ -10,7 +10,7 @@
         <div class="card-header">{{ __('パスワードを再設定する') }}</div>
 
         <div class="card-body">
-          
+
           @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
               {{ session()->get('success') }}
@@ -21,7 +21,7 @@
             @csrf
 
             <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
+              <label for="email" class="col-md-4 col-form-label font-weight-bold text-md-right">{{ __('メールアドレス') }}</label>
 
               <div class="col-md-6">
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group row mb-0">
-              <div class="col-md-6 offset-md-4">
+              <div class="col-md-6 offset-md-4 py-3">
                 <button type="submit" class="alt-font btn btn-primary btn-submit">{{ __('パスワードリセットリンクの送信') }}</button>
               </div>
             </div>

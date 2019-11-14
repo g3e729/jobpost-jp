@@ -10,10 +10,10 @@
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
+    <nav class="navbar navbar-expand topbar mb-4 static-top shadow">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-          <img src="{{ asset('img/logo-kredo.png') }}" width="120" height="44" alt="Kredo">
+        <a class="navbar-brand" href="{{ url('/') }}" style="max-width: 214px;">
+          <img class="w-100" src="{{ asset('img/logo-kredo-new.png') }}" alt="Kredo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
@@ -23,9 +23,9 @@
           <ul class="navbar-nav mr-auto"></ul>
 
           <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link alt-font text-white" href="{{ route('login') }}">{{ __('ログインする') }}</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link alt-font font-weight-bold text-dark" href="{{ route('login') }}">{{ __('ログインする') }}</a>
+            </li>
           </ul>
         </div>
       </div>

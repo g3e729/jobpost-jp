@@ -8,7 +8,7 @@
     <li class="nav-item dropdown no-arrow" style="max-width: 54px;">
       <a class="nav-link dropdown-toggle p-0" href="#" id="userDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        <img class="img-profile rounded-circle w-100 h-100 border border-primary" src="{{ asset('img/avatar-kredo.png') }}" style="max-height: 54px; border-width: 3px !important;">
+        <img class="avatar avatar-sm avatar-bordered" src="{{ asset('img/avatar-kredo.png') }}">
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

@@ -19,7 +19,7 @@
           <input type="hidden" name="token" value="{{ $password_reset->token }}">
 
           <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
+            <label for="password" class="col-md-4 col-form-label font-weight-bold text-md-right">{{ __('パスワード') }}</label>
 
             <div class="col-md-6">
               <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -31,7 +31,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('パスワードを認証する') }}</label>
+            <label for="password-confirm" class="col-md-4 col-form-label font-weight-bold text-md-right">{{ __('パスワードを認証する') }}</label>
 
             <div class="col-md-6">
               <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -39,7 +39,7 @@
           </div>
 
           <div class="form-group row mb-0">
-            <div class="col-md-6 offset-md-4">
+            <div class="col-md-6 offset-md-4 py-3">
               <button type="submit" class="alt-font btn btn-primary btn-submit">{{ __('パスワードを再設定する') }}</button>
             </div>
           </div>

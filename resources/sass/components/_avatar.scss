@@ -4,13 +4,23 @@
   border-radius: 50%;
   object-fit: cover;
 
+  &.avatar-sm {
+    height: 50px;
+    width: 50px;
+  }
+
   &.avatar-md {
     height: 150px;
     width: 150px;
   }
-  
+
   &.avatar-lg {
     height: 200px;
     width: 200px;
   }
+
+  &.avatar-bordered {
+    border: solid 3px $primary;
+  }
 }
+
