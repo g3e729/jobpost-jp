@@ -1,86 +1,86 @@
 @extends('admin.layouts.default')
 
-@php
-$faker = Faker\Factory::create('ja_JP');
-
-$is_confirm = $faker->boolean();
-$total_records = $faker->randomDigit;
-$company_name = $faker->company . ' ' . $faker->companySuffix;
-$company_avatar = $faker->imageUrl(240, 240, 'city');
-
-@endphp
+@section('pageTitle', $payment->transactionable->display_name . ' ' . $payment->bill_date)
 
 @section('content')
   <div class="l-container py-4">
+
+    @if (session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
+    @endif
+    
     <div class="shadow-sm card card-payment-detail">
       <div class="card-body pt-5 px-5">
-        <h2 class="card-title w-100 text-truncate">{{ $company_name }}10月分</h2>
-        @if ($total_records)
-        <p class="card-text text-muted h5 mb-3">購入履歴</p>
+        <h2 class="card-title w-100 text-truncate">{{ $payment->transactionable->display_name }} {{ $payment->bill_date }}</h2>
+        @if ($payment->tickets->count())
+          <p class="card-text text-muted h5 mb-3">購入履歴</p>
         @endif
 
         <div class="card-deck my-5">
           <div class="card bg-secondary text-white shadow">
             <div class="card-body text-center h6">
               <div class="text-white-50 small">チケット合計金額</div>
-              100,000 円
+              {{ price($payment->ticket_total) }}
             </div>
           </div>
           <div class="card bg-primary text-white shadow">
             <div class="card-body text-center h6">
               <div class="text-white-50 small">登録費用</div>
-              50,000 円
+              {{ price($payment->subscription_total) }}
             </div>
           </div>
           <div class="card bg-danger text-white shadow">
             <div class="card-body h5">
               <span class="text-white-50 small" style="margin-top: 8px; display: inline-block;">合計</span>
-              150,000 円
+              {{ price($payment->total) }}
             </div>
           </div>
         </div>
 
-        @if ($total_records)
-        <table class="table table-striped table-hover mt-5 mb-4">
-          <thead>
-            <tr>
-              <th width="450px">アカウント</th>
-              <th>価格</th>
-              @if (!$is_confirm)
-              <th width="90px">&nbsp;</th>
-              @endif
-            </tr>
-          </thead>
-          <tbody>
-            @for ($i = 0; $i < $total_records; $i++)
-            <tr>
-              <td class="d-flex">
-                <img src="{{ $company_avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                <div class="ml-3">
-                  <h3 class="font-weight-bold h6">{{ $company_name }}</h3>
-                  <p class="text-muted mb-0">{{ $faker->randomElement($array = array ('15', '30', '45')) }}枚チケットを購入しました</p>
-                  <time>{{ $faker->dateTime->format('Y-m-d') }}</time>
-                </div>
-              </td>
-              <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
-              @if (!$is_confirm)
-              <td>
-                <div class="payment-actions d-flex justify-content-between">
-                  <a href="{{ route('admin.payments.ticket.delete', [0, $i]) }}" class="btn btn-link p-0 js-ticket-delete" data-type="delete">削除</a>
-                </div>
-              </td>
-              @endif
-            </tr>
-            @endfor
-          </tbody>
-        </table>
+        @if ($payment->tickets->count())
+          <table class="table table-striped table-hover mt-5 mb-4">
+            <thead>
+              <tr>
+                <th width="450px">アカウント</th>
+                <th>価格</th>
+                @if (! $payment->is_approved)
+                  <th width="90px">&nbsp;</th>
+                @endif
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($payment->tickets as $ticket)
+                <tr>
+                  <td class="d-flex">
+                    <div class="ml-3">
+                      <h3 class="font-weight-bold h6 {{ $ticket->deleted_at ? 'text-muted' : '' }}">{{ $payment->transactionable->display_name }}</h3>
+                      <p class="text-muted mb-0">{{ $ticket->description }}</p>
+                      <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
+                    </div>
+                  </td>
+                  <td>{{ price($ticket->amount) }}</td>
+                  @if (! $payment->is_approved)
+                    <td>
+                      @if (! $ticket->deleted_at)
+                        <div class="payment-actions d-flex justify-content-between">
+                          <a href="#" class="btn btn-link p-0 js-ticket-delete" data-type="delete">削除</a>
+                        </div>
+                      @endif
+                    </td>
+                  @endif
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
         @endif
 
         <div class="text-right">
-          @if (!$is_confirm)
-          <a href="{{ route('admin.payments.show', 0) }}" id="js-payment-submit" class="btn btn-primary btn-submit my-3 w-25" data-type="submit">入金確認</a>
+          @if (! $payment->is_approved)
+            <a href="#" id="js-payment-submit" class="btn btn-primary btn-submit my-3 w-25" data-type="submit">入金確認</a>
           @else
-          <a href="{{ route('admin.tickets.index') }}" class="btn btn-primary btn-submit my-3 w-25">入金確認済み</a>
+            <a href="#" class="btn btn-primary btn-submit my-3 w-25">入金確認済み</a>
           @endif
         </div>
       </div>
@@ -122,10 +122,10 @@ $company_avatar = $faker->imageUrl(240, 240, 'city');
         btn.addEventListener('click', function(event) {
           if (this.dataset.type === 'delete') {
             modal.querySelector('.modal-title').textContent = '削除';
-            modal.querySelector('.modal-body').textContent = `{{ $company_name }} sure want to delete purchase of {{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0'  }} tickets?`; // KAM: Finalize format
+            modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} sure want to delete purchase of {{ $payment->tickets->count() }} tickets?`; // KAM: Finalize format
           } else {
             modal.querySelector('.modal-title').textContent = '確認する';
-            modal.querySelector('.modal-body').textContent = `{{ $company_name }} willing to renew subscription?`; // KAM: Finalize format
+            modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} willing to renew subscription?`; // KAM: Finalize format
           }
 
           $(modal).modal('show');

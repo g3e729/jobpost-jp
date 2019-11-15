@@ -71,6 +71,11 @@ class CompanyProfile extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function transactions()
+    {
+        return $this->morphMany(Transaction::class, 'transactionable');
+    }
+
     static function getIndustries($index = null)
     {
         $industries = self::$industries;

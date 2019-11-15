@@ -29,24 +29,24 @@
                 </tr>
               </thead>
               <tbody>
-                @for($i = 0; $i < 10; $i++)
-                <tr>
-                  <td class="d-flex">
-                    <img src="{{ $faker->imageUrl(240, 240, 'city') }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                    <div class="ml-3">
-                      <h3 class="font-weight-bold h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h3>
-                      <p class="text-muted mb-0">{{ $faker->randomElement($array = array ('15', '30', '45')) }}枚チケットを購入しました</p>
-                      <time>{{ $faker->dateTime->format('Y-m-d') }}</time>
-                    </div>
-                  </td>
-                  <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
-                  <td>
-                    <div class="payment-actions d-flex justify-content-between">
-                      <a href="{{ route('admin.tickets.delete', $i) }}" class="btn btn-link p-0 js-ticket-delete">削除</a>
-                    </div>
-                  </td>
-                </tr>
-                @endfor
+                @foreach ($not_approved as $ticket)
+                  <tr>
+                    <td class="d-flex">
+                      <img src="{{ $ticket->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
+                      <div class="ml-3">
+                        <h3 class="font-weight-bold h6">{{ $ticket->transactionable->display_name }}</h3>
+                        <p class="text-muted mb-0">{{ $ticket->transactionable->description }}</p>
+                        <time>{{ $ticket->created_at->format('Y年m月') }}</time>
+                      </div>
+                    </td>
+                    <td>{{ price($ticket->amount) }}</td>
+                    <td>
+                      <div class="payment-actions d-flex justify-content-between">
+                        <a href="#" class="btn btn-link p-0 js-ticket-delete">削除</a>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -59,19 +59,24 @@
                 </tr>
               </thead>
               <tbody>
-                @for($i = 0; $i < 10; $i++)
-                <tr>
-                  <td class="d-flex">
-                    <img src="{{ $faker->imageUrl(240, 240, 'city') }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                    <div class="ml-3">
-                      <h3 class="font-weight-bold h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h3>
-                      <p class="text-muted mb-0">{{ $faker->text(50) }}</p>
-                      <time>{{ $faker->dateTime->format('Y-m-d') }}</time>
-                    </div>
-                  </td>
-                  <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
-                </tr>
-                @endfor
+                @foreach ($approved as $ticket)
+                  <tr>
+                    <td class="d-flex">
+                      <img src="{{ $ticket->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
+                      <div class="ml-3">
+                        <h3 class="font-weight-bold h6">{{ $ticket->transactionable->display_name }}</h3>
+                        <p class="text-muted mb-0">{{ $ticket->transactionable->description }}</p>
+                        <time>{{ $ticket->created_at->format('Y年m月') }}</time>
+                      </div>
+                    </td>
+                    <td>{{ price($ticket->amount) }}</td>
+                    <td>
+                      <div class="payment-actions d-flex justify-content-between">
+                        <a href="#" class="btn btn-link p-0 js-ticket-delete">削除</a>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

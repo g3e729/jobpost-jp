@@ -2,11 +2,13 @@
 
 namespace App\Traits;
 
+use App\Models\EducationHistory;
 use App\Models\File;
 use App\Models\Portfolio;
 use App\Models\Skill;
 use App\Models\SocialMediaAccount;
 use App\Models\User;
+use App\Models\WorkHistory;
 
 trait HasUser
 {
@@ -117,6 +119,16 @@ trait HasUser
     public function portfolios()
     {
         return $this->hasMany(Portfolio::class);
+    }
+
+    public function work_history()
+    {
+        return $this->morphMany(WorkHistory::class, 'historiable');
+    }
+
+    public function education_history()
+    {
+        return $this->morphMany(EducationHistory::class, 'historiable');
     }
 
     // API attribute json setter

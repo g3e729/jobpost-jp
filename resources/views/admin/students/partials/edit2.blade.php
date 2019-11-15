@@ -1,21 +1,27 @@
-<form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
+<form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.students.update', $student) }}" enctype="multipart/form-data" novalidate>
   @csrf
   {{ method_field('PATCH') }}
 
   <div class="form-group pb-3 row">
     <label for="formIntro" class="col-3 col-form-label font-weight-bold">自己紹介</label>
     <div class="col-9">
-      <input type="text" class="form-control" id="formIntro" name="intro" value="{{ $student->intro }}" placeholder="">
+      <input type="text" class="form-control" id="formIntro" name="intro_text" value="{{ $student->intro_text }}" placeholder="">
     </div>
   </div>
 
   <div class="form-group pb-3 row">
     <label for="formAim" class="col-3 col-form-label font-weight-bold">やってみたいこと</label>
     <div class="col-9">
-      <textarea class="form-control" id="formAim" name="aim" value="{{ $student->aim }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
+      <textarea class="form-control" id="formAim" name="what_text" placeholder="" rows="4" style="min-height: 100px;">{{ $student->what_text }}</textarea>
     </div>
   </div>
 
+  @php
+    $pholder = $student->work_history->first();
+    $student->work_history->forget(0);
+
+    // dd($student->work_history);
+  @endphp
 
   <div id="js-group-copy" data-iterate="5">
     <div id="js-group-input0" class="pb-3 row">
@@ -23,28 +29,28 @@
       <div class="col-9">
         <div class="form-group position-relative">
           <label for="formCompanyName" class="form-label pt-0">企業名</label>
-          <input type="text" class="form-control" name="history[0][company_name]" data-name="company_name" value="{{ $student->company_name }}" placeholder="">
+          <input type="text" class="form-control" name="work_history[0][company_name]" data-name="company_name" value="{{ $pholder->company_name ?? '' }}" placeholder="">
         </div>
 
         <div class="form-group position-relative">
           <label for="formCompanyRole" class="form-label pt-0">役</label>
-          <input type="text" class="form-control" name="history[0][company_role]" data-name="company_role" value="{{ $student->company_role }}" placeholder="">
+          <input type="text" class="form-control" name="work_history[0][role]" data-name="company_role" value="{{ $pholder->role ?? '' }}" placeholder="">
         </div>
 
         <div class="form-group position-relative">
           <label for="formJobDescription" class="form-label pt-0">内容</label>
-          <textarea class="form-control" name="history[0][job_escription]" data-name="job_escription" value="{{ $student->job_escription }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
+          <textarea class="form-control" name="work_history[0][content]" data-name="job_escription" placeholder="" rows="4" style="min-height: 100px;">{{ $pholder->content ?? '' }}</textarea>
         </div>
 
         <div class="form-group position-relative">
           <label for="formStaffRange" class="form-label pt-0">期間</label>
           <div class="input-group input-daterange js-datepicker">
-            <input type="text" class="form-control text-left" name="history[0][staff_range_from]"
+            <input type="text" class="form-control text-left" name="work_history[0][started_at]" value="{{ $pholder->started_at ?? '' }}"
               data-name="staff_range_from" placeholder="">
             <div class="input-group-text">
               <i class="fas fa-fw fa-arrows-alt-h"></i>
             </div>
-            <input type="text" class="form-control text-left" name="history[0][staff_range_to]"
+            <input type="text" class="form-control text-left" name="work_history[0][ended_at]" value="{{ $pholder->ended_at ?? '' }}"
               data-name="staff_range_to" placeholder="">
           </div>
         </div>
@@ -61,27 +67,41 @@
 
   <div class="pb-3 row">
     <div class="col-3 font-weight-bold">学歴</div>
+    @php
+      $education = $student->education_history->first();
+    @endphp
     <div class="col-9">
+
       <div class="form-group position-relative">
         <label for="formSchoolName" class="form-label pt-0">学校名</label>
-        <input type="text" class="form-control" id="formSchoolName" name="school_name" value="{{ $student->school_name }}" placeholder="">
+        <input type="text" class="form-control" id="formSchoolName" name="education_history[0][school_name]" value="{{ $education->school_name ?? '' }}" placeholder="">
       </div>
 
       <div class="form-group position-relative">
-        <label for="formmajor" class="form-label pt-0">学部、学科、専攻</label>
-        <input type="text" class="form-control" id="formmajor" name="major" value="{{ $student->major }}" placeholder="">
+        <label for="formmajor" class="form-label pt-0">学部</label>
+        <input type="text" class="form-control" id="formfaculty" name="education_history[0][faculty]" value="{{ $education->faculty ?? '' }}" placeholder="">
+      </div>
+
+      <div class="form-group position-relative">
+        <label for="formmajor" class="form-label pt-0">学科</label>
+        <input type="text" class="form-control" id="formmajor" name="education_history[0][major]" value="{{ $education->major ?? '' }}" placeholder="">
+      </div>
+
+      <div class="form-group position-relative">
+        <label for="formmajor" class="form-label pt-0">専攻</label>
+        <input type="text" class="form-control" id="formdepartment" name="education_history[0][department]" value="{{ $education->department ?? '' }}" placeholder="">
       </div>
 
       <div class="form-group position-relative">
         <label for="formSchoolExperience" class="form-label pt-0">学んだこと</label>
-        <textarea class="form-control" id="formSchoolExperience" name="school_experience" value="{{ $student->school_experience }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
+        <textarea class="form-control" id="formSchoolExperience" name="education_history[0][content]" placeholder="" rows="4" style="min-height: 100px;">{{ $education->content ?? '' }}</textarea>
       </div>
 
       <div class="form-group position-relative">
         <label for="formGraduationDate" class="form-label pt-0">卒業</label>
         <div class="input-group">
-          <input type="text" class="form-control js-datepicker" id="formGraduationDate" name="graduation_date"
-            value="{{ $student->graduation_date }}" placeholder="">
+          <input type="text" class="form-control js-datepicker" id="formGraduationDate" name="education_history[0][graduated_at]"
+            value="{{ $education->graduated_at ?? '' }}" placeholder="">
           <div class="input-group-append">
             <div class="input-group-text">
               <i class="fas fa-fw fa-calendar-alt"></i>
@@ -143,7 +163,7 @@
   <div class="form-group pb-3 row">
     <label for="formMovie" class="col-3 col-form-label font-weight-bold">Movie URL</label>
     <div class="col-9">
-      <input type="url" class="form-control" id="formMovie" name="movie" value="{{ $student->movie }}" placeholder="">
+      <input type="url" class="form-control" id="formMovie" name="movie" value="{{ $student->movie_url }}" placeholder="">
     </div>
   </div>
 

@@ -7,8 +7,10 @@
           <dd>
             <dl class="mt-3">
               @foreach($programming_languages as $id => $programming_language)
-                <dt class="text-muted">{{ ucwords($programming_language) }}</dt>
-                <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                @if($student->listed_skills[$id])
+                  <dt class="text-muted">{{ ucwords($programming_language) }}</dt>
+                  <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                @endif
               @endforeach
             </dl>
           </dd>
@@ -20,8 +22,10 @@
           <dd>
             <dl class="mt-3">
               @foreach($frameworks as $id => $framework)
-                <dt class="text-muted">{{ ucwords($framework) }}</dt>
-                <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                @if($student->listed_skills[$id])
+                  <dt class="text-muted">{{ ucwords($framework) }}</dt>
+                  <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                @endif
               @endforeach
             </dl>
           </dd>
@@ -37,7 +41,7 @@
         <ul class="list-group list-group-flush my-3">
           @foreach($others as $id => $other)
             @if (isset($student->listed_skills[$id]))
-              <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ $other }}</li>
+              <li class="list-group-item text-muted mb-1 p-0 border-0 bg-transparent">{{ ucwords($other) }}</li>
             @endif
           @endforeach
         </ul>
@@ -48,8 +52,10 @@
           <dd>
             <dl class="mt-3">
               @foreach($experiences as $id => $experience)
-                <dt class="text-muted">{{ ucwords($experience) }}</dt>
-                <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                @if($student->listed_skills[$id])
+                  <dt class="text-muted">{{ ucwords($experience) }}</dt>
+                  <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                @endif
               @endforeach
             </dl>
           </dd>
