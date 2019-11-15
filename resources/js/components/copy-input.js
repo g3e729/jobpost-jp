@@ -10,8 +10,10 @@ export default class CopyInput {
     this.elementCopy = document.querySelector(this.selectorCopy);
     this.elementGroup = document.querySelector(this.selectorGroup);
 
-    this.init();
-    this.initEvents();
+    if (this.elementCopy) {
+      this.init();
+      this.initEvents();
+    }
   }
 
   init() {

@@ -117,22 +117,24 @@ $company_avatar = $faker->imageUrl(240, 240, 'city');
     const pageButtons = [...deleteButtons, submitButton];
     let currTarget;
 
-    pageButtons.forEach(btn => {
-      btn.addEventListener('click', function(event) {
-        if (this.dataset.type === 'delete') {
-          modal.querySelector('.modal-title').textContent = '削除';
-          modal.querySelector('.modal-body').textContent = `{{ $company_name }} sure want to delete purchase of {{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0'  }} tickets?`; // KAM: Finalize format
-        } else {
-          modal.querySelector('.modal-title').textContent = '確認する';
-          modal.querySelector('.modal-body').textContent = `{{ $company_name }} willing to renew subscription?`; // KAM: Finalize format
-        }
+    if (!pageButtons.includes(null)) {
+      pageButtons.forEach(btn => {
+        btn.addEventListener('click', function(event) {
+          if (this.dataset.type === 'delete') {
+            modal.querySelector('.modal-title').textContent = '削除';
+            modal.querySelector('.modal-body').textContent = `{{ $company_name }} sure want to delete purchase of {{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0'  }} tickets?`; // KAM: Finalize format
+          } else {
+            modal.querySelector('.modal-title').textContent = '確認する';
+            modal.querySelector('.modal-body').textContent = `{{ $company_name }} willing to renew subscription?`; // KAM: Finalize format
+          }
 
-        $(modal).modal('show');
-        currTarget = event.currentTarget.href;
+          $(modal).modal('show');
+          currTarget = event.currentTarget.href;
 
-        event.preventDefault();
-      })
-    });
+          event.preventDefault();
+        })
+      });
+    }
 
     modalSubmit.addEventListener('click', function(event) {
       $(modal).modal('hide');

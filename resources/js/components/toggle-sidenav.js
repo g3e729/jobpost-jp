@@ -10,7 +10,10 @@ export default class ToggleSidenav {
     this.window = window;
 
     this.init();
-    this.initEvents();
+
+    if (this.element) {
+      this.initEvents();
+    }
   }
 
   init() {
