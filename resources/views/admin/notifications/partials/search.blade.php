@@ -2,7 +2,7 @@
   <form class="py-2 mb-4">
     <h2 class="py-4 text-center alt-font">Search Notification</h2>
     <div class="form-group pb-3 row">
-      <label for="formName" class="col-2 col-form-label">お知らせ</label>
+      <label for="formName" class="col-2 col-form-label font-weight-bold text-muted">お知らせ</label>
       <div class="col-10">
         <input type="text" class="form-control" id="formName" name="formName" placeholder="Please enter company name">
       </div>
@@ -10,7 +10,7 @@
     <div class="pb-3 row">
       <div class="col-3">
         <div class="form-group">
-          <label for="formCategory">ジャンル</label>
+          <label for="formCategory" class="font-weight-bold text-muted">ジャンル</label>
           <select class="form-control" id="formCategory" name="formCategory">
             <option value="" selected hidden disabled>Choose category</option>
             <option value="category-a">Category A</option>
@@ -21,7 +21,7 @@
       </div>
       <div class="col-3">
         <div class="form-group">
-          <label for="formFrom">通知日(from)</label>
+          <label for="formFrom" class="font-weight-bold text-muted">通知日(from)</label>
           <select class="form-control" id="formFrom" name="formFrom">
             <option value="" selected hidden disabled>Choose from</option>
             <option value="from-a">From A</option>
@@ -32,7 +32,7 @@
       </div>
       <div class="col-3">
         <div class="form-group">
-          <label for="formTo">to</label>
+          <label for="formTo" class="font-weight-bold text-muted">to</label>
           <select class="form-control" id="formTo" name="formTo">
             <option value="" selected hidden disabled>Choose to</option>
             <option value="to-a">To A</option>
@@ -43,7 +43,7 @@
       </div>
       <div class="col-3">
         <div class="form-group">
-          <label for="formStatus">ステータス</label>
+          <label for="formStatus" class="font-weight-bold text-muted">ステータス</label>
           <select class="form-control" id="formStatus" name="formStatus">
             <option value="" selected hidden disabled>Choose status</option>
             <option value="status-a">Status A</option>

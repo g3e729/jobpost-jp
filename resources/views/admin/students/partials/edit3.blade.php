@@ -184,6 +184,11 @@
       <div class="form-group position-relative">
         <label for="formPortfolioImg" class="form-label pt-0">画像</label>
         <div data-group="eyecatch">
+          <div class="pb-3 d-inline-flex flex-column align-items-center">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
+              src="{{ $student->portfolio_img ?? 'https://placehold.it/240x240' }}">
+          </div>
+
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio_img"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
@@ -193,12 +198,6 @@
               <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
             </div>
           </div>
-
-          <div class="mt-3">
-            <img data-avatar="preview" class="img-fluid border border-secondary my-3"
-              src="{{ $student->portfolio_img ?? 'https://placehold.it/240x240' }}">
-          </div>
-
         </div>
       </div>
     </div>
@@ -228,6 +227,11 @@
       <div class="form-group position-relative">
         <label for="formPortfolio2Img" class="form-label pt-0">画像</label>
         <div data-group="eyecatch">
+          <div class="pb-3 d-inline-flex flex-column align-items-center">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
+              src="{{ $student->portfolio2_img ?? 'https://placehold.it/240x240' }}">
+          </div>
+
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio2Img" name="portfolio2_img"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
@@ -237,12 +241,6 @@
               <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
             </div>
           </div>
-
-          <div class="mt-3">
-            <img data-avatar="preview" class="img-fluid border border-secondary my-3"
-              src="{{ $student->portfolio2_img ?? 'https://placehold.it/240x240' }}">
-          </div>
-
         </div>
       </div>
     </div>
@@ -272,6 +270,11 @@
       <div class="form-group position-relative">
         <label for="formPortfolio3Img" class="form-label pt-0">画像</label>
         <div data-group="eyecatch">
+          <div class="pb-3 d-inline-flex flex-column align-items-center">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
+              src="{{ $student->portfolio3_img ?? 'https://placehold.it/240x240' }}">
+          </div>
+
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio3Img" name="portfolio3_img"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
@@ -281,12 +284,6 @@
               <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
             </div>
           </div>
-
-          <div class="mt-3">
-            <img data-avatar="preview" class="img-fluid border border-secondary my-3"
-              src="{{ $student->portfolio3_img ?? 'https://placehold.it/240x240' }}">
-          </div>
-
         </div>
       </div>
     </div>

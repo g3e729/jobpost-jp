@@ -64,9 +64,10 @@ export default class CopyInput {
           let targetId = element.id.charAt(element.id.length-1);
           let elementTarget = document.querySelector(`#js-group-input${targetId}`);
 
-          elementTarget.remove();
-          element.closest('.form-group').remove();
-
+          if (elementTarget) {
+            elementTarget.remove();
+            element.closest('.form-group').remove();
+          }
 
           let childCountInner = this.elementCopy.childElementCount;
           if (childCountInner <= ((this.iterate -1) * 2)) {

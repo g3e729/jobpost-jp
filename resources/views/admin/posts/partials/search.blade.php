@@ -2,7 +2,7 @@
   <form class="py-2 mb-4">
     <h2 class="py-4 text-center alt-font">Search Jobs</h2>
     <div class="form-group pb-3 row">
-      <label for="formName" class="col-2 col-form-label">求人</label>
+      <label for="formName" class="col-2 col-form-label font-weight-bold text-muted">求人</label>
       <div class="col-10">
         <input type="text" class="form-control" id="formName" name="formName" placeholder="Please enter job title">
       </div>
@@ -10,7 +10,7 @@
     <div class="pb-3 row">
       <div class="col">
         <div class="form-group">
-          <label for="formPosition">ポジション</label>
+          <label for="formPosition" class="font-weight-bold text-muted">ポジション</label>
           <select class="form-control" id="formPosition" name="formPosition">
             <option value="" selected hidden disabled>Choose position</option>
             <option value="position-a">Position A</option>
@@ -22,7 +22,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formLanguage">言語</label>
+          <label for="formLanguage" class="font-weight-bold text-muted">言語</label>
           <select class="form-control" id="formLanguage" name="formLanguage">
             <option value="" selected hidden disabled>Choose language</option>
             <option value="language-a">Language A</option>
@@ -33,7 +33,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="formFramework">フレームワーク</label>
+          <label for="formFramework" class="font-weight-bold text-muted">フレームワーク</label>
           <select class="form-control" id="formFramework" name="formFramework">
             <option value="" selected hidden disabled>Choose framework</option>
             <option value="framework-a">Framework A</option>
@@ -44,7 +44,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="formArea">エリア</label>
+          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
           <select class="form-control" id="formArea" name="formArea">
             <option value="" selected hidden disabled>Choose area</option>
             <option value="area-a">Area A</option>
@@ -56,7 +56,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formIncome">年収</label>
+          <label for="formIncome" class="font-weight-bold text-muted">年収</label>
           <select class="form-control" id="formIncome" name="formIncome">
             <option value="" selected hidden disabled>Choose income</option>
             <option value="income-a">Income A</option>

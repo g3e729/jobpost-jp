@@ -14,7 +14,7 @@
     @endphp
     <div class="pb-3 row">
       <div class="col-3 font-weight-bold">{{ ucwords($type) }}<br>{{ $subtitle }}</div>
-      
+
       <div class="col-9">
         <div class="form-group position-relative">
           <label for="formWhatDesc" class="form-label pt-0">説明</label>
@@ -28,6 +28,11 @@
           <div class="form-group position-relative">
             <label for="formWhatImg" class="form-label pt-0">写真{{ $id + 1 }}</label>
             <div data-group="eyecatch">
+              <div class="pb-3 d-inline-flex flex-column align-items-center">
+                <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
+                  src="{{ $company->$photos[$id] ?? 'https://placehold.it/240x240' }}">
+              </div>
+
               <input data-avatar="file" type="file" class="form-control-file" id="formWhatImg" name="photos[{{$type }}][{{ $id }}]"
                 accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">
@@ -37,12 +42,6 @@
                   <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
                 </div>
               </div>
-
-              <div class="mt-3">
-                <img data-avatar="preview" class="img-fluid border border-secondary my-3"
-                  src="{{ $company->$photos[$id] ?? 'https://placehold.it/240x240' }}">
-              </div>
-
             </div>
           </div>
         @endforeach
@@ -83,7 +82,7 @@
           <label for="formPortfolioTitle" class="form-label pt-0">タイトル</label>
           <input type="text" class="form-control" id="formPortfolioTitle" name="portfolio[{{ $i }}][title]" value="" placeholder="">
         </div>
-        
+
         <div class="form-group position-relative">
           <label for="formPortfolioDesc" class="form-label pt-0">内容</label>
           <textarea class="form-control" id="formPortfolioDesc" name="portfolio[{{ $i }}][description]" placeholder="" rows="4" style="min-height: 100px;"></textarea>
@@ -97,6 +96,11 @@
         <div class="form-group position-relative">
           <label for="formPortfolioImg" class="form-label pt-0">画像</label>
           <div data-group="eyecatch">
+            <div class="pb-3 d-inline-flex flex-column align-items-center">
+              <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
+                src="{{ $company->portfolio_img ?? 'https://placehold.it/240x240' }}">
+            </div>
+
             <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio[{{ $i }}][img]"
               accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
             <div class="input-group">
@@ -105,12 +109,6 @@
                 <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
               </div>
             </div>
-
-            <div class="mt-3">
-              <img data-avatar="preview" class="img-fluid border border-secondary my-3"
-                src="{{ $company->portfolio_img ?? 'https://placehold.it/240x240' }}">
-            </div>
-
           </div>
         </div>
       </div>

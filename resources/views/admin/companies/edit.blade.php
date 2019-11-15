@@ -49,7 +49,7 @@
             </div>
           @endif
 
-          @include('admin.companies.partials.step' . $step)
+          @include('admin.companies.partials.edit' . $step)
 
         </div>
       </div>

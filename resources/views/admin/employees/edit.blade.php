@@ -195,6 +195,10 @@
           <div class="form-group pb-3 row">
             <label for="formAvatar" class="col-3 col-form-label font-weight-bold">アバター</label>
             <div class="col-9" data-group="avatar">
+              <div class="pb-3 d-inline-flex flex-column align-items-center">
+                <img data-avatar="preview" class="avatar avatar-md border border-secondary mb-3" src="{{ $employee->avatar ?? 'https://placehold.it/80x80' }}">
+              </div>
+
               <input data-avatar="file" type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">
                 <input data-avatar="name" type="text" class="form-control" value="{{ $employee->avatar ?? null }}" disabled required>
@@ -204,10 +208,6 @@
                 <div class="invalid-tooltip">
                   Please choose your avatar.
                 </div>
-              </div>
-
-              <div class="mt-3">
-                <img data-avatar="preview" class="avatar avatar-md border border-secondary my-3" src="{{ $employee->avatar ?? 'https://placehold.it/80x80' }}">
               </div>
             </div>
           </div>

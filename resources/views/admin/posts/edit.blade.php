@@ -26,6 +26,11 @@
       <div class="form-group pb-3 row">
         <label for="formCoverPhoto" class="col-3 col-form-label font-weight-bold">アイキャッチ</label>
         <div class="col-9" data-group="eyecatch">
+          <div class="pb-3 d-inline-flex flex-column align-items-center">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
+              src="{{ old('cover_photo') ?? 'https://placehold.it/240x240' }}">
+          </div>
+
           <input data-avatar="file" type="file" class="form-control-file" id="formCoverPhoto" name="cover_photo"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
@@ -38,12 +43,6 @@
               Please enter your Job posting eyecatch.
             </div>
           </div>
-
-          <div class="mt-3">
-            <img data-avatar="preview" class="img-fluid border border-secondary my-3"
-              src="{{ old('cover_photo') ?? 'https://placehold.it/240x240' }}">
-          </div>
-
         </div>
       </div>
 
