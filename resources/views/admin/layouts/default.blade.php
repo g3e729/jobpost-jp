@@ -31,7 +31,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
   <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
@@ -86,7 +86,7 @@
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-  <script src="{{ asset('js/app.js') }}" async></script>
+  <script src="{{ asset('js/admin.js') }}" async></script>
 
   <script>
     $('.js-datepicker').datepicker({

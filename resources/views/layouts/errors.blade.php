@@ -29,7 +29,7 @@
   <!-- Custom fonts for this template-->
   <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho|Noto+Sans+JP&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
   <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>

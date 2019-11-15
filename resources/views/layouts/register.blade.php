@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho|Noto+Sans+JP&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
   <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
@@ -94,7 +94,7 @@
   <!-- Page level plugins -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-  <script src="{{ asset('js/app.js') }}" async></script>
+  <script src="{{ asset('js/admin.js') }}" async></script>
   <script src="{{ asset('js/register.js') }}"></script>
 
   <script>

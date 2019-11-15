@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
+    "/js/admin.js": "/js/admin.js",
+    "/css/admin.css": "/css/admin.css",
     "/css/app.css": "/css/app.css",
-    "/css/index.css": "/css/index.css",
+    "/js/app.js": "/js/app.js",
     "/js/editform.js": "/js/editform.js",
-    "/js/index.js": "/js/index.js",
     "/js/register.js": "/js/register.js",
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js"
