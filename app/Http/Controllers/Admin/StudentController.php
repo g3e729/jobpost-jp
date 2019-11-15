@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\SeekerProfile as Student;
 use App\Services\SeekerService;
 use App\Services\UserService;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Str;
 
 class StudentController extends BaseController
 {
@@ -81,6 +82,29 @@ class StudentController extends BaseController
         $student->user()->update(
             $request->only('email', 'japanese_name', 'name')
         );
+
+        $works = $request->get('work_history');
+
+        if ($works && count(array_filter(array_flatten($works, 1)))) {
+        	$student->work_history()->delete();
+
+        	foreach($works as $work) {
+        		$work['started_at'] = Str::finish($work['started_at'], '-01');
+        		$work['ended_at'] = Str::finish($work['ended_at'], '-01');
+        		$student->work_history()->create($work);
+        	}
+        }
+
+        $educations = $request->get('education_history');
+
+        if ($educations && count(array_filter(array_flatten($educations, 1)))) {
+        	$student->education_history()->delete();
+
+        	foreach($educations as $education) {
+        		$education['graduated_at'] = Str::finish($education['graduated_at'], '-01');
+        		$student->education_history()->create($education);
+        	}
+        }
 
         if ($request->file('avatar')) {
             $file = $request->avatar->store('public/avatar');

@@ -29,25 +29,25 @@
                 </tr>
               </thead>
               <tbody>
-                @for($i = 0; $i < 10; $i++)
-                <tr>
-                  <td class="d-flex">
-                    <img src="{{ $faker->imageUrl(240, 240, 'city') }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                    <div class="ml-3">
-                      <h3 class="font-weight-bold h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h3>
-                      <p class="text-muted mb-0">{{ $faker->text(50) }}</p>
-                      <time>{{ $faker->dateTime->format('Y-m-d') }}</time>
-                    </div>
-                  </td>
-                  <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
-                  <td>
-                    <div class="payment-actions d-flex justify-content-between">
-                      <a href="{{ route('admin.payments.show', $i) }}" class="btn btn-link p-0">詳細</a>
-                      <a href="{{ route('admin.payments.delete', $i) }}" class="btn btn-link p-0 js-payment-delete">削除</a>
-                    </div>
-                  </td>
-                </tr>
-                @endfor
+                @foreach($payments['approved'] as $payment)
+                  <tr>
+                    <td class="d-flex">
+                      <img src="{{ $payment->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
+                      <div class="ml-3">
+                        <h3 class="font-weight-bold h6">{{ $payment->transactionable->display_name }}</h3>
+                        <p class="text-muted mb-0">{{ $payment->transactionable->description }}</p>
+                        <time>{{ $payment->created_at->format('Y年m月') }}</time>
+                      </div>
+                    </td>
+                    <td>{{ price($payment->total) }}</td>
+                    <td>
+                      <div class="payment-actions d-flex justify-content-between">
+                        <a href="{{ route('admin.payments.show', $payment) }}" class="btn btn-link p-0">詳細</a>
+                        <a href="#" class="btn btn-link p-0 js-payment-delete">削除</a>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -61,24 +61,25 @@
                 </tr>
               </thead>
               <tbody>
-                @for($i = 0; $i < 10; $i++)
-                <tr>
-                  <td class="d-flex">
-                    <img src="{{ $faker->imageUrl(240, 240, 'city') }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                    <div class="ml-3">
-                      <h3 class="font-weight-bold h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h3>
-                      <p class="text-muted mb-0">{{ $faker->text(50) }}</p>
-                      <time>{{ $faker->dateTime->format('Y-m-d') }}</time>
-                    </div>
-                  </td>
-                  <td>{{ $faker->randomElement($array = array ('1', '2', '3', '4')) . '0,0000円' }}</td>
-                  <td>
-                    <div class="payment-actions d-flex justify-content-between">
-                      <a href="{{ route('admin.payments.show', $i) }}" class="btn btn-link p-0">詳細</a>
-                    </div>
-                  </td>
-                </tr>
-                @endfor
+                @foreach($payments['not_approved'] as $payment)
+                  <tr>
+                    <td class="d-flex">
+                      <img src="{{ $payment->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
+                      <div class="ml-3">
+                        <h3 class="font-weight-bold h6">{{ $payment->transactionable->display_name }}</h3>
+                        <p class="text-muted mb-0">{{ $payment->transactionable->description }}</p>
+                        <time>{{ $payment->created_at->format('Y年m月') }}</time>
+                      </div>
+                    </td>
+                    <td>{{ price($payment->total) }}</td>
+                    <td>
+                      <div class="payment-actions d-flex justify-content-between">
+                        <a href="{{ route('admin.payments.show', $payment) }}" class="btn btn-link p-0">詳細</a>
+                        <a href="#" class="btn btn-link p-0 js-payment-delete">削除</a>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

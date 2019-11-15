@@ -28,7 +28,6 @@ class CreateSeekerProfilesTable extends Migration
             $table->integer('type_of_room')->nullable();
             $table->timestamp('enrollment_date')->nullable();
             $table->timestamp('graduation_date')->nullable();
-            $table->integer('status')->nullable();
             $table->integer('occupation_id')->default(0);
             $table->integer('study_period')->default(0);
             $table->integer('travel_ticket')->default(0);
@@ -53,6 +52,11 @@ class CreateSeekerProfilesTable extends Migration
             $table->integer('writing')->default(0);
             $table->string('english_level_id')->default(0);
             $table->integer('toiec_score')->default(0);
+
+            $table->text('what_text')->nullable();
+            $table->text('intro_text')->nullable();
+            $table->text('movie_url')->nullable();
+
             $table->timestamps();
         });
     }

@@ -51,7 +51,11 @@ class SeekerProfile extends Model
         'listening',
         'speaking',
         'writing',
-        'english_level_id'
+        'english_level_id',
+
+        'what_text',
+        'intro_text',
+        'movie_url'
     ];
 
     static protected $get_attr = [
@@ -285,14 +289,22 @@ class SeekerProfile extends Model
 
     public function getStudentStatusAttribute()
     {
-        return isset(self::$student_status[$this->status]) ? ucwords(self::$student_status[$this->status]) : null;
+        if ($this->graduation_date < now()) {
+            return self::getStudentStatus(3);
+        }
+
+        if ($this->enrollment_date < now()) {
+            return self::getStudentStatus(2);
+        }
+
+        return self::getStudentStatus(1);
     }
 
     public function getTakenClassAttribute()
     {
         $courses = [];
 
-        if ($this->taken_id) {
+        if ($this->taken_id && is_array($this->taken_id)) {
 
             foreach ($this->taken_id as $course_id) {
                 $courses[$course_id] = self::getCourses($course_id);

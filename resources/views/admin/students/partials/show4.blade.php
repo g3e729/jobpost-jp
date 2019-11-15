@@ -24,17 +24,17 @@
         <td>
           <dl>
             <dt class="text-muted">Reading</dt>
-            <dd>{{ $student->reading ?? '--' }}</dd>
+            <dd>{{ $student->reading ?? 0 }}</dd>
             <dt class="text-muted">Listening</dt>
-            <dd>{{ $student->listening ?? '--' }}</dd>
+            <dd>{{ $student->listening ?? 0 }}</dd>
             <dt class="text-muted">R&L Total</dt>
-            <dd>{{ '--' }}</dd>
+            <dd>{{ $student->reading + $student->listening ?? 0 }}</dd>
             <dt class="text-muted">Speaking</dt>
-            <dd>{{ $student->speaking ?? '--' }}</dd>
+            <dd>{{ $student->speaking ?? 0 }}</dd>
             <dt class="text-muted">Writing</dt>
-            <dd>{{ $student->writing ?? '--' }}</dd>
+            <dd>{{ $student->writing ?? 0 }}</dd>
             <dt class="text-muted">現在のレベル</dt>
-            <dd>{{ $student->english_level ?? '--' }}</dd>
+            <dd>{{ $student->english_level ?? 0 }}</dd>
           </dl>
         </td>
       </tr>
