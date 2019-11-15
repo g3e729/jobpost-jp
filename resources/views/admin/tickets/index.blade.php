@@ -36,7 +36,7 @@
                       <div class="ml-3">
                         <h3 class="font-weight-bold h6">{{ $ticket->transactionable->display_name }}</h3>
                         <p class="text-muted mb-0">{{ $ticket->transactionable->description }}</p>
-                        <time>{{ $ticket->created_at->format('Y年m月') }}</time>
+                        <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
                       </div>
                     </td>
                     <td>{{ price($ticket->amount) }}</td>
@@ -66,7 +66,7 @@
                       <div class="ml-3">
                         <h3 class="font-weight-bold h6">{{ $ticket->transactionable->display_name }}</h3>
                         <p class="text-muted mb-0">{{ $ticket->transactionable->description }}</p>
-                        <time>{{ $ticket->created_at->format('Y年m月') }}</time>
+                        <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
                       </div>
                     </td>
                     <td>{{ price($ticket->amount) }}</td>
