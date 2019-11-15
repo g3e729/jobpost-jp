@@ -22,11 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto"></ul>
 
+          @if (!request()->is('login'))
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link alt-font font-weight-bold text-dark" href="{{ route('login') }}">{{ __('ログインする') }}</a>
             </li>
           </ul>
+          @endif
         </div>
       </div>
     </nav>
