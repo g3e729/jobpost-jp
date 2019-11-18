@@ -18,6 +18,8 @@
           <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            <input type="hidden" id="js-sidebar-state" name="sidebar-state" value="">
+
             <div class="form-group row">
               <label for="email" class="col-md-4 col-form-label font-weight-bold text-md-right">{{ __('メールアドレス') }}</label>
 
@@ -73,4 +75,11 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('js')
+  <script>
+    $inputSidebarState = document.querySelector('#js-sidebar-state')
+    $inputSidebarState.value = localStorage.getItem("sidebar-state");
+  </script>
 @endsection
