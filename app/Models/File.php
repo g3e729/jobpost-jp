@@ -13,6 +13,7 @@ class File extends Model
 
     protected $fillable = [
         'url',
+        'uploader_id',
         'file_name',
         'type',
         'mime_type',
@@ -22,8 +23,28 @@ class File extends Model
         'fileable_type'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uploader_id = auth()->user()->id;
+        });
+    }
+
+    // Relations
     public function fileable()
     {
         return $this->morphTo();
+    }
+
+    public function uploader()
+    {
+        return $this->belongsTo(User::class, 'uploader_id');
+    }
+
+    // Scopes
+    public function scopeSearch($query, $value)
+    {
+        return $query->where('file_name', 'LIKE', "%{$value}%");
     }
 }

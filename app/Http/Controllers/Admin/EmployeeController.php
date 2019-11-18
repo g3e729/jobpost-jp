@@ -6,8 +6,8 @@ use App\Http\Requests\Admin\EmployeeRequest;
 use App\Models\EmployeeProfile as Employee;
 use App\Services\EmployeeService;
 use App\Services\UserService;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class EmployeeController extends BaseController
 {
