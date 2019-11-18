@@ -197,6 +197,7 @@
             <div class="col-9" data-group="avatar">
               <div class="pb-3 d-inline-flex flex-column align-items-center">
                 <img data-avatar="preview" class="avatar avatar-md border border-secondary mb-3" src="{{ $employee->avatar ?? 'https://placehold.it/80x80' }}">
+                <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($employee->avatar) && $employee->avatar ? null : 'disabled'}}>Delete</button>
               </div>
 
               <input data-avatar="file" type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">

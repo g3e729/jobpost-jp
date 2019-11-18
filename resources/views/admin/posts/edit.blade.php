@@ -27,8 +27,8 @@
         <label for="formCoverPhoto" class="col-3 col-form-label font-weight-bold">アイキャッチ</label>
         <div class="col-9" data-group="eyecatch">
           <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
-              src="{{ old('cover_photo') ?? 'https://placehold.it/240x240' }}">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ old('cover_photo') ?? 'https://placehold.it/240x240' }}">
+            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ old('cover_photo') ? null : 'disabled'}}>Delete</button>
           </div>
 
           <input data-avatar="file" type="file" class="form-control-file" id="formCoverPhoto" name="cover_photo"

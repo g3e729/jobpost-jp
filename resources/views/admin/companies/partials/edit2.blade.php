@@ -29,8 +29,8 @@
             <label for="formWhatImg" class="form-label pt-0">写真{{ $id + 1 }}</label>
             <div data-group="eyecatch">
               <div class="pb-3 d-inline-flex flex-column align-items-center">
-                <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
-                  src="{{ $company->$photos[$id] ?? 'https://placehold.it/240x240' }}">
+                <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $company->$photos[$id] ?? 'https://placehold.it/240x240' }}">
+                <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($company->$photos[$id]) && $company->$photos[$id] ? null : 'disabled'}}>Delete</button>
               </div>
 
               <input data-avatar="file" type="file" class="form-control-file" id="formWhatImg" name="photos[{{$type }}][{{ $id }}]"
@@ -97,8 +97,8 @@
           <label for="formPortfolioImg" class="form-label pt-0">画像</label>
           <div data-group="eyecatch">
             <div class="pb-3 d-inline-flex flex-column align-items-center">
-              <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
-                src="{{ $company->portfolio_img ?? 'https://placehold.it/240x240' }}">
+              <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $company->portfolio_img ?? 'https://placehold.it/240x240' }}">
+              <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($company->portfolio_img) && $company->portfolio_img ? null : 'disabled'}}>Delete</button>
             </div>
 
             <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio[{{ $i }}][img]"

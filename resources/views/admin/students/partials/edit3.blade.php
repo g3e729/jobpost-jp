@@ -185,8 +185,8 @@
         <label for="formPortfolioImg" class="form-label pt-0">画像</label>
         <div data-group="eyecatch">
           <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
-              src="{{ $student->portfolio_img ?? 'https://placehold.it/240x240' }}">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $student->portfolio_img ?? 'https://placehold.it/240x240' }}">
+            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio_img) && $student->portfolio_img ? null : 'disabled'}}>Delete</button>
           </div>
 
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio_img"
@@ -228,8 +228,8 @@
         <label for="formPortfolio2Img" class="form-label pt-0">画像</label>
         <div data-group="eyecatch">
           <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
-              src="{{ $student->portfolio2_img ?? 'https://placehold.it/240x240' }}">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $student->portfolio2_img ?? 'https://placehold.it/240x240' }}">
+            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio2_img) && $student->portfolio2_img ? null : 'disabled'}}>Delete</button>
           </div>
 
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio2Img" name="portfolio2_img"
@@ -271,8 +271,8 @@
         <label for="formPortfolio3Img" class="form-label pt-0">画像</label>
         <div data-group="eyecatch">
           <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3"
-              src="{{ $student->portfolio3_img ?? 'https://placehold.it/240x240' }}">
+            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $student->portfolio3_img ?? 'https://placehold.it/240x240' }}">
+            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio3_img) && $student->portfolio3_img ? null : 'disabled'}}>Delete</button>
           </div>
 
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio3Img" name="portfolio3_img"
