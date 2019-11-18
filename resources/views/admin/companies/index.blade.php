@@ -47,7 +47,9 @@
 
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">HP</div>
-                    <span class="text-muted">{{ $company->url ?? '--' }}</span>
+                    <span class="text-muted">
+                      <a href="{{ $company->homepage ?? '#' }}" target="_blank">{{ $company->homepage ?? '--' }}</a>
+                    </span>
                   </li>
 
                   <li class="list-group-item p-1">

@@ -49,7 +49,22 @@ class SeekerService extends BaseService
     {
         try {
             $fields = array_filter($fields);
+            $status = array_get($fields, 'status');
+            $fields = array_except($fields, 'status');
             $que = (new $this->model);
+
+            switch ($status) {
+                case 1:
+                    $que = $que->where('enrollment_date', '>', now());
+                break;
+                case 2:
+                    $que = $que->where('enrollment_date', '<', now())
+                        ->where('graduation_date', '>', now());
+                break;
+                case 3:
+                    $que = $que->where('graduation_date', '<', now());
+                break;
+            }
 
             foreach ($fields as $column => $value) {
                 switch ($column) {

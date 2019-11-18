@@ -52,7 +52,7 @@
                   
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">生年月日</div>
-                    <span class="text-muted">{{ $employee->birthday->format('Y-m-d') }}</span>
+                    <span class="text-muted">{{ $employee->birthday->format('Y年m月d日') }}</span>
                   </li>
                   
                   <li class="list-group-item p-1">

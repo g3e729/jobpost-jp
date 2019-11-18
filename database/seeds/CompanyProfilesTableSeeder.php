@@ -71,7 +71,7 @@ class CompanyProfilesTableSeeder extends Seeder
             $fields['industry_id'] = rand(0, 1) ? 'others' : 1;
             $fields['number_of_employees'] = rand(3, 111);
             $fields['established_date'] = now()->subYears(rand(1, 10))->subMonths(rand(1, 7))->subDays(rand(2, 30));
-            $fields['homepage'] = $web;
+            $fields['homepage'] = 'http://' . $web;
             $add = rand(0, 1) ? 'recruitment' : 'joinus';
             $add .= substr(md5(microtime()), rand(0, 26), 3);
             $fields['email'] = $add . '+' . $i . '@' . $web;
