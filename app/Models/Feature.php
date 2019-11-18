@@ -4,28 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class Feature extends Model
 {
     protected $dates = [
         'created_at',
-        'established_date',
         'updated_at',
     ];
 
     protected $fillable = [
         'title',
         'description',
-        'url',
-        'portfolable_id',
-        'portfolable_type',
+        'featurable_id',
+        'featurable_type',
     ];
 
-    public function file()
-    {
-        return $this->morphOne(File::class, 'fileable');
-    }
-
-    public function portfolable()
+    public function featurable()
     {
         return $this->morphTo();
     }

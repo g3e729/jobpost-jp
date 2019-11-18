@@ -118,7 +118,7 @@ trait HasUser
 
     public function portfolios()
     {
-        return $this->hasMany(Portfolio::class);
+        return $this->morphMany(Portfolio::class, 'portfolable');
     }
 
     public function work_history()

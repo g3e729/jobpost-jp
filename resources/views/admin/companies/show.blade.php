@@ -165,69 +165,47 @@
                     </td>
                   </tr>
                 @endforeach
-                <tr>
-                  <td class="font-weight-bold">特徴１</td>
-                  <td style="white-space: pre-line;">{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">特徴2</td>
-                  <td style="white-space: pre-line;">{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">特徴3</td>
-                  <td style="white-space: pre-line;">{{ '--' }}</td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">ポートフォリオ1</td>
-                  <td>
-                    <dl>
-                      <dt>タイトル</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>内容</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      <dt>URL</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>画像</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                    </dl>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">ポートフォリオ2</td>
-                  <td>
-                    <dl>
-                      <dt>タイトル</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>内容</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      <dt>URL</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>画像</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                    </dl>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">ポートフォリオ3</td>
-                  <td>
-                    <dl>
-                      <dt>タイトル</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>内容</dt>
-                      <dd style="white-space: pre-line;">{{ '--' }}</dd>
-                      <dt>URL</dt>
-                      <dd>{{ '--' }}</dd>
-                      <dt>画像</dt>
-                      <dd>
-                        <img class="img-fluid border border-secondary my-3 w-100" src="https://lorempixel.com/720/720/city/" style="border-width: 2px !important;">
-                      </dd>
-                    </dl>
-                  </td>
-                </tr>
+
+                @foreach([0, 1, 2] as $i)
+                  @php
+                    $feature = $company->features[$i] ?? null;
+                  @endphp
+
+                  @if (! empty($feature) && ! empty($feature->description))
+                    <tr>
+                      <td class="font-weight-bold">特徴{{ $i+1 }}</td>
+                      <td style="white-space: pre-line;">{!! $feature->description ?? '' !!}</td>
+                    </tr>
+                  @endif
+                @endforeach
+
+                @foreach([0, 1, 2] as $i)
+                  @php
+                    $portfolio = $company->portfolios[$i] ?? null;
+                  @endphp
+                  @if ($portfolio)
+                    <tr>
+                      <td class="font-weight-bold">ポートフォリオ{{ $i+1 }}</td>
+                      <td>
+                        <dl>
+                          <dt>タイトル</dt>
+                          <dd>{{ $portfolio->title }}</dd>
+                          <dt>内容</dt>
+                          <dd style="white-space: pre-line;">{!! $portfolio->description !!}</dd>
+                          <dt>URL</dt>
+                          <dd><a href="{{ $portfolio->url }}" target="_blank">{{ $portfolio->url }}</a></dd>
+                          @if ($portfolio->file)
+                            <dt>画像</dt>
+                            <dd>
+                              <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->file->url }}" style="border-width: 2px !important;">
+                            </dd>
+                          @endif
+                        </dl>
+                      </td>
+                    </tr>
+                  @endif
+                @endforeach
+
               </tbody>
             </table>
           </div>

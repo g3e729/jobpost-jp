@@ -44,8 +44,11 @@ class CompanyController extends BaseController
 		return view('admin.companies.edit', $data);
   	}
 	
-	public function update(Request $request, Company $company)
+	public function update(Company $company, Request $request)
 	{
+
+        dd($request->all());
+
         $company->update(
             $request->except('_token', '_method', 'email', 'japanese_name', 'name')
         );
@@ -116,6 +119,58 @@ class CompanyController extends BaseController
                     ]);
                 }
             }
+        }
+
+        if ($request->has('features')) {
+            $company->features()->delete();
+            $features = $request->get('features');
+
+            foreach([0, 1, 2] as $i) {
+                $feature = $features[$i];
+
+                if (empty($feature['title']) && empty($feature['description'])) {
+                    continue;
+                }
+
+                $company->features()->create($feature);
+            }
+        }
+
+        if ($request->has('portfolios')) {
+            $comp_portfolios = $company->portfolios()->orderBy('created_at', 'ASC')->get();
+            $portfolios = $request->get('portfolios');
+            $i = 0;
+
+            foreach($request->portfolios as $portfolio) {
+                if (! empty($portfolio['title']) && ! empty($portfolio['description'])) {
+                    $field = array_except($portfolio, 'file');
+                    $req_file = $portfolio['file'] ?? null;
+
+                    if (isset($comp_portfolios[$i])) {
+                        $portfolio = $comp_portfolios[$i];
+
+                        $portfolio->update($field);
+                    } else {
+                        $portfolio = $company->portfolios()->create($field);
+                    }
+
+                    if ($req_file) {
+                        $file = $req_file->store('public/portfolio');
+                        $file = explode('/', $file);
+
+                        $portfolio->files()->create([
+                            'url' => asset("/storage/portfolio/" . array_last($file)),
+                            'file_name' => $req_file->getClientOriginalName(),
+                            'type' => 'portfolio',
+                            'mime_type' => $req_file->getMimeType(),
+                            'size' => $req_file->getSize()
+                        ]);
+                    }
+                }
+
+                $i++;
+            }
+
         }
 
 		return redirect()->route('admin.companies.show', $company)
