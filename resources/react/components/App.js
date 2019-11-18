@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Header from './Header'
-import Companies from './companies/index'
-import Company from './companies/show'
+import Header from './common/Header'
+import Companies from './company/Companies'
+import Company from './company/Company'
 
 class App extends Component {
   render () {

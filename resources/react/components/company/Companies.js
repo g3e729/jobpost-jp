@@ -11,15 +11,17 @@ class Companies extends Component {
   }
 
   componentDidMount () {
-    axios.get('/api/companies').then(response => {
-      this.setState({
-        companies: response.data
-      })
-    })
+    this.getUsers();
+  }
+
+  async getUsers() {
+    let request = await axios.get('/api/companies');
+    let { data } = request.data;
+    this.setState({ companies: data });
   }
 
   render () {
-    const { companies } = this.state
+    let { companies } = this.state;
     return (
       <div className='container py-4'>
         <div className='row justify-content-center'>
