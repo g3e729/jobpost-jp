@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<nav class="navbar-nav sidebar sidebar-gradient accordion {{ session('sidebarState') }}" id="accordionSidebar">
+<nav class="navbar-nav sidebar sidebar-gradient accordion position-fixed {{ session('sidebarState') }}" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand bg-light d-flex align-items-center justify-content-center" href="{{ route('admin.index') }}">

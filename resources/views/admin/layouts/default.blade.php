@@ -39,7 +39,7 @@
 <body id="js-page-top" {{ session('sidebarState') ? 'class=sidebar-toggled' : null }}>
   <div id="wrapper">
     @include('admin.partials.sidebar')
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column" style="margin-left: {{ session('sidebarState') ? '104px' : '224px' }}">
       <div id="content">
         @include('admin.partials.nav')
         @yield('content')

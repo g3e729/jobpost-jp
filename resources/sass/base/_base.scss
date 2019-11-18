@@ -41,9 +41,12 @@ a {
 // Main page wrapper
 #wrapper {
   display: flex;
+  background-color: $gray-100;
+
   #content-wrapper {
     background-color: $gray-100;
     width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
     #content {
       min-width: 1000px;
