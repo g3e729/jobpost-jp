@@ -36,4 +36,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated()
+    {
+        $class = request()->get('sidebar-state') == 'close' ? 'toggled' : '';
+        
+        session()->put('sidebarState', $class);
+    }
 }

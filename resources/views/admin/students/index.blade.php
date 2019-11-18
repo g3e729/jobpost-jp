@@ -47,7 +47,10 @@
 
                   <li class="list-group-item p-1">
                     <div class="font-weight-bold">入学日{{ $student->graduation_date ? ' - 卒業日' : null }}</div>
-                    <span class="text-muted">{{ $student->enrollment_date }}<br>{{ $student->enrollment_date }}</span>
+                    <span class="text-muted">
+                      {{ $student->enrollment_date->format('Y年m月d日') }}<br>
+                      {{ $student->enrollment_date->format('Y年m月d日') }}
+                    </span>
                   </li>
 
                   <li class="list-group-item p-1">

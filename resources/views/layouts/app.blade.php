@@ -39,5 +39,6 @@
   </div>
 
   <script src="{{ asset('js/admin.js') }}" async></script>
+  @yield('js')
 </body>
 </html>

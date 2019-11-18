@@ -7,6 +7,8 @@ Route::group([
     'middleware' => ['auth', 'role:admin'],
 ], function () {
 	Route::get('/', 'HomeController@index')->name('index');
+	Route::get('api/settings/sidebar', 'AccountController@toggleSidebar');
+
 
 	Route::resource('companies', 'CompanyController');
 	Route::resource('invite', 'InvitationController')->only('create', 'store');
