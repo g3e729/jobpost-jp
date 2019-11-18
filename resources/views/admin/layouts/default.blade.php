@@ -36,7 +36,7 @@
   <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
 
-<body id="js-page-top">
+<body id="js-page-top" {{ session('sidebarState') ? 'class=sidebar-toggled' : null }}>
   <div id="wrapper">
     @include('admin.partials.sidebar')
     <div id="content-wrapper" class="d-flex flex-column">

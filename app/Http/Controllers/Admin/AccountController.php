@@ -19,6 +19,8 @@ class AccountController extends BaseController
 
         if ($class == 'toggled') {
         	$class = '';
+        } else {
+        	$class = 'toggled';
         }
 
 		session()->put('sidebarState', $class);
