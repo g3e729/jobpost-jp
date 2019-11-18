@@ -29,7 +29,7 @@
               <img src="{{ $employee->avatar }}" class="avatar avatar-md">
             </div>
             <div class="card-body-main mt-3">
-              <h3 class="text-center">{{ $employee->display_name }}</h3>
+              <h3 class="text-center">{{ $employee->display_name ?? '--' }}</h3>
 
             </div>
           </div>
@@ -40,15 +40,15 @@
           <tbody>
             <tr>
               <td style="width: 25%" class="font-weight-bold">名前(Japanese)</td>
-              <td>{{ $employee->japanese_name }}</td>
+              <td>{{ $employee->japanese_name ?? '--' }}</td>
             </tr>
             <tr>
               <td class="font-weight-bold">名前(English)</td>
-              <td>{{ $employee->name }}</td>
+              <td>{{ $employee->name ?? '--' }}</td>
             </tr>
             <tr>
               <td class="font-weight-bold">生年月日</td>
-              <td>{{ $employee->birthday->format('Y年m月d日') }}</td>
+              <td>{{ $employee->birthday->format('Y年m月d日') }} / {{ $employee->birthday->diff(now())->format('%y') ?? '--' }}</td>
             </tr>
             <tr>
               <td class="font-weight-bold">住所</td>

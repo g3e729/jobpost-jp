@@ -41,7 +41,8 @@ class CompanyProfile extends Model
     ];
 
     static protected $get_attr = [
-        'industry'
+        'industry',
+        'features'
     ];
 
     static protected $industries = [
@@ -76,6 +77,12 @@ class CompanyProfile extends Model
         return $this->morphMany(Transaction::class, 'transactionable');
     }
 
+    public function features()
+    {
+        return $this->morphMany(Feature::class, 'featurable');
+    }
+
+    // Options
     static function getIndustries($index = null)
     {
         $industries = self::$industries;

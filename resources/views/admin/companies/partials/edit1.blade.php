@@ -153,7 +153,7 @@
   <div class="form-group pb-3 row">
     <label for="formFacebook" class="col-3 col-form-label font-weight-bold">Facebook</label>
     <div class="col-9">
-      <input type="url" class="form-control" id="formFacebook" name="social_media[facebook]" value="{{ $company->facebook }}"
+      <input type="url" class="form-control" id="formFacebook" name="social_media[facebook]" value="{{ $company->social_media_accounts['facebook'] ?? '' }}"
         placeholder="">
     </div>
   </div>
@@ -161,7 +161,7 @@
   <div class="form-group pb-3 row">
     <label for="formTwitter" class="col-3 col-form-label font-weight-bold">Twitter</label>
     <div class="col-9">
-      <input type="url" class="form-control" id="formTwitter" name="social_media[twitter]" value="{{ $company->twitter }}"
+      <input type="url" class="form-control" id="formTwitter" name="social_media[twitter]" value="{{ $company->social_media_accounts['twitter'] ?? '' }}"
         placeholder="">
     </div>
   </div>
@@ -170,7 +170,7 @@
     <label for="formInstagram" class="col-3 col-form-label font-weight-bold">Instagram</label>
     <div class="col-9">
       <input type="url" class="form-control" id="formInstagram" name="social_media[instagram]"
-        value="{{ $company->instagram }}" placeholder="">
+        value="{{ $company->social_media_accounts['instagram'] ?? '' }}" placeholder="">
     </div>
   </div>
 

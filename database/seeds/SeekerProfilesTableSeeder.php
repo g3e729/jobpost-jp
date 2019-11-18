@@ -42,7 +42,6 @@ class SeekerProfilesTableSeeder extends Seeder
             'type_of_room' => null,
             'enrollment_date' => null,
             'graduation_date' => null,
-            'status' => 0,
             'course_id' => 0,
             'study_period' => 0,
             'travel_ticket' => 0,
@@ -76,7 +75,6 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['passport_number'] = rand(100, 9999).rand(1111, 9999);
             $fields['enrollment_date'] = now()->addMonths(rand(1, 5));
             $fields['graduation_date'] = $fields['enrollment_date']->copy()->addMonths(rand(1, 12));
-            $fields['status'] = rand(1, 3);
             $fields['occupation_id'] = rand(1, 3);
             $fields['study_period'] = rand(0, 9);
             $fields['prefecture'] = $prefectures->random();
