@@ -89,7 +89,7 @@
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
-    <button class="sidebar-toggle rounded-circle border-0" id="js-sidebar-toggle"></button>
+    <button class="sidebar-toggle rounded-circle border-0" id="js-sidebar-toggle" data-sidebar="{{ route('admin.sidebar.update') }}"></button>
   </div>
 
 </nav>

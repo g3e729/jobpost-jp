@@ -7,7 +7,7 @@ Route::group([
     'middleware' => ['auth', 'role:admin'],
 ], function () {
 	Route::get('/', 'HomeController@index')->name('index');
-	Route::get('api/settings/sidebar', 'AccountController@toggleSidebar');
+	Route::get('api/settings/sidebar', 'AccountController@toggleSidebar')->name('sidebar.update');
 
 
 	Route::resource('companies', 'CompanyController');
@@ -87,7 +87,7 @@ Route::group([
 	Route::patch('notifications/{notification}', function () {
 		return view('admin.notifications.update');
   })->name('notifications.update');
-  
+
   Route::delete('notifications/{notification}', function () {
 		return view('admin.notifications.delete');
 	})->name('notifications.delete');

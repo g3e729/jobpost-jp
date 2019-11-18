@@ -44,7 +44,7 @@ export default class ToggleSidenav {
 
   toggleSidebar() {
     const xmlHttp = new XMLHttpRequest();
-    const apiSidebar = '/admin/api/settings/sidebar';
+    const apiSidebar = this.element.dataset.sidebar;
     xmlHttp.open('GET', apiSidebar, false);
     xmlHttp.send(null);
   }
