@@ -40,14 +40,15 @@ class LoginController extends Controller
     protected function authenticated()
     {
         $user = auth()->user();
+        $class = request()->get('sidebar-state') == 'close' ? 'toggled' : '';
+        session()->put('sidebarState', $class);
 
         if ($user->hasRole('employee')) {
             return redirect()->route('employee.index');
         }
 
-
-        $class = request()->get('sidebar-state') == 'close' ? 'toggled' : '';
-        
-        session()->put('sidebarState', $class);
+        if ($user->hasRole('admin')) {
+            return redirect()->route('admin.index');
+        }
     }
 }
