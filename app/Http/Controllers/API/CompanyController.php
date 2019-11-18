@@ -24,4 +24,22 @@ class CompanyController extends BaseController
 	{
 		return $company->forApi();
 	}
+
+	public function update(CompanyProfile $company)
+	{
+        $company->update(
+            $request->except('_token', '_method', 'email', 'japanese_name', 'name')
+        );
+
+        $company->user()->update(
+            $request->only('email', 'japanese_name', 'name')
+        );
+
+        $social_media_accounts = $request->get('social_media', []);
+        $company->social_media()->delete();
+
+        foreach ($social_media_accounts as $social_media => $url) {
+        	$company->social_media()->create(compact('social_media', 'url'));
+        }
+	}
 }

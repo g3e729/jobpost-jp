@@ -9,6 +9,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'namespace'  => 'API',
 ], function () {
-	Route::resource('/companies', 'CompanyController')->only('index', 'show');
+	Route::resource('/companies', 'CompanyController')->only('index', 'show', 'update');
 	Route::resource('/students', 'StudentController')->only('index', 'show');
 });
