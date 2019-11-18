@@ -6,6 +6,7 @@ export default class ToggleSidenav {
     this.element = document.querySelector(this.selector);
     this.body = document.querySelector('body');
     this.sidebar = document.querySelector('.sidebar');
+    this.content = document.querySelector('#content-wrapper');
     this.window = window;
 
     if (this.element) {
@@ -20,9 +21,13 @@ export default class ToggleSidenav {
       if (this.body.classList.contains('sidebar-toggled')) {
         this.body.classList.remove('sidebar-toggled');
         this.sidebar.classList.remove('toggled');
+
+        this.content.style.marginLeft = '224px';
       } else {
         this.body.classList.add('sidebar-toggled');
         this.sidebar.classList.add('toggled');
+
+        this.content.style.marginLeft = '104px';
       }
 
       if (this.sidebar.classList.contains('toggled')) {
