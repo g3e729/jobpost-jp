@@ -8,7 +8,6 @@ use App\Services\EmployeeService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use Faker\Factory as Faker;
 
 class EmployeeController extends BaseController
 {

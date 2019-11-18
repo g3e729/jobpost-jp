@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,13 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
+        $user = auth()->user();
+
+        if ($user->hasRole('employee')) {
+            return redirect()->route('employee.index');
+        }
+
+
         $class = request()->get('sidebar-state') == 'close' ? 'toggled' : '';
         
         session()->put('sidebarState', $class);

@@ -9,7 +9,6 @@ Route::group([
 	Route::get('/', 'HomeController@index')->name('index');
 	Route::get('api/settings/sidebar', 'AccountController@toggleSidebar')->name('sidebar.update');
 
-
 	Route::resource('companies', 'CompanyController');
 	Route::resource('invite', 'InvitationController')->only('create', 'store');
 	Route::resource('employees', 'EmployeeController');
@@ -20,16 +19,13 @@ Route::group([
 	]);
 	Route::resource('payments', 'PaymentController')->only('index', 'show', 'update');
 	Route::resource('tickets', 'TicketController')->only('index', 'delete');
-
-	Route::get('profile', function () {
-		return view('admin.profile');
-	})->name('profile');
+	Route::resource('settings', 'AccountController')->only('index', 'store');
 
 	Route::get('recruitments', function () {
 		return view('admin.posts.index', ['faker' => Faker\Factory::create('ja_JP')]);
-  })->name('recruitments.index');
+  	})->name('recruitments.index');
 
-  Route::get('recruitments/create', function () {
+  	Route::get('recruitments/create', function () {
 		return view('admin.posts.create', [
 	      'programming_languages' => App\Models\SeekerProfile::getProgrammingLanguages(),
 	      'frameworks' => App\Models\SeekerProfile::getFrameworks(),
@@ -86,9 +82,9 @@ Route::group([
 
 	Route::patch('notifications/{notification}', function () {
 		return view('admin.notifications.update');
-  })->name('notifications.update');
+  	})->name('notifications.update');
 
-  Route::delete('notifications/{notification}', function () {
+  	Route::delete('notifications/{notification}', function () {
 		return view('admin.notifications.delete');
 	})->name('notifications.delete');
 
@@ -96,11 +92,11 @@ Route::group([
 		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
 	})->name('messages.index');
 
-  Route::get('messages/{entity}', function () {
+  	Route::get('messages/{entity}', function () {
 		return view('admin.messages.show', [
-      'faker' => Faker\Factory::create('ja_JP'),
-      'type' => Request::input('type')
-    ]);
+	      'faker' => Faker\Factory::create('ja_JP'),
+	      'type' => Request::input('type')
+	    ]);
 	})->name('messages.show');
 
 	Route::delete('messages', function () {
