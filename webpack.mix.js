@@ -21,3 +21,4 @@ mix.sass('resources/sass/admin.scss', 'public/css');
 
 mix.react('resources/react/app.js', 'public/js');
 mix.sass('resources/react/assets/sass/app.scss', 'public/css');
+mix.browserSync('localhost:8000');
