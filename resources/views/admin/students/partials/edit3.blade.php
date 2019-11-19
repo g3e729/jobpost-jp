@@ -1,4 +1,4 @@
-<form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
+<form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.students.update', $student) }}" novalidate>
   @csrf
   {{ method_field('PATCH') }}
 
@@ -23,13 +23,13 @@
         <div class="col-9 text-right">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-light">
-              <input type="radio" name="{{ $programming_language }}" value="2" autocomplete="off"> 受講済み
+              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
             <label class="btn btn-light">
-              <input type="radio" name="{{ $programming_language }}" value="1" autocomplete="off"> 受講中
+              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
             <label class="btn btn-light active">
-              <input type="radio" name="{{ $programming_language }}" value="0" autocomplete="off" checked> 受けてない
+              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
         </div>
@@ -56,13 +56,13 @@
         <div class="col-9 text-right">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-light">
-              <input type="radio" name="{{ $framework }}" value="2" autocomplete="off"> 受講済み
+              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
             <label class="btn btn-light">
-              <input type="radio" name="{{ $framework }}" value="1" autocomplete="off"> 受講中
+              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
             <label class="btn btn-light active">
-              <input type="radio" name="{{ $framework }}" value="0" autocomplete="off" checked> 受けてない
+              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
         </div>
@@ -92,13 +92,13 @@
         <div class="col-9 text-right">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-light">
-              <input type="radio" name="{{ $other }}" value="2" autocomplete="off"> 受講済み
+              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
             <label class="btn btn-light">
-              <input type="radio" name="{{ $other }}" value="1" autocomplete="off"> 受講中
+              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
             <label class="btn btn-light active">
-              <input type="radio" name="{{ $other }}" value="0" autocomplete="off" checked> 受けてない
+              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
         </div>
@@ -125,13 +125,13 @@
         <div class="col-9 text-right">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-light">
-              <input type="radio" name="{{ $experience }}" value="2" autocomplete="off"> 受講済み
+              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
             <label class="btn btn-light">
-              <input type="radio" name="{{ $experience }}" value="1" autocomplete="off"> 受講中
+              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
             <label class="btn btn-light active">
-              <input type="radio" name="{{ $experience }}" value="0" autocomplete="off" checked> 受けてない
+              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
         </div>

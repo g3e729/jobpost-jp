@@ -38,7 +38,7 @@ export default class CopyInput {
       let elementsInput = elementClone.querySelectorAll('[data-name]');
 
       elementsInput.forEach(el => {
-        el.name = `history[${this.next}][${el.dataset.name}]`;
+        el.name = `work_history[${this.next}][${el.dataset.name}]`;
       });
 
       this.elementCopy.insertBefore(elementClone, this.elementLast.nextSibling);

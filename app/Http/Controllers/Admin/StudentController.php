@@ -7,7 +7,6 @@ use App\Services\SeekerService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Str;
 
 class StudentController extends BaseController
 {
@@ -56,6 +55,18 @@ class StudentController extends BaseController
 		$others = $student->getOthers();
 		$programming_languages = $student->getProgrammingLanguages();
 
+		if (! $student->work_history->count()) {
+			$student->work_history->push([]);
+		}
+
+		foreach ([0, 1, 2] as $i) {
+			if ($student->education_history[$i]->id ?? false) {
+				continue;
+			}
+
+			$student->education_history->push([]);
+		}
+
 		return view('admin.students.edit', compact(
 			'english_levels',
 			'student',
@@ -69,62 +80,22 @@ class StudentController extends BaseController
 			'languages',
 			'others',
 			'programming_languages',
-			'step')
-		);
+			'step'
+		));
 	}
 
 	public function update(Request $request, Student $student)
 	{
-        $student->update(
-            $request->except('_token', '_method', 'email', 'japanese_name', 'name')
-        );
+		dd($request->all());
+		$seekerService = new SeekerService($student);
 
-        $student->user()->update(
-            $request->only('email', 'japanese_name', 'name')
-        );
-
-        $works = $request->get('work_history');
-
-        if ($works && count(array_filter(array_flatten($works, 1)))) {
-        	$student->work_history()->delete();
-
-        	foreach($works as $work) {
-        		$work['started_at'] = Str::finish($work['started_at'], '-01');
-        		$work['ended_at'] = Str::finish($work['ended_at'], '-01');
-        		$student->work_history()->create($work);
-        	}
-        }
-
-        $educations = $request->get('education_history');
-
-        if ($educations && count(array_filter(array_flatten($educations, 1)))) {
-        	$student->education_history()->delete();
-
-        	foreach($educations as $education) {
-        		$education['graduated_at'] = Str::finish($education['graduated_at'], '-01');
-        		$student->education_history()->create($education);
-        	}
-        }
-
-        if ($request->file('avatar')) {
-            $file = $request->avatar->store('public/avatar');
-            $file = explode('/', $file);
-
-            $student->files()->delete();
-
-            $student->files()->create([
-                'url' => asset('/storage/avatar/' . array_last($file)),
-                'file_name' => $request->avatar->getClientOriginalName(),
-                'type' => 'avatar',
-                'mime_type' => $request->avatar->getMimeType(),
-                'size' => $request->avatar->getSize(),
-            ]);
-        }
+		$seekerService->updateInfo($request->all());
+		$seekerService->updateWorkHistory($request->get('work_history'));
+		$seekerService->updateEducationHistory($request->get('education_history'));
+		$seekerService->uploadFile($request);
 
 		return redirect()->route('admin.students.show', $student)
             ->with('success', "Success! Student details is updated!");
-
-		return redirect()->route('admin.students.show', $student);
 	}
 
     public function destroy(Student $student)
