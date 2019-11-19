@@ -19,16 +19,16 @@
       </dl>
       <div id="js-prog-lang" class="form-group row" style="display: none;">
         @foreach($programming_languages as $id => $programming_language)
-        <div class="col-3 font-weight-bold">{{ ucwords($programming_language) }}</div>
-        <div class="col-9 text-right">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-light">
+        <div class="col-4 font-weight-bold">{{ ucwords($programming_language) }}</div>
+        <div class="col-8 text-right">
+          <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
-            <label class="btn btn-light">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
-            <label class="btn btn-light active">
+            <label class="alt-font btn btn-light active">
               <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
@@ -52,16 +52,16 @@
       </dl>
       <div id="js-prog-framework" class="form-group row" style="display: none;">
         @foreach($frameworks as $id => $framework)
-        <div class="col-3 font-weight-bold">{{ ucwords($framework) }}</div>
-        <div class="col-9 text-right">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-light">
+        <div class="col-4 font-weight-bold">{{ ucwords($framework) }}</div>
+        <div class="col-8 text-right">
+          <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
-            <label class="btn btn-light">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
-            <label class="btn btn-light active">
+            <label class="alt-font btn btn-light active">
               <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
@@ -88,16 +88,16 @@
       </ul>
       <div id="js-prog-skills" class="form-group row" style="display: none;">
         @foreach($others as $id => $other)
-        <div class="col-3 font-weight-bold">{{ ucwords($other) }}</div>
-        <div class="col-9 text-right">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-light">
+        <div class="col-4 font-weight-bold">{{ ucwords($other) }}</div>
+        <div class="col-8 text-right">
+          <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
-            <label class="btn btn-light">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
-            <label class="btn btn-light active">
+            <label class="alt-font btn btn-light active">
               <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
@@ -121,16 +121,16 @@
       </dl>
       <div id="js-prog-exp" class="form-group row" style="display: none;">
         @foreach($experiences as $id => $experience)
-        <div class="col-3 font-weight-bold">{{ ucwords($experience) }}</div>
-        <div class="col-9 text-right">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-light">
+        <div class="col-4 font-weight-bold">{{ ucwords($experience) }}</div>
+        <div class="col-8 text-right">
+          <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
             </label>
-            <label class="btn btn-light">
+            <label class="alt-font btn btn-light">
               <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
             </label>
-            <label class="btn btn-light active">
+            <label class="alt-font btn btn-light active">
               <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
             </label>
           </div>
@@ -326,6 +326,7 @@
   const targetButtons = document.querySelectorAll('.js-modal-target');
   const modalSubmit = document.querySelector('#js-modal-submit');
   const modal = document.querySelector('#js-modal');
+  const elementForm = document.forms['editForm'];
   const pageButtons = [...targetButtons];
 
   pageButtons.forEach(btn => {
@@ -335,18 +336,44 @@
       let title = this.dataset.title;
       let target = this.dataset.target;
       let elementTarget = document.querySelector(`#${target}`);
-      elementTarget.style.display =  'flex';
+      let elementClone = elementTarget.cloneNode(true);
+      elementClone.style.display = 'flex';
 
       modal.querySelector('.modal-title').textContent = title;
       modal.querySelector('.modal-body').textContent = null;
-      modal.querySelector('.modal-body').appendChild(elementTarget);
+      modal.querySelector('.modal-body').appendChild(elementClone);
 
       $(modal).modal('show');
+
+      const elementModal = modal.querySelector('.modal-body');
+      const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
+
+      $(elementsRadio).on('change', (ev) => {
+        let currActive = ev.currentTarget.value;
+        let actualActive;
+        if (currActive == 0) { ctualActive = 2; }
+        else if (currActive == 1) { actualActive = 1; }
+        else { actualActive = 0; }
+
+        let elementInput = ev.currentTarget.name;
+        let elementsGroup = elementForm.querySelectorAll(`[name=${elementInput}]`);
+        let elementsParent = [...elementsGroup].map(e => e.parentNode);
+
+        elementsParent.forEach((el, idx) => {
+          el.classList.remove('active');
+          el.children[0].removeAttribute('checked');
+
+          if (idx == actualActive) {
+            el.classList.add('active');
+            el.children[0].setAttribute('checked', 'checked');
+          }
+        });
+      });
     })
   });
 
   modalSubmit.addEventListener('click', function(event) {
     $(modal).modal('hide');
-    document.forms['editForm'].submit();
+    elementForm.submit();
   });
 </script>
