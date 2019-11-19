@@ -25,7 +25,7 @@ class CompanyController extends BaseController
 		return $company->forApi();
 	}
 
-	public function update(CompanyProfile $company)
+	public function update(CompanyProfile $company, Request $request)
 	{
         $company->update(
             $request->except('_token', '_method', 'email', 'japanese_name', 'name')
@@ -41,5 +41,7 @@ class CompanyController extends BaseController
         foreach ($social_media_accounts as $social_media => $url) {
         	$company->social_media()->create(compact('social_media', 'url'));
         }
+
+        return $company->forApi();
 	}
 }
