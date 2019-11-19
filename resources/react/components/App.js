@@ -1,25 +1,21 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Header from './common/Header'
-import Companies from './company/Companies'
-import Company from './company/Company'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+
+import Header from './common/Header';
+import Footer from './common/Footer';
+import Pages from './common/Pages';
 
 class App extends Component {
-  render () {
-
-    return (
-      <BrowserRouter>
-        <div>
-          <Header />
-          <Switch>
-            <Route exact path='/react/companies' component={Companies} />
-            <Route exact path='/react/companies/:id' component={Company} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    )
+  render() {
+    return(
+      <div className="l-wrap" id="js-wrap">
+        <Header />
+        <Pages />
+        <Footer />
+      </div>
+    );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+export default withRouter(App);
+
