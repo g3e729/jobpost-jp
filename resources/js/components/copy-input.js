@@ -20,6 +20,10 @@ export default class CopyInput {
     this.next = 1;
     this.iterate = this.elementCopy.dataset.iterate;
     this.elementLast = this.elementGroup;
+
+    $.fn.datepicker.defaults.format = 'yyyy-mm';
+    $.fn.datepicker.defaults.viewMode = 'months';
+    $.fn.datepicker.defaults.minViewMode = 'months';
   }
 
   initEvents() {
@@ -46,7 +50,7 @@ export default class CopyInput {
       this.elementLast = elementClone;
 
       let childCount = this.elementCopy.childElementCount;
-      if (childCount > ((this.iterate -1) * 2)) {
+      if (childCount > ((this.iterate) * 2)) {
         this.elementButton.disabled = true;
       } else if (childCount === 2) {
         this.elementLast = this.elementGroup;
@@ -54,6 +58,9 @@ export default class CopyInput {
       else {
         this.elementButton.disabled = false;
       }
+
+      let elementsDPicker = document.querySelectorAll('.js-datepicker');
+      $(elementsDPicker).datepicker('update');
 
       let elementsRemove = document.querySelectorAll(this.selectorRemove);
       elementsRemove.forEach(el => {
@@ -70,7 +77,7 @@ export default class CopyInput {
           }
 
           let childCountInner = this.elementCopy.childElementCount;
-          if (childCountInner <= ((this.iterate -1) * 2)) {
+          if (childCountInner <= ((this.iterate) * 2)) {
             this.elementButton.disabled = false;
           }
 
