@@ -70,8 +70,7 @@
   <script src="{{ asset('js/register.js') }}"></script>
   <script src="{{ asset('js/editform.js') }}"></script>
   <script>
-    $('.js-datepicker').datepicker('destroy');
-    $('.js-datepicker').datepicker({
+    $('.js-monthpicker').datepicker({
       format: 'yyyy-mm',
       viewMode: 'months',
       minViewMode: 'months',

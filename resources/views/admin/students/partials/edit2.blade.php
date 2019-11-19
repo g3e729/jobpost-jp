@@ -38,7 +38,7 @@
 
           <div class="form-group position-relative">
             <label for="formStaffRange" class="form-label pt-0">期間</label>
-            <div class="input-group input-daterange js-datepicker">
+            <div class="input-group input-daterange js-monthpicker">
               <input type="text" class="form-control text-left" name="work_history[{{ $k }}][started_at]" value="{{ isset($work_history->started_at) ? $work_history->started_at->format('Y-m') : '' }}"
                 data-name="staff_range_from" placeholder="">
               <div class="input-group-text">

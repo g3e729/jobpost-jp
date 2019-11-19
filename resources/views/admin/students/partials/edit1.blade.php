@@ -1,13 +1,13 @@
 <form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.students.update', $student) }}" enctype="multipart/form-data" novalidate>
   @csrf
   {{ method_field('PATCH') }}
-  
+
   <div class="form-group pb-3 row">
     <label for="formJapaneseName" class="col-3 col-form-label font-weight-bold">名前(Japanese)</label>
     <div class="col-9">
       <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ $student->japanese_name }}" placeholder="" required>
       <div class="invalid-tooltip">
-        Please enter Japanese name. 
+        Please enter Japanese name.
       </div>
     </div>
   </div>

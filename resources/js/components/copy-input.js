@@ -59,7 +59,7 @@ export default class CopyInput {
         this.elementButton.disabled = false;
       }
 
-      let elementsDPicker = document.querySelectorAll('.js-datepicker');
+      let elementsDPicker = document.querySelectorAll('.js-monthpicker');
       $(elementsDPicker).datepicker('update');
 
       let elementsRemove = document.querySelectorAll(this.selectorRemove);
