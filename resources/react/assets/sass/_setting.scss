@@ -1,0 +1,45 @@
+//antialiased,subpixel-antialiased,none
+$font-smoothing: antialiased;
+
+//auto,optimizeSpeed,optimizeLegibility,geometricPrecision
+$text-rendering: auto;
+
+$font-hiragino: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+$font-avenir: 'Avenir', sans-serif;
+$base-font-family: $font-hiragino;
+$alt-font-family: $font-avenir;
+$base-font-size: 14px;
+$base-font-color: #393939;
+$base-background-color: #fff;
+
+// Color Palette
+$color-white: #fff;
+$color-black: #000;
+$color-black2: #393939;
+$color-yellow: #fabf14;
+$color-yellow2: #fdb834;
+$color-orange: #f7954d;
+$color-light-gray: #f2f2f0;
+$color-dark-gray: #d9d6d6;
+
+// Path
+$path-image: "../img/";
+$path-font: "../fonts/";
+
+// Breakpoint
+$breakpoint-mobile: 768px;
+
+// Animation
+$duration: 0.25s;
+$easing: ease-in-out;
+$easing-cubic: cubic-bezier(.51,.3,0,.99);
+$dealy: 0.35s;
+
+// Z-index
+$z-min: 1;
+$z-max: 20;
+
+// Etc
+$opaque: 0.7;
+$site-size: 1060px;
+$gradient: linear-gradient(to right, $color-yellow2, $color-orange);

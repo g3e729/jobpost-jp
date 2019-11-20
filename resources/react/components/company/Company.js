@@ -1,26 +1,26 @@
-import axios from 'axios'
-import React, { Component } from 'react'
+import axios from 'axios';
+import React, { Component } from 'react';
 
 class Company extends Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       company: {}
-    }
+    };
   }
 
   componentDidMount () {
-    const companyId = this.props.match.params.id
+    const companyId = this.props.match.params.id;
 
     axios.get(`/api/companies/${companyId}`).then(response => {
       this.setState({
         company: response.data,
       })
-    })
+    });
   }
 
   render () {
-    const { company } = this.state
+    const { company } = this.state;
 
     return (
       <div className='container py-4'>
@@ -40,4 +40,4 @@ class Company extends Component {
   }
 }
 
-export default Company
+export default Company;

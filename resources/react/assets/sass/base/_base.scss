@@ -1,0 +1,27 @@
+/*
+#styleguide
+基本スタイル
+
+```
+<p>特に何も指定しないときの状態</p>
+```
+*/
+body {
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: $font-smoothing;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: $font-smoothing;
+  text-rendering: $text-rendering;
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+  color: $base-font-color;
+  background-color: $base-background-color;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}

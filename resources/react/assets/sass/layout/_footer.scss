@@ -1,0 +1,16 @@
+.l-footer {
+  position: relative;
+  text-align: center;
+}
+
+.l-footer__top {
+  padding: 50px 0 60px;
+  background-color: $color-yellow;
+  background-image: $gradient;
+  background-size: cover;
+}
+
+.l-footer__bottom {
+  padding: 25px 0;
+  background-color: $color-black2;
+}

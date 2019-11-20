@@ -1,13 +1,13 @@
-import axios from 'axios'
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Companies extends Component {
   constructor () {
-    super()
+    super();
     this.state = {
       companies: []
-    }
+    };
   }
 
   componentDidMount () {
@@ -22,6 +22,7 @@ class Companies extends Component {
 
   render () {
     let { companies } = this.state;
+
     return (
       <div className='container py-4'>
         <div className='row justify-content-center'>
@@ -52,4 +53,4 @@ class Companies extends Component {
   }
 }
 
-export default Companies
+export default Companies;

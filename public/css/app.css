@@ -1,0 +1,531 @@
+@charset "UTF-8";
+
+/*! sanitize.css | CC0 Public Domain | github.com/jonathantneal/sanitize.css */
+
+/*
+ * Normalization
+ */
+
+:root {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+}
+
+audio:not([controls]) {
+  display: none;
+}
+
+details {
+  display: block;
+}
+
+input[type=number] {
+  width: auto;
+}
+
+input[type=search] {
+  -webkit-appearance: textfield;
+}
+
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+main {
+  display: block;
+}
+
+summary {
+  display: block;
+}
+
+pre {
+  overflow: auto;
+}
+
+progress {
+  display: inline-block;
+}
+
+small {
+  font-size: 75%;
+}
+
+template {
+  display: none;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[hidden] {
+  display: none;
+}
+
+[unselectable] {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+/*
+ * Universal inheritance
+ */
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+* {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+/*
+ * Opinionated defaults
+ */
+
+*,
+::before,
+::after {
+  border-style: solid;
+  border-width: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  box-sizing: border-box;
+  cursor: default;
+  font: 16px/1.5 sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  background-color: #FFFFFF;
+}
+
+a {
+  text-decoration: none;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+button,
+[type=button],
+[type=date],
+[type=datetime],
+[type=datetime-local],
+[type=email],
+[type=month],
+[type=number],
+[type=password],
+[type=reset],
+[type=search],
+[type=submit],
+[type=tel],
+[type=text],
+[type=time],
+[type=url],
+[type=week],
+select,
+textarea {
+  min-height: 1.5em;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+}
+
+nav ol,
+nav ul {
+  list-style: none;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select::-ms-value {
+  color: currentColor;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+::-moz-selection {
+  background-color: #B3D4FC;
+  text-shadow: none;
+}
+
+::selection {
+  background-color: #B3D4FC;
+  text-shadow: none;
+}
+
+@media screen {
+  [hidden~=screen] {
+    display: inherit;
+  }
+
+  [hidden~=screen]:not(:active):not(:focus):not(:target) {
+    clip: rect(0 0 0 0) !important;
+    position: absolute !important;
+  }
+}
+
+/*
+#styleguide
+基本スタイル
+
+```
+<p>特に何も指定しないときの状態</p>
+```
+*/
+
+body {
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+   -ms-text-size-adjust: 100%;
+       text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: auto;
+  font-size: 14px;
+  font-family: "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Hiragino Kaku Gothic ProN", "\30E1\30A4\30EA\30AA", Meiryo, sans-serif;
+  color: #393939;
+  background-color: #fff;
+}
+
+input:focus {
+  outline: none;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.flex {
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: flex;
+}
+
+.flex:before,
+.flex:after {
+  content: none;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-fill {
+  width: 100%;
+  height: 100%;
+}
+
+.flex-horizontal {
+  box-orient: horizontal;
+  box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+
+.flex-vertical {
+  box-orient: vertical;
+  box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+.flex-space-between {
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  flex-pack: justify;
+  box-pack: justify;
+}
+
+.flex-space-around {
+  justify-content: space-around;
+  flex-pack: justify;
+  box-pack: justify;
+}
+
+.flex-start {
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  flex-pack: start;
+  box-pack: start;
+}
+
+.flex-end {
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+  flex-pack: end;
+  box-pack: end;
+}
+
+.flex-center {
+  -webkit-box-pack: center;
+          justify-content: center;
+  flex-pack: center;
+  box-pack: center;
+}
+
+.flex-align-start {
+  -webkit-box-align: start;
+          align-items: flex-start;
+  flex-align: start;
+  box-align: start;
+}
+
+.flex-align-end {
+  -webkit-box-align: end;
+          align-items: flex-end;
+  flex-align: end;
+  box-align: end;
+}
+
+.flex-align-center {
+  -webkit-box-align: center;
+          align-items: center;
+  flex-align: center;
+  box-align: center;
+}
+
+.flex-align-baseline {
+  -webkit-box-align: baseline;
+          align-items: baseline;
+  flex-align: baseline;
+  box-align: baseline;
+}
+
+.flex-align-stretch {
+  -webkit-box-align: stretch;
+          align-items: stretch;
+  flex-align: stretch;
+  box-align: stretch;
+}
+
+.flex-inline {
+  display: -webkit-inline-box;
+  display: inline-flex;
+}
+
+.l-container {
+  padding: 0 20px;
+  margin: 0 auto;
+  width: 1060px;
+  box-sizing: border-box;
+}
+
+.l-footer {
+  position: relative;
+  text-align: center;
+}
+
+.l-footer__top {
+  padding: 50px 0 60px;
+  background-color: #fabf14;
+  background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
+  background-image: linear-gradient(to right, #fdb834, #f7954d);
+  background-size: cover;
+}
+
+.l-footer__bottom {
+  padding: 25px 0;
+  background-color: #393939;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd);
+  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd) format(‘embedded-opentype’), url(/fonts/Avenir-Medium.woff?8493a6cece6243e6c36bc9c5933a3b8a) format(‘woff’), url(/fonts/Avenir-Medium.ttf?85fc4658e0d92e2e7b060b2f5fc091de) format(‘truetype’);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54);
+  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54) format(‘embedded-opentype’), url(/fonts/Avenir-Black.woff?bab406dfde44985470f28b5f5e6bb9b9) format(‘woff’), url(/fonts/Avenir-Black.ttf?b24e41af53d02e87300b5bd032da57ec) format(‘truetype’);
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "kredo";
+  src: url(/fonts/kredo.eot?a7dd3267fa847cc83e519654d2c6a732);
+  src: url(/fonts/kredo.eot?a7dd3267fa847cc83e519654d2c6a732) format("embedded-opentype"), url(/fonts/kredo.ttf?0ba45c37766abc480348c294f3148ff7) format("truetype"), url(/fonts/kredo.woff?00b3324408204e81b3ca71b733eb6ade) format("woff"), url(/fonts/kredo.svg?e2c81074210f869939d0164b3ffb8282) format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^=icon-],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "kredo" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook:before {
+  content: "\EA90";
+}
+
+.icon-instagram:before {
+  content: "\EA92";
+}
+
+.icon-twitter:before {
+  content: "\EA96";
+}
+
+.footer__heading {
+  font-family: "Avenir", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: #fff;
+  letter-spacing: 0.2em;
+}
+
+.footer__copyright {
+  font-family: "Avenir", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.footer-menu {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  list-style: none;
+  margin-top: 30px;
+}
+
+.footer-menu__item {
+  margin: 0 17px;
+}
+
+.footer-menu__item a {
+  display: block;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.footer-menu__item.is-active {
+  border-bottom: solid 1px #fff;
+}
+
+.footer-sns {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  list-style: none;
+  margin-top: 35px;
+  padding-bottom: 3px;
+}
+
+.footer-sns__item {
+  margin: 0 7px;
+}
+
+.footer-sns__item a {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: solid 1px #fff;
+  font-size: 18px;
+  color: #fff;
+}
+
