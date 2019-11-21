@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Companies extends Component {
+class CompaniesPage extends Component {
   constructor () {
     super();
     this.state = {
@@ -53,4 +53,4 @@ class Companies extends Component {
   }
 }
 
-export default Companies;
+export default CompaniesPage;

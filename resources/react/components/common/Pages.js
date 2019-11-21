@@ -1,17 +1,26 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-class Pages extends Component {
-  render() {
-    return (
-      <div className="pages">
-        <Router>
-          <Switch>
-          </Switch>
-        </Router>
-      </div>
-    )
-  }
-}
+import ProfilePage from '../profile/ProfilePage';
+import CompaniesPage from '../company/CompaniesPage';
+
+import { routes } from '../constants/routes';
+
+const Pages = () => (
+  <div className="pages">
+    <Switch>
+      <Route
+        exact
+        path={routes.PROFILE}
+        component={ProfilePage}
+      />
+      <Route
+        exact
+        path={routes.COMPANIES}
+        component={CompaniesPage}
+      />
+    </Switch>
+  </div>
+);
 
 export default Pages;
