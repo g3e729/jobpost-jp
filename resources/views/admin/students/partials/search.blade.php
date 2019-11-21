@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="pb-3 row">
-    <div class="col-3">
+    <div class="col">
       <div class="form-group">
         <label for="formCourse" class="font-weight-bold text-muted">コース</label>
         <select class="form-control" id="formCourse" name="course_id">
@@ -18,20 +18,7 @@
         </select>
       </div>
     </div>
-    <div class="col-3">
-      <div class="form-group">
-        <label for="formPeriod" class="font-weight-bold text-muted">期</label>
-        <select class="form-control" id="formPeriod" name="period">
-          <option value="" selected>All Period</option>
-          <option value="31">第31期( 10月1日~ / Phase 31 (October 1st ~</option>
-          <option value="32">第32期( 11月1日~ / Phase 32 (October 1st ~</option>
-          <option value="33">第33期( 12月1日~ / Phase33 (October 1st ~</option>
-          <option value="34">第34期( 1月1日~ / Phase34 (October 1st ~</option>
-          <option value="35">第35期( 2月1日~ / Phase35 (October 1st ~</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-3">
+    <div class="col">
       <div class="form-group">
         <label for="formStatus" class="font-weight-bold text-muted">ステータス</label>
         <select class="form-control" id="formStatus" name="status">
@@ -42,7 +29,21 @@
         </select>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="formPeriod" class="font-weight-bold text-muted">期</label>
+        <div class="input-group input-daterange js-monthpicker">
+          <input type="text" class="form-control text-left" name="" value=""
+            data-name="students_range_from" placeholder="">
+          <div class="input-group-text">
+            <i class="fas fa-fw fa-arrows-alt-h"></i>
+          </div>
+          <input type="text" class="form-control text-left" name="" value=""
+            data-name="students_range_to" placeholder="">
+        </div>
+      </div>
+    </div>
+    <div class="col">
       <div class="form-group">
         <label for="formEnglish" class="font-weight-bold text-muted">English level</label>
         <select class="form-control" id="formEnglish" name="english_level_id">

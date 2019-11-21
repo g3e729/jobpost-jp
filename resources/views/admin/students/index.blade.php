@@ -78,3 +78,29 @@
   @include('admin.partials.pagination', ['data' => $students])
   @endif
 @endsection
+
+@section('js')
+  <script>
+    const elementStatus = document.querySelector('[name="status"]');
+    const elementsRange = document.querySelectorAll('.input-daterange input[type="text"]');
+
+    elementStatus.addEventListener('change', function(ev) {
+      elementsRange.forEach(el => {
+        el.removeAttribute('disabled');
+      });
+
+      if ( this.value == 1 ) {
+        elementsRange.forEach(el => {
+          el.setAttribute('disabled', 'disabled');
+        });
+      }
+    });
+
+    $('.js-monthpicker').datepicker({
+      format: 'yyyy-mm',
+      viewMode: 'months',
+      minViewMode: 'months',
+    });
+  </script>
+@endsection
+
