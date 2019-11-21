@@ -4,3 +4,7 @@
   width: $site-size;
   box-sizing: border-box;
 }
+
+.l-container--wide {
+  max-width: calc(100% - 40px);
+}

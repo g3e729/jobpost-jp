@@ -391,6 +391,26 @@ input:focus {
   box-sizing: border-box;
 }
 
+.l-container--wide {
+  max-width: calc(100% - 40px);
+}
+
+.l-header {
+  position: relative;
+  min-height: 98px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.l-header__left {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
 .l-footer {
   position: relative;
   text-align: center;
@@ -461,6 +481,19 @@ input:focus {
   content: "\EA96";
 }
 
+.header__logo {
+  width: 214px;
+  margin-right: 50px;
+}
+
+.header__logo a {
+  display: block;
+}
+
+.header__logo-image {
+  width: 100%;
+}
+
 .footer__heading {
   font-family: "Avenir", sans-serif;
   font-weight: 900;
@@ -527,5 +560,26 @@ input:focus {
   border: solid 1px #fff;
   font-size: 18px;
   color: #fff;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border: solid 3px #fff;
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.button {
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0.12em;
+  display: inline-block;
+  border-radius: 30px;
+  padding: 9px 30px;
+  outline: 0;
+  background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
+  background-image: linear-gradient(to right, #fdb834, #f7954d);
 }
 

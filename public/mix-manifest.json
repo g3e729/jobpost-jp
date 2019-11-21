@@ -6,5 +6,9 @@
     "/js/editform.js": "/js/editform.js",
     "/js/register.js": "/js/register.js",
     "/js/jquery.min.js": "/js/jquery.min.js",
-    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js"
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+    "/img/avatar-default.png": "/img/avatar-default.png",
+    "/img/avatar-kredo.png": "/img/avatar-kredo.png",
+    "/img/logo-kredo-new-sp.png": "/img/logo-kredo-new-sp.png",
+    "/img/logo-kredo-new.png": "/img/logo-kredo-new.png"
 }

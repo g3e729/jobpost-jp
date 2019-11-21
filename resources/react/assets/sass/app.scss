@@ -13,8 +13,12 @@
 
 // Layout
 @import './layout/container';
+@import './layout/header';
 @import './layout/footer';
 
 // Components
 @import './components/fonts';
+@import './components/header';
 @import './components/footer';
+@import './components/avatar';
+@import './components/button';

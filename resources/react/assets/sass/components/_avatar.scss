@@ -1,0 +1,9 @@
+.avatar {
+  height: 50px;
+  width: 50px;
+
+  border: solid 3px $color-white;
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: $shadow;
+}

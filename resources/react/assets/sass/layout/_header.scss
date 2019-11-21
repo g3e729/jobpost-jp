@@ -1,0 +1,14 @@
+.l-header {
+  position: relative;
+  min-height: 98px;
+
+  display: flex;
+  align-items: center;
+}
+
+.l-header__left {
+  display: flex;
+  align-items: center;
+}
+
+.l-header__right {}
