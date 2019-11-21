@@ -6,6 +6,7 @@ new ImageUpload({
   file: '[data-avatar="file"]',
   name: '[data-avatar="name"]',
   preview: '[data-avatar="preview"]',
+  hidden: '[data-avatar="hidden"]',
   delete: '[data-avatar="delete"]',
 });
 

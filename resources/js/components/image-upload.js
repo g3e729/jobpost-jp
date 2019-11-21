@@ -6,11 +6,13 @@ export default class ImageUpload {
     this.selectorFile = params.file;
     this.selectorName = params.name;
     this.selectorPreview = params.preview;
+    this.selectorHidden = params.hidden;
     this.selectorDelete = params.delete;
     this.elementsBrowse = document.querySelectorAll(this.selectorBrowse);
     this.elementsFile = document.querySelectorAll(this.selectorFile);
     this.elementsName = document.querySelectorAll(this.selectorName);
     this.elementsPreview = document.querySelectorAll(this.selectorPreview);
+    this.elementsHidden= document.querySelectorAll(this.selectorHidden);
     this.elementsDelete = document.querySelectorAll(this.selectorDelete);
 
     this.init();
@@ -51,6 +53,7 @@ export default class ImageUpload {
         this.elementsPreview[idx].src = dataGroup === 'avatar' ? this.imagePlaceholder[0] : this.imagePlaceholder[1];
         this.elementsName[idx].value = null;
         this.elementsFile[idx].value = '';
+        this.elementsHidden[idx].value = 1;
       });
 
     });

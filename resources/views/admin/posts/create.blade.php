@@ -31,6 +31,7 @@
             <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ old('cover_photo') ? null : 'disabled'}}>Delete</button>
           </div>
 
+          <input data-avatar="hidden" type="hidden" name="cover_photo_deleted" value="0">
           <input data-avatar="file" type="file" class="form-control-file" id="formCoverPhoto" name="cover_photo"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">

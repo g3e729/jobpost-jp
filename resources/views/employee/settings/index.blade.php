@@ -33,6 +33,7 @@
                 <img data-avatar="preview" class="avatar avatar-md border border-secondary mb-3" src="{{ $profile->avatar ?? 'https://placehold.it/80x80' }}">
               </div>
 
+              <input data-avatar="hidden" type="hidden" name="avatar_deleted" value="0">
               <input data-avatar="file" type="file" class="form-control-file" id="formAvatar" name="avatar"
                 accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">

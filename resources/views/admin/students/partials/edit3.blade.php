@@ -189,6 +189,7 @@
             <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio_img) && $student->portfolio_img ? null : 'disabled'}}>Delete</button>
           </div>
 
+          <input data-avatar="hidden" type="hidden" name="portfolio_img_deleted" value="0">
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio_img"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
@@ -232,6 +233,7 @@
             <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio2_img) && $student->portfolio2_img ? null : 'disabled'}}>Delete</button>
           </div>
 
+          <input data-avatar="hidden" type="hidden" name="portfolio2_img_deleted" value="0">
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio2Img" name="portfolio2_img"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
@@ -275,6 +277,7 @@
             <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio3_img) && $student->portfolio3_img ? null : 'disabled'}}>Delete</button>
           </div>
 
+          <input data-avatar="hidden" type="hidden" name="portfolio3_img_deleted" value="0">
           <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio3Img" name="portfolio3_img"
             accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
           <div class="input-group">
