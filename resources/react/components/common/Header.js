@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import Avatar from './Avatar';
 import Search from './Search';
 import { routes } from '../constants/routes';
+import { state } from '../constants/state';
 
 const Header = () => (
   <header className="l-header header">
@@ -15,7 +16,7 @@ const Header = () => (
           </Link>
         </h1>
 
-        <NavLink exact to={routes.JOBS} className="button button--list" activeClassName="is-active">
+        <NavLink exact to={routes.JOBS} className="button button--list" activeClassName={state.ACTIVE}>
           <i className="icon icon-squares-list"></i>
           募集一覧
         </NavLink>
@@ -25,12 +26,12 @@ const Header = () => (
 
         <ul className="header-actions">
           <li className="header-actions__item">
-            <NavLink exact to={routes.MESSAGES} activeClassName="is-active">
+            <NavLink exact to={routes.MESSAGES} activeClassName={state.ACTIVE}>
               <i className="icon icon-mail text-orange"></i>
             </NavLink>
           </li>
           <li className="header-actions__item">
-            <NavLink exact to={routes.NOTIFICATIONS} activeClassName="is-active">
+            <NavLink exact to={routes.NOTIFICATIONS} activeClassName={state.ACTIVE}>
               <i className="icon icon-bell text-orange">
                 <span className="badge badge--bell">10</span>
               </i>
@@ -43,6 +44,6 @@ const Header = () => (
       </div>
     </div>
   </header>
-)
+);
 
 export default Header;

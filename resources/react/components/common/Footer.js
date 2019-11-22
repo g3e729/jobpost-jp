@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import { footerLinks } from '../constants/enums';
+import { state } from '../constants/state';
 import { routes, prefix } from '../constants/routes';
 
 class Footer extends Component {
-
   render() {
     let { location } = this.props;
     let path = location.pathname.substr(prefix.length).replace('/', '');
@@ -21,12 +21,12 @@ class Footer extends Component {
           }
           <ul className="footer-menu">
             <li className="footer-menu__item">
-              <NavLink exact to={routes.ABOUT} activeClassName="is-active">
+              <NavLink exact to={routes.ABOUT} activeClassName={state.ACTIVE}>
                 運営会社
               </NavLink>
             </li>
             <li className="footer-menu__item">
-              <NavLink exact to={routes.TERMS} activeClassName="is-active">
+              <NavLink exact to={routes.TERMS} activeClassName={state.ACTIVE}>
                 利用規約
               </NavLink>
             </li>
@@ -36,12 +36,12 @@ class Footer extends Component {
               </a>
             </li>
             <li className="footer-menu__item">
-              <NavLink exact to={routes.HELP} activeClassName="is-active">
+              <NavLink exact to={routes.HELP} activeClassName={state.ACTIVE}>
                 ヘルプ
               </NavLink>
             </li>
             <li className="footer-menu__item">
-              <NavLink exact to={routes.PRIVACY} activeClassName="is-active">
+              <NavLink exact to={routes.PRIVACY} activeClassName={state.ACTIVE}>
                 プライバシー
               </NavLink>
             </li>

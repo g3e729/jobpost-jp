@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import ProfilePage from '../profile/ProfilePage';
 import CompaniesPage from '../company/CompaniesPage';
+import JobsPage from '../jobs/JobsPage';
 
 import { routes } from '../constants/routes';
 
@@ -18,6 +19,11 @@ const Pages = () => (
         exact
         path={routes.COMPANIES}
         component={CompaniesPage}
+      />
+      <Route
+        exact
+        path={routes.JOBS}
+        component={JobsPage}
       />
     </Switch>
   </div>
