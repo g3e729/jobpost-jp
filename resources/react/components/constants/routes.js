@@ -20,6 +20,9 @@ export const routes = {
   JOBS: `${prefix}jobs`,
   JOBS_DETAIL: `${prefix}jobs/:id`,
 
+  MESSAGES: `${prefix}messages`,
+  NOTIFICATIONS: `${prefix}notifications`,
+
   ABOUT: `${prefix}about`,
   TERMS: `${prefix}terms`,
   HELP: `${prefix}help`,

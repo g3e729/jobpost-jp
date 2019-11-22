@@ -8,7 +8,21 @@
   padding: 9px 30px;
   outline: 0;
 
+  cursor: pointer;
+
   background-image: $gradient;
 }
 
-.button--list {}
+.button--list {
+  display: inline-flex;
+  align-items: center;
+
+  i {
+    margin-right: 10px;
+  }
+}
+
+.button--link {
+  padding: 0;
+  background: transparent;
+}

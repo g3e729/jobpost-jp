@@ -6,9 +6,8 @@
   align-items: center;
 }
 
-.l-header__left {
+.l-header__left,
+.l-header__right {
   display: flex;
   align-items: center;
 }
-
-.l-header__right {}

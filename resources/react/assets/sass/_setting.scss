@@ -13,14 +13,15 @@ $base-font-color: #393939;
 $base-background-color: #fff;
 
 // Color Palette
-$color-white: #fff;
-$color-black: #000;
-$color-black2: #393939;
-$color-yellow: #fabf14;
-$color-yellow2: #fdb834;
-$color-orange: #f7954d;
-$color-light-gray: #f2f2f0;
-$color-dark-gray: #d9d6d6;
+$color-white: #fff !default;
+$color-black: #000 !default;
+$color-medium-black: #393939 !default;
+$color-yellow: #fabf14 !default;
+$color-dark-yellow: #fdb834 !default;
+$color-orange: #f7954d !default;
+$color-light-gray: #f2f2f0 !default;
+$color-dark-gray: #d9d6d6 !default;
+$color-red: #ec1b42 !default;
 
 // Path
 $path-image: "../img/";
@@ -42,5 +43,5 @@ $z-max: 20;
 // Etc
 $opaque: 0.7;
 $site-size: 1060px;
-$gradient: linear-gradient(to right, $color-yellow2, $color-orange);
+$gradient: linear-gradient(to right, $color-dark-yellow, $color-orange);
 $shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

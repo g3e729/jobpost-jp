@@ -32273,7 +32273,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38973,6 +38973,11 @@ function (_Component) {
         activeClassName: "is-active"
       }, "\u5229\u7528\u898F\u7D04")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-menu__item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        target: "_blank"
+      }, "\u304A\u554F\u3044\u5408\u308F\u305B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-menu__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         exact: true,
         to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].HELP,
@@ -39034,7 +39039,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Avatar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Avatar */ "./resources/react/components/common/Avatar.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./resources/react/components/common/Search.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+
 
 
 
@@ -39044,28 +39051,54 @@ var Header = function Header() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "l-header header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "l-container l-container--wide flex flex-space-between"
+    className: "l-container l-container--wide flex flex--space-between"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-header__left"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "header__logo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].PROFILE
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].PROFILE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "../img/logo-kredo-new.png",
     alt: "Kredo",
     className: "header__logo-image"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].JOBS,
-    className: "button button--list"
-  }, "\u52DF\u96C6\u4E00\u89A7")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    exact: true,
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].JOBS,
+    className: "button button--list",
+    activeClassName: "is-active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-squares-list"
+  }), "\u52DF\u96C6\u4E00\u89A7")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-header__right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "header-actions"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "header-actions__item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    exact: true,
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].MESSAGES,
+    activeClassName: "is-active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-mail text-orange"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "header-actions__item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    exact: true,
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].NOTIFICATIONS,
+    activeClassName: "is-active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-bell text-orange"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "badge badge--bell"
+  }, "10")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "header-actions__item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Avatar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "avatar--header",
     style: {
       backgroundImage: 'url("http://i.pravatar.cc/300")'
     }
-  }))));
+  }))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
@@ -39108,6 +39141,146 @@ var Pages = function Pages() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Pages);
+
+/***/ }),
+
+/***/ "./resources/react/components/common/Search.js":
+/*!*****************************************************!*\
+  !*** ./resources/react/components/common/Search.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+
+
+var Search =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Search, _Component);
+
+  function Search() {
+    _classCallCheck(this, Search);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Search).apply(this, arguments));
+  }
+
+  _createClass(Search, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form__group form__group--search"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "search",
+        className: "input input--search",
+        placeholder: "\u30AD\u30FC\u30EF\u30FC\u30C9\u3067\u691C\u7D22",
+        "aria-describedby": "js-button-search"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form__group-append"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "button button--link",
+        id: "js-button-search"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "icon icon-search text-orange"
+      })))));
+    }
+  }]);
+
+  return Search;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Search);
 
 /***/ }),
 
@@ -39343,6 +39516,8 @@ var routes = {
   COMPANIES_DETAIL: "".concat(prefix, "companies/:id"),
   JOBS: "".concat(prefix, "jobs"),
   JOBS_DETAIL: "".concat(prefix, "jobs/:id"),
+  MESSAGES: "".concat(prefix, "messages"),
+  NOTIFICATIONS: "".concat(prefix, "notifications"),
   ABOUT: "".concat(prefix, "about"),
   TERMS: "".concat(prefix, "terms"),
   HELP: "".concat(prefix, "help"),

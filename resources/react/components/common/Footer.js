@@ -31,10 +31,14 @@ class Footer extends Component {
               </NavLink>
             </li>
             <li className="footer-menu__item">
+              <a href="#" target="_blank">
+                お問い合わせ
+              </a>
+            </li>
+            <li className="footer-menu__item">
               <NavLink exact to={routes.HELP} activeClassName="is-active">
                 ヘルプ
               </NavLink>
-
             </li>
             <li className="footer-menu__item">
               <NavLink exact to={routes.PRIVACY} activeClassName="is-active">

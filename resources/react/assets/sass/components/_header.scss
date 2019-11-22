@@ -12,3 +12,24 @@
 .header__logo-image {
   width: 100%;
 }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.header-actions__item {
+  &:not(:last-child) {
+    margin-right: 35px;
+  }
+
+  i {
+    position: relative;
+    font-size: 16px;
+
+    &.icon-bell {
+      font-size: 18px;
+    }
+  }
+}

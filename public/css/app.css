@@ -285,16 +285,16 @@ input:focus {
   content: none;
 }
 
-.flex-wrap {
+.flex--wrap {
   flex-wrap: wrap;
 }
 
-.flex-fill {
+.flex--fill {
   width: 100%;
   height: 100%;
 }
 
-.flex-horizontal {
+.flex--horizontal {
   box-orient: horizontal;
   box-direction: normal;
   -webkit-box-orient: horizontal;
@@ -302,7 +302,7 @@ input:focus {
           flex-direction: row;
 }
 
-.flex-vertical {
+.flex--vertical {
   box-orient: vertical;
   box-direction: normal;
   -webkit-box-orient: vertical;
@@ -310,78 +310,242 @@ input:focus {
           flex-direction: column;
 }
 
-.flex-space-between {
+.flex--space-between {
   -webkit-box-pack: justify;
           justify-content: space-between;
   flex-pack: justify;
   box-pack: justify;
 }
 
-.flex-space-around {
+.flex--space-around {
   justify-content: space-around;
   flex-pack: justify;
   box-pack: justify;
 }
 
-.flex-start {
+.flex--start {
   -webkit-box-pack: start;
           justify-content: flex-start;
   flex-pack: start;
   box-pack: start;
 }
 
-.flex-end {
+.flex--end {
   -webkit-box-pack: end;
           justify-content: flex-end;
   flex-pack: end;
   box-pack: end;
 }
 
-.flex-center {
+.flex--center {
   -webkit-box-pack: center;
           justify-content: center;
   flex-pack: center;
   box-pack: center;
 }
 
-.flex-align-start {
+.flex--align-start {
   -webkit-box-align: start;
           align-items: flex-start;
   flex-align: start;
   box-align: start;
 }
 
-.flex-align-end {
+.flex--align-end {
   -webkit-box-align: end;
           align-items: flex-end;
   flex-align: end;
   box-align: end;
 }
 
-.flex-align-center {
+.flex--align-center {
   -webkit-box-align: center;
           align-items: center;
   flex-align: center;
   box-align: center;
 }
 
-.flex-align-baseline {
+.flex--align-baseline {
   -webkit-box-align: baseline;
           align-items: baseline;
   flex-align: baseline;
   box-align: baseline;
 }
 
-.flex-align-stretch {
+.flex--align-stretch {
   -webkit-box-align: stretch;
           align-items: stretch;
   flex-align: stretch;
   box-align: stretch;
 }
 
-.flex-inline {
+.flex--inline {
   display: -webkit-inline-box;
   display: inline-flex;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd);
+  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd) format(‘embedded-opentype’), url(/fonts/Avenir-Medium.woff?8493a6cece6243e6c36bc9c5933a3b8a) format(‘woff’), url(/fonts/Avenir-Medium.ttf?85fc4658e0d92e2e7b060b2f5fc091de) format(‘truetype’);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54);
+  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54) format(‘embedded-opentype’), url(/fonts/Avenir-Black.woff?bab406dfde44985470f28b5f5e6bb9b9) format(‘woff’), url(/fonts/Avenir-Black.ttf?b24e41af53d02e87300b5bd032da57ec) format(‘truetype’);
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "kredo";
+  src: url(/fonts/kredo.eot?51aa0fd0c9a62c35aa3f79104f1f6427);
+  src: url(/fonts/kredo.eot?51aa0fd0c9a62c35aa3f79104f1f6427) format("embedded-opentype"), url(/fonts/kredo.ttf?5e120e218003dee73a185e508b1219b6) format("truetype"), url(/fonts/kredo.woff?af3ed82456a1b81c05e7bba04808b41e) format("woff"), url(/fonts/kredo.svg?af24aaa9689993b90bc9841cd9447fa1) format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^=icon-],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "kredo" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bell:before {
+  content: "\E900";
+}
+
+.icon-mail:before {
+  content: "\E901";
+}
+
+.icon-search:before {
+  content: "\E902";
+}
+
+.icon-squares-list:before {
+  content: "\E903";
+}
+
+.icon-facebook:before {
+  content: "\EA90";
+}
+
+.icon-instagram:before {
+  content: "\EA92";
+}
+
+.icon-twitter:before {
+  content: "\EA96";
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-black {
+  color: #000;
+}
+
+.text-medium-black {
+  color: #393939;
+}
+
+.text-yellow {
+  color: #fabf14;
+}
+
+.text-dark-yellow {
+  color: #fdb834;
+}
+
+.text-orange {
+  color: #f7954d;
+}
+
+.text-light-gray {
+  color: #f2f2f0;
+}
+
+.text-dark-gray {
+  color: #d9d6d6;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.bg-medium-black {
+  background-color: #393939;
+}
+
+.bg-yellow {
+  background-color: #fabf14;
+}
+
+.bg-dark-yellow {
+  background-color: #fdb834;
+}
+
+.bg-orange {
+  background-color: #f7954d;
+}
+
+.bg-light-gray {
+  background-color: #f2f2f0;
+}
+
+.bg-dark-gray {
+  background-color: #d9d6d6;
+}
+
+.border-white {
+  border: solid 1px #fff !important;
+}
+
+.border-black {
+  border: solid 1px #000 !important;
+}
+
+.border-medium-black {
+  border: solid 1px #393939 !important;
+}
+
+.border-yellow {
+  border: solid 1px #fabf14 !important;
+}
+
+.border-dark-yellow {
+  border: solid 1px #fdb834 !important;
+}
+
+.border-orange {
+  border: solid 1px #f7954d !important;
+}
+
+.border-light-gray {
+  border: solid 1px #f2f2f0 !important;
+}
+
+.border-dark-gray {
+  border: solid 1px #d9d6d6 !important;
 }
 
 .l-container {
@@ -404,7 +568,8 @@ input:focus {
           align-items: center;
 }
 
-.l-header__left {
+.l-header__left,
+.l-header__right {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -429,58 +594,6 @@ input:focus {
   background-color: #393939;
 }
 
-@font-face {
-  font-family: "Avenir";
-  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd);
-  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd) format(‘embedded-opentype’), url(/fonts/Avenir-Medium.woff?8493a6cece6243e6c36bc9c5933a3b8a) format(‘woff’), url(/fonts/Avenir-Medium.ttf?85fc4658e0d92e2e7b060b2f5fc091de) format(‘truetype’);
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Avenir";
-  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54);
-  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54) format(‘embedded-opentype’), url(/fonts/Avenir-Black.woff?bab406dfde44985470f28b5f5e6bb9b9) format(‘woff’), url(/fonts/Avenir-Black.ttf?b24e41af53d02e87300b5bd032da57ec) format(‘truetype’);
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "kredo";
-  src: url(/fonts/kredo.eot?a7dd3267fa847cc83e519654d2c6a732);
-  src: url(/fonts/kredo.eot?a7dd3267fa847cc83e519654d2c6a732) format("embedded-opentype"), url(/fonts/kredo.ttf?0ba45c37766abc480348c294f3148ff7) format("truetype"), url(/fonts/kredo.woff?00b3324408204e81b3ca71b733eb6ade) format("woff"), url(/fonts/kredo.svg?e2c81074210f869939d0164b3ffb8282) format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-[class^=icon-],
-[class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "kredo" !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-facebook:before {
-  content: "\EA90";
-}
-
-.icon-instagram:before {
-  content: "\EA92";
-}
-
-.icon-twitter:before {
-  content: "\EA96";
-}
-
 .header__logo {
   width: 214px;
   margin-right: 50px;
@@ -492,6 +605,27 @@ input:focus {
 
 .header__logo-image {
   width: 100%;
+}
+
+.header-actions {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  list-style: none;
+}
+
+.header-actions__item:not(:last-child) {
+  margin-right: 35px;
+}
+
+.header-actions__item i {
+  position: relative;
+  font-size: 16px;
+}
+
+.header-actions__item i.icon-bell {
+  font-size: 18px;
 }
 
 .footer__heading {
@@ -562,6 +696,59 @@ input:focus {
   color: #fff;
 }
 
+.form {
+  display: block;
+}
+
+.form__group {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.form__group--search {
+  right: 35px;
+}
+
+.form__group-append {
+  position: absolute;
+  right: 1.2rem;
+}
+
+.input {
+  font-size: 16px;
+  display: block;
+  padding: 9px 30px;
+  outline: none;
+  border-radius: 30px;
+}
+
+.input--search {
+  width: 390px;
+  background-color: #f2f2f0;
+}
+
+.badge {
+  font-family: "Avenir", sans-serif;
+  font-size: 13px;
+  color: #fff;
+  text-align: center;
+  height: 18px;
+  width: 18px;
+  padding: 3px 0;
+  background-color: #ec1b42;
+  border-radius: 50%;
+}
+
+.badge--bell {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+}
+
 .avatar {
   height: 50px;
   width: 50px;
@@ -579,7 +766,24 @@ input:focus {
   border-radius: 30px;
   padding: 9px 30px;
   outline: 0;
+  cursor: pointer;
   background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
   background-image: linear-gradient(to right, #fdb834, #f7954d);
+}
+
+.button--list {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.button--list i {
+  margin-right: 10px;
+}
+
+.button--link {
+  padding: 0;
+  background: transparent;
 }
 

@@ -1,0 +1,19 @@
+.form {
+  display: block;
+}
+
+.form__group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.form__group--search {
+  right: 35px;
+}
+
+.form__group-append {
+  position: absolute;
+  right: 1.2rem;
+}

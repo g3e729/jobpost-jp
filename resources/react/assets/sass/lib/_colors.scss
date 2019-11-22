@@ -1,0 +1,32 @@
+$colors: () !default;
+$colors: map-merge(
+  (
+    "white": $color-white,
+    "black": $color-black,
+    "medium-black": $color-medium-black,
+    "yellow": $color-yellow,
+    "dark-yellow": $color-dark-yellow,
+    "orange": $color-orange,
+    "light-gray": $color-light-gray,
+    "dark-gray": $color-dark-gray
+  ),
+  $colors
+);
+
+@each $color, $value in $colors {
+  .text-#{$color} {
+    color: $value;
+  }
+}
+
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value;
+  }
+}
+
+@each $color, $value in $colors {
+  .border-#{$color} {
+    border: solid 1px $value !important;
+  }
+}
