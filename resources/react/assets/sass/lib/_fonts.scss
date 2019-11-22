@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?ghn4as';
+$suffix: '?abx10j';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,9 @@ $suffix: '?ghn4as';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-external-link:before {
+  content: "\e904";
+}
 .icon-bell:before {
   content: "\e900";
 }

@@ -5,6 +5,11 @@ import ProfilePage from '../profile/ProfilePage';
 import CompaniesPage from '../company/CompaniesPage';
 import JobsPage from '../jobs/JobsPage';
 
+import AboutPage from '../about/AboutPage'; // ABOUT
+import TermsPage from '../terms/TermsPage'; //TERMS
+import HelpPage from '../help/HelpPage'; // HELP
+import PrivacyPage from '../privacy/PrivacyPage'; // PRIVACY
+
 import { routes } from '../constants/routes';
 
 const Pages = () => (
@@ -24,6 +29,26 @@ const Pages = () => (
         exact
         path={routes.JOBS}
         component={JobsPage}
+      />
+      <Route
+        exact
+        path={routes.ABOUT}
+        component={AboutPage}
+      />
+      <Route
+        exact
+        path={routes.TERMS}
+        component={TermsPage}
+      />
+      <Route
+        exact
+        path={routes.HELP}
+        component={HelpPage}
+      />
+      <Route
+        exact
+        path={routes.PRIVACY}
+        component={PrivacyPage}
       />
     </Switch>
   </div>

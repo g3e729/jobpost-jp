@@ -34088,7 +34088,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48858,6 +48858,34 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/react/components/about/AboutPage.js":
+/*!*******************************************************!*\
+  !*** ./resources/react/components/about/AboutPage.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var AboutPage = function AboutPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    title: "ABOUT",
+    subTitle: "\u304A\u3088\u305D"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AboutPage);
+
+/***/ }),
+
 /***/ "./resources/react/components/common/Avatar.js":
 /*!*****************************************************!*\
   !*** ./resources/react/components/common/Avatar.js ***!
@@ -48951,8 +48979,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _constants_enums__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/enums */ "./resources/react/components/constants/enums.js");
-/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
 function _typeof(obj) {
@@ -49059,7 +49087,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       var location = this.props.location;
-      var path = location.pathname.substr(_constants_routes__WEBPACK_IMPORTED_MODULE_4__["prefix"].length).replace('/', '');
+      var path = location.pathname.substr(_constants_routes__WEBPACK_IMPORTED_MODULE_3__["prefix"].length).replace('/', '');
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
         className: "l-footer footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -49072,31 +49100,33 @@ function (_Component) {
         className: "footer-menu__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         exact: true,
-        to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].ABOUT,
-        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE
+        to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].ABOUT,
+        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE
       }, "\u904B\u55B6\u4F1A\u793E")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-menu__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         exact: true,
-        to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].TERMS,
-        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE
+        to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].TERMS,
+        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE
       }, "\u5229\u7528\u898F\u7D04")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-menu__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#",
         target: "_blank"
-      }, "\u304A\u554F\u3044\u5408\u308F\u305B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "\u304A\u554F\u3044\u5408\u308F\u305B", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "icon icon-external-link"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-menu__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         exact: true,
-        to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].HELP,
-        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE
+        to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].HELP,
+        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE
       }, "\u30D8\u30EB\u30D7")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-menu__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         exact: true,
-        to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].PRIVACY,
-        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE
+        to: _constants_routes__WEBPACK_IMPORTED_MODULE_3__["routes"].PRIVACY,
+        activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE
       }, "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "footer-sns"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -49216,6 +49246,35 @@ var Header = function Header() {
 
 /***/ }),
 
+/***/ "./resources/react/components/common/Heading.js":
+/*!******************************************************!*\
+  !*** ./resources/react/components/common/Heading.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Heading = function Heading(_ref) {
+  var title = _ref.title,
+      subTitle = _ref.subTitle;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "heading"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "heading__title text-dark-yellow"
+  }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "heading__title-jp"
+  }, subTitle));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Heading);
+
+/***/ }),
+
 /***/ "./resources/react/components/common/Page.js":
 /*!***************************************************!*\
   !*** ./resources/react/components/common/Page.js ***!
@@ -49256,11 +49315,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/ProfilePage */ "./resources/react/components/profile/ProfilePage.js");
 /* harmony import */ var _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../company/CompaniesPage */ "./resources/react/components/company/CompaniesPage.js");
 /* harmony import */ var _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../jobs/JobsPage */ "./resources/react/components/jobs/JobsPage.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+/* harmony import */ var _about_AboutPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../about/AboutPage */ "./resources/react/components/about/AboutPage.js");
+/* harmony import */ var _terms_TermsPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../terms/TermsPage */ "./resources/react/components/terms/TermsPage.js");
+/* harmony import */ var _help_HelpPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../help/HelpPage */ "./resources/react/components/help/HelpPage.js");
+/* harmony import */ var _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../privacy/PrivacyPage */ "./resources/react/components/privacy/PrivacyPage.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
 
 
 
 
+
+ // ABOUT
+
+ //TERMS
+
+ // HELP
+
+ // PRIVACY
 
 
 
@@ -49269,16 +49340,32 @@ var Pages = function Pages() {
     className: "pages"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].PROFILE,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].PROFILE,
     component: _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].COMPANIES,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].COMPANIES,
     component: _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].JOBS,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].JOBS,
     component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].ABOUT,
+    component: _about_AboutPage__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].TERMS,
+    component: _terms_TermsPage__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].HELP,
+    component: _help_HelpPage__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].PRIVACY,
+    component: _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_8__["default"]
   })));
 };
 
@@ -49712,6 +49799,34 @@ var state = {
 
 /***/ }),
 
+/***/ "./resources/react/components/help/HelpPage.js":
+/*!*****************************************************!*\
+  !*** ./resources/react/components/help/HelpPage.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var HelpPage = function HelpPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    title: "HELP",
+    subTitle: "\u30D8\u30EB\u30D7"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HelpPage);
+
+/***/ }),
+
 /***/ "./resources/react/components/jobs/JobsPage.js":
 /*!*****************************************************!*\
   !*** ./resources/react/components/jobs/JobsPage.js ***!
@@ -49737,6 +49852,34 @@ var JobsPage = function JobsPage() {
 
 /***/ }),
 
+/***/ "./resources/react/components/privacy/PrivacyPage.js":
+/*!***********************************************************!*\
+  !*** ./resources/react/components/privacy/PrivacyPage.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var PrivacyPage = function PrivacyPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    title: "PRIVACY POLICY",
+    subTitle: "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PrivacyPage);
+
+/***/ }),
+
 /***/ "./resources/react/components/profile/ProfilePage.js":
 /*!***********************************************************!*\
   !*** ./resources/react/components/profile/ProfilePage.js ***!
@@ -49755,6 +49898,34 @@ var ProfilePage = function ProfilePage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfilePage);
+
+/***/ }),
+
+/***/ "./resources/react/components/terms/TermsPage.js":
+/*!*******************************************************!*\
+  !*** ./resources/react/components/terms/TermsPage.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var TermsPage = function TermsPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    title: "TERMS OF SERVICE",
+    subTitle: "\u5229\u7528\u898F\u7D04"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TermsPage);
 
 /***/ }),
 

@@ -402,8 +402,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?51aa0fd0c9a62c35aa3f79104f1f6427);
-  src: url(/fonts/kredo.eot?51aa0fd0c9a62c35aa3f79104f1f6427) format("embedded-opentype"), url(/fonts/kredo.ttf?5e120e218003dee73a185e508b1219b6) format("truetype"), url(/fonts/kredo.woff?af3ed82456a1b81c05e7bba04808b41e) format("woff"), url(/fonts/kredo.svg?af24aaa9689993b90bc9841cd9447fa1) format("svg");
+  src: url(/fonts/kredo.eot?3cdf65221be1545d4f233e02a7eebe49);
+  src: url(/fonts/kredo.eot?3cdf65221be1545d4f233e02a7eebe49) format("embedded-opentype"), url(/fonts/kredo.ttf?482410f6a9baaf86dd078fe260f75e28) format("truetype"), url(/fonts/kredo.woff?01e97be63865363429a42a9537785972) format("woff"), url(/fonts/kredo.svg?571bb26715a780933e71e6c0d7a75cd2) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -422,6 +422,10 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-external-link:before {
+  content: "\E904";
 }
 
 .icon-bell:before {
@@ -601,6 +605,12 @@ input:focus {
 
 .header__logo a {
   display: block;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.header__logo a:hover {
+  opacity: 0.7;
 }
 
 .header__logo-image {
@@ -617,6 +627,16 @@ input:focus {
 
 .header-actions__item:not(:last-child) {
   margin-right: 35px;
+}
+
+.header-actions__item a {
+  display: block;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.header-actions__item a:hover {
+  opacity: 0.7;
 }
 
 .header-actions__item i {
@@ -661,6 +681,12 @@ input:focus {
   display: block;
   color: #fff;
   letter-spacing: 0.1em;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.footer-menu__item a:hover {
+  opacity: 0.7;
 }
 
 .footer-menu__item a.is-active {
@@ -694,6 +720,30 @@ input:focus {
   border: solid 1px #fff;
   font-size: 18px;
   color: #fff;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.footer-sns__item a:hover {
+  opacity: 0.7;
+}
+
+.heading {
+  text-align: center;
+  padding: 55px 0 60px;
+  background-color: #f2f2f0;
+}
+
+.heading__title {
+  font-family: "Avenir", sans-serif;
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 0.1em;
+}
+
+.heading__title-jp {
+  font-weight: 900;
+  letter-spacing: 0.06em;
 }
 
 .form {
@@ -769,6 +819,12 @@ input:focus {
   cursor: pointer;
   background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
   background-image: linear-gradient(to right, #fdb834, #f7954d);
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.button:hover {
+  opacity: 0.7;
 }
 
 .button--list {

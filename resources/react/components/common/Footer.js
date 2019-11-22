@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import { footerLinks } from '../constants/enums';
-import { state } from '../constants/state';
 import { routes, prefix } from '../constants/routes';
+import { state } from '../constants/state';
 
 class Footer extends Component {
   render() {
@@ -33,6 +33,7 @@ class Footer extends Component {
             <li className="footer-menu__item">
               <a href="#" target="_blank">
                 お問い合わせ
+                <i className="icon icon-external-link"></i>
               </a>
             </li>
             <li className="footer-menu__item">
