@@ -5,10 +5,10 @@ import ProfilePage from '../profile/ProfilePage';
 import CompaniesPage from '../company/CompaniesPage';
 import JobsPage from '../jobs/JobsPage';
 
-import AboutPage from '../about/AboutPage'; // ABOUT
-import TermsPage from '../terms/TermsPage'; //TERMS
-import HelpPage from '../help/HelpPage'; // HELP
-import PrivacyPage from '../privacy/PrivacyPage'; // PRIVACY
+import AboutPage from '../about/AboutPage';
+import TermsPage from '../terms/TermsPage';
+import HelpPage from '../help/HelpPage';
+import PrivacyPage from '../privacy/PrivacyPage';
 
 import { routes } from '../constants/routes';
 
