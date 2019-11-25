@@ -563,6 +563,10 @@ input:focus {
   max-width: calc(100% - 40px);
 }
 
+.l-section {
+  padding: 100px 0 150px;
+}
+
 .l-header {
   position: relative;
   min-height: 98px;
@@ -841,5 +845,120 @@ input:focus {
 .button--link {
   padding: 0;
   background: transparent;
+}
+
+.privacy__note {
+  font-weight: 400;
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  margin-top: -10px;
+}
+
+.privacy__note span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fdb834;
+}
+
+.privacy-list {
+  list-style: none;
+}
+
+.privacy-list__item {
+  margin-top: 60px;
+}
+
+.privacy-list__item ol {
+  list-style: none !important;
+}
+
+.privacy-list__item li {
+  letter-spacing: 0.06em;
+  line-height: 1.857;
+}
+
+.privacy-list__item > ol {
+  counter-increment: counter1 0;
+  padding: 8px 0 0 20px;
+}
+
+.privacy-list__item > ol > li {
+  position: relative;
+  padding-left: 22px;
+  margin-top: 11px;
+}
+
+.privacy-list__item > ol > li:first-child {
+  margin-top: 0;
+}
+
+.privacy-list__item > ol > li:before {
+  position: absolute;
+  left: 0;
+  content: counter(counter1) ". ";
+  counter-increment: counter1;
+}
+
+.privacy-list__item > ol > li > ol {
+  counter-increment: counter2 0;
+  padding-top: 13px;
+}
+
+.privacy-list__item > ol > li > ol > li {
+  position: relative;
+  padding-left: 34px;
+  margin-top: 7px;
+}
+
+.privacy-list__item > ol > li > ol > li:before {
+  position: absolute;
+  left: 0;
+  content: counter(counter1) "." counter(counter2) ". ";
+  counter-increment: counter2;
+}
+
+.privacy-list__item > ol > li > ol > li > ol {
+  counter-increment: counter3 0;
+  padding: 10px 0 5px;
+  margin-left: -15px;
+}
+
+.privacy-list__item > ol > li > ol > li > ol li {
+  position: relative;
+  padding-left: 48px;
+  margin-top: 7px;
+}
+
+.privacy-list__item > ol > li > ol > li > ol li:before {
+  position: absolute;
+  left: 0;
+  content: counter(counter1) "." counter(counter2) "." counter(counter3) ". ";
+  counter-increment: counter3;
+}
+
+.privacy-list__item-header {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  margin-bottom: 25px;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.privacy-list__item-desc {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  margin-bottom: 11px;
+}
+
+.privacy-list__item-desc span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fdb834;
+}
+
+.privacy__sub {
+  letter-spacing: 0.06em;
+  color: rgba(57, 57, 57, 0.5);
+  margin-top: 55px;
 }
 
