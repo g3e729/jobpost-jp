@@ -22,7 +22,6 @@
     @endif
 
     <div class="row py-4">
-
       @foreach($students as $student)
         <div class="col-3 mb-4">
           <div class="shadow-sm card card-student card-hover">
@@ -49,7 +48,7 @@
                     <div class="font-weight-bold">入学日{{ $student->graduation_date ? ' - 卒業日' : null }}</div>
                     <span class="text-muted">
                       {{ $student->enrollment_date->format('Y年m月d日') }}<br>
-                      {{ $student->enrollment_date->format('Y年m月d日') }}
+                      {{ $student->graduation_date->format('Y年m月d日') }}
                     </span>
                   </li>
 

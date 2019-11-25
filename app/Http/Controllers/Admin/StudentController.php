@@ -17,7 +17,7 @@ class StudentController extends BaseController
 		$statuses = Student::getStudentStatus();
 		$english_levels = Student::getEnglishLevels();
 		
-		$students = (new SeekerService)->search($request->only('search', 'course_id', 'english_level_id', 'status'));
+		$students = (new SeekerService)->search($request->only('search', 'course_id', 'english_level_id', 'status', 'from', 'to'));
 
 		return view('admin.students.index', compact('courses', 'english_levels', 'statuses', 'students'));
 	}
