@@ -33,8 +33,8 @@
                 <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($company->$photos[$id]) && $company->$photos[$id] ? null : 'disabled'}}>Delete</button>
               </div>
 
-              <input data-avatar="hidden" type="hidden" name="photos[{{$type }}][{{ $id }}]['deleted']" value="0">
-              <input data-avatar="file" type="file" class="form-control-file" id="formWhatImg" name="photos[{{$type }}][{{ $id }}]"
+              <input data-avatar="hidden" type="hidden" name="photos[{{ $type }}][{{ $id }}]['deleted']" value="0">
+              <input data-avatar="file" type="file" class="form-control-file" id="formWhatImg" name="photos[{{ $type }}][{{ $id }}]"
                 accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">
                 <input data-avatar="name" type="text" class="form-control" value="{{ $company->$photos[$id] ?? null }}"

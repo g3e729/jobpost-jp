@@ -7,9 +7,9 @@
           <dd>
             <dl class="mt-3">
               @foreach($programming_languages as $id => $programming_language)
-                @if($student->listed_skills[$id])
+                @if(isset($student->listed_skills[$id]))
                   <dt class="text-muted">{{ ucwords($programming_language) }}</dt>
-                  <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                  <dd>{{ skillRate($student->listed_skills[$id]) ?? 0 }}</dd>
                 @endif
               @endforeach
             </dl>
@@ -22,9 +22,9 @@
           <dd>
             <dl class="mt-3">
               @foreach($frameworks as $id => $framework)
-                @if($student->listed_skills[$id])
+                @if(isset($student->listed_skills[$id]))
                   <dt class="text-muted">{{ ucwords($framework) }}</dt>
-                  <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                  <dd>{{ skillRate($student->listed_skills[$id]) ?? 0 }}</dd>
                 @endif
               @endforeach
             </dl>
@@ -52,9 +52,9 @@
           <dd>
             <dl class="mt-3">
               @foreach($experiences as $id => $experience)
-                @if($student->listed_skills[$id])
+                @if(isset($student->listed_skills[$id]))
                   <dt class="text-muted">{{ ucwords($experience) }}</dt>
-                  <dd>{{ $student->listed_skills[$id] ?? 0 }}</dd>
+                  <dd>{{ skillRate($student->listed_skills[$id]) ?? 0 }}</dd>
                 @endif
               @endforeach
             </dl>
