@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\SeekerProfile as Student;
+use App\Services\PortfolioService;
 use App\Services\SeekerService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -42,18 +43,26 @@ class StudentController extends BaseController
 	public function edit(Student $student, Request $request)
 	{
 		$step = $request->get('step', 1);
-		$student_status = $student->getStudentStatus();
-		$occupations = $student->getOccupations();
-		$countries = getCountries();
-		$courses = $student->getCourses();
-		$prefectures = getPrefecture();
 
-		$english_levels = $student->getEnglishLevels();
-		$experiences = $student->getExperiences();
-		$frameworks = $student->getFrameworks();
-		$languages = $student->getLanguages();
-		$others = $student->getOthers();
-		$programming_languages = $student->getProgrammingLanguages();
+		switch ($step) {
+			case 1:
+			case 4:
+				$student_status = $student->getStudentStatus();
+				$occupations = $student->getOccupations();
+				$countries = getCountries();
+				$courses = $student->getCourses();
+				$prefectures = getPrefecture();
+				$english_levels = $student->getEnglishLevels();
+			break;
+			case 3:
+				$experiences = $student->getExperiences();
+				$frameworks = $student->getFrameworks();
+				$languages = $student->getLanguages();
+				$others = $student->getOthers();
+				$programming_languages = $student->getProgrammingLanguages();
+				$rates = skillRate();
+			break;
+		}
 
 		if (! $student->work_history->count()) {
 			$student->work_history->push([]);
@@ -68,31 +77,55 @@ class StudentController extends BaseController
 		}
 
 		return view('admin.students.edit', compact(
-			'english_levels',
-			'student',
-			'student_status',
-			'occupations',
 			'courses',
 			'countries',
-			'prefectures',
+			'english_levels',
 			'experiences',
 			'frameworks',
 			'languages',
+			'occupations',
 			'others',
+			'prefectures',
 			'programming_languages',
-			'step'
+			'rates',
+			'step',
+			'student',
+			'student_status'
 		));
 	}
 
 	public function update(Request $request, Student $student)
 	{
-		dd($request->all());
+		$skills = array_merge(
+			$student->getEnglishLevels()->toArray(),
+			$student->getExperiences()->toArray(),
+			$student->getFrameworks()->toArray(),
+			$student->getLanguages()->toArray(),
+			$student->getOthers()->toArray(),
+			$student->getProgrammingLanguages()->toArray()
+		);
+
+		$skills = array_keys($skills);
+		$student->skills()->delete();
+
+		foreach($request->only($skills) as $skill_id => $skill_rate) {
+
+			if ($skill_rate) {
+				$student->skills()->create(compact('skill_id', 'skill_rate'));
+			}
+			
+		}
+		
 		$seekerService = new SeekerService($student);
 
 		$seekerService->updateInfo($request->all());
 		$seekerService->updateWorkHistory($request->get('work_history'));
 		$seekerService->updateEducationHistory($request->get('education_history'));
 		$seekerService->uploadFile($request);
+
+        if ($request->has('portfolios')) {
+            (new PortfolioService)->insertOrUpdate($student, $request->portfolios);
+        }
 
 		return redirect()->route('admin.students.show', $student)
             ->with('success', "Success! Student details is updated!");

@@ -1,4 +1,4 @@
-<form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.students.update', $student) }}" novalidate>
+<form id="editForm" class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.students.update', $student) }}" enctype="multipart/form-data" novalidate>
   @csrf
   {{ method_field('PATCH') }}
 
@@ -22,15 +22,14 @@
         <div class="col-4 font-weight-bold">{{ ucwords($programming_language) }}</div>
         <div class="col-8 text-right">
           <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
-            </label>
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
-            </label>
-            <label class="alt-font btn btn-light active">
-              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
-            </label>
+            @foreach($rates as $rate => $text)
+              @php
+                $skill_rate = isset($student->listed_skills[$id]) ? $student->listed_skills[$id] : 0;
+              @endphp
+              <label class="alt-font btn btn-light {{ $skill_rate == $rate ? 'active' : ''}}">
+                  <input type="radio" name="{{ $id }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
+              </label>
+            @endforeach
           </div>
         </div>
         @endforeach
@@ -55,15 +54,14 @@
         <div class="col-4 font-weight-bold">{{ ucwords($framework) }}</div>
         <div class="col-8 text-right">
           <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
-            </label>
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
-            </label>
-            <label class="alt-font btn btn-light active">
-              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
-            </label>
+            @foreach($rates as $rate => $text)
+              @php
+                $skill_rate = isset($student->listed_skills[$id]) ? $student->listed_skills[$id] : 0;
+              @endphp
+              <label class="alt-font btn btn-light {{ $skill_rate == $rate ? 'active' : ''}}">
+                  <input type="radio" name="{{ $id }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
+              </label>
+            @endforeach
           </div>
         </div>
         @endforeach
@@ -88,20 +86,19 @@
       </ul>
       <div id="js-prog-skills" class="form-group row" style="display: none;">
         @foreach($others as $id => $other)
-        <div class="col-4 font-weight-bold">{{ ucwords($other) }}</div>
-        <div class="col-8 text-right">
-          <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
-            </label>
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
-            </label>
-            <label class="alt-font btn btn-light active">
-              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
-            </label>
+          <div class="col-4 font-weight-bold">{{ ucwords($other) }}</div>
+          <div class="col-8 text-right">
+            <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
+              @foreach($rates as $rate => $text)
+                @php
+                  $skill_rate = isset($student->listed_skills[$id]) ? $student->listed_skills[$id] : 0;
+                @endphp
+                <label class="alt-font btn btn-light {{ $skill_rate == $rate ? 'active' : ''}}">
+                    <input type="radio" name="{{ $id }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
+                </label>
+              @endforeach
+            </div>
           </div>
-        </div>
         @endforeach
       </div>
     </div>
@@ -124,15 +121,14 @@
         <div class="col-4 font-weight-bold">{{ ucwords($experience) }}</div>
         <div class="col-8 text-right">
           <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="2" autocomplete="off"> 受講済み
-            </label>
-            <label class="alt-font btn btn-light">
-              <input type="radio" name="{{ $id }}" value="1" autocomplete="off"> 受講中
-            </label>
-            <label class="alt-font btn btn-light active">
-              <input type="radio" name="{{ $id }}" value="0" autocomplete="off" checked> 受けてない
-            </label>
+            @foreach($rates as $rate => $text)
+              @php
+                $skill_rate = isset($student->listed_skills[$id]) ? $student->listed_skills[$id] : 0;
+              @endphp
+              <label class="alt-font btn btn-light {{ $skill_rate == $rate ? 'active' : ''}}">
+                  <input type="radio" name="{{ $id }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
+              </label>
+            @endforeach
           </div>
         </div>
         @endforeach
@@ -152,145 +148,61 @@
     </div>
   </div>
 
-
   <div class="form-group pb-3 row">
     <label for="formJapaneseName" class="col-3 col-form-label font-weight-bold">TOEIC</label>
     <div class="col-9">
-      <input type="number" class="form-control" id="formToeic" name="toeic" value="{{ $student->toeic }}" placeholder="">
+      <input type="number" class="form-control" id="formToeic" name="toiec_score" value="{{ $student->toeic }}" placeholder="">
     </div>
   </div>
 
-  <div class="pb-3 row">
-    <div class="col-3 font-weight-bold">ポートフォリオ１</div>
-    <div class="col-9">
-      <div class="form-group position-relative">
-        <label for="formPortfolioTitle" class="form-label pt-0">タイトル</label>
-        <input type="text" class="form-control" id="formPortfolioTitle" name="portfolio_title"
-          value="{{ $student->portfolio_title }}" placeholder="">
-      </div>
+  @foreach([0, 1, 2] as $i)
+    @php
+      $portfolio = isset($student->portfolios[$i]) ? $student->portfolios[$i] : null
+    @endphp
+    <div class="pb-3 row">
+      <div class="col-3 font-weight-bold">ポートフォリオ{{ $i + 1 }}</div>
+      <div class="col-9">
+        <div class="form-group position-relative">
+          <label for="formPortfolioTitle" class="form-label pt-0">タイトル</label>
+          <input type="text" class="form-control" id="formPortfolioTitle" name="portfolios[{{ $i }}][title]"
+            value="{{ $portfolio->title ?? '' }}" placeholder="">
+        </div>
 
-      <div class="form-group position-relative">
-        <label for="formPortfolioDesc" class="form-label pt-0">内容</label>
-        <textarea class="form-control" id="formPortfolioDesc" name="portfolio_desc" placeholder="" rows="4"
-          style="min-height: 100px;">{{ $student->portfolio_desc }}</textarea>
-      </div>
+        <div class="form-group position-relative">
+          <label for="formPortfolioDesc" class="form-label pt-0">内容</label>
+          <textarea class="form-control" id="formPortfolioDesc" name="portfolios[{{ $i }}][description]" placeholder="" rows="4"
+            style="min-height: 100px;">{{ $portfolio->description ?? '' }}</textarea>
+        </div>
 
-      <div class="form-group position-relative">
-        <label for="formPortfolioURL" class="form-label pt-0">URL</label>
-        <input type="url" class="form-control" id="formPortfolioURL" name="portfolio_url"
-          value="{{ $student->portfolio_url }}" placeholder="">
-      </div>
+        <div class="form-group position-relative">
+          <label for="formPortfolioURL" class="form-label pt-0">URL</label>
+          <input type="url" class="form-control" id="formPortfolioURL" name="portfolios[{{ $i }}][url]"
+            value="{{ $portfolio->url ?? '' }}" placeholder="">
+        </div>
 
-      <div class="form-group position-relative">
-        <label for="formPortfolioImg" class="form-label pt-0">画像</label>
-        <div data-group="eyecatch">
-          <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $student->portfolio_img ?? 'https://placehold.it/240x240' }}">
-            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio_img) && $student->portfolio_img ? null : 'disabled'}}>Delete</button>
-          </div>
+        <div class="form-group position-relative">
+          <label for="formPortfolioImg" class="form-label pt-0">画像</label>
+          <div data-group="eyecatch">
+            <div class="pb-3 d-inline-flex flex-column align-items-center">
+              <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $portfolio->file->url ?? 'https://placehold.it/240x240' }}">
+              <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio_img) && $student->portfolio_img ? null : 'disabled'}}>Delete</button>
+            </div>
 
-          <input data-avatar="hidden" type="hidden" name="portfolio_img_deleted" value="0">
-          <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolio_img"
-            accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
-          <div class="input-group">
-            <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio_img ?? null }}"
-              disabled>
-            <div class="input-group-append">
-              <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
+            <input data-avatar="hidden" type="hidden" name="portfolio_img_deleted" value="0">
+            <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolios[{{ $i }}][file]"
+              accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
+            <div class="input-group">
+              <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio_img ?? null }}"
+                disabled>
+              <div class="input-group-append">
+                <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="pb-3 row">
-    <div class="col-3 font-weight-bold">ポートフォリオ2</div>
-    <div class="col-9">
-      <div class="form-group position-relative">
-        <label for="formPortfolio2Title" class="form-label pt-0">タイトル</label>
-        <input type="text" class="form-control" id="formPortfolio2Title" name="portfolio2_title"
-          value="{{ $student->portfolio2_title }}" placeholder="">
-      </div>
-
-      <div class="form-group position-relative">
-        <label for="formPortfolio2Desc" class="form-label pt-0">内容</label>
-        <textarea class="form-control" id="formPortfolio2Desc" name="portfolio2_desc" placeholder="" rows="4"
-          style="min-height: 100px;">{{ $student->portfolio2_desc }}</textarea>
-      </div>
-
-      <div class="form-group position-relative">
-        <label for="formPortfolio2URL" class="form-label pt-0">URL</label>
-        <input type="url" class="form-control" id="formPortfolio2URL" name="portfolio2_url"
-          value="{{ $student->portfolio2_url }}" placeholder="">
-      </div>
-
-      <div class="form-group position-relative">
-        <label for="formPortfolio2Img" class="form-label pt-0">画像</label>
-        <div data-group="eyecatch">
-          <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $student->portfolio2_img ?? 'https://placehold.it/240x240' }}">
-            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio2_img) && $student->portfolio2_img ? null : 'disabled'}}>Delete</button>
-          </div>
-
-          <input data-avatar="hidden" type="hidden" name="portfolio2_img_deleted" value="0">
-          <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio2Img" name="portfolio2_img"
-            accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
-          <div class="input-group">
-            <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio2_img ?? null }}"
-              disabled>
-            <div class="input-group-append">
-              <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pb-3 row">
-    <div class="col-3 font-weight-bold">ポートフォリオ3</div>
-    <div class="col-9">
-      <div class="form-group position-relative">
-        <label for="formPortfolio3Title" class="form-label pt-0">タイトル</label>
-        <input type="text" class="form-control" id="formPortfolio3Title" name="portfolio3_title"
-          value="{{ $student->portfolio3_title }}" placeholder="">
-      </div>
-
-      <div class="form-group position-relative">
-        <label for="formPortfolio3Desc" class="form-label pt-0">内容</label>
-        <textarea class="form-control" id="formPortfolio3Desc" name="portfolio3_desc" placeholder="" rows="4"
-          style="min-height: 100px;">{{ $student->portfolio3_desc }}</textarea>
-      </div>
-
-      <div class="form-group position-relative">
-        <label for="formPortfolio3URL" class="form-label pt-0">URL</label>
-        <input type="url" class="form-control" id="formPortfolio3URL" name="portfolio3_url"
-          value="{{ $student->portfolio3_url }}" placeholder="">
-      </div>
-
-      <div class="form-group position-relative">
-        <label for="formPortfolio3Img" class="form-label pt-0">画像</label>
-        <div data-group="eyecatch">
-          <div class="pb-3 d-inline-flex flex-column align-items-center">
-            <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $student->portfolio3_img ?? 'https://placehold.it/240x240' }}">
-            <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio3_img) && $student->portfolio3_img ? null : 'disabled'}}>Delete</button>
-          </div>
-
-          <input data-avatar="hidden" type="hidden" name="portfolio3_img_deleted" value="0">
-          <input data-avatar="file" type="file" class="form-control-file" id="formPortfolio3Img" name="portfolio3_img"
-            accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
-          <div class="input-group">
-            <input data-avatar="name" type="text" class="form-control" value="{{ $student->portfolio3_img ?? null }}"
-              disabled>
-            <div class="input-group-append">
-              <button data-avatar="browse" type="button" class="alt-font btn btn-primary">Browse</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  @endforeach
 
   <div class="form-group pb-3 row">
     <label for="formGithub" class="col-3 col-form-label font-weight-bold">Github</label>

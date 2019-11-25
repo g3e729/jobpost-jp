@@ -303,13 +303,10 @@ class SeekerProfile extends Model
     public function getTakenClassAttribute()
     {
         $courses = [];
+        $taken = json_decode($this->taken_id);
 
-        if ($this->taken_id && is_array($this->taken_id)) {
-
-            foreach ($this->taken_id as $course_id) {
-                $courses[$course_id] = self::getCourses($course_id);
-            }
-
+        foreach ($taken as $course_id) {
+            $courses[$course_id] = self::getCourses($course_id);
         }
 
         return $courses;

@@ -55,6 +55,23 @@ if (! function_exists('price')) {
     }
 }
 
+if (! function_exists('skillRate')) {
+    function skillRate($index = null)
+    {
+        $data = [
+            '0' => '受けてない',
+            '1' => '受講中',
+            '2' => '受講済み'
+        ];
+
+        if ($index) {
+            return $data[$index] ?? null;
+        }
+
+        return collect($data);
+    }
+}
+
 if (! function_exists('formatSizeUnits')) {
     function formatSizeUnits($bytes)
     {

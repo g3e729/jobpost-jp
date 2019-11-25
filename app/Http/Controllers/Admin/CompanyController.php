@@ -46,9 +46,6 @@ class CompanyController extends BaseController
 	
 	public function update(Company $company, Request $request)
 	{
-
-        // dd($request->all());
-
         $company->update(
             $request->except('_token', '_method', 'email', 'japanese_name', 'name')
         );
