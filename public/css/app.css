@@ -402,8 +402,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?e0ff09b3a07f0eb6bdf9adf831e5708b);
-  src: url(/fonts/kredo.eot?e0ff09b3a07f0eb6bdf9adf831e5708b) format("embedded-opentype"), url(/fonts/kredo.ttf?d0295b32e2cfa2d84bce8eb0fd550046) format("truetype"), url(/fonts/kredo.woff?9838cdd60f23fbd3f5b2fba15dc280bd) format("woff"), url(/fonts/kredo.svg?a4ea9673351c03252d8be1a8998e783d) format("svg");
+  src: url(/fonts/kredo.eot?215bc874de021405dd7473fbf7f4aad2);
+  src: url(/fonts/kredo.eot?215bc874de021405dd7473fbf7f4aad2) format("embedded-opentype"), url(/fonts/kredo.ttf?ca0cb6b25c812417cb4676e1e5ef84d0) format("truetype"), url(/fonts/kredo.woff?920ffb3253c8a76b428e9f864010867c) format("woff"), url(/fonts/kredo.svg?446485cc7b6f1dac8fcd0936eddc7efa) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -422,6 +422,34 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-code:before {
+  content: "\E906";
+}
+
+.icon-framework:before {
+  content: "\E907";
+}
+
+.icon-laptop:before {
+  content: "\E908";
+}
+
+.icon-marker:before {
+  content: "\E909";
+}
+
+.icon-pc-user:before {
+  content: "\E90A";
+}
+
+.icon-sort-down:before {
+  content: "\E90B";
+}
+
+.icon-status:before {
+  content: "\E90C";
 }
 
 .icon-star:before {
@@ -571,8 +599,19 @@ input:focus {
   max-width: calc(100% - 80px);
 }
 
+.l-container--main {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+
 .l-section {
   padding: 100px 0 150px;
+}
+
+.l-section--main {
+  padding: 48px 0 90px;
 }
 
 .l-header {
@@ -995,6 +1034,60 @@ input:focus {
 
 .swiper-slide .slider-content__fav {
   margin-right: 85px;
+}
+
+.filter {
+  width: 280px;
+  -webkit-box-flex: 0;
+          flex: 0 0 280px;
+  align-self: stretch;
+}
+
+.filter__header {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #fff;
+  padding: 11px;
+  background-color: #393939;
+}
+
+.filter-content {
+  background-color: #f2f2f0;
+}
+
+.filter-content__list {
+  list-style: none;
+  margin-top: 13px;
+}
+
+.filter-content__list-item {
+  padding: 20px;
+  border-top: solid 1px #fff;
+}
+
+.filter-content__list-item:first-child {
+  border-top: none;
+}
+
+.filter-content__header {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.filter-content__header > i {
+  margin-right: 10px;
+}
+
+.jobs-list {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 40px;
+  align-self: stretch;
+  background-color: salmon;
 }
 
 .privacy__note {

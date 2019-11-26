@@ -8,3 +8,8 @@
 .l-container--wide {
   max-width: calc(100% - 80px);
 }
+
+.l-container--main {
+  display: flex;
+  align-items: flex-start;
+}

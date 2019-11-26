@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?empn3t';
+$suffix: '?lyxd8g';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,27 @@ $suffix: '?empn3t';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-code:before {
+  content: "\e906";
+}
+.icon-framework:before {
+  content: "\e907";
+}
+.icon-laptop:before {
+  content: "\e908";
+}
+.icon-marker:before {
+  content: "\e909";
+}
+.icon-pc-user:before {
+  content: "\e90a";
+}
+.icon-sort-down:before {
+  content: "\e90b";
+}
+.icon-status:before {
+  content: "\e90c";
+}
 .icon-star:before {
   content: "\e905";
 }
