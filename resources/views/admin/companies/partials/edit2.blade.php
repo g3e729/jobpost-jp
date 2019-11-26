@@ -2,6 +2,8 @@
   @csrf
   {{ method_field('PATCH') }}
 
+  <input type="hidden" name="step" value="2">
+
   @foreach([
     'what' => '何をやっているのか？',
     'why' => 'なぜやるのか',
@@ -33,8 +35,8 @@
                 <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($company->$photos[$id]) && $company->$photos[$id] ? null : 'disabled'}}>Delete</button>
               </div>
 
-              <input data-avatar="hidden" type="hidden" name="photos[{{ $type }}][{{ $id }}]['deleted']" value="0">
-              <input data-avatar="file" type="file" class="form-control-file" id="formWhatImg" name="photos[{{ $type }}][{{ $id }}]"
+              <input data-avatar="hidden" type="hidden" name="photos[{{ $type }}][{{ $id }}][delete]" value="0">
+              <input data-avatar="file" type="file" class="form-control-file" id="formWhatImg" name="photos[{{ $type }}][{{ $id }}][file]"
                 accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">
                 <input data-avatar="name" type="text" class="form-control" value="{{ $company->$photos[$id] ?? null }}"
@@ -67,7 +69,7 @@
 
   @foreach([0, 1, 2] as $i)
     @php
-      $portfolio = $company->portfolios[$i] ?? null;
+      $portfolio = isset($company->portfolios[$i]) ? $company->portfolios[$i] : null;
     @endphp
     <div class="pb-3 row">
       <div class="col-3 font-weight-bold">ポートフォリオ{{ $i+1 }}</div>
@@ -95,7 +97,7 @@
               <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($portfolio->file->url) && $portfolio->file->url ? null : 'disabled'}}>Delete</button>
             </div>
 
-            <input data-avatar="hidden" type="hidden" name="portfolios[{{ $i }}][file]['deleted']" value="0">
+            <input data-avatar="hidden" type="hidden" name="portfolios[{{ $i }}][delete]" value="0">
             <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolios[{{ $i }}][file]"
               accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
             <div class="input-group">

@@ -2,6 +2,8 @@
   @csrf
   {{ method_field('PATCH') }}
 
+  <input type="hidden" name="step" value="2">
+
   <div class="form-group pb-3 row">
     <label for="formIntro" class="col-3 col-form-label font-weight-bold">自己紹介</label>
     <div class="col-9">
@@ -124,7 +126,7 @@
         <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->avatar) && $student->avatar ? null : 'disabled'}}>Delete</button>
       </div>
 
-      <input data-avatar="hidden" type="hidden" name="avatar_deleted" value="0">
+      <input data-avatar="hidden" type="hidden" name="avatar_delete" value="0">
       <input data-avatar="file" type="file" class="form-control-file" id="formAvatar" name="avatar"
         accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
       <div class="input-group">
@@ -148,7 +150,7 @@
         <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->cover_photo) && $student->cover_photo ? null : 'disabled'}}>Delete</button>
       </div>
 
-      <input data-avatar="hidden" type="hidden" name="cover_photo_deleted" value="0">
+      <input data-avatar="hidden" type="hidden" name="cover_photo_delete" value="0">
       <input data-avatar="file" type="file" class="form-control-file" id="formCoverPhoto" name="cover_photo"
         accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
       <div class="input-group">

@@ -200,7 +200,7 @@
                 <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($employee->avatar) && $employee->avatar ? null : 'disabled'}}>Delete</button>
               </div>
 
-              <input data-avatar="hidden" type="hidden" name="avatar_deleted" value="0">
+              <input data-avatar="hidden" type="hidden" name="avatar_delete" value="0">
               <input data-avatar="file" type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
               <div class="input-group">
                 <input data-avatar="name" type="text" class="form-control" value="{{ $employee->avatar ?? null }}" disabled required>

@@ -27,9 +27,9 @@
 
               <div class="card-badges text-center h6">
                 <span class="badge badge-pill badge-secondary">メールアドレス : {{ $student->email }}</span>
-                <span class="badge badge-pill badge-secondary">コース : {{ $student->course }}</span>
+                <a href="{{ route('admin.students.index', ['course_id' => $student->course_id]) }}"><span class="badge badge-pill badge-secondary">コース : {{ $student->course }}</span></a>
                 <span class="badge badge-pill badge-secondary">ステータス : {{ $student->student_status }}</span>
-                <span class="badge badge-pill badge-secondary">英語 : {{ $student->english_level }}</span>
+                <a href="{{ route('admin.students.index', ['english_level_id' => $student->english_level_id]) }}"><span class="badge badge-pill badge-secondary">英語 : {{ $student->english_level }}</span></a>
               </div>
 
             </div>

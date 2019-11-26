@@ -26,7 +26,7 @@ class BaseService
     }
 
     /**
-     * Register new model
+     * Retrieve list
      *
      * @return mixed
      */
@@ -63,7 +63,7 @@ class BaseService
      *
      * @return mixed
      */
-    public function create(array $fields)
+    public function create(array $fields = [])
     {
         try {
             $this->item = $this->model::create($fields);
@@ -75,11 +75,11 @@ class BaseService
     }
 
     /**
-     * Register new model
+     * Update model
      *
      * @return mixed
      */
-    public function update(array $fields)
+    public function update(array $fields = [])
     {
         try {
             $this->item->update($fields);
@@ -87,6 +87,49 @@ class BaseService
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return null;
+        }
+    }
+
+    /**
+     * Update model
+     *
+     * @return mixed
+     */
+    public function updateUser(array $fields = [])
+    {
+        if (! $this->user) {
+            $this->user = $this->item->user;
+        }
+
+        if (! $this->user) {
+            abort(505);
+        }
+
+        $this->user->update($fields);
+    }
+
+    public function acPhotoUploader($form_file, $type = 'avatar', $delete = 0)
+    {
+        try {
+            if ($form_file || $delete == 1) {
+                $this->item->files()->where('type', $type)->delete();
+            }
+            
+            if ($form_file) {
+                $file = $form_file->store('public/' . $type);
+                $file = explode('/', $file);
+
+                $this->item->files()->create([
+                    'url' => asset('/storage/' . $type . '/' . array_last($file)),
+                    'file_name' => $form_file->getClientOriginalName(),
+                    'type' => $type,
+                    'mime_type' => $form_file->getMimeType(),
+                    'size' => $form_file->getSize(),
+                ]);
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            abort(505, $form_file->getClientOriginalName() . '<br/>' . $e->getMessage());
         }
     }
 }

@@ -18,6 +18,7 @@ class EmployeeService extends BaseService
 
         if ($item instanceof EmployeeProfile) {
             $this->item = $item;
+            $this->user = $item->user;
         }
     }
 

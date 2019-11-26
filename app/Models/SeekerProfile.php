@@ -28,7 +28,6 @@ class SeekerProfile extends Model
         'type_of_room',
         'enrollment_date',
         'graduation_date',
-        'status',
         'occupation_id',
         'study_period',
         'travel_ticket',
@@ -303,7 +302,7 @@ class SeekerProfile extends Model
     public function getTakenClassAttribute()
     {
         $courses = [];
-        $taken = json_decode($this->taken_id);
+        $taken = is_array($this->taken_id) ? $this->taken_id : json_decode($this->taken_id);
 
         foreach ($taken as $course_id) {
             $courses[$course_id] = self::getCourses($course_id);

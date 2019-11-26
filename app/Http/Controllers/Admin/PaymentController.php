@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
-use Faker\Factory;
 
 class PaymentController extends BaseController
 {

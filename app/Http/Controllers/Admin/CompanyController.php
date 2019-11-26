@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\CompanyRequest;
 use App\Models\CompanyProfile as Company;
 use App\Services\CompanyService;
+use App\Services\PortfolioService;
 use App\Services\UserService;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class CompanyController extends BaseController
 {
@@ -31,146 +33,65 @@ class CompanyController extends BaseController
 		$data = compact('company', 'step');
 
       	switch ($step) {
+            case 1:
+                $countries = getCountries();
+                $industries = Company::getIndustries();
+                $prefectures = getPrefecture();
+
+                $data = array_merge($data, compact('company', 'countries', 'industries', 'prefectures'));
+            break;
       		case 2:
       		break;
-      		default:
-		    $countries = getCountries();
-		    $industries = Company::getIndustries();
-		    $prefectures = getPrefecture();
-
-		    $data = array_merge($data, compact('company', 'countries', 'industries', 'prefectures'));
       	}
 
 		return view('admin.companies.edit', $data);
   	}
 	
-	public function update(Company $company, Request $request)
+	public function update(Company $company, CompanyRequest $request)
 	{
-        $company->update(
-            $request->except('_token', '_method', 'email', 'japanese_name', 'name')
-        );
+        $companyService = new CompanyService($company);
 
-        $company->user()->update(
-            $request->only('email', 'japanese_name', 'name')
-        );
+        switch ($request->get('step')) {
+            case 1:
+                $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+                $companyService->updateUser($request->only('email', 'japanese_name', 'name'));
+                $companyService->updateSocialMedia($request->get('social_media', []));
 
-        $social_media_accounts = $request->get('social_media', []);
-        $company->social_media()->delete();
-
-        foreach ($social_media_accounts as $social_media => $url) {
-        	$company->social_media()->create(compact('social_media', 'url'));
-        }
-
-        if ($request->file('avatar')) {
-            $file = $request->avatar->store('public/avatar');
-            $file = explode('/', $file);
-
-            $company->files()->where('type', 'avatar')->delete();
-
-            $company->files()->create([
-                'url' => asset('/storage/avatar/' . array_last($file)),
-                'file_name' => $request->avatar->getClientOriginalName(),
-                'type' => 'avatar',
-                'mime_type' => $request->avatar->getMimeType(),
-                'size' => $request->avatar->getSize(),
-            ]);
-        }
-
-        if ($request->file('cover_photo')) {
-            $file = $request->cover_photo->store('public/cover_photo');
-            $file = explode('/', $file);
-
-            $company->files()->where('type', 'cover_photo')->delete();
-
-            $company->files()->create([
-                'url' => asset('/storage/cover_photo/' . array_last($file)),
-                'file_name' => $request->cover_photo->getClientOriginalName(),
-                'type' => 'cover_photo',
-                'mime_type' => $request->cover_photo->getMimeType(),
-                'size' => $request->cover_photo->getSize(),
-            ]);
-        }
-
-        if ($request->photos) {
-
-            foreach($request->photos as $key => $files) {
-                $relation = $key . '_photo';
-                $collection = $key . '_photos';
-                $comp_files = $company->$collection;
-
-                foreach ($files as $sort => $req_file) {
-                    $file = $req_file->store('public/' . $relation);
-                    $file = explode('/', $file);
-
-                    if (isset($comp_files[$sort])) {
-                        $comp_files[$sort]->delete();
-                    }
-
-                    $company->files()->create([
-                        'url' => asset("/storage/{$relation}/" . array_last($file)),
-                        'file_name' => $req_file->getClientOriginalName(),
-                        'type' => $relation,
-                        'mime_type' => $req_file->getMimeType(),
-                        'size' => $req_file->getSize(),
-                        'sort' => $sort,
-                    ]);
-                }
-            }
-        }
-
-        if ($request->has('features')) {
-            $company->features()->delete();
-            $features = $request->get('features');
-
-            foreach([0, 1, 2] as $i) {
-                $feature = $features[$i];
-
-                if (empty($feature['title']) && empty($feature['description'])) {
-                    continue;
+                if ($request->file('avatar') || $request->get('avatar_delete')) {
+                    $companyService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
                 }
 
-                $company->features()->create($feature);
-            }
-        }
+                if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
+                    $companyService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
+                }
+            break;
+            case 2:
+                if ($request->photos) {
+                    $companyService->wwhPhotoUploader($request->photos);
+                }
 
-        if ($request->has('portfolios')) {
-            $comp_portfolios = $company->portfolios()->orderBy('created_at', 'ASC')->get();
-            $portfolios = $request->get('portfolios');
-            $i = 0;
+                if ($request->has('features')) {
+                    $company->features()->delete();
+                    $features = $request->get('features');
 
-            foreach($request->portfolios as $portfolio) {
-                if (! empty($portfolio['title']) && ! empty($portfolio['description'])) {
-                    $field = array_except($portfolio, 'file');
-                    $req_file = $portfolio['file'] ?? null;
+                    foreach([0, 1, 2] as $i) {
+                        $feature = $features[$i];
 
-                    if (isset($comp_portfolios[$i])) {
-                        $portfolio = $comp_portfolios[$i];
+                        if (empty($feature['title']) && empty($feature['description'])) {
+                            continue;
+                        }
 
-                        $portfolio->update($field);
-                    } else {
-                        $portfolio = $company->portfolios()->create($field);
-                    }
-
-                    if ($req_file) {
-                        $file = $req_file->store('public/portfolio');
-                        $file = explode('/', $file);
-
-                        $portfolio->files()->create([
-                            'url' => asset("/storage/portfolio/" . array_last($file)),
-                            'file_name' => $req_file->getClientOriginalName(),
-                            'type' => 'portfolio',
-                            'mime_type' => $req_file->getMimeType(),
-                            'size' => $req_file->getSize()
-                        ]);
+                        $company->features()->create($feature);
                     }
                 }
 
-                $i++;
-            }
-
+                if ($request->has('portfolios')) {
+                    (new PortfolioService)->insertOrUpdate($company, $request->portfolios);
+                }
+            break;
         }
 
-		return redirect()->route('admin.companies.show', $company)
+        return redirect()->route('admin.companies.show', $company)
             ->with('success', "Success! Employee details is updated!");
 	}
     

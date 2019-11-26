@@ -99,10 +99,12 @@
                     <dt class="text-muted">URL</dt>
                     <dd><a href="{{ $portfolio->url }}" target="_blank">{{ $portfolio->url }}</a></dd>
                   @endif
-                  <dt class="text-muted">画像</dt>
-                  <dd>
-                    <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->file->url }}" style="border-width: 2px !important;">
-                  </dd>
+                  @if ($portfolio->file)
+                    <dt class="text-muted">画像</dt>
+                    <dd>
+                      <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->file->url }}" style="border-width: 2px !important;">
+                    </dd>
+                  @endif
                 </dl>
               @endforeach
             </dd>

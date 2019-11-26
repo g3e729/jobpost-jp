@@ -2,6 +2,8 @@
   @csrf
   {{ method_field('PATCH') }}
 
+  <input type="hidden" name="step" value="1">
+
   <div class="form-group pb-3 row">
     <label for="formJapaneseName" class="col-3 col-form-label font-weight-bold">名前(Japanese)</label>
     <div class="col-9">

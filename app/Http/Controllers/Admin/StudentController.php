@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\StudentRequest;
 use App\Models\SeekerProfile as Student;
 use App\Services\PortfolioService;
 use App\Services\SeekerService;
@@ -94,38 +95,40 @@ class StudentController extends BaseController
 		));
 	}
 
-	public function update(Request $request, Student $student)
+	public function update(Student $student, StudentRequest $request)
 	{
-		$skills = array_merge(
-			$student->getEnglishLevels()->toArray(),
-			$student->getExperiences()->toArray(),
-			$student->getFrameworks()->toArray(),
-			$student->getLanguages()->toArray(),
-			$student->getOthers()->toArray(),
-			$student->getProgrammingLanguages()->toArray()
-		);
-
-		$skills = array_keys($skills);
-		$student->skills()->delete();
-
-		foreach($request->only($skills) as $skill_id => $skill_rate) {
-
-			if ($skill_rate) {
-				$student->skills()->create(compact('skill_id', 'skill_rate'));
-			}
-			
-		}
-		
 		$seekerService = new SeekerService($student);
 
-		$seekerService->updateInfo($request->all());
-		$seekerService->updateWorkHistory($request->get('work_history'));
-		$seekerService->updateEducationHistory($request->get('education_history'));
-		$seekerService->uploadFile($request);
+		switch ($request->get('step')) {
+			case 1:
+		        $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+				$seekerService->updateUser($request->only('email', 'japanese_name', 'name'));
+			break;
+			case 2:
+		        $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+				$seekerService->updateWorkHistory($request->get('work_history'));
+				$seekerService->updateEducationHistory($request->get('education_history'));
 
-        if ($request->has('portfolios')) {
-            (new PortfolioService)->insertOrUpdate($student, $request->portfolios);
-        }
+                if ($request->file('avatar') || $request->get('avatar_delete')) {
+                    $seekerService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
+                }
+
+                if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
+                    $seekerService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
+                }
+			break;
+			case 3:
+				$seekerService->updateSkills($request);
+
+		        if ($request->has('portfolios')) {
+		            (new PortfolioService)->insertOrUpdate($student, $request->portfolios);
+		        }
+			break;
+			case 4:
+		        $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+			break;
+		}
+
 
 		return redirect()->route('admin.students.show', $student)
             ->with('success', "Success! Student details is updated!");

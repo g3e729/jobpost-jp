@@ -63,8 +63,10 @@ if (! function_exists('skillRate')) {
             '1' => '受講中',
             '2' => '受講済み'
         ];
+        
+        $index = (int) $index > 2 ? 2 : $index;
 
-        if ($index) {
+        if ($index || $index === 0) {
             return $data[$index] ?? null;
         }
 

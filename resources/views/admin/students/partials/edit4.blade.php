@@ -2,6 +2,8 @@
   @csrf
   {{ method_field('PATCH') }}
 
+  <input type="hidden" name="step" value="4">
+
   <div class="pb-3 row">
     <div class="col-3 font-weight-bold">IT</div>
     <div class="col-9">

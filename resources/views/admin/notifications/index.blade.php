@@ -10,24 +10,35 @@
   <hr class="content-divider d-block">
 
   <div class="l-container l-container-narrow py-4">
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th width="50%">お知らせ</th>
-          <th>日付</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for($i = 0; $i < 10; $i++)
-        <tr>
-          <td>
-            <a href="{{ route('admin.notifications.show', $i) }}">{{ $faker->realText(30) }}</a>
-          </td>
-          <td>{{ $faker->dateTime->format('Y-m-d') }}</td>
-        </tr>
-        @endfor
-      </tbody>
-    </table>
+
+    @if (session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
+    @endif
+
+    @if (! $notifications->count())
+      <p class="text-center">No results</p>
+    @else
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th width="50%">お知らせ</th>
+            <th>日付</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($notifications as $notification)
+          <tr>
+            <td>
+              <a href="{{ route('admin.notifications.show', $notification) }}">{{ $notification->title }}</a>
+            </td>
+            <td>{{ $notification->published_at->format('Y年m月d日') }}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    @endif
   </div>
 
   @include('admin.partials.pagination', ['data' => collect()])
