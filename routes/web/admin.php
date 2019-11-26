@@ -20,6 +20,7 @@ Route::group([
 	Route::resource('payments', 'PaymentController')->only('index', 'show', 'update');
 	Route::resource('tickets', 'TicketController')->only('index', 'delete');
 	Route::resource('settings', 'AccountController')->only('index', 'store');
+	Route::resource('notifications', 'NotificationController');
 
 	Route::get('recruitments', function () {
 		return view('admin.posts.index', ['faker' => Faker\Factory::create('ja_JP')]);
@@ -63,30 +64,6 @@ Route::group([
 	Route::patch('recruitments/{post}', function () {
 		return view('admin.posts.update');
 	})->name('recruitments.update');
-
-	Route::get('notifications', function () {
-		return view('admin.notifications.index', ['faker' => Faker\Factory::create('ja_JP')]);
-	})->name('notifications.index');
-
-	Route::get('notifications/create', function () {
-		return view('admin.notifications.create');
-	})->name('notifications.create');
-
-	Route::get('notifications/{notification}', function () {
-		return view('admin.notifications.show', ['index' => Request::route('notification')]);
-	})->name('notifications.show');
-
-	Route::get('notifications/{notification}/edit', function () {
-		return view('admin.notifications.edit');
-	})->name('notifications.edit');
-
-	Route::patch('notifications/{notification}', function () {
-		return view('admin.notifications.update');
-  	})->name('notifications.update');
-
-  	Route::delete('notifications/{notification}', function () {
-		return view('admin.notifications.delete');
-	})->name('notifications.delete');
 
 	Route::get('messages', function () {
 		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);

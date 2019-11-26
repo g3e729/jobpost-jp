@@ -37,29 +37,14 @@ class EmployeeController extends BaseController
 		return view('admin.employees.edit', compact('employee', 'countries', 'employment_status', 'positions', 'prefectures'));
 	}
 	
-	public function update(EmployeeRequest $request, Employee $employee)
+	public function update(Employee $employee, EmployeeRequest $request)
 	{
-        $employee->update(
-            $request->except('_token', '_method', 'email', 'japanese_name', 'name')
-        );
+        $employeeService = new EmployeeService($employee);
+        $employeeService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+        $employeeService->updateUser($request->only('email', 'japanese_name', 'name'));
 
-        $employee->user()->update(
-            $request->only('email', 'japanese_name', 'name')
-        );
-
-        if ($request->file('avatar')) {
-            $file = $request->avatar->store('public/avatar');
-            $file = explode('/', $file);
-
-            $employee->files()->delete();
-
-            $employee->files()->create([
-                'url' => asset('/storage/avatar/' . array_last($file)),
-                'file_name' => $request->avatar->getClientOriginalName(),
-                'type' => 'avatar',
-                'mime_type' => $request->avatar->getMimeType(),
-                'size' => $request->avatar->getSize(),
-            ]);
+        if ($request->file('avatar') || $request->get('avatar_delete')) {
+            $employeeService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
         }
 
 		return redirect()->route('admin.employees.show', $employee)

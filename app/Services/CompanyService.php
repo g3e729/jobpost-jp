@@ -19,6 +19,7 @@ class CompanyService extends BaseService
 
         if ($item instanceof CompanyProfile) {
             $this->item = $item;
+            $this->user = $item->user;
         }
     }
 
@@ -45,6 +46,50 @@ class CompanyService extends BaseService
         $this->item = $this->model::where('user_id', $this->user->id)->first();
 
         return $this->item;
+    }
+
+    public function updateSocialMedia($social_media_accounts = [])
+    {
+        $this->item->social_media()->delete();
+
+        foreach ($social_media_accounts as $social_media => $url) {
+            $this->item->social_media()->create(compact('social_media', 'url'));
+        }
+    }
+
+    public function wwhPhotoUploader(array $photos = [])
+    {
+        try {
+            foreach($photos as $key => $files) {
+                $relation = $key . '_photo';
+                $collection = $key . '_photos';
+                $type_files = $this->item->files()->where('type', $relation)->orderBy('sort')->get();
+
+                foreach ($files as $sort => $req_file) {
+
+                    if (isset($type_files[$sort]) && $req_file['delete'] == 1) {
+                        $type_files[$sort]->delete();
+                    }
+
+                    if (isset($req_file['file'])) {
+                        $file = $req_file['file']->store('public/' . $relation);
+                        $file = explode('/', $file);
+
+                        $this->item->files()->create([
+                            'url' => asset("/storage/{$relation}/" . array_last($file)),
+                            'file_name' => $req_file['file']->getClientOriginalName(),
+                            'type' => $relation,
+                            'mime_type' => $req_file['file']->getMimeType(),
+                            'size' => $req_file['file']->getSize(),
+                            'sort' => $sort,
+                        ]);
+                    }
+                }
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            abort(505, $req_file['file']->getClientOriginalName() . '<br/>' . $e->getMessage());
+        }
     }
     
     public function search($fields, $paginated = true)
@@ -77,18 +122,23 @@ class CompanyService extends BaseService
 
     private function createUser($fields = [])
     {
-        $userService = (new UserService);
-        $user = $userService->findEmail($fields['email']);
+        try {
+            $userService = (new UserService);
+            $user = $userService->findEmail($fields['email']);
 
-        $user_fields = array_only($fields, ['email', 'password']);
-        $user_fields['name'] = $fields['name'] ?? $fields['company_name'];
+            $user_fields = array_only($fields, ['email', 'password']);
+            $user_fields['name'] = $fields['name'] ?? $fields['company_name'];
 
-        if (! $user) {
-            $user = $userService->create($user_fields);
+            if (! $user) {
+                $user = $userService->create($user_fields);
 
-            $userService->attachRole($this->model::ROLE);
+                $userService->attachRole($this->model::ROLE);
+            }
+
+            $this->user = $user;
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            abort(505, $e->getMessage());
         }
-
-        $this->user = $user;
     }
 }

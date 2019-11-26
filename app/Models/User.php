@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return (bool) $this->roles()->whereSlug($slug)->count();
     }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 }

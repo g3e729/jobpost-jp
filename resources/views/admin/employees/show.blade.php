@@ -55,7 +55,11 @@
               <td>
                 <dl>
                   <dt>Prefecture</dt>
-                  <dd>{{ getPrefecture($employee->prefecture) }}</dd>
+                  <dd>
+                    <a href="{{ route('admin.employees.index', ['prefecture' => $employee->prefecture]) }}">
+                      {{ getPrefecture($employee->prefecture) }}
+                    </a>
+                  </dd>
                   <dt>番地</dt>
                   <dd>{{ $employee->address1 }}</dd>
                   <dt>ビル名 / 部屋番号</dt>
@@ -79,15 +83,27 @@
             </tr>
             <tr>
               <td class="font-weight-bold">ステータス</td>
-              <td>{{ $employee->employment_status }}</td>
+              <td>
+                <a href="{{ route('admin.employees.index', ['status' => $employee->status]) }}">
+                  {{ $employee->employment_status }}
+                </a>
+              </td>
             </tr>
             <tr>
               <td class="font-weight-bold">国籍</td>
-              <td>{{ getCountries($employee->country) }}</td>
+              <td>
+                <a href="{{ route('admin.employees.index', ['country' => $employee->country]) }}">
+                  {{ getCountries($employee->country) }}
+                </a>
+              </td>
             </tr>
             <tr>
               <td class="font-weight-bold">ポジション</td>
-              <td>{{ $employee->position }}</td>
+              <td>
+                <a href="{{ route('admin.employees.index', ['position_id' => $employee->position_id]) }}">
+                  {{ $employee->position }}
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>

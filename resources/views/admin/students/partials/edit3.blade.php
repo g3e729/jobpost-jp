@@ -2,6 +2,8 @@
   @csrf
   {{ method_field('PATCH') }}
 
+  <input type="hidden" name="step" value="3">
+
   <div class="pb-3 row">
     <div class="col-6">
       <dl class="mb-0">
@@ -160,7 +162,7 @@
       $portfolio = isset($student->portfolios[$i]) ? $student->portfolios[$i] : null
     @endphp
     <div class="pb-3 row">
-      <div class="col-3 font-weight-bold">ポートフォリオ{{ $i + 1 }}</div>
+      <div class="col-3 font-weight-bold">ポートフォリオ{{ $i+1 }}</div>
       <div class="col-9">
         <div class="form-group position-relative">
           <label for="formPortfolioTitle" class="form-label pt-0">タイトル</label>
@@ -185,10 +187,10 @@
           <div data-group="eyecatch">
             <div class="pb-3 d-inline-flex flex-column align-items-center">
               <img data-avatar="preview" class="img-fluid border border-secondary mb-3" src="{{ $portfolio->file->url ?? 'https://placehold.it/240x240' }}">
-              <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($student->portfolio_img) && $student->portfolio_img ? null : 'disabled'}}>Delete</button>
+              <button data-avatar="delete" type="button" class="alt-font btn btn-danger w-100 mb-2" {{ isset($portfolio->file->url) ? '' : 'disabled'}}>Delete</button>
             </div>
 
-            <input data-avatar="hidden" type="hidden" name="portfolio_img_deleted" value="0">
+            <input data-avatar="hidden" type="hidden" name="portfolios[{{ $i }}][delete]" value="0">
             <input data-avatar="file" type="file" class="form-control-file" id="formPortfolioImg" name="portfolios[{{ $i }}][file]"
               accept="image/png, image/jpeg" style="visibility: hidden; position: absolute;">
             <div class="input-group">

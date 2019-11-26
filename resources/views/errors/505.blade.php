@@ -1,10 +1,10 @@
 @extends('layouts.errors')
 
-@section('pageTitle', 'Error 419')
+@section('pageTitle', 'Error 505')
 
 @section('content')
-    <span class="display-1 d-block">419</span>
-    <div class="lead alt-font">Page Expired.</div>
+    <span class="display-1 d-block">505</span>
+    <div class="lead alt-font">Internal Server Error.</div>
     <div class="mb-4">
     	<i>{!! $exception->getMessage() !!}</i>
     </div>

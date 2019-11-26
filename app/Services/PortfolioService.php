@@ -38,6 +38,10 @@ class PortfolioService extends BaseService
 		            $portfolio = $model->portfolios()->create($field);
 		        }
 
+		        if ($field['delete'] == 1) {
+		        	$portfolio->file()->delete();
+		        }
+
 		        if ($req_file) {
 		            $file = $req_file->store('public/portfolio');
 		            $file = explode('/', $file);

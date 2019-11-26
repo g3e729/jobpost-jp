@@ -80,7 +80,7 @@
       </tr>
     @endif
 
-{{--     <tr>
+    {{-- <tr>
       <td class="font-weight-bold">アバター</td>
       <td>
         <img class="avatar avatar-md" src="{{ $student->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
