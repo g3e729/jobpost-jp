@@ -5,6 +5,7 @@ import 'swiper/css/swiper.css';
 
 const Slider = () => {
   const params = {
+    noSwiping: true,
     slidesPerView: 1,
     spaceBetween: 60,
     autoplay: {

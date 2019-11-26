@@ -1144,6 +1144,111 @@ a.pagination__item-link:hover {
   opacity: 0.7;
 }
 
+.jobs__top {
+  display: -webkit-box;
+  display: flex;
+}
+
+.jobs__top-left {
+  width: 320px;
+  -webkit-box-flex: 0;
+          flex: 0 0 320px;
+}
+
+.jobs__top-right {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-top: 12px;
+  margin-left: 30px;
+}
+
+.jobs__content {
+  margin-top: 22px;
+}
+
+.jobs__footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-top: 24px;
+}
+
+.jobs__eyecatch {
+  position: relative;
+  max-height: 192px;
+}
+
+.jobs__eyecatch:before {
+  content: "";
+  padding-top: 60%;
+  display: block;
+}
+
+.jobs__eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background: -webkit-gradient(linear, left top, right top, from(#2a77b1), to(#0fafb4));
+  background: linear-gradient(to right, #2a77b1, #0fafb4);
+  background-size: cover;
+}
+
+.jobs__company {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.jobs__company > img {
+  -webkit-box-flex: 0;
+          flex: 0 0 29px;
+  width: 29px;
+  height: 31px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2px;
+}
+
+.jobs__company-name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 16px;
+}
+
+.jobs__title {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.762;
+  letter-spacing: 0.06em;
+  margin-top: 29px;
+}
+
+.jobs__description {
+  letter-spacing: 0.06em;
+  line-height: 1.857;
+}
+
+.jobs__pills {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  list-style: none;
+}
+
+.jobs__pills-item {
+  margin-right: 5px;
+}
+
 .jobs-list {
   -webkit-box-flex: 1;
           flex: 1;
@@ -1151,9 +1256,57 @@ a.pagination__item-link:hover {
   align-self: stretch;
 }
 
+.jobs-list__top {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  padding-bottom: 9px;
+}
+
 .jobs-list__footer {
   text-align: center;
   padding: 60px 0 60px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.jobs-list__fraction {
+  font-family: "Avenir", sans-serif;
+  font-size: 20px;
+}
+
+.jobs-list__fraction-numeration {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fdb834;
+  position: relative;
+  top: -7px;
+}
+
+.jobs-list__actions-button {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #393939;
+}
+
+.jobs-list__actions-button:first-child {
+  margin-right: 26px;
+}
+
+.jobs-list__actions-button.is-active {
+  color: #fdb834;
+}
+
+.jobs-list__posts {
+  list-style: none;
+}
+
+.jobs-list__posts-item {
+  padding: 38px 0 29px;
   border-top: solid 1px #d9d6d6;
 }
 

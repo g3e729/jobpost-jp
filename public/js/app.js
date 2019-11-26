@@ -36790,7 +36790,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57065,6 +57065,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Slider = function Slider() {
   var params = {
+    noSwiping: true,
     slidesPerView: 1,
     spaceBetween: 60,
     autoplay: {
@@ -57469,6 +57470,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Pagination */ "./resources/react/components/common/Pagination.js");
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
+
 
 
 
@@ -57477,9 +57480,72 @@ var JobsList = function JobsList() {
     className: "jobs-list"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-list__top"
-  }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-list__fraction"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "jobs-list__fraction-numeration"
+  }, "10"), " / 75"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-list__actions"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "button button--link jobs-list__actions-button ".concat(_constants_state__WEBPACK_IMPORTED_MODULE_2__["state"].ACTIVE)
+  }, "\u65B0\u7740\u9806"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "button button--link jobs-list__actions-button"
+  }, "\u4EBA\u6C17\u9806"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-list__content"
-  }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "jobs-list__posts"
+  }, [1, 2, 3, 4, 5].map(function (_, idx) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "jobs-list__posts-item",
+      key: idx
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__top"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__top-left"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__eyecatch"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__eyecatch-img",
+      style: {
+        backgroundImage: 'url("https://lorempixel.com/640/640/business/")'
+      }
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__top-right"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__company"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "https://lorempixel.com/240/240/city/",
+      alt: ""
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__company-name"
+    }, "\u30B8\u30FC\u30B3\u30E0\u682A\u5F0F\u4F1A\u793E")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__title"
+    }, "\u81EA\u793E\u2605C2C\u30DE\u30C3\u30C1\u30F3\u30B0\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u958B\u767A \u3010\u5C11\u6570\u7CBE\u92ED/\u6B8B\u696D\u5C11/\u30D5\u30EC\u30C3\u30AF\u30B9\u3011"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__content"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__description"
+    }, "\u6065\u306E\u591A\u3044\u751F\u6DAF\u3092\u9001\u3063\u3066\u6765\u307E\u3057\u305F\u3002\u81EA\u5206\u306B\u306F\u3001\u4EBA\u9593\u306E\u751F\u6D3B\u3068\u3044\u3046\u3082\u306E\u304C\u3001\u898B\u5F53\u3064\u304B\u306A\u3044\u306E\u3067\u3059\u3002\u81EA\u5206\u306F\u6771\u5317\u306E\u7530\u820E\u306B\u751F\u307E\u308C\u307E\u3057\u305F\u306E\u3067\u3001\u6C7D\u8ECA\u3092\u306F\u3058\u3081\u3066\u898B\u305F\u306E\u306F\u3001\u3088\u307B\u3069\u5927\u304D\u304F\u306A\u3063\u3066\u304B\u3089\u3067\u3057\u305F\u3002\u81EA\u5206\u306F\u505C\u8ECA\u5834\u306E\u30D6\u30EA\u30C3\u30B8\u3092\u3001\u4E0A\u3063\u3066\u3001\u964D\u308A\u3066\u3001\u305D\u3046\u3057\u3066\u305D\u308C\u304C\u7DDA\u8DEF\u3092\u307E\u305F\u304E\u8D8A\u3048\u308B\u305F\u3081\u306B\u9020\u3089\u308C\u305F\u3082\u306E\u3060\u3068\u3044\u3046\u4E8B\u306B\u306F...\u5168\u7136\u6C17\u3065\u304B\u305A\u3001\u305F\u3060\u305D\u308C\u306F\u505C\u8ECA\u5834\u306E\u69CB\u5185\u3092\u5916\u56FD\u306E\u904A\u622F\u5834\u307F\u305F\u3044\u306B\u3001")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__footer"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      className: "jobs__pills"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "jobs__pills-item pill"
+    }, "PHP"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "jobs__pills-item pill"
+    }, "\u6771\u4EAC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "jobs__pills-item pill"
+    }, "3\u65E5\u524D")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jobs__fav"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "pill pill--icon"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon icon-star"
+    }), "1.2k")))));
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-list__footer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 };
