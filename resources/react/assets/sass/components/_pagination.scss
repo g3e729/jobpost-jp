@@ -1,0 +1,53 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+
+  border: solid 1px $color-dark-yellow;
+
+  &.is-active {
+    background-color: $color-dark-yellow;
+
+    .pagination__item-link {
+      color: $color-white;
+    }
+  }
+
+  &.is-disabled {
+    .pagination__item-link > i {
+      opacity: 0.3;
+    }
+  }
+}
+
+.pagination__item-link {
+  font-family: $alt-font-family;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  color: $color-dark-yellow;
+
+  > i {
+    font-size: 0.8em;
+  }
+}
+
+a.pagination__item-link {
+  transition: opacity $duration $easing-cubic;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+

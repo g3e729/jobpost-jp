@@ -36790,7 +36790,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56464,6 +56464,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Filter = function Filter() {
+  var inputPlaceholder = '指定なし';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "filter"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56479,7 +56480,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-pc-user text-orange"
   }), "\u30BF\u30A4\u30D7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56487,7 +56489,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-status text-orange"
   }), "\u30B9\u30C6\u30FC\u30BF\u30B9"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56495,7 +56498,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-code text-orange"
   }), "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u8A00\u8A9E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56503,7 +56507,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-framework text-orange"
   }), "\u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56511,7 +56516,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-laptop text-orange"
   }), "\u305D\u306E\u4ED6\u958B\u767A\u74B0\u5883"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56519,7 +56525,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-marker text-orange"
   }), "\u5730\u57DF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -56527,7 +56534,8 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-sort-down text-orange"
   }), "\u30BD\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"]
+    options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    placeholder: inputPlaceholder
   })))));
 };
 
@@ -56938,6 +56946,66 @@ var Pages = function Pages() {
 
 /***/ }),
 
+/***/ "./resources/react/components/common/Pagination.js":
+/*!*********************************************************!*\
+  !*** ./resources/react/components/common/Pagination.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
+
+
+
+var Pagination = function Pagination() {
+  var isPrev = 0;
+  var isNext = 1;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "pagination",
+    role: "navigation"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "pagination__item ".concat(_constants_state__WEBPACK_IMPORTED_MODULE_1__["state"].DISABLED)
+  }, isPrev === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pagination__item-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-back-arrow"
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "pagination__item-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-back-arrow"
+  }))), [1, 2, 3].map(function (item, idx) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "pagination__item ".concat(idx === 0 ? _constants_state__WEBPACK_IMPORTED_MODULE_1__["state"].ACTIVE : ''),
+      key: idx
+    }, idx === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "pagination__item-link"
+    }, item) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      className: "pagination__item-link"
+    }, item));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "pagination__item"
+  }, isNext === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pagination__item-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-next-arrow"
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "pagination__item-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-next-arrow"
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Pagination);
+
+/***/ }),
+
 /***/ "./resources/react/components/common/Search.js":
 /*!*****************************************************!*\
   !*** ./resources/react/components/common/Search.js ***!
@@ -57322,7 +57390,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
 var state = {
   ACTIVE: 'is-active',
-  INACTIVE: 'is-inactive'
+  INACTIVE: 'is-inactive',
+  DISABLED: 'is-disabled'
 };
 
 /***/ }),
@@ -57399,12 +57468,20 @@ var HelpPage = function HelpPage() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Pagination */ "./resources/react/components/common/Pagination.js");
+
 
 
 var JobsList = function JobsList() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-list"
-  }, "Jobs");
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-list__top"
+  }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-list__content"
+  }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-list__footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (JobsList);

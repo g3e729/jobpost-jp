@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?lyxd8g';
+$suffix: '?rdsy3c';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,12 @@ $suffix: '?lyxd8g';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-back-arrow:before {
+  content: "\e90d";
+}
+.icon-next-arrow:before {
+  content: "\e90e";
+}
 .icon-code:before {
   content: "\e906";
 }

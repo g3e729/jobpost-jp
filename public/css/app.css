@@ -402,8 +402,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?215bc874de021405dd7473fbf7f4aad2);
-  src: url(/fonts/kredo.eot?215bc874de021405dd7473fbf7f4aad2) format("embedded-opentype"), url(/fonts/kredo.ttf?ca0cb6b25c812417cb4676e1e5ef84d0) format("truetype"), url(/fonts/kredo.woff?920ffb3253c8a76b428e9f864010867c) format("woff"), url(/fonts/kredo.svg?446485cc7b6f1dac8fcd0936eddc7efa) format("svg");
+  src: url(/fonts/kredo.eot?68ad389585a96def4cb23013d92d3d33);
+  src: url(/fonts/kredo.eot?68ad389585a96def4cb23013d92d3d33) format("embedded-opentype"), url(/fonts/kredo.ttf?32cf33925bf0a5e40e97552cfbf64b3d) format("truetype"), url(/fonts/kredo.woff?80dfc5d2b91532c67bf0666048939f79) format("woff"), url(/fonts/kredo.svg?8a819dcd671047b5de38decd8a12b20b) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -422,6 +422,14 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-back-arrow:before {
+  content: "\E90D";
+}
+
+.icon-next-arrow:before {
+  content: "\E90E";
 }
 
 .icon-code:before {
@@ -1082,12 +1090,71 @@ input:focus {
   margin-right: 10px;
 }
 
+.pagination {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  list-style: none;
+}
+
+.pagination__item {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  border: solid 1px #fdb834;
+}
+
+.pagination__item.is-active {
+  background-color: #fdb834;
+}
+
+.pagination__item.is-active .pagination__item-link {
+  color: #fff;
+}
+
+.pagination__item.is-disabled .pagination__item-link > i {
+  opacity: 0.3;
+}
+
+.pagination__item-link {
+  font-family: "Avenir", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fdb834;
+}
+
+.pagination__item-link > i {
+  font-size: 0.8em;
+}
+
+a.pagination__item-link {
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+a.pagination__item-link:hover {
+  opacity: 0.7;
+}
+
 .jobs-list {
   -webkit-box-flex: 1;
           flex: 1;
   margin-left: 40px;
   align-self: stretch;
-  background-color: salmon;
+}
+
+.jobs-list__footer {
+  text-align: center;
+  padding: 60px 0 60px;
+  border-top: solid 1px #d9d6d6;
 }
 
 .privacy__note {

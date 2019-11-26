@@ -1,9 +1,15 @@
 import React from 'react';
 
+import Pagination from '../common/Pagination';
+
 const JobsList = () => {
   return (
     <div className="jobs-list">
-      Jobs
+      <div className="jobs-list__top">1</div>
+      <div className="jobs-list__content">2</div>
+      <div className="jobs-list__footer">
+        <Pagination />
+      </div>
     </div>
   );
 }
