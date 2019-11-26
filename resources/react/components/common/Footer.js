@@ -14,9 +14,9 @@ class Footer extends Component {
       <footer className="l-footer footer">
         <div className="l-footer__top">
           { footerLinks.includes(path) ?
-            ( <h2 className="footer__heading">
+            ( <div className="footer__heading">
                 { path.toUpperCase() }
-              </h2>
+              </div>
             ) : null
           }
           <ul className="footer-menu">

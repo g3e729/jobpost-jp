@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?abx10j';
+$suffix: '?empn3t';
 
 @font-face {
   font-family: 'kredo';
@@ -47,8 +47,8 @@ $suffix: '?abx10j';
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-external-link:before {
-  content: "\e904";
+.icon-star:before {
+  content: "\e905";
 }
 .icon-bell:before {
   content: "\e900";
@@ -61,6 +61,9 @@ $suffix: '?abx10j';
 }
 .icon-squares-list:before {
   content: "\e903";
+}
+.icon-external-link:before {
+  content: "\e904";
 }
 .icon-facebook:before {
   content: "\ea90";

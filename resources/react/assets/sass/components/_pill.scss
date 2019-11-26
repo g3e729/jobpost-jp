@@ -1,0 +1,42 @@
+.pill {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-align: center;
+
+  padding: 2px 15px;
+
+  border: solid 1px $color-dark-yellow;
+  border-radius: 30px;
+}
+
+.pill--active {
+  color: $color-white;
+  background-color: $color-dark-yellow;
+}
+
+.pill--icon {
+  font-size: 13px;
+  border-radius: 0;
+
+  position: relative;
+  padding: 4px 20px 4px 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    background-color: $color-dark-yellow;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 100%;
+  }
+
+  > i {
+    color: $color-white;
+
+    position: relative;
+    padding-right: 30px;
+    left: 6px;
+    z-index: 1;
+  }
+}

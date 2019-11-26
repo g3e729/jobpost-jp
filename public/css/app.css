@@ -402,8 +402,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?3cdf65221be1545d4f233e02a7eebe49);
-  src: url(/fonts/kredo.eot?3cdf65221be1545d4f233e02a7eebe49) format("embedded-opentype"), url(/fonts/kredo.ttf?482410f6a9baaf86dd078fe260f75e28) format("truetype"), url(/fonts/kredo.woff?01e97be63865363429a42a9537785972) format("woff"), url(/fonts/kredo.svg?571bb26715a780933e71e6c0d7a75cd2) format("svg");
+  src: url(/fonts/kredo.eot?e0ff09b3a07f0eb6bdf9adf831e5708b);
+  src: url(/fonts/kredo.eot?e0ff09b3a07f0eb6bdf9adf831e5708b) format("embedded-opentype"), url(/fonts/kredo.ttf?d0295b32e2cfa2d84bce8eb0fd550046) format("truetype"), url(/fonts/kredo.woff?9838cdd60f23fbd3f5b2fba15dc280bd) format("woff"), url(/fonts/kredo.svg?a4ea9673351c03252d8be1a8998e783d) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -424,8 +424,8 @@ input:focus {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-external-link:before {
-  content: "\E904";
+.icon-star:before {
+  content: "\E905";
 }
 
 .icon-bell:before {
@@ -442,6 +442,10 @@ input:focus {
 
 .icon-squares-list:before {
   content: "\E903";
+}
+
+.icon-external-link:before {
+  content: "\E904";
 }
 
 .icon-facebook:before {
@@ -552,6 +556,10 @@ input:focus {
   border: solid 1px #d9d6d6 !important;
 }
 
+.pages {
+  overflow: hidden;
+}
+
 .l-container {
   padding: 0 20px;
   margin: 0 auto;
@@ -560,7 +568,7 @@ input:focus {
 }
 
 .l-container--wide {
-  max-width: calc(100% - 40px);
+  max-width: calc(100% - 80px);
 }
 
 .l-section {
@@ -569,7 +577,7 @@ input:focus {
 
 .l-header {
   position: relative;
-  min-height: 98px;
+  height: 98px;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -803,6 +811,45 @@ input:focus {
   left: 50%;
 }
 
+.pill {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 2px 15px;
+  border: solid 1px #fdb834;
+  border-radius: 30px;
+}
+
+.pill--active {
+  color: #fff;
+  background-color: #fdb834;
+}
+
+.pill--icon {
+  font-size: 13px;
+  border-radius: 0;
+  position: relative;
+  padding: 4px 20px 4px 0;
+}
+
+.pill--icon:before {
+  content: "";
+  position: absolute;
+  background-color: #fdb834;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 100%;
+}
+
+.pill--icon > i {
+  color: #fff;
+  position: relative;
+  padding-right: 30px;
+  left: 6px;
+  z-index: 1;
+}
+
 .avatar {
   height: 50px;
   width: 50px;
@@ -845,6 +892,109 @@ input:focus {
 .button--link {
   padding: 0;
   background: transparent;
+}
+
+.swiper-container {
+  overflow: visible !important;
+  margin-left: 60px !important;
+  margin-bottom: 60px;
+}
+
+.swiper-slide.slider {
+  position: relative;
+  height: calc(100vh - 98px);
+  min-height: 660px;
+}
+
+.swiper-slide .slider__eyecatch {
+  width: calc(100% - (60px + 144px));
+  height: 100%;
+  overflow: hidden;
+}
+
+.swiper-slide .slider__eyecatch img {
+  vertical-align: middle;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper-slide .slider__eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#2a77b1), to(#0fafb4));
+  background: linear-gradient(to right, #2a77b1, #0fafb4);
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide .slider-content {
+  position: absolute;
+  width: calc(50% - 144px);
+  top: calc(50% - 25px);
+  right: 0;
+  padding: 55px 62px 100px 58px;
+  background-color: #fff;
+  box-shadow: 0px 0px 60px 0px rgba(57, 57, 57, 0.2);
+  z-index: 1;
+}
+
+.swiper-slide .slider-content > img {
+  float: left;
+  width: 50px;
+  height: 50px;
+}
+
+.swiper-slide .slider-content__top {
+  padding-left: 64px;
+  margin-top: 8px;
+}
+
+.swiper-slide .slider-content__main {
+  padding-top: 30px;
+  margin-top: 25px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.swiper-slide .slider-content__title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.swiper-slide .slider-content__desc {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+}
+
+.swiper-slide .slider-content__footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-top: 46px;
+}
+
+.swiper-slide .slider-content__pills {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  list-style: none;
+}
+
+.swiper-slide .slider-content__pills-item {
+  margin-right: 5px;
+}
+
+.swiper-slide .slider-content__fav {
+  margin-right: 85px;
 }
 
 .privacy__note {

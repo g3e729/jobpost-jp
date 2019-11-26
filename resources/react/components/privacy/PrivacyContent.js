@@ -3,9 +3,9 @@ import React from 'react';
 const PrivacyContent = () => (
   <section className="l-section section">
     <div className="l-container">
-      <h2 className="privacy__note">
+      <div className="privacy__note">
         <span>Kredo IT Abroad Inc.</span> （以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
-      </h2>
+      </div>
       <ol className="privacy-list">
         <li className="privacy-list__item">
           <h3 className="privacy-list__item-header">第1条（個人情報）</h3>

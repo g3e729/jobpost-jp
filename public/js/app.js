@@ -34088,7 +34088,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49092,7 +49092,7 @@ function (_Component) {
         className: "l-footer footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "l-footer__top"
-      }, _constants_enums__WEBPACK_IMPORTED_MODULE_2__["footerLinks"].includes(path) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      }, _constants_enums__WEBPACK_IMPORTED_MODULE_2__["footerLinks"].includes(path) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer__heading"
       }, path.toUpperCase()) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "footer-menu"
@@ -49529,7 +49529,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Slider = function Slider() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_id_swiper__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Slide 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Slide 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Slide 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Slide 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Slide 5"));
+  var params = {
+    slidesPerView: 1,
+    spaceBetween: 60,
+    autoplay: {
+      delay: 10000
+    },
+    loop: true // pagination: {
+    //   el: '.swiper-pagination',
+    //   clickable: true,
+    //   renderBullet: (index, className) => {
+    //     return '<span className="' + className + '">' + (index + 1) + '</span>';
+    //   }
+    // }
+
+  };
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_id_swiper__WEBPACK_IMPORTED_MODULE_1___default.a, params, [0, 1, 3].map(function (_, idx) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider",
+      key: idx
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider__eyecatch"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "https://source.unsplash.com/user/erondu/1600x900",
+      alt: "Eyecatch1"
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider-content"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "https://lorempixel.com/240/240/city/",
+      alt: "Company Name"
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider-content__top"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      className: "slider-content__title"
+    }, "\u682A\u5F0F\u4F1A\u793E\u30A2\u30AF\u30BF\u30FC\u30EA\u30A2\u30EA\u30C6\u30A3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider-content__main"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "slider-content__desc"
+    }, "\u81EA\u793E\u2605C2C\u30DE\u30C3\u30C1\u30F3\u30B0\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u958B\u767A", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "\u3010\u5C11\u6570\u7CBE\u92ED/\u6B8B\u696D\u5C11/\u30D5\u30EC\u30C3\u30AF\u30B9\u3011")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider-content__footer"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      className: "slider-content__pills"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "slider-content__pills-item pill pill--active"
+    }, "PHP"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "slider-content__pills-item pill"
+    }, "\u6771\u4EAC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "slider-content__pills-item pill"
+    }, "3\u65E5\u524D")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider-content__fav"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "pill pill--icon"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon icon-star"
+    }), "1.2k")))));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Slider);
@@ -49899,7 +49953,7 @@ var PrivacyContent = function PrivacyContent() {
     className: "l-section section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "privacy__note"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Kredo IT Abroad Inc."), " \uFF08\u4EE5\u4E0B\uFF0C\u300C\u5F53\u793E\u300D\u3068\u3044\u3044\u307E\u3059\u3002\uFF09\u306F\uFF0C\u672C\u30A6\u30A7\u30D6\u30B5\u30A4\u30C8\u4E0A\u3067\u63D0\u4F9B\u3059\u308B\u30B5\u30FC\u30D3\u30B9\uFF08\u4EE5\u4E0B,\u300C\u672C\u30B5\u30FC\u30D3\u30B9\u300D\u3068\u3044\u3044\u307E\u3059\u3002\uFF09\u306B\u304A\u3051\u308B\uFF0C\u30E6\u30FC\u30B6\u30FC\u306E\u500B\u4EBA\u60C5\u5831\u306E\u53D6\u6271\u3044\u306B\u3064\u3044\u3066\uFF0C\u4EE5\u4E0B\u306E\u3068\u304A\u308A\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC\uFF08\u4EE5\u4E0B\uFF0C\u300C\u672C\u30DD\u30EA\u30B7\u30FC\u300D\u3068\u3044\u3044\u307E\u3059\u3002\uFF09\u3092\u5B9A\u3081\u307E\u3059\u3002"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
     className: "privacy-list"
@@ -50046,7 +50100,7 @@ var TermsPage = function TermsPage() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jimcallanta/Sites/kredo/resources/react/app.js */"./resources/react/app.js");
+module.exports = __webpack_require__(/*! /Users/kamlig/Projects/kredo-career/resources/react/app.js */"./resources/react/app.js");
 
 
 /***/ })

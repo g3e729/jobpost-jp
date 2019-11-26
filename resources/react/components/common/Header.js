@@ -38,7 +38,7 @@ const Header = () => (
             </NavLink>
           </li>
           <li className="header-actions__item">
-            <Avatar className="avatar--header" style={{backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }}></Avatar>
+            <Avatar className="avatar--header" style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }}></Avatar>
           </li>
         </ul>
       </div>
