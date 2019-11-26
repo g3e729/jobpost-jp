@@ -60,15 +60,46 @@ class SeekerService extends BaseService
                     $que = $que->where('enrollment_date', '>', now());
                 break;
                 case 2:
-                    $que = $que->where('enrollment_date', '<', now())
-                        ->where('graduation_date', '>', now());
+                    $enrollment_date = now()->startOfMonth();
+                    $graduation_date = now()->endOfMonth();
+                    $from = explode('-', array_get($fields, 'from'));
+                    $to = explode('-', array_get($fields, 'to'));
+
+                    if ($from && count($from) > 1) {
+                        $enrollment_date = $enrollment_date->createFromDate($from[0], $from[1], 1)->subDay();
+                    }
+
+                    if ($to && count($to) > 1) {
+                        $graduation_date = $graduation_date->createFromDate($to[0], $to[1], 1)->endOfMonth()->addDay();
+                    }
+
+                    $que = $que->where('enrollment_date', '>', $enrollment_date)
+                        ->where('graduation_date', '<', $graduation_date);
                 break;
                 case 3:
-                    $que = $que->where('graduation_date', '<', now());
+                    $grad_1 = now()->startOfMonth();
+                    $grad_2 = now()->endOfMonth();
+                    $from = explode('-', array_get($fields, 'from'));
+                    $to = explode('-', array_get($fields, 'to'));
+
+                    if ($from && count($from) > 1) {
+                        $grad_1 = $grad_1->createFromDate($from[0], $from[1], 1)->startOfMonth()->subDay();
+                    }
+
+                    if ($to && count($to) > 1) {
+                        $grad_2 = $grad_2->createFromDate($to[0], $to[1], 1)->endOfMonth()->addDay();
+                    }
+
+                    $que = $que->where('graduation_date', '>', $grad_1)
+                        ->where('graduation_date', '<', $grad_2);
                 break;
             }
 
             foreach ($fields as $column => $value) {
+                if (in_array($column, ['from', 'to'])) {
+                    continue;
+                }
+
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);

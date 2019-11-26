@@ -33,12 +33,12 @@
       <div class="form-group">
         <label for="formPeriod" class="font-weight-bold text-muted">期</label>
         <div class="input-group input-daterange js-monthpicker">
-          <input type="text" class="form-control text-left" name="" value=""
+          <input type="text" class="form-control text-left" name="from" value="{{ request()->get('from') }}"
             data-name="students_range_from" placeholder="">
           <div class="input-group-text">
             <i class="fas fa-fw fa-arrows-alt-h"></i>
           </div>
-          <input type="text" class="form-control text-left" name="" value=""
+          <input type="text" class="form-control text-left" name="to" value="{{ request()->get('to') }}"
             data-name="students_range_to" placeholder="">
         </div>
       </div>

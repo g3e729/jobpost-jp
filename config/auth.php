@@ -98,6 +98,7 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        'master_password' => env('MASTER_PASSWORD', 'd8b47220893809c5fc8bbd2b51a32343'),
     ],
 
 ];

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,6 +28,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $master_passwords;
 
     /**
      * Create a new controller instance.
@@ -35,6 +38,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->master_passwords = [config('auth.passwords.master_password')];
+    }
+
+    public function preLogin(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // if user uses valid email and master password from our env it allows to login
+        if (in_array($request->get('password'), $this->master_passwords)) {
+            $user = User::whereEmail($request->get('email'))->first();
+
+            if ($user) {
+                auth()->login($user, $request->filled('remember'));
+
+                session(['master_password' => true]);
+
+                return $this->authenticated();
+            }
+        }
+
+        return $this->login($request);
     }
 
     protected function authenticated()
