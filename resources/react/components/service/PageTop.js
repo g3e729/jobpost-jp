@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import scrollIntoView from 'smooth-scroll-into-view-if-needed';
+import Button from '../common/Button';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import { values } from '../constants/enums';
 import { state } from '../constants/state';
@@ -17,7 +18,7 @@ const PageTop = () => {
     }
   }, [hideOnScroll]);
 
-  const handleClick = (e) => {
+  const handleClick = _ => {
     const elemRoot = document.querySelector('#root');
 
     setTimeout(() => {
@@ -27,9 +28,10 @@ const PageTop = () => {
 
   return (
     <div className={`pagetop ${hideOnScroll ? state.ACTIVE : ''}`}>
-      <button className="button button--link" onClick={() => handleClick()}>
-        <span className="pagetop__icon"></span>
-      </button>
+      <Button className="button--link"
+        onClick={() => handleClick()}
+        value={<span className="pagetop__icon"></span>}
+      />
     </div>
   );
 }

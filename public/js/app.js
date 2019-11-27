@@ -56969,6 +56969,87 @@ var Avatar = function Avatar(_ref) {
 
 /***/ }),
 
+/***/ "./resources/react/components/common/Button.js":
+/*!*****************************************************!*\
+  !*** ./resources/react/components/common/Button.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+
+
+var Button = function Button(_ref) {
+  var className = _ref.className,
+      value = _ref.value,
+      props = _objectWithoutProperties(_ref, ["className", "value"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
+    className: "button ".concat(className)
+  }, props), value);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Button);
+
+/***/ }),
+
 /***/ "./resources/react/components/common/Filter.js":
 /*!*****************************************************!*\
   !*** ./resources/react/components/common/Filter.js ***!
@@ -57542,6 +57623,8 @@ var Pagination = function Pagination() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Button */ "./resources/react/components/common/Button.js");
+
 
 
 var Search = function Search() {
@@ -57556,13 +57639,14 @@ var Search = function Search() {
     "aria-describedby": "js-button-search"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form__group-append"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "button--link",
     type: "submit",
-    className: "button button--link",
-    id: "js-button-search"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-search text-orange"
-  })))));
+    id: "js-button-search",
+    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon icon-search text-orange"
+    })
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Search);
@@ -57596,14 +57680,14 @@ var Slider = function Slider() {
     autoplay: {
       delay: 10000
     },
-    loop: true // pagination: {
-    //   el: '.swiper-pagination',
-    //   clickable: true,
-    //   renderBullet: (index, className) => {
-    //     return '<span className="' + className + '">' + (index + 1) + '</span>';
-    //   }
-    // }
-
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination.slider-pagination',
+      clickable: true,
+      renderBullet: function renderBullet(index, className) {
+        return "\n          <div class=\"slider-pagination__item\">\n            <div class=\"slider-pagination__item-number\">\n              0".concat(index + 1, "\n            </div>\n            <div class=\"slider-pagination__item-bg\">\n              <svg x=\"0px\" y=\"0px\" viewBox=\"0 0 100 100\" class=\"slider-pagination__item-svg\">\n                <path class=\"path-progress\" d=\"M50,10c22.1,0,40,17.9,40,40S72.1,90,50,90S10,72.1,10,50S27.9,10,50,10\" />\n                <path class=\"path-bg\" d=\"M50,10c22.1,0,40,17.9,40,40S72.1,90,50,90S10,72.1,10,50S27.9,10,50,10\" />\n              </svg>\n            </div>\n            <div class=\"slider-pagination__item-line\"></div>\n          </div>\n          ");
+      }
+    }
   };
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_id_swiper__WEBPACK_IMPORTED_MODULE_1___default.a, params, [0, 1, 3].map(function (_, idx) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -57611,9 +57695,11 @@ var Slider = function Slider() {
       key: idx
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "slider__eyecatch"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "https://source.unsplash.com/user/erondu/1600x900",
-      alt: "Eyecatch1"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slider__eyecatch-img",
+      style: {
+        backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")'
+      }
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "slider-content"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -57623,7 +57709,7 @@ var Slider = function Slider() {
       className: "slider-content__top"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
       className: "slider-content__title"
-    }, "\u682A\u5F0F\u4F1A\u793E\u30A2\u30AF\u30BF\u30FC\u30EA\u30A2\u30EA\u30C6\u30A3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "\u682A\u5F0F\u4F1A\u793E\u30A2\u30AF\u30BF\u30FC\u30EA\u30A2\u30EA\u30C6\u30A3 ", idx + 1)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "slider-content__main"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "slider-content__desc"
@@ -58258,10 +58344,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll-into-view-if-needed */ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js");
-/* harmony import */ var _n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @n8tb1t/use-scroll-position */ "./node_modules/@n8tb1t/use-scroll-position/lib/index.js");
-/* harmony import */ var _n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants_enums__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/enums */ "./resources/react/components/constants/enums.js");
-/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Button */ "./resources/react/components/common/Button.js");
+/* harmony import */ var _n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @n8tb1t/use-scroll-position */ "./node_modules/@n8tb1t/use-scroll-position/lib/index.js");
+/* harmony import */ var _n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _constants_enums__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/enums */ "./resources/react/components/constants/enums.js");
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
 }
@@ -58310,24 +58397,25 @@ function _arrayWithHoles(arr) {
 
 
 
+
 var PageTop = function PageTop() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       hideOnScroll = _useState2[0],
       setHideOnScroll = _useState2[1];
 
-  Object(_n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2__["useScrollPosition"])(function (_ref) {
+  Object(_n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_3__["useScrollPosition"])(function (_ref) {
     var prevPos = _ref.prevPos,
         currPos = _ref.currPos;
     var offset = 100;
-    var isShow = -currPos.y > _constants_enums__WEBPACK_IMPORTED_MODULE_3__["values"].mvHeight + offset;
+    var isShow = -currPos.y > _constants_enums__WEBPACK_IMPORTED_MODULE_4__["values"].mvHeight + offset;
 
     if (isShow !== hideOnScroll) {
       setHideOnScroll(isShow);
     }
   }, [hideOnScroll]);
 
-  var handleClick = function handleClick(e) {
+  var handleClick = function handleClick(_) {
     var elemRoot = document.querySelector('#root');
     setTimeout(function () {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
@@ -58338,15 +58426,16 @@ var PageTop = function PageTop() {
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pagetop ".concat(hideOnScroll ? _constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE : '')
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "button button--link",
+    className: "pagetop ".concat(hideOnScroll ? _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE : '')
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "button--link",
     onClick: function onClick() {
       return handleClick();
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "pagetop__icon"
-  })));
+    },
+    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "pagetop__icon"
+    })
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PageTop);
