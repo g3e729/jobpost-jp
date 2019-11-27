@@ -51,7 +51,11 @@
                   <td>
                     <dl>
                       <dt>Prefecture</dt>
-                      <dd>{{ getPrefecture($company->prefecture) }}</dd>
+                      <dd>
+                        <a href="{{ route('employee.companies.index', ['prefecture' => $company->prefecture]) }}">
+                          {{ getPrefecture($company->prefecture) }}
+                        </a>
+                      </dd>
                       <dt>番地</dt>
                       <dd>{{ $company->address1 }}</dd>
                       <dt>ビル名 / 部屋番号</dt>
@@ -79,7 +83,11 @@
                 </tr>
                 <tr>
                   <td class="font-weight-bold">業種、業界</td>
-                  <td>{{ $company->industry }}</td>
+                  <td>
+                    <a href="{{ route('employee.companies.index', ['industry_id' => $company->industry_id]) }}">
+                      {{ $company->industry }}
+                    </a>
+                  </td>
                 </tr>
                 @if (isset($company->social_media_accounts['facebook']))
                   <tr>
@@ -111,18 +119,16 @@
                     </td>
                   </tr>
                 @endif
-                <tr>
-                  <td class="font-weight-bold">アバター</td>
-                  <td>
-                    <img class="avatar avatar-md" src="{{ $company->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">アイキャッチ</td>
-                  <td>
-                    <img class="img-fluid border border-secondary my-3 w-100" src="{{ $company->cover_photo ?? 'https://placehold.it/450x450' }}" style="border-width: 2px !important;">
-                  </td>
-                </tr>
+
+                @if ($company->cover_photo)
+                  <tr>
+                    <td class="font-weight-bold">アイキャッチ</td>
+                    <td>
+                      <img class="img-fluid border border-secondary my-3 w-100" src="{{ $company->cover_photo ?? 'https://placehold.it/450x450' }}" style="border-width: 2px !important;">
+                    </td>
+                  </tr>
+                @endif
+
               </tbody>
             </table>
           </div>
