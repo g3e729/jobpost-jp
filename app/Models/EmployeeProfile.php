@@ -4,17 +4,19 @@ namespace App\Models;
 
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EmployeeProfile extends Model
 {
-    use HasUser;
+    use HasUser, SoftDeletes;
 
 	const ROLE = 'employee';
 
     protected $dates = [
         'birthday',
         'created_at',
-        'updated_at',
+        'deleted_at',
+        'updated_at'
     ];
     
     protected $fillable = [
@@ -29,6 +31,8 @@ class EmployeeProfile extends Model
         'passport_number',
         'position_id',
         'birthday',
+        
+        'deleted_at'
     ];
 
     static protected $get_attr = [

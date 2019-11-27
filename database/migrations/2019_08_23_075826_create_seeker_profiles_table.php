@@ -57,6 +57,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->text('intro_text')->nullable();
             $table->text('movie_url')->nullable();
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

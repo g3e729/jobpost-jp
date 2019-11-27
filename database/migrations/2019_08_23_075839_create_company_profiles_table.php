@@ -40,6 +40,7 @@ class CreateCompanyProfilesTable extends Migration
             $table->text('why_text')->nullable();
             $table->text('how_text')->nullable();
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -4,17 +4,19 @@ namespace App\Models;
 
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CompanyProfile extends Model
 {
-    use HasUser;
+    use HasUser, SoftDeletes;
 
     const ROLE = 'company';
 
     protected $dates = [
         'created_at',
+        'deleted_at',
         'established_date',
-        'updated_at',
+        'updated_at'
     ];
 
     protected $fillable = [
@@ -38,6 +40,8 @@ class CompanyProfile extends Model
         'what_text',
         'why_text',
         'how_text',
+
+        'deleted_at'
     ];
 
     static protected $get_attr = [

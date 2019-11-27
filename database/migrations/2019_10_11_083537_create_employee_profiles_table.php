@@ -27,6 +27,7 @@ class CreateEmployeeProfilesTable extends Migration
             $table->string('status')->default(0);
             $table->string('position_id')->nullable();
             $table->timestamp('birthday')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

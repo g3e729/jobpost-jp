@@ -4,19 +4,21 @@ namespace App\Models;
 
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SeekerProfile extends Model
 {
-    use HasUser;
+    use HasUser, SoftDeletes;
 
 	const ROLE = 'seeker';
 
     protected $dates = [
         'birthday',
+        'deleted_at',
         'enrollment_date',
         'graduation_date',
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
 
     protected $fillable = [
@@ -54,7 +56,9 @@ class SeekerProfile extends Model
 
         'what_text',
         'intro_text',
-        'movie_url'
+        'movie_url',
+        
+        'deleted_at'
     ];
 
     static protected $get_attr = [
