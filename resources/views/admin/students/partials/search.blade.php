@@ -60,7 +60,7 @@
       <button type="submit" class="alt-font btn btn-primary btn-submit w-100">検索</button>
     </div>
     <div class="col-3">
-      <input type="reset" class="alt-font btn btn-secondary w-75" value="リセット">
+      <a href="{{ route('admin.students.index') }}" class="alt-font btn btn-secondary w-75">リセット</a>
     </div>
   </div>
 </form>
