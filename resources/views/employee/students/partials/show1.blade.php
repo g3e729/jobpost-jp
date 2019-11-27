@@ -17,6 +17,12 @@
         <td class="font-weight-bold">住所</td>
         <td>
           <dl>
+            <dt>Prefecture</dt>
+            <dd>
+              <a href="{{ route('employee.companies.index', ['prefecture' => $student->prefecture]) }}">
+                {{ getPrefecture($student->prefecture) }}
+              </a>
+            </dd>
             <dt>番地まで</dt>
             <dd>{{ $student->address1 }}</dd>
             <dt>ビル名、部屋番号</dt>
