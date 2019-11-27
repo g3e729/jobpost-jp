@@ -15,6 +15,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "@n8tb1t/use-scroll-position": "^1.0.43",
     "axios": "^0.18",
     "bootstrap": "^4.3.1",
     "bootstrap-imageupload": "^1.1.3",
@@ -34,6 +35,7 @@
     "resolve-url-loader": "^2.3.1",
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0",
+    "smooth-scroll-into-view-if-needed": "^1.1.23",
     "swiper": "^5.2.1",
     "vue-template-compiler": "^2.6.10"
   }

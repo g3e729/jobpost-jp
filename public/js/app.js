@@ -2564,6 +2564,142 @@ var weakMemoize = function weakMemoize(func) {
 
 /***/ }),
 
+/***/ "./node_modules/@n8tb1t/use-scroll-position/lib/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@n8tb1t/use-scroll-position/lib/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "useScrollPosition", {
+  enumerable: true,
+  get: function get() {
+    return _useScrollPosition.useScrollPosition;
+  }
+});
+
+var _useScrollPosition = __webpack_require__(/*! ./useScrollPosition */ "./node_modules/@n8tb1t/use-scroll-position/lib/useScrollPosition.js");
+
+/***/ }),
+
+/***/ "./node_modules/@n8tb1t/use-scroll-position/lib/useIsomorphicLayoutEffect.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@n8tb1t/use-scroll-position/lib/useIsomorphicLayoutEffect.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useIsomorphicLayoutEffect = void 0;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var useIsomorphicLayoutEffect = typeof window !== 'undefined' ? _react.useLayoutEffect : _react.useEffect;
+exports.useIsomorphicLayoutEffect = useIsomorphicLayoutEffect;
+
+/***/ }),
+
+/***/ "./node_modules/@n8tb1t/use-scroll-position/lib/useScrollPosition.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@n8tb1t/use-scroll-position/lib/useScrollPosition.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useScrollPosition = useScrollPosition;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _useIsomorphicLayoutEffect = __webpack_require__(/*! ./useIsomorphicLayoutEffect */ "./node_modules/@n8tb1t/use-scroll-position/lib/useIsomorphicLayoutEffect.js");
+
+/* eslint-disable react-hooks/exhaustive-deps */
+var isBrowser = typeof window !== "undefined";
+
+function getScrollPosition(_ref) {
+  var element = _ref.element,
+      useWindow = _ref.useWindow;
+  if (!isBrowser) return {
+    x: 0,
+    y: 0
+  };
+  var target = element ? element.current : document.body;
+  var position = target.getBoundingClientRect();
+  return useWindow ? {
+    x: window.scrollX,
+    y: window.scrollY
+  } : {
+    x: position.left,
+    y: position.top
+  };
+}
+
+function useScrollPosition(effect, deps, element, useWindow, wait) {
+  var position = (0, _react.useRef)(getScrollPosition({
+    useWindow: useWindow
+  }));
+  var throttleTimeout = null;
+
+  var callBack = function callBack() {
+    var currPos = getScrollPosition({
+      element: element,
+      useWindow: useWindow
+    });
+    effect({
+      prevPos: position.current,
+      currPos: currPos
+    });
+    position.current = currPos;
+    throttleTimeout = null;
+  };
+
+  (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(function () {
+    if (!isBrowser) {
+      return;
+    }
+
+    var handleScroll = function handleScroll() {
+      if (wait) {
+        if (throttleTimeout === null) {
+          throttleTimeout = setTimeout(callBack, wait);
+        }
+      } else {
+        callBack();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return function () {
+      return window.removeEventListener('scroll', handleScroll);
+    };
+  }, deps);
+}
+
+useScrollPosition.defaultProps = {
+  deps: [],
+  element: false,
+  useWindow: false,
+  wait: null
+};
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -4163,6 +4299,193 @@ module.exports = {
   trim: trim
 };
 
+
+/***/ }),
+
+/***/ "./node_modules/compute-scroll-into-view/es/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/compute-scroll-into-view/es/index.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function isElement(el) {
+  return el != null && typeof el === 'object' && el.nodeType === 1;
+}
+
+function canOverflow(overflow, skipOverflowHiddenElements) {
+  if (skipOverflowHiddenElements && overflow === 'hidden') {
+    return false;
+  }
+
+  return overflow !== 'visible' && overflow !== 'clip';
+}
+
+function isScrollable(el, skipOverflowHiddenElements) {
+  if (el.clientHeight < el.scrollHeight || el.clientWidth < el.scrollWidth) {
+    var style = getComputedStyle(el, null);
+    return canOverflow(style.overflowY, skipOverflowHiddenElements) || canOverflow(style.overflowX, skipOverflowHiddenElements);
+  }
+
+  return false;
+}
+
+function alignNearest(scrollingEdgeStart, scrollingEdgeEnd, scrollingSize, scrollingBorderStart, scrollingBorderEnd, elementEdgeStart, elementEdgeEnd, elementSize) {
+  if (elementEdgeStart < scrollingEdgeStart && elementEdgeEnd > scrollingEdgeEnd || elementEdgeStart > scrollingEdgeStart && elementEdgeEnd < scrollingEdgeEnd) {
+    return 0;
+  }
+
+  if (elementEdgeStart <= scrollingEdgeStart && elementSize <= scrollingSize || elementEdgeEnd >= scrollingEdgeEnd && elementSize >= scrollingSize) {
+    return elementEdgeStart - scrollingEdgeStart - scrollingBorderStart;
+  }
+
+  if (elementEdgeEnd > scrollingEdgeEnd && elementSize < scrollingSize || elementEdgeStart < scrollingEdgeStart && elementSize > scrollingSize) {
+    return elementEdgeEnd - scrollingEdgeEnd + scrollingBorderEnd;
+  }
+
+  return 0;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (function (target, options) {
+  var scrollMode = options.scrollMode,
+      block = options.block,
+      inline = options.inline,
+      boundary = options.boundary,
+      skipOverflowHiddenElements = options.skipOverflowHiddenElements;
+  var checkBoundary = typeof boundary === 'function' ? boundary : function (node) {
+    return node !== boundary;
+  };
+
+  if (!isElement(target)) {
+    throw new TypeError('Invalid target');
+  }
+
+  var scrollingElement = document.scrollingElement || document.documentElement;
+  var frames = [];
+  var cursor = target;
+
+  while (isElement(cursor) && checkBoundary(cursor)) {
+    cursor = cursor.parentNode;
+
+    if (cursor === scrollingElement) {
+      frames.push(cursor);
+      break;
+    }
+
+    if (cursor === document.body && isScrollable(cursor) && !isScrollable(document.documentElement)) {
+      continue;
+    }
+
+    if (isScrollable(cursor, skipOverflowHiddenElements)) {
+      frames.push(cursor);
+    }
+  }
+
+  var viewportWidth = window.visualViewport ? visualViewport.width : innerWidth;
+  var viewportHeight = window.visualViewport ? visualViewport.height : innerHeight;
+  var viewportX = window.scrollX || pageXOffset;
+  var viewportY = window.scrollY || pageYOffset;
+
+  var _target$getBoundingCl = target.getBoundingClientRect(),
+      targetHeight = _target$getBoundingCl.height,
+      targetWidth = _target$getBoundingCl.width,
+      targetTop = _target$getBoundingCl.top,
+      targetRight = _target$getBoundingCl.right,
+      targetBottom = _target$getBoundingCl.bottom,
+      targetLeft = _target$getBoundingCl.left;
+
+  var targetBlock = block === 'start' || block === 'nearest' ? targetTop : block === 'end' ? targetBottom : targetTop + targetHeight / 2;
+  var targetInline = inline === 'center' ? targetLeft + targetWidth / 2 : inline === 'end' ? targetRight : targetLeft;
+  var computations = [];
+
+  for (var index = 0; index < frames.length; index++) {
+    var frame = frames[index];
+
+    var _frame$getBoundingCli = frame.getBoundingClientRect(),
+        _height = _frame$getBoundingCli.height,
+        _width = _frame$getBoundingCli.width,
+        _top = _frame$getBoundingCli.top,
+        right = _frame$getBoundingCli.right,
+        bottom = _frame$getBoundingCli.bottom,
+        _left = _frame$getBoundingCli.left;
+
+    if (scrollMode === 'if-needed' && targetTop >= 0 && targetLeft >= 0 && targetBottom <= viewportHeight && targetRight <= viewportWidth && targetTop >= _top && targetBottom <= bottom && targetLeft >= _left && targetRight <= right) {
+      return computations;
+    }
+
+    var frameStyle = getComputedStyle(frame);
+    var borderLeft = parseInt(frameStyle.borderLeftWidth, 10);
+    var borderTop = parseInt(frameStyle.borderTopWidth, 10);
+    var borderRight = parseInt(frameStyle.borderRightWidth, 10);
+    var borderBottom = parseInt(frameStyle.borderBottomWidth, 10);
+    var blockScroll = 0;
+    var inlineScroll = 0;
+    var scrollbarWidth = 'offsetWidth' in frame ? frame.offsetWidth - frame.clientWidth - borderLeft - borderRight : 0;
+    var scrollbarHeight = 'offsetHeight' in frame ? frame.offsetHeight - frame.clientHeight - borderTop - borderBottom : 0;
+
+    if (scrollingElement === frame) {
+      if (block === 'start') {
+        blockScroll = targetBlock;
+      } else if (block === 'end') {
+        blockScroll = targetBlock - viewportHeight;
+      } else if (block === 'nearest') {
+        blockScroll = alignNearest(viewportY, viewportY + viewportHeight, viewportHeight, borderTop, borderBottom, viewportY + targetBlock, viewportY + targetBlock + targetHeight, targetHeight);
+      } else {
+        blockScroll = targetBlock - viewportHeight / 2;
+      }
+
+      if (inline === 'start') {
+        inlineScroll = targetInline;
+      } else if (inline === 'center') {
+        inlineScroll = targetInline - viewportWidth / 2;
+      } else if (inline === 'end') {
+        inlineScroll = targetInline - viewportWidth;
+      } else {
+        inlineScroll = alignNearest(viewportX, viewportX + viewportWidth, viewportWidth, borderLeft, borderRight, viewportX + targetInline, viewportX + targetInline + targetWidth, targetWidth);
+      }
+
+      blockScroll = Math.max(0, blockScroll + viewportY);
+      inlineScroll = Math.max(0, inlineScroll + viewportX);
+    } else {
+      if (block === 'start') {
+        blockScroll = targetBlock - _top - borderTop;
+      } else if (block === 'end') {
+        blockScroll = targetBlock - bottom + borderBottom + scrollbarHeight;
+      } else if (block === 'nearest') {
+        blockScroll = alignNearest(_top, bottom, _height, borderTop, borderBottom + scrollbarHeight, targetBlock, targetBlock + targetHeight, targetHeight);
+      } else {
+        blockScroll = targetBlock - (_top + _height / 2) + scrollbarHeight / 2;
+      }
+
+      if (inline === 'start') {
+        inlineScroll = targetInline - _left - borderLeft;
+      } else if (inline === 'center') {
+        inlineScroll = targetInline - (_left + _width / 2) + scrollbarWidth / 2;
+      } else if (inline === 'end') {
+        inlineScroll = targetInline - right + borderRight + scrollbarWidth;
+      } else {
+        inlineScroll = alignNearest(_left, right, _width, borderLeft, borderRight + scrollbarWidth, targetInline, targetInline + targetWidth, targetWidth);
+      }
+
+      var scrollLeft = frame.scrollLeft,
+          scrollTop = frame.scrollTop;
+      blockScroll = Math.max(0, Math.min(scrollTop + blockScroll, frame.scrollHeight - _height + scrollbarHeight));
+      inlineScroll = Math.max(0, Math.min(scrollLeft + inlineScroll, frame.scrollWidth - _width + scrollbarWidth));
+      targetBlock += scrollTop - blockScroll;
+      targetInline += scrollLeft - inlineScroll;
+    }
+
+    computations.push({
+      el: frame,
+      top: blockScroll,
+      left: inlineScroll
+    });
+  }
+
+  return computations;
+});
 
 /***/ }),
 
@@ -47743,6 +48066,206 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/scroll-into-view-if-needed/es/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/scroll-into-view-if-needed/es/index.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var compute_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! compute-scroll-into-view */ "./node_modules/compute-scroll-into-view/es/index.js");
+
+
+function isOptionsObject(options) {
+  return options === Object(options) && Object.keys(options).length !== 0;
+}
+
+function defaultBehavior(actions, behavior) {
+  if (behavior === void 0) {
+    behavior = 'auto';
+  }
+
+  var canSmoothScroll = 'scrollBehavior' in document.body.style;
+  actions.forEach(function (_ref) {
+    var el = _ref.el,
+        top = _ref.top,
+        left = _ref.left;
+
+    if (el.scroll && canSmoothScroll) {
+      el.scroll({
+        top: top,
+        left: left,
+        behavior: behavior
+      });
+    } else {
+      el.scrollTop = top;
+      el.scrollLeft = left;
+    }
+  });
+}
+
+function getOptions(options) {
+  if (options === false) {
+    return {
+      block: 'end',
+      inline: 'nearest'
+    };
+  }
+
+  if (isOptionsObject(options)) {
+    return options;
+  }
+
+  return {
+    block: 'start',
+    inline: 'nearest'
+  };
+}
+
+function scrollIntoView(target, options) {
+  var targetIsDetached = !target.ownerDocument.documentElement.contains(target);
+
+  if (isOptionsObject(options) && typeof options.behavior === 'function') {
+    return options.behavior(targetIsDetached ? [] : Object(compute_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"])(target, options));
+  }
+
+  if (targetIsDetached) {
+    return;
+  }
+
+  var computeOptions = getOptions(options);
+  return defaultBehavior(Object(compute_scroll_into_view__WEBPACK_IMPORTED_MODULE_0__["default"])(target, computeOptions), computeOptions.behavior);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (scrollIntoView);
+
+/***/ }),
+
+/***/ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/smooth-scroll-into-view-if-needed/es/index.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scroll-into-view-if-needed */ "./node_modules/scroll-into-view-if-needed/es/index.js");
+
+var memoizedNow;
+
+var now = function now() {
+  if (!memoizedNow) {
+    memoizedNow = 'performance' in window ? performance.now.bind(performance) : Date.now;
+  }
+
+  return memoizedNow();
+};
+
+function step(context) {
+  var time = now();
+  var elapsed = Math.min((time - context.startTime) / context.duration, 1);
+  var value = context.ease(elapsed);
+  var currentX = context.startX + (context.x - context.startX) * value;
+  var currentY = context.startY + (context.y - context.startY) * value;
+  context.method(currentX, currentY);
+
+  if (currentX !== context.x || currentY !== context.y) {
+    requestAnimationFrame(function () {
+      return step(context);
+    });
+  } else {
+    context.cb();
+  }
+}
+
+function smoothScroll(el, x, y, duration, ease, cb) {
+  if (duration === void 0) {
+    duration = 600;
+  }
+
+  if (ease === void 0) {
+    ease = function ease(t) {
+      return 1 + --t * t * t * t * t;
+    };
+  }
+
+  var scrollable;
+  var startX;
+  var startY;
+  var method;
+  scrollable = el;
+  startX = el.scrollLeft;
+  startY = el.scrollTop;
+
+  method = function method(x, y) {
+    el.scrollLeft = x;
+    el.scrollTop = y;
+  };
+
+  step({
+    scrollable: scrollable,
+    method: method,
+    startTime: now(),
+    startX: startX,
+    startY: startY,
+    x: x,
+    y: y,
+    duration: duration,
+    ease: ease,
+    cb: cb
+  });
+}
+
+var shouldSmoothScroll = function shouldSmoothScroll(options) {
+  return options && !options.behavior || options.behavior === 'smooth';
+};
+
+function scroll(target, options) {
+  var overrides = options || {};
+
+  if (shouldSmoothScroll(overrides)) {
+    return Object(scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_0__["default"])(target, {
+      block: overrides.block,
+      inline: overrides.inline,
+      scrollMode: overrides.scrollMode,
+      boundary: overrides.boundary,
+      behavior: function behavior(actions) {
+        return Promise.all(actions.reduce(function (results, _ref) {
+          var el = _ref.el,
+              left = _ref.left,
+              top = _ref.top;
+          var startLeft = el.scrollLeft;
+          var startTop = el.scrollTop;
+
+          if (startLeft === left && startTop === top) {
+            return results;
+          }
+
+          return results.concat([new Promise(function (resolve) {
+            return smoothScroll(el, left, top, overrides.duration, overrides.ease, function () {
+              return resolve({
+                el: el,
+                left: [startLeft, left],
+                top: [startTop, top]
+              });
+            });
+          })]);
+        }, []));
+      }
+    });
+  }
+
+  return Promise.resolve(Object(scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_0__["default"])(target, options));
+}
+
+var smoothScrollIntoView = scroll;
+/* harmony default export */ __webpack_exports__["default"] = (smoothScrollIntoView);
+
+/***/ }),
+
 /***/ "./node_modules/ssr-window/dist/ssr-window.esm.js":
 /*!********************************************************!*\
   !*** ./node_modules/ssr-window/dist/ssr-window.esm.js ***!
@@ -56896,7 +57419,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _terms_TermsPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../terms/TermsPage */ "./resources/react/components/terms/TermsPage.js");
 /* harmony import */ var _help_HelpPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../help/HelpPage */ "./resources/react/components/help/HelpPage.js");
 /* harmony import */ var _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../privacy/PrivacyPage */ "./resources/react/components/privacy/PrivacyPage.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+/* harmony import */ var _service_PageTop__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../service/PageTop */ "./resources/react/components/service/PageTop.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+
 
 
 
@@ -56911,33 +57436,33 @@ __webpack_require__.r(__webpack_exports__);
 var Pages = function Pages() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_service_PageTop__WEBPACK_IMPORTED_MODULE_9__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].PROFILE,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].PROFILE,
     component: _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].COMPANIES,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].COMPANIES,
     component: _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].JOBS,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].JOBS,
     component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].ABOUT,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].ABOUT,
     component: _about_AboutPage__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].TERMS,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].TERMS,
     component: _terms_TermsPage__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].HELP,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].HELP,
     component: _help_HelpPage__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_9__["routes"].PRIVACY,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].PRIVACY,
     component: _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_8__["default"]
   })));
 };
@@ -57321,14 +57846,17 @@ function (_Component) {
 /*!*******************************************************!*\
   !*** ./resources/react/components/constants/enums.js ***!
   \*******************************************************/
-/*! exports provided: footerLinks, filterList */
+/*! exports provided: values, filterList, footerLinks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "footerLinks", function() { return footerLinks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "values", function() { return values; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterList", function() { return filterList; });
-var footerLinks = ['about', 'terms', 'help', 'privacy'];
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "footerLinks", function() { return footerLinks; });
+var values = {
+  mvHeight: 660
+};
 var filterList = [{
   value: 'chocolate',
   label: 'Chocolate'
@@ -57339,6 +57867,7 @@ var filterList = [{
   value: 'vanilla',
   label: 'Vanilla'
 }];
+var footerLinks = ['about', 'terms', 'help', 'privacy'];
 
 /***/ }),
 
@@ -57714,6 +58243,113 @@ var ProfilePage = function ProfilePage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfilePage);
+
+/***/ }),
+
+/***/ "./resources/react/components/service/PageTop.js":
+/*!*******************************************************!*\
+  !*** ./resources/react/components/service/PageTop.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll-into-view-if-needed */ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js");
+/* harmony import */ var _n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @n8tb1t/use-scroll-position */ "./node_modules/@n8tb1t/use-scroll-position/lib/index.js");
+/* harmony import */ var _n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants_enums__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/enums */ "./resources/react/components/constants/enums.js");
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+
+
+var PageTop = function PageTop() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      hideOnScroll = _useState2[0],
+      setHideOnScroll = _useState2[1];
+
+  Object(_n8tb1t_use_scroll_position__WEBPACK_IMPORTED_MODULE_2__["useScrollPosition"])(function (_ref) {
+    var prevPos = _ref.prevPos,
+        currPos = _ref.currPos;
+    var offset = 100;
+    var isShow = -currPos.y > _constants_enums__WEBPACK_IMPORTED_MODULE_3__["values"].mvHeight + offset;
+
+    if (isShow !== hideOnScroll) {
+      setHideOnScroll(isShow);
+    }
+  }, [hideOnScroll]);
+
+  var handleClick = function handleClick(e) {
+    var elemRoot = document.querySelector('#root');
+    setTimeout(function () {
+      Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
+        block: 'start',
+        behavior: 'smooth'
+      });
+    }, 5);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pagetop ".concat(hideOnScroll ? _constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE : '')
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "button button--link",
+    onClick: function onClick() {
+      return handleClick();
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pagetop__icon"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PageTop);
 
 /***/ }),
 

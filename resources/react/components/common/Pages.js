@@ -10,10 +10,13 @@ import TermsPage from '../terms/TermsPage';
 import HelpPage from '../help/HelpPage';
 import PrivacyPage from '../privacy/PrivacyPage';
 
+import PageTop from '../service/PageTop';
+
 import { routes } from '../constants/routes';
 
 const Pages = () => (
   <div className="pages">
+    <PageTop />
     <Switch>
       <Route
         exact

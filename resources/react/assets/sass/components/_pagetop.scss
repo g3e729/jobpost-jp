@@ -1,0 +1,39 @@
+.pagetop {
+  position: fixed;
+  right: 20px;
+  bottom: 140px;
+
+  overflow: visible;
+  z-index: $z-min2;
+
+  opacity: 0;
+  transition: opacity $duration $easing-cubic;
+
+  &.is-active {
+    opacity: 1;
+  }
+}
+
+.pagetop__icon {
+  display: block;
+  height: 68px;
+  width: 1px;
+  margin: 0 20px;
+
+  position: relative;
+  background: $color-medium-black;
+
+  &:after {
+    content: "PAGE TOP";
+    font-family: $alt-font-family;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: $color-medium-black;
+
+    position: absolute;
+    left: -9px;
+    bottom: -75px;
+
+    writing-mode: vertical-lr;
+  }
+}

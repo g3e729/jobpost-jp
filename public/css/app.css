@@ -1144,6 +1144,44 @@ a.pagination__item-link:hover {
   opacity: 0.7;
 }
 
+.pagetop {
+  position: fixed;
+  right: 20px;
+  bottom: 140px;
+  overflow: visible;
+  z-index: 2;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.pagetop.is-active {
+  opacity: 1;
+}
+
+.pagetop__icon {
+  display: block;
+  height: 68px;
+  width: 1px;
+  margin: 0 20px;
+  position: relative;
+  background: #393939;
+}
+
+.pagetop__icon:after {
+  content: "PAGE TOP";
+  font-family: "Avenir", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #393939;
+  position: absolute;
+  left: -9px;
+  bottom: -75px;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+}
+
 .jobs__top {
   display: -webkit-box;
   display: flex;
