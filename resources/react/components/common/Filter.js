@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-import { filterList } from '../constants/enums';
+import { filterList, selectStyles } from '../constants/enums';
 
 const Filter = () => {
   const inputPlaceholder = '指定なし';
@@ -17,6 +17,7 @@ const Filter = () => {
               タイプ
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>
@@ -26,6 +27,7 @@ const Filter = () => {
               ステータス
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>
@@ -35,6 +37,7 @@ const Filter = () => {
               プログラミング言語
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>
@@ -44,6 +47,7 @@ const Filter = () => {
               フレームワーク
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>
@@ -53,6 +57,7 @@ const Filter = () => {
               その他開発環境
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>
@@ -62,6 +67,7 @@ const Filter = () => {
               地域
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>
@@ -71,6 +77,7 @@ const Filter = () => {
               ソート
             </div>
             <Select options={filterList}
+              styles={selectStyles}
               placeholder={inputPlaceholder}
             />
           </li>

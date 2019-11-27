@@ -57085,6 +57085,7 @@ var Filter = function Filter() {
     className: "icon icon-pc-user text-orange"
   }), "\u30BF\u30A4\u30D7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
@@ -57094,6 +57095,7 @@ var Filter = function Filter() {
     className: "icon icon-status text-orange"
   }), "\u30B9\u30C6\u30FC\u30BF\u30B9"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
@@ -57103,6 +57105,7 @@ var Filter = function Filter() {
     className: "icon icon-code text-orange"
   }), "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u8A00\u8A9E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
@@ -57112,6 +57115,7 @@ var Filter = function Filter() {
     className: "icon icon-framework text-orange"
   }), "\u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
@@ -57121,6 +57125,7 @@ var Filter = function Filter() {
     className: "icon icon-laptop text-orange"
   }), "\u305D\u306E\u4ED6\u958B\u767A\u74B0\u5883"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
@@ -57130,6 +57135,7 @@ var Filter = function Filter() {
     className: "icon icon-marker text-orange"
   }), "\u5730\u57DF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "filter-content__list-item"
@@ -57139,6 +57145,7 @@ var Filter = function Filter() {
     className: "icon icon-sort-down text-orange"
   }), "\u30BD\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["filterList"],
+    styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
     placeholder: inputPlaceholder
   })))));
 };
@@ -57932,7 +57939,7 @@ function (_Component) {
 /*!*******************************************************!*\
   !*** ./resources/react/components/constants/enums.js ***!
   \*******************************************************/
-/*! exports provided: values, filterList, footerLinks */
+/*! exports provided: values, filterList, footerLinks, selectStyles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57940,6 +57947,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "values", function() { return values; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterList", function() { return filterList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "footerLinks", function() { return footerLinks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectStyles", function() { return selectStyles; });
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 var values = {
   mvHeight: 660
 };
@@ -57954,6 +58011,50 @@ var filterList = [{
   label: 'Vanilla'
 }];
 var footerLinks = ['about', 'terms', 'help', 'privacy'];
+var selectStyles = {
+  control: function control(provided) {
+    return _objectSpread({}, provided, {
+      borderWidth: '1px',
+      borderRadius: '0'
+    });
+  },
+  indicatorSeparator: function indicatorSeparator(_) {
+    return {
+      display: 'none'
+    };
+  },
+  dropdownIndicator: function dropdownIndicator(provided, state) {
+    return _objectSpread({}, provided, {
+      transition: 'transform .25s ease',
+      transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null
+    });
+  },
+  menu: function menu(provided) {
+    return _objectSpread({}, provided, {
+      borderWidth: '0',
+      borderRadius: '0',
+      marginTop: '2px',
+      boxShadow: '0px 6px 20px 0px rgba(0, 0, 0, 0.21)'
+    });
+  },
+  option: function option(styles, _ref) {
+    var isSelected = _ref.isSelected;
+    return _objectSpread({}, styles, {
+      backgroundColor: isSelected ? 'rgba(250, 191, 20, 0.5)' : null,
+      ':hover': {
+        backgroundColor: '#fdb834',
+        color: '#ffffff'
+      },
+      cursor: 'pointer'
+    });
+  },
+  valueContainer: function valueContainer(provided) {
+    return _objectSpread({}, provided, {
+      padding: '4px 0 4px 12px',
+      letterSpacing: '0.06em'
+    });
+  }
+};
 
 /***/ }),
 
