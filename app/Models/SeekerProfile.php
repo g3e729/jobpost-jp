@@ -267,7 +267,8 @@ class SeekerProfile extends Model
         parent::boot();
         static::updating(function ($model) {
             if ($model->taken_id) {
-                $model->taken_id = json_encode([$model->taken_id]);
+                $model->taken_id = is_array($model->taken_id) ? $model->taken_id : [$model->taken_id];
+                $model->taken_id = json_encode($model->taken_id);
             }
         });
     }

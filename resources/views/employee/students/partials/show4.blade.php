@@ -6,12 +6,13 @@
         <td>
           <dl>
             <dt class="text-muted">受講済み</dt>
-            @if (! $student->taken_class)
+            @if (! $student->taken_id || empty($student->taken_id))
               <dd>{{ '--' }}</dd>
+            @else
+              @foreach($student->taken_class as $class)
+                <dd>{{ $class }}</dd>
+              @endforeach
             @endif
-            @foreach($student->taken_class as $class)
-              <dd>{{ $class }}</dd>
-            @endforeach
             <dt class="text-muted">受講中</dt>
             <dd>{{ $student->course ?? '--' }}</dd>
             <dt class="text-muted">ITレベル</dt>
