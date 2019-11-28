@@ -58061,13 +58061,27 @@ var HelpContent = function HelpContent() {
     className: "l-section section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "help"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
-    className: "help__term"
-  }, "term"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
-    className: "help__data"
-  }, "data"))));
+  }, [0, 1, 3, 4].map(function (_, idx) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+      key: idx
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "help__item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      className: "help__item-question"
+    }, "\u624B\u6570\u6599\u306F\u304B\u304B\u308A\u307E\u3059\u304B\uFF1F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "help__item-answer"
+    }, "\u58F2\u4E0A\u306B\u95A2\u3059\u308B\u624B\u6570\u6599\u306F\u7121\u6599\u3067\u3059\u3002"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "help__item-note"
+    }, "\u203B\u7121\u6599\u671F\u9593\u306F\u3001\u7D42\u4E86\uFF12\u9031\u9593\u524D\u306B\u544A\u77E5\u81F4\u3057\u307E\u3059\u3002")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "help__item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      className: "help__item-question"
+    }, "\u624B\u6570\u6599\u306F\u304B\u304B\u308A\u307E\u3059\u304B\uFF1F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "help__item-answer"
+    }, "\u672C\u898F\u7D04\u306F\u3001\u5F53\u793E\u304C\u63D0\u4F9B\u3059\u308B\u5168\u3066\u306E\u30B5\u30FC\u30D3\u30B9\uFF08\u4EE5\u4E0B\u300C\u672C\u30B5\u30FC\u30D3\u30B9\u300D\u3068\u3044\u3044\u307E\u3059\uFF09\u306E\u5229\u7528\u6761\u4EF6\u3092\u5B9A\u3081\u308B\u3082\u306E\u3067\u3042\u308A\u3001\u672C\u30B5\u30FC\u30D3\u30B9\u3092\u5229\u7528\u3059\u308B\u5168\u3066\u306E\u304A\u5BA2\u69D8\u306B\u9069\u7528\u3055\u308C\u307E\u3059\u3002\u4EE5\u4E0B\u3092\u6CE8\u610F\u3057\u3066\u304A\u8AAD\u307F\u304F\u3060\u3055\u3044\u3002")));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HelpContent);

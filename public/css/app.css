@@ -1567,6 +1567,52 @@ a.pagination__item-link:hover {
   margin-bottom: 11px;
 }
 
+.help {
+  list-style: none;
+}
+
+.help__item {
+  padding: 30px 30px 25px;
+  margin-top: 20px;
+  border: solid 1px #d9d6d6;
+}
+
+.help__item:first-child {
+  margin-top: 0;
+}
+
+.help__item-question {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  position: relative;
+}
+
+.help__item-question:before {
+  content: "\8CEA\554F";
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  margin-right: 8px;
+  padding: 3px 5px;
+  background-color: #fdb834;
+}
+
+.help__item-answer {
+  letter-spacing: 0.06em;
+  line-height: 1.857;
+  padding-top: 20px;
+  margin-top: 18px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.help__item-note {
+  letter-spacing: 0.06em;
+  color: rgba(57, 57, 57, 0.5);
+  display: block;
+  margin-top: 10px;
+}
+
 .privacy__note {
   font-weight: 400;
   line-height: 1.857;
