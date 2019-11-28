@@ -104,7 +104,9 @@ const PrivacyContent = () => (
         </li>
         <li className="privacy-list__item">
           <h3 className="privacy-list__item-header">第10条（お問い合わせ窓口）</h3>
-          <p className="privacy-list__item-desc">本ポリシーに関するお問い合わせは，下記のメールアドレスまでお願いいたします。<br/> <span>mail@kredo.jp</span></p>
+          <p className="privacy-list__item-desc">本ポリシーに関するお問い合わせは，下記のメールアドレスまでお願いいたします。<br/>
+            <a href="mailto:mail@kredo.jp?Subject=Policy%20inquiry" target="_top"><span>mail@kredo.jp</span></a>
+          </p>
         </li>
       </ol>
       <p className="privacy__sub">以上2019年2月1日制定・施行</p>

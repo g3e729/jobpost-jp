@@ -1,0 +1,32 @@
+.pagescroll {
+  position: absolute;
+  left: 20px;
+  top: calc(660px - 86px);
+
+  overflow: visible;
+  z-index: $z-min2;
+}
+
+.pagescroll__icon {
+  display: block;
+  height: 86px;
+  width: 1px;
+  margin: 0 20px;
+
+  position: relative;
+  background: $color-medium-black;
+
+  &:before {
+    content: "SCROLL DOWN";
+    font-family: $alt-font-family;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: $color-medium-black;
+
+    position: absolute;
+    left: -9px;
+    top: -110px;
+
+    writing-mode: vertical-lr;
+  }
+}

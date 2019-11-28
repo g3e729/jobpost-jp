@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import PrivacyContent from './PrivacyContent';
 
-const PrivacyPage = () => (
-  <Page>
-    <Heading title="PRIVACY POLICY" subTitle="プライバシーポリシー"></Heading>
-    <PrivacyContent />
-  </Page>
-);
+const PrivacyPage = () => {
+  useEffect(() => {
+    const elemRoot = document.querySelector('#root');
+
+    setTimeout(_ => {
+      scrollIntoView(elemRoot, { block: 'start',  behavior: 'smooth' });
+    }, 5);
+  }, []);
+
+  return (
+    <Page>
+      <Heading title="PRIVACY POLICY" subTitle="プライバシーポリシー"></Heading>
+      <PrivacyContent />
+    </Page>
+  );
+}
 
 export default PrivacyPage;

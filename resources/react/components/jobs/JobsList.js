@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Pagination from '../common/Pagination';
+import Button from '../common/Button';
 import { state } from '../constants/state';
 
 const JobsList = () => {
@@ -11,8 +12,12 @@ const JobsList = () => {
           <span className="jobs-list__fraction-numeration">10</span> / 75
         </div>
         <div className="jobs-list__actions">
-          <a href="#" className={`button button--link jobs-list__actions-button ${state.ACTIVE}`}>新着順</a>
-          <a href="#" className="button button--link jobs-list__actions-button">人気順</a>
+          <Button className={`button--link jobs-list__actions-button ${state.ACTIVE}`}
+            value={`新着順`}
+          />
+          <Button className="button--link jobs-list__actions-button"
+            value={`人気順`}
+          />
         </div>
       </div>
       <div className="jobs-list__content">

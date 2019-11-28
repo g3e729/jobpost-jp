@@ -1,7 +1,13 @@
 import React from 'react';
 import Select from 'react-select';
 
-import { filterList, selectStyles } from '../constants/enums';
+import { selectStyles } from '../constants/enums';
+
+const filterList = [
+  { value: 'chocolate',   label: 'Chocolate' },
+  { value: 'strawberry',  label: 'Strawberry' },
+  { value: 'vanilla',     label: 'Vanilla' }
+];
 
 const Filter = () => {
   const inputPlaceholder = '指定なし';

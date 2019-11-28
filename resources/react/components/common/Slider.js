@@ -37,41 +37,38 @@ const Slider = () => {
   }
 
   return (
-    <div>
-      <Swiper {...params}
-      >
-        { [0, 1, 3].map((_, idx) => {
-          return (
-            <div className="slider" key={idx}>
-              <div className="slider__eyecatch">
-                <div className="slider__eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+    <Swiper {...params}>
+      { [0, 1, 3].map((_, idx) => {
+        return (
+          <div className="slider" key={idx}>
+            <div className="slider__eyecatch">
+              <div className="slider__eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+            </div>
+            <div className="slider-content">
+              <img src="https://lorempixel.com/240/240/city/" alt="Company Name"/>
+              <div className="slider-content__top">
+                <h3 className="slider-content__title">株式会社アクターリアリティ {idx + 1}</h3>
               </div>
-              <div className="slider-content">
-                <img src="https://lorempixel.com/240/240/city/" alt="Company Name"/>
-                <div className="slider-content__top">
-                  <h3 className="slider-content__title">株式会社アクターリアリティ {idx + 1}</h3>
-                </div>
-                <div className="slider-content__main">
-                  <p className="slider-content__desc">自社★C2Cマッチングプラットフォーム開発<br/>【少数精鋭/残業少/フレックス】</p>
-                </div>
-                <div className="slider-content__footer">
-                  <ul className="slider-content__pills">
-                    <li className="slider-content__pills-item pill pill--active">PHP</li>
-                    <li className="slider-content__pills-item pill">東京</li>
-                    <li className="slider-content__pills-item pill">3日前</li>
-                  </ul>
-                  <div className="slider-content__fav">
-                    <span className="pill pill--icon">
-                      <i className="icon icon-star"></i>1.2k
-                    </span>
-                  </div>
+              <div className="slider-content__main">
+                <p className="slider-content__desc">自社★C2Cマッチングプラットフォーム開発<br/>【少数精鋭/残業少/フレックス】</p>
+              </div>
+              <div className="slider-content__footer">
+                <ul className="slider-content__pills">
+                  <li className="slider-content__pills-item pill pill--active">PHP</li>
+                  <li className="slider-content__pills-item pill">東京</li>
+                  <li className="slider-content__pills-item pill">3日前</li>
+                </ul>
+                <div className="slider-content__fav">
+                  <span className="pill pill--icon">
+                    <i className="icon icon-star"></i>1.2k
+                  </span>
                 </div>
               </div>
             </div>
-          );
-        }) }
-      </Swiper>
-    </div>
+          </div>
+        );
+      }) }
+    </Swiper>
   );
 }
 
