@@ -1454,6 +1454,119 @@ a.pagination__item-link:hover {
   border-top: solid 1px #d9d6d6;
 }
 
+.terms__sub {
+  letter-spacing: 0.06em;
+  margin-top: 60px;
+}
+
+.terms-list {
+  list-style: none;
+  margin-top: -3px;
+}
+
+.terms-list__item {
+  margin-top: 60px;
+  counter-increment: counterHeader 0;
+}
+
+.terms-list__item > h3:before {
+  content: counter(counterHeader) ". ";
+  counter-increment: counterHeader;
+}
+
+.terms-list__item:first-child {
+  margin-top: 0;
+}
+
+.terms-list__item ol {
+  list-style: none !important;
+}
+
+.terms-list__item li {
+  letter-spacing: 0.06em;
+  line-height: 1.857;
+}
+
+.terms-list__item li h4 {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  display: inline-block;
+}
+
+.terms-list__item li p {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.terms-list__item > ol {
+  font-weight: bold;
+  counter-increment: counter1 0;
+  padding: 6px 0 0 19px;
+}
+
+.terms-list__item > ol > li {
+  font-size: 16px;
+  position: relative;
+  padding-left: 40px;
+  margin-top: 11px;
+}
+
+.terms-list__item > ol > li:first-child {
+  margin-top: 0;
+}
+
+.terms-list__item > ol > li:before {
+  position: absolute;
+  left: 0;
+  content: counter(counterHeader) "." counter(counter1) ". ";
+  counter-increment: counter1;
+}
+
+.terms-list__item > ol > li > ol {
+  counter-increment: counter2 0;
+  padding-top: 9px;
+  margin-left: -15px;
+}
+
+.terms-list__item > ol > li > ol > li {
+  position: relative;
+  margin-top: 2px;
+}
+
+.terms-list__item > ol > li > ol > li:before {
+  content: counter(counterHeader) "." counter(counter1) "." counter(counter2) ". ";
+  counter-increment: counter2;
+}
+
+.terms-list__item > ol > li > ul {
+  list-style-type: disc;
+  margin-top: 16px;
+  padding-left: 4px;
+}
+
+.terms-list__item > ol > li > ul > li {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 7px;
+}
+
+.terms-list__item-header {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  margin-bottom: 25px;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.terms-list__item-desc {
+  white-space: pre-line;
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  margin-bottom: 11px;
+}
+
 .privacy__note {
   font-weight: 400;
   line-height: 1.857;
@@ -1473,6 +1586,12 @@ a.pagination__item-link:hover {
 
 .privacy-list__item {
   margin-top: 60px;
+  counter-increment: counterHeader 0;
+}
+
+.privacy-list__item > h3:before {
+  content: "\7B2C" counter(counterHeader) "\6761";
+  counter-increment: counterHeader;
 }
 
 .privacy-list__item ol {

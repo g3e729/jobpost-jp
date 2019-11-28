@@ -21,6 +21,14 @@
 .privacy-list__item {
   margin-top: 60px;
 
+  counter-increment: counterHeader 0;
+  > h3 {
+    &:before {
+      content: "第"counter(counterHeader) "条";
+      counter-increment: counterHeader;
+    }
+  }
+
   ol {
     list-style: none !important;
   }

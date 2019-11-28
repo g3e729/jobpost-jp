@@ -8,15 +8,15 @@ const PrivacyContent = () => (
       </div>
       <ol className="privacy-list">
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第1条（個人情報）</h3>
+          <h3 className="privacy-list__item-header">（個人情報）</h3>
           <p className="privacy-list__item-desc">「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。</p>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第2条（個人情報の収集方法）</h3>
+          <h3 className="privacy-list__item-header">（個人情報の収集方法）</h3>
           <p className="privacy-list__item-desc">「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。</p>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第3条（個人情報を収集・利用する目的）</h3>
+          <h3 className="privacy-list__item-header">（個人情報を収集・利用する目的）</h3>
           <p className="privacy-list__item-desc">当社が個人情報を収集・利用する目的は，以下のとおりです。</p>
           <ol>
             <li>当社サービスの提供・運営のため</li>
@@ -30,14 +30,14 @@ const PrivacyContent = () => (
           </ol>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第4条（利用目的の変更）</h3>
+          <h3 className="privacy-list__item-header">（利用目的の変更）</h3>
           <ol>
             <li>当社は，利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。</li>
             <li>利用目的の変更を行った場合には，変更後の目的について，当社所定の方法により，ユーザーに通知し，または本ウェブサイト上に公表するものとします。</li>
           </ol>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第5条（個人情報の第三者提供）</h3>
+          <h3 className="privacy-list__item-header">（個人情報の第三者提供）</h3>
           <ol>
             <li>当社は，次に掲げる場合を除いて，あらかじめユーザーの同意を得ることなく，第三者に個人情報を提供することはありません。ただし，個人情報保護 法その他の法令で認められる場合を除きます。
               <ol>
@@ -65,7 +65,7 @@ const PrivacyContent = () => (
           </ol>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第6条（個人情報の開示）</h3>
+          <h3 className="privacy-list__item-header">（個人情報の開示）</h3>
           <ol>
             <li>当社は，本人から個人情報の開示を求められたときは，本人に対し，遅滞なくこれを開示します。ただし，開示することにより次のいずれかに該当する 場合は，その全部または一部を開示しないこともあり，開示しない決定をした場合には，その旨を遅滞なく通知します。なお，個人情報の開示に際して は，1件あたり1，000円の手数料を申し受けます。
               <ol>
@@ -79,7 +79,7 @@ const PrivacyContent = () => (
         </li>
 
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第7条（個人情報の訂正および削除）</h3>
+          <h3 className="privacy-list__item-header">（個人情報の訂正および削除）</h3>
           <ol>
             <li>ユーザーは，当社の保有する自己の個人情報が誤った情報である場合には，当社が定める手続きにより，当社に対して個人情報の訂正，追加または 削除（以下，「訂正等」といいます。）を請求することができます。</li>
             <li>当社は，ユーザーから前項の請求を受けてその請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の訂正等を行うものとします。</li>
@@ -87,7 +87,7 @@ const PrivacyContent = () => (
           </ol>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第8条（個人情報の利用停止等）</h3>
+          <h3 className="privacy-list__item-header">（個人情報の利用停止等）</h3>
           <ol>
             <li>当社は，本人から，個人情報が，利用目的の範囲を超えて取り扱われているという理由，または不正の手段により取得されたものであるという理由に より，その利用の停止または消去（以下，「利用停止等」といいます。）を求められた場合には，遅滞なく必要な調査を行います。</li>
             <li>前項の調査結果に基づき，その請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の利用停止等を行います。</li>
@@ -96,14 +96,14 @@ const PrivacyContent = () => (
           </ol>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第9条（プライバシーポリシーの変更）</h3>
+          <h3 className="privacy-list__item-header">（プライバシーポリシーの変更）</h3>
           <ol>
             <li>本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。</li>
             <li>当社が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。</li>
           </ol>
         </li>
         <li className="privacy-list__item">
-          <h3 className="privacy-list__item-header">第10条（お問い合わせ窓口）</h3>
+          <h3 className="privacy-list__item-header">（お問い合わせ窓口）</h3>
           <p className="privacy-list__item-desc">本ポリシーに関するお問い合わせは，下記のメールアドレスまでお願いいたします。<br/>
             <a href="mailto:mail@kredo.jp?Subject=Policy%20inquiry" target="_top"><span>mail@kredo.jp</span></a>
           </p>
