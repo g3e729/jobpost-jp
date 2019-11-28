@@ -71,7 +71,7 @@
         <button type="submit" class="alt-font btn btn-primary btn-submit w-100">検索</button>
       </div>
       <div class="col-3">
-        <a href="{{ route('admin.posts.index') }}" class="alt-font btn btn-secondary w-75">リセット</a>
+        <a href="{{ route('admin.recruitments.index') }}" class="alt-font btn btn-secondary w-75">リセット</a>
       </div>
     </div>
   </form>

@@ -22,26 +22,26 @@
         </tr>
       </thead>
       <tbody>
-        @for($i = 0; $i < 10; $i++)
+        @foreach($posts as $post)
         <tr>
           <td class="d-flex">
-            <img src="{{ $faker->imageUrl(240, 240, 'city') }}" alt="" style="max-width: 100px;">
+            <img src="{{ '#' }}" alt="" style="max-width: 100px;">
             <div class="ml-2 w-100">
-              <h3 class="font-weight-bold h6">{{ $faker->company . ' ' . $faker->companySuffix }}</h3>
-              <p class="small text-muted mb-0">自社★C2Cマッチングプラット</p>
+              <h3 class="font-weight-bold h6">company name</h3>
+              <p class="small text-muted mb-0">post title</p>
               <div class="d-flex justify-content-between">
                 <p class="small mt-1">フォーム開発</p>
-                <a href="{{ route('admin.recruitments.show', $i) }}" class="btn btn-link p-0">詳細</a>
+                <a href="{{ route('admin.recruitments.show', $post) }}" class="btn btn-link p-0">詳細</a>
               </div>
             </div>
           </td>
-          <td>{{ $faker->randomElement($array = array ('バックエンド', 'フロントエンド', 'フルスタック')) }}</td>
-          <td>{{ $faker->randomElement($array = array ('PHP', 'Node', 'Python')) }}</td>
-          <td>{{ $faker->randomElement($array = array ('Laravel', 'Egg', 'Django')) }}</td>
+          <td>'バックエンド', 'フロントエンド', 'フルスタック'</td>
+          <td>'PHP', 'Node', 'Python'</td>
+          <td>'Laravel', 'Egg', 'Django'</td>
           <td>東京</td>
-          <td>{{ $faker->numberBetween($min = 10, $max = 999) }}万円</td>
+          <td>10万円</td>
         </tr>
-        @endfor
+        @endforeach
       </tbody>
     </table>
   </div>
