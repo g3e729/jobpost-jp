@@ -37113,7 +37113,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57093,7 +57093,7 @@ var Filter = function Filter() {
   var inputPlaceholder = '指定なし';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "filter"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "filter__header"
   }, "\u7D5E\u308A\u8FBC\u307F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content"
@@ -58482,12 +58482,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var ProfileContent = function ProfileContent() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "l-section section"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "l-container"
-  }, "Profile"));
+var ProfileContent = function ProfileContent(_ref) {
+  var children = _ref.children;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileContent);
@@ -58524,7 +58521,67 @@ var ProfilePage = function ProfilePage() {
     subTitle: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "icon icon-book text-dark-yellow"
     }), "PHP\u30B3\u30FC\u30B9")
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "l-section l-section--profile section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "l-container l-container--main"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      flex: '2',
+      margitRight: '10px',
+      alignSelf: 'stretch'
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-basic"
+  }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-skills"
+  }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-language"
+  }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-website"
+  }), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+    className: "sidebar sidebar--multiple"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sidebar__inner"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "sidebar__header"
+  }, "\u57FA\u672C\u60C5\u5831"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sidebar-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "sidebar-content__basic"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "sidebar-content__basic-term"
+  }, "\u751F\u5E74\u6708\u65E5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "sidebar-content__basic-data"
+  }, "1995.08.14"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "sidebar-content__basic-term"
+  }, "\u6027\u5225"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "sidebar-content__basic-data"
+  }, "\u7537"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "sidebar-content__basic-term"
+  }, "\u4F4F\u6240"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "sidebar-content__basic-data"
+  }, "\u6771\u4EAC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "sidebar-content__basic-term"
+  }, "\u30B9\u30C6\u30FC\u30BF\u30B9"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "sidebar-content__basic-data"
+  }, "\u5728\u5B66\u4E2D")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sidebar__inner"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "sidebar__header"
+  }, "\u30EC\u30C3\u30B9\u30F3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "sidebar-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "sidebar-content__scores"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "sidebar-content__scores-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "sidebar-content__scores-category"
+  }, "IT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "\u53D7\u8B1B\u6E08\u307F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Basic"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Develop 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "\u53D7\u8B1B\u4E2D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Develop 2"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "sidebar-content__scores-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "sidebar-content__scores-category"
+  }, "ENGLISH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "TOEIC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Reading", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "80\u70B9(CEFR - B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Listening", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "70\u70B9(CEFR- B2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Total", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Speaking", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Writing", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "40\u70B9(CEFR - A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "\u30EC\u30D9\u30EB", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "CEFR - B1"))))))))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfilePage);

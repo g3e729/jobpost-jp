@@ -1,12 +1,10 @@
 import React from 'react';
 
-const ProfileContent = () => {
+const ProfileContent = ({children}) => {
   return (
-    <section className="l-section section">
-      <div className="l-container">
-        Profile
-      </div>
-    </section>
+    <React.Fragment>
+      {children}
+    </React.Fragment>
   );
 }
 

@@ -14,7 +14,7 @@ const Filter = () => {
 
   return (
     <aside className="filter">
-      <div className="filter__header">絞り込み</div>
+      <h3 className="filter__header">絞り込み</h3>
       <div className="filter-content">
         <ul className="filter-content__list">
           <li className="filter-content__list-item">
