@@ -80,6 +80,11 @@
                 </tr>
                 
                 <tr>
+                  <td class="font-weight-bold">電話番号</td>
+                  <td>{{ $company->contact_number }}</td>
+                </tr>
+                
+                <tr>
                   <td class="font-weight-bold">創業者</td>
                   <td>{{ $company->ceo }}</td>
                 </tr>

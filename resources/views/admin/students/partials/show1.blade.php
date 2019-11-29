@@ -45,6 +45,10 @@
         <td>{{ $student->email ?? '--' }}</td>
       </tr>
       <tr>
+        <td class="font-weight-bold">留学費用</td>
+        <td>{{ price($student->study_abroad_fee) }}</td>
+      </tr>
+      <tr>
         <td class="font-weight-bold">入学日</td>
         <td>{{ $student->enrollment_date ? $student->enrollment_date->format('Y年m月d日') : '--' ?? '--' }}</td>
       </tr>
