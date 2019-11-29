@@ -32,3 +32,21 @@
   padding: 0;
   background: transparent;
 }
+
+.button--pill {
+  font-size: 14px;
+  color: $color-medium-black;
+  letter-spacing: 0.12em;
+
+  padding: 0;
+  background: transparent;
+
+  padding: 3px 12px 3px 12px;
+  border: solid 1px $color-dark-yellow;
+
+  i {
+    font-size: 12px;
+
+    margin-right: 4px;
+  }
+}

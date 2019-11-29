@@ -16,7 +16,10 @@ const PrivacyPage = () => {
 
   return (
     <Page>
-      <Heading title="PRIVACY POLICY" subTitle="プライバシーポリシー"></Heading>
+      <Heading type={null}
+        title="PRIVACY POLICY"
+        subTitle="プライバシーポリシー"
+      />
       <PrivacyContent />
     </Page>
   );

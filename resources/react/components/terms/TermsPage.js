@@ -16,7 +16,10 @@ const TermsPage = () => {
 
   return (
     <Page>
-      <Heading title="TERMS OF SERVICE" subTitle="利用規約"></Heading>
+      <Heading type={null}
+        title="TERMS OF SERVICE"
+        subTitle="利用規約"
+      />
       <TermsContent />
     </Page>
   );

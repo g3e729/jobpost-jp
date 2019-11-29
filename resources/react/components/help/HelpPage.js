@@ -11,12 +11,15 @@ const HelpPage = () => {
 
     setTimeout(_ => {
       scrollIntoView(elemRoot, { block: 'start',  behavior: 'smooth' });
-    }, 5);
+    }, 100);
   }, []);
 
   return (
     <Page>
-      <Heading title="HELP" subTitle="ヘルプ"></Heading>
+      <Heading type={null}
+        title="HELP"
+        subTitle="ヘルプ"
+      />
       <HelpContent />
     </Page>
   );

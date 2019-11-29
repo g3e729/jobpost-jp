@@ -402,8 +402,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?68ad389585a96def4cb23013d92d3d33);
-  src: url(/fonts/kredo.eot?68ad389585a96def4cb23013d92d3d33) format("embedded-opentype"), url(/fonts/kredo.ttf?32cf33925bf0a5e40e97552cfbf64b3d) format("truetype"), url(/fonts/kredo.woff?80dfc5d2b91532c67bf0666048939f79) format("woff"), url(/fonts/kredo.svg?8a819dcd671047b5de38decd8a12b20b) format("svg");
+  src: url(/fonts/kredo.eot?7c44bf86dc738d39a1089ce00502ae3c);
+  src: url(/fonts/kredo.eot?7c44bf86dc738d39a1089ce00502ae3c) format("embedded-opentype"), url(/fonts/kredo.ttf?0631f61fc71d2bb338a12564f95569a4) format("truetype"), url(/fonts/kredo.woff?381ab1079e0c3b4006710f1656d43f69) format("woff"), url(/fonts/kredo.svg?a04f612e050b8fa154d9cbefde75be9c) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -422,6 +422,10 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-book:before {
+  content: "\E90F";
 }
 
 .icon-back-arrow:before {
@@ -482,6 +486,10 @@ input:focus {
 
 .icon-external-link:before {
   content: "\E904";
+}
+
+.icon-pencil:before {
+  content: "\E910";
 }
 
 .icon-facebook:before {
@@ -798,6 +806,16 @@ input:focus {
   background-color: #f2f2f0;
 }
 
+.heading.heading--student {
+  position: relative;
+  margin: 0 60px 125px;
+  padding: 0;
+  height: 420px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .heading__title {
   font-family: "Avenir", sans-serif;
   font-weight: 900;
@@ -808,6 +826,51 @@ input:focus {
 .heading__title-jp {
   font-weight: 900;
   letter-spacing: 0.06em;
+}
+
+.heading-content {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  position: absolute;
+  bottom: -120px;
+  left: 60px;
+  height: 250px;
+  padding: 0 50px;
+  width: calc(100% - 120px);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 0px 60px 0px rgba(57, 57, 57, 0.2);
+}
+
+.heading-content__main {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 48px;
+  text-align: left;
+}
+
+.heading-content__name {
+  font-size: 30px;
+  letter-spacing: 0.06em;
+}
+
+.heading-content__position {
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  padding-top: 18px;
+  margin-top: 12px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.heading-content__position i {
+  margin-right: 16px;
+}
+
+.heading-content__button {
+  position: absolute;
+  top: calc(50% - 48px);
+  right: 50px;
 }
 
 .form {
@@ -905,10 +968,18 @@ input:focus {
 .avatar {
   height: 50px;
   width: 50px;
-  border: solid 3px #fff;
   border-radius: 50%;
   background-size: cover;
+}
+
+.avatar.avatar--header {
+  border: solid 3px #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.avatar.avatar--profile {
+  width: 130px;
+  height: 130px;
 }
 
 .button {
@@ -944,6 +1015,21 @@ input:focus {
 .button--link {
   padding: 0;
   background: transparent;
+}
+
+.button--pill {
+  font-size: 14px;
+  color: #393939;
+  letter-spacing: 0.12em;
+  padding: 0;
+  background: transparent;
+  padding: 3px 12px 3px 12px;
+  border: solid 1px #fdb834;
+}
+
+.button--pill i {
+  font-size: 12px;
+  margin-right: 4px;
 }
 
 .swiper-container {
@@ -1337,8 +1423,8 @@ a.pagination__item-link:hover {
   top: 0;
   width: 100%;
   height: 100%;
-  background-position: center;
   background-color: whitesmoke;
+  background-position: center;
   background-size: cover;
 }
 
