@@ -57104,7 +57104,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-pc-user text-orange"
+    className: "icon icon-pc-user text-dark-yellow"
   }), "\u30BF\u30A4\u30D7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57114,7 +57114,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-status text-orange"
+    className: "icon icon-status text-dark-yellow"
   }), "\u30B9\u30C6\u30FC\u30BF\u30B9"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57124,7 +57124,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-code text-orange"
+    className: "icon icon-code text-dark-yellow"
   }), "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u8A00\u8A9E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57134,7 +57134,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-framework text-orange"
+    className: "icon icon-framework text-dark-yellow"
   }), "\u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57144,7 +57144,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-laptop text-orange"
+    className: "icon icon-laptop text-dark-yellow"
   }), "\u305D\u306E\u4ED6\u958B\u767A\u74B0\u5883"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57154,7 +57154,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-marker text-orange"
+    className: "icon icon-marker text-dark-yellow"
   }), "\u5730\u57DF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57164,7 +57164,7 @@ var Filter = function Filter() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-content__header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-sort-down text-orange"
+    className: "icon icon-sort-down text-dark-yellow"
   }), "\u30BD\u30FC\u30C8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     options: filterList,
     styles: _constants_enums__WEBPACK_IMPORTED_MODULE_2__["selectStyles"],
@@ -57328,7 +57328,7 @@ var Header = function Header() {
     to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].MESSAGES,
     activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-mail text-orange"
+    className: "icon icon-mail text-dark-yellow"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "header-actions__item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
@@ -57336,7 +57336,7 @@ var Header = function Header() {
     to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].NOTIFICATIONS,
     activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "icon icon-bell text-orange"
+    className: "icon icon-bell text-dark-yellow"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge badge--bell"
   }, "10")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -57450,7 +57450,7 @@ var Heading = function Heading(_ref) {
   }, subTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "button--pill heading-content__button",
     value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "icon icon-pencil text-orange"
+      className: "icon icon-pencil text-dark-yellow"
     }), "\u7DE8\u96C6")
   }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     className: "heading__title text-dark-yellow"
@@ -57676,7 +57676,7 @@ var Search = function Search() {
     type: "submit",
     id: "js-button-search",
     value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "icon icon-search text-orange"
+      className: "icon icon-search text-dark-yellow"
     })
   }))));
 };
@@ -58469,6 +58469,31 @@ var PrivacyPage = function PrivacyPage() {
 
 /***/ }),
 
+/***/ "./resources/react/components/profile/ProfileContent.js":
+/*!**************************************************************!*\
+  !*** ./resources/react/components/profile/ProfileContent.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ProfileContent = function ProfileContent() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "l-section section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "l-container"
+  }, "Profile"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ProfileContent);
+
+/***/ }),
+
 /***/ "./resources/react/components/profile/ProfilePage.js":
 /*!***********************************************************!*\
   !*** ./resources/react/components/profile/ProfilePage.js ***!
@@ -58482,6 +58507,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+/* harmony import */ var _ProfileContent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProfileContent */ "./resources/react/components/profile/ProfileContent.js");
+
 
 
 
@@ -58495,9 +58522,9 @@ var ProfilePage = function ProfilePage() {
     "data-avatar": "https://lorempixel.com/1800/600/people/",
     title: "\u7530\u4E2D\u7FA9\u4EBA",
     subTitle: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "icon icon-book text-orange"
+      className: "icon icon-book text-dark-yellow"
     }), "PHP\u30B3\u30FC\u30B9")
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfilePage);
@@ -58629,7 +58656,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var TermsContent = function TermsContent() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "l-section"
+    className: "l-section section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {

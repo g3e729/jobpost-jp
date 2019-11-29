@@ -11,7 +11,7 @@ const Search = () => {
           <Button className="button--link"
             type="submit"
             id="js-button-search"
-            value={<i className="icon icon-search text-orange"></i>}
+            value={<i className="icon icon-search text-dark-yellow"></i>}
           />
         </div>
       </div>

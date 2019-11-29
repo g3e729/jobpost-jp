@@ -27,12 +27,12 @@ const Header = () => (
         <ul className="header-actions">
           <li className="header-actions__item">
             <NavLink exact to={routes.MESSAGES} activeClassName={state.ACTIVE}>
-              <i className="icon icon-mail text-orange"></i>
+              <i className="icon icon-mail text-dark-yellow"></i>
             </NavLink>
           </li>
           <li className="header-actions__item">
             <NavLink exact to={routes.NOTIFICATIONS} activeClassName={state.ACTIVE}>
-              <i className="icon icon-bell text-orange">
+              <i className="icon icon-bell text-dark-yellow">
                 <span className="badge badge--bell">10</span>
               </i>
             </NavLink>

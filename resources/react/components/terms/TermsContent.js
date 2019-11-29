@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TermsContent = () => (
-  <section className="l-section">
+  <section className="l-section section">
     <div className="l-container">
       <ol className="terms-list">
         <li className="terms-list__item">

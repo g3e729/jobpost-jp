@@ -19,7 +19,7 @@ const Heading = ({ type, children, title, subTitle, ...props }) => {
                 {subTitle}
               </p>
               <Button className="button--pill heading-content__button"
-                value={<span><i className="icon icon-pencil text-orange"></i>編集</span>}
+                value={<span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>}
               />
             </div>
           </div>

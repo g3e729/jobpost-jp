@@ -33,7 +33,7 @@
   align-items: center;
 
   position: absolute;
-  bottom: -120px;
+  bottom: -125px;
   left: 60px;
 
   height: 250px;
@@ -47,6 +47,7 @@
 .heading-content__main {
   flex: 1;
 
+  margin-top: -8px;
   margin-left: 48px;
   text-align: left;
 }
