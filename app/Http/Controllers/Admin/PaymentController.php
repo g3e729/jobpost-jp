@@ -27,9 +27,9 @@ class PaymentController extends BaseController
 
 		foreach($data as $payment) {
 			if ($payment->total_approved == $payment->items) {
-				$approved->prepend($payment);
+				$approved->push($payment);
 			} else {
-				$not_approved->prepend($payment);
+				$not_approved->push($payment);
 			}
 		}
 
@@ -44,7 +44,9 @@ class PaymentController extends BaseController
 		$transactionable = $payment->transactionable;
 
 		$transactions = $transactionable->transactions()->withTrashed()->whereBetween('created_at', $between)->get();
-		$is_approved = $transactions->where('is_approved', 1)->count() == $transactions->where('deleted_at', '!=', null)->count();
+		$num_approved = $transactions->where('is_approved', 1)->count();
+		$num_tickets = $transactions->where('deleted_at', '!=', null)->count();
+		$is_approved = $num_approved > 0 && $num_approved >= $num_tickets;
 
 		$payment = (object) [
 			'id' => $payment->id,
@@ -75,9 +77,8 @@ class PaymentController extends BaseController
 
 	public function destroy(Transaction $payment)
 	{
+		$between = [$payment->created_at->firstOfMonth(), $payment->created_at->endOfMonth()];
 		$transactionable = $payment->transactionable;
-
-		dd($payment);
 
 		$transactionable->transactions()->whereBetween('created_at', $between)->delete();
 

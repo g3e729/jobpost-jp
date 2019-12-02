@@ -5,6 +5,7 @@
 @section('content')
   <div class="l-container">
     <div class="payments py-2">
+
       <div class="payments-top py-4">
         <h2 class="text-center alt-font">入金確認</h2>
       </div>
@@ -18,6 +19,13 @@
             <a class="nav-link alt-font" id="pills-verified-tab" data-toggle="pill" href="#pills-verified" role="tab" aria-controls="pills-verified" aria-selected="false">確認済み</a>
           </li>
         </ul>
+
+        @if (session()->has('success'))
+          <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+          </div>
+        @endif
+        
         <div class="tab-content my-4" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-unconfirmed" role="tabpanel" aria-labelledby="pills-unconfirmed-tab">
             <table class="table table-striped table-hover js-sortable">
@@ -30,24 +38,7 @@
               </thead>
               <tbody>
                 @foreach($payments['not_approved'] as $payment)
-                  <tr>
-                    <td class="d-flex">
-                      <img src="{{ $payment->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                      <div class="ml-3">
-                        <h3 class="font-weight-bold h6">{{ $payment->transactionable->display_name }}</h3>
-                        <p class="text-muted mb-0">{{ $payment->transactionable->description }}</p>
-                        <time>{{ $payment->created_at->format('Y年m月') }}</time>
-                        <span><strong>items</strong> {{ $payment->items }}</span>
-                      </div>
-                    </td>
-                    <td>{{ price($payment->total) }}</td>
-                    <td>
-                      <div class="payment-actions d-flex justify-content-between">
-                        <a href="{{ route('admin.payments.show', $payment) }}" class="btn btn-link p-0">詳細</a>
-                        <a href="#" class="btn btn-link p-0 js-payment-delete">削除</a>
-                      </div>
-                    </td>
-                  </tr>
+                  @include('admin.payments.partials.ticket', compact('payment'))
                 @endforeach
               </tbody>
             </table>
@@ -63,31 +54,7 @@
               </thead>
               <tbody>
                 @foreach($payments['approved'] as $payment)
-                  <tr>
-                    <td class="d-flex">
-                      <img src="{{ $payment->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
-                      <div class="ml-3">
-                        <h3 class="font-weight-bold h6">{{ $payment->transactionable->display_name }}</h3>
-                        <p class="text-muted mb-0">{{ $payment->transactionable->description }}</p>
-                        <time>{{ $payment->created_at->format('Y年m月') }}</time>
-                      </div>
-                    </td>
-                    <td>{{ price($payment->total) }}</td>
-                    <td>
-                      <div class="payment-actions d-flex justify-content-between">
-                        <a href="{{ route('admin.payments.show', $payment) }}" class="btn btn-link p-0">詳細</a>
-                        <div class="payment-actions d-flex justify-content-between">
-                          <button type="submit" data-type="delete" form="deleteForm" class="js-ticket-delete btn btn-link text-decoration-none text-muted">削除xxx</button>
-                          <form id="deleteForm" method="POST" action="{{ route('admin.payments.destroy', $payment) }}" novalidate style="visibility: hidden; position: absolute;">
-                            @csrf
-                            {{ method_field('DELETE') }}
-
-                            <button type="submit">削除</button>
-                          </form>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                  @include('admin.payments.partials.ticket', compact('payment'))
                 @endforeach
               </tbody>
             </table>

@@ -63,17 +63,15 @@
                   <td>{{ price($ticket->amount) }}</td>
                   @if (! $payment->is_approved)
                     <td>
-                      @if (! $ticket->deleted_at)
-                        <div class="payment-actions d-flex justify-content-between">
-                          <button type="submit" data-type="delete" form="deleteForm" class="js-ticket-delete btn btn-link text-decoration-none text-muted">削除</button>
-                          <form id="deleteForm" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
+                      <div class="payment-actions d-flex justify-content-between">
+                        @if (! $ticket->deleted_at)
+                          <button type="submit" data-type="delete" form="deleteForm-{{ $ticket->id }}" class="js-ticket-delete btn btn-link text-decoration-none text-muted">削除</button>
+                          <form id="deleteForm-{{ $ticket->id }}" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
                             @csrf
                             {{ method_field('DELETE') }}
-
-                            <button type="submit">削除</button>
                           </form>
-                        </div>
-                      @endif
+                        @endif
+                      </div>
                     </td>
                   @endif
                 </tr>
@@ -134,7 +132,7 @@
         btn.addEventListener('click', function(event) {
           if (this.dataset.type === 'delete') {
             modal.querySelector('.modal-title').textContent = '削除';
-            modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} sure want to delete purchase of {{ $payment->tickets->count() }} tickets?`;
+            modal.querySelector('.modal-body').textContent = `are you sure to delete this ticket?`;
           } else {
             modal.querySelector('.modal-title').textContent = '確認する';
             modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} willing to renew subscription?`;
