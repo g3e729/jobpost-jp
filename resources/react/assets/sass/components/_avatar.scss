@@ -4,14 +4,14 @@
 
   border-radius: 50%;
   background-size: cover;
+}
 
-  &.avatar--header {
-    border: solid 3px $color-white;
-    box-shadow: $shadow;
-  }
+.avatar--header {
+  border: solid 3px $color-white;
+  box-shadow: $shadow;
+}
 
-  &.avatar--profile {
-    width: 130px;
-    height: 130px;
-  }
+.avatar--profile {
+  width: 130px;
+  height: 130px;
 }

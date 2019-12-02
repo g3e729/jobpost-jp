@@ -2,6 +2,7 @@ import React from 'react';
 
 import Page from '../common/Page';
 import Heading from  '../common/Heading';
+import Clipboard from  '../common/Clipboard';
 import ProfileContent from './ProfileContent';
 
 const ProfilePage = () => (
@@ -15,41 +16,182 @@ const ProfilePage = () => (
     <section className="l-section l-section--profile section">
       <div className="l-container l-container--main">
         <ProfileContent>
-          <div style={{flex: '2', margitRight: '10px', alignSelf: 'stretch'}}>
-            <div className="profile-basic">
-              <h3 className="profile__title">PROFILE</h3>
-              <p className="profile__title-jp">プロフィール</p>
+          <div className="profile" style={{flex: '2', margitRight: '10px', alignSelf: 'stretch'}}>
+            <div className="profile-data">
+              <div className="profile-data__heading">
+                <h3 className="profile-data__heading-title">PROFILE</h3>
+                <p className="profile-data__heading-jp">プロフィール</p>
+              </div>
+              <ul className="profile-data__section">
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    1
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    2
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    3
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    4
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    5
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div className="profile-skills">
-              <h3 className="profile__title">COMPUTER SKILLS</h3>
-              <p className="profile__title-jp">コンピュータースキル</p>
+            <div className="profile-data">
+              <div className="profile-data__heading">
+                <h3 className="profile-data__heading-title">COMPUTER SKILLS</h3>
+                <p className="profile-data__heading-jp">コンピュータースキル</p>
+              </div>
+              <ul className="profile-data__section profile-data__section--half">
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">プログラミング言語</h3>
+                    <dl className="profile-data__skills">
+                      <dt className="profile-data__skills-term">C＃</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">PHP</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Ruby</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Python 2</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Python 3</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Javascript</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">HTML +CSS3</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Sass</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">SQL</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Bash</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                    </dl>
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">フレームワーク</h3>
+                    <dl className="profile-data__skills">
+                      <dt className="profile-data__skills-term">Laravel</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Ruby on Rails</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Django</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Flask</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Unity</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Vue.js</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Bootstrap</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Tensorflow</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                    </dl>
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">その他</h3>
+                    <dl className="profile-data__skills">
+                      <dt className="profile-data__skills-term">Linux</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Mac OS X</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Cent OS</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Debian</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Apache</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">nginx</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Unicorn</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Amazon Web Service</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">WordPress</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Vim</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                    </dl>
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">経験分野</h3>
+                    <dl className="profile-data__skills profile-data__skills--full">
+                      <dt className="profile-data__skills-term">Web開発（サーバサイドエンジニア） 　</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">Web開発（フロントエンドエンジニア）</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">研究開発（画像処理,自然言語処理,機械学習,AIなど）</dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                      <dt className="profile-data__skills-term">コンシューマーゲーム開発 </dt>
+                      <dd className="profile-data__skills-data">1年以内</dd>
+                    </dl>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div className="profile-language">
-              <h3 className="profile__title">LANGUAGE</h3>
-              <p className="profile__title-jp">語学</p>
+            <div className="profile-data">
+              <div className="profile-data__heading">
+                <h3 className="profile-data__heading-title">LANGUAGE</h3>
+                <p className="profile-data__heading-jp">語学</p>
+              </div>
+              <ul className="profile-data__section profile-data__section--half">
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">話し言葉</h3>
+                    <span className="profile-data__section-desc">英語、中国語</span>
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">TOEIC</h3>
+                    <span className="profile-data__section-desc">６５０点</span>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div className="profile-website">
-              <h3 className="profile__title">WEBSITE</h3>
-              <p className="profile__title-jp">ウェブサイト</p>
+            <div className="profile-data">
+              <div className="profile-data__heading">
+                <h3 className="profile-data__heading-title">WEBSITE</h3>
+                <p className="profile-data__heading-jp">ウェブサイト</p>
+              </div>
+              <ul className="profile-data__section">
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">ポートフォリオ</h3>
+                  </div>
+                </li>
+                <li className="profile-data__section-item">
+                  <div className="profile-data__section-box">
+                    <h3 className="profile-data__section-heading">Github</h3>
+                    <div className="profile-data__link">
+                      <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                      <Clipboard value="https://github.com/MyznEiji" />
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
-            Content<br/>
           </div>
           <aside className="sidebar sidebar--multiple">
             <div className="sidebar__inner">

@@ -25,6 +25,11 @@ const Pages = () => (
       />
       <Route
         exact
+        path={routes.MY_PROFILE}
+        component={ProfilePage}
+      />
+      <Route
+        exact
         path={routes.JOBS}
         component={JobsPage}
       />

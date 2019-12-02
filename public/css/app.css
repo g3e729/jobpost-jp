@@ -498,8 +498,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?7c44bf86dc738d39a1089ce00502ae3c);
-  src: url(/fonts/kredo.eot?7c44bf86dc738d39a1089ce00502ae3c) format("embedded-opentype"), url(/fonts/kredo.ttf?0631f61fc71d2bb338a12564f95569a4) format("truetype"), url(/fonts/kredo.woff?381ab1079e0c3b4006710f1656d43f69) format("woff"), url(/fonts/kredo.svg?a04f612e050b8fa154d9cbefde75be9c) format("svg");
+  src: url(/fonts/kredo.eot?4af2e516510e2b5fdfc7cbdcba848588);
+  src: url(/fonts/kredo.eot?4af2e516510e2b5fdfc7cbdcba848588) format("embedded-opentype"), url(/fonts/kredo.ttf?b38a3d13af8d0c0584e60a45404069d1) format("truetype"), url(/fonts/kredo.woff?3f2bfd566a6b0c3c9766f64041ea4d0b) format("woff"), url(/fonts/kredo.svg?106942d53625e1bc050b2c3e771e6b87) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -518,6 +518,10 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-duplicate:before {
+  content: "\E911";
 }
 
 .icon-book:before {
@@ -681,12 +685,12 @@ input:focus {
   background-size: cover;
 }
 
-.avatar.avatar--header {
+.avatar--header {
   border: solid 3px #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.avatar.avatar--profile {
+.avatar--profile {
   width: 130px;
   height: 130px;
 }
@@ -757,6 +761,15 @@ input:focus {
 .button--pill i {
   font-size: 12px;
   margin-right: 4px;
+}
+
+.button--profile {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: #fdb834;
+  text-decoration: underline;
+  padding: 0;
+  background: transparent;
 }
 
 .filter {
@@ -971,7 +984,7 @@ input:focus {
   background-color: #f2f2f0;
 }
 
-.heading.heading--student {
+.heading--student {
   position: relative;
   margin: 0 60px 125px;
   padding: 0;
@@ -1546,7 +1559,21 @@ a.pagination__item-link:hover {
   margin-top: 55px;
 }
 
-.profile__title {
+.profile {
+  margin-right: 60px;
+  align-self: stretch;
+}
+
+.profile-data {
+  margin-bottom: 53px;
+}
+
+.profile-data__heading {
+  text-align: center;
+  padding: 20px 0 36px;
+}
+
+.profile-data__heading-title {
   font-family: "Avenir", sans-serif;
   font-weight: 900;
   font-size: 26px;
@@ -1554,9 +1581,115 @@ a.pagination__item-link:hover {
   color: #fdb834;
 }
 
-.profile__title-jp {
+.profile-data__heading-jp {
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+.profile-data__section {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 -15px;
+}
+
+.profile-data__section--half .profile-data__section-item {
+  width: 50%;
+}
+
+.profile-data__section--half .profile-data__section-item:nth-child(-n+2) {
+  margin-top: 0;
+}
+
+.profile-data__section-item {
+  margin-top: 30px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.profile-data__section-item:first-child {
+  margin-top: 0;
+}
+
+.profile-data__section-box {
+  padding: 28px 30px 30px;
+  border: solid 1px #d9d6d6;
+}
+
+.profile-data__section-heading {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.profile-data__section-desc {
+  font-weight: bold;
+  letter-spacing: 0.06em;
+}
+
+.profile-data__skills {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-data__skills--full .profile-data__skills-term {
+  width: 100%;
+  -webkit-box-flex: 100%;
+          flex: 100%;
+}
+
+.profile-data__skills--full .profile-data__skills-data {
+  width: 100%;
+  -webkit-box-flex: 100%;
+          flex: 100%;
+  margin-top: 8px;
+}
+
+.profile-data__skills-term {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  width: 75%;
+  flex-basis: 75%;
+  margin-top: 21px;
+}
+
+.profile-data__skills-term:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.profile-data__skills-data {
+  letter-spacing: 0.06em;
+  width: 25%;
+  flex-basis: 25%;
+  margin-top: 21px;
+}
+
+.profile-data__skills-data:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.profile-data__link {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 7px 9px 7px 12px;
+  border: solid 1px #d9d6d6;
 }
 
 .sidebar {

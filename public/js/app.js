@@ -4489,6 +4489,272 @@ function alignNearest(scrollingEdgeStart, scrollingEdgeEnd, scrollingSize, scrol
 
 /***/ }),
 
+/***/ "./node_modules/copy-to-clipboard/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/copy-to-clipboard/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var deselectCurrent = __webpack_require__(/*! toggle-selection */ "./node_modules/toggle-selection/index.js");
+
+var defaultMessage = "Copy to clipboard: #{key}, Enter";
+
+function format(message) {
+  var copyKey = (/mac os x/i.test(navigator.userAgent) ? "⌘" : "Ctrl") + "+C";
+  return message.replace(/#{\s*key\s*}/g, copyKey);
+}
+
+function copy(text, options) {
+  var debug,
+    message,
+    reselectPrevious,
+    range,
+    selection,
+    mark,
+    success = false;
+  if (!options) {
+    options = {};
+  }
+  debug = options.debug || false;
+  try {
+    reselectPrevious = deselectCurrent();
+
+    range = document.createRange();
+    selection = document.getSelection();
+
+    mark = document.createElement("span");
+    mark.textContent = text;
+    // reset user styles for span element
+    mark.style.all = "unset";
+    // prevents scrolling to the end of the page
+    mark.style.position = "fixed";
+    mark.style.top = 0;
+    mark.style.clip = "rect(0, 0, 0, 0)";
+    // used to preserve spaces and line breaks
+    mark.style.whiteSpace = "pre";
+    // do not inherit user-select (it may be `none`)
+    mark.style.webkitUserSelect = "text";
+    mark.style.MozUserSelect = "text";
+    mark.style.msUserSelect = "text";
+    mark.style.userSelect = "text";
+    mark.addEventListener("copy", function(e) {
+      e.stopPropagation();
+      if (options.format) {
+        e.preventDefault();
+        e.clipboardData.clearData();
+        e.clipboardData.setData(options.format, text);
+      }
+    });
+
+    document.body.appendChild(mark);
+
+    range.selectNodeContents(mark);
+    selection.addRange(range);
+
+    var successful = document.execCommand("copy");
+    if (!successful) {
+      throw new Error("copy command was unsuccessful");
+    }
+    success = true;
+  } catch (err) {
+    debug && console.error("unable to copy using execCommand: ", err);
+    debug && console.warn("trying IE specific stuff");
+    try {
+      window.clipboardData.setData(options.format || "text", text);
+      success = true;
+    } catch (err) {
+      debug && console.error("unable to copy using clipboardData: ", err);
+      debug && console.error("falling back to prompt");
+      message = format("message" in options ? options.message : defaultMessage);
+      window.prompt(message, text);
+    }
+  } finally {
+    if (selection) {
+      if (typeof selection.removeRange == "function") {
+        selection.removeRange(range);
+      } else {
+        selection.removeAllRanges();
+      }
+    }
+
+    if (mark) {
+      document.body.removeChild(mark);
+    }
+    reselectPrevious();
+  }
+
+  return success;
+}
+
+module.exports = copy;
+
+
+/***/ }),
+
+/***/ "./node_modules/create-emotion/dist/create-emotion.browser.esm.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/create-emotion/dist/create-emotion.browser.esm.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/cache */ "./node_modules/@emotion/cache/dist/cache.browser.esm.js");
+/* harmony import */ var _emotion_serialize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/serialize */ "./node_modules/@emotion/serialize/dist/serialize.browser.esm.js");
+/* harmony import */ var _emotion_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/utils */ "./node_modules/@emotion/utils/dist/utils.browser.esm.js");
+
+
+
+
+function insertWithoutScoping(cache, serialized) {
+  if (cache.inserted[serialized.name] === undefined) {
+    return cache.insert('', serialized, cache.sheet, true);
+  }
+}
+
+function merge(registered, css, className) {
+  var registeredStyles = [];
+  var rawClassName = Object(_emotion_utils__WEBPACK_IMPORTED_MODULE_2__["getRegisteredStyles"])(registered, registeredStyles, className);
+
+  if (registeredStyles.length < 2) {
+    return className;
+  }
+
+  return rawClassName + css(registeredStyles);
+}
+
+var createEmotion = function createEmotion(options) {
+  var cache = Object(_emotion_cache__WEBPACK_IMPORTED_MODULE_0__["default"])(options); // $FlowFixMe
+
+  cache.sheet.speedy = function (value) {
+    if ( true && this.ctr !== 0) {
+      throw new Error('speedy must be changed before any rules are inserted');
+    }
+
+    this.isSpeedy = value;
+  };
+
+  cache.compat = true;
+
+  var css = function css() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var serialized = Object(_emotion_serialize__WEBPACK_IMPORTED_MODULE_1__["serializeStyles"])(args, cache.registered, this !== undefined ? this.mergedProps : undefined);
+    Object(_emotion_utils__WEBPACK_IMPORTED_MODULE_2__["insertStyles"])(cache, serialized, false);
+    return cache.key + "-" + serialized.name;
+  };
+
+  var keyframes = function keyframes() {
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    var serialized = Object(_emotion_serialize__WEBPACK_IMPORTED_MODULE_1__["serializeStyles"])(args, cache.registered);
+    var animation = "animation-" + serialized.name;
+    insertWithoutScoping(cache, {
+      name: serialized.name,
+      styles: "@keyframes " + animation + "{" + serialized.styles + "}"
+    });
+    return animation;
+  };
+
+  var injectGlobal = function injectGlobal() {
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    var serialized = Object(_emotion_serialize__WEBPACK_IMPORTED_MODULE_1__["serializeStyles"])(args, cache.registered);
+    insertWithoutScoping(cache, serialized);
+  };
+
+  var cx = function cx() {
+    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
+    }
+
+    return merge(cache.registered, css, classnames(args));
+  };
+
+  return {
+    css: css,
+    cx: cx,
+    injectGlobal: injectGlobal,
+    keyframes: keyframes,
+    hydrate: function hydrate(ids) {
+      ids.forEach(function (key) {
+        cache.inserted[key] = true;
+      });
+    },
+    flush: function flush() {
+      cache.registered = {};
+      cache.inserted = {};
+      cache.sheet.flush();
+    },
+    // $FlowFixMe
+    sheet: cache.sheet,
+    cache: cache,
+    getRegisteredStyles: _emotion_utils__WEBPACK_IMPORTED_MODULE_2__["getRegisteredStyles"].bind(null, cache.registered),
+    merge: merge.bind(null, cache.registered, css)
+  };
+};
+
+var classnames = function classnames(args) {
+  var cls = '';
+
+  for (var i = 0; i < args.length; i++) {
+    var arg = args[i];
+    if (arg == null) continue;
+    var toAdd = void 0;
+
+    switch (typeof arg) {
+      case 'boolean':
+        break;
+
+      case 'object':
+        {
+          if (Array.isArray(arg)) {
+            toAdd = classnames(arg);
+          } else {
+            toAdd = '';
+
+            for (var k in arg) {
+              if (arg[k] && k) {
+                toAdd && (toAdd += ' ');
+                toAdd += k;
+              }
+            }
+          }
+
+          break;
+        }
+
+      default:
+        {
+          toAdd = arg;
+        }
+    }
+
+    if (toAdd) {
+      cls && (cls += ' ');
+      cls += toAdd;
+    }
+  }
+
+  return cls;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createEmotion);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/swiper/css/swiper.css":
 /*!****************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--8-1!./node_modules/postcss-loader/src??ref--8-2!./node_modules/swiper/css/swiper.css ***!
@@ -6038,6 +6304,45 @@ function resize(...args) {
 function scroll(...args) {
   return eventShortcut.bind(this)('scroll', ...args);
 }
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/emotion/dist/emotion.esm.js":
+/*!**************************************************!*\
+  !*** ./node_modules/emotion/dist/emotion.esm.js ***!
+  \**************************************************/
+/*! exports provided: cache, css, cx, flush, getRegisteredStyles, hydrate, injectGlobal, keyframes, merge, sheet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cache", function() { return cache; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return css; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cx", function() { return cx; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "flush", function() { return flush; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRegisteredStyles", function() { return getRegisteredStyles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hydrate", function() { return hydrate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "injectGlobal", function() { return injectGlobal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyframes", function() { return keyframes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "merge", function() { return merge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sheet", function() { return sheet; });
+/* harmony import */ var create_emotion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! create-emotion */ "./node_modules/create-emotion/dist/create-emotion.browser.esm.js");
+
+
+var _createEmotion = Object(create_emotion__WEBPACK_IMPORTED_MODULE_0__["default"])(),
+    flush = _createEmotion.flush,
+    hydrate = _createEmotion.hydrate,
+    cx = _createEmotion.cx,
+    merge = _createEmotion.merge,
+    getRegisteredStyles = _createEmotion.getRegisteredStyles,
+    injectGlobal = _createEmotion.injectGlobal,
+    keyframes = _createEmotion.keyframes,
+    css = _createEmotion.css,
+    sheet = _createEmotion.sheet,
+    cache = _createEmotion.cache;
 
 
 
@@ -8511,6 +8816,145 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
+
+/***/ }),
+
+/***/ "./node_modules/react-copy-to-clipboard/lib/Component.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-copy-to-clipboard/lib/Component.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CopyToClipboard = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _copyToClipboard = _interopRequireDefault(__webpack_require__(/*! copy-to-clipboard */ "./node_modules/copy-to-clipboard/index.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var CopyToClipboard =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(CopyToClipboard, _React$PureComponent);
+
+  function CopyToClipboard() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, CopyToClipboard);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CopyToClipboard)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "onClick", function (event) {
+      var _this$props = _this.props,
+          text = _this$props.text,
+          onCopy = _this$props.onCopy,
+          children = _this$props.children,
+          options = _this$props.options;
+
+      var elem = _react["default"].Children.only(children);
+
+      var result = (0, _copyToClipboard["default"])(text, options);
+
+      if (onCopy) {
+        onCopy(text, result);
+      } // Bypass onClick if it was present
+
+
+      if (elem && elem.props && typeof elem.props.onClick === 'function') {
+        elem.props.onClick(event);
+      }
+    });
+
+    return _this;
+  }
+
+  _createClass(CopyToClipboard, [{
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
+          _text = _this$props2.text,
+          _onCopy = _this$props2.onCopy,
+          _options = _this$props2.options,
+          children = _this$props2.children,
+          props = _objectWithoutProperties(_this$props2, ["text", "onCopy", "options", "children"]);
+
+      var elem = _react["default"].Children.only(children);
+
+      return _react["default"].cloneElement(elem, _objectSpread({}, props, {
+        onClick: this.onClick
+      }));
+    }
+  }]);
+
+  return CopyToClipboard;
+}(_react["default"].PureComponent);
+
+exports.CopyToClipboard = CopyToClipboard;
+
+_defineProperty(CopyToClipboard, "defaultProps", {
+  onCopy: undefined,
+  options: undefined
+});
+
+/***/ }),
+
+/***/ "./node_modules/react-copy-to-clipboard/lib/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-copy-to-clipboard/lib/index.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(/*! ./Component */ "./node_modules/react-copy-to-clipboard/lib/Component.js"),
+    CopyToClipboard = _require.CopyToClipboard;
+
+CopyToClipboard.CopyToClipboard = CopyToClipboard;
+module.exports = CopyToClipboard;
 
 /***/ }),
 
@@ -59045,6 +59489,56 @@ function warning(condition, message) {
 
 /***/ }),
 
+/***/ "./node_modules/toggle-selection/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/toggle-selection/index.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+module.exports = function () {
+  var selection = document.getSelection();
+  if (!selection.rangeCount) {
+    return function () {};
+  }
+  var active = document.activeElement;
+
+  var ranges = [];
+  for (var i = 0; i < selection.rangeCount; i++) {
+    ranges.push(selection.getRangeAt(i));
+  }
+
+  switch (active.tagName.toUpperCase()) { // .toUpperCase handles XHTML
+    case 'INPUT':
+    case 'TEXTAREA':
+      active.blur();
+      break;
+
+    default:
+      active = null;
+      break;
+  }
+
+  selection.removeAllRanges();
+  return function () {
+    selection.type === 'Caret' &&
+    selection.removeAllRanges();
+
+    if (!selection.rangeCount) {
+      ranges.forEach(function(range) {
+        selection.addRange(range);
+      });
+    }
+
+    active &&
+    active.focus();
+  };
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/value-equal/esm/value-equal.js":
 /*!*****************************************************!*\
   !*** ./node_modules/value-equal/esm/value-equal.js ***!
@@ -59422,6 +59916,115 @@ var Button = function Button(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Button);
+
+/***/ }),
+
+/***/ "./resources/react/components/common/Clipboard.js":
+/*!********************************************************!*\
+  !*** ./resources/react/components/common/Clipboard.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-copy-to-clipboard */ "./node_modules/react-copy-to-clipboard/lib/index.js");
+/* harmony import */ var react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var emotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! emotion */ "./node_modules/emotion/dist/emotion.esm.js");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./resources/react/components/common/Button.js");
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["font-size: 12px"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+
+var Clipboard = function Clipboard(_ref) {
+  var value = _ref.value;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      copied = _useState2[0],
+      setCopied = _useState2[1];
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "button--link",
+    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_1__["CopyToClipboard"], {
+      text: value,
+      onCopy: function onCopy() {
+        return setCopied(true);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "icon icon-duplicate text-dark-yellow ".concat(Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(_templateObject()))
+    }))
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Clipboard);
 
 /***/ }),
 
@@ -59916,6 +60519,10 @@ var Pages = function Pages() {
     exact: true,
     path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].ROOT,
     component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].MY_PROFILE,
+    component: _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: _constants_routes__WEBPACK_IMPORTED_MODULE_10__["routes"].JOBS,
@@ -60867,7 +61474,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
-/* harmony import */ var _ProfileContent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProfileContent */ "./resources/react/components/profile/ProfileContent.js");
+/* harmony import */ var _common_Clipboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Clipboard */ "./resources/react/components/common/Clipboard.js");
+/* harmony import */ var _ProfileContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProfileContent */ "./resources/react/components/profile/ProfileContent.js");
+
 
 
 
@@ -60888,37 +61497,270 @@ var ProfilePage = function ProfilePage() {
     className: "l-section l-section--profile section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-container l-container--main"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_4__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile",
     style: {
       flex: '2',
       margitRight: '10px',
       alignSelf: 'stretch'
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "profile-basic"
+    className: "profile-data"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__heading"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-    className: "profile__title"
+    className: "profile-data__heading-title"
   }, "PROFILE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "profile__title-jp"
-  }, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "profile-skills"
+    className: "profile-data__heading-jp"
+  }, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "profile-data__section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, "1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, "2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, "3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, "4")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, "5")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__heading"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-    className: "profile__title"
+    className: "profile-data__heading-title"
   }, "COMPUTER SKILLS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "profile__title-jp"
-  }, "\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FC\u30B9\u30AD\u30EB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "profile-language"
+    className: "profile-data__heading-jp"
+  }, "\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FC\u30B9\u30AD\u30EB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "profile-data__section profile-data__section--half"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-    className: "profile__title"
+    className: "profile-data__section-heading"
+  }, "\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u8A00\u8A9E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "profile-data__skills"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "C\uFF03"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "PHP"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Ruby"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Python 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Python 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Javascript"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "HTML +CSS3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Sass"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "SQL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Bash"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__section-heading"
+  }, "\u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "profile-data__skills"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Laravel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Ruby on Rails"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Django"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Flask"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Unity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Vue.js"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Bootstrap"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Tensorflow"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__section-heading"
+  }, "\u305D\u306E\u4ED6"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "profile-data__skills"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Linux"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Mac OS X"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Cent OS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Debian"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Apache"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "nginx"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Unicorn"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Amazon Web Service"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "WordPress"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Vim"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__section-heading"
+  }, "\u7D4C\u9A13\u5206\u91CE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "profile-data__skills profile-data__skills--full"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Web\u958B\u767A\uFF08\u30B5\u30FC\u30D0\u30B5\u30A4\u30C9\u30A8\u30F3\u30B8\u30CB\u30A2\uFF09 \u3000"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "Web\u958B\u767A\uFF08\u30D5\u30ED\u30F3\u30C8\u30A8\u30F3\u30C9\u30A8\u30F3\u30B8\u30CB\u30A2\uFF09"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "\u7814\u7A76\u958B\u767A\uFF08\u753B\u50CF\u51E6\u7406,\u81EA\u7136\u8A00\u8A9E\u51E6\u7406,\u6A5F\u68B0\u5B66\u7FD2,AI\u306A\u3069\uFF09"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "profile-data__skills-term"
+  }, "\u30B3\u30F3\u30B7\u30E5\u30FC\u30DE\u30FC\u30B2\u30FC\u30E0\u958B\u767A "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "profile-data__skills-data"
+  }, "1\u5E74\u4EE5\u5185")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__heading"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__heading-title"
   }, "LANGUAGE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "profile__title-jp"
-  }, "\u8A9E\u5B66")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "profile-website"
+    className: "profile-data__heading-jp"
+  }, "\u8A9E\u5B66")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "profile-data__section profile-data__section--half"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-    className: "profile__title"
+    className: "profile-data__section-heading"
+  }, "\u8A71\u3057\u8A00\u8449"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "profile-data__section-desc"
+  }, "\u82F1\u8A9E\u3001\u4E2D\u56FD\u8A9E"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__section-heading"
+  }, "TOEIC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "profile-data__section-desc"
+  }, "\uFF16\uFF15\uFF10\u70B9"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__heading"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__heading-title"
   }, "WEBSITE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "profile__title-jp"
-  }, "\u30A6\u30A7\u30D6\u30B5\u30A4\u30C8")), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Content", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+    className: "profile-data__heading-jp"
+  }, "\u30A6\u30A7\u30D6\u30B5\u30A4\u30C8")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "profile-data__section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__section-heading"
+  }, "\u30DD\u30FC\u30C8\u30D5\u30A9\u30EA\u30AA"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "profile-data__section-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__section-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-data__section-heading"
+  }, "Github"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/MyznEiji",
+    className: "button button--profile",
+    target: "_blank"
+  }, "https://github.com/MyznEiji"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Clipboard__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    value: "https://github.com/MyznEiji"
+  }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "sidebar sidebar--multiple"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sidebar__inner"
@@ -60992,9 +61834,34 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   !*** ./resources/react/components/reducers/user.js ***!
   \*****************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/kamlig/Projects/kredo-career/resources/react/components/reducers/user.js: Unexpected token, expected \",\" (7:23)\n\n\u001b[0m \u001b[90m  5 | \u001b[39m  \u001b[36mswitch\u001b[39m(action\u001b[33m.\u001b[39mtype) {\u001b[0m\n\u001b[0m \u001b[90m  6 | \u001b[39m    \u001b[36mcase\u001b[39m \u001b[32m'USER_SET'\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 | \u001b[39m      \u001b[36mreturn\u001b[39m { student as user } \u001b[33m=\u001b[39m action\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m    \u001b[36mcase\u001b[39m \u001b[32m'USER_COMPANY_SET'\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 | \u001b[39m      \u001b[36mreturn\u001b[39m { company } \u001b[33m=\u001b[39m action\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m    \u001b[36mcase\u001b[39m \u001b[32m'USER_UNSET'\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n    at Object.raise (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:6930:17)\n    at Object.unexpected (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8323:16)\n    at Object.expect (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8309:28)\n    at Object.parseObj (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9894:14)\n    at Object.parseExprAtom (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9525:28)\n    at Object.parseExprAtom (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:4082:20)\n    at Object.parseExprSubscripts (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9165:23)\n    at Object.parseMaybeUnary (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9145:21)\n    at Object.parseExprOps (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9011:23)\n    at Object.parseMaybeConditional (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8984:23)\n    at Object.parseMaybeAssign (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8930:21)\n    at Object.parseExpression (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8880:23)\n    at Object.parseReturnStatement (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10980:28)\n    at Object.parseStatementContent (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10659:21)\n    at Object.parseStatement (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10611:17)\n    at Object.parseSwitchStatement (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11018:36)\n    at Object.parseStatementContent (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10662:21)\n    at Object.parseStatement (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10611:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11187:25)\n    at Object.parseBlockBody (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11174:10)\n    at Object.parseBlock (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11158:10)\n    at Object.parseFunctionBody (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10177:24)\n    at Object.parseArrowExpression (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10118:10)\n    at Object.parseParenAndDistinguishExpression (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9744:12)\n    at Object.parseExprAtom (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9503:21)\n    at Object.parseExprAtom (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:4082:20)\n    at Object.parseExprSubscripts (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9165:23)\n    at Object.parseMaybeUnary (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9145:21)\n    at Object.parseExprOps (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:9011:23)\n    at Object.parseMaybeConditional (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8984:23)\n    at Object.parseMaybeAssign (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:8930:21)\n    at Object.parseVar (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11262:26)\n    at Object.parseVarStatement (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11081:10)\n    at Object.parseStatementContent (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10678:21)\n    at Object.parseStatement (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:10611:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/kamlig/Projects/kredo-career/node_modules/@babel/parser/lib/index.js:11187:25)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var initialState = {};
+
+var userReducer = function userReducer() {
+  var _action, _action2;
+
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case 'USER_STUDENT_SET':
+      return _action = action, student = _action.student, _action;
+
+    case 'COMPANY_SET':
+      return _action2 = action, company = _action2.company, _action2;
+
+    case 'USER_UNSET':
+      return initialState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (userReducer);
 
 /***/ }),
 
