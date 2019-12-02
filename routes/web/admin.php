@@ -17,7 +17,7 @@ Route::group([
 			'seeker_profile' => 'student',
 		],
 	]);
-	Route::resource('payments', 'PaymentController')->only('index', 'show', 'update');
+	Route::resource('payments', 'PaymentController')->only('index', 'show', 'update', 'destroy');
 	Route::resource('tickets', 'TicketController')->only('index', 'destroy');
 	Route::resource('settings', 'AccountController')->only('index', 'store');
 	Route::resource('notifications', 'NotificationController');

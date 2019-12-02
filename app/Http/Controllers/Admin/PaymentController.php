@@ -10,12 +10,14 @@ class PaymentController extends BaseController
 {
 	public function index()
 	{
-		$data = Transaction::selectRaw('
-				*,
-				COUNT(*) as items,
-            	COUNT(IF(is_approved = 1, 1, NULL)) as total_approved,
-				created_at,
-				sum(amount) as total')
+		$selectRaw = ['*',
+			'COUNT(*) as items',
+	    	'COUNT(IF(is_approved = 1, 1, NULL)) as total_approved',
+			'sum(amount) as total',
+		];
+
+		$data = Transaction::selectRaw(implode(',', $selectRaw))
+			->groupBy('transactionable_id')
 			->groupBy(\DB::raw('YEAR(created_at)-MONTH(created_at)'))
 			->orderBy('created_at', 'DESC')
 			->get();
@@ -25,9 +27,9 @@ class PaymentController extends BaseController
 
 		foreach($data as $payment) {
 			if ($payment->total_approved == $payment->items) {
-				$approved->push($payment);
+				$approved->prepend($payment);
 			} else {
-				$not_approved->push($payment);
+				$not_approved->prepend($payment);
 			}
 		}
 
@@ -69,5 +71,16 @@ class PaymentController extends BaseController
 		$transactionable->transactions()->whereBetween('created_at', $between)->update(compact('is_approved'));
 
 		return back()->with('success', "Success! Payment succesfully approved!");
+	}
+
+	public function destroy(Transaction $payment)
+	{
+		$transactionable = $payment->transactionable;
+
+		dd($payment);
+
+		$transactionable->transactions()->whereBetween('created_at', $between)->delete();
+
+		return back()->with('success', "Success! Ticket succesfully deleted!");
 	}
 }
