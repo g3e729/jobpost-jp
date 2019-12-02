@@ -42,7 +42,13 @@
                     <td>{{ price($ticket->amount) }}</td>
                     <td>
                       <div class="payment-actions d-flex justify-content-between">
-                        <a href="#" class="btn btn-link p-0 js-ticket-delete">削除</a>
+                        <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
+                        <form id="deleteForm" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
+                          @csrf
+                          {{ method_field('DELETE') }}
+
+                          <button type="submit">削除</button>
+                        </form>
                       </div>
                     </td>
                   </tr>
@@ -70,17 +76,6 @@
                       </div>
                     </td>
                     <td>{{ price($ticket->amount) }}</td>
-                    <td>
-                      <div class="payment-actions d-flex justify-content-between">
-                          <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
-                          <form id="deleteForm" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
-                            @csrf
-                            {{ method_field('DELETE') }}
-
-                            <button type="submit">削除</button>
-                          </form>
-                      </div>
-                    </td>
                   </tr>
                 @endforeach
               </tbody>

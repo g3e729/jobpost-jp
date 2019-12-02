@@ -10,8 +10,8 @@ class TicketController extends BaseController
 {
 	public function index()
 	{
-		$approved = Transaction::where('is_approved', 1)->get();
-		$not_approved = Transaction::where('is_approved', 0)->get();
+		$approved = Transaction::whereType('ticket')->where('is_approved', 1)->get();
+		$not_approved = Transaction::whereType('ticket')->where('is_approved', 0)->get();
 
 		return view('admin.tickets.index', compact('approved', 'not_approved'));
 	}

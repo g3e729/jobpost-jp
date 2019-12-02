@@ -42,7 +42,7 @@ class PaymentController extends BaseController
 		$transactionable = $payment->transactionable;
 
 		$transactions = $transactionable->transactions()->withTrashed()->whereBetween('created_at', $between)->get();
-		$is_approved = $transactions->where('is_approved', 1)->count() == $transactions->where('deleted_at', null)->count();
+		$is_approved = $transactions->where('is_approved', 1)->count() == $transactions->where('deleted_at', '!=', null)->count();
 
 		$payment = (object) [
 			'id' => $payment->id,
@@ -63,7 +63,10 @@ class PaymentController extends BaseController
 		$between = [$payment->created_at->firstOfMonth(), $payment->created_at->endOfMonth()];
 		$transactionable = $payment->transactionable;
 
-		$transactionable->transactions()->whereBetween('created_at', $between)->update(['is_approved' => 1]);
+		$is_approved = ! $payment->is_approved ? 1 : 0;
+
+
+		$transactionable->transactions()->whereBetween('created_at', $between)->update(compact('is_approved'));
 
 		return back()->with('success', "Success! Payment succesfully approved!");
 	}

@@ -29,7 +29,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($payments['approved'] as $payment)
+                @foreach($payments['not_approved'] as $payment)
                   <tr>
                     <td class="d-flex">
                       <img src="{{ $payment->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
@@ -61,7 +61,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($payments['not_approved'] as $payment)
+                @foreach($payments['approved'] as $payment)
                   <tr>
                     <td class="d-flex">
                       <img src="{{ $payment->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">

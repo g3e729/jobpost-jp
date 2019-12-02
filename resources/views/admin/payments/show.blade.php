@@ -86,7 +86,7 @@
           @if (! $payment->is_approved)
             <button id="js-payment-submit" type="submit" data-type="submit" form="submitForm" class="btn btn-primary btn-submit my-3 w-25">入金確認</button>
           @else
-            <button class="btn btn-primary btn-submit my-3 w-25">入金確認済み</button>
+            <button id="js-payment-submit" type="submit" data-type="submit" form="submitForm" class="btn btn-primary btn-submit my-3 w-25">入金確認済み</button>
           @endif
         </div>
       </div>
@@ -112,6 +112,12 @@
       </div>
     </div>
   </div>
+
+  <form id="submitForm" method="POST" action="{{ route('admin.payments.update', ['payment' => $payment->id]) }}" novalidate style="visibility: hidden; position: absolute;">
+    @csrf
+    {{ method_field('PATCH') }}
+    
+  </form>
 @endsection
 
 @section('js')
