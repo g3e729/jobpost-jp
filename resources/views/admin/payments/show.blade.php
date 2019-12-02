@@ -10,7 +10,7 @@
         {{ session()->get('success') }}
       </div>
     @endif
-    
+
     <div class="shadow-sm card card-payment-detail">
       <div class="card-body pt-5 px-5">
         <h2 class="card-title w-100 text-truncate">{{ $payment->transactionable->display_name }} {{ $payment->bill_date }}</h2>
@@ -63,11 +63,15 @@
                   <td>{{ price($ticket->amount) }}</td>
                   @if (! $payment->is_approved)
                     <td>
-                      @if (! $ticket->deleted_at)
-                        <div class="payment-actions d-flex justify-content-between">
-                          <a href="#" class="btn btn-link p-0 js-ticket-delete" data-type="delete">削除</a>
-                        </div>
-                      @endif
+                      <div class="payment-actions d-flex justify-content-between">
+                        @if (! $ticket->deleted_at)
+                          <button type="submit" data-type="delete" form="deleteForm-{{ $ticket->id }}" class="js-ticket-delete btn btn-link text-decoration-none text-muted">削除</button>
+                          <form id="deleteForm-{{ $ticket->id }}" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
+                            @csrf
+                            {{ method_field('DELETE') }}
+                          </form>
+                        @endif
+                      </div>
                     </td>
                   @endif
                 </tr>
@@ -78,9 +82,9 @@
 
         <div class="text-right">
           @if (! $payment->is_approved)
-            <a href="#" id="js-payment-submit" class="btn btn-primary btn-submit my-3 w-25" data-type="submit">入金確認</a>
+            <button id="js-payment-submit" type="submit" data-type="submit" form="submitForm" class="btn btn-primary btn-submit my-3 w-25">入金確認</button>
           @else
-            <a href="#" class="btn btn-primary btn-submit my-3 w-25">入金確認済み</a>
+            <button id="js-payment-submit" type="submit" data-type="submit" form="submitForm" class="btn btn-primary btn-submit my-3 w-25">入金確認済み</button>
           @endif
         </div>
       </div>
@@ -106,6 +110,12 @@
       </div>
     </div>
   </div>
+
+  <form id="submitForm" method="POST" action="{{ route('admin.payments.update', ['payment' => $payment->id]) }}" novalidate style="visibility: hidden; position: absolute;">
+    @csrf
+    {{ method_field('PATCH') }}
+    
+  </form>
 @endsection
 
 @section('js')
@@ -122,14 +132,14 @@
         btn.addEventListener('click', function(event) {
           if (this.dataset.type === 'delete') {
             modal.querySelector('.modal-title').textContent = '削除';
-            modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} sure want to delete purchase of {{ $payment->tickets->count() }} tickets?`; // KAM: Finalize format
+            modal.querySelector('.modal-body').textContent = `are you sure to delete this ticket?`;
           } else {
             modal.querySelector('.modal-title').textContent = '確認する';
-            modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} willing to renew subscription?`; // KAM: Finalize format
+            modal.querySelector('.modal-body').textContent = `{{ $payment->transactionable->display_name }} willing to renew subscription?`;
           }
 
           $(modal).modal('show');
-          currTarget = event.currentTarget.href;
+          currTarget = event.currentTarget.getAttribute('form');
 
           event.preventDefault();
         })
@@ -138,7 +148,7 @@
 
     modalSubmit.addEventListener('click', function(event) {
       $(modal).modal('hide');
-      window.location.replace(currTarget);
+      document.querySelector(`#${currTarget}`).submit();
     });
   </script>
 @endsection

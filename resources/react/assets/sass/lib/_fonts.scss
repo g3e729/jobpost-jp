@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?rdsy3c';
+$suffix: '?mu94t8';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,9 @@ $suffix: '?rdsy3c';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-book:before {
+  content: "\e90f";
+}
 .icon-back-arrow:before {
   content: "\e90d";
 }
@@ -91,6 +94,9 @@ $suffix: '?rdsy3c';
 }
 .icon-external-link:before {
   content: "\e904";
+}
+.icon-pencil:before {
+  content: "\e910";
 }
 .icon-facebook:before {
   content: "\ea90";

@@ -3,6 +3,17 @@
 
   padding: 55px 0 60px;
   background-color: $color-light-gray;
+
+  &.heading--student {
+    position: relative;
+    margin: 0 60px 125px;
+    padding: 0;
+    height: 420px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .heading__title {
@@ -15,4 +26,52 @@
 .heading__title-jp {
   font-weight: 900;
   letter-spacing: 0.06em;
+}
+
+.heading-content {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  bottom: -125px;
+  left: 60px;
+
+  height: 250px;
+  padding: 0 50px;
+  width: calc(100% - 120px);
+
+  background-color: rgba($color-white, 0.95);
+  box-shadow: 0px 0px 60px 0px rgba(57, 57, 57, 0.2);
+}
+
+.heading-content__main {
+  flex: 1;
+
+  margin-top: -8px;
+  margin-left: 48px;
+  text-align: left;
+}
+
+.heading-content__name {
+  font-size: 30px;
+  letter-spacing: 0.06em;
+}
+
+.heading-content__position {
+  font-size: 20px;
+  letter-spacing: 0.06em;
+
+  padding-top: 18px;
+  margin-top: 12px;
+  border-top: solid 1px $color-dark-gray;
+
+  i {
+    margin-right: 16px;
+  }
+}
+
+.heading-content__button {
+  position: absolute;
+  top: calc(50% - 48px);
+  right: 50px;
 }

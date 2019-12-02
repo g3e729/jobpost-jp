@@ -15,7 +15,10 @@ const AboutPage = () => {
 
   return (
     <Page>
-      <Heading title="ABOUT" subTitle="およそ"></Heading>
+      <Heading type={null}
+        title="ABOUT"
+        subTitle="およそ"
+      />
     </Page>
   );
 }

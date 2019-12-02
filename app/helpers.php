@@ -43,7 +43,7 @@ if (! function_exists('getSex')) {
 }
 
 if (! function_exists('price')) {
-    function price($amount, $decimals = 0)
+    function price($amount = 0, $decimals = 0)
     {
         $price = number_format($amount, $decimals);
 
