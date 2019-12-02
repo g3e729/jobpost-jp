@@ -772,6 +772,33 @@ input:focus {
   background: transparent;
 }
 
+.embed {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.embed:before {
+  content: "";
+  display: block;
+}
+
+.embed > iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embed--16by9:before {
+  padding-top: 56.25%;
+}
+
 .filter {
   display: -webkit-box;
   display: flex;
@@ -1635,6 +1662,12 @@ a.pagination__item-link:hover {
   letter-spacing: 0.06em;
 }
 
+.profile-data__section-copy {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
 .profile-data__skills {
   display: -webkit-box;
   display: flex;
@@ -1690,6 +1723,103 @@ a.pagination__item-link:hover {
           align-items: center;
   padding: 7px 9px 7px 12px;
   border: solid 1px #d9d6d6;
+}
+
+.profile-data__websites {
+  list-style: none;
+  padding-top: 6px;
+}
+
+.profile-data__websites-item {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  margin-top: 32px;
+}
+
+.profile-data__websites-item:first-child {
+  margin-top: 0;
+}
+
+.profile-data__websites-eyecatch {
+  position: relative;
+  max-height: 140px;
+  width: 200px;
+  -webkit-box-flex: 0;
+          flex: 0 0 200px;
+}
+
+.profile-data__websites-eyecatch:before {
+  content: "";
+  padding-top: 75%;
+  display: block;
+}
+
+.profile-data__websites-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.profile-data__websites-content {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 30px;
+}
+
+.profile-data__websites-name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+}
+
+.profile-data__websites-desc {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.profile-data__video {
+  padding: 5px 40px 0;
+}
+
+.profile-data__work-term {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fdb834;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+.profile-data__work-term:first-child {
+  margin-top: 0;
+}
+
+.profile-data__work-data h4 {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+}
+
+.profile-data__work-data time {
+  letter-spacing: 0.06em;
+  color: #c0c0c0;
+}
+
+.profile-data__work-data p {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  margin-top: 20px;
 }
 
 .sidebar {

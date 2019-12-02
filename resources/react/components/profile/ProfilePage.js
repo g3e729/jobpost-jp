@@ -1,8 +1,10 @@
 import React from 'react';
+import { css } from 'emotion';
 
 import Page from '../common/Page';
 import Heading from  '../common/Heading';
 import Clipboard from  '../common/Clipboard';
+import Embed from  '../common/Embed';
 import ProfileContent from './ProfileContent';
 
 const ProfilePage = () => (
@@ -25,27 +27,69 @@ const ProfilePage = () => (
               <ul className="profile-data__section">
                 <li className="profile-data__section-item">
                   <div className="profile-data__section-box">
-                    1
+                    <h3 className="profile-data__section-heading">自己紹介</h3>
+                    <p className="profile-data__section-copy">{`フォトグラファー
+                    ・株式会社BNGパートナーズ
+                    ・STB139
+
+                      営業・広報・人事と色々やってきたら、マネージャーの下で色々やる人になりました。現在Web制作会社のアカウントプランナーチームにて営業補佐/マーケティング/採用を行なっています。
+
+                      またフリーでスポーツ中心のカメラマンも行なっており、バスケを中心にスポーツ写真、キッズスポーツ大会・合宿などの撮影も行なっています。ポートフォリオサイト【https://snaxano.wixsite.com/photo】
+                    `}</p>
                   </div>
                 </li>
                 <li className="profile-data__section-item">
                   <div className="profile-data__section-box">
-                    2
+                    <h3 className="profile-data__section-heading">やってみたいこと</h3>
+                    <p className="profile-data__section-copy">好きなことをやり続けたい</p>
                   </div>
                 </li>
                 <li className="profile-data__section-item">
                   <div className="profile-data__section-box">
-                    3
+                    <h3 className="profile-data__section-heading">職歴</h3>
+                    <dl className="profile-data__work">
+                      <dt className="profile-data__work-term">社長室　広報</dt>
+                      <dd className="profile-data__work-data">
+                        <h4>株式会社ＢＮＧパートナーズ （馬鹿が日本を元気にする）</h4>
+                        <time>2015-10</time>
+                        <p>{`自社の良いところを知ってもらいたい。という思いから社長室で広報と人材開発室で採用/広報に携わっています。そのためにイベント企画/運営やメディア発信、自社ブログの運用を行い、知名度のUPだけでなく認知度の向上に努めています。
+                          ほかにも自社内のメンバーにより深く自社を知ってもらうために社内広報誌の発刊、メンバー誌のリニューアル等を行い、自社の理解度を深めました。`}</p>
+                      </dd>
+                      <dt className="profile-data__work-term">スタッフ</dt>
+                      <dd className="profile-data__work-data">
+                        <h4>STB 139 スイートベイジル</h4>
+                        <time>2014-05</time>
+                        <p>{`主に日本のミュージシャンの演奏を鑑賞しながら飲食も楽しめるライブレストラン。好きなミュージシャンや音楽を生で感じ、お客さんにも楽しんでもらえるようにしていました。2014.5.25閉館とともに退職しました。`}</p>
+                      </dd>
+                    </dl>
                   </div>
                 </li>
                 <li className="profile-data__section-item">
                   <div className="profile-data__section-box">
-                    4
+                    <h3 className="profile-data__section-heading">学歴</h3>
+                    <dl className="profile-data__work">
+                      <dt className="profile-data__work-term">日本工学院専門学校</dt>
+                      <dd className="profile-data__work-data">
+                        <h4>ミュージックアーティスト科</h4>
+                        <time>2013 - 2016</time>
+                        <p>{`作曲・編曲を専攻していました。得意分野はバンド編成での歌物。2年次には合唱曲プロジェクトを始動。またゴスペルにも参加。専攻外ながらもバンド活動に参加し赤坂BRITZや川崎チッタ等のライブハウスでの演奏も行ないました。
+                          担当はキーボードとちょっと歌。`}</p>
+                      </dd>
+                    </dl>
                   </div>
                 </li>
                 <li className="profile-data__section-item">
                   <div className="profile-data__section-box">
-                    5
+                    <h3 className="profile-data__section-heading">ムービー</h3>
+                    <div className="profile-data__video">
+                      <Embed src="https://www.youtube.com/embed/zpOULjyy-n8"
+                        className={css`margin-bottom: 22px`}
+                        allowFullScreen />
+                      <div className="profile-data__link">
+                        <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                        <Clipboard value="https://github.com/MyznEiji" />
+                      </div>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -179,6 +223,47 @@ const ProfilePage = () => (
                 <li className="profile-data__section-item">
                   <div className="profile-data__section-box">
                     <h3 className="profile-data__section-heading">ポートフォリオ</h3>
+                    <ul className="profile-data__websites">
+                      <li className="profile-data__websites-item">
+                        <div className="profile-data__websites-eyecatch">
+                          <div className="profile-data__websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                        </div>
+                        <div className="profile-data__websites-content">
+                          <h4 className="profile-data__websites-name">Myzn.io</h4>
+                          <p className="profile-data__websites-desc">自分の情報まとめて掲載しているページ</p>
+                          <div className="profile-data__link">
+                            <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                            <Clipboard value="https://github.com/MyznEiji" />
+                          </div>
+                        </div>
+                      </li>
+                      <li className="profile-data__websites-item">
+                        <div className="profile-data__websites-eyecatch">
+                          <div className="profile-data__websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                        </div>
+                        <div className="profile-data__websites-content">
+                          <h4 className="profile-data__websites-name">Myzn.io</h4>
+                          <p className="profile-data__websites-desc">自分の情報まとめて掲載しているページ</p>
+                          <div className="profile-data__link">
+                            <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                            <Clipboard value="https://github.com/MyznEiji" />
+                          </div>
+                        </div>
+                      </li>
+                      <li className="profile-data__websites-item">
+                        <div className="profile-data__websites-eyecatch">
+                          <div className="profile-data__websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                        </div>
+                        <div className="profile-data__websites-content">
+                          <h4 className="profile-data__websites-name">Myzn.io</h4>
+                          <p className="profile-data__websites-desc">自分の情報まとめて掲載しているページ</p>
+                          <div className="profile-data__link">
+                            <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                            <Clipboard value="https://github.com/MyznEiji" />
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
                 </li>
                 <li className="profile-data__section-item">
