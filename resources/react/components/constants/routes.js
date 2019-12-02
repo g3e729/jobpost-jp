@@ -1,7 +1,7 @@
 export const prefix = (process.env.NODE_ENV === 'development') ? '/react/' : '/';
 
 export const routes = {
-  PROFILE: `${prefix}`,
+  ROOT: `${prefix}`,
   MY_PROFILE: `${prefix}profile`,
   PROFILE_FAV: `${prefix}profile/favorites`,
   PROFILE_APPLY: `${prefix}profile/apply`,

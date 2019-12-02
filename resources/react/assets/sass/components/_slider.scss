@@ -16,7 +16,8 @@ $container-width: 60px;
   .slider__eyecatch {
     position: relative;
     height: 100%;
-    max-width: 1100px;
+    width: calc(100vw - 272px);
+    min-width: 1100px;
 
     &:before {
       content: '';
@@ -106,7 +107,8 @@ $container-width: 60px;
   &.slider-pagination {
     position: absolute;
     top: 23px;
-    left: calc(50% + ((1020px /2) - 56px)) !important;
+    left: auto !important;
+    right: 112px;
     width: auto !important;
   }
 

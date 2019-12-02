@@ -16,10 +16,22 @@ const ProfilePage = () => (
       <div className="l-container l-container--main">
         <ProfileContent>
           <div style={{flex: '2', margitRight: '10px', alignSelf: 'stretch'}}>
-            <div className="profile-basic">1</div>
-            <div className="profile-skills">2</div>
-            <div className="profile-language">3</div>
-            <div className="profile-website"></div>
+            <div className="profile-basic">
+              <h3 className="profile__title">PROFILE</h3>
+              <p className="profile__title-jp">プロフィール</p>
+            </div>
+            <div className="profile-skills">
+              <h3 className="profile__title">COMPUTER SKILLS</h3>
+              <p className="profile__title-jp">コンピュータースキル</p>
+            </div>
+            <div className="profile-language">
+              <h3 className="profile__title">LANGUAGE</h3>
+              <p className="profile__title-jp">語学</p>
+            </div>
+            <div className="profile-website">
+              <h3 className="profile__title">WEBSITE</h3>
+              <p className="profile__title-jp">ウェブサイト</p>
+            </div>
             Content<br/>
             Content<br/>
             Content<br/>

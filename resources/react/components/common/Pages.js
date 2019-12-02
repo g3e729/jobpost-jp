@@ -20,18 +20,18 @@ const Pages = () => (
     <Switch>
       <Route
         exact
-        path={routes.PROFILE}
-        component={ProfilePage}
-      />
-      <Route
-        exact
-        path={routes.COMPANIES}
-        component={CompaniesPage}
+        path={routes.ROOT}
+        component={JobsPage}
       />
       <Route
         exact
         path={routes.JOBS}
         component={JobsPage}
+      />
+      <Route
+        exact
+        path={routes.COMPANIES}
+        component={CompaniesPage}
       />
       <Route
         exact

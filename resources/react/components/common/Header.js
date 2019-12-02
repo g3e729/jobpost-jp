@@ -11,7 +11,7 @@ const Header = () => (
     <div className="l-container l-container--wide flex flex--space-between">
       <div className="l-header__left">
         <h1 className="header__logo">
-          <Link to={routes.PROFILE}>
+          <Link to={routes.ROOT}>
             <img src="../img/logo-kredo-new.png" alt="Kredo" className="header__logo-image"/>
           </Link>
         </h1>
