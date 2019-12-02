@@ -65,7 +65,13 @@
                     <td>
                       @if (! $ticket->deleted_at)
                         <div class="payment-actions d-flex justify-content-between">
-                          <a href="#" class="btn btn-link p-0 js-ticket-delete" data-type="delete">削除</a>
+                          <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
+                          <form id="deleteForm" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
+                            @csrf
+                            {{ method_field('DELETE') }}
+
+                            <button type="submit">削除</button>
+                          </form>
                         </div>
                       @endif
                     </td>

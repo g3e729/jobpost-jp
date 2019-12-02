@@ -16,10 +16,10 @@ class TicketController extends BaseController
 		return view('admin.tickets.index', compact('approved', 'not_approved'));
 	}
 
-	public function destroy(Transaction $payment)
+	public function destroy(Transaction $ticket)
 	{
-		$payment->delete();
+		$ticket->delete();
 
-		return back()->with('success', "Success! Transaction succesfully deleted!");
+		return back()->with('success', "Success! Ticket succesfully deleted!");
 	}
 }

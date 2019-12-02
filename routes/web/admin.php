@@ -18,7 +18,7 @@ Route::group([
 		],
 	]);
 	Route::resource('payments', 'PaymentController')->only('index', 'show', 'update');
-	Route::resource('tickets', 'TicketController')->only('index', 'delete');
+	Route::resource('tickets', 'TicketController')->only('index', 'destroy');
 	Route::resource('settings', 'AccountController')->only('index', 'store');
 	Route::resource('notifications', 'NotificationController');
 

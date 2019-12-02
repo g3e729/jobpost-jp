@@ -45,13 +45,14 @@ class PaymentController extends BaseController
 		$is_approved = $transactions->where('is_approved', 1)->count() == $transactions->where('deleted_at', null)->count();
 
 		$payment = (object) [
+			'id' => $payment->id,
 			'bill_date' => $between[0]->format('Y年m月分'),
 			'transactionable' => $transactionable,
 			'tickets' => $transactions->where('type', 'ticket'),
 			'subscription_total' => $transactions->where('type', 'subscription')->sum('amount'),
 			'ticket_total' => $transactions->where('type', 'ticket')->where('deleted_at', null)->sum('amount'),
 			'total' => $transactions->sum('amount'),
-			'is_approved' => $is_approved
+			'is_approved' => $is_approved,
 		];
 
 		return view('admin.payments.show', compact('payment'));
