@@ -48,17 +48,17 @@
                   <td style="width: 25%" class="font-weight-bold">名前</td>
                   <td style="white-space: pre-line;">{{ $company->display_name }}</td>
                 </tr>
-                
+
                 <tr>
                   <td class="font-weight-bold">会社紹介</td>
                   <td style="white-space: pre-line;">{{ $company->description }}</td>
                 </tr>
-                
+
                 <tr>
                   <td class="font-weight-bold">HP(URL)</td>
                   <td><a href="{{ $company->homepage }}" target="_blank">{{ $company->homepage }}</a></td>
                 </tr>
-                
+
                 <tr>
                   <td class="font-weight-bold">住所</td>
                   <td>
@@ -78,12 +78,12 @@
                     </dl>
                   </td>
                 </tr>
-                
+
                 <tr>
                   <td class="font-weight-bold">電話番号</td>
                   <td>{{ $company->contact_number }}</td>
                 </tr>
-                
+
                 <tr>
                   <td class="font-weight-bold">創業者</td>
                   <td>{{ $company->ceo }}</td>
