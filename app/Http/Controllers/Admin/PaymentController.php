@@ -39,13 +39,14 @@ class PaymentController extends BaseController
 	public function show(Transaction $payment)
 	{
 		$between = [$payment->created_at->firstOfMonth(), $payment->created_at->endOfMonth()];
+		$transactionable = $payment->transactionable;
 
-		$transactions = Transaction::withTrashed()->whereBetween('created_at', $between)->get();
+		$transactions = $transactionable->transactions()->withTrashed()->whereBetween('created_at', $between)->get();
 		$is_approved = $transactions->where('is_approved', 1)->count() == $transactions->where('deleted_at', null)->count();
 
 		$payment = (object) [
 			'bill_date' => $between[0]->format('Y年m月分'),
-			'transactionable' => $payment->transactionable,
+			'transactionable' => $transactionable,
 			'tickets' => $transactions->where('type', 'ticket'),
 			'subscription_total' => $transactions->where('type', 'subscription')->sum('amount'),
 			'ticket_total' => $transactions->where('type', 'ticket')->where('deleted_at', null)->sum('amount'),
@@ -59,8 +60,9 @@ class PaymentController extends BaseController
 	public function update(Transaction $payment)
 	{
 		$between = [$payment->created_at->firstOfMonth(), $payment->created_at->endOfMonth()];
+		$transactionable = $payment->transactionable;
 
-		Transaction::whereBetween('created_at', $between)->update(['is_approved' => 1]);
+		$transactionable->transactions()->whereBetween('created_at', $between)->update(['is_approved' => 1]);
 
 		return back()->with('success', "Success! Payment succesfully approved!");
 	}
