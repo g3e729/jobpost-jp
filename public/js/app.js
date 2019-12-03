@@ -59841,7 +59841,7 @@ var Avatar = function Avatar(_ref) {
       props = _objectWithoutProperties(_ref, ["className"]);
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
-    className: "avatar ".concat(className)
+    className: "avatar ".concat(className || '')
   }, props));
 };
 
@@ -59922,7 +59922,7 @@ var Button = function Button(_ref) {
       props = _objectWithoutProperties(_ref, ["className", "value"]);
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
-    className: "button ".concat(className)
+    className: "button ".concat(className || '')
   }, props), value);
 };
 
@@ -60113,7 +60113,7 @@ var Embed = function Embed(_ref) {
       props = _objectWithoutProperties(_ref, ["className", "src"]);
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "embed embed--16by9 ".concat(className)
+    className: "embed ".concat(className || '')
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", _extends({
     src: src
   }, props)));
@@ -61342,38 +61342,17 @@ var HelpPage = function HelpPage() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _common_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Pagination */ "./resources/react/components/common/Pagination.js");
-/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Button */ "./resources/react/components/common/Button.js");
-/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
 
 
-
-
-
-var JobsList = function JobsList() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jobs-list"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jobs-list__top"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jobs-list__fraction"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "jobs-list__fraction-numeration"
-  }, "10"), " / 75"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jobs-list__actions"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "button--link jobs-list__actions-button ".concat(_constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE),
-    value: "\u65B0\u7740\u9806"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "button--link jobs-list__actions-button",
-    value: "\u4EBA\u6C17\u9806"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jobs-list__content"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "jobs-list__posts"
+var JobsList = function JobsList(_ref) {
+  var hasTitle = _ref.hasTitle;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, hasTitle ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "jobs-list__title"
+  }, "\u52DF\u96C6") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "jobs-list ".concat(hasTitle ? 'jobs-list--titled' : '')
   }, [1, 2, 3, 4, 5].map(function (_, idx) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "jobs-list__posts-item",
+      className: "jobs-list__item",
       key: idx
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "jobs"
@@ -61420,9 +61399,7 @@ var JobsList = function JobsList() {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "icon icon-star"
     }), "1.2k")))));
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jobs-list__footer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (JobsList);
@@ -61444,7 +61421,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_Slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Slider */ "./resources/react/components/common/Slider.js");
 /* harmony import */ var _common_Filter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Filter */ "./resources/react/components/common/Filter.js");
 /* harmony import */ var _common_PageScroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/PageScroll */ "./resources/react/components/common/PageScroll.js");
-/* harmony import */ var _JobsList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./JobsList */ "./resources/react/components/jobs/JobsList.js");
+/* harmony import */ var _JobsSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./JobsSection */ "./resources/react/components/jobs/JobsSection.js");
 
 
 
@@ -61457,10 +61434,59 @@ var JobsPage = function JobsPage() {
     className: "l-section l-section--main section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-container l-container--main"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Filter__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_JobsList__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Filter__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_JobsSection__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (JobsPage);
+
+/***/ }),
+
+/***/ "./resources/react/components/jobs/JobsSection.js":
+/*!********************************************************!*\
+  !*** ./resources/react/components/jobs/JobsSection.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Pagination */ "./resources/react/components/common/Pagination.js");
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Button */ "./resources/react/components/common/Button.js");
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
+/* harmony import */ var _JobsList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./JobsList */ "./resources/react/components/jobs/JobsList.js");
+
+
+
+
+
+
+var JobsSection = function JobsSection() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-section__top"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-section__fraction"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "jobs-section__fraction-numeration"
+  }, "10"), " / 75"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-section__actions"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "button--link jobs-section__actions-button ".concat(_constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE),
+    value: "\u65B0\u7740\u9806"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "button--link jobs-section__actions-button",
+    value: "\u4EBA\u6C17\u9806"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-section__content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_JobsList__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jobs-section__footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (JobsSection);
 
 /***/ }),
 
@@ -61626,7 +61652,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
 /* harmony import */ var _common_Clipboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/Clipboard */ "./resources/react/components/common/Clipboard.js");
 /* harmony import */ var _common_Embed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/Embed */ "./resources/react/components/common/Embed.js");
-/* harmony import */ var _ProfileContent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ProfileContent */ "./resources/react/components/profile/ProfileContent.js");
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/Button */ "./resources/react/components/common/Button.js");
+/* harmony import */ var _ProfileContent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProfileContent */ "./resources/react/components/profile/ProfileContent.js");
+/* harmony import */ var _jobs_JobsList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../jobs/JobsList */ "./resources/react/components/jobs/JobsList.js");
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["height: 400px;"]);
 
@@ -61667,6 +61695,8 @@ function _taggedTemplateLiteral(strings, raw) {
 
 
 
+
+
 var ProfilePage = function ProfilePage() {
   var userType = Math.random() >= 0.9 ? 'student' : 'company';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_2__["default"], null, userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -61693,7 +61723,7 @@ var ProfilePage = function ProfilePage() {
     className: "l-section l-section--profile section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-container l-container--main"
-  }, userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_7__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-data"
@@ -61759,7 +61789,7 @@ var ProfilePage = function ProfilePage() {
     className: "profile-data__video"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Embed__WEBPACK_IMPORTED_MODULE_5__["default"], {
     src: "https://www.youtube.com/embed/zpOULjyy-n8",
-    className: Object(emotion__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject()),
+    className: "embed--16by9 ".concat(Object(emotion__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject())),
     allowFullScreen: true
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-data__link"
@@ -62108,7 +62138,7 @@ var ProfilePage = function ProfilePage() {
     className: "sidebar-content__scores-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "sidebar-content__scores-category"
-  }, "ENGLISH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "TOEIC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Reading", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "80\u70B9(CEFR - B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Listening", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "70\u70B9(CEFR- B2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Total", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Speaking", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Writing", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "40\u70B9(CEFR - A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "\u30EC\u30D9\u30EB", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "CEFR - B1"))))))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "ENGLISH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "TOEIC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Reading", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "80\u70B9(CEFR - B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Listening", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "70\u70B9(CEFR- B2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Total", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Speaking", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Writing", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "40\u70B9(CEFR - A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "\u30EC\u30D9\u30EB", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "CEFR - B1"))))))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProfileContent__WEBPACK_IMPORTED_MODULE_7__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-data"
@@ -62219,7 +62249,19 @@ var ProfilePage = function ProfilePage() {
     target: "_blank"
   }, "https://github.com/MyznEiji"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Clipboard__WEBPACK_IMPORTED_MODULE_4__["default"], {
     value: "https://github.com/MyznEiji"
-  })))))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+  }))))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data profile-data--jobs"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__jobs"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__jobs-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_jobs_JobsList__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    hasTitle: "true"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-data__jobs-footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    value: "\u3082\u3063\u3068\u307F\u308B"
+  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "sidebar sidebar--single"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sidebar__inner"
@@ -62291,7 +62333,7 @@ var ProfilePage = function ProfilePage() {
     className: "sidebar-content__company-map"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Embed__WEBPACK_IMPORTED_MODULE_5__["default"], {
     src: "https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed",
-    className: Object(emotion__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject2()),
+    className: "embed--4by3 ".concat(Object(emotion__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject2())),
     allowFullScreen: true
   })))))))))));
 };

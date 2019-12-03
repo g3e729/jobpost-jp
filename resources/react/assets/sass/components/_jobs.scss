@@ -96,34 +96,34 @@
   margin-right: 5px;
 }
 
-.jobs-list {
+.jobs-section {
   flex: 1;
   margin-left: 40px;
   align-self: stretch;
 }
 
-.jobs-list__top {
+.jobs-section__top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 9px;
 }
 
-.jobs-list__content {}
+.jobs-section__content {}
 
-.jobs-list__footer {
+.jobs-section__footer {
   text-align: center;
 
   padding: 60px 0 60px;
   border-top: solid 1px $color-dark-gray;
 }
 
-.jobs-list__fraction {
+.jobs-section__fraction {
   font-family: $alt-font-family;
   font-size: 20px;
 }
 
-.jobs-list__fraction-numeration {
+.jobs-section__fraction-numeration {
   font-family: $alt-font-family;
   font-size: 26px;
   font-weight: 700;
@@ -133,9 +133,9 @@
   top: -7px;
 }
 
-.jobs-list__actions {}
+.jobs-section__actions {}
 
-.jobs-list__actions-button {
+.jobs-section__actions-button {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -150,11 +150,28 @@
   }
 }
 
-.jobs-list__posts {
+.jobs-list {
   list-style: none;
 }
 
-.jobs-list__posts-item {
+.jobs-list--titled {
+  .jobs-list__item {
+    &:first-child {
+      border-top: solid 2px $color-dark-yellow;
+    }
+  }
+}
+
+.jobs-list__item {
   padding: 38px 0 29px;
   border-top: solid 1px $color-dark-gray;
+}
+
+.jobs-list__title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  margin-bottom: 10px;
+  padding-top: 18px;
 }

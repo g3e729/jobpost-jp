@@ -2,10 +2,12 @@ import React from 'react';
 import { css } from 'emotion';
 
 import Page from '../common/Page';
-import Heading from  '../common/Heading';
-import Clipboard from  '../common/Clipboard';
-import Embed from  '../common/Embed';
+import Heading from '../common/Heading';
+import Clipboard from '../common/Clipboard';
+import Embed from '../common/Embed';
+import Button from '../common/Button';
 import ProfileContent from './ProfileContent';
+import JobsList from '../jobs/JobsList';
 
 const ProfilePage = () => {
   const userType = Math.random() >= 0.9 ? 'student' : 'company';
@@ -428,6 +430,16 @@ const ProfilePage = () => {
                       </div>
                     </li>
                   </ul>
+                </div>
+                <div className="profile-data profile-data--jobs">
+                  <div className="profile-data__jobs">
+                    <div className="profile-data__jobs-content">
+                      <JobsList hasTitle="true" />
+                    </div>
+                    <div className="profile-data__jobs-footer">
+                      <Button value="もっとみる" />
+                    </div>
+                  </div>
                 </div>
               </div>
               <aside className="sidebar sidebar--single">
