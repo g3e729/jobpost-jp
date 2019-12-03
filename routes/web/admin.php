@@ -21,9 +21,9 @@ Route::group([
 	Route::resource('tickets', 'TicketController')->only('index', 'destroy');
 	Route::resource('settings', 'AccountController')->only('index', 'store');
 	Route::resource('notifications', 'NotificationController');
-	Route::resource('recruitments', 'PostController', [
+	Route::resource('recruitments', 'JobPostController', [
 		'parameters' => [
-			'post' => 'recruitment',
+			// 'job_post' => 'recruitment',
 		],
 	]);
 

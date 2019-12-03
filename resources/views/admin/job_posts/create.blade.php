@@ -4,19 +4,24 @@
 
 @section('content')
 	<div class="l-container l-container-narrow">
+
     @if (session()->has('success'))
-    <div class="alert alert-success" role="alert">
-      {{ session()->get('success') }}
-    </div>
+      <div class="alert alert-success" role="alert">
+        {{ session()->get('success') }}
+      </div>
     @endif
-	  <form class="needs-validation py-2 mb-4" method="POST" action="" novalidate>
+
+    <h2 class="py-4 text-center alt-font">新規募集作成フォーム</h2>
+	  
+    <form class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.recruitments.store') }}" enctype="multipart/form-data" novalidate>
       @csrf
-	    <h2 class="py-4 text-center alt-font">新規募集作成フォーム</h2>
+
+      <input type="hidden" name="company_id" value="{{ $company->id }}">
 
       <div class="form-group pb-3 row">
         <label for="formJobTitle" class="col-3 col-form-label font-weight-bold">タイトル</label>
         <div class="col-9">
-          <input type="text" class="form-control" id="formJobTitle" name="job_title" value="{{ old('job_title') }}" placeholder="" required>
+          <input type="text" class="form-control" id="formJobTitle" name="title" value="{{ old('title') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter Job post title.
           </div>
@@ -107,11 +112,11 @@
       <div class="form-group pb-3 row">
         <label for="formEmploymentStatus" class="col-3 col-form-label font-weight-bold">雇用状況</label>
         <div class="col-9">
-          <select class="form-control" id="formEmploymentStatus" name="status" data-action="change"
+          <select class="form-control" id="formEmploymentStatus" name="employment_type" data-action="change"
             data-condition="" data-text="Please enter employment status.">
             <option value="" selected hidden disabled>Choose employment status</option>
-            @foreach($employment_status as $index => $name)
-              <option value="{{ $index }}" {{ ($index == old('status_id')) ? 'selected' : null }}>{{ $name }}</option>
+            @foreach($employment_types as $index => $name)
+              <option value="{{ $index }}" {{ ($index == old('employment_type')) ? 'selected' : null }}>{{ ucwords($name) }}</option>
             @endforeach
           </select>
           <div class="invalid-tooltip">
@@ -134,7 +139,13 @@
       <div class="form-group pb-3 row">
         <label for="formEmploymentIncome" class="col-3 col-form-label font-weight-bold">想定年収</label>
         <div class="col-9">
-          <input type="text" class="form-control" id="formEmploymentIncome" name="salary" value="{{ old('salary') }}" placeholder="" required>
+          <select class="form-control" id="formEmploymentStatus" name="salary" data-action="change"
+            data-condition="" data-text="Please enter employment status.">
+            <option value="" selected hidden disabled>Choose salary</option>
+            @foreach($range as $value)
+              <option value="{{ $value }}" {{ ($value == old('salary')) ? 'selected' : null }}>{{ $value }}</option>
+            @endforeach
+          </select>
           <div class="invalid-tooltip">
             Please enter income.
           </div>
@@ -276,7 +287,8 @@
       <div class="form-group pb-3 row">
 	      <label for="formStation" class="col-3 col-form-label font-weight-bold">最寄駅</label>
 	      <div class="col-9">
-          <input type="text" class="form-control" id="formStation" name="station" value="{{ old('station') }}" placeholder="">
+          <textarea class="form-control" id="formStation" name="station" placeholder="" rows="2"
+            style="min-height: 60px;">{{ old('station') }}</textarea>
 	      </div>
 	    </div>
 

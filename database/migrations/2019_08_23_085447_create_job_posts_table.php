@@ -20,25 +20,28 @@ class CreateJobPostsTable extends Migration
                 ->references('id')
                 ->on('company_profiles')
                 ->onDelete('cascade');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
 
+            $table->string('slug')->nullable();
+            
             $table->string('position');
             $table->string('programming_language');
             $table->string('framework');
             $table->string('environment');
             $table->string('database');
-            $table->string('requirements');
-            $table->string('status_id');
+            $table->text('requirements');
+            $table->string('employment_type');
             $table->string('number_of_applicants');
-            $table->string('work_time');
-            $table->string('holidays');
-            $table->string('allowance');
-            $table->string('incentive');
-            $table->string('salary_increase');
-            $table->string('insurance');
-            $table->string('contract_period');
-            $table->string('screening_flow');
+            $table->text('work_time');
+            $table->string('salary')->nullable();
+            $table->text('holidays');
+            $table->text('allowance');
+            $table->text('incentive');
+            $table->text('salary_increase');
+            $table->text('insurance');
+            $table->text('contract_period');
+            $table->text('screening_flow');
 
             $table->string('prefecture')->nullable();
             $table->string('address1')->nullable();
