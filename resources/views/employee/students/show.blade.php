@@ -8,8 +8,7 @@
       <div class="student-detail-top py-4">
         <div class="shadow-sm card card-student-detail">
           <div class="card-body">
-            <div class="card-actions text-right">
-            </div>
+            <div class="card-actions text-right"></div>
             <div class="card-body-img text-center">
               <img src="{{ $student->avatar }}" class="avatar avatar-md">
             </div>
@@ -48,6 +47,26 @@
           @include('employee.students.partials.show' . $step)
         @endforeach
 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">削除</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          この生徒を削除してもよろしいですか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
         </div>
       </div>
     </div>

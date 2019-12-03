@@ -8,14 +8,12 @@
       <div class="company-detail-top py-4">
           <div class="shadow-sm card card-company-detail">
             <div class="card-body">
-              <div class="card-actions text-right">
-              </div>
+              <div class="card-actions text-right"></div>
               <div class="card-body-img text-center">
                 <img src="{{ $company->avatar }}" class="avatar avatar-md">
               </div>
               <div class="card-body-main mt-3">
                 <h3 class="text-center">{{ $company->display_name }}</h3>
-
               </div>
             </div>
           </div>
@@ -38,14 +36,17 @@
                   <td style="width: 25%" class="font-weight-bold">名前</td>
                   <td style="white-space: pre-line;">{{ $company->display_name }}</td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">会社紹介</td>
                   <td style="white-space: pre-line;">{{ $company->description }}</td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">HP(URL)</td>
                   <td><a href="{{ $company->homepage }}" target="_blank">{{ $company->homepage }}</a></td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">住所</td>
                   <td>
@@ -65,22 +66,32 @@
                     </dl>
                   </td>
                 </tr>
+
+                <tr>
+                  <td class="font-weight-bold">電話番号</td>
+                  <td>{{ $company->contact_number }}</td>
+                </tr>
+
                 <tr>
                   <td class="font-weight-bold">創業者</td>
                   <td>{{ $company->ceo }}</td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">社員数</td>
                   <td>{{ $company->number_of_employees }}</td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">メールアドレス</td>
                   <td>{{ $company->email }}</td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">設立年月</td>
                   <td>{{ $company->established_date->format('Y年m月d日') }}</td>
                 </tr>
+
                 <tr>
                   <td class="font-weight-bold">業種、業界</td>
                   <td>
@@ -89,6 +100,7 @@
                     </a>
                   </td>
                 </tr>
+
                 @if (isset($company->social_media_accounts['facebook']))
                   <tr>
                     <td class="font-weight-bold">Facebook</td>
@@ -99,6 +111,7 @@
                     </td>
                   </tr>
                 @endif
+
                 @if (isset($company->social_media_accounts['twitter']))
                   <tr>
                     <td class="font-weight-bold">Twitter</td>
@@ -109,6 +122,7 @@
                     </td>
                   </tr>
                 @endif
+
                 @if (isset($company->social_media_accounts['instagram']))
                   <tr>
                     <td class="font-weight-bold">Instagram</td>
@@ -119,6 +133,13 @@
                     </td>
                   </tr>
                 @endif
+
+                {{-- <tr>
+                  <td class="font-weight-bold">アバター</td>
+                  <td>
+                    <img class="avatar avatar-md" src="{{ $company->avatar }}" style="height: 150px; width: 150px; border-width: 2px !important;">
+                  </td>
+                </tr> --}}
 
                 @if ($company->cover_photo)
                   <tr>
@@ -142,13 +163,14 @@
                 ] as $type => $subtitle)
                   @php
                     $photos = $type . '_photos';
+                    $text = $type . '_text';
                   @endphp
                   <tr>
                     <td style="width: 25%" class="font-weight-bold">{{ ucwords($type) }}<br>{{ $subtitle }}</td>
                     <td>
                       <dl>
                         <dt>説明</dt>
-                        <dd style="white-space: pre-line;">{{ $company->what_text ?? '--' }}</dd>
+                        <dd style="white-space: pre-line;">{{ $company->$text ?? '--' }}</dd>
                         @foreach([0, 1] as $id)
                           @if (isset($company->$photos[$id]))
                             <dt>写真{{ $company->$photos->count() > 1 ? $id + 1 : 1 }}</dt>
@@ -193,7 +215,7 @@
                           @if ($portfolio->file)
                             <dt>画像</dt>
                             <dd>
-                              <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->file->url }}" style="border-width: 2px !important;">
+                              <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->image }}" style="border-width: 2px !important;">
                             </dd>
                           @endif
                         </dl>
