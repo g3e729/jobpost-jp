@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
@@ -28,6 +29,9 @@ class File extends Model
         parent::boot();
         static::creating(function ($model) {
             $model->uploader_id = auth()->user()->id;
+        });
+        static::deleting(function ($model) {
+            Storage::disk('s3')->delete($model->url);
         });
     }
 

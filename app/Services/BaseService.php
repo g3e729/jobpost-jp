@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Services\FileService;
 use Exception;
 
 class BaseService
@@ -112,15 +113,16 @@ class BaseService
     {
         try {
             if ($form_file || $delete == 1) {
-                $this->item->files()->where('type', $type)->delete();
+                $this->item->files()->where('type', $type)->get()->each(function ($file) {
+                    $file->delete();
+                });
             }
             
             if ($form_file) {
-                $file = $form_file->store('public/' . $type);
-                $file = explode('/', $file);
+                $path = FileService::uploadFile($form_file, $type);
 
                 $this->item->files()->create([
-                    'url' => asset('/storage/' . $type . '/' . array_last($file)),
+                    'url' => $path,
                     'file_name' => $form_file->getClientOriginalName(),
                     'type' => $type,
                     'mime_type' => $form_file->getMimeType(),

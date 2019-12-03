@@ -175,13 +175,14 @@
                 ] as $type => $subtitle)
                   @php
                     $photos = $type . '_photos';
+                    $text = $type . '_text';
                   @endphp
                   <tr>
                     <td style="width: 25%" class="font-weight-bold">{{ ucwords($type) }}<br>{{ $subtitle }}</td>
                     <td>
                       <dl>
                         <dt>説明</dt>
-                        <dd style="white-space: pre-line;">{{ $company->what_text ?? '--' }}</dd>
+                        <dd style="white-space: pre-line;">{{ $company->$text ?? '--' }}</dd>
                         @foreach([0, 1] as $id)
                           @if (isset($company->$photos[$id]))
                             <dt>写真{{ $company->$photos->count() > 1 ? $id + 1 : 1 }}</dt>
@@ -226,7 +227,7 @@
                           @if ($portfolio->file)
                             <dt>画像</dt>
                             <dd>
-                              <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->file->url }}" style="border-width: 2px !important;">
+                              <img class="img-fluid border border-secondary my-3 w-100" src="{{ $portfolio->image }}" style="border-width: 2px !important;">
                             </dd>
                           @endif
                         </dl>

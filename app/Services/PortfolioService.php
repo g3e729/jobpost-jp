@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Portfolio;
 use App\Services\UserService;
+use App\Services\FileService;
 use Exception;
 
 class PortfolioService extends BaseService
@@ -43,11 +44,10 @@ class PortfolioService extends BaseService
 		        }
 
 		        if ($req_file) {
-		            $file = $req_file->store('public/portfolio');
-		            $file = explode('/', $file);
+                    $path = FileService::uploadFile($req_file, 'portfolio');
 
 		            $portfolio->file()->create([
-		                'url' => asset("/storage/portfolio/" . array_last($file)),
+		                'url' => $path,
 		                'file_name' => $req_file->getClientOriginalName(),
 		                'type' => 'portfolio',
 		                'mime_type' => $req_file->getMimeType(),

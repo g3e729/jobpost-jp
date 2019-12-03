@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\CompanyProfile;
 use App\Services\UserService;
+use App\Services\FileService;
 use Exception;
 
 class CompanyService extends BaseService
@@ -82,11 +83,10 @@ class CompanyService extends BaseService
                     }
 
                     if (isset($req_file['file'])) {
-                        $file = $req_file['file']->store('public/' . $relation);
-                        $file = explode('/', $file);
+                        $path = FileService::uploadFile($req_file['file'], $relation);
 
                         $this->item->files()->create([
-                            'url' => asset("/storage/{$relation}/" . array_last($file)),
+                            'url' => $path,
                             'file_name' => $req_file['file']->getClientOriginalName(),
                             'type' => $relation,
                             'mime_type' => $req_file['file']->getMimeType(),

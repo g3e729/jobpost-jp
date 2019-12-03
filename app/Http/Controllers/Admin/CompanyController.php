@@ -66,6 +66,8 @@ class CompanyController extends BaseController
                 }
             break;
             case 2:
+                $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+                
                 if ($request->photos) {
                     $companyService->wwhPhotoUploader($request->photos);
                 }
