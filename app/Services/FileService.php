@@ -67,7 +67,7 @@ class FileService extends BaseService
     static function uploadFile($form_file, $relation)
     {
         try {
-            return Storage::disk('s3')->put('images/' . $relation, $form_file);
+            return Storage::disk('s3')->put(config('filesystems.path') . 'images/' . $relation, $form_file);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             abort(505, $form_file->getClientOriginalName() . '<br/>' . $e->getMessage());
