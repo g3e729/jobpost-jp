@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import ProfilePage from '../profile/ProfilePage';
 import CompaniesPage from '../company/CompaniesPage';
+import CompanyPage from '../company/CompanyPage';
 import JobsPage from '../jobs/JobsPage';
 
 import AboutPage from '../about/AboutPage';
@@ -37,6 +38,11 @@ const Pages = () => (
         exact
         path={routes.COMPANIES}
         component={CompaniesPage}
+      />
+      <Route
+        exact
+        path={routes.COMPANIES_DETAIL}
+        component={CompanyPage}
       />
       <Route
         exact

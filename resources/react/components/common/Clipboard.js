@@ -11,7 +11,10 @@ const Clipboard = ({ value }) => {
     <Button className="button--link"
       value={
         <CopyToClipboard text={value}
-          onCopy={() => setCopied(true)}>
+          onCopy={_ => {
+            setCopied(true);
+            console.log('Copied: ', value);
+          }}>
           <i className={`icon icon-duplicate text-dark-yellow ${css`font-size: 12px`}`}></i>
         </CopyToClipboard>
       }
