@@ -23,7 +23,7 @@
   <meta property="og:type" content="blog">
   <meta property="og:image" content="/assets/images/common/logo_ogp.png">
 
-  <link rel="shortcut icon" href="/assets/images/common/favicon.ico">
+  <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
   <link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
 
   <!-- Custom fonts for this template-->

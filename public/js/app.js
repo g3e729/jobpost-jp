@@ -62618,7 +62618,7 @@ var TermsPage = function TermsPage() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/kamlig/Projects/kredo-career/resources/react/app.js */"./resources/react/app.js");
+module.exports = __webpack_require__(/*! /Users/jimcallanta/Sites/kredo/resources/react/app.js */"./resources/react/app.js");
 
 
 /***/ })

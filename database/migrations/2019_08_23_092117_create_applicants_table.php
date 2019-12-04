@@ -15,10 +15,10 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('post_id')->nullable();
-            $table->foreign('post_id')
+            $table->unsignedInteger('job_post_id')->nullable();
+            $table->foreign('job_post_id')
                 ->references('id')
-                ->on('posts')
+                ->on('job_posts')
                 ->onDelete('cascade');
             $table->unsignedInteger('seeker_profile_id')->nullable();
             $table->foreign('seeker_profile_id')

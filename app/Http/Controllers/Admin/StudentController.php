@@ -44,16 +44,39 @@ class StudentController extends BaseController
 	public function edit(Student $student, Request $request)
 	{
 		$step = $request->get('step', 1);
+		$data = compact('step', 'student');
 
 		switch ($step) {
 			case 1:
 			case 4:
-				$student_status = $student->getStudentStatus();
-				$occupations = $student->getOccupations();
 				$countries = getCountries();
 				$courses = $student->getCourses();
-				$prefectures = getPrefecture();
 				$english_levels = $student->getEnglishLevels();
+				$occupations = $student->getOccupations();
+				$prefectures = getPrefecture();
+				$student_status = $student->getStudentStatus();
+
+				$data = array_merge($data, compact(
+					'courses',
+					'countries',
+					'english_levels',
+					'occupations',
+					'prefectures',
+					'student_status'
+				));
+			break;
+			case 2:
+				if (! $student->work_history->count()) {
+					$student->work_history->push([]);
+				}
+
+				foreach ([0, 1, 2] as $i) {
+					if ($student->education_history[$i]->id ?? false) {
+						continue;
+					}
+
+					$student->education_history->push([]);
+				}
 			break;
 			case 3:
 				$experiences = $student->getExperiences();
@@ -62,37 +85,21 @@ class StudentController extends BaseController
 				$others = $student->getOthers();
 				$programming_languages = $student->getProgrammingLanguages();
 				$rates = skillRate();
+
+				$data = array_merge($data, compact(
+					'experiences',
+					'frameworks',
+					'languages',
+					'others',
+					'programming_languages',
+					'rates',
+					'step',
+					'student'
+				));
 			break;
 		}
 
-		if (! $student->work_history->count()) {
-			$student->work_history->push([]);
-		}
-
-		foreach ([0, 1, 2] as $i) {
-			if ($student->education_history[$i]->id ?? false) {
-				continue;
-			}
-
-			$student->education_history->push([]);
-		}
-
-		return view('admin.students.edit', compact(
-			'courses',
-			'countries',
-			'english_levels',
-			'experiences',
-			'frameworks',
-			'languages',
-			'occupations',
-			'others',
-			'prefectures',
-			'programming_languages',
-			'rates',
-			'step',
-			'student',
-			'student_status'
-		));
+		return view('admin.students.edit', $data);
 	}
 
 	public function update(Student $student, StudentRequest $request)

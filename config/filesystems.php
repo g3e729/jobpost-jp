@@ -66,4 +66,6 @@ return [
 
     ],
 
+    'path' => in_array(strtolower(env('APP_ENV')), ['local', 'dev']) ? strtolower(env('APP_ENV')).'/' : '',
+
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Requests\Admin\SettingRequest;
+use App\Services\FileService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -22,14 +23,15 @@ class AccountController extends BaseController
 		switch ($request->get('type')) {
 			case 'avatar':
 				$profile = $user->profile;
-	            $profile->files()->delete();
+                $profile->files()->where('type', 'avatar')->get()->each(function ($file) {
+                    $file->delete();
+                });
 
 				if ($request->file('avatar')) {
-		            $file = $request->avatar->store('public/avatar');
-		            $file = explode('/', $file);
+                	$path = FileService::uploadFile($request->avatar, 'avatar');
 
 		            $profile->files()->create([
-		                'url' => asset('/storage/avatar/' . array_last($file)),
+		                'url' => $path,
 		                'file_name' => $request->avatar->getClientOriginalName(),
 		                'type' => 'avatar',
 		                'mime_type' => $request->avatar->getMimeType(),

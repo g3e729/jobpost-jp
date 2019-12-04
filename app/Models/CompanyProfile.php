@@ -71,9 +71,9 @@ class CompanyProfile extends Model
     }
 
     // Relationships
-    public function posts()
+    public function jobPosts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(JobPost::class);
     }
 
     public function transactions()

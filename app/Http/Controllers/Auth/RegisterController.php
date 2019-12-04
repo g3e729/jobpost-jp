@@ -108,29 +108,11 @@ class RegisterController extends Controller
                 );
 
                 if ($request->has('avatar')) {
-                    $file = $request->avatar->store('public/avatar');
-                    $file = explode('/', $file);
-
-                    $profile->files()->create([
-                        'url' => asset('/storage/avatar/' . array_last($file)),
-                        'file_name' => $request->avatar->getClientOriginalName(),
-                        'type' => 'avatar',
-                        'mime_type' => $request->avatar->getMimeType(),
-                        'size' => $request->avatar->getSize(),
-                    ]);
+                    $profile->acPhotoUploader($request->avatar);
                 }
 
                 if ($request->has('cover_photo')) {
-                    $file = $request->cover_photo->store('public/cover_photo');
-                    $file = explode('/', $file);
-
-                    $profile->files()->create([
-                        'url' => asset('/storage/cover_photo/' . array_last($file)),
-                        'file_name' => $request->cover_photo->getClientOriginalName(),
-                        'type' => 'cover_photo',
-                        'mime_type' => $request->cover_photo->getMimeType(),
-                        'size' => $request->cover_photo->getSize(),
-                    ]);
+                    $profile->acPhotoUploader($request->avatar, 'cover_photo');
                 }
             break;
         }
@@ -154,16 +136,7 @@ class RegisterController extends Controller
                 );
 
                 if ($request->has('avatar')) {
-                    $file = $request->avatar->store('public/avatar');
-                    $file = explode('/', $file);
-
-                    $profile->files()->create([
-                        'url' => asset('/storage/avatar/' . array_last($file)),
-                        'file_name' => $request->avatar->getClientOriginalName(),
-                        'type' => 'avatar',
-                        'mime_type' => $request->avatar->getMimeType(),
-                        'size' => $request->avatar->getSize(),
-                    ]);
+                    $profile->acPhotoUploader($request->avatar);
                 }
             break;
         }
@@ -187,16 +160,7 @@ class RegisterController extends Controller
                 );
 
                 if ($request->has('avatar')) {
-                    $file = $request->avatar->store('public/avatar');
-                    $file = explode('/', $file);
-
-                    $profile->files()->create([
-                        'url' => asset('/storage/avatar/' . array_last($file)),
-                        'file_name' => $request->avatar->getClientOriginalName(),
-                        'type' => 'avatar',
-                        'mime_type' => $request->avatar->getMimeType(),
-                        'size' => $request->avatar->getSize(),
-                    ]);
+                    $profile->acPhotoUploader($request->avatar);
                 }
             break;
         }

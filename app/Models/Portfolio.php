@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\FileService;
 use Illuminate\Database\Eloquent\Model;
 
 class Portfolio extends Model
@@ -19,6 +20,16 @@ class Portfolio extends Model
         'portfolable_id',
         'portfolable_type',
     ];
+    
+    // Attributes
+    public function getImageAttribute()
+    {
+        if (! $this->file) {
+            return null;
+        }
+        
+        return FileService::retrievePath($this->file->url);
+    }
 
     public function file()
     {

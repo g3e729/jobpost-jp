@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\CompanyProfile;
 use App\Services\UserService;
+use App\Services\FileService;
 use Exception;
 
 class CompanyService extends BaseService
@@ -25,35 +26,45 @@ class CompanyService extends BaseService
 
     public function create($fields = [])
     {
-        $this->createUser($fields);
+        try {
+            $this->createUser($fields);
 
-        if (! $this->user) {
-            return null;
-        }
+            if (! $this->user) {
+                return null;
+            }
 
-        $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
+            $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
 
-        if (! count($profile_fields)) {
+            if (! count($profile_fields)) {
+                return $this->item;
+            }
+
+            if ($this->user->profile) {
+                $this->user->profile->update($profile_fields);
+            } else {
+                $this->user->profile()->create($profile_fields);
+            }
+
+            $this->item = $this->model::where('user_id', $this->user->id)->first();
+
             return $this->item;
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            abort(505, $e->getMessage());
         }
-
-        if ($this->user->profile) {
-            $this->user->profile->update($profile_fields);
-        } else {
-            $this->user->profile()->create($profile_fields);
-        }
-
-        $this->item = $this->model::where('user_id', $this->user->id)->first();
-
-        return $this->item;
     }
 
     public function updateSocialMedia($social_media_accounts = [])
     {
-        $this->item->social_media()->delete();
+        try {
+            $this->item->social_media()->delete();
 
-        foreach ($social_media_accounts as $social_media => $url) {
-            $this->item->social_media()->create(compact('social_media', 'url'));
+            foreach ($social_media_accounts as $social_media => $url) {
+                $this->item->social_media()->create(compact('social_media', 'url'));
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            abort(505, $e->getMessage());
         }
     }
 
@@ -72,11 +83,10 @@ class CompanyService extends BaseService
                     }
 
                     if (isset($req_file['file'])) {
-                        $file = $req_file['file']->store('public/' . $relation);
-                        $file = explode('/', $file);
+                        $path = FileService::uploadFile($req_file['file'], $relation);
 
                         $this->item->files()->create([
-                            'url' => asset("/storage/{$relation}/" . array_last($file)),
+                            'url' => $path,
                             'file_name' => $req_file['file']->getClientOriginalName(),
                             'type' => $relation,
                             'mime_type' => $req_file['file']->getMimeType(),

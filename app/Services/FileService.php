@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\File;
 use App\Services\UserService;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class FileService extends BaseService
 {
@@ -46,6 +47,30 @@ class FileService extends BaseService
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return collect([]);
+        }
+    }
+
+    static function retrievePath($url)
+    {
+        $s3 = Storage::disk('s3');
+        $client = $s3->getDriver()->getAdapter()->getClient();
+        $bucket = config('filesystems.disks.s3.bucket');
+
+        $command = $client->getCommand('GetObject', [
+            'Bucket' => $bucket,
+            'Key' => $url
+        ]);
+
+        return (string) $client->createPresignedRequest($command, '+20 minutes')->getUri();
+    }
+
+    static function uploadFile($form_file, $relation)
+    {
+        try {
+            return Storage::disk('s3')->put(config('filesystems.path') . 'images/' . $relation, $form_file);
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            abort(505, $form_file->getClientOriginalName() . '<br/>' . $e->getMessage());
         }
     }
 }
