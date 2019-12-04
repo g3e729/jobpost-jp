@@ -13,16 +13,12 @@ class CompanyController extends BaseController
 	{
 		$companies = (new CompanyService)->search($request->except('_token'));
 
-        $companies->each(function ($item) {
-            $item->forApi();
-        });
-
 		return $companies;
 	}
 
 	public function show(CompanyProfile $company)
 	{
-		return $company->forApi();
+		return $company;
 	}
 
 	public function update(CompanyProfile $company, Request $request)
@@ -42,6 +38,6 @@ class CompanyController extends BaseController
         	$company->social_media()->create(compact('social_media', 'url'));
         }
 
-        return $company->forApi();
+        return $company;
 	}
 }

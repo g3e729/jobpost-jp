@@ -12,22 +12,7 @@ use App\Models\WorkHistory;
 use App\Services\FileService;
 
 trait HasUser
-{
-    static protected $api_attr = [
-        'email',
-        'name',
-        'japanese_name',
-        'display_name',
-        'avatar',
-        'cover_photo',
-        'social_media_accounts',
-        'listed_skills',
-
-        'what_photos',
-        'why_photos',
-        'how_photos',
-    ];
-    
+{   
     // Attributes
     public function getEmailAttribute()
     {
@@ -157,16 +142,5 @@ trait HasUser
     public function education_history()
     {
         return $this->morphMany(EducationHistory::class, 'historiable');
-    }
-
-    // API attribute json setter
-    public function forApi()
-    {
-        $attributes = array_merge(self::$api_attr, $this::$get_attr);
-        foreach($attributes as $attr) {
-            $this[$attr] = $this->$attr;
-        }
-
-        return $this->toJson();
     }
 }

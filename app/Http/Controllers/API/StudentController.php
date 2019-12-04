@@ -13,16 +13,12 @@ class StudentController extends BaseController
 	{
 		$students = (new SeekerService)->search($request->except('_token'));
 
-        $students->each(function ($item) {
-            $item->forApi();
-        });
-
 		return $students;
 	}
 
 	public function show(Student $student)
 	{
-		return $student->forApi();
+		return $student;
 	}
 
 	public function update(Student $student, Request $request)

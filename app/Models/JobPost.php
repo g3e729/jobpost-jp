@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\FileService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -56,6 +57,8 @@ class JobPost extends Model
         'in' => 'Internship',
     ];
 
+    protected $appends = ['cover_photo'];
+
     public static function boot()
     {
         parent::boot();
@@ -77,9 +80,11 @@ class JobPost extends Model
     // Attributes
     public function getCoverPhotoAttribute()
     {
-        $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
-
-        return $url ?? null;
+        if (! $this->file) {
+            return null;
+        }
+        
+        return FileService::retrievePath($this->file->url);
     }
 
     // Relationships
@@ -88,9 +93,9 @@ class JobPost extends Model
         return $this->belongsTo(CompanyProfile::class, 'company_profile_id');
     }
 
-    public function files()
+    public function file()
     {
-        return $this->morphMany(File::class, 'fileable');
+        return $this->morphOne(File::class, 'fileable');
     }
 
     static function getEmploymentTypes($index = null)

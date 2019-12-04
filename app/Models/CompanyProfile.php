@@ -44,14 +44,31 @@ class CompanyProfile extends Model
         'deleted_at'
     ];
 
-    static protected $get_attr = [
-        'industry',
-        'features'
-    ];
+    // static protected $get_attr = [
+    //     'industry',
+    //     'features'
+    // ];
 
     static protected $industries = [
         1 => 'IT',
         'others' => 'others'
+    ];
+
+    protected $appends = [
+        'email',
+        'name',
+        'japanese_name',
+        'display_name',
+        'avatar',
+        'cover_photo',
+        'social_media_accounts',
+        'listed_skills',
+
+        'what_photos',
+        'why_photos',
+        'how_photos',
+
+        'industry'
     ];
 
     public static function boot()

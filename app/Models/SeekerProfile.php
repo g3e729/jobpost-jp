@@ -61,7 +61,24 @@ class SeekerProfile extends Model
         'deleted_at'
     ];
 
-    static protected $get_attr = [
+    // static protected $get_attr = [
+    //     'course',
+    //     'student_status',
+    //     'taken_class',
+    //     'occupation',
+    //     'english_level'
+    // ];
+
+    protected $appends = [
+        'email',
+        'name',
+        'japanese_name',
+        'display_name',
+        'avatar',
+        'cover_photo',
+        'social_media_accounts',
+        'listed_skills',
+        
         'course',
         'student_status',
         'taken_class',

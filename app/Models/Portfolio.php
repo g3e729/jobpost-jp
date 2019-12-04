@@ -20,6 +20,7 @@ class Portfolio extends Model
         'portfolable_id',
         'portfolable_type',
     ];
+    protected $appends = ['image'];
     
     // Attributes
     public function getImageAttribute()
