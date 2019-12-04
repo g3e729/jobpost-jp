@@ -11,7 +11,7 @@ class StudentController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$students = (new SeekerService)->search($request->except('_token'));
+		$students = (new SeekerService)->search($request->except('_token', 'page'));
 
 		return $students;
 	}

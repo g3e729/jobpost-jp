@@ -11,7 +11,7 @@ class CompanyController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$companies = (new CompanyService)->search($request->except('_token'));
+		$companies = (new CompanyService)->search($request->except('_token', 'page'));
 
 		return $companies;
 	}

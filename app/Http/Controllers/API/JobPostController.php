@@ -11,7 +11,7 @@ class JobPostController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$jobs = (new JobPostService)->search($request->except('_token'));
+		$jobs = (new JobPostService)->search($request->except('_token', 'page'));
 
 		return $jobs;
 	}
