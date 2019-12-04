@@ -483,7 +483,7 @@ input:focus {
 @font-face {
   font-family: "Avenir";
   src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd);
-  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd) format(‘embedded-opentype’), url(/fonts/Avenir-Medium.woff?8493a6cece6243e6c36bc9c5933a3b8a) format(‘woff’), url(/fonts/Avenir-Medium.ttf?85fc4658e0d92e2e7b060b2f5fc091de) format(‘truetype’);
+  src: url(/fonts/Avenir-Medium.eot?08eaee7e60d7cbeff7cb9a368e8b98bd) format("embedded-opentype"), url(/fonts/Avenir-Medium.woff?8493a6cece6243e6c36bc9c5933a3b8a) format("woff"), url(/fonts/Avenir-Medium.ttf?85fc4658e0d92e2e7b060b2f5fc091de) format("truetype");
   font-weight: 500;
   font-style: normal;
 }
@@ -491,7 +491,7 @@ input:focus {
 @font-face {
   font-family: "Avenir";
   src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54);
-  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54) format(‘embedded-opentype’), url(/fonts/Avenir-Black.woff?bab406dfde44985470f28b5f5e6bb9b9) format(‘woff’), url(/fonts/Avenir-Black.ttf?b24e41af53d02e87300b5bd032da57ec) format(‘truetype’);
+  src: url(/fonts/Avenir-Black.eot?e8d3ac99eb9d1598974601aa19883f54) format("embedded-opentype"), url(/fonts/Avenir-Black.woff?bab406dfde44985470f28b5f5e6bb9b9) format("woff"), url(/fonts/Avenir-Black.ttf?b24e41af53d02e87300b5bd032da57ec) format("truetype");
   font-weight: 900;
   font-style: normal;
 }
@@ -780,6 +780,41 @@ input:focus {
   background: transparent;
 }
 
+.dropdown {
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  width: 180px;
+  z-index: 20;
+}
+
+.dropdown__menu {
+  padding: 5px 0;
+  list-style: none;
+}
+
+.dropdown__menu-item a {
+  color: #393939;
+  letter-spacing: 0.06em;
+  padding: 8px 15px;
+  -webkit-transition: none !important;
+  transition: none !important;
+  cursor: pointer;
+}
+
+.dropdown__menu-item a:hover {
+  opacity: 1 !important;
+  color: #fff;
+  background-color: #fdb834 !important;
+}
+
+.dropdown__menu-item a.is-active {
+  color: #fff;
+  background-color: rgba(253, 184, 52, 0.5);
+  pointer-events: none;
+}
+
 .embed {
   position: relative;
   display: block;
@@ -992,6 +1027,10 @@ input:focus {
   -webkit-box-align: center;
           align-items: center;
   list-style: none;
+}
+
+.header-actions__item {
+  position: relative;
 }
 
 .header-actions__item:not(:last-child) {

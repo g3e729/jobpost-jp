@@ -15,6 +15,8 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
+    <form id="js-logout-form" action="{{ route('logout') }}" method="POST">@csrf</form>
+
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 
     <script src="{{ asset('js/app.js') }}"></script>

@@ -10,6 +10,12 @@ const Dropdown = () => {
   const [dropdown, setDropdown] = useState(false);
   const userType = Math.random() >= 0.1 ? 'student' : 'company';
 
+  const handleLogout = _ => {
+    const elLogoutForm = document.querySelector('#js-logout-form');
+
+    elLogoutForm.submit();
+  }
+
   return (
     <React.Fragment>
       <Button className="button--link"
@@ -45,9 +51,9 @@ const Dropdown = () => {
               </NavLink>
             </li>
             <li className="dropdown__menu-item">
-              <NavLink onClick={() => setDropdown(false)} exact to={routes.LOGOUT} activeClassName={state.ACTIVE}>
+              <a onClick={() => handleLogout()}>
                 ログアウト
-              </NavLink>
+              </a>
             </li>
           </ul>
         ) : (
@@ -73,9 +79,9 @@ const Dropdown = () => {
               </NavLink>
             </li>
             <li className="dropdown__menu-item">
-              <NavLink onClick={() => setDropdown(false)} exact to={routes.LOGOUT} activeClassName={state.ACTIVE}>
+              <a onClick={() => handleLogout()}>
                 ログアウト
-              </NavLink>
+              </a>
             </li>
           </ul>
         )}
