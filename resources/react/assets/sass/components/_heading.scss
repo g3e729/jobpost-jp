@@ -3,17 +3,17 @@
 
   padding: 55px 0 60px;
   background-color: $color-light-gray;
+}
 
-  &.heading--student {
-    position: relative;
-    margin: 0 60px 125px;
-    padding: 0;
-    height: 420px;
+.heading--user {
+  position: relative;
+  margin: 0 60px 125px;
+  padding: 0;
+  height: 420px;
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .heading__title {
@@ -68,6 +68,12 @@
   i {
     margin-right: 16px;
   }
+}
+
+.heading-content__position-location {
+  font-weight: 700;
+
+  margin-right: 15px;
 }
 
 .heading-content__button {

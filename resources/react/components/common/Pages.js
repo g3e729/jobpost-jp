@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import ProfilePage from '../profile/ProfilePage';
 import CompaniesPage from '../company/CompaniesPage';
+import CompanyPage from '../company/CompanyPage';
 import JobsPage from '../jobs/JobsPage';
 
 import AboutPage from '../about/AboutPage';
@@ -20,8 +21,18 @@ const Pages = () => (
     <Switch>
       <Route
         exact
-        path={routes.PROFILE}
+        path={routes.ROOT}
+        component={JobsPage}
+      />
+      <Route
+        exact
+        path={routes.MY_PROFILE}
         component={ProfilePage}
+      />
+      <Route
+        exact
+        path={routes.JOBS}
+        component={JobsPage}
       />
       <Route
         exact
@@ -30,8 +41,8 @@ const Pages = () => (
       />
       <Route
         exact
-        path={routes.JOBS}
-        component={JobsPage}
+        path={routes.COMPANIES_DETAIL}
+        component={CompanyPage}
       />
       <Route
         exact

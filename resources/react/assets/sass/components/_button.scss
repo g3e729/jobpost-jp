@@ -50,3 +50,13 @@
     margin-right: 4px;
   }
 }
+
+.button--profile {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: $color-dark-yellow;
+  text-decoration: underline;
+
+  padding: 0;
+  background: transparent;
+}

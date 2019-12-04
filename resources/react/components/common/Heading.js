@@ -8,7 +8,7 @@ const Heading = ({ type, children, title, subTitle, ...props }) => {
 
   return (
     <div className={`heading heading--${type || 'default'}`} {...props}>
-      { type && type === 'student' ? (
+      { type && type === 'user' ? (
           <div className="heading-content">
             <Avatar className="avatar--profile"
               style={{ backgroundImage: `url("${avatarImg}")` }}

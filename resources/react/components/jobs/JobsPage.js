@@ -4,7 +4,7 @@ import Page from '../common/Page';
 import Slider from '../common/Slider';
 import Filter from '../common/Filter';
 import PageScroll from '../common/PageScroll';
-import JobsList from './JobsList';
+import JobsSection from './JobsSection';
 
 const JobsPage = () => (
   <React.Fragment>
@@ -14,7 +14,7 @@ const JobsPage = () => (
       <div className="l-section l-section--main section">
         <div className="l-container l-container--main">
           <Filter />
-          <JobsList />
+          <JobsSection />
         </div>
       </div>
     </Page>

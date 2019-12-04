@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?mu94t8';
+$suffix: '?xbeo1b';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,15 @@ $suffix: '?mu94t8';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-building:before {
+  content: "\e912";
+}
+.icon-globe:before {
+  content: "\e913";
+}
+.icon-duplicate:before {
+  content: "\e911";
+}
 .icon-book:before {
   content: "\e90f";
 }

@@ -20,18 +20,16 @@ const Pagination = () => {
           )
         }
       </li>
-      { [1, 2, 3].map((item, idx) => {
-        return (
-          <li className={`pagination__item ${idx === 0 ? state.ACTIVE : ''}`} key={idx}>
-            { idx === 0 ? (
-              <span className="pagination__item-link">{item}</span>
-              ) : (
-              <a href="#" className="pagination__item-link">{item}</a>
-              )
-            }
-          </li>
-        );
-      }) }
+      { [1, 2, 3].map((item, idx) => (
+        <li className={`pagination__item ${idx === 0 ? state.ACTIVE : ''}`} key={idx}>
+          { idx === 0 ? (
+            <span className="pagination__item-link">{item}</span>
+            ) : (
+            <a href="#" className="pagination__item-link">{item}</a>
+            )
+          }
+        </li>
+      )) }
       <li className="pagination__item">
         { isNext === 0 ? (
           <span className="pagination__item-link">
