@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Avenir';
   src: url(#{$path-font}avenir/Avenir-Medium.eot);
-  src: url(#{$path-font}avenir/Avenir-Medium.eot?#iefix) format(‘embedded-opentype’),
-  url(#{$path-font}avenir/Avenir-Medium.woff) format(‘woff’),
-  url(#{$path-font}avenir/Avenir-Medium.ttf) format(‘truetype’);
+  src: url(#{$path-font}avenir/Avenir-Medium.eot?#iefix) format('embedded-opentype'),
+  url(#{$path-font}avenir/Avenir-Medium.woff) format('woff'),
+  url(#{$path-font}avenir/Avenir-Medium.ttf) format('truetype');
   font-weight: 500;
   font-style: normal;
 }
@@ -11,9 +11,9 @@
 @font-face {
   font-family: 'Avenir';
   src: url(#{$path-font}avenir/Avenir-Black.eot);
-  src: url(#{$path-font}avenir/Avenir-Black.eot?#iefix) format(‘embedded-opentype’),
-  url(#{$path-font}avenir/Avenir-Black.woff) format(‘woff’),
-  url(#{$path-font}avenir/Avenir-Black.ttf) format(‘truetype’);
+  src: url(#{$path-font}avenir/Avenir-Black.eot?#iefix) format('embedded-opentype'),
+  url(#{$path-font}avenir/Avenir-Black.woff) format('woff'),
+  url(#{$path-font}avenir/Avenir-Black.ttf) format('truetype');
   font-weight: 900;
   font-style: normal;
 }

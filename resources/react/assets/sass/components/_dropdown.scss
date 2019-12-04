@@ -1,0 +1,39 @@
+.dropdown {
+  position: absolute;
+  right: 0;
+
+  background-color: $color-white;
+  box-shadow: $shadow;
+
+  width: 180px;
+  z-index: $z-max;
+}
+
+.dropdown__menu {
+  padding: 5px 0;
+  list-style: none;
+}
+
+.dropdown__menu-item {
+  a {
+    color: $color-medium-black;
+    letter-spacing: 0.06em;
+
+    padding: 8px 15px;
+    transition: none !important;
+
+    &:hover {
+      opacity: 1 !important;
+
+      color: $color-white;
+      background-color: $color-dark-yellow !important;
+    }
+
+    &.is-active {
+      color: $color-white;
+      background-color: rgba($color-dark-yellow, 0.5);
+      
+      pointer-events: none;
+    }
+  }
+}
