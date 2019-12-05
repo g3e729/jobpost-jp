@@ -1,0 +1,28 @@
+.pageup {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  cursor: pointer;
+}
+
+.pageup__button {
+  font-family: $alt-font-family;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: $color-medium-black;
+}
+
+.pageup__icon {
+  position: absolute;
+  bottom: 27px;
+  left: calc(50% - 0.5px);
+
+  height: 40px;
+  width: 1px;
+  background-color: $color-medium-black;
+
+  pointer-events: none;
+}

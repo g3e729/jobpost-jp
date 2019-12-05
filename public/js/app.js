@@ -39207,7 +39207,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59654,6 +59654,17 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./resources/img/logo-kredo-icon-sp.png":
+/*!**********************************************!*\
+  !*** ./resources/img/logo-kredo-icon-sp.png ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/logo-kredo-icon-sp.png?4f5c59b293a39bc992679583463a6ddd";
+
+/***/ }),
+
 /***/ "./resources/img/logo-kredo-new.png":
 /*!******************************************!*\
   !*** ./resources/img/logo-kredo-new.png ***!
@@ -60479,7 +60490,7 @@ var Footer = function Footer(props) {
     to: _constants_routes__WEBPACK_IMPORTED_MODULE_2__["routes"].TERMS,
     activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_3__["state"].ACTIVE
   }, "\u5229\u7528\u898F\u7D04")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "footer-menu__item"
+    className: "footer-menu__item footer-menu__item--external"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     target: "_blank"
@@ -60549,6 +60560,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants/state */ "./resources/react/components/constants/state.js");
 /* harmony import */ var _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../img/logo-kredo-new.png */ "./resources/img/logo-kredo-new.png");
 /* harmony import */ var _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../img/logo-kredo-icon-sp.png */ "./resources/img/logo-kredo-icon-sp.png");
+/* harmony import */ var _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -60568,14 +60582,17 @@ var Header = function Header() {
     className: "header__logo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].ROOT
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6___default.a,
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("picture", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    srcSet: _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6___default.a,
+    media: "(min-width: 769px)"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7___default.a,
     alt: "Kredo",
     className: "header__logo-image"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     exact: true,
     to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].JOBS,
-    className: "button button--list",
+    className: "button button--list u-show-pc",
     activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-squares-list"
@@ -60767,6 +60784,51 @@ var PageScroll = function PageScroll() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PageScroll);
+
+/***/ }),
+
+/***/ "./resources/react/components/common/PageUp.js":
+/*!*****************************************************!*\
+  !*** ./resources/react/components/common/PageUp.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll-into-view-if-needed */ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button */ "./resources/react/components/common/Button.js");
+
+
+
+
+var PageUp = function PageUp() {
+  var handleClick = function handleClick(_) {
+    var elemRoot = document.querySelector('#root');
+    setTimeout(function () {
+      Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
+        block: 'start',
+        behavior: 'smooth'
+      });
+    }, 5);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pageup u-show-sp"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "button--link pageup__button",
+    onClick: function onClick() {
+      return handleClick();
+    },
+    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "pageup__icon"
+    }), "PAGE TOP")
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PageUp);
 
 /***/ }),
 
@@ -61498,7 +61560,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll-into-view-if-needed */ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js");
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
-/* harmony import */ var _HelpContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HelpContent */ "./resources/react/components/help/HelpContent.js");
+/* harmony import */ var _common_PageUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/PageUp */ "./resources/react/components/common/PageUp.js");
+/* harmony import */ var _HelpContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HelpContent */ "./resources/react/components/help/HelpContent.js");
+
 
 
 
@@ -61519,7 +61583,7 @@ var HelpPage = function HelpPage() {
     type: null,
     title: "HELP",
     subTitle: "\u30D8\u30EB\u30D7"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HelpContent__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HelpContent__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PageUp__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HelpPage);
@@ -61781,7 +61845,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll-into-view-if-needed */ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js");
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
-/* harmony import */ var _PrivacyContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PrivacyContent */ "./resources/react/components/privacy/PrivacyContent.js");
+/* harmony import */ var _common_PageUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/PageUp */ "./resources/react/components/common/PageUp.js");
+/* harmony import */ var _PrivacyContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./PrivacyContent */ "./resources/react/components/privacy/PrivacyContent.js");
+
 
 
 
@@ -61802,7 +61868,7 @@ var PrivacyPage = function PrivacyPage() {
     type: null,
     title: "PRIVACY POLICY",
     subTitle: "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PrivacyContent__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PrivacyContent__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PageUp__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PrivacyPage);
@@ -61893,7 +61959,7 @@ function _taggedTemplateLiteral(strings, raw) {
 
 
 var ProfilePage = function ProfilePage() {
-  var userType = Math.random() >= 0.9 ? 'student' : 'company';
+  var userType = Math.random() >= 0.5 ? 'student' : 'company';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_2__["default"], null, userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
     type: "user",
     style: {
@@ -62778,7 +62844,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll-into-view-if-needed */ "./node_modules/smooth-scroll-into-view-if-needed/es/index.js");
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
-/* harmony import */ var _TermsContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TermsContent */ "./resources/react/components/terms/TermsContent.js");
+/* harmony import */ var _common_PageUp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/PageUp */ "./resources/react/components/common/PageUp.js");
+/* harmony import */ var _TermsContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TermsContent */ "./resources/react/components/terms/TermsContent.js");
+
 
 
 
@@ -62799,7 +62867,7 @@ var TermsPage = function TermsPage() {
     type: null,
     title: "TERMS OF SERVICE",
     subTitle: "\u5229\u7528\u898F\u7D04"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TermsContent__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TermsContent__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PageUp__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TermsPage);
@@ -62813,7 +62881,7 @@ var TermsPage = function TermsPage() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jimcallanta/Sites/kredo/resources/react/app.js */"./resources/react/app.js");
+module.exports = __webpack_require__(/*! /Users/kamlig/Projects/kredo-career/resources/react/app.js */"./resources/react/app.js");
 
 
 /***/ })

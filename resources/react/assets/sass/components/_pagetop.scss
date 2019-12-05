@@ -12,6 +12,10 @@
   &.is-active {
     opacity: 1;
   }
+
+  @include max-screen($breakpoint-mobile) {
+    display: none;
+  }
 }
 
 .pagetop__icon {

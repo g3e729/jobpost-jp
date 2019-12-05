@@ -9,7 +9,11 @@
     <meta name="account" content="{{ session()->get('account') }}">
     <meta name="api-token" content="{{ session()->get('api_token') }}">
     <title>Kredo</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <noscript>

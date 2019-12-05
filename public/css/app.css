@@ -1732,6 +1732,12 @@ And you should not feel free to add a new Utility class.
   opacity: 1;
 }
 
+@media screen and (max-width: 768px) {
+  .pagetop {
+    display: none;
+  }
+}
+
 .pagetop__icon {
   display: block;
   height: 68px;
@@ -1753,6 +1759,32 @@ And you should not feel free to add a new Utility class.
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
           writing-mode: vertical-lr;
+}
+
+.pageup {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.pageup__button {
+  font-family: "Avenir", sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #393939;
+}
+
+.pageup__icon {
+  position: absolute;
+  bottom: 27px;
+  left: calc(50% - 0.5px);
+  height: 40px;
+  width: 1px;
+  background-color: #393939;
+  pointer-events: none;
 }
 
 .pagination {
@@ -1860,6 +1892,12 @@ a.pagination__item-link:hover {
   color: #fdb834;
 }
 
+@media screen and (max-width: 768px) {
+  .privacy__note {
+    margin-top: -7px;
+  }
+}
+
 .privacy-list__item {
   margin-top: 60px;
   counter-increment: counterHeader 0;
@@ -1936,6 +1974,36 @@ a.pagination__item-link:hover {
   left: 0;
   content: counter(counter1) "." counter(counter2) "." counter(counter3) ". ";
   counter-increment: counter3;
+}
+
+@media screen and (max-width: 768px) {
+  .privacy-list__item {
+    margin-top: 42px;
+  }
+
+  .privacy-list__item li {
+    margin-top: 12px !important;
+  }
+
+  .privacy-list__item li:first-child {
+    margin-top: 0 !important;
+  }
+
+  .privacy-list__item > ol {
+    padding: 5px 0 0 20px;
+  }
+
+  .privacy-list__item > ol > li {
+    padding-left: 7px;
+  }
+
+  .privacy-list__item > ol > li:before {
+    left: -10px;
+  }
+
+  .privacy-list__item > ol > li > ol > li > ol {
+    padding: 5px 0 5px 15px;
+  }
 }
 
 .privacy-list__item-header {
@@ -2733,6 +2801,16 @@ a.pagination__item-link:hover {
   font-size: 14px;
   font-weight: 400;
   margin-top: 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .terms-list__item > ol {
+    padding: 6px 0 0 10px;
+  }
+
+  .terms-list__item > ol > li > ol {
+    padding-left: 15px;
+  }
 }
 
 .terms-list__item-header {

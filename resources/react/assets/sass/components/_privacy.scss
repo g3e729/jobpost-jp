@@ -12,6 +12,10 @@
     font-weight: 700;
     color: $color-dark-yellow;
   }
+
+  @include max-screen($breakpoint-mobile) {
+    margin-top: -7px;
+  }
 }
 
 .privacy-list {}
@@ -93,6 +97,34 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    margin-top: 42px;
+
+    li {
+      margin-top: 12px !important;
+
+      &:first-child {
+        margin-top: 0 !important;
+      }
+    }
+
+    > ol {
+      padding: 5px 0 0 20px;
+
+      > li {
+        padding-left: 7px;
+
+        &:before {
+          left: -10px;
+        }
+
+        > ol > li > ol {
+          padding: 5px 0 5px 15px;
         }
       }
     }

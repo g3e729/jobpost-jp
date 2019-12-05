@@ -105,6 +105,16 @@
       }
     }
   }
+
+  @include max-screen($breakpoint-mobile) {
+    > ol {
+      padding: 6px 0 0 10px;
+
+      > li > ol {
+        padding-left: 15px;
+      }
+    }
+  }
 }
 
 .terms-list__item-header {

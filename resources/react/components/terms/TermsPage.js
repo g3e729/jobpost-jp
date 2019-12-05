@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
+import PageUp from '../common/PageUp';
 import TermsContent from './TermsContent';
 
 const TermsPage = () => {
@@ -21,6 +22,7 @@ const TermsPage = () => {
         subTitle="利用規約"
       />
       <TermsContent />
+      <PageUp />
     </Page>
   );
 }
