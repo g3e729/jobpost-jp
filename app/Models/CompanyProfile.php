@@ -103,6 +103,11 @@ class CompanyProfile extends Model
         return $this->morphMany(Feature::class, 'featurable');
     }
 
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
     // Options
     static function getIndustries($index = null)
     {

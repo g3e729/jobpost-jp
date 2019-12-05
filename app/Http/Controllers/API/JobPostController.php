@@ -12,9 +12,9 @@ class JobPostController extends BaseController
 {
 	protected $user = null;
 
-	public function __construct(Request $request)
+	public function __construct()
 	{
-		$this->user = (new UserService)->findApiToken($request->get('api_token'));
+		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
 	}
 	
 	public function index(Request $request)
@@ -24,9 +24,9 @@ class JobPostController extends BaseController
 		return $jobs;
 	}
 
-	public function show(JobPost $jobs)
+	public function show(JobPost $job)
 	{
-		return $jobs;
+		return $job;
 	}
 	
 	public function getJobFilters(Request $request)

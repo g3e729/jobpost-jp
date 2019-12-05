@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->morphMany(Notification::class, 'notifiable');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'user_id');
+    }
 }

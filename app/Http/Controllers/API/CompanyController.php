@@ -12,9 +12,9 @@ class CompanyController extends BaseController
 {
 	protected $user = null;
 
-	public function __construct(Request $request)
+	public function __construct()
 	{
-		$this->user = (new UserService)->findApiToken($request->get('api_token'));
+		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
 	}
 	
 	public function index(Request $request)
