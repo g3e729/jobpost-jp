@@ -10,7 +10,7 @@ import ProfileContent from './ProfileContent';
 import JobsList from '../jobs/JobsList';
 
 const ProfilePage = () => {
-  const userType = Math.random() >= 0.9 ? 'student' : 'company';
+  const userType = Math.random() >= 0.5 ? 'student' : 'company';
 
   return (
     <Page>

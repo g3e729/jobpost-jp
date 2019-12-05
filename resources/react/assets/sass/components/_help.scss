@@ -1,6 +1,4 @@
-.help {
-  list-style: none;
-}
+.help {}
 
 .help__item {
   padding: 30px 30px 25px;
@@ -9,6 +7,10 @@
 
   &:first-child {
     margin-top: 0;
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 26px 15px;
   }
 }
 
@@ -38,6 +40,11 @@
   padding-top: 20px;
   margin-top: 18px;
   border-top: solid 1px #d9d6d6;
+
+  @include max-screen($breakpoint-mobile) {
+    padding-top: 14px;
+    margin-top: 14px;
+  }
 }
 
 .help__item-note {

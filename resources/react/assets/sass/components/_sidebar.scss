@@ -87,9 +87,7 @@
   }
 }
 
-.sidebar-content__scores {
-  list-style: none;
-}
+.sidebar-content__scores {}
 
 .sidebar-content__scores-item {
   margin-top: 40px;
@@ -139,7 +137,6 @@
 }
 
 .sidebar-content__company {
-  list-style: none;
   margin: 0 -32px;
 }
 
@@ -156,7 +153,6 @@
 .sidebar-content__sns {
   display: flex;
   justify-content: center;
-  list-style: none;
 }
 
 .sidebar-content__sns-item {

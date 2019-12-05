@@ -89,7 +89,6 @@
 .jobs__pills {
   display: flex;
   justify-content: center;
-  list-style: none;
 }
 
 .jobs__pills-item {
@@ -150,9 +149,7 @@
   }
 }
 
-.jobs-list {
-  list-style: none;
-}
+.jobs-list {}
 
 .jobs-list--titled {
   .jobs-list__item {

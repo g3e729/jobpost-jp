@@ -8,9 +8,17 @@
   background-color: $color-yellow;
   background-image: $gradient;
   background-size: cover;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 67px 0 73px;
+  }
 }
 
 .l-footer__bottom {
   padding: 25px 0;
   background-color: $color-medium-black;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 18px 0;
+  }
 }

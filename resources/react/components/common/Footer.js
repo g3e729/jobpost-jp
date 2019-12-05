@@ -35,7 +35,7 @@ const Footer = (props) => {
               利用規約
             </NavLink>
           </li>
-          <li className="footer-menu__item">
+          <li className="footer-menu__item footer-menu__item--external">
             <a href="#" target="_blank">
               お問い合わせ
               <i className="icon icon-external-link"></i>

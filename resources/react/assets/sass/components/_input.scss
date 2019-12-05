@@ -1,15 +1,36 @@
 .input {
-  font-size: 16px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
 
   display: block;
-  padding: 9px 30px;
+  padding: 9px 10px; // Todo: Placeholder
   outline: none;
 
   border-radius: 30px;
+
+  &::placeholder {
+    font-size: 14px;
+    color: $color-dark-gray;
+    letter-spacing: 0.12em;
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    &::placeholder {
+      font-size: 11px;
+    }
+  }
 }
 
 .input--search {
   width: 390px;
+  padding: 9px 30px;
 
   background-color: $color-light-gray;
+
+  @include max-screen($breakpoint-mobile) {
+    font-size: 11px;
+
+    width: 160px;
+    padding: 8px 10px 8px 15px;
+  }
 }

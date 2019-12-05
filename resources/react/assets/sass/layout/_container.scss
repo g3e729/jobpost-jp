@@ -3,10 +3,18 @@
   margin: 0 auto;
   width: $site-size;
   box-sizing: border-box;
+
+  @include max-screen($breakpoint-mobile) {
+    width: 100%;
+  }
 }
 
 .l-container--wide {
-  max-width: calc(100% - 80px);
+  min-width: 1060px;
+
+  @include max-screen($breakpoint-mobile) {
+    min-width: auto;
+  }
 }
 
 .l-container--main {

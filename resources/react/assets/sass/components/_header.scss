@@ -12,6 +12,11 @@
       opacity: 0.7;
     }
   }
+
+  @include max-screen($breakpoint-mobile) {
+    width: 30px;
+    margin-right: 0;
+  }
 }
 
 .header__logo-image {
@@ -21,14 +26,14 @@
 .header-actions {
   display: flex;
   align-items: center;
-  list-style: none;
 }
 
 .header-actions__item {
   position: relative;
+  margin-right: 35px;
 
-  &:not(:last-child) {
-    margin-right: 35px;
+  &:last-child {
+    margin-right: 0;
   }
 
   a {
@@ -46,6 +51,14 @@
 
     &.icon-bell {
       font-size: 18px;
+    }
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    margin-right: 21px;
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }

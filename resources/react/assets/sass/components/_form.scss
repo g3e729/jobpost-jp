@@ -11,9 +11,17 @@
 
 .form__group--search {
   right: 35px;
+
+  @include max-screen($breakpoint-mobile) {
+    right: 20px;
+  }
 }
 
 .form__group-append {
   position: absolute;
   right: 1.2rem;
+
+  @include max-screen($breakpoint-mobile) {
+    right: 0.6rem;
+  }
 }
