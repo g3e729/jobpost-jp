@@ -57,7 +57,7 @@ class JobPost extends Model
         'in' => 'Internship',
     ];
 
-    protected $appends = ['cover_photo'];
+    protected $appends = ['cover_photo', 'total_likes'];
 
     public static function boot()
     {
@@ -90,6 +90,11 @@ class JobPost extends Model
         return FileService::retrievePath($this->file->url);
     }
 
+    public function getTotalLikesAttribute()
+    {
+        return $this->likes->count();
+    }
+
     // Relationships
     public function company()
     {
@@ -99,6 +104,11 @@ class JobPost extends Model
     public function file()
     {
         return $this->morphOne(File::class, 'fileable');
+    }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     static function getEmploymentTypes($index = null)

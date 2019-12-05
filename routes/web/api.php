@@ -6,8 +6,8 @@ Route::group([
     'prefix'     => 'api/v1',
 ], function () {
 	
-	Route::resource('jobs', 'JobPostController')->only('index', 'show');
 	Route::get('jobs-filters', 'JobPostController@getJobFilters');
+	Route::resource('jobs', 'JobPostController')->only('index', 'show');
 
 	Route::group([
 	    // 'middleware' => ['auth'],
@@ -17,6 +17,8 @@ Route::group([
 
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
 		Route::resource('students', 'StudentController')->only('index', 'show');
+
+		Route::post('like', 'LikeController@like');
 
 
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
