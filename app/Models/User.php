@@ -28,6 +28,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function scopeApiToken($query, $value)
+    {
+        return $query->where('api_token', $value);
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

@@ -4,13 +4,22 @@ namespace App\Http\Controllers\API;
 
 use App\Models\SeekerProfile as Student;
 use App\Services\SeekerService;
+use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
+    protected $user = null;
+
+    public function __construct(Request $request)
+    {
+        $this->user = (new UserService)->findApiToken($request->get('api_token'));
+    }
+    
 	public function index(Request $request)
 	{
+        dd($request->all());
 		$students = (new SeekerService)->search($request->except('_token', 'page'));
 
 		return $students;

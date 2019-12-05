@@ -13,5 +13,8 @@ Route::group([
 	], function () {
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
 		Route::resource('students', 'StudentController')->only('index', 'show');
+
+
+		Route::resource('notifications', 'NotificationController')->only('index', 'update');
 	});
 });
