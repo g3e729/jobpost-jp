@@ -12,6 +12,13 @@ class SocialMediaAccount extends Model
         'created_at',
     ];
 
+    protected $hidden = [
+        'accountable_id',
+        'accountable_type',
+        'created_at',
+        'updated_at'
+    ];
+
     protected $fillable = [
 		'id',
 		'url',

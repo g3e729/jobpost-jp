@@ -12,6 +12,9 @@ Route::group([
 	Route::group([
 	    // 'middleware' => ['auth'],
 	], function () {
+		Route::get('account', 'AccountController@details');
+		Route::patch('account', 'AccountController@update');
+
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
 		Route::resource('students', 'StudentController')->only('index', 'show');
 
