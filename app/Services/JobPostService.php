@@ -84,6 +84,29 @@ class JobPostService extends BaseService
         }
     }
 
+    public function jobFilters()
+    {
+        $jobs = JobPost::get();
+
+        $frameworks = $jobs->groupBy(function ($item, $key) {
+            return $item->framework;
+        })->keys();
+
+        $positions = $jobs->groupBy(function ($item, $key) {
+            return $item->position;
+        })->keys();
+
+        $programming_languages = $jobs->groupBy(function ($item, $key) {
+            return $item->programming_language;
+        })->keys();
+
+        $regions = getPrefecture();
+
+        $status = JobPost::getEmploymentTypes();
+
+        return collect(compact('frameworks', 'positions', 'programming_languages', 'regions', 'status'));
+    }
+
     public function setCompany(CompanyProfile $company)
     {
     	$this->company = $company;

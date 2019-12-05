@@ -11,6 +11,13 @@ class Skill extends Model
         'updated_at'
     ];
 
+    protected $hidden = [
+        'skillable_id',
+        'skillable_type',
+        'created_at',
+        'updated_at'
+    ];
+
     protected $fillable = [
 		'id',
 		'skill_id',

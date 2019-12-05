@@ -20,7 +20,7 @@
             <dt>Prefecture</dt>
             <dd>
               <a href="{{ route('admin.companies.index', ['prefecture' => $student->prefecture]) }}">
-                {{ getPrefecture($student->prefecture) }}
+                {{ $student->prefecture ? getPrefecture($student->prefecture) : '--' }}
               </a>
             </dd>
             <dt>番地まで</dt>

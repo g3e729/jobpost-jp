@@ -57,7 +57,7 @@
                   <dt>Prefecture</dt>
                   <dd>
                     <a href="{{ route('admin.employees.index', ['prefecture' => $employee->prefecture]) }}">
-                      {{ getPrefecture($employee->prefecture) }}
+                      {{ $employee->prefecture ? getPrefecture($employee->prefecture) : '--' }}
                     </a>
                   </dd>
                   <dt>番地</dt>

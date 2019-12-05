@@ -63,7 +63,10 @@ class JobPost extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-        	$model->slug = urldecode(strtolower($model->name));
+            $model->slug = urldecode(strtolower($model->name));
+        });
+        static::updating(function ($model) {
+            $model->slug = urldecode(strtolower($model->name));
         });
     }
 

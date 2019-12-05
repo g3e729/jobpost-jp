@@ -28,4 +28,11 @@ class JobPostController extends BaseController
 	{
 		return $jobs;
 	}
+	
+	public function getJobFilters(Request $request)
+	{
+		$filters = (new JobPostService)->jobFilters();
+
+		return $filters;
+	}
 }
