@@ -19,7 +19,6 @@ class StudentController extends BaseController
     
 	public function index(Request $request)
 	{
-        dd($request->all());
 		$students = (new SeekerService)->search($request->except('_token', 'page'));
 
 		return $students;
