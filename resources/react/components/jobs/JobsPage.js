@@ -7,7 +7,7 @@ import PageScroll from '../common/PageScroll';
 import JobsSection from './JobsSection';
 
 const JobsPage = () => (
-  <React.Fragment>
+  <>
     <PageScroll />
     <Page>
       <Slider />
@@ -18,7 +18,7 @@ const JobsPage = () => (
         </div>
       </div>
     </Page>
-  </React.Fragment>
+  </>
 );
 
 export default JobsPage;

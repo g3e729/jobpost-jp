@@ -1,7 +1,7 @@
 import React from 'react';
 
 const JobsList = ({ hasTitle }) => (
-  <React.Fragment>
+  <>
     { hasTitle ? <h3 className="jobs-list__title">募集</h3> : null }
     <ul className={`jobs-list ${hasTitle ? 'jobs-list--titled' : ''}`}>
       { [1, 2, 3, 4, 5].map((_, idx) => (
@@ -47,7 +47,7 @@ const JobsList = ({ hasTitle }) => (
         </li>
       )) }
     </ul>
-  </React.Fragment>
+  </>
 );
 
 export default JobsList;

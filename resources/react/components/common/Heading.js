@@ -24,10 +24,10 @@ const Heading = ({ type, children, title, subTitle, ...props }) => {
             </div>
           </div>
         ) : (
-          <React.Fragment>
+          <>
             <h2 className="heading__title text-dark-yellow">{title}</h2>
             <p className="heading__title-jp">{subTitle}</p>
-          </React.Fragment>
+          </>
         )
       }
     </div>

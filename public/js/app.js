@@ -60123,6 +60123,14 @@ var Dropdown = function Dropdown() {
       setDropdown = _useState2[1];
 
   var userType = Math.random() >= 0.1 ? 'student' : 'company';
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var timer = setTimeout(function () {
+      if (dropdown === true) setDropdown(false);
+    }, 5000);
+    return function () {
+      return clearTimeout(timer);
+    };
+  }, [dropdown]);
 
   var handleLogout = function handleLogout(_) {
     var elLogoutForm = document.querySelector('#js-logout-form');
@@ -60141,10 +60149,7 @@ var Dropdown = function Dropdown() {
       }
     })
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "dropdown",
-    style: {
-      display: dropdown ? '' : 'none'
-    }
+    className: "dropdown ".concat(dropdown ? _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE : '')
   }, userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "dropdown__menu"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {

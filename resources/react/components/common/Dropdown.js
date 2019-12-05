@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Avatar from './Avatar';
@@ -10,6 +10,15 @@ const Dropdown = () => {
   const [dropdown, setDropdown] = useState(false);
   const userType = Math.random() >= 0.1 ? 'student' : 'company';
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (dropdown === true)
+        setDropdown(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [dropdown]);
+
   const handleLogout = _ => {
     const elLogoutForm = document.querySelector('#js-logout-form');
 
@@ -17,12 +26,12 @@ const Dropdown = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button--link"
         onClick={_ => setDropdown(!dropdown)}
         value={<Avatar className="avatar--header" style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }}></Avatar>}
       />
-      <nav className="dropdown" style={{display: dropdown ? '' : 'none' }}>
+      <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`}>
         { userType === 'student' ? (
           <ul className="dropdown__menu">
             <li className="dropdown__menu-item">
@@ -86,7 +95,7 @@ const Dropdown = () => {
           </ul>
         )}
       </nav>
-    </React.Fragment>
+    </>
   );
 }
 

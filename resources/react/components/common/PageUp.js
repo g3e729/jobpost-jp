@@ -17,9 +17,9 @@ const PageUp = () => {
       <Button className="button--link pageup__button"
         onClick={() => handleClick()}
         value={
-          <React.Fragment>
+          <>
             <span className="pageup__icon"></span>PAGE TOP
-          </React.Fragment>
+          </>
         }
       />
     </div>
