@@ -60845,15 +60845,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/ProfilePage */ "./resources/react/components/profile/ProfilePage.js");
-/* harmony import */ var _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../company/CompaniesPage */ "./resources/react/components/company/CompaniesPage.js");
-/* harmony import */ var _company_CompanyPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../company/CompanyPage */ "./resources/react/components/company/CompanyPage.js");
-/* harmony import */ var _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../jobs/JobsPage */ "./resources/react/components/jobs/JobsPage.js");
-/* harmony import */ var _about_AboutPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../about/AboutPage */ "./resources/react/components/about/AboutPage.js");
-/* harmony import */ var _terms_TermsPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../terms/TermsPage */ "./resources/react/components/terms/TermsPage.js");
-/* harmony import */ var _help_HelpPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../help/HelpPage */ "./resources/react/components/help/HelpPage.js");
-/* harmony import */ var _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../privacy/PrivacyPage */ "./resources/react/components/privacy/PrivacyPage.js");
-/* harmony import */ var _service_PageTop__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../service/PageTop */ "./resources/react/components/service/PageTop.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+/* harmony import */ var _profile_FavoritesPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/FavoritesPage */ "./resources/react/components/profile/FavoritesPage.js");
+/* harmony import */ var _profile_ApplyPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/ApplyPage */ "./resources/react/components/profile/ApplyPage.js");
+/* harmony import */ var _profile_ScoutsPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile/ScoutsPage */ "./resources/react/components/profile/ScoutsPage.js");
+/* harmony import */ var _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../company/CompaniesPage */ "./resources/react/components/company/CompaniesPage.js");
+/* harmony import */ var _company_CompanyPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../company/CompanyPage */ "./resources/react/components/company/CompanyPage.js");
+/* harmony import */ var _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../jobs/JobsPage */ "./resources/react/components/jobs/JobsPage.js");
+/* harmony import */ var _about_AboutPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../about/AboutPage */ "./resources/react/components/about/AboutPage.js");
+/* harmony import */ var _terms_TermsPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../terms/TermsPage */ "./resources/react/components/terms/TermsPage.js");
+/* harmony import */ var _help_HelpPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../help/HelpPage */ "./resources/react/components/help/HelpPage.js");
+/* harmony import */ var _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../privacy/PrivacyPage */ "./resources/react/components/privacy/PrivacyPage.js");
+/* harmony import */ var _service_PageTop__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../service/PageTop */ "./resources/react/components/service/PageTop.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/components/constants/routes.js");
+
+
+
 
 
 
@@ -60870,42 +60876,54 @@ __webpack_require__.r(__webpack_exports__);
 var Pages = function Pages() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pages"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_service_PageTop__WEBPACK_IMPORTED_MODULE_10__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_service_PageTop__WEBPACK_IMPORTED_MODULE_13__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].ROOT,
-    component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_5__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].ROOT,
+    component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].MY_PROFILE,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].MY_PROFILE,
     component: _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].JOBS,
-    component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_5__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].PROFILE_FAV,
+    component: _profile_FavoritesPage__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].COMPANIES,
-    component: _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_3__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].PROFILE_APPLY,
+    component: _profile_ApplyPage__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].COMPANIES_DETAIL,
-    component: _company_CompanyPage__WEBPACK_IMPORTED_MODULE_4__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].PROFILE_SCOUTS,
+    component: _profile_ScoutsPage__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].ABOUT,
-    component: _about_AboutPage__WEBPACK_IMPORTED_MODULE_6__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].JOBS,
+    component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].TERMS,
-    component: _terms_TermsPage__WEBPACK_IMPORTED_MODULE_7__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].COMPANIES,
+    component: _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].HELP,
-    component: _help_HelpPage__WEBPACK_IMPORTED_MODULE_8__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].COMPANIES_DETAIL,
+    component: _company_CompanyPage__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_11__["routes"].PRIVACY,
-    component: _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_9__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].ABOUT,
+    component: _about_AboutPage__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].TERMS,
+    component: _terms_TermsPage__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].HELP,
+    component: _help_HelpPage__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_14__["routes"].PRIVACY,
+    component: _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_12__["default"]
   })));
 };
 
@@ -61465,8 +61483,6 @@ var routes = {
   PROFILE_SETTINGS: "".concat(prefix, "profile/settings"),
   PROFILE_EDIT: "".concat(prefix, "profile/edit"),
   LOGIN: "".concat(prefix, "login"),
-  LOGOUT: "".concat(prefix, "logout"),
-  // TODO: create logout dispatch
   STUDENTS: "".concat(prefix, "students"),
   STUDENTS_DETAIL: "".concat(prefix, "students/:id"),
   COMPANIES: "".concat(prefix, "companies"),
@@ -61872,6 +61888,64 @@ var PrivacyPage = function PrivacyPage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PrivacyPage);
+
+/***/ }),
+
+/***/ "./resources/react/components/profile/ApplyPage.js":
+/*!*********************************************************!*\
+  !*** ./resources/react/components/profile/ApplyPage.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var ApplyPage = function ApplyPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    type: null,
+    title: "APPLICATION",
+    subTitle: "\u5FDC\u52DF\u3057\u305F\u52DF\u96C6\u4E00\u89A7"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ApplyPage);
+
+/***/ }),
+
+/***/ "./resources/react/components/profile/FavoritesPage.js":
+/*!*************************************************************!*\
+  !*** ./resources/react/components/profile/FavoritesPage.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var FavoritesPage = function FavoritesPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    type: null,
+    title: "FAVORITES",
+    subTitle: "\u304A\u6C17\u306B\u5165\u308A\u306E\u52DF\u96C6"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FavoritesPage);
 
 /***/ }),
 
@@ -62600,6 +62674,35 @@ var ProfilePage = function ProfilePage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfilePage);
+
+/***/ }),
+
+/***/ "./resources/react/components/profile/ScoutsPage.js":
+/*!**********************************************************!*\
+  !*** ./resources/react/components/profile/ScoutsPage.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
+/* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+
+
+
+
+var ScoutsPage = function ScoutsPage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    type: null,
+    title: "SCOUT",
+    subTitle: "\u30B9\u30AB\u30A6\u30C8\u4E00\u89A7"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ScoutsPage);
 
 /***/ }),
 
