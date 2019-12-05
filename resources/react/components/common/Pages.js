@@ -2,6 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import ProfilePage from '../profile/ProfilePage';
+import FavoritesPage from '../profile/FavoritesPage';
+import ApplyPage from '../profile/ApplyPage';
+import ScoutsPage from '../profile/ScoutsPage';
+
 import CompaniesPage from '../company/CompaniesPage';
 import CompanyPage from '../company/CompanyPage';
 import JobsPage from '../jobs/JobsPage';
@@ -28,6 +32,21 @@ const Pages = () => (
         exact
         path={routes.MY_PROFILE}
         component={ProfilePage}
+      />
+      <Route
+        exact
+        path={routes.PROFILE_FAV}
+        component={FavoritesPage}
+      />
+      <Route
+        exact
+        path={routes.PROFILE_APPLY}
+        component={ApplyPage}
+      />
+      <Route
+        exact
+        path={routes.PROFILE_SCOUTS}
+        component={ScoutsPage}
       />
       <Route
         exact

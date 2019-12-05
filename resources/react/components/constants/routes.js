@@ -10,7 +10,6 @@ export const routes = {
   PROFILE_EDIT: `${prefix}profile/edit`,
 
   LOGIN: `${prefix}login`,
-  LOGOUT: `${prefix}logout`, // TODO: create logout dispatch
 
   STUDENTS: `${prefix}students`,
   STUDENTS_DETAIL: `${prefix}students/:id`,

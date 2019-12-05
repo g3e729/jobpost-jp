@@ -1812,6 +1812,7 @@ And you should not feel free to add a new Utility class.
 }
 
 .pagination__item.is-active .pagination__item-link {
+  font-weight: 700;
   color: #fff;
 }
 
@@ -1822,9 +1823,10 @@ And you should not feel free to add a new Utility class.
 .pagination__item-link {
   font-family: "Avenir", sans-serif;
   font-size: 17px;
-  font-weight: 700;
   letter-spacing: 0.06em;
   color: #fdb834;
+  display: inline-block;
+  width: 100%;
 }
 
 .pagination__item-link > i {
