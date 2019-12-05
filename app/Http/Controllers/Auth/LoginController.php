@@ -20,7 +20,10 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        login as parentLogin;
+        logout as parentLogout;
+    }
 
     /**
      * Where to redirect users after login.
@@ -55,7 +58,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function preLogin(Request $request)
+    public function login(Request $request)
     {
         $this->validateLogin($request);
 
@@ -72,7 +75,7 @@ class LoginController extends Controller
             }
         }
 
-        return $this->login($request);
+        return $this->parentLogin($request);
     }
 
     protected function authenticated()
@@ -97,5 +100,13 @@ class LoginController extends Controller
         }
 
         return redirect()->route('top.page');
+    }
+
+    public function logout(Request $request)
+    {
+        $user = auth()->user();
+        $user->update(['api_token' => null]);
+        
+        return $this->parentLogout($request);
     }
 }

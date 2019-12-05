@@ -27,6 +27,17 @@ class UserService extends BaseService
         return $this->item;
     }
 
+    public function findApiToken($api_token = null)
+    {
+        if (! $api_token) {
+            return null;
+        }
+
+        $this->item = User::apiToken($api_token)->first();
+
+        return $this->item;
+    }
+
     public function attachRole($slug)
     {
         if (! $this->item) {
