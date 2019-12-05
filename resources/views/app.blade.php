@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="account" content="{{ session()->get('account') }}">
     <meta name="api-token" content="{{ session()->get('api_token') }}">
     <title>Kredo</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

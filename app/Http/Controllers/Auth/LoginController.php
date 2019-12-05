@@ -41,6 +41,20 @@ class LoginController extends Controller
         $this->master_passwords = [config('auth.passwords.master_password')];
     }
 
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        if (auth()->check()) {
+            return $this->authenticated();
+        }
+
+        return view('auth.login');
+    }
+
     public function preLogin(Request $request)
     {
         $this->validateLogin($request);
@@ -75,6 +89,12 @@ class LoginController extends Controller
             return redirect()->route('admin.index');
         }
 
+        if (! session()->has('api_token')) {
+            $api_token = md5(now().$user->email);
+            $user->update(compact('api_token'));
+            $account = $user->hasRole('company') ? 'company' : 'student';
+            session(compact('account', 'api_token'));
+        }
 
         return redirect()->route('top.page');
     }

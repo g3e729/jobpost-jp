@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'japanese_name',
         'email',
+        'api_token',
         'password'
     ];
 

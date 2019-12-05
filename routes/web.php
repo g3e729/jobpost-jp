@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', function () {
+	dd(auth()->user());
 	return view('errors.developing');
 });
 
