@@ -46,7 +46,7 @@
           <td>{{ $job_post->framework }}</td>
           <td>
             <a href="#">
-              {{ getPrefecture($job_post->prefecture) }}
+              {{ $job_post->prefecture ? getPrefecture($job_post->prefecture) : '--' }}
             </a>
           </td>
           <td>{{ $job_post->salary }}</td>

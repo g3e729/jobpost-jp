@@ -7,6 +7,7 @@ Route::group([
 ], function () {
 	
 	Route::resource('jobs', 'JobPostController')->only('index', 'show');
+	Route::get('jobs-filters', 'JobPostController@getJobFilters');
 
 	Route::group([
 	    // 'middleware' => ['auth'],
