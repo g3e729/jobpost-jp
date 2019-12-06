@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Button from '../common/Button';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import { values } from '../constants/enums';
-import { state } from '../constants/state';
+import { values } from '../../constants/enums';
+import { state } from '../../constants/state';
 
 const PageTop = () => {
   const [hideOnScroll, setHideOnScroll] = useState(false);

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Pagination from '../common/Pagination';
 import Button from '../common/Button';
-import { state } from '../constants/state';
+import { state } from '../../constants/state';
 
 import JobsList from './JobsList';
 

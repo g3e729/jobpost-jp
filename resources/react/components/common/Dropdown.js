@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import Avatar from './Avatar';
 import Button from './Button';
-import { routes } from '../constants/routes';
-import { state } from '../constants/state';
+import { routes } from '../../constants/routes';
+import { state } from '../../constants/state';
 
 const Dropdown = () => {
   const [dropdown, setDropdown] = useState(false);

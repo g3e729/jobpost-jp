@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { state } from '../constants/state';
+import { state } from '../../constants/state';
 
 const Pagination = () => {
   const isPrev = 0;

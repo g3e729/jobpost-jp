@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
-import { routes, prefix } from '../constants/routes';
-import { state } from '../constants/state';
+import { routes, prefix } from '../../constants/routes';
+import { state } from '../../constants/state';
 
 const footerLinks = [
   'about',

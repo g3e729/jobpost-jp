@@ -17,7 +17,7 @@ import PrivacyPage from '../privacy/PrivacyPage';
 
 import PageTop from '../service/PageTop';
 
-import { routes } from '../constants/routes';
+import { routes } from '../../constants/routes';
 
 const Pages = () => (
   <div className="pages">

@@ -10,6 +10,7 @@
 }
 
 .l-container--wide {
+  max-width: calc(100% - 80px);
   min-width: 1060px;
 
   @include max-screen($breakpoint-mobile) {

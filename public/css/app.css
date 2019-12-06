@@ -688,6 +688,7 @@ And you should not feel free to add a new Utility class.
 }
 
 .l-container--wide {
+  max-width: calc(100% - 80px);
   min-width: 1060px;
 }
 

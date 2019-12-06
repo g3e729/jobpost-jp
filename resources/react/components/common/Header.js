@@ -3,8 +3,8 @@ import { NavLink, Link } from 'react-router-dom';
 
 import Dropdown from './Dropdown';
 import Search from './Search';
-import { routes } from '../constants/routes';
-import { state } from '../constants/state';
+import { routes } from '../../constants/routes';
+import { state } from '../../constants/state';
 
 import logo from '../../../img/logo-kredo-new.png';
 import logoSp from '../../../img/logo-kredo-icon-sp.png';

@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-import { selectStyles } from '../constants/enums';
+import { selectStyles } from '../../constants/enums';
 
 const filterList = [
   { value: 'chocolate',   label: 'Chocolate' },
