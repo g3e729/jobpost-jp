@@ -901,11 +901,12 @@ And you should not feel free to add a new Utility class.
 
 .dropdown {
   position: absolute;
-  right: 0;
+  top: 86px;
+  right: 22px;
   background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 4px;
-  width: 180px;
+  box-shadow: 0px 18px 38px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 4px 0 4px 4px;
+  width: 300px;
   z-index: 20;
   opacity: 0;
   -webkit-transform: translateY(15px);
@@ -916,6 +917,19 @@ And you should not feel free to add a new Utility class.
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
+.dropdown:before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -30px;
+  right: 0;
+  border-style: solid;
+  border-width: 0 0 30px 25px;
+  border-color: transparent transparent #fff transparent;
+}
+
 .dropdown.is-active {
   opacity: 1;
   -webkit-transform: translateY(0);
@@ -923,13 +937,22 @@ And you should not feel free to add a new Utility class.
 }
 
 .dropdown__menu {
-  padding: 5px 0;
+  padding: 18px 25px;
+}
+
+.dropdown__menu-item {
+  text-align: center;
+  border-top: solid 0.5px #f2f2f0;
+}
+
+.dropdown__menu-item:first-child {
+  border-top: 0;
 }
 
 .dropdown__menu-item a {
   color: #393939;
   letter-spacing: 0.06em;
-  padding: 8px 15px;
+  padding: 22px 15px;
   -webkit-transition: none !important;
   transition: none !important;
   cursor: pointer;
@@ -938,7 +961,8 @@ And you should not feel free to add a new Utility class.
 .dropdown__menu-item a:hover {
   opacity: 1 !important;
   color: #fff;
-  background-color: #fdb834 !important;
+  background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
+  background-image: linear-gradient(to right, #fdb834, #f7954d);
 }
 
 .dropdown__menu-item a.is-active {

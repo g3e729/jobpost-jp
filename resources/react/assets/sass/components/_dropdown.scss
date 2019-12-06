@@ -1,12 +1,13 @@
 .dropdown {
   position: absolute;
-  right: 0;
+  top: 86px;
+  right: 22px;
 
   background-color: $color-white;
-  box-shadow: $shadow;
-  border-radius: 4px;
+  box-shadow: $alt2-shadow;
+  border-radius: 4px 0 4px 4px;
 
-  width: 180px;
+  width: 300px;
   z-index: $z-max;
 
   opacity: 0;
@@ -15,6 +16,21 @@
   transition: opacity $duration $easing-cubic,
     transform $duration $easing-cubic;
 
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+
+    position: absolute;
+    top: -30px;
+    right: 0;
+
+    border-style: solid;
+    border-width: 0 0 30px 25px;
+    border-color: transparent transparent $color-white transparent;
+  }
+
   &.is-active {
     opacity: 1;
     transform: translateY(0);
@@ -22,15 +38,23 @@
 }
 
 .dropdown__menu {
-  padding: 5px 0;
+  padding: 18px 25px;
 }
 
 .dropdown__menu-item {
+  text-align: center;
+
+  border-top: solid 0.5px $color-light-gray;
+
+  &:first-child {
+    border-top: 0;
+  }
+
   a {
     color: $color-medium-black;
     letter-spacing: 0.06em;
 
-    padding: 8px 15px;
+    padding: 22px 15px;
     transition: none !important;
     cursor: pointer;
 
@@ -38,7 +62,7 @@
       opacity: 1 !important;
 
       color: $color-white;
-      background-color: $color-dark-yellow !important;
+      background-image: $gradient;
     }
 
     &.is-active {

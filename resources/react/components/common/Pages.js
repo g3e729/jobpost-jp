@@ -5,6 +5,7 @@ import ProfilePage from '../profile/ProfilePage';
 import FavoritesPage from '../profile/FavoritesPage';
 import ApplyPage from '../profile/ApplyPage';
 import ScoutsPage from '../profile/ScoutsPage';
+import SettingsPage from '../profile/SettingsPage';
 
 import CompaniesPage from '../company/CompaniesPage';
 import CompanyPage from '../company/CompanyPage';
@@ -47,6 +48,11 @@ const Pages = () => (
         exact
         path={routes.PROFILE_SCOUTS}
         component={ScoutsPage}
+      />
+      <Route
+        exact
+        path={routes.PROFILE_SETTINGS}
+        component={SettingsPage}
       />
       <Route
         exact
