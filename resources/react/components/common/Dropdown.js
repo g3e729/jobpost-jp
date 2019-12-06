@@ -29,7 +29,7 @@ const Dropdown = () => {
     <>
       <Button className="button--link"
         onClick={_ => setDropdown(!dropdown)}
-        value={<Avatar className="avatar--header" style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }}></Avatar>}
+        value={<Avatar className={`avatar--header ${dropdown ? state.ACTIVE : ''}`} style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }}></Avatar>}
       />
       <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`}>
         { userType === 'student' ? (

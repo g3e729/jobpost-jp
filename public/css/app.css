@@ -801,6 +801,8 @@ And you should not feel free to add a new Utility class.
 .avatar--header {
   border: solid 3px #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-transition: border 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: border 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
 @media screen and (max-width: 768px) {
@@ -810,6 +812,10 @@ And you should not feel free to add a new Utility class.
     border-width: 2px;
     box-shadow: 0px 0px 6px 0px rgba(57, 57, 57, 0.5);
   }
+}
+
+.avatar--header.is-active {
+  border-color: #fdb834;
 }
 
 .avatar--profile {
@@ -903,10 +909,10 @@ And you should not feel free to add a new Utility class.
   opacity: 0;
   -webkit-transform: translateY(15px);
           transform: translateY(15px);
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
 .dropdown.is-active {
@@ -1759,7 +1765,7 @@ And you should not feel free to add a new Utility class.
   width: 1px;
   margin: 0 20px;
   position: relative;
-  background: #393939;
+  background-color: #393939;
 }
 
 .pagetop__icon:after {
