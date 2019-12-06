@@ -2,6 +2,7 @@ import React from 'react';
 
 import Pagination from '../common/Pagination';
 import Button from '../common/Button';
+import Fraction from '../common/Fraction';
 import { state } from '../../constants/state';
 
 import JobsList from './JobsList';
@@ -9,9 +10,9 @@ import JobsList from './JobsList';
 const JobsSection = () => (
   <div className="jobs-section">
     <div className="jobs-section__top">
-      <div className="jobs-section__fraction">
-        <span className="jobs-section__fraction-numeration">10</span> / 75
-      </div>
+      <Fraction numerator="10"
+        denominator="75"
+      />
       <div className="jobs-section__actions">
         <Button className={`button--link jobs-section__actions-button ${state.ACTIVE}`}
           value={`新着順`}

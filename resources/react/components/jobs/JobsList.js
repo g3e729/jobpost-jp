@@ -20,16 +20,16 @@ const JobsList = ({ hasTitle }) => (
                     ジーコム株式会社
                   </div>
                 </div>
-                <div className="jobs__title">
+                <h4 className="jobs__title">
                   自社★C2Cマッチングプラットフォーム開発
                   【少数精鋭/残業少/フレックス】
-                </div>
+                </h4>
               </div>
             </div>
             <div className="jobs__content">
-              <div className="jobs__description">
+              <p className="jobs__description">
                 恥の多い生涯を送って来ました。自分には、人間の生活というものが、見当つかないのです。自分は東北の田舎に生まれましたので、汽車をはじめて見たのは、よほど大きくなってからでした。自分は停車場のブリッジを、上って、降りて、そうしてそれが線路をまたぎ越えるために造られたものだという事には...全然気づかず、ただそれは停車場の構内を外国の遊戯場みたいに、
-              </div>
+              </p>
             </div>
             <div className="jobs__footer">
               <ul className="jobs__pills">

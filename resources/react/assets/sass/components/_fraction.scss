@@ -1,0 +1,14 @@
+.fraction {
+  font-family: $alt-font-family;
+  font-size: 20px;
+}
+
+.fraction__numerator {
+  font-family: $alt-font-family;
+  font-size: 26px;
+  font-weight: 700;
+  color: $color-dark-yellow;
+
+  position: relative;
+  top: -7px;
+}

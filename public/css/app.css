@@ -695,6 +695,7 @@ And you should not feel free to add a new Utility class.
 @media screen and (max-width: 768px) {
   .l-container--wide {
     min-width: auto;
+    max-width: 100%;
   }
 }
 
@@ -977,6 +978,107 @@ And you should not feel free to add a new Utility class.
   padding-top: 75%;
 }
 
+.favorites-section__top {
+  text-align: right;
+  margin-bottom: 30px;
+  padding: 5px 0 8px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.favorites-section__footer {
+  padding: 100px 0 60px;
+}
+
+.favorites-list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 0 -20px;
+}
+
+.favorites-list__item {
+  width: 33.3%;
+  flex-basis: 33.3%;
+  padding: 0 20px;
+  margin-top: 30px;
+}
+
+.favorites-list__item:nth-child(-n+3) {
+  margin-top: 0;
+}
+
+.favorites {
+  padding: 30px 25px 25px;
+  border: solid 1px #d9d6d6;
+}
+
+.favorites__eyecatch {
+  position: relative;
+  max-height: 159px;
+}
+
+.favorites__eyecatch:before {
+  content: "";
+  padding-top: 60%;
+  display: block;
+}
+
+.favorites__eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.favorites__title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  margin-top: 18px;
+}
+
+.favorites__content {
+  margin-top: 12px;
+  padding-top: 17px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.favorites__company {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+}
+
+.favorites__company > img {
+  -webkit-box-flex: 0;
+          flex: 0 0 29px;
+  width: 29px;
+  height: 31px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2px;
+}
+
+.favorites__company-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-left: 16px;
+}
+
+.favorites__description {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  margin-top: 18px;
+}
+
 .filter {
   display: -webkit-box;
   display: flex;
@@ -1190,6 +1292,20 @@ And you should not feel free to add a new Utility class.
   .form__group-append {
     right: 0.6rem;
   }
+}
+
+.fraction {
+  font-family: "Avenir", sans-serif;
+  font-size: 20px;
+}
+
+.fraction__numerator {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fdb834;
+  position: relative;
+  top: -7px;
 }
 
 .header__logo {
@@ -1656,7 +1772,6 @@ And you should not feel free to add a new Utility class.
 }
 
 .jobs-section__footer {
-  text-align: center;
   padding: 60px 0 60px;
   border-top: solid 1px #d9d6d6;
 }
@@ -1845,6 +1960,7 @@ And you should not feel free to add a new Utility class.
   font-family: "Avenir", sans-serif;
   font-size: 17px;
   letter-spacing: 0.06em;
+  text-align: center;
   color: #fdb834;
   display: inline-block;
   width: 100%;
