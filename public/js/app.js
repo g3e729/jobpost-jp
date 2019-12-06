@@ -63421,6 +63421,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+/* harmony import */ var _FavoritesSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavoritesSection */ "./resources/react/components/profile/FavoritesSection.js");
+
 
 
 
@@ -63430,7 +63432,11 @@ var ApplyPage = function ApplyPage() {
     type: null,
     title: "APPLICATION",
     subTitle: "\u5FDC\u52DF\u3057\u305F\u52DF\u96C6\u4E00\u89A7"
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "l-section l-section--main section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "l-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoritesSection__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ApplyPage);
@@ -64325,6 +64331,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Page */ "./resources/react/components/common/Page.js");
 /* harmony import */ var _common_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Heading */ "./resources/react/components/common/Heading.js");
+/* harmony import */ var _FavoritesSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavoritesSection */ "./resources/react/components/profile/FavoritesSection.js");
+
 
 
 
@@ -64334,7 +64342,11 @@ var ScoutsPage = function ScoutsPage() {
     type: null,
     title: "SCOUT",
     subTitle: "\u30B9\u30AB\u30A6\u30C8\u4E00\u89A7"
-  }));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "l-section l-section--main section"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "l-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoritesSection__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ScoutsPage);
