@@ -60,3 +60,10 @@
   padding: 0;
   background: transparent;
 }
+
+.button--outline {
+  color: $color-dark-yellow;
+
+  border: solid 1px $color-dark-yellow;
+  background: none;
+}

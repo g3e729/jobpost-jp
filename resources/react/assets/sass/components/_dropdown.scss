@@ -31,9 +31,17 @@
     border-color: transparent transparent $color-white transparent;
   }
 
+  a {
+    pointer-events: none;
+  }
+
   &.is-active {
     opacity: 1;
     transform: translateY(0);
+
+    a {
+      pointer-events: auto;
+    }
   }
 }
 

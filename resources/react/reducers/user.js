@@ -1,13 +1,17 @@
-const initialState = {};
-
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = {}, action) => {
   switch(action.type) {
-    case 'USER_STUDENT_SET':
-      return student;
-    case 'USER_COMPANY_SET':
-      return company;
+    case 'USER_TYPE_SET':
+      return {
+        ...state,
+        userType: action.payload,
+        loggedIn: true
+      };
     case 'USER_UNSET':
-      return initialState;
+      return {
+        ...state,
+        userType: '',
+        loggedIn: false
+      };
     default:
       return state;
   }

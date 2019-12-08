@@ -9,8 +9,16 @@
   opacity: 0;
   transition: opacity $duration $easing-cubic;
 
+  button {
+    pointer-events: none;
+  }
+
   &.is-active {
     opacity: 1;
+
+    button {
+      pointer-events: auto;
+    }
   }
 
   @include max-screen($breakpoint-mobile) {

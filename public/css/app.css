@@ -899,6 +899,12 @@ And you should not feel free to add a new Utility class.
   background: transparent;
 }
 
+.button--outline {
+  color: #fdb834;
+  border: solid 1px #fdb834;
+  background: none;
+}
+
 .dropdown {
   position: absolute;
   top: 86px;
@@ -930,10 +936,18 @@ And you should not feel free to add a new Utility class.
   border-color: transparent transparent #fff transparent;
 }
 
+.dropdown a {
+  pointer-events: none;
+}
+
 .dropdown.is-active {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
+}
+
+.dropdown.is-active a {
+  pointer-events: auto;
 }
 
 .dropdown__menu {
@@ -1888,8 +1902,16 @@ And you should not feel free to add a new Utility class.
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
+.pagetop button {
+  pointer-events: none;
+}
+
 .pagetop.is-active {
   opacity: 1;
+}
+
+.pagetop.is-active button {
+  pointer-events: auto;
 }
 
 @media screen and (max-width: 768px) {

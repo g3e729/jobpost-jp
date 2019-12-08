@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { css } from 'emotion';
 
 import Page from '../common/Page';
@@ -9,30 +10,21 @@ import Button from '../common/Button';
 import ProfileContent from './ProfileContent';
 import JobsList from '../jobs/JobsList';
 
-const ProfilePage = () => {
-  const userType = Math.random() >= 0.5 ? 'student' : 'company';
+const ProfilePage = (props) => {
+  const { user } = props;
+  const userType = user.userType;
 
   return (
-    <Page>
-      { userType === 'student' ? (
-          <Heading type="user"
-            style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
-            data-avatar="https://lorempixel.com/1800/600/people/"
-            title="田中義人"
-            subTitle={<span><i className="icon icon-book text-dark-yellow"></i>PHPコース</span>}
-          />
-        ) : (
-          <Heading type="user"
-            style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
-            data-avatar="https://lorempixel.com/1800/600/people/"
-            title="株式会社アクターリアリティ"
-            subTitle={<span><span className="heading-content__position-location">東京</span>https://hogehoge.com</span>}
-          />
-        )
-      }
-      <section className="l-section l-section--profile section">
-        <div className="l-container l-container--main">
-          { userType === 'student' ? (
+    userType === 'student' ? (
+      <Page>
+        <Heading type="user"
+          style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
+          data-avatar="https://lorempixel.com/1800/600/people/"
+          title="田中義人"
+          subTitle={<span><i className="icon icon-book text-dark-yellow"></i>PHPコース</span>}
+        />
+        <section className="l-section l-section--profile section">
+          <div className="l-container l-container--main">
             <ProfileContent>
               <div className="profile">
                 <div className="profile-data">
@@ -353,7 +345,19 @@ const ProfilePage = () => {
                 </div>
               </aside>
             </ProfileContent>
-          ) : (
+          </div>
+        </section>
+      </Page>
+    ) : userType === 'company' ? (
+      <Page>
+        <Heading type="user"
+          style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
+          data-avatar="https://lorempixel.com/1800/600/people/"
+          title="株式会社アクターリアリティ"
+          subTitle={<span><span className="heading-content__position-location">東京</span>https://hogehoge.com</span>}
+        />
+        <section className="l-section l-section--profile section">
+          <div className="l-container l-container--main">
             <ProfileContent>
               <div className="profile">
                 <div className="profile-data">
@@ -502,11 +506,15 @@ const ProfilePage = () => {
                 </div>
               </aside>
             </ProfileContent>
-          )}
-        </div>
-      </section>
-    </Page>
+          </div>
+        </section>
+      </Page>
+    ) : null
   );
 }
 
-export default ProfilePage;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(ProfilePage);

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
+import { useDispatch } from 'react-redux';
 
 import { getUser } from '../actions/user';
 
@@ -9,8 +8,10 @@ import Footer from './common/Footer';
 import Pages from './common/Pages';
 
 const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getUser();
+    dispatch(getUser());
   }, []);
 
   return (
@@ -22,12 +23,4 @@ const App = () => {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getUser: () => {
-    return dispatch(getUser());
-  }
-});
-
-export default compose(
-  connect(null, mapDispatchToProps)
-)(App);
+export default App;

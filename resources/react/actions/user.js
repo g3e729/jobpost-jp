@@ -1,11 +1,6 @@
-export const setUser = (student) => ({
-  type: 'USER_STUDENT_SET',
-  student
-});
-
-export const setCompany = (company) => ({
-  type: 'USER_COMPANY_SET',
-  company
+export const setUser = (payload = '') => ({
+  type: 'USER_TYPE_SET',
+  payload
 });
 
 export const unsetUser = () => ({
@@ -13,10 +8,16 @@ export const unsetUser = () => ({
 });
 
 export const getUser = () => {
-  const accountType = document.querySelector('meta[name="account"]').content || 'anon';
-  const apiToken = document.querySelector('meta[name="api-token"]').content || '';
+  const accountType = document.querySelector('meta[name="account"]').content || '';
+  const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token'); // Todo: check if apitoken exists
 
   return (dispatch) => {
     dispatch(setUser(accountType));
+  }
+}
+
+export const logoutUser = () => {
+  return (dispatch) => {
+    dispatch(unsetUser());
   }
 }
