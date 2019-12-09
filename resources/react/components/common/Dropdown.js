@@ -30,10 +30,10 @@ const Dropdown = (props) => {
   return (
     userType && userType.length ? (
       <>
-        <Button className="button--link"
-          onClick={_ => setDropdown(!dropdown)}
-          value={<Avatar className={`avatar--header ${dropdown ? state.ACTIVE : ''}`} style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }}></Avatar>}
-        />
+        <Button className="button--link" onClick={_ => setDropdown(!dropdown)}>
+          <Avatar className={`avatar--header ${dropdown ? state.ACTIVE : ''}`}
+            style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }} />
+        </Button>
         <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`}>
           { userType === 'student' ? (
             <ul className="dropdown__menu">

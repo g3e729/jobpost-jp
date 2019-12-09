@@ -14,12 +14,12 @@ const JobsSection = () => (
         denominator="75"
       />
       <div className="jobs-section__actions">
-        <Button className={`button--link jobs-section__actions-button ${state.ACTIVE}`}
-          value={`新着順`}
-        />
-        <Button className="button--link jobs-section__actions-button"
-          value={`人気順`}
-        />
+        <Button className={`button--link jobs-section__actions-button ${state.ACTIVE}`}>
+          新着順
+        </Button>
+        <Button className="button--link jobs-section__actions-button">
+          人気順
+        </Button>
       </div>
     </div>
     <div className="jobs-section__content">

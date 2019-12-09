@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Page = ({ children, type }) => (
+const Page = ({ type, children }) => (
   <div className={`page page--${type || 'default'}`}>
     {children}
   </div>

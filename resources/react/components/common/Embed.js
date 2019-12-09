@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Embed = ({ className, src, ...props }) => (
+const Embed = ({ className, src, ...rest }) => (
   <div className={`embed ${className || ''}`}>
-    <iframe src={src} {...props}></iframe>
+    <iframe src={src} {...rest}></iframe>
   </div>
 );
 

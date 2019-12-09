@@ -28,10 +28,9 @@ const PageTop = () => {
 
   return (
     <div className={`pagetop ${hideOnScroll ? state.ACTIVE : ''}`}>
-      <Button className="button--link"
-        onClick={() => handleClick()}
-        value={<span className="pagetop__icon"></span>}
-      />
+      <Button className="button--link" onClick={() => handleClick()}>
+        <span className="pagetop__icon"></span>
+      </Button>
     </div>
   );
 }

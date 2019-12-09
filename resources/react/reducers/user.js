@@ -4,13 +4,13 @@ const userReducer = (state = {}, action) => {
       return {
         ...state,
         userType: action.payload,
-        loggedIn: true
+        isLogged: true
       };
     case 'USER_UNSET':
       return {
         ...state,
         userType: '',
-        loggedIn: false
+        isLogged: false
       };
     default:
       return state;

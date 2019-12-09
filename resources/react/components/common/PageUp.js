@@ -14,14 +14,9 @@ const PageUp = () => {
 
   return (
     <div className="pageup u-show-sp">
-      <Button className="button--link pageup__button"
-        onClick={() => handleClick()}
-        value={
-          <>
-            <span className="pageup__icon"></span>PAGE TOP
-          </>
-        }
-      />
+      <Button className="button--link pageup__button" onClick={() => handleClick()}>
+        <span className="pageup__icon"></span>PAGE TOP
+      </Button>
     </div>
   );
 }

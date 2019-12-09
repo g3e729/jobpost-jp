@@ -3,11 +3,11 @@ import React from 'react';
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 
-const Heading = ({ type, children, title, subTitle, ...props }) => {
-  const avatarImg = props['data-avatar'] || '';
+const Heading = ({ type, title, subTitle, children, ...rest }) => {
+  const avatarImg = rest['data-avatar'] || '';
 
   return (
-    <div className={`heading heading--${type || 'default'}`} {...props}>
+    <div className={`heading heading--${type || 'default'}`} {...rest}>
       { type && type === 'user' ? (
           <div className="heading-content">
             <Avatar className="avatar--profile"
@@ -18,9 +18,9 @@ const Heading = ({ type, children, title, subTitle, ...props }) => {
               <p className="heading-content__position">
                 {subTitle}
               </p>
-              <Button className="button--pill heading-content__button"
-                value={<span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>}
-              />
+              <Button className="button--pill heading-content__button">
+                <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
+              </Button>
             </div>
           </div>
         ) : (

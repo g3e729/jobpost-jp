@@ -12,7 +12,10 @@ export const getUser = () => {
   const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token'); // Todo: check if apitoken exists
 
   return (dispatch) => {
-    dispatch(setUser(accountType));
+    if (['student', 'company'].includes(accountType))
+      dispatch(setUser(accountType));
+    else
+      dispatch(unsetUser());
   }
 }
 

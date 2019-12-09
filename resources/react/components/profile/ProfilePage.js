@@ -441,7 +441,9 @@ const ProfilePage = (props) => {
                       <JobsList hasTitle="true" />
                     </div>
                     <div className="profile-data__jobs-footer">
-                      <Button value="もっとみる" />
+                      <Button>
+                        もっとみる
+                      </Button>
                     </div>
                   </div>
                 </div>
