@@ -13,20 +13,20 @@
 
     @if ($step == 1)
 
-      <div class="form-group pb-3 row">
-        <label for="formPassword" class="col-4 col-form-label font-weight-bold">パスワード</label>
+      <div class="form-group pb-1 row">
+        <label for="formPassword" class="col col-form-label pr-0">パスワード</label>
         <div class="col-8">
-          <input type="password" class="form-control" id="formPassword" name="password" placeholder="" required>
+          <input type="password" class="form-control rounded-0" id="formPassword" name="password" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter a password.
           </div>
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formPasswordConfirmation" class="col-4 col-form-label font-weight-bold">パスワードの確認</label>
+      <div class="form-group pb-1 row">
+        <label for="formPasswordConfirmation" class="col col-form-label pr-0">パスワードの確認</label>
         <div class="col-8">
-          <input type="password" class="form-control" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
+          <input type="password" class="form-control rounded-0" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
             data-action="input" data-condition="password" data-text="Passwords do not match."
           >
           <div class="invalid-tooltip">
@@ -37,22 +37,21 @@
 
       <hr class="form-divider d-block mb-4">
 
-      <div class="form-group pb-3 row">
-        <label for="formCompanyName" class="col-4 col-form-label font-weight-bold">名前</label>
+      <div class="form-group pb-1 row">
+        <label for="formCompanyName" class="col col-form-label pr-0">名前</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formCompanyName" name="company_name" value="{{ old('company_name') }}" placeholder="" required>
+          <input type="text" class="form-control rounded-0" id="formCompanyName" name="company_name" value="{{ old('company_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter company name.
           </div>
         </div>
       </div>
 
-      <div class="pb-3 row">
-        <div class="col-4 font-weight-bold">住所</div>
+      <div class="pb-1 row">
+        <div class="col pr-0 pt-2">住所</div>
         <div class="col-8">
           <div class="form-group position-relative">
-            <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
-            <select class="form-control" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
+            <select class="form-control form-control-awesome rounded-0" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
                 <option value="{{ $index }}">{{ $name }}</option>
@@ -64,24 +63,21 @@
           </div>
 
           <div class="form-group position-relative">
-            <label for="formAddress1" class="form-label pt-0">番地</label>
-            <input type="text" class="form-control" id="formAddress1" name="address1" value="{{ old('address1') }}" placeholder="" required>
+            <input type="text" class="form-control rounded-0" id="formAddress1" name="address1" value="{{ old('address1') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your house number.
             </div>
           </div>
 
           <div class="form-group position-relative">
-            <label for="formAddress2" class="form-label pt-0">ビル名 / 部屋番号</label>
-            <input type="text" class="form-control" id="formAddress2" name="address2" value="{{ old('address2') }}" placeholder="" required>
+            <input type="text" class="form-control rounded-0" id="formAddress2" name="address2" value="{{ old('address2') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your building name / room number.
             </div>
           </div>
 
           <div class="form-group position-relative">
-            <label for="formAddress3" class="form-label pt-0">郵便番号</label>
-            <input type="number" class="form-control" id="formAddress3" name="address3" value="{{ old('address3') }}" placeholder="" required>
+            <input type="number" class="form-control rounded-0" id="formAddress3" name="address3" value="{{ old('address3') }}" placeholder="" required>
             <div class="invalid-tooltip">
               Please enter your postal code.
             </div>
@@ -90,30 +86,30 @@
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formCeo" class="col-4 col-form-label font-weight-bold">創業者</label>
+      <div class="form-group pb-1 row">
+        <label for="formCeo" class="col col-form-label pr-0">創業者</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formCeo" name="ceo" value="{{ old('ceo') }}" placeholder="" required>
+          <input type="text" class="form-control rounded-0" id="formCeo" name="ceo" value="{{ old('ceo') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter company founder.
           </div>
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formNumberOfEmployees" class="col-4 col-form-label font-weight-bold">社員数</label>
+      <div class="form-group pb-1 row">
+        <label for="formNumberOfEmployees" class="col col-form-label pr-0">社員数</label>
         <div class="col-8">
-          <input type="number" class="form-control" id="formNumberOfEmployees" name="number_of_employees" min="1" value="{{ old('number_of_employees') }}" placeholder="" required>
+          <input type="number" class="form-control rounded-0" id="formNumberOfEmployees" name="number_of_employees" min="1" value="{{ old('number_of_employees') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter number of employees.
           </div>
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formContactNumber" class="col-4 col-form-label font-weight-bold">電話番号</label>
+      <div class="form-group pb-1 row">
+        <label for="formContactNumber" class="col col-form-label pr-0">電話番号</label>
         <div class="col-8">
-          <input type="text" class="form-control" id="formContactNumber" name="contact_number" value="{{ old('contact_number') }}" placeholder="" required>
+          <input type="text" class="form-control rounded-0" id="formContactNumber" name="contact_number" value="{{ old('contact_number') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter a phone number.
           </div>
@@ -122,18 +118,18 @@
 
     @else
 
-      <div class="form-group pb-3 row">
-        <label for="formIntro" class="col-4 col-form-label font-weight-bold">会社紹介文</label>
+      <div class="form-group pb-1 row">
+        <label for="formIntro" class="col col-form-label pr-0">会社紹介文</label>
         <div class="col-8">
-          <textarea class="form-control" id="formIntro" name="description" placeholder="" rows="4" style="min-height: 100px;" required>{{ old('description') }}</textarea>
+          <textarea class="form-control rounded-0" id="formIntro" name="description" placeholder="" rows="4" style="min-height: 100px;" required>{{ old('description') }}</textarea>
           <div class="invalid-tooltip">
             Please enter your company's introduction.
           </div>
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formAvatar" class="col-4 col-form-label font-weight-bold">アバター</label>
+      <div class="form-group pb-1 row">
+        <label for="formAvatar" class="col col-form-label pr-0">アバター</label>
         <div class="col-8">
           <input type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
@@ -142,8 +138,8 @@
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formCoverPhoto" class="col-4 col-form-label font-weight-bold">アイキャッチ</label>
+      <div class="form-group pb-1 row">
+        <label for="formCoverPhoto" class="col col-form-label pr-0">アイキャッチ</label>
         <div class="col-8">
           <input type="file" class="form-control-file" id="formCoverPhoto" name="cover_photo" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
@@ -152,10 +148,10 @@
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formIndustryId" class="col-4 col-form-label font-weight-bold">業種、業界</label>
+      <div class="form-group pb-1 row">
+        <label for="formIndustryId" class="col col-form-label pr-0">業種、業界</label>
         <div class="col-8">
-          <select class="form-control" id="formIndustryId" name="industry_id" data-action="change" data-condition="" data-text="Please choose your industry.">
+          <select class="form-control form-control-awesome rounded-0" id="formIndustryId" name="industry_id" data-action="change" data-condition="" data-text="Please choose your industry.">
             <option value="" selected hidden disabled>Choose industry</option>
             @foreach($industries as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>
@@ -167,24 +163,24 @@
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formHomepage" class="col-4 col-form-label font-weight-bold">HP(URL)</label>
+      <div class="form-group pb-1 row">
+        <label for="formHomepage" class="col col-form-label pr-0">HP(URL)</label>
         <div class="col-8">
-          <input type="url" class="form-control" id="formHomepage" name="homepage" value="{{ old('homepage') }}" placeholder="" required>
+          <input type="url" class="form-control rounded-0" id="formHomepage" name="homepage" value="{{ old('homepage') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter your homepage.
           </div>
         </div>
       </div>
 
-      <div class="form-group pb-3 row">
-        <label for="formEstablishedDate" class="col-4 col-form-label font-weight-bold">設立年月</label>
+      <div class="form-group pb-1 row">
+        <label for="formEstablishedDate" class="col col-form-label pr-0">設立年月</label>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control js-datepicker" id="formEstablishedDate" name="established_date" value="{{ old('established_date') }}" placeholder="" required>
+            <input type="text" class="form-control js-datepicker rounded-0 border-right-0" id="formEstablishedDate" name="established_date" value="{{ old('established_date') }}" placeholder="" required>
             <div class="input-group-append">
-              <div class="input-group-text">
-                <i class="fas fa-fw fa-calendar-alt"></i>
+              <div class="input-group-text bg-white border-left-0">
+                <i class="fas fa-fw fa-calendar-alt text-secondary"></i>
               </div>
             </div>
             <div class="invalid-tooltip">
@@ -198,7 +194,7 @@
 
     <div class="form-group row">
       <div class="col-6 pt-4 mx-auto">
-        <button type="submit" class="alt-font btn btn-primary btn-submit btn-rounded w-100">送信</button>
+        <button type="submit" class="btn btn-capsule btn-rounded w-100">ログイン</button>
       </div>
     </div>
 

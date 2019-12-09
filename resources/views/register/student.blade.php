@@ -14,8 +14,8 @@
     @if ($step == 1)
 
       <div class="form-group pb-1 row">
-        <label for="formPassword" class="col col-form-label">パスワード</label>
-        <div class="col-9">
+        <label for="formPassword" class="col col-form-label pr-0">パスワード</label>
+        <div class="col-8">
           <input type="password" class="form-control rounded-0" id="formPassword" name="password" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter a password.
@@ -24,8 +24,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formPasswordConfirmation" class="col col-form-label">パスワードの確認</label>
-        <div class="col-9">
+        <label for="formPasswordConfirmation" class="col col-form-label pr-0">パスワードの確認</label>
+        <div class="col-8">
           <input type="password" class="form-control rounded-0" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
             data-action="input" data-condition="password" data-text="Passwords do not match."
           >
@@ -38,8 +38,8 @@
       <hr class="form-divider d-block mb-4">
 
       <div class="form-group pb-1 row">
-        <label for="formJapaneseName" class="col col-form-label">名前(Japanese)</label>
-        <div class="col-9">
+        <label for="formJapaneseName" class="col col-form-label pr-0">名前(Japanese)</label>
+        <div class="col-8">
           <input type="text" class="form-control rounded-0" id="formJapaneseName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter Japanese name.
@@ -48,8 +48,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formName" class="col col-form-label">名前(English)</label>
-        <div class="col-9">
+        <label for="formName" class="col col-form-label pr-0">名前(English)</label>
+        <div class="col-8">
           <input type="text" class="form-control rounded-0" id="formName" name="name" value="{{ old('name') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter English name.
@@ -58,8 +58,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formBirthday" class="col col-form-label">生年月日</label>
-        <div class="col-9">
+        <label for="formBirthday" class="col col-form-label pr-0">生年月日</label>
+        <div class="col-8">
           <div class="input-group">
             <input type="text" class="form-control js-datepicker rounded-0 border-right-0" id="formBirthday" name="birthday" value="{{ old('birthday') }}" placeholder="" required>
             <div class="input-group-append">
@@ -75,8 +75,8 @@
       </div>
 
       <div class="pb-1 row">
-        <div class="col">住所</div>
-        <div class="col-9">
+        <div class="col pr-0 pt-2">住所</div>
+        <div class="col-8">
           <div class="form-group position-relative">
             <select class="form-control form-control-awesome rounded-0" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture." style="-webkit-border-radius: 0;">
               <option value="" selected hidden disabled>Choose prefecture</option>
@@ -114,8 +114,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formSex" class="col col-form-label">性別</label>
-        <div class="col-9">
+        <label for="formSex" class="col col-form-label pr-0">性別</label>
+        <div class="col-8">
           <select class="form-control form-control-awesome rounded-0" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
             <option value="" selected hidden disabled>Choose sex</option>
             <option value="m">男</option>
@@ -128,8 +128,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formContactNumber" class="col col-form-label">電話番号</label>
-        <div class="col-9">
+        <label for="formContactNumber" class="col col-form-label pr-0">電話番号</label>
+        <div class="col-8">
           <input type="text" class="form-control rounded-0" id="formContactNumber" name="contact_number" value="{{ old('contact_number') }}" placeholder="" required>
           <div class="invalid-tooltip">
             Please enter a phone number.
@@ -140,15 +140,15 @@
     @else
 
       <div class="form-group pb-1 row">
-        <label for="formStudyAbroadFee" class="col col-form-label">留学費用</label>
-        <div class="col-9">
+        <label for="formStudyAbroadFee" class="col col-form-label pr-0">留学費用</label>
+        <div class="col-8">
           <input type="number" class="form-control rounded-0" id="formStudyAbroadFee" name="study_abroad_fee" min="0" value="{{ old('study_aboard_fee') }}" placeholder="">
         </div>
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formEnrollmentDate" class="col col-form-label">入学日</label>
-        <div class="col-9">
+        <label for="formEnrollmentDate" class="col col-form-label pr-0">入学日</label>
+        <div class="col-8">
           <div class="input-group">
             <input type="text" class="form-control js-datepicker rounded-0 border-right-0" id="formEnrollmentDate" name="enrollment_date" value="{{ old('enrollment_date') }}" placeholder="" required>
             <div class="input-group-append">
@@ -164,8 +164,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formGraduationDate" class="col col-form-label">卒業日</label>
-        <div class="col-9">
+        <label for="formGraduationDate" class="col col-form-label pr-0">卒業日</label>
+        <div class="col-8">
           <div class="input-group">
             <input type="text" class="form-control js-datepicker rounded-0 border-right-0" id="formGraduationDate" name="graduation_date" value="{{ old('graduation_date') }}" placeholder="" required>
             <div class="input-group-append">
@@ -181,8 +181,8 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formOccupation" class="col col-form-label">ご職業</label>
-        <div class="col-9">
+        <label for="formOccupation" class="col col-form-label pr-0">ご職業</label>
+        <div class="col-8">
           <select class="form-control form-control-awesome rounded-0" id="formOccupation" name="occupation" data-action="change" data-condition="" data-text="Please enter occupation.">
             <option value="" selected hidden disabled>Choose occupation</option>
               @foreach($occupations as $index => $name)
@@ -196,15 +196,15 @@
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formDescription" class="col col-form-label">備考</label>
-        <div class="col-9">
+        <label for="formDescription" class="col col-form-label pr-0">備考</label>
+        <div class="col-8">
           <textarea class="form-control rounded-0" id="formDescription" name="description" value="{{ old('description') }}" placeholder="" rows="4" style="min-height: 100px;"></textarea>
         </div>
       </div>
 
       <div class="form-group pb-1 row">
-        <label for="formAvatar" class="col col-form-label">アバター</label>
-        <div class="col-9">
+        <label for="formAvatar" class="col col-form-label pr-0">アバター</label>
+        <div class="col-8">
           <input type="file" class="form-control-file" id="formAvatar" name="avatar" accept="image/png, image/jpeg" required>
           <div class="invalid-tooltip">
             Please choose your avatar.

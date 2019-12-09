@@ -39207,7 +39207,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60716,14 +60716,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Dropdown */ "./resources/react/components/common/Dropdown.js");
-/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Search */ "./resources/react/components/common/Search.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../constants/routes */ "./resources/react/constants/routes.js");
-/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../constants/state */ "./resources/react/constants/state.js");
-/* harmony import */ var _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../img/logo-kredo-new.png */ "./resources/img/logo-kredo-new.png");
-/* harmony import */ var _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../img/logo-kredo-icon-sp.png */ "./resources/img/logo-kredo-icon-sp.png");
-/* harmony import */ var _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Dropdown */ "./resources/react/components/common/Dropdown.js");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Search */ "./resources/react/components/common/Search.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../constants/routes */ "./resources/react/constants/routes.js");
+/* harmony import */ var _constants_state__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../constants/state */ "./resources/react/constants/state.js");
+/* harmony import */ var _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../img/logo-kredo-new.png */ "./resources/img/logo-kredo-new.png");
+/* harmony import */ var _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../img/logo-kredo-icon-sp.png */ "./resources/img/logo-kredo-icon-sp.png");
+/* harmony import */ var _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -60733,7 +60734,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Header = function Header() {
+
+var Header = function Header(props) {
+  var user = props.user;
+  var accountType = user.userData && user.userData.accountType || '';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "l-header header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -60743,49 +60747,55 @@ var Header = function Header() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "header__logo"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].ROOT
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].ROOT
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("picture", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-    srcSet: _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_6___default.a,
+    srcSet: _img_logo_kredo_new_png__WEBPACK_IMPORTED_MODULE_7___default.a,
     media: "(min-width: 769px)"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_7___default.a,
+    src: _img_logo_kredo_icon_sp_png__WEBPACK_IMPORTED_MODULE_8___default.a,
     alt: "Kredo",
     className: "header__logo-image"
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     exact: true,
-    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].JOBS,
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].JOBS,
     className: "button button--list u-show-pc",
-    activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE
+    activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_6__["state"].ACTIVE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-squares-list"
   }), "\u52DF\u96C6\u4E00\u89A7")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-header__right"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "header-actions"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, accountType && accountType.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "header-actions__item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     exact: true,
-    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].MESSAGES,
-    activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].MESSAGES,
+    activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_6__["state"].ACTIVE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-mail text-dark-yellow"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "header-actions__item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     exact: true,
-    to: _constants_routes__WEBPACK_IMPORTED_MODULE_4__["routes"].NOTIFICATIONS,
-    activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE
+    to: _constants_routes__WEBPACK_IMPORTED_MODULE_5__["routes"].NOTIFICATIONS,
+    activeClassName: _constants_state__WEBPACK_IMPORTED_MODULE_6__["state"].ACTIVE
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "icon icon-bell text-dark-yellow"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge badge--bell"
-  }, "10")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, "10"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "header-actions__item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], null))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], null))))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Header);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(Header));
 
 /***/ }),
 
