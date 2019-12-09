@@ -23,16 +23,16 @@
             <table class="table table-striped table-hover js-sortable">
               <thead>
                 <tr>
-                  <th width="450px">アカウント</th>
+                  <th width="420px">アカウント</th>
                   <th>価格</th>
-                  <th width="90px">&nbsp;</th>
+                  <th width="120px">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($not_approved as $ticket)
                   <tr>
                     <td class="d-flex">
-                      <img src="{{ $ticket->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
+                      <img src="{{ $ticket->transactionable->avatar }}" class="avatar float-left">
                       <div class="ml-3">
                         <h3 class="font-weight-bold h6">{{ $ticket->transactionable->display_name }}</h3>
                         <p class="text-muted mb-0">{{ $ticket->transactionable->description }}</p>
@@ -54,7 +54,7 @@
             <table class="table table-striped table-hover js-sortable">
               <thead>
                 <tr>
-                  <th width="450px">アカウント</th>
+                  <th width="420px">アカウント</th>
                   <th>価格</th>
                 </tr>
               </thead>
@@ -62,7 +62,7 @@
                 @foreach ($approved as $ticket)
                   <tr>
                     <td class="d-flex">
-                      <img src="{{ $ticket->transactionable->avatar }}" class="card-image float-left rounded-circle" style="max-width: 64px;">
+                      <img src="{{ $ticket->transactionable->avatar }}" class="avatar float-left">
                       <div class="ml-3">
                         <h3 class="font-weight-bold h6">{{ $ticket->transactionable->display_name }}</h3>
                         <p class="text-muted mb-0">{{ $ticket->transactionable->description }}</p>

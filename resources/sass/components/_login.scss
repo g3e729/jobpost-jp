@@ -39,3 +39,10 @@ form.user {
 .btn-facebook {
   @include button-variant($brand-facebook, $white);
 }
+
+.form-control-awesome {
+  -webkit-border-radius: 0;
+  border: 0;
+  outline: 1px solid #ced4da;
+  outline-offset: -1px;
+}

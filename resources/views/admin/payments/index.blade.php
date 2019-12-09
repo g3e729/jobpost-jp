@@ -25,15 +25,15 @@
             {{ session()->get('success') }}
           </div>
         @endif
-        
+
         <div class="tab-content my-4" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-unconfirmed" role="tabpanel" aria-labelledby="pills-unconfirmed-tab">
             <table class="table table-striped table-hover js-sortable">
               <thead>
                 <tr>
-                  <th width="450px">アカウント</th>
+                  <th width="420px">アカウント</th>
                   <th>価格</th>
-                  <th width="90px">&nbsp;</th>
+                  <th width="120px">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,9 +47,9 @@
             <table class="table table-striped table-hover js-sortable">
               <thead>
                 <tr>
-                  <th width="450px">アカウント</th>
+                  <th width="420px">アカウント</th>
                   <th>価格</th>
-                  <th width="90px">&nbsp;</th>
+                  <th width="120px">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>

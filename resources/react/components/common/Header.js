@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Dropdown from './Dropdown';
 import Search from './Search';
@@ -9,7 +10,10 @@ import { state } from '../../constants/state';
 import logo from '../../../img/logo-kredo-new.png';
 import logoSp from '../../../img/logo-kredo-icon-sp.png';
 
-const Header = () => {
+const Header = (props) => {
+  const { user } = props;
+  const accountType = (user.userData && user.userData.accountType) || '';
+
   return (
     <header className="l-header header">
       <div className="l-container l-container--wide flex flex--space-between">
@@ -32,18 +36,22 @@ const Header = () => {
           <Search />
 
           <ul className="header-actions">
-            <li className="header-actions__item">
-              <NavLink exact to={routes.MESSAGES} activeClassName={state.ACTIVE}>
-                <i className="icon icon-mail text-dark-yellow"></i>
-              </NavLink>
-            </li>
-            <li className="header-actions__item">
-              <NavLink exact to={routes.NOTIFICATIONS} activeClassName={state.ACTIVE}>
-                <i className="icon icon-bell text-dark-yellow">
-                  <span className="badge badge--bell">10</span>
-                </i>
-              </NavLink>
-            </li>
+            { accountType && accountType.length && (
+              <>
+                <li className="header-actions__item">
+                  <NavLink exact to={routes.MESSAGES} activeClassName={state.ACTIVE}>
+                    <i className="icon icon-mail text-dark-yellow"></i>
+                  </NavLink>
+                </li>
+                <li className="header-actions__item">
+                  <NavLink exact to={routes.NOTIFICATIONS} activeClassName={state.ACTIVE}>
+                    <i className="icon icon-bell text-dark-yellow">
+                      <span className="badge badge--bell">10</span>
+                    </i>
+                  </NavLink>
+                </li>
+              </>
+            )}
             <li className="header-actions__item">
               <Dropdown />
             </li>
@@ -54,4 +62,8 @@ const Header = () => {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Header);

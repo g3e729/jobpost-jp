@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="l-container py-4">
-    
+
     <div class="shadow-sm card card-payment-detail">
       <div class="card-body pt-5 px-5">
         <h2 class="card-title w-100 text-truncate">{{ $payment->transactionable->display_name }} {{ $payment->bill_date }}</h2>
@@ -37,10 +37,10 @@
           <table class="table table-striped table-hover mt-5 mb-4">
             <thead>
               <tr>
-                <th width="450px">アカウント</th>
+                <th width="420px">アカウント</th>
                 <th>価格</th>
                 @if (! $payment->is_approved)
-                  <th width="90px">&nbsp;</th>
+                  <th width="120px">&nbsp;</th>
                 @endif
               </tr>
             </thead>

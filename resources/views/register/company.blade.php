@@ -2,9 +2,9 @@
 
 @section('content')
 
-  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
+  <form class="form-staff1 needs-validation pt-3 pb-3 pr-5 mb-3 mr-2" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
-    
+
     <input type="hidden" name="step" value="{{ $step }}">
     <input type="hidden" name="code" value="{{ $invitation->code }}">
     <input type="hidden" name="email" value="{{ $invitation->email }}">
@@ -12,7 +12,7 @@
     <input type="hidden" name="profile_id" value="{{ $profile_id }}">
 
     @if ($step == 1)
-      
+
       <div class="form-group pb-3 row">
         <label for="formPassword" class="col-4 col-form-label font-weight-bold">パスワード</label>
         <div class="col-8">
@@ -42,7 +42,7 @@
         <div class="col-8">
           <input type="text" class="form-control" id="formCompanyName" name="company_name" value="{{ old('company_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter company name. 
+            Please enter company name.
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@
         <div class="col-8">
           <textarea class="form-control" id="formIntro" name="description" placeholder="" rows="4" style="min-height: 100px;" required>{{ old('description') }}</textarea>
           <div class="invalid-tooltip">
-            Please enter your company's introduction. 
+            Please enter your company's introduction.
           </div>
         </div>
       </div>
@@ -166,13 +166,13 @@
           </div>
         </div>
       </div>
-      
+
       <div class="form-group pb-3 row">
         <label for="formHomepage" class="col-4 col-form-label font-weight-bold">HP(URL)</label>
         <div class="col-8">
           <input type="url" class="form-control" id="formHomepage" name="homepage" value="{{ old('homepage') }}" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter your homepage. 
+            Please enter your homepage.
           </div>
         </div>
       </div>
@@ -201,6 +201,6 @@
         <button type="submit" class="alt-font btn btn-primary btn-submit btn-rounded w-100">送信</button>
       </div>
     </div>
-    
+
   </form>
 @endsection

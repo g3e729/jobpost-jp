@@ -43,10 +43,10 @@
           <table class="table table-striped table-hover mt-5 mb-4">
             <thead>
               <tr>
-                <th width="450px">アカウント</th>
+                <th width="420px">アカウント</th>
                 <th>価格</th>
                 @if (! $payment->is_approved)
-                  <th width="90px">&nbsp;</th>
+                  <th width="120px">&nbsp;</th>
                 @endif
               </tr>
             </thead>
@@ -65,7 +65,7 @@
                     <td>
                       <div class="payment-actions d-flex justify-content-between">
                         @if (! $ticket->deleted_at)
-                          <button type="submit" data-type="delete" form="deleteForm-{{ $ticket->id }}" class="js-ticket-delete btn btn-link text-decoration-none text-muted">削除</button>
+                          <button type="submit" data-type="delete" form="deleteForm-{{ $ticket->id }}" class="js-ticket-delete btn btn-link text-decoration-none text-muted p-0">削除</button>
                           <form id="deleteForm-{{ $ticket->id }}" method="POST" action="{{ route('admin.tickets.destroy', $ticket) }}" novalidate style="visibility: hidden; position: absolute;">
                             @csrf
                             {{ method_field('DELETE') }}
@@ -114,7 +114,7 @@
   <form id="submitForm" method="POST" action="{{ route('admin.payments.update', ['payment' => $payment->id]) }}" novalidate style="visibility: hidden; position: absolute;">
     @csrf
     {{ method_field('PATCH') }}
-    
+
   </form>
 @endsection
 

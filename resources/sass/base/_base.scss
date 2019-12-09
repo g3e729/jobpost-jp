@@ -27,8 +27,8 @@ body {
   height: 100%;
 
   &.bg-gradient-awesome {
-    background-image: linear-gradient(40deg, #45cafc, #303f9f);
     background-size: cover;
+    background-repeat: no-repeat;
   }
 }
 
@@ -60,6 +60,10 @@ a {
 .container-fluid {
   padding-left: $grid-gutter-width;
   padding-right: $grid-gutter-width;
+}
+
+.container-awesome {
+  max-width: 945px;
 }
 
 // Scroll to top button

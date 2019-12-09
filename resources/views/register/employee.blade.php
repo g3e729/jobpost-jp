@@ -2,9 +2,9 @@
 
 @section('content')
 
-  <form class="form-staff1 needs-validation pt-3 pb-5 px-5 mb-4" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
+  <form class="form-staff1 needs-validation pt-3 pb-3 pr-5 mb-3 mr-2" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data" novalidate>
     @csrf
-    
+
     <input type="hidden" name="step" value="{{ $step }}">
     <input type="hidden" name="code" value="{{ $invitation->code }}">
     <input type="hidden" name="email" value="{{ $invitation->email }}">
@@ -42,7 +42,7 @@
         <div class="col-8">
           <input type="text" class="form-control" id="formJapaneseName" name="japanese_name" value="{{ old('japanese_name') }}" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter Japanese name. 
+            Please enter Japanese name.
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <div class="col-8">
           <input type="text" class="form-control" id="formName" name="name" value="{{ old('name') }}" placeholder="" required>
           <div class="invalid-tooltip">
-            Please enter English name. 
+            Please enter English name.
           </div>
         </div>
       </div>

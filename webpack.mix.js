@@ -8,7 +8,9 @@ mix.js('resources/js/register.js', 'public/js');
 mix.js('resources/js/editform.js', 'public/js');
 mix.sass('resources/sass/admin.scss', 'public/css');
 mix.copy('resources/fonts', 'public/fonts');
-mix.copyWatched('resources/img', 'public/img');
+mix.copyWatched('resources/img/**/*.{jpg,jpeg,png,gif}', 'public/img',
+  { base: 'resources/img' }
+);
 
 mix.react('resources/react/app.js', 'public/js');
 mix.sass('resources/react/assets/sass/app.scss', 'public/css');

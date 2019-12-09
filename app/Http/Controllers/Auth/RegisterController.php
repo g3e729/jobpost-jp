@@ -30,25 +30,13 @@ class RegisterController extends Controller
             $invitation->delete();
             abort(404);
         }
-        
+
         $step = $request->get('step', 1);
         $progress = ($step / 2) * 100;
         $profile_id = session('profile_id', 0);
         $type = Invitation::getTypes($invitation->type);
 
-        $image = 'random';
-
-        switch ($type) {
-          case 'student':
-            $image = 'OqtafYT5kTw';
-            break;
-          case 'employee':
-            $image = 'iusJ25iYu1c';
-            break;
-          case 'company':
-            $image = 'ow1mML1sOi0';
-            break;
-        }
+        $image = asset('img/register/'.$type.'-bg.png');
 
         $data = compact(
             'image',

@@ -35,29 +35,37 @@
   <script> document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 </head>
 
-<body class="bg-gradient-awesome">
-  <div class="container">
+<body class="bg-gradient-awesome" style="background-image: url('{{ $image }}'), linear-gradient(to right, rgba(253,184,52, 0.7) 0%, rgb(247,149,77, 1) 50%);">
+  <div class="container container-awesome">
     <div class="row justify-content-center">
       <div class="col-12">
-        <div class="card card-form ox-hidden border-0 shadow-lg my-5">
+        <div class="card card-form ox-hidden border-0 my-5">
           <div class="card-body p-0">
             <div class="row">
-              <div class="col-6 card-form-left d-block bg-form-image" style="background-image: url('https://source.unsplash.com/{{ $image }}/600x800');"></div>
+              <div class="col-6 card-form-left d-flex align-items-center pr-0">
+                <div class="card-form-side text-center w-100">
+                  <img src="{{ asset('img/logo-kredo-new-sp.png') }}" alt="Kredo" class="mb-5 pb-5" style="max-width: 112px;">
+                  <div class="card-actions pt-5 mt-5">
+                    <a class="btn btn-link text-dark my-2" href="{{ route('login') }}">{{ __('すでにアカウントをお持ちですか？') }}</a>
+                    <a class="btn btn-pill" href="{{ route('login') }}">{{ __('ログインする') }}</a>
+                  </div>
+                </div>
+              </div>
 
-              <div class="col-6 card-form-right">
+              <div class="col-6 card-form-right pl-0">
                 <div class="position-relative">
 
                   <div class="form-header">
-                    <div class="progress progress-form" style="height: 18px;">
-                      <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-anim-{{ $step }}" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100" data-progress="{{ $progress.'%' }}">{{ $step }}/2</div>
+                    <div class="step">
+                      <div class="step-dot {{ $step == 1 ? 'is-active' : ''}}"></div>
+                      <div class="step-dot {{ $step == 2 ? 'is-active' : ''}}"></div>
                     </div>
-
-                    <div class="py-4 text-center alt-font">
-                      <h1 class="h5">新規登録
+                    <div class="pt-4 text-center">
+                      <h1 class="h5 font-weight-bold">新規登録
                         @if ($step == 1)
-                          <span class="d-block h4">基本情報</span>
+                          <span class="d-block h6 mt-2">基本情報</span>
                         @else
-                          <span class="d-block h4">その他</span>
+                          <span class="d-block h6 mt-2">その他</span>
                         @endif
                       </h1>
                     </div>

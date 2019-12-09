@@ -54,3 +54,26 @@
 .btn-submit {
   box-shadow: $box-shadow-button;
 }
+
+.btn-pill {
+  font-size: 16px;
+  color: $app-color-dark-yellow;
+  letter-spacing: 0.12em;
+  padding: 11px 50px;
+  border: solid 1px $app-color-dark-yellow;
+  border-radius: 50px;
+}
+
+.btn-capsule {
+  font-size: 16px;
+  color: $white;
+  background-image: linear-gradient(to right, $app-color-dark-yellow, $app-color-orange);
+  letter-spacing: 0.12em;
+  padding: 11px 50px;
+  border: solid 1px $app-color-dark-yellow;
+  border-radius: 50px;
+}
+
+.btn-link {
+  letter-spacing: 0.06em;
+}
