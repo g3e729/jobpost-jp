@@ -3,13 +3,13 @@ const userReducer = (state = {}, action) => {
     case 'USER_TYPE_SET':
       return {
         ...state,
-        userType: action.payload,
+        userData: action.payload,
         isLogged: true
       };
     case 'USER_UNSET':
       return {
         ...state,
-        userType: '',
+        userData: {},
         isLogged: false
       };
     default:

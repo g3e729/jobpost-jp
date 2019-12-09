@@ -12,10 +12,10 @@ import JobsList from '../jobs/JobsList';
 
 const ProfilePage = (props) => {
   const { user } = props;
-  const userType = user.userType;
+  const accountType = (user.userData && user.userData.accountType) || '';
 
   return (
-    userType === 'student' ? (
+    accountType === 'student' ? (
       <Page>
         <Heading type="user"
           style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
@@ -348,7 +348,7 @@ const ProfilePage = (props) => {
           </div>
         </section>
       </Page>
-    ) : userType === 'company' ? (
+    ) : accountType === 'company' ? (
       <Page>
         <Heading type="user"
           style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}

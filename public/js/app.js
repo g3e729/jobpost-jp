@@ -59689,6 +59689,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unsetUser", function() { return unsetUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUser", function() { return getUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutUser", function() { return logoutUser; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_endpoints__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/endpoints */ "./resources/react/constants/endpoints.js");
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+
+
 var setUser = function setUser() {
   var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return {
@@ -59706,7 +59760,24 @@ var getUser = function getUser() {
   var apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token'); // Todo: check if apitoken exists
 
   return function (dispatch) {
-    dispatch(setUser(accountType));
+    if (['student', 'company'].includes(accountType)) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        url: _constants_endpoints__WEBPACK_IMPORTED_MODULE_1__["endpoints"].ACCOUNT,
+        method: 'get',
+        params: {
+          api_token: apiToken
+        }
+      }).then(function (result) {
+        dispatch(setUser(_objectSpread({}, result.data, {
+          accountType: accountType
+        })));
+      })["catch"](function (error) {
+        dispatch(unsetUser());
+        console.log('[Login]', error);
+      });
+    } else {
+      dispatch(unsetUser());
+    }
   };
 };
 var logoutUser = function logoutUser() {
@@ -59898,11 +59969,11 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 var Avatar = function Avatar(_ref) {
   var className = _ref.className,
-      props = _objectWithoutProperties(_ref, ["className"]);
+      rest = _objectWithoutProperties(_ref, ["className"]);
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
     className: "avatar ".concat(className || '')
-  }, props));
+  }, rest));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Avatar);
@@ -59978,12 +60049,12 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 var Button = function Button(_ref) {
   var className = _ref.className,
-      value = _ref.value,
-      props = _objectWithoutProperties(_ref, ["className", "value"]);
+      children = _ref.children,
+      rest = _objectWithoutProperties(_ref, ["className", "children"]);
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
     className: "button ".concat(className || '')
-  }, props), value);
+  }, rest), children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Button);
@@ -60083,17 +60154,16 @@ var Clipboard = function Clipboard(_ref) {
       setCopied = _useState2[1];
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    className: "button--link",
-    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_1__["CopyToClipboard"], {
-      text: value,
-      onCopy: function onCopy(_) {
-        setCopied(true);
-        console.log('Copied: ', value);
-      }
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "icon icon-duplicate text-dark-yellow ".concat(Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(_templateObject()))
-    }))
-  });
+    className: "button--link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_1__["CopyToClipboard"], {
+    text: value,
+    onCopy: function onCopy(_) {
+      setCopied(true);
+      console.log('[Copy text]', value);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-duplicate text-dark-yellow ".concat(Object(emotion__WEBPACK_IMPORTED_MODULE_2__["css"])(_templateObject()))
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Clipboard);
@@ -60174,7 +60244,7 @@ var Dropdown = function Dropdown(props) {
       setDropdown = _useState2[1];
 
   var user = props.user;
-  var userType = user.userType;
+  var accountType = user.userData && user.userData.accountType || '';
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     var timer = setTimeout(function () {
       if (dropdown === true) setDropdown(false);
@@ -60189,20 +60259,19 @@ var Dropdown = function Dropdown(props) {
     elLogoutForm.submit();
   };
 
-  return userType && userType.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return accountType && accountType.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "button--link",
     onClick: function onClick(_) {
       return setDropdown(!dropdown);
-    },
-    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Avatar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      className: "avatar--header ".concat(dropdown ? _constants_state__WEBPACK_IMPORTED_MODULE_6__["state"].ACTIVE : ''),
-      style: {
-        backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")'
-      }
-    })
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Avatar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "avatar--header ".concat(dropdown ? _constants_state__WEBPACK_IMPORTED_MODULE_6__["state"].ACTIVE : ''),
+    style: {
+      backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")'
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "dropdown ".concat(dropdown ? _constants_state__WEBPACK_IMPORTED_MODULE_6__["state"].ACTIVE : '')
-  }, userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, accountType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "dropdown__menu"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
@@ -60255,7 +60324,7 @@ var Dropdown = function Dropdown(props) {
     onClick: function onClick() {
       return handleLogout();
     }
-  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))) : accountType === 'company' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "dropdown__menu"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
@@ -60299,7 +60368,7 @@ var Dropdown = function Dropdown(props) {
     onClick: function onClick() {
       return handleLogout();
     }
-  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))) : null)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/login",
     className: "button button--outline"
   }, "\u30ED\u30B0\u30A4\u30F3\u3059\u308B");
@@ -60385,13 +60454,13 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 var Embed = function Embed(_ref) {
   var className = _ref.className,
       src = _ref.src,
-      props = _objectWithoutProperties(_ref, ["className", "src"]);
+      rest = _objectWithoutProperties(_ref, ["className", "src"]);
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "embed ".concat(className || '')
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", _extends({
     src: src
-  }, props)));
+  }, rest)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Embed);
@@ -60793,15 +60862,15 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 var Heading = function Heading(_ref) {
   var type = _ref.type,
-      children = _ref.children,
       title = _ref.title,
       subTitle = _ref.subTitle,
-      props = _objectWithoutProperties(_ref, ["type", "children", "title", "subTitle"]);
+      children = _ref.children,
+      rest = _objectWithoutProperties(_ref, ["type", "title", "subTitle", "children"]);
 
-  var avatarImg = props['data-avatar'] || '';
+  var avatarImg = rest['data-avatar'] || '';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
     className: "heading heading--".concat(type || 'default')
-  }, props), type && type === 'user' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, rest), type && type === 'user' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "heading-content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Avatar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     className: "avatar--profile",
@@ -60815,11 +60884,10 @@ var Heading = function Heading(_ref) {
   }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "heading-content__position"
   }, subTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "button--pill heading-content__button",
-    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "icon icon-pencil text-dark-yellow"
-    }), "\u7DE8\u96C6")
-  }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "button--pill heading-content__button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-pencil text-dark-yellow"
+  }), "\u7DE8\u96C6")))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     className: "heading__title text-dark-yellow"
   }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "heading__title-jp"
@@ -60844,8 +60912,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Page = function Page(_ref) {
-  var children = _ref.children,
-      type = _ref.type;
+  var type = _ref.type,
+      children = _ref.children;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page page--".concat(type || 'default')
   }, children);
@@ -60914,11 +60982,10 @@ var PageUp = function PageUp() {
     className: "button--link pageup__button",
     onClick: function onClick() {
       return handleClick();
-    },
-    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "pageup__icon"
-    }), "PAGE TOP")
-  }));
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pageup__icon"
+  }), "PAGE TOP"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PageUp);
@@ -61120,11 +61187,10 @@ var Search = function Search() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     className: "button--link",
     type: "submit",
-    id: "js-button-search",
-    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "icon icon-search text-dark-yellow"
-    })
-  }))));
+    id: "js-button-search"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "icon icon-search text-dark-yellow"
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Search);
@@ -61684,12 +61750,10 @@ var JobsSection = function JobsSection() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-section__actions"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "button--link jobs-section__actions-button ".concat(_constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE),
-    value: "\u65B0\u7740\u9806"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "button--link jobs-section__actions-button",
-    value: "\u4EBA\u6C17\u9806"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "button--link jobs-section__actions-button ".concat(_constants_state__WEBPACK_IMPORTED_MODULE_4__["state"].ACTIVE)
+  }, "\u65B0\u7740\u9806"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "button--link jobs-section__actions-button"
+  }, "\u4EBA\u6C17\u9806"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-section__content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_JobsList__WEBPACK_IMPORTED_MODULE_5__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-section__footer"
@@ -62095,8 +62159,8 @@ function _taggedTemplateLiteral(strings, raw) {
 
 var ProfilePage = function ProfilePage(props) {
   var user = props.user;
-  var userType = user.userType;
-  return userType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var accountType = user.userData && user.userData.accountType || '';
+  return accountType === 'student' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "user",
     style: {
       backgroundImage: 'url("https://lorempixel.com/1800/600/people/")'
@@ -62525,7 +62589,7 @@ var ProfilePage = function ProfilePage(props) {
     className: "sidebar-content__scores-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "sidebar-content__scores-category"
-  }, "ENGLISH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "TOEIC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Reading", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "80\u70B9(CEFR - B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Listening", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "70\u70B9(CEFR- B2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Total", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Speaking", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Writing", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "40\u70B9(CEFR - A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "\u30EC\u30D9\u30EB", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "CEFR - B1")))))))))))) : userType === 'company' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "ENGLISH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", null, "TOEIC"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Reading", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "80\u70B9(CEFR - B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Listening", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "70\u70B9(CEFR- B2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Total", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- B1)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Speaking", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "65\u70B9(CEFR- A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "Writing", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "40\u70B9(CEFR - A2)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", null, "\u30EC\u30D9\u30EB", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "CEFR - B1")))))))))))) : accountType === 'company' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "user",
     style: {
       backgroundImage: 'url("https://lorempixel.com/1800/600/people/")'
@@ -62660,9 +62724,7 @@ var ProfilePage = function ProfilePage(props) {
     hasTitle: "true"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-data__jobs-footer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    value: "\u3082\u3063\u3068\u307F\u308B"
-  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_7__["default"], null, "\u3082\u3063\u3068\u307F\u308B"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "sidebar sidebar--single"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sidebar__inner"
@@ -62912,11 +62974,10 @@ var PageTop = function PageTop() {
     className: "button--link",
     onClick: function onClick() {
       return handleClick();
-    },
-    value: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "pagetop__icon"
-    })
-  }));
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pagetop__icon"
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PageTop);
@@ -63005,6 +63066,43 @@ var TermsPage = function TermsPage() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TermsPage);
+
+/***/ }),
+
+/***/ "./resources/react/constants/config.js":
+/*!*********************************************!*\
+  !*** ./resources/react/constants/config.js ***!
+  \*********************************************/
+/*! exports provided: config */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "config", function() { return config; });
+// can only read .env MIX_
+var config = {
+  api: {
+    url: "http://localhost:8000/api/v1" || false
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/react/constants/endpoints.js":
+/*!************************************************!*\
+  !*** ./resources/react/constants/endpoints.js ***!
+  \************************************************/
+/*! exports provided: endpoints */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "endpoints", function() { return endpoints; });
+/* harmony import */ var _constants_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/config */ "./resources/react/constants/config.js");
+
+var endpoints = {
+  ACCOUNT: "".concat(_constants_config__WEBPACK_IMPORTED_MODULE_0__["config"].api.url, "/account")
+};
 
 /***/ }),
 
@@ -63258,14 +63356,14 @@ var userReducer = function userReducer() {
   switch (action.type) {
     case 'USER_TYPE_SET':
       return _objectSpread({}, state, {
-        userType: action.payload,
-        loggedIn: true
+        userData: action.payload,
+        isLogged: true
       });
 
     case 'USER_UNSET':
       return _objectSpread({}, state, {
-        userType: '',
-        loggedIn: false
+        userData: {},
+        isLogged: false
       });
 
     default:

@@ -12,7 +12,8 @@ const Clipboard = ({ value }) => {
       <CopyToClipboard text={value}
         onCopy={_ => {
           setCopied(true);
-          console.log('Copied: ', value);
+
+          console.log('[Copy text]', value);
         }}>
         <i className={`icon icon-duplicate text-dark-yellow ${css`font-size: 12px`}`}></i>
       </CopyToClipboard>

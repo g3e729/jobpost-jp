@@ -10,7 +10,7 @@ import { state } from '../../constants/state';
 const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const { user } = props;
-  const userType = user.userType;
+  const accountType = (user.userData && user.userData.accountType) || '';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,14 +28,14 @@ const Dropdown = (props) => {
   }
 
   return (
-    userType && userType.length ? (
+    accountType && accountType.length ? (
       <>
         <Button className="button--link" onClick={_ => setDropdown(!dropdown)}>
           <Avatar className={`avatar--header ${dropdown ? state.ACTIVE : ''}`}
             style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }} />
         </Button>
         <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`}>
-          { userType === 'student' ? (
+          { accountType === 'student' ? (
             <ul className="dropdown__menu">
               <li className="dropdown__menu-item">
                 <NavLink onClick={() => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
@@ -68,7 +68,7 @@ const Dropdown = (props) => {
                 </a>
               </li>
             </ul>
-          ) : (
+          ) : accountType === 'company' ? (
             <ul className="dropdown__menu">
               <li className="dropdown__menu-item">
                 <NavLink onClick={() => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
@@ -96,7 +96,7 @@ const Dropdown = (props) => {
                 </a>
               </li>
             </ul>
-          )}
+          ) : null }
         </nav>
       </>
     ) : (
