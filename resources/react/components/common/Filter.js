@@ -9,7 +9,7 @@ const filterList = [
   { value: 'vanilla',     label: 'Vanilla' }
 ];
 
-const Filter = () => {
+const Filter = _ => {
   const inputPlaceholder = '指定なし';
 
   return (

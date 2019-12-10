@@ -6,8 +6,8 @@ import Heading from '../common/Heading';
 import PageUp from '../common/PageUp';
 import HelpContent from './HelpContent';
 
-const HelpPage = () => {
-  useEffect(() => {
+const HelpPage = _ => {
+  useEffect(_ => {
     const elemRoot = document.querySelector('#root');
 
     setTimeout(_ => {

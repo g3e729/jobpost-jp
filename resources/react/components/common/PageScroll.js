@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageScroll = () => (
+const PageScroll = _ => (
   <div className="pagescroll">
     <span className="pagescroll__icon"></span>
   </div>

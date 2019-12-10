@@ -6,8 +6,8 @@ import Heading from '../common/Heading';
 import PageUp from '../common/PageUp';
 import PrivacyContent from './PrivacyContent';
 
-const PrivacyPage = () => {
-  useEffect(() => {
+const PrivacyPage = _ => {
+  useEffect(_ => {
     const elemRoot = document.querySelector('#root');
 
     setTimeout(_ => {

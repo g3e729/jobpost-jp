@@ -3,7 +3,7 @@ import React from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
 
-const Slider = () => {
+const Slider = _ => {
   const params = {
     noSwiping: true,
     slidesPerView: 1,

@@ -6,11 +6,11 @@ export const setUser = (payload = '') => ({
   payload
 });
 
-export const unsetUser = () => ({
+export const unsetUser = _ => ({
   type: 'USER_UNSET'
 });
 
-export const getUser = () => {
+export const getUser = _ => {
   const accountType = document.querySelector('meta[name="account"]').content || '';
   const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token'); // Todo: check if apitoken exists
 
@@ -36,7 +36,7 @@ export const getUser = () => {
   }
 }
 
-export const logoutUser = () => {
+export const logoutUser = _ => {
   return (dispatch) => {
     dispatch(unsetUser());
   }

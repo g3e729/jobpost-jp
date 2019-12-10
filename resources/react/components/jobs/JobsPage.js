@@ -6,7 +6,7 @@ import Filter from '../common/Filter';
 import PageScroll from '../common/PageScroll';
 import JobsSection from './JobsSection';
 
-const JobsPage = () => (
+const JobsPage = _ => (
   <>
     <PageScroll />
     <Page>

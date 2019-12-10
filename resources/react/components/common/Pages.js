@@ -20,7 +20,7 @@ import PageTop from '../service/PageTop';
 
 import { routes } from '../../constants/routes';
 
-const Pages = () => (
+const Pages = _ => (
   <div className="pages">
     <PageTop />
     <Switch>

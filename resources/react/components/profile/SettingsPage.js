@@ -3,7 +3,7 @@ import React from 'react';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 
-const SettingsPage = () => (
+const SettingsPage = _ => (
   <Page>
     <Heading type={null}
       title="ACCOUNT SETTINGS"

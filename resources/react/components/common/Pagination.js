@@ -2,7 +2,7 @@ import React from 'react';
 
 import { state } from '../../constants/state';
 
-const Pagination = () => {
+const Pagination = _ => {
   const isPrev = 0;
   const isNext = 1;
 

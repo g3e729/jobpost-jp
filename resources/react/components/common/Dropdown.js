@@ -12,13 +12,13 @@ const Dropdown = (props) => {
   const { user } = props;
   const accountType = (user.userData && user.userData.accountType) || '';
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  useEffect(_ => {
+    const timer = setTimeout(_ => {
       if (dropdown === true)
         setDropdown(false);
     }, 5000);
 
-    return () => clearTimeout(timer);
+    return _ => clearTimeout(timer);
   }, [dropdown]);
 
   const handleLogout = _ => {
@@ -38,32 +38,32 @@ const Dropdown = (props) => {
           { accountType === 'student' ? (
             <ul className="dropdown__menu">
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
                   マイページ
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.PROFILE_FAV} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_FAV} activeClassName={state.ACTIVE}>
                   お気に入りした募集
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.PROFILE_APPLY} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_APPLY} activeClassName={state.ACTIVE}>
                   応募した募集
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.PROFILE_SCOUTS} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_SCOUTS} activeClassName={state.ACTIVE}>
                   スカウト一覧
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.PROFILE_SETTINGS} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_SETTINGS} activeClassName={state.ACTIVE}>
                   アカウントの設定
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={() => handleLogout()}>
+                <a onClick={_ => handleLogout()}>
                   ログアウト
                 </a>
               </li>
@@ -71,27 +71,27 @@ const Dropdown = (props) => {
           ) : accountType === 'company' ? (
             <ul className="dropdown__menu">
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
                   会社ページ
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.PROFILE_EDIT} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_EDIT} activeClassName={state.ACTIVE}>
                   会社情報編集
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.STUDENTS} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.STUDENTS} activeClassName={state.ACTIVE}>
                   気になる生徒
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={() => setDropdown(false)} exact to={routes.PROFILE_SETTINGS} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_SETTINGS} activeClassName={state.ACTIVE}>
                   アカウントの設定
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={() => handleLogout()}>
+                <a onClick={_ => handleLogout()}>
                   ログアウト
                 </a>
               </li>

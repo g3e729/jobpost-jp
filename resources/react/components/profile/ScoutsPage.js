@@ -4,7 +4,7 @@ import Page from '../common/Page';
 import Heading from '../common/Heading';
 import FavoritesSection from './FavoritesSection';
 
-const ScoutsPage = () => {
+const ScoutsPage = _ => {
   return (
     <Page>
       <Heading type={null}

@@ -6,7 +6,7 @@
 <!--[if IE 8]>
 <html class="no-js lt-ie9" prefix="og: http://ogp.me/ns#"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" prefix="og: http://ogp.me/ns#"><!--<![endif]-->
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js" prefix="og: http://ogp.me/ns#"><!--<![endif]-->
 <head>
   <meta charset="UTF-8">
   <title>Registration Form | Kredo</title>
@@ -72,7 +72,7 @@
                   </div>
 
                   @if ($errors->any())
-                    <div class="alert alert-danger pb-0">
+                    <div class="alert alert-danger pb-0 mr-5">
                       <ul>
                         @foreach ($errors->all() as $error)
                           <li>{{ $error }}</li>

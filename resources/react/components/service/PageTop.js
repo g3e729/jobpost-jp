@@ -6,7 +6,7 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import { values } from '../../constants/enums';
 import { state } from '../../constants/state';
 
-const PageTop = () => {
+const PageTop = _ => {
   const [hideOnScroll, setHideOnScroll] = useState(false);
 
   useScrollPosition(({ prevPos, currPos }) => {
@@ -21,14 +21,14 @@ const PageTop = () => {
   const handleClick = _ => {
     const elemRoot = document.querySelector('#root');
 
-    setTimeout(() => {
+    setTimeout(_ => {
       scrollIntoView(elemRoot, { block: 'start',  behavior: 'smooth' });
     }, 5);
   }
 
   return (
     <div className={`pagetop ${hideOnScroll ? state.ACTIVE : ''}`}>
-      <Button className="button--link" onClick={() => handleClick()}>
+      <Button className="button--link" onClick={_ => handleClick()}>
         <span className="pagetop__icon"></span>
       </Button>
     </div>

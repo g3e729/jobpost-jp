@@ -6,8 +6,8 @@ import Heading from '../common/Heading';
 import PageUp from '../common/PageUp';
 import TermsContent from './TermsContent';
 
-const TermsPage = () => {
-  useEffect(() => {
+const TermsPage = _ => {
+  useEffect(_ => {
     const elemRoot = document.querySelector('#root');
 
     setTimeout(_ => {

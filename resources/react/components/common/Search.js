@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '../common/Button';
 
-const Search = () => (
+const Search = _ => (
   <form className="form">
     <div className="form__group form__group--search">
       <input type="search" className="input input--search" placeholder="キーワードで検索" aria-describedby="js-button-search" />

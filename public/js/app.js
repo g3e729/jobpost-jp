@@ -59750,12 +59750,12 @@ var setUser = function setUser() {
     payload: payload
   };
 };
-var unsetUser = function unsetUser() {
+var unsetUser = function unsetUser(_) {
   return {
     type: 'USER_UNSET'
   };
 };
-var getUser = function getUser() {
+var getUser = function getUser(_) {
   var accountType = document.querySelector('meta[name="account"]').content || '';
   var apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token'); // Todo: check if apitoken exists
 
@@ -59780,7 +59780,7 @@ var getUser = function getUser() {
     }
   };
 };
-var logoutUser = function logoutUser() {
+var logoutUser = function logoutUser(_) {
   return function (dispatch) {
     dispatch(unsetUser());
   };
@@ -59845,9 +59845,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var App = function App() {
+var App = function App(_) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
     dispatch(Object(_actions_user__WEBPACK_IMPORTED_MODULE_2__["getUser"])());
   }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -59879,8 +59879,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var AboutPage = function AboutPage() {
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+var AboutPage = function AboutPage(_) {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
     var elemRoot = document.querySelector('#root');
     setTimeout(function (_) {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
@@ -60245,11 +60245,11 @@ var Dropdown = function Dropdown(props) {
 
   var user = props.user;
   var accountType = user.userData && user.userData.accountType || '';
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var timer = setTimeout(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
+    var timer = setTimeout(function (_) {
       if (dropdown === true) setDropdown(false);
     }, 5000);
-    return function () {
+    return function (_) {
       return clearTimeout(timer);
     };
   }, [dropdown]);
@@ -60276,7 +60276,7 @@ var Dropdown = function Dropdown(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60285,7 +60285,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u30DE\u30A4\u30DA\u30FC\u30B8")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60294,7 +60294,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u304A\u6C17\u306B\u5165\u308A\u3057\u305F\u52DF\u96C6")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60303,7 +60303,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u5FDC\u52DF\u3057\u305F\u52DF\u96C6")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60312,7 +60312,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u30B9\u30AB\u30A6\u30C8\u4E00\u89A7")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60321,7 +60321,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u306E\u8A2D\u5B9A")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return handleLogout();
     }
   }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))) : accountType === 'company' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -60329,7 +60329,7 @@ var Dropdown = function Dropdown(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60338,7 +60338,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u4F1A\u793E\u30DA\u30FC\u30B8")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60347,7 +60347,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u4F1A\u793E\u60C5\u5831\u7DE8\u96C6")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60356,7 +60356,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u6C17\u306B\u306A\u308B\u751F\u5F92")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return setDropdown(false);
     },
     exact: true,
@@ -60365,7 +60365,7 @@ var Dropdown = function Dropdown(props) {
   }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u306E\u8A2D\u5B9A")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown__menu-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return handleLogout();
     }
   }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))) : null)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -60494,7 +60494,7 @@ var filterList = [{
   label: 'Vanilla'
 }];
 
-var Filter = function Filter() {
+var Filter = function Filter(_) {
   var inputPlaceholder = '指定なし';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "filter"
@@ -60601,8 +60601,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var footerLinks = ['about', 'terms', 'help', 'privacy'];
 
-var Footer = function Footer(props) {
-  var location = props.location;
+var Footer = function Footer(_) {
+  var location = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useLocation"])();
   var path = location.pathname.substr(_constants_routes__WEBPACK_IMPORTED_MODULE_2__["prefix"].length).replace('/', '');
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
     className: "l-footer footer"
@@ -60673,7 +60673,7 @@ var Footer = function Footer(props) {
   }, "Copyright\xA9 2019 Kredo Inc. All rights reserved.")));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Footer));
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
 
 /***/ }),
 
@@ -60946,7 +60946,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var PageScroll = function PageScroll() {
+var PageScroll = function PageScroll(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pagescroll"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -60975,10 +60975,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var PageUp = function PageUp() {
+var PageUp = function PageUp(_) {
   var handleClick = function handleClick(_) {
     var elemRoot = document.querySelector('#root');
-    setTimeout(function () {
+    setTimeout(function (_) {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
         block: 'start',
         behavior: 'smooth'
@@ -60990,7 +60990,7 @@ var PageUp = function PageUp() {
     className: "pageup u-show-sp"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "button--link pageup__button",
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return handleClick();
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -61045,7 +61045,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Pages = function Pages() {
+var Pages = function Pages(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pages"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_service_PageTop__WEBPACK_IMPORTED_MODULE_14__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -61122,7 +61122,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Pagination = function Pagination() {
+var Pagination = function Pagination(_) {
   var isPrev = 0;
   var isNext = 1;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -61182,7 +61182,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Search = function Search() {
+var Search = function Search(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "form"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61226,7 +61226,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Slider = function Slider() {
+var Slider = function Slider(_) {
   var params = {
     noSwiping: true,
     slidesPerView: 1,
@@ -61355,7 +61355,7 @@ function _arrayWithHoles(arr) {
 
 
 
-var CompaniesPage = function CompaniesPage() {
+var CompaniesPage = function CompaniesPage(_) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       companies = _useState2[0],
@@ -61540,7 +61540,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var HelpContent = function HelpContent() {
+var HelpContent = function HelpContent(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "l-section section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61595,8 +61595,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var HelpPage = function HelpPage() {
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+var HelpPage = function HelpPage(_) {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
     var elemRoot = document.querySelector('#root');
     setTimeout(function (_) {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
@@ -61714,7 +61714,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var JobsPage = function JobsPage() {
+var JobsPage = function JobsPage(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_PageScroll__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Slider__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "l-section l-section--main section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61749,7 +61749,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var JobsSection = function JobsSection() {
+var JobsSection = function JobsSection(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jobs-section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61787,7 +61787,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var PrivacyContent = function PrivacyContent() {
+var PrivacyContent = function PrivacyContent(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "l-section section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61879,8 +61879,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var PrivacyPage = function PrivacyPage() {
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+var PrivacyPage = function PrivacyPage(_) {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
     var elemRoot = document.querySelector('#root');
     setTimeout(function (_) {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
@@ -61919,7 +61919,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ApplyPage = function ApplyPage() {
+var ApplyPage = function ApplyPage(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: null,
     title: "APPLICATION",
@@ -61970,7 +61970,7 @@ function _arrayWithoutHoles(arr) {
 
 
 
-var FavoritesList = function FavoritesList() {
+var FavoritesList = function FavoritesList(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "favorites-list"
   }, _toConsumableArray(Array(9)).map(function (_, idx) {
@@ -62028,7 +62028,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var FavoritesPage = function FavoritesPage() {
+var FavoritesPage = function FavoritesPage(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: null,
     title: "FAVORITES",
@@ -62063,7 +62063,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var FavoritesSection = function FavoritesSection() {
+var FavoritesSection = function FavoritesSection(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "favorites-section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -62840,7 +62840,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ScoutsPage = function ScoutsPage() {
+var ScoutsPage = function ScoutsPage(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: null,
     title: "SCOUT",
@@ -62873,7 +62873,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var SettingsPage = function SettingsPage() {
+var SettingsPage = function SettingsPage(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Page__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: null,
     title: "ACCOUNT SETTINGS",
@@ -62951,7 +62951,7 @@ function _arrayWithHoles(arr) {
 
 
 
-var PageTop = function PageTop() {
+var PageTop = function PageTop(_) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       hideOnScroll = _useState2[0],
@@ -62970,7 +62970,7 @@ var PageTop = function PageTop() {
 
   var handleClick = function handleClick(_) {
     var elemRoot = document.querySelector('#root');
-    setTimeout(function () {
+    setTimeout(function (_) {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
         block: 'start',
         behavior: 'smooth'
@@ -62982,7 +62982,7 @@ var PageTop = function PageTop() {
     className: "pagetop ".concat(hideOnScroll ? _constants_state__WEBPACK_IMPORTED_MODULE_5__["state"].ACTIVE : '')
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "button--link",
-    onClick: function onClick() {
+    onClick: function onClick(_) {
       return handleClick();
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -63007,7 +63007,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var TermsContent = function TermsContent() {
+var TermsContent = function TermsContent(_) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "l-section section"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -63058,8 +63058,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var TermsPage = function TermsPage() {
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+var TermsPage = function TermsPage(_) {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
     var elemRoot = document.querySelector('#root');
     setTimeout(function (_) {
       Object(smooth_scroll_into_view_if_needed__WEBPACK_IMPORTED_MODULE_1__["default"])(elemRoot, {
@@ -63092,7 +63092,7 @@ __webpack_require__.r(__webpack_exports__);
 // can only read .env MIX_
 var config = {
   api: {
-    url: "http://localhost:8000/api/v1" || false
+    url: "http://localhost:8000/api" || false
   }
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HelpContent = () => (
+const HelpContent = _ => (
   <section className="l-section section">
     <div className="l-container">
       <ul className="help">

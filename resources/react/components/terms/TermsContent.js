@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TermsContent = () => (
+const TermsContent = _ => (
   <section className="l-section section">
     <div className="l-container">
       <ol className="terms-list">

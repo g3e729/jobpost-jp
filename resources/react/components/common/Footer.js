@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { routes, prefix } from '../../constants/routes';
 import { state } from '../../constants/state';
@@ -11,8 +11,8 @@ const footerLinks = [
   'privacy'
 ];
 
-const Footer = (props) => {
-  let { location } = props;
+const Footer = _ => {
+  let location = useLocation();
   let path = location.pathname.substr(prefix.length).replace('/', '');
 
   return (
@@ -78,4 +78,4 @@ const Footer = (props) => {
   );
 }
 
-export default withRouter(Footer);
+export default Footer;

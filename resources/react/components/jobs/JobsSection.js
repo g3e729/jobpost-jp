@@ -7,7 +7,7 @@ import { state } from '../../constants/state';
 
 import JobsList from './JobsList';
 
-const JobsSection = () => (
+const JobsSection = _ => (
   <div className="jobs-section">
     <div className="jobs-section__top">
       <Fraction numerator="10"

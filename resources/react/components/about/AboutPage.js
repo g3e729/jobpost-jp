@@ -4,8 +4,8 @@ import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 
-const AboutPage = () => {
-  useEffect(() => {
+const AboutPage = _ => {
+  useEffect(_ => {
     const elemRoot = document.querySelector('#root');
 
     setTimeout(_ => {

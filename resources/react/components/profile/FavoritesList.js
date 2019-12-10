@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FavoritesList = () => (
+const FavoritesList = _ => (
   <ul className="favorites-list">
     { [...Array(9)].map((_, idx) => (
       <li className="favorites-list__item" key={idx}>

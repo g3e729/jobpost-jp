@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PrivacyContent = () => (
+const PrivacyContent = _ => (
   <section className="l-section section">
     <div className="l-container">
       <div className="privacy__note">

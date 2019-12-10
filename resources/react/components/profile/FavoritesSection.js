@@ -5,7 +5,7 @@ import Pagination from '../common/Pagination';
 
 import FavoritesList from './FavoritesList';
 
-const FavoritesSection = () => (
+const FavoritesSection = _ => (
   <div className="favorites-section">
     <div className="favorites-section__top">
       <Fraction numerator="09"

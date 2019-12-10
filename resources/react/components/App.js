@@ -7,10 +7,10 @@ import Header from './common/Header';
 import Footer from './common/Footer';
 import Pages from './common/Pages';
 
-const App = () => {
+const App = _ => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(_ => {
     dispatch(getUser());
   }, []);
 
