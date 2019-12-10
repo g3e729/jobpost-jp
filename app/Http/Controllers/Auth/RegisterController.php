@@ -89,18 +89,19 @@ class RegisterController extends Controller
                 );
             break;
             case 2:
-                $profile = (new CompanyService)->find(session('profile_id', 0));
+                $companyService = (new CompanyService);
+                $profile = $companyService->find(session('profile_id', 0));
 
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
 
                 if ($request->has('avatar')) {
-                    $profile->acPhotoUploader($request->avatar);
+                    $companyService->acPhotoUploader($request->avatar);
                 }
 
                 if ($request->has('cover_photo')) {
-                    $profile->acPhotoUploader($request->avatar, 'cover_photo');
+                    $companyService->acPhotoUploader($request->cover_photo, 'cover_photo');
                 }
             break;
         }
@@ -117,14 +118,15 @@ class RegisterController extends Controller
                 );
             break;
             case 2:
-                $profile = (new EmployeeService)->find(session('profile_id', 0));
+                $employeeService = (new EmployeeService);
+                $profile = $employeeService->find(session('profile_id', 0));
 
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
 
                 if ($request->has('avatar')) {
-                    $profile->acPhotoUploader($request->avatar);
+                    $employeeService->acPhotoUploader($request->avatar);
                 }
             break;
         }
@@ -141,14 +143,15 @@ class RegisterController extends Controller
                 );
             break;
             case 2:
-                $profile = (new SeekerService)->find(session('profile_id', 0));
+                $seekerService = (new SeekerService);
+                $profile = $seekerService->find(session('profile_id', 0));
 
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
 
                 if ($request->has('avatar')) {
-                    $profile->acPhotoUploader($request->avatar);
+                    $seekerService->acPhotoUploader($request->avatar);
                 }
             break;
         }
