@@ -5,3 +5,54 @@
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 60%, rgba(255, 255, 255, 0));
   z-index: 6;
 }
+
+.form-control {
+  &.form-control-registration {
+    -webkit-border-radius: 0;
+    border: 0;
+    outline: 1px solid #ced4da;
+    outline-offset: -1px;
+  }
+}
+
+.form-file-delete {
+  img {
+    width: 112px !important;
+    height: 112px !important;
+  }
+
+  button[data-avatar="delete"] {
+    font-size: 14px;
+    color: $app-color-medium-black;
+    letter-spacing: 0.12em;
+
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    width: calc(100% - 30px);
+    z-index: 2;
+    padding: 0;
+
+    &.disabled,
+    &:disabled {
+      color: $app-color-dark-gray;
+    }
+  }
+}
+
+.form-file-browse {
+  padding-bottom: 56px;
+
+  input[data-avatar="name"] {
+    display: none;
+  }
+
+  button[data-avatar="browse"] {
+    font-size: 13px;
+    color: $app-color-medium-black;
+    letter-spacing: 0.12em;
+    border: solid 1px $app-color-dark-yellow;
+    border-radius: 50px !important;
+    padding: 4px 16px;
+  }
+}

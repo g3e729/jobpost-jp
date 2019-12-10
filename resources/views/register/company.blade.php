@@ -51,7 +51,7 @@
         <div class="col pr-0 pt-2">住所</div>
         <div class="col-8">
           <div class="form-group position-relative">
-            <select class="form-control form-control-awesome rounded-0" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
+            <select class="form-control form-control-registration rounded-0" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
                 <option value="{{ $index }}">{{ $name }}</option>
@@ -151,7 +151,7 @@
       <div class="form-group pb-1 row">
         <label for="formIndustryId" class="col col-form-label pr-0">業種、業界</label>
         <div class="col-8">
-          <select class="form-control form-control-awesome rounded-0" id="formIndustryId" name="industry_id" data-action="change" data-condition="" data-text="Please choose your industry.">
+          <select class="form-control form-control-registration rounded-0" id="formIndustryId" name="industry_id" data-action="change" data-condition="" data-text="Please choose your industry.">
             <option value="" selected hidden disabled>Choose industry</option>
             @foreach($industries as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>

@@ -192,11 +192,11 @@ class RegisterController extends Controller
         switch ($step) {
             case 1:
                 $data['prefectures'] = getPrefecture();
+                $data['occupations'] = SeekerProfile::getOccupations();
             break;
             case 2:
                 // $data['countries'] = getCountries();
                 $data['student_status'] = SeekerProfile::getStudentStatus();
-                $data['occupations'] = SeekerProfile::getOccupations();
             break;
         }
 

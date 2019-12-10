@@ -78,7 +78,7 @@
         <div class="col pr-0 pt-2">住所</div>
         <div class="col-8">
           <div class="form-group position-relative">
-            <select class="form-control form-control-awesome rounded-0" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
+            <select class="form-control form-control-registration rounded-0" id="formPrefecture" name="prefecture" data-action="change" data-condition="" data-text="Please choose your prefecture.">
               <option value="" selected hidden disabled>Choose prefecture</option>
               @foreach($prefectures as $index => $name)
                 <option value="{{ $index }}">{{ $name }}</option>
@@ -116,7 +116,7 @@
       <div class="form-group pb-1 row">
         <label for="formSex" class="col col-form-label pr-0">性別</label>
         <div class="col-8">
-          <select class="form-control form-control-awesome rounded-0" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
+          <select class="form-control form-control-registration rounded-0" id="formSex" name="sex" data-action="change" data-condition="" data-text="Please choose your sex orientation.">
             <option value="" selected hidden disabled>Choose sex</option>
             <option value="m">男</option>
             <option value="f">女</option>
@@ -139,7 +139,7 @@
       <div class="form-group pb-1 row">
         <label for="formCountry" class="col col-form-label pr-0">国籍</label>
         <div class="col-8">
-          <select class="form-control form-control-awesome rounded-0" id="formCountry" name="country">
+          <select class="form-control form-control-registration rounded-0" id="formCountry" name="country">
             <option value="" selected hidden disabled>Choose country</option>
             @foreach($countries as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>
@@ -151,7 +151,7 @@
       <div class="form-group pb-1 row">
         <label for="formPositionId" class="col col-form-label pr-0">ポジション</label>
         <div class="col-8">
-          <select class="form-control form-control-awesome rounded-0" id="formPositionId" name="position_id">
+          <select class="form-control form-control-registration rounded-0" id="formPositionId" name="position_id">
             <option value="" selected hidden disabled>Choose position</option>
             @foreach($positions as $index => $name)
               <option value="{{ $index }}">{{ ucwords($name) }}</option>
@@ -163,7 +163,7 @@
       <div class="form-group pb-1 row">
         <label for="formStatus" class="col col-form-label pr-0">ステータス</label>
         <div class="col-8">
-          <select class="form-control form-control-awesome rounded-0" id="formStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
+          <select class="form-control form-control-registration rounded-0" id="formStatus" name="status" data-action="change" data-condition="" data-text="Please choose your status.">
             <option value="" selected hidden disabled>Choose status</option>
             @foreach($employment_status as $index => $name)
               <option value="{{ $index }}">{{ mb_convert_case($name, MB_CASE_TITLE, 'UTF-8') }}</option>
