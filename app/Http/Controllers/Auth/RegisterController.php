@@ -179,11 +179,11 @@ class RegisterController extends Controller
         switch ($step) {
             case 1:
                 $data['prefectures'] = getPrefecture();
+                $data['employment_status'] = EmployeeProfile::getEmploymentStatus();
+                $data['countries'] = getCountries();
+                $data['positions'] = EmployeeProfile::getPositions();
             break;
             case 2:
-                $data['countries'] = getCountries();
-                $data['employment_status'] = EmployeeProfile::getEmploymentStatus();
-                $data['positions'] = EmployeeProfile::getPositions();
             break;
         }
 
