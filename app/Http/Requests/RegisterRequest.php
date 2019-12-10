@@ -117,7 +117,6 @@ class RegisterRequest extends FormRequest
             2 => [
                 'enrollment_date' => 'required',
                 'graduation_date' => 'required',
-                'status' => 'required',
                 'occupation' => 'required',
                 
                 'avatar' => [
