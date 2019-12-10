@@ -22,5 +22,12 @@
   &.avatar-bordered {
     border: solid 3px $primary;
   }
+
+  &.avatar-full {
+    height: 100px;
+    object-fit: cover;
+    width: 100% !important;
+    border-radius: 0;
+  }
 }
 

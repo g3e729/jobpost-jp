@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="l-container l-container-narrow py-4">
-    
+
     @if (session()->has('success'))
       <div class="alert alert-success" role="alert">
         {{ session()->get('success') }}
@@ -16,7 +16,7 @@
         <h2 class="card-title w-100 text-truncate">{{ $notification->title }}</h2>
         <div class="card-text" style="white-space: pre-line;">{!! $notification->description !!}</div>
         <div class="card-actions card-actions-right position-absolute">
-          <a href="{{ route('admin.notifications.edit', $notification) }}" class="card-link">編集</a>
+          <a href="{{ route('admin.notifications.edit', $notification) }}" class="card-link">編集する</a>
           <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
           <form id="deleteForm" method="POST" action="{{ route('admin.notifications.destroy', $notification) }}" novalidate style="visibility: hidden; position: absolute;">
             @csrf

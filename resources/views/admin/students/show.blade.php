@@ -9,7 +9,7 @@
         <div class="shadow-sm card card-student-detail">
           <div class="card-body">
             <div class="card-actions text-right">
-              <a href="{{ route('admin.students.edit', $student) }}" class="card-link">詳細</a>
+              <a href="{{ route('admin.students.edit', $student) }}" class="card-link">編集する</a>
               <a href="{{ route('admin.messages.show', [$student, 'type' => 'student']) }}" class="card-link">メッセージ</a>
               <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
               <form id="deleteForm" method="POST" action="{{ route('admin.students.destroy', $student) }}" novalidate style="visibility: hidden; position: absolute;">

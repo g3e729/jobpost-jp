@@ -164,10 +164,10 @@ class RegisterController extends Controller
         switch ($step) {
             case 1:
                 $data['prefectures'] = getPrefecture();
+                $data['industries'] = CompanyProfile::getIndustries();
             break;
             case 2:
                 // $data['countries'] = getCountries();
-                $data['industries'] = CompanyProfile::getIndustries();
             break;
         }
 

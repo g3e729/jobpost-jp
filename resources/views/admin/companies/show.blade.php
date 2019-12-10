@@ -9,7 +9,7 @@
           <div class="shadow-sm card card-company-detail">
             <div class="card-body">
               <div class="card-actions text-right">
-                <a href="{{ route('admin.companies.edit', $company) }}" class="card-link">詳細</a>
+                <a href="{{ route('admin.companies.edit', $company) }}" class="card-link">編集する</a>
                 <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link">募集を作成する</a>
                 <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link">メッセージ</a>
                 <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>

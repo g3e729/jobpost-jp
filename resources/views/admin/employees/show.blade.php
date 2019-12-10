@@ -16,7 +16,7 @@
         <div class="shadow-sm card card-employee-detail">
           <div class="card-body">
             <div class="card-actions text-right">
-              <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">詳細</a>
+              <a href="{{ route('admin.employees.edit', $employee) }}" class="card-link">編集する</a>
               <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
               <form id="deleteForm" method="POST" action="{{ route('admin.employees.destroy', $employee) }}" novalidate style="visibility: hidden; position: absolute;">
                 @csrf
