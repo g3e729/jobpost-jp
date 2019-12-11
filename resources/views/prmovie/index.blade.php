@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="" /> 
+<meta name="description" content="" />
 <meta name="keywords" content="">
 <meta name="copyright" content="" />
 
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="ja_JP" />
 <meta property="og:image" content="" />
 <title>Kredo-career PR Movie</title>
-<link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('/img/prmovie/favicon.ico')}}">
+<link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('img/favicon.ico') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/prmovie-style.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/prmovie-reset.css') }}"/>
 <link href="https://fonts.googleapis.com/css?family=Anton|Noto+Sans+JP:400,700&display=swap&subset=japanese" rel="stylesheet">
@@ -36,7 +36,7 @@
             <div class="txt02"><p>モニター生<span>100</span>名募集！</p></div>
         </div>
     </div>
-			
+
 	<div id="content">
     	<section id="point">
         	<div class="inner">
@@ -71,13 +71,13 @@
                         <iframe src="https://player.vimeo.com/video/368753894" width="640" height="360" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
                     </div>
                     <p class="btn_wrap"><img src="{{asset('/img/prmovie/icon_finger.png')}}" alt="指" class="finger"><a href="#form" class="btn ro">自己PR動画モニターに応募する</a></p>
-                </div> 
+                </div>
             </div>
             <div class="inner">
                 <div class="flex_block clearfix">
                     <p class="img01"><img src="{{asset('/img/prmovie/movie_illust01.png')}}"  alt="履歴書にQRコードを貼る"></p>
                     <p class="img02"><img src="{{asset('/img/prmovie/movie_illust02.png')}}" alt="企業様との接触回数を増やして内定率をUP!!"></p>
-                </div> 
+                </div>
             </div>
         </section>
 
@@ -215,11 +215,11 @@
         </section>
 
 	</div>
-    
+
     <footer>
     	<p class="copy">Copyright&copy; 2019 KREDO IT ABROAD INC. All rights reserved.</p>
     </footer>
-	
+
 </div><!--//#wrap-->
 </body>
 </html>
