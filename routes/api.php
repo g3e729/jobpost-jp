@@ -13,12 +13,12 @@ Route::group([
 	], function () {
 		Route::get('account', 'AccountController@details');
 		Route::patch('account', 'AccountController@update');
+		Route::resource('messages', 'MessageController')->only('index', 'show', 'store');
 
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
 		Route::resource('students', 'StudentController')->only('index', 'show');
 
 		Route::post('like', 'LikeController@like');
-
 
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
 	});
