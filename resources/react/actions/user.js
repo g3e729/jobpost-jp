@@ -13,6 +13,7 @@ export const unsetUser = _ => ({
 export const getUser = _ => {
   const accountType = document.querySelector('meta[name="account"]').content || '';
   const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
+  localStorage.removeItem('api_token');
 
   return (dispatch) => {
     if (['student', 'company'].includes(accountType)) {
@@ -23,6 +24,7 @@ export const getUser = _ => {
           api_token: apiToken
         },
       }).then((result) => {
+        localStorage.setItem('api_token', apiToken);
         dispatch(setUser({ ...result.data, accountType }));
       }).catch(error => {
         dispatch(unsetUser());
@@ -38,6 +40,7 @@ export const getUser = _ => {
 
 export const logoutUser = _ => {
   return (dispatch) => {
+    localStorage.removeItem('api_token');
     dispatch(unsetUser());
   }
 }
