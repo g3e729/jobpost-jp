@@ -29,3 +29,6 @@ Route::group([
 Route::resource('register', 'Auth\RegisterController')->only('create', 'store');
 
 Route::view('/app/{path?}', 'app')->name('top.page');
+Route::get('/prmovie', function(){
+    return view('prmovie.index');
+});

@@ -8,7 +8,10 @@ app/storage/
 
 # Laravel 5 & Lumen specific
 public/js/*.js
+!prmovie-common.js
 public/css/*.css
+!prmovie-reset.css
+!prmovie-style.css
 public/storage/
 public/hot
 storage/*.key
