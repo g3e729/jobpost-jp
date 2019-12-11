@@ -11,7 +11,7 @@
   <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-gradient-awesome" style="background-image: url('img/login/login-bg.png'), linear-gradient(to right, rgba(253,184,52, 0.7) 0%, rgb(247,149,77, 1) 50%);">
+<body class="bg-gradient-awesome" style="background-image: url('/img/login/login-bg.png'), linear-gradient(to right, rgba(253,184,52, 0.7) 0%, rgb(247,149,77, 1) 50%);">
   <div class="container container-awesome">
     <div class="row justify-content-center">
       <div class="col-12">
