@@ -61403,7 +61403,7 @@ var CompaniesPage = function CompaniesPage(_) {
   }, companies.map(function (company) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-      to: "/react/companies/".concat(company.id),
+      to: "/app/companies/".concat(company.id),
       key: company.id
     }, company.name, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       className: "badge badge-primary badge-pill"
@@ -63092,7 +63092,7 @@ __webpack_require__.r(__webpack_exports__);
 // can only read .env MIX_
 var config = {
   api: {
-    url: "http://localhost:8000/api" || false
+    url:  true ? "http://localhost:".concat(location.port, "/api") : undefined
   }
 };
 
@@ -63237,7 +63237,7 @@ var selectStyles = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
-var prefix =  true ? '/react/' : undefined;
+var prefix =  true ? '/app/' : undefined;
 var routes = {
   ROOT: "".concat(prefix),
   MY_PROFILE: "".concat(prefix, "profile"),

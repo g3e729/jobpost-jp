@@ -21,4 +21,4 @@ Route::group([
 
 Route::resource('register', 'Auth\RegisterController')->only('create', 'store');
 
-Route::view('/react/{path?}', 'app')->name('top.page');
+Route::view('/app/{path?}', 'app')->name('top.page');

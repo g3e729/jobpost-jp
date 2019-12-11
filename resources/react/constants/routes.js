@@ -1,4 +1,4 @@
-export const prefix = (process.env.NODE_ENV === 'development') ? '/react/' : '/';
+export const prefix = (process.env.NODE_ENV === 'development') ? '/app/' : '/';
 
 export const routes = {
   ROOT: `${prefix}`,

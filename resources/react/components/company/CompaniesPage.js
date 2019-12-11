@@ -26,7 +26,7 @@ const CompaniesPage = _ => {
                 {companies.map(company => (
                   <Link
                     className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                    to={`/react/companies/${company.id}`}
+                    to={`/app/companies/${company.id}`}
                     key={company.id}
                   >
                     {company.name}
