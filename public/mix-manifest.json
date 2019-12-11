@@ -15,5 +15,7 @@
     "/img/login/login-bg.png": "/img/login/login-bg.png",
     "/img/register/company-bg.png": "/img/register/company-bg.png",
     "/img/register/employee-bg.png": "/img/register/employee-bg.png",
-    "/img/register/student-bg.png": "/img/register/student-bg.png"
+    "/img/register/student-bg.png": "/img/register/student-bg.png",
+    "/img/reset-success-icon.png": "/img/reset-success-icon.png",
+    "/img/request-success-icon.png": "/img/request-success-icon.png"
 }
