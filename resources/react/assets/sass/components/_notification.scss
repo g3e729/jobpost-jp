@@ -1,0 +1,55 @@
+.notification {
+  position: relative;
+  padding: 20px 0 40px;
+  border-bottom: solid 1px $color-dark-gray;
+}
+
+.notification__title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  margin-top: 15px;
+}
+
+.notification__schedule {
+  color: $color-dark-gray;
+  letter-spacing: 0.06em;
+}
+
+.notification__action {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 7px);
+
+  display: none;
+  z-index: $z-min;
+
+  &:hover i {
+    color: $color-dark-yellow;
+  }
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.notification-section {}
+
+.notification-section__content {}
+
+.notification-section__footer {
+  padding: 100px 0 60px;
+}
+
+.notification-list {}
+
+.notification-list__item {
+  margin-top: 16px;
+
+  cursor: pointer;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?xbeo1b';
+$suffix: '?xsqyo';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,12 @@ $suffix: '?xbeo1b';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cross:before {
+  content: "\e914";
+}
+.icon-image:before {
+  content: "\e915";
+}
 .icon-building:before {
   content: "\e912";
 }

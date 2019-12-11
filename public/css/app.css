@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?c1caa5327b3db05e38f48e2944ee5d56);
-  src: url(/fonts/kredo.eot?c1caa5327b3db05e38f48e2944ee5d56) format("embedded-opentype"), url(/fonts/kredo.ttf?6869c7f0e773a2a1dc3f76e7efd34ced) format("truetype"), url(/fonts/kredo.woff?bfc5a15904e9658cb9bd9193dbc36271) format("woff"), url(/fonts/kredo.svg?00dff9280b04c63c00efad93bb6109fd) format("svg");
+  src: url(/fonts/kredo.eot?58e250ce1fdfd63f48659f6d8439de18);
+  src: url(/fonts/kredo.eot?58e250ce1fdfd63f48659f6d8439de18) format("embedded-opentype"), url(/fonts/kredo.ttf?f043ad53b7d22c2852cb61803579d910) format("truetype"), url(/fonts/kredo.woff?f60ac8ab8d1ec94245f0fd7e04301905) format("woff"), url(/fonts/kredo.svg?7daecc2745af66063668ea9b0769e76c) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -525,6 +525,14 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cross:before {
+  content: "\E914";
+}
+
+.icon-image:before {
+  content: "\E915";
 }
 
 .icon-building:before {
@@ -792,6 +800,10 @@ And you should not feel free to add a new Utility class.
   padding-top: 110px;
 }
 
+.l-section--notification {
+  padding: 100px 0 90px;
+}
+
 .avatar {
   height: 50px;
   width: 50px;
@@ -950,7 +962,12 @@ And you should not feel free to add a new Utility class.
   pointer-events: auto;
 }
 
+.dropdown.is-active .dropdown__menu {
+  display: block;
+}
+
 .dropdown__menu {
+  display: none;
   padding: 18px 25px;
 }
 
@@ -1858,6 +1875,53 @@ And you should not feel free to add a new Utility class.
   letter-spacing: 0.06em;
   margin-bottom: 10px;
   padding-top: 18px;
+}
+
+.notification {
+  position: relative;
+  padding: 20px 0 40px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.notification__title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-top: 15px;
+}
+
+.notification__schedule {
+  color: #d9d6d6;
+  letter-spacing: 0.06em;
+}
+
+.notification__action {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 7px);
+  display: none;
+  z-index: 1;
+}
+
+.notification__action:hover i {
+  color: #fdb834;
+}
+
+.notification__action.is-active {
+  display: block;
+}
+
+.notification-section__footer {
+  padding: 100px 0 60px;
+}
+
+.notification-list__item {
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.notification-list__item:first-child {
+  margin-top: 0;
 }
 
 .pagescroll {

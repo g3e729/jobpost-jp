@@ -9,7 +9,10 @@ import SettingsPage from '../profile/SettingsPage';
 
 import CompaniesPage from '../company/CompaniesPage';
 import CompanyPage from '../company/CompanyPage';
+
 import JobsPage from '../jobs/JobsPage';
+
+import NotificationPage from '../notification/NotificationPage';
 
 import AboutPage from '../about/AboutPage';
 import TermsPage from '../terms/TermsPage';
@@ -56,11 +59,6 @@ const Pages = _ => (
       />
       <Route
         exact
-        path={routes.JOBS}
-        component={JobsPage}
-      />
-      <Route
-        exact
         path={routes.COMPANIES}
         component={CompaniesPage}
       />
@@ -68,6 +66,16 @@ const Pages = _ => (
         exact
         path={routes.COMPANIES_DETAIL}
         component={CompanyPage}
+      />
+      <Route
+        exact
+        path={routes.JOBS}
+        component={JobsPage}
+      />
+      <Route
+        exact
+        path={routes.NOTIFICATIONS}
+        component={NotificationPage}
       />
       <Route
         exact
