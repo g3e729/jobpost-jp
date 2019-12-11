@@ -3,51 +3,39 @@
 @section('pageTitle', 'Reset Password')
 
 @section('content')
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-      <div class="card-header">{{ __('パスワードを再設定する') }}</div>
+  <form class="form-login needs-validation pt-4 pb-3 pr-5 mb-3" method="POST" action="{{ route('password.update') }}">
+    @csrf
+    {{ method_field('PATCH') }}
 
-      <div class="card-body">
+    <input type="hidden" name="email" value="{{ $password_reset->email }}">
+    <input type="hidden" name="token" value="{{ $password_reset->token }}">
 
-        <form method="POST" action="{{ route('password.update') }}">
-          @csrf
-          {{ method_field('PATCH') }}
+    <div class="form-group mb-4">
+      <label for="password">
+        <small>{{ __('パスワード') }}</small>
+      </label>
+      <input id="password" type="password" class="form-control rounded-0 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-          <input type="hidden" name="email" value="{{ $password_reset->email }}">
-          <input type="hidden" name="token" value="{{ $password_reset->token }}">
+      @error('password')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+      @enderror
+    </div>
 
-          <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label font-weight-bold text-md-right">{{ __('パスワード') }}</label>
+    <div class="form-group mt-3 mb-4">
+      <label for="password-confirm">{{ __('パスワードを認証する') }}</label>
+      <input id="password-confirm" type="password" class="form-control rounded-0" name="password_confirmation" required autocomplete="new-password">
+    </div>
 
-            <div class="col-md-6">
-              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-              @error('password')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-              @enderror
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="password-confirm" class="col-md-4 col-form-label font-weight-bold text-md-right">{{ __('パスワードを認証する') }}</label>
-
-            <div class="col-md-6">
-              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-            </div>
-          </div>
-
-          <div class="form-group row mb-0">
-            <div class="col-md-6 offset-md-4 py-3">
-              <button type="submit" class="alt-font btn btn-primary btn-submit">{{ __('パスワードを再設定する') }}</button>
-            </div>
-          </div>
-        </form>
-
-      </div>
+    <div class="form-group row">
+      <div class="col-6 pt-4 mt-1 mx-auto">
+        <div class="card-actions text-center">
+          <button type="submit" class="btn btn-capsule btn-rounded w-100">{{ __('更新') }}</button>
+          <a class="btn btn-link text-warning my-3 p-0" href="{{ route('login') }}">
+            <small>{{ __('ログイン') }}</small>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+  </form>
 @endsection

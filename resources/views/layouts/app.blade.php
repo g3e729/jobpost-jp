@@ -29,16 +29,32 @@
 
                   <div class="form-header">
                     <div class="py-5 mt-4 text-center">
-                      <h1 class="pt-3 h5 font-weight-bold">ログインする</h1>
+                      <h1 class="pt-3 h5 font-weight-bold">
+                        @switch(trim($__env->yieldContent('pageTitle')))
+                          @case('Login')
+                            ログインする
+                            @break
+
+                          @case('Forgot Password')
+                            パスワードを再設定する
+                            @break
+
+                          @case('Reset Password')
+                            パスワードを変更する
+                            @break
+
+                          @default
+                        @endswitch
+                      </h1>
                     </div>
                   </div>
 
                   @if ($errors->any())
-                    <div class="alert alert-danger pb-0 mb-0 mr-5">
-                      <ul>
-                        @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                        @endforeach
+                    <div class="alert alert-danger mb-0 mr-5">
+                      <ul class="mb-0 pl-3">
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
                       </ul>
                     </div>
                   @endif

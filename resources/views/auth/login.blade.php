@@ -4,7 +4,7 @@
 
 @section('content')
   @if(session()->has('message'))
-    <div class="alert alert-success">{{ session()->get('message') }}</div>
+    <div class="alert alert-success mr-5">{{ session()->get('message') }}</div>
   @endif
 
   <form class="form-login needs-validation pt-4 pb-3 pr-5 mb-3" method="POST" action="{{ route('login') }}">

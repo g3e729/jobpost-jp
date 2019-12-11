@@ -4,7 +4,7 @@
 
 @section('content')
   @if (session()->has('success'))
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success mr-5" role="alert">
       {{ session()->get('success') }}
     </div>
   @endif
@@ -14,7 +14,10 @@
 
     <div class="form-group my-4">
       <label for="email">
-        <small>{{ __('メールアドレス') }}</small>
+        <small>{!! __('パスワードの再設定<br>
+          アカウントの登録メールアドレスをご入力ください。<br>
+          パスワードリセット用のリンクをメールでお送りします。')
+        !!}</small>
       </label>
       <input id="email" type="email" class="form-control rounded-0 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
