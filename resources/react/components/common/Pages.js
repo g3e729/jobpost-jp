@@ -12,6 +12,7 @@ import CompanyPage from '../company/CompanyPage';
 
 import JobsPage from '../jobs/JobsPage';
 
+import NotificationsPage from '../notification/NotificationsPage';
 import NotificationPage from '../notification/NotificationPage';
 
 import AboutPage from '../about/AboutPage';
@@ -76,6 +77,11 @@ const Pages = _ => (
       <Route
         exact
         path={routes.NOTIFICATIONS}
+        component={requireAuth(NotificationsPage)}
+      />
+      <Route
+        exact
+        path={routes.NOTIFICATIONS_DETAIL}
         component={requireAuth(NotificationPage)}
       />
       <Route

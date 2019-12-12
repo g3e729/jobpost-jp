@@ -2,7 +2,6 @@ import React from 'react';
 
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
-
 import FavoritesList from './FavoritesList';
 
 const FavoritesSection = _ => (

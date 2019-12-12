@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?xsqyo';
+$suffix: '?pkm86w';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,9 @@ $suffix: '?xsqyo';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-back-curve:before {
+  content: "\e916";
+}
 .icon-cross:before {
   content: "\e914";
 }

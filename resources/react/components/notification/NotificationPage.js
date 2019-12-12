@@ -1,8 +1,8 @@
-import React from 'react';
+ import React from 'react';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
-import NotificationSection from './NotificationSection';
+import Notification from './Notification';
 
 const NotificationPage = _ => (
   <Page>
@@ -10,12 +10,12 @@ const NotificationPage = _ => (
       title="NOTIFICATIONS"
       subTitle="お知らせ"
     />
-    <div className="l-section l-section--notification section">
+    <div className="l-section l-section--notifications section">
       <div className="l-container">
-        <NotificationSection />
+        <Notification />
       </div>
     </div>
   </Page>
-);
+ );
 
-export default NotificationPage;
+ export default NotificationPage;

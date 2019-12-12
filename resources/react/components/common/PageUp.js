@@ -1,6 +1,6 @@
 import React from 'react';
-
 import scrollIntoView from 'smooth-scroll-into-view-if-needed';
+
 import Button from './Button';
 
 const PageUp = _ => {

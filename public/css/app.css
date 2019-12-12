@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?58e250ce1fdfd63f48659f6d8439de18);
-  src: url(/fonts/kredo.eot?58e250ce1fdfd63f48659f6d8439de18) format("embedded-opentype"), url(/fonts/kredo.ttf?f043ad53b7d22c2852cb61803579d910) format("truetype"), url(/fonts/kredo.woff?f60ac8ab8d1ec94245f0fd7e04301905) format("woff"), url(/fonts/kredo.svg?7daecc2745af66063668ea9b0769e76c) format("svg");
+  src: url(/fonts/kredo.eot?4612798287ea307b01d4b721263f6eda);
+  src: url(/fonts/kredo.eot?4612798287ea307b01d4b721263f6eda) format("embedded-opentype"), url(/fonts/kredo.ttf?17efc39c42ceebb075de64e05a8af36f) format("truetype"), url(/fonts/kredo.woff?06ca20a64233a73625be0867238ab4fb) format("woff"), url(/fonts/kredo.svg?75a604d09fda614567462af997b77ac5) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -525,6 +525,10 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-back-curve:before {
+  content: "\E916";
 }
 
 .icon-cross:before {
@@ -800,7 +804,7 @@ And you should not feel free to add a new Utility class.
   padding-top: 110px;
 }
 
-.l-section--notification {
+.l-section--notifications {
   padding: 100px 0 90px;
 }
 
@@ -1878,49 +1882,93 @@ And you should not feel free to add a new Utility class.
 }
 
 .notification {
-  position: relative;
-  padding: 20px 0 40px;
-  border-bottom: solid 1px #d9d6d6;
+  margin: -5px 0 60px;
+}
+
+.notification__top {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
 }
 
 .notification__title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.notification__schedule {
+  font-size: 16px;
+  color: #d9d6d6;
+  letter-spacing: 0.06em;
+  margin-top: 5px;
+}
+
+.notification__desc {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  padding-top: 35px;
+  margin-top: 17px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.notification__desc > a {
+  color: #fdb834;
+  text-decoration: underline;
+}
+
+.notification__button {
+  display: inline-block;
+  margin-top: 37px;
+}
+
+.notifications-main {
+  position: relative;
+  padding: 20px 20px 40px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.notifications-main__title {
   font-size: 16px;
   font-weight: 700;
+  color: #393939;
   letter-spacing: 0.06em;
   margin-top: 15px;
 }
 
-.notification__schedule {
+.notifications-main__schedule {
   color: #d9d6d6;
   letter-spacing: 0.06em;
+  margin-right: 15px;
 }
 
-.notification__action {
+.notifications-main__action {
   position: absolute;
-  right: 0;
+  right: 20px;
   top: calc(50% - 7px);
   display: none;
   z-index: 1;
 }
 
-.notification__action:hover i {
+.notifications-main__action:hover i {
   color: #fdb834;
 }
 
-.notification__action.is-active {
+.notifications-main__action.is-active {
   display: block;
 }
 
-.notification-section__footer {
+.notifications-section__footer {
   padding: 100px 0 60px;
 }
 
-.notification-list__item {
+.notifications-list__item {
   margin-top: 16px;
-  cursor: pointer;
 }
 
-.notification-list__item:first-child {
+.notifications-list__item:first-child {
   margin-top: 0;
 }
 

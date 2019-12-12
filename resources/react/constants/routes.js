@@ -21,7 +21,9 @@ export const routes = {
   JOBS_DETAIL: `${prefix}jobs/:id`,
 
   MESSAGES: `${prefix}messages`, // student, company
+
   NOTIFICATIONS: `${prefix}notifications`, // student, company
+  NOTIFICATIONS_DETAIL: `${prefix}notifications/:id`, // student, company
 
   ABOUT: `${prefix}about`,
   TERMS: `${prefix}terms`,
@@ -40,7 +42,9 @@ export const accessTable = [
       routes.STUDENTS_DETAIL,
 
       routes.MESSAGES,
+
       routes.NOTIFICATIONS,
+      routes.NOTIFICATIONS_DETAIL,
     ]
   },
   {
@@ -55,7 +59,9 @@ export const accessTable = [
       routes.COMPANIES_DETAIL,
 
       routes.MESSAGES,
+
       routes.NOTIFICATIONS,
+      routes.NOTIFICATIONS_DETAIL,
     ]
   }
 ]
