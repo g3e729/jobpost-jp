@@ -20,6 +20,7 @@ import HelpPage from '../help/HelpPage';
 import PrivacyPage from '../privacy/PrivacyPage';
 
 import PageTop from '../service/PageTop';
+import requireAuth from '../../utils/requireAuth';
 
 import { routes } from '../../constants/routes';
 
@@ -35,27 +36,27 @@ const Pages = _ => (
       <Route
         exact
         path={routes.MY_PROFILE}
-        component={ProfilePage}
+        component={requireAuth(ProfilePage)}
       />
       <Route
         exact
         path={routes.PROFILE_FAV}
-        component={FavoritesPage}
+        component={requireAuth(FavoritesPage)}
       />
       <Route
         exact
         path={routes.PROFILE_APPLY}
-        component={ApplyPage}
+        component={requireAuth(ApplyPage)}
       />
       <Route
         exact
         path={routes.PROFILE_SCOUTS}
-        component={ScoutsPage}
+        component={requireAuth(ScoutsPage)}
       />
       <Route
         exact
         path={routes.PROFILE_SETTINGS}
-        component={SettingsPage}
+        component={requireAuth(SettingsPage)}
       />
       <Route
         exact
@@ -65,7 +66,7 @@ const Pages = _ => (
       <Route
         exact
         path={routes.COMPANIES_DETAIL}
-        component={CompanyPage}
+        component={requireAuth(CompanyPage)}
       />
       <Route
         exact
@@ -75,7 +76,7 @@ const Pages = _ => (
       <Route
         exact
         path={routes.NOTIFICATIONS}
-        component={NotificationPage}
+        component={requireAuth(NotificationPage)}
       />
       <Route
         exact

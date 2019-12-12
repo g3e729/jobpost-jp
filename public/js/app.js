@@ -59758,6 +59758,7 @@ var unsetUser = function unsetUser(_) {
 var getUser = function getUser(_) {
   var accountType = document.querySelector('meta[name="account"]').content || '';
   var apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
+  localStorage.removeItem('api_token');
   return function (dispatch) {
     if (['student', 'company'].includes(accountType)) {
       axios__WEBPACK_IMPORTED_MODULE_0___default()({
@@ -59767,6 +59768,7 @@ var getUser = function getUser(_) {
           api_token: apiToken
         }
       }).then(function (result) {
+        localStorage.setItem('api_token', apiToken);
         dispatch(setUser(_objectSpread({}, result.data, {
           accountType: accountType
         })));
@@ -59781,6 +59783,7 @@ var getUser = function getUser(_) {
 };
 var logoutUser = function logoutUser(_) {
   return function (dispatch) {
+    localStorage.removeItem('api_token');
     dispatch(unsetUser());
   };
 };
@@ -61027,7 +61030,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _help_HelpPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../help/HelpPage */ "./resources/react/components/help/HelpPage.js");
 /* harmony import */ var _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../privacy/PrivacyPage */ "./resources/react/components/privacy/PrivacyPage.js");
 /* harmony import */ var _service_PageTop__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../service/PageTop */ "./resources/react/components/service/PageTop.js");
-/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../constants/routes */ "./resources/react/constants/routes.js");
+/* harmony import */ var _utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../utils/requireAuth */ "./resources/react/utils/requireAuth.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../constants/routes */ "./resources/react/constants/routes.js");
+
 
 
 
@@ -61051,59 +61056,59 @@ var Pages = function Pages(_) {
     className: "pages"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_service_PageTop__WEBPACK_IMPORTED_MODULE_15__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].ROOT,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].ROOT,
     component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].MY_PROFILE,
-    component: _profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].MY_PROFILE,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_profile_ProfilePage__WEBPACK_IMPORTED_MODULE_2__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].PROFILE_FAV,
-    component: _profile_FavoritesPage__WEBPACK_IMPORTED_MODULE_3__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].PROFILE_FAV,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_profile_FavoritesPage__WEBPACK_IMPORTED_MODULE_3__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].PROFILE_APPLY,
-    component: _profile_ApplyPage__WEBPACK_IMPORTED_MODULE_4__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].PROFILE_APPLY,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_profile_ApplyPage__WEBPACK_IMPORTED_MODULE_4__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].PROFILE_SCOUTS,
-    component: _profile_ScoutsPage__WEBPACK_IMPORTED_MODULE_5__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].PROFILE_SCOUTS,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_profile_ScoutsPage__WEBPACK_IMPORTED_MODULE_5__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].PROFILE_SETTINGS,
-    component: _profile_SettingsPage__WEBPACK_IMPORTED_MODULE_6__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].PROFILE_SETTINGS,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_profile_SettingsPage__WEBPACK_IMPORTED_MODULE_6__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].COMPANIES,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].COMPANIES,
     component: _company_CompaniesPage__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].COMPANIES_DETAIL,
-    component: _company_CompanyPage__WEBPACK_IMPORTED_MODULE_8__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].COMPANIES_DETAIL,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_company_CompanyPage__WEBPACK_IMPORTED_MODULE_8__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].JOBS,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].JOBS,
     component: _jobs_JobsPage__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].NOTIFICATIONS,
-    component: _notification_NotificationPage__WEBPACK_IMPORTED_MODULE_10__["default"]
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].NOTIFICATIONS,
+    component: Object(_utils_requireAuth__WEBPACK_IMPORTED_MODULE_16__["default"])(_notification_NotificationPage__WEBPACK_IMPORTED_MODULE_10__["default"])
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].ABOUT,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].ABOUT,
     component: _about_AboutPage__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].TERMS,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].TERMS,
     component: _terms_TermsPage__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].HELP,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].HELP,
     component: _help_HelpPage__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: _constants_routes__WEBPACK_IMPORTED_MODULE_16__["routes"].PRIVACY,
+    path: _constants_routes__WEBPACK_IMPORTED_MODULE_17__["routes"].PRIVACY,
     component: _privacy_PrivacyPage__WEBPACK_IMPORTED_MODULE_14__["default"]
   })));
 };
@@ -63424,36 +63429,54 @@ var selectStyles = {
 /*!*********************************************!*\
   !*** ./resources/react/constants/routes.js ***!
   \*********************************************/
-/*! exports provided: prefix, routes */
+/*! exports provided: prefix, routes, accessTable */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accessTable", function() { return accessTable; });
 var prefix =  true ? '/app/' : undefined;
 var routes = {
   ROOT: "".concat(prefix),
   MY_PROFILE: "".concat(prefix, "profile"),
+  // student, company
   PROFILE_FAV: "".concat(prefix, "profile/favorites"),
+  // student
   PROFILE_APPLY: "".concat(prefix, "profile/apply"),
+  // student
   PROFILE_SCOUTS: "".concat(prefix, "profile/scouts"),
+  // student
   PROFILE_SETTINGS: "".concat(prefix, "profile/settings"),
+  // student, company
   PROFILE_EDIT: "".concat(prefix, "profile/edit"),
+  // student, company
   LOGIN: "".concat(prefix, "login"),
   STUDENTS: "".concat(prefix, "students"),
+  // company
   STUDENTS_DETAIL: "".concat(prefix, "students/:id"),
+  // company
   COMPANIES: "".concat(prefix, "companies"),
+  // !!!NONE!!!
   COMPANIES_DETAIL: "".concat(prefix, "companies/:id"),
+  // student
   JOBS: "".concat(prefix, "jobs"),
   JOBS_DETAIL: "".concat(prefix, "jobs/:id"),
   MESSAGES: "".concat(prefix, "messages"),
+  // student, company
   NOTIFICATIONS: "".concat(prefix, "notifications"),
+  // student, company
   ABOUT: "".concat(prefix, "about"),
   TERMS: "".concat(prefix, "terms"),
   HELP: "".concat(prefix, "help"),
   PRIVACY: "".concat(prefix, "privacy")
 };
+var accessTable = [{
+  'company': [routes.MY_PROFILE, routes.PROFILE_SETTINGS, routes.PROFILE_EDIT, routes.STUDENTS, routes.STUDENTS_DETAIL, routes.MESSAGES, routes.NOTIFICATIONS]
+}, {
+  'student': [routes.MY_PROFILE, routes.PROFILE_FAV, routes.PROFILE_APPLY, routes.PROFILE_SCOUTS, routes.PROFILE_SETTINGS, routes.PROFILE_EDIT, routes.COMPANIES_DETAIL, routes.MESSAGES, routes.NOTIFICATIONS]
+}];
 
 /***/ }),
 
@@ -63597,6 +63620,110 @@ __webpack_require__.r(__webpack_exports__);
 var composeEnhancers = ( true ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : undefined) || redux__WEBPACK_IMPORTED_MODULE_0__["compose"];
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_1__["default"], composeEnhancers(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"])));
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/react/utils/requireAuth.js":
+/*!**********************************************!*\
+  !*** ./resources/react/utils/requireAuth.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _constants_routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/routes */ "./resources/react/constants/routes.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+var requireAuth = function requireAuth(ComposedComponent) {
+  var Authenticate = function Authenticate(props) {
+    var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+        _useState2 = _slicedToArray(_useState, 2),
+        canAccess = _useState2[0],
+        setCanAccess = _useState2[1];
+
+    var user = props.user,
+        match = props.match;
+    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function (_) {
+      if (Object.keys(user).length && !user.isLogged) {
+        props.history.push('/login');
+        window.location.reload();
+      }
+
+      if (Object.keys(user).length && user.isLogged) {
+        var accessPages = _constants_routes__WEBPACK_IMPORTED_MODULE_2__["accessTable"].filter(function (el) {
+          return Object.keys(el).includes(user.userData.accountType);
+        }).map(function (el) {
+          return Object.values(el);
+        }).flat(2);
+
+        if (!accessPages.includes(match.path)) {
+          props.history.push('/app/profile');
+        } else {
+          setCanAccess(true);
+        }
+      }
+    }, [user]);
+    return canAccess ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ComposedComponent, props) : null;
+  };
+
+  var mapStateToProps = function mapStateToProps(state) {
+    return {
+      user: state.user
+    };
+  };
+
+  return Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Authenticate);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (requireAuth);
 
 /***/ }),
 
