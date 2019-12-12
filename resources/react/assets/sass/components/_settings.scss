@@ -1,0 +1,22 @@
+.settings {
+  display: flex;
+  align-items: flex-start;
+}
+
+.settings-tab {
+  width: 340px;
+  flex: 0 0 340px;
+}
+
+.settings-form {
+  flex: 1;
+  margin-left: 40px;
+
+  border: solid 1px red; // TODO: remove this
+}
+
+.settings-form__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
