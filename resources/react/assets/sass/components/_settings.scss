@@ -1,22 +1,86 @@
-.settings {
+.settings {}
+
+.settings-tab {
   display: flex;
   align-items: flex-start;
 }
 
-.settings-tab {
+.settings-tab__list {
   width: 340px;
   flex: 0 0 340px;
 }
 
-.settings-form {
+.settings-tab__list-item {
+  font-size: 15px;
+  font-weight: 700;
+  color: $color-medium-black;
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+
+  padding: 14px 0 14px 37px;
+  border-left: solid 5px transparent;
+
+  &.react-tabs__tab--selected {
+    color: $color-dark-yellow;
+
+    cursor: default;
+    border-left: solid 5px $color-dark-yellow;
+    border-radius: 0;
+  }
+}
+
+.settings-tab__panel {
+  display: none;
   flex: 1;
   margin-left: 40px;
+}
 
-  border: solid 1px red; // TODO: remove this
+.settings-form {}
+
+.settings-form__group {
+  margin-top: 27px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.settings-form__group-label {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  margin-bottom: 5px;
+}
+
+.settings-form__group-input {
+  width: 100%;
+  height: 40px;
+
+  border: solid 1px $color-dark-gray;
+
+  &[type="password"] {
+    font-family: small-caption;
+    font-size: 26px;
+    letter-spacing: 0.12em;
+
+    padding-left: 14px;
+  }
+
+  &[type="email"] {
+    padding: 9px 0 9px 14px;
+  }
 }
 
 .settings-form__actions {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-top: 50px;
+}
+
+.settings-form__actions-button {
+  padding: 13px 0;
+  min-width: 165px;
 }
