@@ -4,27 +4,37 @@ import "react-tabs/style/react-tabs.css";
 
 import Button from '../common/Button';
 import Input from '../common/Input';
+import { state } from '../../constants/state';
 
 const Settings = _ => {
   const [tabIndex, setTabIndex] = useState(0);
-  const [form1Values, setForm1Values] = useState(
-    {
-      password_current: '',
-      password_new: '',
-      password_new_confirm: ''
-    }
-  );
+  const [form1Values, setForm1Values] = useState({
+    password_current: '',
+    password_new: '',
+    password_new_confirm: ''
+  });
 
-  const [form2Value, setForm2Value] = useState(
-    {
-      email_new: ''
-    }
-  );
+  const [form2Value, setForm2Value] = useState({
+    email_new: ''
+  });
+
+  const [formMessage, setFormMessage] = useState({
+    type: '',
+    message: ''
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    // e.currentTarget; TODO: form check here
+    // e.currentTarget; TODO: form check and submit here
+  }
+
+  const handleTabChange = index => {
+    setTabIndex(index);
+
+    setForm1Values({password_current: '', password_new: '', password_new_confirm: ''});
+    setForm2Value({email_new: ''});
+    setFormMessage({type: '', message: ''});
   }
 
   const handleChange = e => {
@@ -41,15 +51,39 @@ const Settings = _ => {
     }
   }
 
+  const handleBlur = _ => {
+    if (tabIndex === 0) {
+      if (form1Values.password_new === form1Values.password_new_confirm) {
+        setFormMessage({
+          type: 'success',
+          message: 'パスワードを変更しました'
+        });
+      } else {
+        setFormMessage({
+          type: 'error',
+          message: 'パスワードが一致していません'
+        });
+      }
+    }
+  }
+
   return (
     <div className="settings">
       <Tabs className="settings-tab" selectedIndex={tabIndex} onSelect={tabIndex => setTabIndex(tabIndex)}>
         <TabList className="settings-tab__list">
-          <Tab className="settings-tab__list-item" onClick={_ => setTabIndex(0)}>パスワードの変更</Tab>
-          <Tab className="settings-tab__list-item" onClick={_ => setTabIndex(1)}>メールアドレスの変更</Tab>
+          <Tab className="settings-tab__list-item" selectedClassName={state.ACTIVE} onClick={_ => handleTabChange(0)}>パスワードの変更</Tab>
+          <Tab className="settings-tab__list-item" selectedClassName={state.ACTIVE} onClick={_ => handleTabChange(1)}>メールアドレスの変更</Tab>
         </TabList>
 
         <TabPanel className="settings-tab__panel">
+          { formMessage.message ? (
+            <div className={`settings-tab__message ${formMessage.type === 'error' ? 'settings-tab__message--warning' : ''}`}>
+              <i className="icon icon-check-circle"></i>
+              { formMessage.message }
+            </div>
+          )
+          : null}
+
           <form className="settings-form" id="js-form-email-change"
             onSubmit={e => handleSubmit(e)}>
 
@@ -72,6 +106,7 @@ const Settings = _ => {
               <Input className="settings-form__group-input"
                 value={form1Values.password_new}
                 onChange={e => handleChange(e)}
+                onBlur={_ => handleBlur()}
                 name="password_new"
                 type="password"
               />
@@ -84,6 +119,7 @@ const Settings = _ => {
               <Input className="settings-form__group-input"
                 value={form1Values.password_new_confirm}
                 onChange={e => handleChange(e)}
+                onBlur={_ => handleBlur()}
                 name="password_new_confirm"
                 type="password"
               />
@@ -101,6 +137,14 @@ const Settings = _ => {
           </form>
         </TabPanel>
         <TabPanel className="settings-tab__panel">
+          { formMessage.message ? (
+            <div className="settings-tab__message">
+              <i className="icon icon-check-circle"></i>
+              メールアドレスを変更しました {/* TODO: add text as form message */}
+            </div>
+          )
+          : null}
+
           <form className="settings-form" id="js-form-email-change"
             onSubmit={e => handleSubmit(e)}>
 

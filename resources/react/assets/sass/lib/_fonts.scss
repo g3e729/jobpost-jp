@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?pkm86w';
+$suffix: '?2355l0';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,12 @@ $suffix: '?pkm86w';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-check-circle:before {
+  content: "\e917";
+}
+.icon-warning-circle:before {
+  content: "\e918";
+}
 .icon-back-curve:before {
   content: "\e916";
 }

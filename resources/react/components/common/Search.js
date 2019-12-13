@@ -22,10 +22,9 @@ const Search = _ => {
           onChange={e => handleChange(e)}
           name="search"
           type="search"
-          placeholder="キーワードで検索"
-          aria-describedby="js-button-search" />
+          placeholder="キーワードで検索" />
         <div className="form__group-append">
-          <Button className="button--link" type="submit" id="js-button-search">
+          <Button className="button--link" type="submit">
             <i className="icon icon-search text-dark-yellow"></i>
           </Button>
         </div>

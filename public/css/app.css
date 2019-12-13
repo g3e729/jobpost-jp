@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?4612798287ea307b01d4b721263f6eda);
-  src: url(/fonts/kredo.eot?4612798287ea307b01d4b721263f6eda) format("embedded-opentype"), url(/fonts/kredo.ttf?17efc39c42ceebb075de64e05a8af36f) format("truetype"), url(/fonts/kredo.woff?06ca20a64233a73625be0867238ab4fb) format("woff"), url(/fonts/kredo.svg?75a604d09fda614567462af997b77ac5) format("svg");
+  src: url(/fonts/kredo.eot?99db088aefaa86bbe7e94e274e97ddd3);
+  src: url(/fonts/kredo.eot?99db088aefaa86bbe7e94e274e97ddd3) format("embedded-opentype"), url(/fonts/kredo.ttf?1b201a3266f82cb6eabf1a567ad1ad0e) format("truetype"), url(/fonts/kredo.woff?e17a1e78e1cd2fb505b464101d7c1a49) format("woff"), url(/fonts/kredo.svg?b9c4b8dacfc2d24ce098f5fba9b3b875) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -525,6 +525,14 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check-circle:before {
+  content: "\E917";
+}
+
+.icon-warning-circle:before {
+  content: "\E918";
 }
 
 .icon-back-curve:before {
@@ -2641,7 +2649,7 @@ a.pagination__item-link:hover {
   border-left: solid 5px transparent;
 }
 
-.settings-tab__list-item.react-tabs__tab--selected {
+.settings-tab__list-item.is-active {
   color: #fdb834;
   cursor: default;
   border-left: solid 5px #fdb834;
@@ -2649,10 +2657,39 @@ a.pagination__item-link:hover {
 }
 
 .settings-tab__panel {
+  position: relative;
   display: none;
   -webkit-box-flex: 1;
           flex: 1;
   margin-left: 40px;
+}
+
+.settings-tab__message {
+  font-weight: 700;
+  color: #61b463;
+  letter-spacing: 0.06em;
+  display: -webkit-box;
+  display: flex;
+  height: 50px;
+  padding: 0 20px 0 14px;
+  -webkit-box-align: center;
+          align-items: center;
+  position: absolute;
+  top: -75px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #e2f8e7;
+}
+
+.settings-tab__message i {
+  font-size: 25px;
+  margin-right: 12px;
+}
+
+.settings-tab__message--warning {
+  color: #ff8181;
+  background-color: #ffe8e8;
 }
 
 .settings-form__group {

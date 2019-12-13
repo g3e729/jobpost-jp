@@ -21,7 +21,7 @@
   padding: 14px 0 14px 37px;
   border-left: solid 5px transparent;
 
-  &.react-tabs__tab--selected {
+  &.is-active {
     color: $color-dark-yellow;
 
     cursor: default;
@@ -31,9 +31,39 @@
 }
 
 .settings-tab__panel {
+  position: relative;
   display: none;
   flex: 1;
   margin-left: 40px;
+}
+
+.settings-tab__message {
+  font-weight: 700;
+  color: #61b463;
+  letter-spacing: 0.06em;
+
+  display: flex;
+  height: 50px;
+  padding: 0 20px 0 14px;
+  align-items: center;
+
+  position: absolute;
+  top: -75px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: #e2f8e7;
+
+  i {
+    font-size: 25px;
+
+    margin-right: 12px;
+  }
+}
+
+.settings-tab__message--warning {
+  color: #ff8181;
+  background-color: #ffe8e8;
 }
 
 .settings-form {}
