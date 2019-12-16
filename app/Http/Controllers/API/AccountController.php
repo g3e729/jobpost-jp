@@ -29,9 +29,22 @@ class AccountController extends BaseController
 	public function update(Request $request)
 	{
 		if ($this->user) {
+
 			$this->user->update($request->only('email', 'japanese_name', 'name'));
 
 			$this->user->profile->update($request->except('email', 'japanese_name', 'name'));
+
+			return $this->user->load('profile');
+		}
+
+		return response()->json(['message' => 'Not Found.'], 404);
+	}
+
+	public function updatePassword(Request $request)
+	{
+		if ($this->user) {
+
+			$this->user->update($request->only('password'));
 
 			return $this->user->load('profile');
 		}
