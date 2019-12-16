@@ -16,17 +16,10 @@ class CreateApplicantsTable extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('job_post_id')->nullable();
-            $table->foreign('job_post_id')
-                ->references('id')
-                ->on('job_posts')
-                ->onDelete('cascade');
             $table->unsignedInteger('seeker_profile_id')->nullable();
-            $table->foreign('seeker_profile_id')
-                ->references('id')
-                ->on('seeker_profiles')
-                ->onDelete('cascade');
-            $table->text('message')->nullable();
+            $table->text('notes')->nullable();
             $table->unsignedInteger('status_id')->nullable();
+            $table->boolean('scouted')->default(0);
             $table->timestamps();
         });
     }

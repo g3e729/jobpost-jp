@@ -13,10 +13,6 @@ class CreateApplicationStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('application_status', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
     }
 
     /**

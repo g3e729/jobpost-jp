@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\ChatChannel;
+use App\Services\ChatService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -32,14 +33,15 @@ class MessageController extends BaseController
 		return $message;
 	}
 	
-	public function store(ChatChannel $message, Request $request)
+	public function store(Request $request)
 	{
-		$params = [
-			'user_id' => $this->user->id,
-			'content' => $request->get('message'),
-		];
+		$chatService = (new ChatService);
+		$channel = $chatService->find($request->get('channel_id'));
 
-		$chat = $message->chats()->create($params);
+		$chatService->setUser($this->user);
+		$content = $request->get('message');
+
+		$chat = $chatService->sendMessage(compact('content'));
 
 		return $chat;
 	}

@@ -302,6 +302,11 @@ class SeekerProfile extends Model
         });
     }
 
+    public function applications()
+    {
+        return $this->hasMany(Applicant::class, 'seeker_profile_id');
+    }
+
     // Attributes
     public function getCourseAttribute()
     {

@@ -15,7 +15,7 @@ class CreateChatStatusTable extends Migration
     {
         Schema::create('chat_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('chat_id')->nullable();
+            $table->string('channel_id')->nullable();
             $table->string('user_id')->nullable();
             $table->boolean('seen')->default(0);
             $table->timestamps();

@@ -111,6 +111,11 @@ class JobPost extends Model
         return $this->morphMany(Like::class, 'likeable');
     }
 
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class, 'likeable');
+    }
+
     static function getEmploymentTypes($index = null)
     {
         $employment_types = self::$employment_types;
