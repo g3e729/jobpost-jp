@@ -23,48 +23,48 @@ const Footer = _ => {
             </div>
           ) : null
         }
-        <ul className="footer-menu">
-          <li className="footer-menu__item footer-menu__item--external">
+        <ul className="footer__menu">
+          <li className="footer__menu-item footer__menu-item--external">
             <a href="#" target="_blank">
               運営会社
               <i className="icon icon-external-link"></i>
             </a>
           </li>
-          <li className="footer-menu__item">
+          <li className="footer__menu-item">
             <NavLink exact to={routes.TERMS} activeClassName={state.ACTIVE}>
               利用規約
             </NavLink>
           </li>
-          <li className="footer-menu__item footer-menu__item--external">
+          <li className="footer__menu-item footer__menu-item--external">
             <a href="#" target="_blank">
               お問い合わせ
               <i className="icon icon-external-link"></i>
             </a>
           </li>
-          <li className="footer-menu__item">
+          <li className="footer__menu-item">
             <NavLink exact to={routes.HELP} activeClassName={state.ACTIVE}>
               ヘルプ
             </NavLink>
           </li>
-          <li className="footer-menu__item">
+          <li className="footer__menu-item">
             <NavLink exact to={routes.PRIVACY} activeClassName={state.ACTIVE}>
               プライバシー
             </NavLink>
           </li>
         </ul>
 
-        <ul className="footer-sns">
-          <li className="footer-sns__item">
+        <ul className="footer__sns">
+          <li className="footer__sns-item">
             <a href="#" target="_blank">
               <i className="icon icon-twitter"></i>
             </a>
           </li>
-          <li className="footer-sns__item">
+          <li className="footer__sns-item">
             <a href="#" target="_blank">
               <i className="icon icon-facebook"></i>
             </a>
           </li>
-          <li className="footer-sns__item">
+          <li className="footer__sns-item">
             <a href="#" target="_blank">
               <i className="icon icon-instagram"></i>
             </a>

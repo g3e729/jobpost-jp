@@ -31,6 +31,8 @@
   font-size: 26px;
   letter-spacing: 0.1em;
 
+  color: $color-dark-yellow;
+
   @include max-screen($breakpoint-mobile) {
     font-size: 25px;
 
@@ -43,7 +45,7 @@
   letter-spacing: 0.06em;
 }
 
-.heading-content {
+.heading__user {
   display: flex;
   align-items: center;
 
@@ -70,7 +72,7 @@
   }
 }
 
-.heading-content__main {
+.heading__user-main {
   flex: 1;
 
   margin-top: -8px;
@@ -86,7 +88,7 @@
   }
 }
 
-.heading-content__name {
+.heading__user-name {
   font-size: 30px;
   letter-spacing: 0.06em;
 
@@ -95,7 +97,7 @@
   }
 }
 
-.heading-content__position {
+.heading__user-position {
   font-size: 20px;
   letter-spacing: 0.06em;
 
@@ -119,13 +121,13 @@
   }
 }
 
-.heading-content__position-location {
+.heading__user-position-location {
   font-weight: 700;
 
   margin-right: 15px;
 }
 
-.heading-content__button {
+.heading__user-button {
   position: absolute;
   top: calc(50% - 48px);
   right: 50px;

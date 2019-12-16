@@ -24,7 +24,7 @@
   }
 }
 
-.footer-menu {
+.footer__menu {
   display: flex;
   justify-content: center;
 
@@ -38,7 +38,7 @@
   }
 }
 
-.footer-menu__item {
+.footer__menu-item {
   margin: 0 17px;
 
   a {
@@ -64,7 +64,7 @@
   }
 }
 
-.footer-menu__item--external {
+.footer__menu-item--external {
   @include max-screen($breakpoint-mobile) {
     order: 1;
 
@@ -72,7 +72,7 @@
   }
 }
 
-.footer-sns {
+.footer__sns {
   display: flex;
   justify-content: center;
 
@@ -84,7 +84,7 @@
   }
 }
 
-.footer-sns__item {
+.footer__sns-item {
   margin: 0 7px;
 
   a {

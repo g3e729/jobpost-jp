@@ -9,23 +9,23 @@ const Heading = ({ type, title, subTitle, children, ...rest }) => {
   return (
     <div className={`heading heading--${type || 'default'}`} {...rest}>
       { type && type === 'user' ? (
-          <div className="heading-content">
+          <div className="heading__user">
             <Avatar className="avatar--profile"
               style={{ backgroundImage: `url("${avatarImg}")` }}
             />
-            <div className="heading-content__main">
-              <h2 className="heading-content__name">{title}</h2>
-              <p className="heading-content__position">
+            <div className="heading__user-main">
+              <h2 className="heading__user-name">{title}</h2>
+              <p className="heading__user-position">
                 {subTitle}
               </p>
-              <Button className="button--pill heading-content__button">
+              <Button className="button--pill heading__user-button">
                 <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
               </Button>
             </div>
           </div>
         ) : (
           <>
-            <h2 className="heading__title text-dark-yellow">{title}</h2>
+            <h2 className="heading__title">{title}</h2>
             <p className="heading__title-jp">{subTitle}</p>
           </>
         )

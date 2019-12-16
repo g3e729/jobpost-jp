@@ -17,6 +17,9 @@ export const routes = {
   COMPANIES: `${prefix}companies`, // !!!NONE!!!
   COMPANIES_DETAIL: `${prefix}companies/:id`, // student
   DASHBOARD: `${prefix}dashboard`, // company
+  RECRUITMENT: `${prefix}recruitment`, // company
+  CANDIDATES: `${prefix}candidates`, // company
+  SCOUT: `${prefix}scout`, // company
 
   JOBS: `${prefix}jobs`,
   JOBS_DETAIL: `${prefix}jobs/:id`,
@@ -39,6 +42,9 @@ export const accessTable = [
       routes.PROFILE_EDIT,
 
       routes.DASHBOARD,
+      routes.RECRUITMENT,
+      routes.CANDIDATES,
+      routes.SCOUT,
 
       routes.STUDENTS,
       routes.STUDENTS_DETAIL,

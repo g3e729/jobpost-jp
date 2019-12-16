@@ -35,15 +35,15 @@ const Header = (props) => {
         <div className="l-header__right">
           <Search />
 
-          <ul className="header-actions">
+          <ul className="header__actions">
             { accountType && accountType.length && (
               <>
-                <li className="header-actions__item">
+                <li className="header__actions-item">
                   <NavLink exact to={routes.MESSAGES} activeClassName={state.ACTIVE}>
                     <i className="icon icon-mail text-dark-yellow"></i>
                   </NavLink>
                 </li>
-                <li className="header-actions__item">
+                <li className="header__actions-item">
                   <NavLink exact to={routes.NOTIFICATIONS} activeClassName={state.ACTIVE}>
                     <i className="icon icon-bell text-dark-yellow">
                       <span className="badge badge--bell">10</span>
@@ -52,7 +52,7 @@ const Header = (props) => {
                 </li>
               </>
             )}
-            <li className="header-actions__item">
+            <li className="header__actions-item">
               <Dropdown />
             </li>
           </ul>

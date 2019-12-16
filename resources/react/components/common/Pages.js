@@ -10,6 +10,9 @@ import SettingsPage from '../profile/SettingsPage';
 import CompaniesPage from '../company/CompaniesPage';
 import CompanyPage from '../company/CompanyPage';
 import DashboardPage from '../company/DashboardPage';
+import RecruitmentPage from '../company/RecruitmentPage';
+import CandidatesPage from '../company/CandidatesPage';
+import ScoutPage from '../company/ScoutPage';
 
 import JobsPage from '../jobs/JobsPage';
 
@@ -73,6 +76,21 @@ const Pages = _ => (
         exact
         path={routes.DASHBOARD}
         component={requireAuth(DashboardPage)}
+      />
+      <Route
+        exact
+        path={routes.RECRUITMENT}
+        component={requireAuth(RecruitmentPage)}
+      />
+      <Route
+        exact
+        path={routes.CANDIDATES}
+        component={requireAuth(CandidatesPage)}
+      />
+      <Route
+        exact
+        path={routes.SCOUT}
+        component={requireAuth(ScoutPage)}
       />
       <Route
         exact
