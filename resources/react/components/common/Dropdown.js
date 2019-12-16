@@ -22,6 +22,7 @@ const Dropdown = (props) => {
   }, [dropdown]);
 
   const handleLogout = _ => {
+    // TODO: use action/user dispatch logoutUser
     const elLogoutForm = document.querySelector('#js-logout-form');
 
     elLogoutForm.submit();

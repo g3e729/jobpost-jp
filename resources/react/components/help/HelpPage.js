@@ -4,7 +4,7 @@ import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import PageUp from '../common/PageUp';
-import HelpContent from './HelpContent';
+import Help from './Help';
 
 const HelpPage = _ => {
   useEffect(_ => {
@@ -21,7 +21,7 @@ const HelpPage = _ => {
         title="HELP"
         subTitle="ヘルプ"
       />
-      <HelpContent />
+      <Help />
       <PageUp />
     </Page>
   );

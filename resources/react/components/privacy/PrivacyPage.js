@@ -4,7 +4,7 @@ import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import PageUp from '../common/PageUp';
-import PrivacyContent from './PrivacyContent';
+import Privacy from './Privacy';
 
 const PrivacyPage = _ => {
   useEffect(_ => {
@@ -21,7 +21,7 @@ const PrivacyPage = _ => {
         title="PRIVACY POLICY"
         subTitle="プライバシーポリシー"
       />
-      <PrivacyContent />
+      <Privacy />
       <PageUp />
     </Page>
   );

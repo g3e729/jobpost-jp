@@ -1,20 +1,25 @@
 .profile {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profile__main {
   margin-right: 60px;
 
   align-self: stretch;
 }
 
-.profile-data {
+.profile__main-data {
   margin-bottom: 53px;
 }
 
-.profile-data__heading {
+.profile__main-heading {
   text-align: center;
 
   padding: 20px 0 36px;
 }
 
-.profile-data__heading-title {
+.profile__main-heading-title {
   font-family: $alt-font-family;
   font-weight: 900;
   font-size: 26px;
@@ -22,12 +27,12 @@
   color: $color-dark-yellow;
 }
 
-.profile-data__heading-jp {
+.profile__main-heading-jp {
   font-weight: 700;
   letter-spacing: 0.06em;
 }
 
-.profile-data__section {
+.profile__main-list {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -36,8 +41,8 @@
   margin: 0 -15px;
 }
 
-.profile-data__section--half {
-  .profile-data__section-item {
+.profile__main-list--half {
+  .profile__main-list-item {
     width: 50%;
 
     &:nth-child(-n + 2) {
@@ -46,7 +51,7 @@
   }
 }
 
-.profile-data__section-item {
+.profile__main-list-item {
   margin-top: 30px;
   padding: 0 15px;
   width: 100%;
@@ -56,13 +61,13 @@
   }
 }
 
-.profile-data__section-box {
+.profile__main-list-item-box {
   padding: 28px 30px 30px;
 
   border: solid 1px $color-dark-gray;
 }
 
-.profile-data__section-heading {
+.profile__main-list-item-heading {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -72,38 +77,38 @@
   border-bottom: solid 1px $color-dark-gray;
 }
 
-.profile-data__section-desc {
+.profile__main-list-item-desc {
   font-weight: bold;
   letter-spacing: 0.06em;
 }
 
-.profile-data__section-copy {
+.profile__main-list-item-copy {
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
 }
 
-.profile-data__skills {
+.profile__data-skills {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.profile-data__skills--full {
-  .profile-data__skills-term {
+.profile__data-skills--full {
+  .profile__data-skills-term {
     width: 100%;
     flex: 100%;
   }
 
-  .profile-data__skills-data {
+  .profile__data-skills-data {
     width: 100%;
     flex: 100%;
     margin-top: 8px;
   }
 }
 
-.profile-data__skills-term {
+.profile__data-skills-term {
   font-weight: 700;
   letter-spacing: 0.06em;
 
@@ -117,7 +122,7 @@
 
 }
 
-.profile-data__skills-data {
+.profile__data-skills-data {
   letter-spacing: 0.06em;
 
   width: 25%;
@@ -129,7 +134,7 @@
   }
 }
 
-.profile-data__link {
+.profile__data-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,11 +143,11 @@
   border: solid 1px $color-dark-gray;
 }
 
-.profile-data__websites {
+.profile__data-websites {
   padding-top: 6px;
 }
 
-.profile-data__websites-item {
+.profile__data-websites-item {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -154,7 +159,7 @@
   }
 }
 
-.profile-data__websites-eyecatch {
+.profile__data-websites-eyecatch {
   position: relative;
   max-height: 140px;
   width: 200px;
@@ -167,7 +172,7 @@
   }
 }
 
-.profile-data__websites-eyecatch-img {
+.profile__data-websites-eyecatch-img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -178,13 +183,13 @@
   background-size: cover;
 }
 
-.profile-data__websites-content {
+.profile__data-websites-content {
   flex: 1;
 
   margin-left: 30px;
 }
 
-.profile-data__websites-name {
+.profile__data-websites-name {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -192,20 +197,20 @@
   margin-bottom: 5px;
 }
 
-.profile-data__websites-desc {
+.profile__data-websites-desc {
   line-height: 1.857;
   letter-spacing: 0.06em;
 
   margin-bottom: 8px;
 }
 
-.profile-data__video {
+.profile__data-video {
   padding: 5px 40px 0;
 }
 
-.profile-data__work {}
+.profile__data-work {}
 
-.profile-data__work-term {
+.profile__data-work-term {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -219,7 +224,7 @@
   }
 }
 
-.profile-data__work-data {
+.profile__data-work-data {
   h4 {
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -242,14 +247,14 @@
   }
 }
 
-.profile-data__character {
+.profile__data-character {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-.profile-data__character-term {
+.profile__data-character-term {
   font-weight: 700;
   letter-spacing: 0.06em;
 
@@ -266,7 +271,7 @@
   }
 }
 
-.profile-data__character-data {
+.profile__data-character-data {
   line-height: 1.857;
   letter-spacing: 0.06em;
 
@@ -285,9 +290,230 @@
   }
 }
 
-.profile-data__jobs-footer {
+.profile__data-jobs-footer {
   text-align: center;
 
   padding-top: 32px;
   border-top: solid 1px $color-dark-gray;
+}
+
+.profile__sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  flex: 0 0 300px;
+  align-self: stretch;
+}
+
+.profile__sidebar--single {
+  position: relative;
+
+  background-color: $color-light-gray;
+
+  &:after {
+    content: '';
+    position: absolute;
+    height: 13px;
+    width: 100%;
+    top: 46px;
+
+    background-color: $color-white;
+  }
+}
+
+.profile__sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  margin-top: 30px;
+
+  &:first-child {
+    flex: 0;
+    margin-top: 0;
+  }
+}
+
+.profile__sidebar-header {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: $color-white;
+
+  position: relative;
+  padding: 11px;
+  background-color: $color-medium-black;
+}
+
+.profile__sidebar-content {
+  flex: 1;
+  margin-top: 13px;
+  padding: 35px 32px 38px;
+
+  background-color: $color-light-gray;
+}
+
+.profile__sidebar-content-basic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile__sidebar-content-basic-term {
+  width: 50%;
+  flex-basis: 50%;
+  margin-top: 14px;
+
+  letter-spacing: 0.06em;
+
+  &:nth-of-type(1) {
+    margin-top: 0;
+  }
+}
+
+.profile__sidebar-content-basic-data {
+  width: 50%;
+  flex-basis: 50%;
+  margin-top: 14px;
+
+  font-weight: 700;
+
+  &:nth-of-type(1) {
+    margin-top: 0;
+  }
+}
+
+.profile__sidebar-content-scores {}
+
+.profile__sidebar-content-scores-item {
+  margin-top: 40px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  dt {
+    color: $color-dark-yellow;
+    letter-spacing: 0.06em;
+
+    margin-bottom: 8px;
+    margin-top: 24px;
+
+    &:nth-of-type(1) {
+      margin-top: 0;
+    }
+  }
+
+  dt + dd {
+    margin-top: 0;
+  }
+
+  dd {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+
+    margin-top: 6px;
+
+    span {
+      font-weight: 400;
+
+      display: block;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.profile__sidebar-content-scores-category {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+
+  margin-bottom: 27px;
+  padding-bottom: 3px;
+  border-bottom: solid 1px $color-dark-gray;
+}
+
+.profile__sidebar-content-company {
+  margin: 0 -32px;
+}
+
+.profile__sidebar-content-company-items {
+  border-top: solid 1px $color-white;
+  padding: 35px 32px;
+
+  &:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.profile__sidebar-content-sns {
+  display: flex;
+  justify-content: center;
+}
+
+.profile__sidebar-content-sns-item {
+  margin: 0 15px;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: solid 1px $color-dark-yellow;
+
+    font-size: 18px;
+    color: $color-dark-yellow;
+
+    transition: opacity $duration $easing-cubic;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.profile__sidebar-content-misc {
+  display: flex;
+  align-items: flex-start;
+
+  margin-top: 18px;
+
+  &:nth-of-type(1) {
+    margin-top: 0;
+  }
+
+  > i {
+    font-size: 20px;
+    margin-right: 20px;
+  }
+}
+
+.profile__sidebar-content-misc-copy {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+
+  white-space: pre-line;
+}
+
+.profile__sidebar-content-avatar {
+  text-align: center;
+
+  > img {
+    width: 65px;
+    height: 65px;
+    margin: 20px 0 13px 0;
+
+    object-fit: cover;
+  }
+}
+
+.profile__sidebar-content-avatar-name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }

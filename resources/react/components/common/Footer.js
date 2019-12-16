@@ -5,7 +5,6 @@ import { routes, prefix } from '../../constants/routes';
 import { state } from '../../constants/state';
 
 const footerLinks = [
-  'about',
   'terms',
   'help',
   'privacy'
@@ -25,10 +24,11 @@ const Footer = _ => {
           ) : null
         }
         <ul className="footer-menu">
-          <li className="footer-menu__item">
-            <NavLink exact to={routes.ABOUT} activeClassName={state.ACTIVE}>
+          <li className="footer-menu__item footer-menu__item--external">
+            <a href="#" target="_blank">
               運営会社
-            </NavLink>
+              <i className="icon icon-external-link"></i>
+            </a>
           </li>
           <li className="footer-menu__item">
             <NavLink exact to={routes.TERMS} activeClassName={state.ACTIVE}>

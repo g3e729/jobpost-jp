@@ -1,0 +1,19 @@
+.dashboard {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dashboard__sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  flex: 0 0 300px;
+  align-self: stretch;
+
+  background-color: #3d3e3e;
+}
+
+.dashboard__main {
+  align-self: stretch;
+}

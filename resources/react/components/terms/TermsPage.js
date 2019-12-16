@@ -4,7 +4,7 @@ import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import PageUp from '../common/PageUp';
-import TermsContent from './TermsContent';
+import Terms from './Terms';
 
 const TermsPage = _ => {
   useEffect(_ => {
@@ -21,7 +21,7 @@ const TermsPage = _ => {
         title="TERMS OF SERVICE"
         subTitle="利用規約"
       />
-      <TermsContent />
+      <Terms />
       <PageUp />
     </Page>
   );

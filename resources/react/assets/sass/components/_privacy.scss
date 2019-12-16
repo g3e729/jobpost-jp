@@ -18,9 +18,9 @@
   }
 }
 
-.privacy-list {}
+.privacy__list {}
 
-.privacy-list__item {
+.privacy__list-item {
   margin-top: 60px;
 
   counter-increment: counterHeader 0;
@@ -131,7 +131,7 @@
   }
 }
 
-.privacy-list__item-header {
+.privacy__list-item-header {
   font-size: 16px;
   letter-spacing: 0.06em;
 
@@ -140,7 +140,7 @@
   border-bottom: solid 1px $color-dark-gray;
 }
 
-.privacy-list__item-desc {
+.privacy__list-item-desc {
   line-height: 1.857;
   letter-spacing: 0.06em;
 

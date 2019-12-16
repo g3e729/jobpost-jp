@@ -28,14 +28,14 @@ const NotificationsList = _ => {
     <ul className="notifications-list">
       { dummyNotifications.map((item) => (
         <li className="notifications-list__item" onMouseOver={_ => setCurrentItem(item.id)} onMouseOut={_ => setCurrentItem(null)} key={item.id}>
-          <div className="notifications-main">
-            <time className="notifications-main__schedule" dateTime={ moment(item.schedule).format('YYYY-MM-DD') }>{ moment(item.schedule).format('YYYY/MM/DD') }</time>
+          <div className="notifications-list__item-main">
+            <time className="notifications-list__item-main-schedule" dateTime={ moment(item.schedule).format('YYYY-MM-DD') }>{ moment(item.schedule).format('YYYY/MM/DD') }</time>
             { item.isNew ? <span className="pill">New</span> : null }
             <Link to={generateRoute(routes.NOTIFICATIONS_DETAIL, { id: item.id })}>
-              <h4 className="notifications-main__title">{item.title}</h4>
+              <h4 className="notifications-list__item-main-title">{item.title}</h4>
             </Link>
 
-            <div className={`notifications-main__action ${currentItem === item.id ? state.ACTIVE : ''}`}>
+            <div className={`notifications-list__item-main-action ${currentItem === item.id ? state.ACTIVE : ''}`}>
               <Button className="button--link" onClick={_ => console.log(currentItem)}>
                 <i className="icon icon-cross text-dark-gray"></i>
               </Button>

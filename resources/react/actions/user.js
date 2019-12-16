@@ -24,10 +24,15 @@ export const getUser = _ => {
           api_token: apiToken
         },
       }).then((result) => {
-        localStorage.setItem('api_token', apiToken);
-        dispatch(setUser({ ...result.data, accountType }));
+
+        if ( result.data.account_type === accountType ) { // check accountType meta integrity
+          localStorage.setItem('api_token', apiToken);
+          dispatch(setUser({ ...result.data, accountType }));
+        } else {
+          dispatch(logoutUser());
+        }
       }).catch(error => {
-        dispatch(unsetUser());
+        dispatch(logoutUser());
 
         console.log('[Login]', error);
       });
@@ -40,7 +45,11 @@ export const getUser = _ => {
 
 export const logoutUser = _ => {
   return (dispatch) => {
+    const elLogoutForm = document.querySelector('#js-logout-form');
+
     localStorage.removeItem('api_token');
     dispatch(unsetUser());
+
+    elLogoutForm.submit();
   }
 }

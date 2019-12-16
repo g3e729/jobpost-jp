@@ -9,13 +9,13 @@ import SettingsPage from '../profile/SettingsPage';
 
 import CompaniesPage from '../company/CompaniesPage';
 import CompanyPage from '../company/CompanyPage';
+import DashboardPage from '../company/DashboardPage';
 
 import JobsPage from '../jobs/JobsPage';
 
 import NotificationsPage from '../notification/NotificationsPage';
 import NotificationPage from '../notification/NotificationPage';
 
-import AboutPage from '../about/AboutPage';
 import TermsPage from '../terms/TermsPage';
 import HelpPage from '../help/HelpPage';
 import PrivacyPage from '../privacy/PrivacyPage';
@@ -71,6 +71,11 @@ const Pages = _ => (
       />
       <Route
         exact
+        path={routes.DASHBOARD}
+        component={requireAuth(DashboardPage)}
+      />
+      <Route
+        exact
         path={routes.JOBS}
         component={JobsPage}
       />
@@ -83,11 +88,6 @@ const Pages = _ => (
         exact
         path={routes.NOTIFICATIONS_DETAIL}
         component={requireAuth(NotificationPage)}
-      />
-      <Route
-        exact
-        path={routes.ABOUT}
-        component={AboutPage}
       />
       <Route
         exact

@@ -6,11 +6,11 @@
   margin-top: 60px;
 }
 
-.terms-list {
+.terms__list {
   margin-top: -3px;
 }
 
-.terms-list__item {
+.terms__list-item {
   margin-top: 60px;
 
   counter-increment: counterHeader 0;
@@ -117,7 +117,7 @@
   }
 }
 
-.terms-list__item-header {
+.terms__list-item-header {
   font-size: 16px;
   letter-spacing: 0.06em;
 
@@ -126,7 +126,7 @@
   border-bottom: solid 1px $color-dark-gray;
 }
 
-.terms-list__item-desc {
+.terms__list-item-desc {
   white-space: pre-line;
 
   line-height: 1.857;

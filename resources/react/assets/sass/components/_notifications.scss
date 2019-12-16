@@ -1,10 +1,10 @@
-.notifications-main {
+.notifications-list__item-main {
   position: relative;
   padding: 20px 20px 40px;
   border-bottom: solid 1px $color-dark-gray;
 }
 
-.notifications-main__title {
+.notifications-list__item-main-title {
   font-size: 16px;
   font-weight: 700;
   color: $color-medium-black;
@@ -13,14 +13,14 @@
   margin-top: 15px;
 }
 
-.notifications-main__schedule {
+.notifications-list__item-main-schedule {
   color: $color-dark-gray;
   letter-spacing: 0.06em;
 
   margin-right: 15px;
 }
 
-.notifications-main__action {
+.notifications-list__item-main-action {
   position: absolute;
   right: 20px;
   top: calc(50% - 7px);

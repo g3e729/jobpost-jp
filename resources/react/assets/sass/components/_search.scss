@@ -1,0 +1,25 @@
+.search {
+  display: block;
+}
+
+.search__group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  right: 35px;
+
+  @include max-screen($breakpoint-mobile) {
+    right: 20px;
+  }
+}
+
+.search__group-append {
+  position: absolute;
+  right: 1.2rem;
+
+  @include max-screen($breakpoint-mobile) {
+    right: 0.6rem;
+  }
+}

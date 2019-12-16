@@ -16,6 +16,7 @@ export const routes = {
 
   COMPANIES: `${prefix}companies`, // !!!NONE!!!
   COMPANIES_DETAIL: `${prefix}companies/:id`, // student
+  DASHBOARD: `${prefix}dashboard`, // company
 
   JOBS: `${prefix}jobs`,
   JOBS_DETAIL: `${prefix}jobs/:id`,
@@ -25,7 +26,6 @@ export const routes = {
   NOTIFICATIONS: `${prefix}notifications`, // student, company
   NOTIFICATIONS_DETAIL: `${prefix}notifications/:id`, // student, company
 
-  ABOUT: `${prefix}about`,
   TERMS: `${prefix}terms`,
   HELP: `${prefix}help`,
   PRIVACY: `${prefix}privacy`,
@@ -37,6 +37,8 @@ export const accessTable = [
       routes.MY_PROFILE,
       routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
+
+      routes.DASHBOARD,
 
       routes.STUDENTS,
       routes.STUDENTS_DETAIL,

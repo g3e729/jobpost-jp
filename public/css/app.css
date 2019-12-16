@@ -1334,37 +1334,6 @@ And you should not feel free to add a new Utility class.
   }
 }
 
-.search {
-  display: block;
-}
-
-.search__group {
-  position: relative;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  width: 100%;
-  right: 35px;
-}
-
-@media screen and (max-width: 768px) {
-  .search__group {
-    right: 20px;
-  }
-}
-
-.search__group-append {
-  position: absolute;
-  right: 1.2rem;
-}
-
-@media screen and (max-width: 768px) {
-  .search__group-append {
-    right: 0.6rem;
-  }
-}
-
 .fraction {
   font-family: "Avenir", sans-serif;
   font-size: 20px;
@@ -1596,30 +1565,30 @@ And you should not feel free to add a new Utility class.
   }
 }
 
-.help__item {
+.help__list-item {
   padding: 30px 30px 25px;
   margin-top: 20px;
   border: solid 1px #d9d6d6;
 }
 
-.help__item:first-child {
+.help__list-item:first-child {
   margin-top: 0;
 }
 
 @media screen and (max-width: 768px) {
-  .help__item {
+  .help__list-item {
     padding: 26px 15px;
   }
 }
 
-.help__item-question {
+.help__list-item-question {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
   position: relative;
 }
 
-.help__item-question:before {
+.help__list-item-question:before {
   content: "\8CEA\554F";
   font-size: 14px;
   font-weight: 400;
@@ -1629,7 +1598,7 @@ And you should not feel free to add a new Utility class.
   background-color: #fdb834;
 }
 
-.help__item-answer {
+.help__list-item-answer {
   letter-spacing: 0.06em;
   line-height: 1.857;
   padding-top: 20px;
@@ -1638,13 +1607,13 @@ And you should not feel free to add a new Utility class.
 }
 
 @media screen and (max-width: 768px) {
-  .help__item-answer {
+  .help__list-item-answer {
     padding-top: 14px;
     margin-top: 14px;
   }
 }
 
-.help__item-note {
+.help__list-item-note {
   letter-spacing: 0.06em;
   color: rgba(57, 57, 57, 0.5);
   display: block;
@@ -1935,13 +1904,13 @@ And you should not feel free to add a new Utility class.
   margin-top: 37px;
 }
 
-.notifications-main {
+.notifications-list__item-main {
   position: relative;
   padding: 20px 20px 40px;
   border-bottom: solid 1px #d9d6d6;
 }
 
-.notifications-main__title {
+.notifications-list__item-main-title {
   font-size: 16px;
   font-weight: 700;
   color: #393939;
@@ -1949,13 +1918,13 @@ And you should not feel free to add a new Utility class.
   margin-top: 15px;
 }
 
-.notifications-main__schedule {
+.notifications-list__item-main-schedule {
   color: #d9d6d6;
   letter-spacing: 0.06em;
   margin-right: 15px;
 }
 
-.notifications-main__action {
+.notifications-list__item-main-action {
   position: absolute;
   right: 20px;
   top: calc(50% - 7px);
@@ -1963,11 +1932,11 @@ And you should not feel free to add a new Utility class.
   z-index: 1;
 }
 
-.notifications-main__action:hover i {
+.notifications-list__item-main-action:hover i {
   color: #fdb834;
 }
 
-.notifications-main__action.is-active {
+.notifications-list__item-main-action.is-active {
   display: block;
 }
 
@@ -2206,78 +2175,78 @@ a.pagination__item-link:hover {
   }
 }
 
-.privacy-list__item {
+.privacy__list-item {
   margin-top: 60px;
   counter-increment: counterHeader 0;
 }
 
-.privacy-list__item > h3:before {
+.privacy__list-item > h3:before {
   content: "\7B2C" counter(counterHeader) "\6761";
   counter-increment: counterHeader;
 }
 
-.privacy-list__item ol {
+.privacy__list-item ol {
   list-style: none !important;
 }
 
-.privacy-list__item li {
+.privacy__list-item li {
   letter-spacing: 0.06em;
   line-height: 1.857;
 }
 
-.privacy-list__item > ol {
+.privacy__list-item > ol {
   counter-increment: counter1 0;
   padding: 8px 0 0 20px;
 }
 
-.privacy-list__item > ol > li {
+.privacy__list-item > ol > li {
   position: relative;
   padding-left: 22px;
   margin-top: 11px;
 }
 
-.privacy-list__item > ol > li:first-child {
+.privacy__list-item > ol > li:first-child {
   margin-top: 0;
 }
 
-.privacy-list__item > ol > li:before {
+.privacy__list-item > ol > li:before {
   position: absolute;
   left: 0;
   content: counter(counter1) ". ";
   counter-increment: counter1;
 }
 
-.privacy-list__item > ol > li > ol {
+.privacy__list-item > ol > li > ol {
   counter-increment: counter2 0;
   padding-top: 13px;
 }
 
-.privacy-list__item > ol > li > ol > li {
+.privacy__list-item > ol > li > ol > li {
   position: relative;
   padding-left: 34px;
   margin-top: 7px;
 }
 
-.privacy-list__item > ol > li > ol > li:before {
+.privacy__list-item > ol > li > ol > li:before {
   position: absolute;
   left: 0;
   content: counter(counter1) "." counter(counter2) ". ";
   counter-increment: counter2;
 }
 
-.privacy-list__item > ol > li > ol > li > ol {
+.privacy__list-item > ol > li > ol > li > ol {
   counter-increment: counter3 0;
   padding: 10px 0 5px;
   margin-left: -15px;
 }
 
-.privacy-list__item > ol > li > ol > li > ol li {
+.privacy__list-item > ol > li > ol > li > ol li {
   position: relative;
   padding-left: 48px;
   margin-top: 7px;
 }
 
-.privacy-list__item > ol > li > ol > li > ol li:before {
+.privacy__list-item > ol > li > ol > li > ol li:before {
   position: absolute;
   left: 0;
   content: counter(counter1) "." counter(counter2) "." counter(counter3) ". ";
@@ -2285,36 +2254,36 @@ a.pagination__item-link:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .privacy-list__item {
+  .privacy__list-item {
     margin-top: 42px;
   }
 
-  .privacy-list__item li {
+  .privacy__list-item li {
     margin-top: 12px !important;
   }
 
-  .privacy-list__item li:first-child {
+  .privacy__list-item li:first-child {
     margin-top: 0 !important;
   }
 
-  .privacy-list__item > ol {
+  .privacy__list-item > ol {
     padding: 5px 0 0 20px;
   }
 
-  .privacy-list__item > ol > li {
+  .privacy__list-item > ol > li {
     padding-left: 7px;
   }
 
-  .privacy-list__item > ol > li:before {
+  .privacy__list-item > ol > li:before {
     left: -10px;
   }
 
-  .privacy-list__item > ol > li > ol > li > ol {
+  .privacy__list-item > ol > li > ol > li > ol {
     padding: 5px 0 5px 15px;
   }
 }
 
-.privacy-list__item-header {
+.privacy__list-item-header {
   font-size: 16px;
   letter-spacing: 0.06em;
   margin-bottom: 25px;
@@ -2322,13 +2291,13 @@ a.pagination__item-link:hover {
   border-bottom: solid 1px #d9d6d6;
 }
 
-.privacy-list__item-desc {
+.privacy__list-item-desc {
   line-height: 1.857;
   letter-spacing: 0.06em;
   margin-bottom: 11px;
 }
 
-.privacy-list__item-desc span {
+.privacy__list-item-desc span {
   font-size: 16px;
   font-weight: 700;
   color: #fdb834;
@@ -2621,6 +2590,37 @@ a.pagination__item-link:hover {
   text-align: center;
   padding-top: 32px;
   border-top: solid 1px #d9d6d6;
+}
+
+.search {
+  display: block;
+}
+
+.search__group {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  width: 100%;
+  right: 35px;
+}
+
+@media screen and (max-width: 768px) {
+  .search__group {
+    right: 20px;
+  }
+}
+
+.search__group-append {
+  position: absolute;
+  right: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .search__group-append {
+    right: 0.6rem;
+  }
 }
 
 .settings-tab {
@@ -3132,109 +3132,109 @@ a.pagination__item-link:hover {
   margin-top: 60px;
 }
 
-.terms-list {
+.terms__list {
   margin-top: -3px;
 }
 
-.terms-list__item {
+.terms__list-item {
   margin-top: 60px;
   counter-increment: counterHeader 0;
 }
 
-.terms-list__item > h3:before {
+.terms__list-item > h3:before {
   content: counter(counterHeader) ". ";
   counter-increment: counterHeader;
 }
 
-.terms-list__item:first-child {
+.terms__list-item:first-child {
   margin-top: 0;
 }
 
-.terms-list__item ol {
+.terms__list-item ol {
   list-style: none !important;
 }
 
-.terms-list__item li {
+.terms__list-item li {
   letter-spacing: 0.06em;
   line-height: 1.857;
 }
 
-.terms-list__item li h4 {
+.terms__list-item li h4 {
   font-size: 14px;
   letter-spacing: 0.06em;
   display: inline-block;
 }
 
-.terms-list__item li p {
+.terms__list-item li p {
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.06em;
   white-space: pre-line;
 }
 
-.terms-list__item > ol {
+.terms__list-item > ol {
   font-weight: bold;
   counter-increment: counter1 0;
   padding: 6px 0 0 19px;
 }
 
-.terms-list__item > ol > li {
+.terms__list-item > ol > li {
   font-size: 16px;
   position: relative;
   padding-left: 40px;
   margin-top: 11px;
 }
 
-.terms-list__item > ol > li:first-child {
+.terms__list-item > ol > li:first-child {
   margin-top: 0;
 }
 
-.terms-list__item > ol > li:before {
+.terms__list-item > ol > li:before {
   position: absolute;
   left: 0;
   content: counter(counterHeader) "." counter(counter1) ". ";
   counter-increment: counter1;
 }
 
-.terms-list__item > ol > li > ol {
+.terms__list-item > ol > li > ol {
   counter-increment: counter2 0;
   padding-top: 9px;
   margin-left: -15px;
 }
 
-.terms-list__item > ol > li > ol > li {
+.terms__list-item > ol > li > ol > li {
   position: relative;
   margin-top: 2px;
 }
 
-.terms-list__item > ol > li > ol > li:before {
+.terms__list-item > ol > li > ol > li:before {
   content: counter(counterHeader) "." counter(counter1) "." counter(counter2) ". ";
   counter-increment: counter2;
 }
 
-.terms-list__item > ol > li > ul {
+.terms__list-item > ol > li > ul {
   list-style-type: disc;
   margin-top: 16px;
   padding-left: 4px;
 }
 
-.terms-list__item > ol > li > ul > li {
+.terms__list-item > ol > li > ul > li {
   font-size: 14px;
   font-weight: 400;
   margin-top: 7px;
 }
 
 @media screen and (max-width: 768px) {
-  .terms-list__item > ol {
+  .terms__list-item > ol {
     padding: 6px 0 0 10px;
   }
 
-  .terms-list__item > ol > li > ol {
+  .terms__list-item > ol > li > ol {
     padding-left: 15px;
   }
 }
 
-.terms-list__item-header {
+.terms__list-item-header {
   font-size: 16px;
   letter-spacing: 0.06em;
   margin-bottom: 25px;
@@ -3242,7 +3242,7 @@ a.pagination__item-link:hover {
   border-bottom: solid 1px #d9d6d6;
 }
 
-.terms-list__item-desc {
+.terms__list-item-desc {
   white-space: pre-line;
   line-height: 1.857;
   letter-spacing: 0.06em;
