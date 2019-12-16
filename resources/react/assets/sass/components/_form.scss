@@ -1,17 +1,13 @@
-// TODO: TO BE REFACTORED
-
-.form {
+.search {
   display: block;
 }
 
-.form__group {
+.search__group {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-}
 
-.form__group--search {
   right: 35px;
 
   @include max-screen($breakpoint-mobile) {
@@ -19,7 +15,7 @@
   }
 }
 
-.form__group-append {
+.search__group-append {
   position: absolute;
   right: 1.2rem;
 

@@ -7,8 +7,8 @@ import Search from './Search';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 
-import logo from '../../../img/logo-kredo-new.png';
-import logoSp from '../../../img/logo-kredo-icon-sp.png';
+import logo from '../../../img/logo-kredo-horizontal.png';
+import logoSp from '../../../img/logo-kredo-icon.png';
 
 const Header = (props) => {
   const { user } = props;

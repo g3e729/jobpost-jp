@@ -1334,36 +1334,33 @@ And you should not feel free to add a new Utility class.
   }
 }
 
-.form {
+.search {
   display: block;
 }
 
-.form__group {
+.search__group {
   position: relative;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
           align-items: center;
   width: 100%;
-}
-
-.form__group--search {
   right: 35px;
 }
 
 @media screen and (max-width: 768px) {
-  .form__group--search {
+  .search__group {
     right: 20px;
   }
 }
 
-.form__group-append {
+.search__group-append {
   position: absolute;
   right: 1.2rem;
 }
 
 @media screen and (max-width: 768px) {
-  .form__group-append {
+  .search__group-append {
     right: 0.6rem;
   }
 }

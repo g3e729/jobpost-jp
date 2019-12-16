@@ -9,13 +9,13 @@
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
     "/img/avatar-default.png": "/img/avatar-default.png",
     "/img/avatar-kredo.png": "/img/avatar-kredo.png",
-    "/img/logo-kredo-icon-sp.png": "/img/logo-kredo-icon-sp.png",
+    "/img/logo-kredo-horizontal.png": "/img/logo-kredo-horizontal.png",
+    "/img/logo-kredo-icon.png": "/img/logo-kredo-icon.png",
+    "/img/logo-kredo-vertical.png": "/img/logo-kredo-vertical.png",
     "/img/request-success-icon.png": "/img/request-success-icon.png",
     "/img/reset-success-icon.png": "/img/reset-success-icon.png",
     "/img/login/login-bg.png": "/img/login/login-bg.png",
     "/img/register/company-bg.png": "/img/register/company-bg.png",
     "/img/register/employee-bg.png": "/img/register/employee-bg.png",
-    "/img/register/student-bg.png": "/img/register/student-bg.png",
-    "/img/logo-kredo-new-sp.png": "/img/logo-kredo-new-sp.png",
-    "/img/logo-kredo-new.png": "/img/logo-kredo-new.png"
+    "/img/register/student-bg.png": "/img/register/student-bg.png"
 }

@@ -4,10 +4,10 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand bg-light d-flex align-items-center justify-content-center" href="{{ route('employee.index') }}">
     <div class="sidebar-brand-icon">
-      <img class="w-75" src="{{ asset('img/logo-kredo-new-sp.png') }}" alt="Kredo">
+      <img class="w-75" src="{{ asset('img/logo-kredo-vertical.png') }}" alt="Kredo">
     </div>
     <h1 class="sidebar-brand-text mx-3">
-      <img class="w-100" src="{{ asset('img/logo-kredo-new.png') }}" alt="Kredo">
+      <img class="w-100" src="{{ asset('img/logo-kredo-horizontal.png') }}" alt="Kredo">
     </h1>
   </a>
 

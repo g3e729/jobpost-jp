@@ -15,15 +15,15 @@ const Search = _ => {
   }
 
   return (
-    <form className="form" onSubmit={_ => handleSubmit()}>
-      <div className="form__group form__group--search">
+    <form className="search" onSubmit={_ => handleSubmit()}>
+      <div className="search__group">
         <Input className="input--search"
           value={searchValue}
           onChange={e => handleChange(e)}
           name="search"
           type="search"
           placeholder="キーワードで検索" />
-        <div className="form__group-append">
+        <div className="search__group-append">
           <Button className="button--link" type="submit">
             <i className="icon icon-search text-dark-yellow"></i>
           </Button>
