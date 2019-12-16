@@ -130,6 +130,13 @@ class CompanyService extends BaseService
         }
     }
 
+    public function companyFilters()
+    {
+        $industries = CompanyProfile::getIndustries();
+
+        return compact('industries');
+    }
+
     private function createUser($fields = [])
     {
         try {

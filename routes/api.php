@@ -18,6 +18,9 @@ Route::group([
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
 		Route::resource('students', 'StudentController')->only('index', 'show');
 
+		Route::get('companies-filters', 'CompanyController@getCompanyFilters');
+		Route::get('students-filters', 'StudentController@getStudentFilters');
+
 		Route::post('like', 'LikeController@like');
 
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');

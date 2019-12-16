@@ -62,4 +62,11 @@ class StudentController extends BaseController
         	}
         }
 	}
+
+    public function getStudentFilters(Request $request)
+    {
+        $filters = (new SeekerService)->studentFilters();
+
+        return $filters;
+    }
 }

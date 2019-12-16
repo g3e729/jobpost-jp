@@ -97,7 +97,7 @@ class SeekerProfile extends Model
 		8 => 'Design Advance',
 		9 => 'Python Standard',
         10 => 'Python Advance'
-  ];
+    ];
 
     static protected $student_status = [
 		1 => '入学前 / Pre-Student',

@@ -48,4 +48,11 @@ class CompanyController extends BaseController
 
         return $company;
 	}
+
+    public function getCompanyFilters(Request $request)
+    {
+        $filters = (new CompanyService)->companyFilters();
+
+        return $filters;
+    }
 }

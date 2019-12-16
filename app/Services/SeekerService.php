@@ -212,6 +212,17 @@ class SeekerService extends BaseService
         }
     }
 
+    public function studentFilters()
+    {
+        $experiences = SeekerProfile::getExperiences();
+        $frameworks = SeekerProfile::getFrameworks();
+        $languages = SeekerProfile::getLanguages();
+        $others = SeekerProfile::getOthers();
+        $programming_languages = SeekerProfile::getProgrammingLanguages();
+
+        return compact('experiences', 'frameworks', 'languages', 'others', 'programming_languages');
+    }
+
     private function createUser($fields = [])
     {
         $userService = (new UserService);
