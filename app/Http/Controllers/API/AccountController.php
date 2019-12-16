@@ -18,6 +18,8 @@ class AccountController extends BaseController
 	public function details()
 	{
 		if ($this->user) {
+			$this->user->account_type = $this->user->hasRole('company') ? 'company' : 'student';
+
 			return $this->user->load('profile');
 		}
 
