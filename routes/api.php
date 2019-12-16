@@ -13,7 +13,7 @@ Route::group([
 	], function () {
 		Route::get('account', 'AccountController@details');
 		Route::patch('account', 'AccountController@update');
-		Route::patch('account', 'AccountController@updatePassword');
+		Route::patch('update-password', 'AccountController@updatePassword');
 		Route::resource('messages', 'MessageController')->only('index', 'show', 'store');
 
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
