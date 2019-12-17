@@ -1,0 +1,36 @@
+.dashboard-section {
+  padding: 40px 60px 100px 50px;
+  background-color: $color-light-gray;
+
+  flex: 1;
+  align-self: stretch;
+}
+
+.dashboard-section__reminder {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 18px;
+}
+
+.dashboard-section__reminder-text {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+
+  margin-right: 17px;
+}
+
+.dashboard-section__reminder-tickets {
+  font-family: $alt-font-family;
+  font-size: 26px;
+  font-weight: 700;
+  color: $color-dark-yellow;
+  letter-spacing: 0.1em;
+
+  margin-right: 20px;
+
+  span {
+    font-size: 16px;
+  }
+}

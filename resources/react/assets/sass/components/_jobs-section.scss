@@ -1,0 +1,51 @@
+.jobs-section {
+  flex: 1;
+  margin-left: 40px;
+  align-self: stretch;
+}
+
+.jobs-section__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 9px;
+}
+
+.jobs-section__content {}
+
+.jobs-section__footer {
+  padding: 60px 0 60px;
+  border-top: solid 1px $color-dark-gray;
+}
+
+.jobs-section__fraction {
+  font-family: $alt-font-family;
+  font-size: 20px;
+}
+
+.jobs-section__fraction-numeration {
+  font-family: $alt-font-family;
+  font-size: 26px;
+  font-weight: 700;
+  color: $color-dark-yellow;
+
+  position: relative;
+  top: -7px;
+}
+
+.jobs-section__actions {}
+
+.jobs-section__actions-button {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: $color-medium-black;
+
+  &:first-child {
+    margin-right: 26px;
+  }
+
+  &.is-active {
+    color: $color-dark-yellow;
+  }
+}

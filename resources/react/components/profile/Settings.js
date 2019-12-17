@@ -34,15 +34,19 @@ const Settings = (props) => {
             type: 'success',
             message: 'パスワードを変更しました'
           });
+
         } else {
           setFormMessage({
             type: 'error',
             message: 'There is an error somewhere. Please try again.'
           });
         }
+
+        setForm1Values({password_new: '', password_new_confirm: ''});
       });
     } else {
       // TODO: handle change email
+      // setForm2Value({email_new: ''});
     }
   }
 

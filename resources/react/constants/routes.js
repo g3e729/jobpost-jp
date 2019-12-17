@@ -32,6 +32,8 @@ export const routes = {
   TERMS: `${prefix}terms`,
   HELP: `${prefix}help`,
   PRIVACY: `${prefix}privacy`,
+
+  SAMPLE: `${prefix}sample`, // TODO: !!!change this!!!
 }
 
 export const accessTable = [

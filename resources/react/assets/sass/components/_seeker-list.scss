@@ -1,0 +1,84 @@
+.seeker-list__container {
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: $color-white;
+}
+
+.seeker-list__title {
+  font-size: 20px;
+  font-size: 700;
+  letter-spacing: 0.06em;
+}
+
+.seeker-list {
+  margin-top: 14px;
+  border-top: solid 1px $color-dark-yellow;
+}
+
+.seeker-list__item {
+  display: flex;
+  align-items: center;
+
+  padding: 25px 0;
+  border-bottom: solid 1px $color-dark-gray;
+}
+
+.seeker-list__item-left {
+  width: 90px;
+  flex: 0 0 90px;
+}
+
+.seeker-list__item-avatar { }
+
+.seeker-list__item-right {
+  flex: 1;
+  margin-left: 25px;
+}
+
+.seeker-list__item-right-top {
+  display: flex;
+  align-items: center;
+}
+
+.seeker-list__item-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.seeker-list__item-right-bottom {
+  display: flex;
+  align-items: center;
+
+  margin-top: 16px;
+}
+
+.seeker-list__item-description {
+  font-size: 15px;
+  line-height: 0.867;
+  letter-spacing: 0.06em;
+
+  margin-right: 15px;
+}
+
+.seeker-list__item-tag {
+  font-weight: 700;
+  color: $color-dark-gray;
+  letter-spacing: 0.06em;
+
+  background-color: $color-light-gray;
+  padding: 2px 5px;
+}
+
+.seeker-list__item-time {
+  flex: 1;
+
+  color: $color-dark-gray;
+  text-align: right;
+  letter-spacing: 0.06em;
+}
+
+.seeker-list__button {
+  text-align: center;
+  padding-top: 25px;
+}

@@ -857,6 +857,11 @@ And you should not feel free to add a new Utility class.
   height: 130px;
 }
 
+.avatar--seeker {
+  width: 90px;
+  height: 90px;
+}
+
 .badge {
   font-family: "Avenir", sans-serif;
   font-size: 13px;
@@ -895,6 +900,11 @@ And you should not feel free to add a new Utility class.
 .button.is-disabled {
   background: #d9d6d6;
   pointer-events: none;
+}
+
+.button--large {
+  font-size: 20px;
+  padding: 10px 27px;
 }
 
 .button--list {
@@ -983,11 +993,40 @@ And you should not feel free to add a new Utility class.
 }
 
 .dashboard-section {
-  padding: 40px 50px;
+  padding: 40px 60px 100px 50px;
   background-color: #f2f2f0;
   -webkit-box-flex: 1;
           flex: 1;
   align-self: stretch;
+}
+
+.dashboard-section__reminder {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-right: 18px;
+}
+
+.dashboard-section__reminder-text {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  margin-right: 17px;
+}
+
+.dashboard-section__reminder-tickets {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fdb834;
+  letter-spacing: 0.1em;
+  margin-right: 20px;
+}
+
+.dashboard-section__reminder-tickets span {
+  font-size: 16px;
 }
 
 .dropdown {
@@ -1745,29 +1784,46 @@ And you should not feel free to add a new Utility class.
   }
 }
 
-.jobs__top {
+.jobs-list--titled .jobs-list__item:first-child {
+  border-top: solid 2px #fdb834;
+}
+
+.jobs-list__item {
+  padding: 38px 0 29px;
+  border-top: solid 1px #d9d6d6;
+}
+
+.jobs-list__title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  padding-top: 18px;
+}
+
+.job-list__item-top {
   display: -webkit-box;
   display: flex;
 }
 
-.jobs__top-left {
+.job-list__item-top-left {
   width: 320px;
   -webkit-box-flex: 0;
           flex: 0 0 320px;
 }
 
-.jobs__top-right {
+.job-list__item-top-right {
   -webkit-box-flex: 1;
           flex: 1;
   margin-top: 12px;
   margin-left: 30px;
 }
 
-.jobs__content {
+.job-list__item-content {
   margin-top: 22px;
 }
 
-.jobs__footer {
+.job-list__item-footer {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
@@ -1777,18 +1833,18 @@ And you should not feel free to add a new Utility class.
   margin-top: 24px;
 }
 
-.jobs__eyecatch {
+.job-list__item-eyecatch {
   position: relative;
   max-height: 192px;
 }
 
-.jobs__eyecatch:before {
+.job-list__item-eyecatch:before {
   content: "";
   padding-top: 60%;
   display: block;
 }
 
-.jobs__eyecatch-img {
+.job-list__item-eyecatch-img {
   position: absolute;
   top: 0;
   width: 100%;
@@ -1798,14 +1854,14 @@ And you should not feel free to add a new Utility class.
   background-size: cover;
 }
 
-.jobs__company {
+.job-list__item-company {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
           align-items: center;
 }
 
-.jobs__company > img {
+.job-list__item-company > img {
   -webkit-box-flex: 0;
           flex: 0 0 29px;
   width: 29px;
@@ -1815,7 +1871,7 @@ And you should not feel free to add a new Utility class.
   border-radius: 2px;
 }
 
-.jobs__company-name {
+.job-list__item-company-name {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1824,7 +1880,7 @@ And you should not feel free to add a new Utility class.
   margin-left: 16px;
 }
 
-.jobs__title {
+.job-list__item-title {
   font-size: 21px;
   font-weight: 700;
   line-height: 1.762;
@@ -1832,19 +1888,19 @@ And you should not feel free to add a new Utility class.
   margin-top: 29px;
 }
 
-.jobs__description {
+.job-list__item-description {
   letter-spacing: 0.06em;
   line-height: 1.857;
 }
 
-.jobs__pills {
+.job-list__item-pills {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
 }
 
-.jobs__pills-item {
+.job-list__item-pills-item {
   margin-right: 5px;
 }
 
@@ -1897,23 +1953,6 @@ And you should not feel free to add a new Utility class.
 
 .jobs-section__actions-button.is-active {
   color: #fdb834;
-}
-
-.jobs-list--titled .jobs-list__item:first-child {
-  border-top: solid 2px #fdb834;
-}
-
-.jobs-list__item {
-  padding: 38px 0 29px;
-  border-top: solid 1px #d9d6d6;
-}
-
-.jobs-list__title {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  margin-bottom: 10px;
-  padding-top: 18px;
 }
 
 .notification {
@@ -2907,6 +2946,93 @@ a.pagination__item-link:hover {
   .search__group-append {
     right: 0.6rem;
   }
+}
+
+.seeker-list__container {
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: #fff;
+}
+
+.seeker-list__title {
+  font-size: 20px;
+  font-size: 700;
+  letter-spacing: 0.06em;
+}
+
+.seeker-list {
+  margin-top: 14px;
+  border-top: solid 1px #fdb834;
+}
+
+.seeker-list__item {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 25px 0;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.seeker-list__item-left {
+  width: 90px;
+  -webkit-box-flex: 0;
+          flex: 0 0 90px;
+}
+
+.seeker-list__item-right {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 25px;
+}
+
+.seeker-list__item-right-top {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.seeker-list__item-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.seeker-list__item-right-bottom {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-top: 16px;
+}
+
+.seeker-list__item-description {
+  font-size: 15px;
+  line-height: 0.867;
+  letter-spacing: 0.06em;
+  margin-right: 15px;
+}
+
+.seeker-list__item-tag {
+  font-weight: 700;
+  color: #d9d6d6;
+  letter-spacing: 0.06em;
+  background-color: #f2f2f0;
+  padding: 2px 5px;
+}
+
+.seeker-list__item-time {
+  -webkit-box-flex: 1;
+          flex: 1;
+  color: #d9d6d6;
+  text-align: right;
+  letter-spacing: 0.06em;
+}
+
+.seeker-list__button {
+  text-align: center;
+  padding-top: 25px;
 }
 
 .settings-tab {
