@@ -1,8 +1,10 @@
 import React from 'react';
 
 const RecruitmentSection = _ => (
-  <div className="dashboard dashboard--recruitment">
-    Recruitment here...
+  <div className={`dashboard-section dashboard`}>
+    <div className="dashboard-section__content">
+      RecruitmentList
+    </div>
   </div>
 );
 

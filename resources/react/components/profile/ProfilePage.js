@@ -8,7 +8,7 @@ import Profile from './Profile';
 const ProfilePage = (props) => {
   const { user } = props;
   const accountType = (user.userData && user.userData.account_type) || '';
-  const data = user.userData;
+  var data = user.userData;
 
   return (
     accountType === 'student' ? (
