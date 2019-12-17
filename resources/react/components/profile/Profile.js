@@ -8,6 +8,9 @@ import JobsList from '../jobs/JobsList';
 
 const Profile = (props) => {
   const { user, accountType } = props;
+  var data = user.userData;
+
+  console.log(data);
 
   return (
     accountType === 'student' ? (
@@ -22,20 +25,13 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">自己紹介</h3>
-                  <p className="profile__main-list-item-copy">{`フォトグラファー
-                  ・株式会社BNGパートナーズ
-                  ・STB139
-
-                    営業・広報・人事と色々やってきたら、マネージャーの下で色々やる人になりました。現在Web制作会社のアカウントプランナーチームにて営業補佐/マーケティング/採用を行なっています。
-
-                    またフリーでスポーツ中心のカメラマンも行なっており、バスケを中心にスポーツ写真、キッズスポーツ大会・合宿などの撮影も行なっています。ポートフォリオサイト【https://snaxano.wixsite.com/photo】
-                  `}</p>
+                  <p className="profile__main-list-item-copy">{data.profile.intro_text}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">やってみたいこと</h3>
-                  <p className="profile__main-list-item-copy">好きなことをやり続けたい</p>
+                  <p className="profile__main-list-item-copy">{data.profile.what_text}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -264,8 +260,8 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">Github</h3>
                   <div className="profile__data-link">
-                    <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                    <Clipboard value="https://github.com/MyznEiji" />
+                    <a href="{data.profile.github}" className="button button--profile" target="_blank">{data.profile.github}</a>
+                    <Clipboard value="{data.profile.github}" />
                   </div>
                 </div>
               </li>
@@ -278,13 +274,13 @@ const Profile = (props) => {
             <div className="profile__sidebar-content">
               <dl className="profile__sidebar-content-basic">
                 <dt className="profile__sidebar-content-basic-term">生年月日</dt>
-                <dd className="profile__sidebar-content-basic-data">1995.08.14</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.profile.birthday}</dd>
                 <dt className="profile__sidebar-content-basic-term">性別</dt>
-                <dd className="profile__sidebar-content-basic-data">男</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.profile.sex}</dd>
                 <dt className="profile__sidebar-content-basic-term">住所</dt>
-                <dd className="profile__sidebar-content-basic-data">東京</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.profile.address1}</dd>
                 <dt className="profile__sidebar-content-basic-term">ステータス</dt>
-                <dd className="profile__sidebar-content-basic-data">在学中</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.profile.student_status}</dd>
               </dl>
             </div>
           </div>
@@ -339,9 +335,7 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">我々のミッションは</h3>
-                  <p className="profile__main-list-item-copy">{`『古く非効率となってしまっている旧態依然とした酒類業界の仕組みを、テクノロジーによって現代社会に最適化すること』です。
-                    酒販業×WEBをベースに様々な事業展開を考えております。
-                  `}</p>
+                  <p className="profile__main-list-item-copy">{data.profile.description}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -349,15 +343,11 @@ const Profile = (props) => {
                   <h3 className="profile__main-list-item-heading">特徴</h3>
                   <dl className="profile__data-character">
                     <dt className="profile__data-character-term">フラットな組織</dt>
-                    <dd className="profile__data-character-data">{`チームラボには部長も課長もいない、多次元的な体制です。
-                      なので「部長はああ言ってるけど本当はこっちにした方がいい」って、みんながわかっている状況は世の中にかなり存在していますが、そのようなストレスはありません。
-                      プロジェクトチーム単位で動いていて、エンジニア、デザイナー、カタリストのメンバーで構成されています。
-                      指示をする、管理職的な立場の人は存在せず、みんながモノをつくるメンバーです。
-                    `}</dd>
+                    <dd className="profile__data-character-data">{data.profile.what_text}</dd>
                     <dt className="profile__data-character-term">メンバーの多様性</dt>
-                    <dd className="profile__data-character-data">{`プログラマ、エンジニア、CGアニメーター、絵師、数学者、建築家、UI/UXデザイナー、グラフィックデザイナー、編集者など、デジタル社会の様々な分野のスペシャリストから構成されています。海外からのメンバーが増えていて、全体の15%を占めています。`}</dd>
+                    <dd className="profile__data-character-data">{data.profile.why_text}</dd>
                     <dt className="profile__data-character-term">こだわりのある オフィス</dt>
-                    <dd className="profile__data-character-data">{`職能の垣根を越えて、会話して、一緒に考えることができるスペースとなるよう設計されています。 ミーティングスペースやワークスペースには壁がなく、話していると隣の席の声も自然と耳に入ってきますので、会議の参加者以外のたまたま通りがかったメンバーや、違う会議に出席しているメンバーが意見を言う事もあります。 メンバー同士がつながることで新たなアイデアが生まれ、問題解決のヒントとなることを重要視しています。`}</dd>
+                    <dd className="profile__data-character-data">{data.profile.how_text}</dd>
                   </dl>
                 </div>
               </li>

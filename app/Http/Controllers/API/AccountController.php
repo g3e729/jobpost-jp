@@ -18,9 +18,11 @@ class AccountController extends BaseController
 	public function details()
 	{
 		if ($this->user) {
-			$this->user->account_type = $this->user->hasRole('company') ? 'company' : 'student';
+			$user = $this->user;
+			$user->account_type = $user->hasRole('company') ? 'company' : 'student';
+			$user->profile = $user->profile;
 
-			return $this->user->load('profile');
+			return $user;
 		}
 
 		return response()->json(['message' => 'Not Found.'], 404);
@@ -29,12 +31,12 @@ class AccountController extends BaseController
 	public function update(Request $request)
 	{
 		if ($this->user) {
+			$user = $this->user;
+			$user->update($request->only('email', 'japanese_name', 'name'));
+			$user->profile->update($request->except('email', 'japanese_name', 'name'));
+			$user->profile = $user->profile;
 
-			$this->user->update($request->only('email', 'japanese_name', 'name'));
-
-			$this->user->profile->update($request->except('email', 'japanese_name', 'name'));
-
-			return $this->user->load('profile');
+			return $user;
 		}
 
 		return response()->json(['message' => 'Not Found.'], 404);
@@ -43,10 +45,11 @@ class AccountController extends BaseController
 	public function updatePassword(Request $request)
 	{
 		if ($this->user) {
+			$user = $this->user;
+			$user->update($request->only('password'));
+			$user->profile = $user->profile;
 
-			$this->user->update($request->only('password'));
-
-			return $this->user->load('profile');
+			return $user;
 		}
 
 		return response()->json(['message' => 'Not Found.'], 404);

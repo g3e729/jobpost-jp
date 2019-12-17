@@ -8,15 +8,16 @@ import Profile from './Profile';
 const ProfilePage = (props) => {
   const { user } = props;
   const accountType = (user.userData && user.userData.accountType) || '';
+  var data = user.userData;
 
   return (
     accountType === 'student' ? (
       <Page>
         <Heading type="user"
-          style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
-          data-avatar="https://lorempixel.com/1800/600/people/"
-          title="田中義人"
-          subTitle={<span><i className="icon icon-book text-dark-yellow"></i>PHPコース</span>}
+          style={{ backgroundImage: `url("${data.profile.cover_photo}")` }}
+          data-avatar={data.profile.avatar}
+          title={data.profile.display_name}
+          subTitle={<span><i className="icon icon-book text-dark-yellow"></i>{data.profile.course}</span>}
         />
         <div className="l-section l-section--profile section">
           <div className="l-container">
@@ -27,10 +28,10 @@ const ProfilePage = (props) => {
     ) : accountType === 'company' ? (
       <Page>
         <Heading type="user"
-          style={{ backgroundImage: 'url("https://lorempixel.com/1800/600/people/")' }}
-          data-avatar="https://lorempixel.com/1800/600/people/"
-          title="株式会社アクターリアリティ"
-          subTitle={<span><span className="heading-content__position-location">東京</span>https://hogehoge.com</span>}
+          style={{ backgroundImage: `url("${data.profile.cover_photo}")` }}
+          data-avatar={data.profile.avatar}
+          title={data.profile.display_name}
+          subTitle={data.profile.homepage}
         />
         <div className="l-section l-section--profile section">
           <div className="l-container">
