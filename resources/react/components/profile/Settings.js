@@ -53,15 +53,15 @@ const Settings = _ => {
 
   const handleBlur = _ => {
     if (tabIndex === 0) {
-      if (form1Values.password_new === form1Values.password_new_confirm) {
-        setFormMessage({
-          type: 'success',
-          message: 'パスワードを変更しました'
-        });
-      } else {
+      if (form1Values.password_new !== form1Values.password_new_confirm) {
         setFormMessage({
           type: 'error',
           message: 'パスワードが一致していません'
+        });
+      } else {
+        setFormMessage({
+          type: '',
+          message: ''
         });
       }
     }

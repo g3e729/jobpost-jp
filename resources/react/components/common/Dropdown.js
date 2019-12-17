@@ -7,9 +7,12 @@ import Button from './Button';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 
+import { logoutUser } from '../../actions/user';
+
 const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
-  const { user } = props;
+  const { user, logoutUser } = props;
+  const avatar = (user.userData && user.userData.profile && user.userData.profile.avatar) || 'https://avatars.dicebear.com/v2/male/john.svg';
   const accountType = (user.userData && user.userData.accountType) || '';
 
   useEffect(_ => {
@@ -21,19 +24,12 @@ const Dropdown = (props) => {
     return _ => clearTimeout(timer);
   }, [dropdown]);
 
-  const handleLogout = _ => {
-    // TODO: use action/user dispatch logoutUser
-    const elLogoutForm = document.querySelector('#js-logout-form');
-
-    elLogoutForm.submit();
-  }
-
   return (
     accountType && accountType.length ? (
       <>
         <Button className="button--link" onClick={_ => setDropdown(!dropdown)}>
           <Avatar className={`avatar--header ${dropdown ? state.ACTIVE : ''}`}
-            style={{ backgroundImage: 'url("https://avatars.dicebear.com/v2/male/john.svg")' }} />
+            style={{ backgroundImage: `url("${avatar}")` }} />
         </Button>
         <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`}>
           { accountType === 'student' ? (
@@ -64,7 +60,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={_ => handleLogout()}>
+                <a onClick={_ => logoutUser()}>
                   ログアウト
                 </a>
               </li>
@@ -92,7 +88,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={_ => handleLogout()}>
+                <a onClick={_ => logoutUser()}>
                   ログアウト
                 </a>
               </li>
@@ -112,4 +108,10 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(Dropdown);
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: _ => {
+    dispatch(logoutUser());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dropdown);
