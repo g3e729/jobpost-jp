@@ -27,7 +27,7 @@ export const getUser = _ => {
 
         if ( result.data.account_type === accountType ) { // check accountType meta integrity
           localStorage.setItem('api_token', apiToken);
-          dispatch(setUser({ ...result.data, accountType }));
+          dispatch(setUser({ ...result.data }));
         } else {
           dispatch(logoutUser());
         }
@@ -43,12 +43,36 @@ export const getUser = _ => {
   }
 }
 
+export const updateUserPass = (password = '') => {
+  const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
+
+  return (dispatch) => {
+    return axios({
+      url: endpoints.UPDATE_PASSWORD,
+      method: 'patch',
+      params: {
+        api_token: apiToken,
+        password: password,
+        method: '_PATCH'
+      },
+    }).then((result) => {
+      localStorage.setItem('api_token', apiToken);
+      dispatch(setUser({ ...result.data }));
+
+      return result;
+    }).catch(error => {
+      console.log('[Update password]', error);
+      return 'error';
+    });
+  }
+}
+
 export const logoutUser = _ => {
   return (dispatch) => {
     const elLogoutForm = document.querySelector('#js-logout-form');
 
     localStorage.removeItem('api_token');
-    dispatch(unsetUser());
+    unsetUser();
 
     elLogoutForm.submit();
   }

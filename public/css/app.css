@@ -892,6 +892,11 @@ And you should not feel free to add a new Utility class.
   opacity: 0.7;
 }
 
+.button.is-disabled {
+  background: #d9d6d6;
+  pointer-events: none;
+}
+
 .button--list {
   display: -webkit-inline-box;
   display: inline-flex;
@@ -977,7 +982,7 @@ And you should not feel free to add a new Utility class.
   pointer-events: none;
 }
 
-.dashboard {
+.dashboard-section {
   padding: 40px 50px;
   background-color: #f2f2f0;
   -webkit-box-flex: 1;

@@ -12,7 +12,7 @@ import logoSp from '../../../img/logo-kredo-icon.png';
 
 const Header = (props) => {
   const { user } = props;
-  const accountType = (user.userData && user.userData.accountType) || '';
+  const accountType = (user.userData && user.userData.account_type) || '';
 
   return (
     <header className="l-header header">

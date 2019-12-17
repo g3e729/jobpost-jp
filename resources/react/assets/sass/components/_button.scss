@@ -17,6 +17,11 @@
   &:hover {
     opacity: 0.7;
   }
+
+  &.is-disabled {
+    background: $color-dark-gray;
+    pointer-events: none;
+  }
 }
 
 .button--list {

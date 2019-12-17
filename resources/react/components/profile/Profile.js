@@ -8,9 +8,7 @@ import JobsList from '../jobs/JobsList';
 
 const Profile = (props) => {
   const { user, accountType } = props;
-  var data = user.userData;
-
-  console.log(data);
+  const data = user.userData;
 
   return (
     accountType === 'student' ? (

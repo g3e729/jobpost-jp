@@ -1,40 +1,58 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import "react-tabs/style/react-tabs.css";
+import { connect } from 'react-redux';
+import 'react-tabs/style/react-tabs.css';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
 import { state } from '../../constants/state';
 
-const Settings = _ => {
+import { updateUserPass } from '../../actions/user';
+
+const Settings = (props) => {
+  const { handleUpdateUserPass } = props;
   const [tabIndex, setTabIndex] = useState(0);
   const [form1Values, setForm1Values] = useState({
-    password_current: '',
     password_new: '',
     password_new_confirm: ''
   });
-
   const [form2Value, setForm2Value] = useState({
     email_new: ''
   });
-
   const [formMessage, setFormMessage] = useState({
-    type: '',
-    message: ''
+    type: '', message: ''
   });
+  const [buttonEnable, setButtonEnable] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    // e.currentTarget; TODO: form check and submit here
+    if (tabIndex === 0) {
+      handleUpdateUserPass(form1Values.password_new).then((res) => {
+        if (res.status == 200) {
+          setFormMessage({
+            type: 'success',
+            message: 'パスワードを変更しました'
+          });
+        } else {
+          setFormMessage({
+            type: 'error',
+            message: 'There is an error somewhere. Please try again.'
+          });
+        }
+      });
+    } else {
+      // TODO: handle change email
+    }
   }
 
   const handleTabChange = index => {
     setTabIndex(index);
 
-    setForm1Values({password_current: '', password_new: '', password_new_confirm: ''});
+    setForm1Values({password_new: '', password_new_confirm: ''});
     setForm2Value({email_new: ''});
     setFormMessage({type: '', message: ''});
+    setButtonEnable(false);
   }
 
   const handleChange = e => {
@@ -53,16 +71,27 @@ const Settings = _ => {
 
   const handleBlur = _ => {
     if (tabIndex === 0) {
+      setFormMessage({
+        type: '',
+        message: ''
+      });
+
+      setButtonEnable(true);
+
       if (form1Values.password_new !== form1Values.password_new_confirm) {
         setFormMessage({
           type: 'error',
           message: 'パスワードが一致していません'
         });
-      } else {
+        setButtonEnable(false);
+      }
+
+      if (form1Values.password_new.length < 8) {
         setFormMessage({
-          type: '',
-          message: ''
+          type: 'error',
+          message: 'minimum 8 characters' // TODO: Change text
         });
+        setButtonEnable(false);
       }
     }
   }
@@ -86,18 +115,6 @@ const Settings = _ => {
 
           <form className="settings-form" id="js-form-email-change"
             onSubmit={e => handleSubmit(e)}>
-
-            <div className="settings-form__group">
-              <div className="settings-form__group-label">
-                現在のパスワード
-              </div>
-              <Input className="settings-form__group-input"
-                value={form1Values.password_current}
-                onChange={e => handleChange(e)}
-                name="password_current"
-                type="password"
-              />
-            </div>
 
             <div className="settings-form__group">
               <div className="settings-form__group-label">
@@ -126,7 +143,7 @@ const Settings = _ => {
             </div>
 
             <div className="settings-form__actions">
-              <Button className="settings-form__actions-button" type="submit">
+              <Button className={`settings-form__actions-button ${buttonEnable ? '' : state.DISABLED }`} type="submit">
                 変更
               </Button>
               <Button className="button--link button--link-form" onClick={_ => setTabIndex(1)}>
@@ -172,4 +189,10 @@ const Settings = _ => {
   );
 }
 
-export default Settings;
+const mapDispatchToProps = (dispatch) => ({
+  handleUpdateUserPass: (password) => {
+    return dispatch(updateUserPass(password));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Settings);

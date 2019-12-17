@@ -17,7 +17,7 @@ const requireAuth = (ComposedComponent) => {
 
       if (Object.keys(user).length && user.isLogged) {
         const accessPages = accessTable
-          .filter(item => Object.keys(item).includes(user.userData.accountType))
+          .filter(item => Object.keys(item).includes(user.userData.account_type))
           .map(item => Object.values(item))
           .flat(2);
 

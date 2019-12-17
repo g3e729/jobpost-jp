@@ -11,9 +11,9 @@ import { logoutUser } from '../../actions/user';
 
 const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
-  const { user, logoutUser } = props;
+  const { user, handleLogoutUser } = props;
   const avatar = (user.userData && user.userData.profile && user.userData.profile.avatar) || 'https://avatars.dicebear.com/v2/male/john.svg';
-  const accountType = (user.userData && user.userData.accountType) || '';
+  const accountType = (user.userData && user.userData.account_type) || '';
 
   useEffect(_ => {
     const timer = setTimeout(_ => {
@@ -60,7 +60,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={_ => logoutUser()}>
+                <a onClick={_ => handleLogoutUser()}>
                   ログアウト
                 </a>
               </li>
@@ -88,7 +88,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={_ => logoutUser()}>
+                <a onClick={_ => handleLogoutUser()}>
                   ログアウト
                 </a>
               </li>
@@ -109,7 +109,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logoutUser: _ => {
+  handleLogoutUser: _ => {
     dispatch(logoutUser());
   }
 });
