@@ -99,6 +99,10 @@ class LoginController extends Controller
             session(compact('account', 'api_token'));
         }
 
+        if ($user->hasRole('company')) {
+            return redirect()->route('top.dashboard.page');
+        }
+
         return redirect()->route('top.page');
     }
 
@@ -106,7 +110,7 @@ class LoginController extends Controller
     {
         $user = auth()->user();
         $user->update(['api_token' => null]);
-        
+
         return $this->parentLogout($request);
     }
 }
