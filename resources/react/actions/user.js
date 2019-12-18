@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { endpoints } from '../constants/endpoints';
+import { config } from '../constants/config';
 
 export const setUser = (payload = '') => ({
   type: 'USER_TYPE_SET',
@@ -17,11 +18,12 @@ export const getUser = _ => {
 
   return (dispatch) => {
     if (['student', 'company'].includes(accountType)) {
-      axios({
+      axios.request({
         url: endpoints.ACCOUNT,
+        baseURL: `${config.api.url}/`,
         method: 'get',
-        params: {
-          api_token: apiToken
+        headers: {
+          'app-auth-token': apiToken
         },
       }).then((result) => {
 
@@ -47,11 +49,14 @@ export const updateUserPass = (password = '') => {
   const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
 
   return (dispatch) => {
-    return axios({
+    return axios.request({
       url: endpoints.UPDATE_PASSWORD,
+      baseURL: `${config.api.url}/`,
       method: 'patch',
+      headers: {
+        'app-auth-token': apiToken
+      },
       params: {
-        api_token: apiToken,
         password: password,
         method: '_PATCH'
       },

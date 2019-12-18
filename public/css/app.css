@@ -2976,7 +2976,7 @@ a.pagination__item-link:hover {
           justify-content: space-between;
   -webkit-box-align: center;
           align-items: center;
-  padding: 25px 0 10px;
+  margin: 20px 0 -5px;
 }
 
 .seeker-list__filters {
