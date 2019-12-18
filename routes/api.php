@@ -9,7 +9,7 @@ Route::group([
 	Route::resource('jobs', 'JobPostController')->only('index', 'show');
 
 	Route::group([
-	    // 'middleware' => ['auth'],
+	    'middleware' => ['App\Http\Middleware\ApiCheck'],
 	], function () {
 		Route::get('account', 'AccountController@details');
 		Route::patch('account', 'AccountController@update');
@@ -23,6 +23,7 @@ Route::group([
 		Route::get('students-filters', 'StudentController@getStudentFilters');
 
 		Route::post('like', 'LikeController@like');
+		Route::post('apply', 'ApplyController@store');
 
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
 	});

@@ -10,16 +10,9 @@ use Illuminate\Http\Request;
 
 class LikeController extends BaseController
 {
-	protected $user = null;
-
-	public function __construct()
-	{
-		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
-	}
-	
 	public function like(Request $request)
 	{
-		if ($this->user) {
+		if (auth()->user()) {
 			$type = $request->get('type');
 			$type_id = $request->get('type_id');
 
@@ -59,13 +52,13 @@ class LikeController extends BaseController
 	private function toggleLike($model)
 	{
 
-		$que = $model->likes()->where('user_id', $this->user->id);
+		$que = $model->likes()->where('user_id', auth()->user()->id);
 
 		if ($que->count()) {
 			$que->delete();
 		} else {
 			$model->likes()->create([
-				'user_id' => $this->user->id
+				'user_id' => auth()->user()->id
 			]);
 		}
 

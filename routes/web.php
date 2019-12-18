@@ -1,7 +1,8 @@
 <?php
 
 Route::get('/', function () {
-	return view('errors.developing');
+  // return view('errors.developing');
+	return redirect()->route('top.page');
 });
 
 // Authentication Routes...

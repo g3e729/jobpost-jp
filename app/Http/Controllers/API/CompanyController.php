@@ -10,13 +10,6 @@ use Illuminate\Http\Request;
 
 class CompanyController extends BaseController
 {
-	protected $user = null;
-
-	public function __construct()
-	{
-		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
-	}
-	
 	public function index(Request $request)
 	{
 		$companies = (new CompanyService)->search($request->except('_token', 'page'));

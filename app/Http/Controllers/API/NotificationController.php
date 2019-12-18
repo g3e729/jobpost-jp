@@ -9,19 +9,12 @@ use Illuminate\Http\Request;
 
 class NotificationController extends BaseController
 {
-	protected $user = null;
-
-	public function __construct()
-	{
-		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
-	}
-
 	public function index(Request $request)
 	{
-		if ($this->user) {
+		if (auth()->user()) {
 			$paginate = $request->has('all') ? 0 : 1;
 
-			$notifications = $this->user->notifications()
+			$notifications = auth()->user()->notifications()
 				->select('id', 'title', 'description', 'published_at', 'seen')
 				->orderBy('published_at', 'ASC');
 
@@ -37,11 +30,11 @@ class NotificationController extends BaseController
 
 	public function update(Request $request)
 	{
-		if ($this->user) {
+		if (auth()->user()) {
 			$ids = $request->get('ids');
 			$ids = explode(',', $ids);
 
-			$this->user->notifications()->update(['seen' => 1]);
+			auth()->user()->notifications()->update(['seen' => 1]);
 
 			return ['success' => true];
 		}

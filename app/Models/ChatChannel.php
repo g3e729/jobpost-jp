@@ -35,7 +35,12 @@ class ChatChannel extends Model
 
     public function chats()
     {
-        return $this->hasMany(Chat::class, 'channel_id');
+        return $this->hasMany(Chat::class, 'channel_id', 'id');
+    }
+
+    public function chat_status()
+    {
+        return $this->hasMany(ChatStatus::class, 'channel_id');
     }
 
     public function getChattableItemAttribute()
