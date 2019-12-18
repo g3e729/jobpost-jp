@@ -1246,56 +1246,6 @@ And you should not feel free to add a new Utility class.
   margin-top: 18px;
 }
 
-.filter {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  width: 280px;
-  -webkit-box-flex: 0;
-          flex: 0 0 280px;
-  align-self: stretch;
-}
-
-.filter__header {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-align: center;
-  color: #fff;
-  position: relative;
-  padding: 11px;
-  background-color: #393939;
-}
-
-.filter-content {
-  -webkit-box-flex: 1;
-          flex: 1;
-  margin-top: 13px;
-  background-color: #f2f2f0;
-}
-
-.filter-content__list-item {
-  padding: 20px;
-  border-top: solid 1px #fff;
-}
-
-.filter-content__list-item:first-child {
-  border-top: none;
-}
-
-.filter-content__header {
-  font-size: 15px;
-  font-weight: bold;
-  letter-spacing: 0.06em;
-  margin-bottom: 12px;
-}
-
-.filter-content__header > i {
-  margin-right: 10px;
-}
-
 .footer__heading {
   font-family: "Avenir", sans-serif;
   font-weight: 900;
@@ -1782,6 +1732,56 @@ And you should not feel free to add a new Utility class.
     width: 160px;
     padding: 8px 10px 8px 15px;
   }
+}
+
+.jobs-filter {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  width: 280px;
+  -webkit-box-flex: 0;
+          flex: 0 0 280px;
+  align-self: stretch;
+}
+
+.jobs-filter__header {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  padding: 11px;
+  background-color: #393939;
+}
+
+.jobs-filter-content {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-top: 13px;
+  background-color: #f2f2f0;
+}
+
+.jobs-filter-content__list-item {
+  padding: 20px;
+  border-top: solid 1px #fff;
+}
+
+.jobs-filter-content__list-item:first-child {
+  border-top: none;
+}
+
+.jobs-filter-content__header {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.jobs-filter-content__header > i {
+  margin-right: 10px;
 }
 
 .jobs-list--titled .jobs-list__item:first-child {
@@ -2949,6 +2949,7 @@ a.pagination__item-link:hover {
 }
 
 .seeker-list__container {
+  position: relative;
   padding: 45px 50px 50px;
   margin-top: 38px;
   background-color: #fff;
@@ -2956,13 +2957,37 @@ a.pagination__item-link:hover {
 
 .seeker-list__title {
   font-size: 20px;
-  font-size: 700;
+  font-weight: 700;
   letter-spacing: 0.06em;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #fdb834;
 }
 
-.seeker-list {
-  margin-top: 14px;
-  border-top: solid 1px #fdb834;
+.seeker-list__search {
+  position: absolute;
+  top: 32px;
+  right: 15px;
+}
+
+.seeker-list__filter {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 25px 0 10px;
+}
+
+.seeker-list__filters {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.seeker-list__filters-item {
+  margin-right: 10px;
 }
 
 .seeker-list__item {
@@ -3032,7 +3057,11 @@ a.pagination__item-link:hover {
 
 .seeker-list__button {
   text-align: center;
-  padding-top: 25px;
+  margin-top: 25px;
+}
+
+.seeker-list__pagination {
+  margin: 40px 0 -15px;
 }
 
 .settings-tab {

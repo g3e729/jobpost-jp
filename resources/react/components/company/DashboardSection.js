@@ -16,9 +16,24 @@ const DashboardSection = _ => (
       </div>
     </div>
     <div className="dashboard-section__content">
-      <SeekerList title="最近スカウト" link={routes.SAMPLE} />
-      <SeekerList title="最近の応募" link={routes.SAMPLE} />
-      <SeekerList title="最近のお気に入り" link={routes.SAMPLE} />
+      <SeekerList title="最近スカウト"
+        link={{
+          pathname: routes.CANDIDATES,
+          search: "?type=scout&sort=desc",
+          state: { fromDashboard: true }
+        }} />
+      <SeekerList title="最近の応募"
+        link={{
+          pathname: routes.CANDIDATES,
+          search: "?type=applicants&sort=desc",
+          state: { fromDashboard: true }
+        }} />
+      <SeekerList title="最近のお気に入り"
+        link={{
+          pathname: routes.CANDIDATES,
+          search: "?type=favorites&sort=desc",
+          state: { fromDashboard: true }
+        }} />
     </div>
   </div>
 );

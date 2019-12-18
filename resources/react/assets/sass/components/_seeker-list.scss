@@ -1,4 +1,5 @@
 .seeker-list__container {
+  position: relative;
   padding: 45px 50px 50px;
   margin-top: 38px;
   background-color: $color-white;
@@ -6,14 +7,36 @@
 
 .seeker-list__title {
   font-size: 20px;
-  font-size: 700;
+  font-weight: 700;
   letter-spacing: 0.06em;
+
+  padding-bottom: 14px;
+  border-bottom: solid 1px $color-dark-yellow;
 }
 
-.seeker-list {
-  margin-top: 14px;
-  border-top: solid 1px $color-dark-yellow;
+.seeker-list__search {
+  position: absolute;
+  top: 32px;
+  right: 15px;
 }
+
+.seeker-list__filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0 10px; // ?10px
+}
+
+.seeker-list__filters {
+  display: flex;
+  align-items: center;
+}
+
+.seeker-list__filters-item {
+  margin-right: 10px;
+}
+
+.seeker-list {}
 
 .seeker-list__item {
   display: flex;
@@ -80,5 +103,9 @@
 
 .seeker-list__button {
   text-align: center;
-  padding-top: 25px;
+  margin-top: 25px;
+}
+
+.seeker-list__pagination {
+  margin: 40px 0 -15px;
 }

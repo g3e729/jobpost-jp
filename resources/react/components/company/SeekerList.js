@@ -1,13 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
+import Fraction from '../common/Fraction';
+import Pagination from '../common/Pagination';
+import Search from '../common/Search';
+import { dashboardSelectStyles } from '../../constants/config';
 
-const SeekerList = ({title, link}) => {
+const filterList = [
+  { value: 'chocolate',   label: 'Chocolate' },
+  { value: 'strawberry',  label: 'Strawberry' },
+  { value: 'vanilla',     label: 'Vanilla' }
+];
+
+const SeekerList = ({type = null, title, link}) => {
   return (
     <div className="seeker-list__container">
       { title ? <h3 className="seeker-list__title">{title}</h3> : null }
+      { type ? (
+        <>
+          <div className="seeker-list__search">
+            <Search />
+          </div>
+          <div className="seeker-list__filter">
+            <ul className="seeker-list__filters">
+              <li className="seeker-list__filters-item">
+                <Select options={filterList}
+                  styles={dashboardSelectStyles}
+                  placeholder="ポジション"
+                  width='134px'
+                />
+              </li>
+              <li className="seeker-list__filters-item">
+                <Select options={filterList}
+                  styles={dashboardSelectStyles}
+                  placeholder="コース"
+                  width='96px'
+                />
+              </li>
+              <li className="seeker-list__filters-item">
+                <Select options={filterList}
+                  styles={dashboardSelectStyles}
+                  placeholder="募集"
+                  width='82px'
+                />
+              </li>
+              <li className="seeker-list__filters-item">
+                <Select options={filterList}
+                  styles={dashboardSelectStyles}
+                  placeholder="並び替え"
+                  width='112px'
+                />
+              </li>
+            </ul>
+            <Fraction numerator="10"
+              denominator="45"
+            />
+          </div>
+        </>
+      ) : null }
       <ul className="seeker-list">
         { [1, 2, 3, 4, 5].map((_, idx) => (
           <li className="seeker-list__item" key={idx}>
@@ -32,11 +85,17 @@ const SeekerList = ({title, link}) => {
           </li>
         )) }
       </ul>
-      <div className="seeker-list__button">
-        <Link to={link}>
-          <Button>もっと見る</Button>
-        </Link>
-      </div>
+      { type ? (
+        <div className="seeker-list__pagination">
+          <Pagination />
+        </div>
+      ) : (
+        <div className="seeker-list__button">
+          <Link to={link}>
+            <Button>もっと見る</Button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

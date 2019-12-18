@@ -1,9 +1,11 @@
 import React from 'react';
 
+import SeekerList from './SeekerList';
+
 const CandidatesSection = _ => (
   <div className={`dashboard-section dashboard`}>
     <div className="dashboard-section__content">
-      CandidatesList
+      <SeekerList type="full" title="候補者一覧" />
     </div>
   </div>
 );

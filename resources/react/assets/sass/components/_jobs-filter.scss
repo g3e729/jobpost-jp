@@ -1,4 +1,4 @@
-.filter {
+.jobs-filter {
   display: flex;
   flex-direction: column;
 
@@ -7,7 +7,7 @@
   align-self: stretch;
 }
 
-.filter__header {
+.jobs-filter__header {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -19,16 +19,16 @@
   background-color: $color-medium-black;
 }
 
-.filter-content {
+.jobs-filter-content {
   flex: 1;
   margin-top: 13px;
 
   background-color: $color-light-gray;
 }
 
-.filter-content__list {}
+.jobs-filter-content__list {}
 
-.filter-content__list-item {
+.jobs-filter-content__list-item {
   padding: 20px;
   border-top: solid 1px $color-white;
 
@@ -37,7 +37,7 @@
   }
 }
 
-.filter-content__header {
+.jobs-filter-content__header {
   font-size: 15px;
   font-weight: bold;
   letter-spacing: 0.06em;
