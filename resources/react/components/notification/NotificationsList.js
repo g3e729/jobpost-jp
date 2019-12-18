@@ -7,7 +7,7 @@ import moment from 'moment';
 import Button from '../common/Button';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
-import { generateRoute } from '../../utils/generateRoute';
+import generateRoute from '../../utils/generateRoute';
 
 const dummyNotifications = new Array(10)
   .fill(null)

@@ -8,21 +8,20 @@ import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 
 import { logoutUser } from '../../actions/user';
+import useInterval from '../../utils/useInterval';
 
 const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
+  const [dropdownHover, setDropdownHover] = useState(false);
   const { user, handleLogoutUser } = props;
   const avatar = (user.userData && user.userData.profile && user.userData.profile.avatar) || 'https://avatars.dicebear.com/v2/male/john.svg';
   const accountType = (user.userData && user.userData.account_type) || '';
 
-  useEffect(_ => {
-    const timer = setTimeout(_ => {
-      if (dropdown === true)
-        setDropdown(false);
-    }, 5000);
-
-    return _ => clearTimeout(timer);
-  }, [dropdown]);
+  useInterval(_ => {
+    if (dropdown) {
+      setDropdown(false);
+    }
+  }, dropdownHover ? 5000 : null);
 
   return (
     accountType && accountType.length ? (
@@ -31,7 +30,7 @@ const Dropdown = (props) => {
           <Avatar className={`avatar--header ${dropdown ? state.ACTIVE : ''}`}
             style={{ backgroundImage: `url("${avatar}")` }} />
         </Button>
-        <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`}>
+        <nav className={`dropdown ${dropdown ? state.ACTIVE : ''}`} onMouseOver={_ => setDropdownHover(false)} onMouseOut={_ => setDropdownHover(true)}>
           { accountType === 'student' ? (
             <ul className="dropdown__menu">
               <li className="dropdown__menu-item">

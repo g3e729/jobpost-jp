@@ -1,4 +1,4 @@
-export const generateRoute = (route, params) => {
+const generateRoute = (route, params) => {
   let path = route.split('/');
 
   path.forEach((p, i) => {
@@ -10,3 +10,5 @@ export const generateRoute = (route, params) => {
 
   return path.join('/');
 };
+
+export default generateRoute;

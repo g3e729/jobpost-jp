@@ -68,7 +68,7 @@ export const updateUserPass = (password = '') => {
 }
 
 export const logoutUser = _ => {
-  return (dispatch) => {
+  return _ => {
     const elLogoutForm = document.querySelector('#js-logout-form');
 
     localStorage.removeItem('api_token');
