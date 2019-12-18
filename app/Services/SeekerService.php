@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\SeekerProfile;
+use App\Models\JobPost;
 use App\Services\UserService;
 use Exception;
 use Illuminate\Http\Request;
@@ -210,6 +211,18 @@ class SeekerService extends BaseService
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return collect([]);
         }
+    }
+
+    public function applyJobPost(JobPost $job_post)
+    {
+        $que = $this->item->applications()->whereJobPostId($job_post->id);
+        if (!$que->count()) {
+            return $this->item->applications()->create([
+                'job_post_id' => $job_post->id
+            ]);
+        }
+
+        return $que->first();
     }
 
     public function studentFilters()

@@ -44,7 +44,7 @@ class Applicant extends Model
 
     public function applicant()
     {
-        return $this->hasOne(SeekerProfile::class, 'seeker_profile_id');
+        return $this->hasOne(SeekerProfile::class, 'id', 'seeker_profile_id');
     }
 
     public function job_post()

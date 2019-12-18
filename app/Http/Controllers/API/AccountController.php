@@ -8,17 +8,10 @@ use Illuminate\Http\Request;
 
 class AccountController extends BaseController
 {
-	protected $user = null;
-
-	public function __construct()
-	{
-		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
-	}
-	
 	public function details()
 	{
-		if ($this->user) {
-			$user = $this->user;
+		if (auth()->user()) {
+			$user = auth()->user();
 
 			return $this->returnData($user);
 		}
@@ -28,8 +21,8 @@ class AccountController extends BaseController
 
 	public function update(Request $request)
 	{
-		if ($this->user) {
-			$user = $this->user;
+		if (auth()->user()) {
+			$user = auth()->user();
 			$user->update($request->only('email', 'japanese_name', 'name'));
 			$user->profile->update($request->except('email', 'japanese_name', 'name'));
 
@@ -41,8 +34,8 @@ class AccountController extends BaseController
 
 	public function updatePassword(Request $request)
 	{
-		if ($this->user) {
-			$user = $this->user;
+		if (auth()->user()) {
+			$user = auth()->user();
 			$user->update($request->only('password'));
 
 			return $this->returnData($user);
@@ -54,7 +47,7 @@ class AccountController extends BaseController
 	private function returnData($user = null)
 	{
 		if (!$user) {
-			$user = $this->user;
+			$user = auth()->user();
 		}
 
 		$user->account_type = $user->hasRole('company') ? 'company' : 'student';

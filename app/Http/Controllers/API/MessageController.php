@@ -10,17 +10,10 @@ use Illuminate\Http\Request;
 
 class MessageController extends BaseController
 {
-	protected $user = null;
-
-	public function __construct()
-	{
-		$this->user = (new UserService)->findApiToken(request()->get('api_token'));
-	}
-	
 	public function index()
 	{
 		$messages = ChatChannel::whereHas('chats', function ($q) {
-			$q->where('user_id', $this->user->id);
+			$q->where('user_id', auth()->user()->id);
 		})->get();
 
 		return $messages;
@@ -38,11 +31,9 @@ class MessageController extends BaseController
 		$chatService = (new ChatService);
 		$channel = $chatService->find($request->get('channel_id'));
 
-		$chatService->setUser($this->user);
+		$chatService->setUser(auth()->user());
 		$content = $request->get('message');
 
-		$chat = $chatService->sendMessage(compact('content'));
-
-		return $chat;
+		return $chatService->sendMessage(compact('content'));
 	}
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -92,12 +93,7 @@ class LoginController extends Controller
             return redirect()->route('admin.index');
         }
 
-        if (! session()->has('api_token')) {
-            $api_token = md5(now().$user->email);
-            $user->update(compact('api_token'));
-            $account = $user->hasRole('company') ? 'company' : 'student';
-            session(compact('account', 'api_token'));
-        }
+        (new UserService($user))->generateApiToken();
 
         if ($user->hasRole('company')) {
             return redirect()->route('top.dashboard.page');

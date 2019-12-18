@@ -10,13 +10,6 @@ use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
-    protected $user = null;
-
-    public function __construct()
-    {
-        $this->user = (new UserService)->findApiToken(request()->get('api_token'));
-    }
-    
 	public function index(Request $request)
 	{
 		$students = (new SeekerService)->search($request->except('_token', 'page'));

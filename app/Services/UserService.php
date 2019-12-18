@@ -66,4 +66,14 @@ class UserService extends BaseService
 
         return $this->item->delete();
     }
+
+    public function generateApiToken()
+    {
+        if ($this->item) {
+            $api_token = md5(now().$this->item->email);
+            $this->item->update(compact('api_token'));
+            $account = $this->item->hasRole('company') ? 'company' : 'student';
+            session(compact('account', 'api_token'));
+        }
+    }
 }

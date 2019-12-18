@@ -134,4 +134,9 @@ class BaseService
             abort(505, $form_file->getClientOriginalName() . '<br/>' . $e->getMessage());
         }
     }
+
+    public function getItem()
+    {
+        return $this->item;
+    }
 }

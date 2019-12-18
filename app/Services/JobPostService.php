@@ -17,6 +17,7 @@ class JobPostService extends BaseService
 
         if ($item instanceof JobPost) {
             $this->item = $item;
+            $this->company = $item->company;
         }
     }
 
