@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?2355l0';
+$suffix: '?vqk62r';
 
 @font-face {
   font-family: 'kredo';
@@ -121,6 +121,9 @@ $suffix: '?2355l0';
 }
 .icon-pencil:before {
   content: "\e910";
+}
+.icon-plus:before {
+  content: "\ea0a";
 }
 .icon-facebook:before {
   content: "\ea90";

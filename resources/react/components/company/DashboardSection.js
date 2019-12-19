@@ -5,7 +5,7 @@ import SeekerList from './SeekerList';
 import { routes } from '../../constants/routes';
 
 const DashboardSection = _ => (
-  <div className={`dashboard-section dashboard`}>
+  <div className="dashboard-section">
     <div className="dashboard-section__top">
       <div className="dashboard-section__reminder">
         <div className="dashboard-section__reminder-text">残りのスカウトチケット数</div>

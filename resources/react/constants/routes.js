@@ -18,6 +18,8 @@ export const routes = {
   COMPANIES_DETAIL: `${prefix}companies/:id`, // student
   DASHBOARD: `${prefix}dashboard`, // company
   RECRUITMENT: `${prefix}recruitment`, // company
+  RECRUITMENT_ADD: `${prefix}recruitment/add`, // company
+  RECRUITMENT_EDIT: `${prefix}recruitment/:id/edit`, // company
   CANDIDATES: `${prefix}candidates`, // company
   SCOUT: `${prefix}scout`, // company
 
@@ -33,7 +35,7 @@ export const routes = {
   HELP: `${prefix}help`,
   PRIVACY: `${prefix}privacy`,
 
-  SAMPLE: `${prefix}sample`, // TODO: !!!change this!!!
+  SAMPLE: `${prefix}sample`, // TODO: placeholder !!!remove this later!!!
 }
 
 export const accessTable = [
@@ -45,6 +47,8 @@ export const accessTable = [
 
       routes.DASHBOARD,
       routes.RECRUITMENT,
+      routes.RECRUITMENT_ADD,
+      routes.RECRUITMENT_EDIT,
       routes.CANDIDATES,
       routes.SCOUT,
 

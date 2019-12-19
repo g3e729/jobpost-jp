@@ -1,9 +1,11 @@
 import React from 'react';
 
+import RecruitmentList from './RecruitmentList';
+
 const RecruitmentSection = _ => (
-  <div className={`dashboard-section dashboard`}>
+  <div className="dashboard-section">
     <div className="dashboard-section__content">
-      RecruitmentList
+      <RecruitmentList />
     </div>
   </div>
 );

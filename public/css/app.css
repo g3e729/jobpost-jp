@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?99db088aefaa86bbe7e94e274e97ddd3);
-  src: url(/fonts/kredo.eot?99db088aefaa86bbe7e94e274e97ddd3) format("embedded-opentype"), url(/fonts/kredo.ttf?1b201a3266f82cb6eabf1a567ad1ad0e) format("truetype"), url(/fonts/kredo.woff?e17a1e78e1cd2fb505b464101d7c1a49) format("woff"), url(/fonts/kredo.svg?b9c4b8dacfc2d24ce098f5fba9b3b875) format("svg");
+  src: url(/fonts/kredo.eot?1c832ec4a113370fcdf2d909490864cb);
+  src: url(/fonts/kredo.eot?1c832ec4a113370fcdf2d909490864cb) format("embedded-opentype"), url(/fonts/kredo.ttf?8a571cc0bcd1c335cc4f082af1da6711) format("truetype"), url(/fonts/kredo.woff?208decc19f3cc4e091bfbfc16941a12b) format("woff"), url(/fonts/kredo.svg?2b37aefe853e22e5c6509a02531c440b) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -625,6 +625,10 @@ input:focus {
 
 .icon-pencil:before {
   content: "\E910";
+}
+
+.icon-plus:before {
+  content: "\EA0A";
 }
 
 .icon-facebook:before {
@@ -907,14 +911,14 @@ And you should not feel free to add a new Utility class.
   padding: 10px 27px;
 }
 
-.button--list {
+.button--icon {
   display: -webkit-inline-box;
   display: inline-flex;
   -webkit-box-align: center;
           align-items: center;
 }
 
-.button--list i {
+.button--icon i {
   margin-right: 10px;
 }
 
@@ -2915,6 +2919,57 @@ a.pagination__item-link:hover {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+.recruitment-list__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: #fff;
+}
+
+.recruitment-list__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #fdb834;
+}
+
+.recruitment-list__action {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 25px 0 -5px;
+}
+
+.recruitment-list__actions {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.recruitment-list__actions-item {
+  margin-left: 38px;
+}
+
+.recruitment-list__actions-item:first-child {
+  margin-left: 0;
+}
+
+.recruitment-list__actions-item-button {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: #393939;
+}
+
+.recruitment-list__actions-item-button.is-active {
+  font-weight: 700;
+  color: #fdb834;
 }
 
 .search {

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
 import Avatar from '../common/Avatar';
-import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
 import Search from '../common/Search';
@@ -91,8 +90,8 @@ const SeekerList = ({type = null, title, link}) => {
         </div>
       ) : (
         <div className="seeker-list__button">
-          <Link to={link}>
-            <Button>もっと見る</Button>
+          <Link to={link} className="button">
+            もっと見る
           </Link>
         </div>
       )}

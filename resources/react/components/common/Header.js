@@ -27,7 +27,7 @@ const Header = (props) => {
             </Link>
           </h1>
 
-          <NavLink exact to={routes.JOBS} className="button button--list u-show-pc" activeClassName={state.ACTIVE}>
+          <NavLink exact to={routes.JOBS} className="button button--icon u-show-pc" activeClassName={state.ACTIVE}>
             <i className="icon icon-squares-list"></i>
             募集一覧
           </NavLink>

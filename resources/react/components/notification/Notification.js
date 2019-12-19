@@ -15,10 +15,8 @@ const Notification = _ => (
       <a href="https://kredo.jp/media/ai-programmer-survive/" target="_blank">https://kredo.jp/media/ai-programmer-survive/</a>
     </p>
 
-    <Link className="notification__button" to={routes.NOTIFICATIONS}>
-      <Button className="button--pill">
-        <span><i className="icon icon-back-curve text-dark-yellow"></i>通知リストに戻る</span>
-      </Button>
+    <Link className="button button--pill notification__button" to={routes.NOTIFICATIONS}>
+      <span><i className="icon icon-back-curve text-dark-yellow"></i>通知リストに戻る</span>
     </Link>
   </div>
 );
