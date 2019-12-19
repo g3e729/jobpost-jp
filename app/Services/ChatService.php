@@ -22,16 +22,21 @@ class ChatService extends BaseService
         }
     }
 
-    public function getChannels()
+    public function getChannels($user_id = null)
     {
         $user = auth()->user();
-        $channels = ChatChannel::whereHas('chats')
-            ->orderBy('updated_at', 'DESC')
+        $channels = ChatChannel::whereHas('chats', function ($q) use ($user_id) {
+            if ($user_id) {
+                $q->where('user_id', $user_id);
+            }
+        })->orderBy('updated_at', 'DESC')
             ->get();
 
         $channels->each(function ($channel) use ($user) {
             $channel->seen = 1;
-            $status = $channel->chat_status()->whereUserId($user->id)->first();
+            $status = $channel->chat_status()
+                ->whereUserId($user->id)
+                ->first();
 
             if (!$status) {
                 $channel->seen = 0;
