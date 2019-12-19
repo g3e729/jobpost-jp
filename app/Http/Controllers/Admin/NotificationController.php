@@ -64,7 +64,7 @@ class NotificationController extends BaseController
 		}
 
 		return redirect()->back()
-			->with('success', "Success! Notication sent to {$users->count()} users and will be notified on {$notification->published_at->format('Y年m月d日')}!");
+			->withSuccess("Success! Notication sent to {$users->count()} users and will be notified on {$notification->published_at->format('Y年m月d日')}!");
 	}
 
 	public function update(Notification $notification, Request $request)
@@ -74,7 +74,7 @@ class NotificationController extends BaseController
 		$notifications->update($request->only('title', 'description', 'genre_id', 'published_at', 'target_id'));
 
 		return redirect()->route('admin.notifications.show', $notification)
-			->with('success', "Success! {$total} notications was updated!");
+			->withSuccess("Success! {$total} notications was updated!");
 	}
 
 	public function destroy(Notification $notification)
@@ -85,6 +85,6 @@ class NotificationController extends BaseController
 
 
         return redirect()->route('admin.notifications.index')
-            ->with('success', "Success! {$total} notifications are deleted!");
+            ->withSuccess("Success! {$total} notifications are deleted!");
 	}
 }

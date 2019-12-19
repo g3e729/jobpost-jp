@@ -48,7 +48,7 @@ class EmployeeController extends BaseController
         }
 
 		return redirect()->route('admin.employees.show', $employee)
-            ->with('success', "Success! Employee details is updated!");
+            ->withSuccess("Success! Employee details is updated!");
 	}
     
     public function destroy(Employee $employee)
@@ -57,6 +57,6 @@ class EmployeeController extends BaseController
         $userService->destroy();
 
         return redirect()->route('admin.employees.index')
-            ->with('success', "Success! Employee is deleted!");
+            ->withSuccess("Success! Employee is deleted!");
     }
 }

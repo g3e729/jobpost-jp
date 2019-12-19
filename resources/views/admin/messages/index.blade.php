@@ -6,6 +6,15 @@
   <div class="l-container l-container-full mt-n4">
     <div class="row">
 
+
+    @if (session()->has('success'))
+      <div class="col-12 mt-5 px-5">
+        <div class="alert alert-success" role="alert">
+          {{ session()->get('success') }}
+        </div>
+      </div>
+    @endif
+
     @if (!$channels->count())
       <div class="col-12 mt-5">
         <p class="text-center">No results</p>
@@ -35,9 +44,15 @@
               </a>
 
               <div class="chat-actions">
-                <a href="#" class="chat-link js-chat-delete">
+                <button form="deleteForm-{{ $channel->id }}" class="chat-link js-chat-delete">
                   <i class="fa fa-trash-alt text-muted"></i>
-                </a>
+                </button>
+                <form id="deleteForm-{{ $channel->id }}" method="POST" action="{{ route('admin.messages.destroy', $channel) }}" novalidate style="visibility: hidden; position: absolute;">
+                  @csrf
+                  {{ method_field('DELETE') }}
+
+                  <button type="submit">削除</button>
+                </form>
               </div>
             </li>
 
@@ -134,6 +149,8 @@
       btn.addEventListener('click', function(event) {
         $(modal).modal('show');
         currTarget = event.currentTarget.href;
+
+        console.log(currentTarget);
 
         event.preventDefault();
       })

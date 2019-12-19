@@ -138,7 +138,7 @@ class StudentController extends BaseController
 
 
 		return redirect()->route('admin.students.show', $student)
-            ->with('success', "Success! Student details is updated!");
+            ->withSuccess("Success! Student details is updated!");
 	}
 
     public function destroy(Student $student)
@@ -147,6 +147,6 @@ class StudentController extends BaseController
         $userService->destroy();
 
         return redirect()->route('admin.students.index')
-            ->with('success', "Success! Student is deleted!");
+            ->withSuccess("Success! Student is deleted!");
     }
 }

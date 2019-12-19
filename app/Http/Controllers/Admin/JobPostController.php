@@ -53,7 +53,7 @@ class JobPostController extends BaseController
 		$jobPostService->setCompany($company);
 		$job_post = $jobPostService->createJob($request->except('_token', '_method', 'company_id'));
 
-		return redirect()->route('admin.recruitments.show', $job_post)->with('success', "Success! A new job has been created!");
+		return redirect()->route('admin.recruitments.show', $job_post)->withSuccess("Success! A new job has been created!");
 	}
 
 	public function edit(JobPost $recruitment)
@@ -74,7 +74,7 @@ class JobPostController extends BaseController
 		$jobPostService = (new JobPostService($job_post));
 		$jobPostService->updateJob($request->except('_token', '_method', 'company_id'));
 
-		return redirect()->route('admin.recruitments.show', $job_post)->with('success', "Success! Job detail was updated!");
+		return redirect()->route('admin.recruitments.show', $job_post)->withSuccess("Success! Job detail was updated!");
 	}
 
 	public function destroy(JobPost $recruitment)
@@ -82,6 +82,6 @@ class JobPostController extends BaseController
 		$job_post = $recruitment;
 		$job_post->delete();
 
-		return redirect()->route('admin.recruitments.index')->with('success', "Success! Job was deleted!");
+		return redirect()->route('admin.recruitments.index')->withSuccess("Success! Job was deleted!");
 	}
 }

@@ -20,6 +20,6 @@ class TicketController extends BaseController
 	{
 		$ticket->delete();
 
-		return back()->with('success', "Success! Ticket succesfully deleted!");
+		return back()->withSuccess("Success! Ticket succesfully deleted!");
 	}
 }
