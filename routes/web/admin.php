@@ -28,10 +28,11 @@ Route::group([
 	]);
 
 	
+	Route::get('messages', 'MessageController@index')->name('messages.index');
 
-	Route::get('messages', function () {
-		return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
-	})->name('messages.index');
+	// Route::get('messages', function () {
+	// 	return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
+	// })->name('messages.index');
 
   	Route::get('messages/{entity}', function () {
 		return view('admin.messages.show', [

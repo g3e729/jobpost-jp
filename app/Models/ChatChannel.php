@@ -43,7 +43,7 @@ class ChatChannel extends Model
         return $this->hasMany(ChatStatus::class, 'channel_id');
     }
 
-    public function getChattableItemAttribute()
+    public function getChattableItemsAttribute()
     {
         return $this->chats()->orderBy('created_at', 'DESC')->first();
     }
@@ -51,5 +51,20 @@ class ChatChannel extends Model
     public function getLastChatAttribute()
     {
         return $this->chattable;
+    }
+
+    public function getOwnerAttribute()
+    {
+        return $this->chattable->employer;
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->chattable->job_post->title;
+    }
+
+    public function getImgAttribute()
+    {
+        return $this->chattable->employer->avatar;
     }
 }

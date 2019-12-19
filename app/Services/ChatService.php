@@ -22,8 +22,40 @@ class ChatService extends BaseService
         }
     }
 
+    public function getChannels()
+    {
+        $user = auth()->user();
+        $channels = ChatChannel::whereHas('chats')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        $channels->each(function ($channel) use ($user) {
+            $channel->seen = 1;
+            $status = $channel->chat_status()->whereUserId($user->id)->first();
+
+            if (!$status) {
+                $channel->seen = 0;
+                $channel->chat_status()->create([
+                    'user_id' => $user->id,
+                    'seen' => 1
+                ]);
+            }
+
+            if ($status && $status->seen == 0) {
+                $channel->seen = 0;
+                $status->update(['seen' => 1]);
+            }
+        });
+
+        return $channels;
+    }
+
     public function sendMessage($fields = [])
     {
+        $profiles = User::whereHas('roles', function ($q) {
+            $q->where('role_id', 1);
+        })->get()->toArray();
+
         $fields['user_id'] = $this->user->id;
 
         $chat = $this->item->chats()->create($fields);
@@ -31,7 +63,6 @@ class ChatService extends BaseService
         $this->item->touch();
 
         $model = $this->item->chattable;
-        $profiles = [];
 
         if ($model instanceof Applicant) {
             $profiles[] = $model->applicant;
@@ -39,7 +70,7 @@ class ChatService extends BaseService
         }
 
         foreach($profiles as $profile) {
-            $user_id = $profile->user_id;
+            $user_id = $profile instanceof User ? $profile->id : $profile->user_id;
             $seen = 0;
 
             if ($this->user->id == $user_id) {
