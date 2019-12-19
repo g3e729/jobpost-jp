@@ -6,7 +6,6 @@
   <div class="l-container l-container-full mt-n4">
     <div class="row">
 
-
     @if (session()->has('success'))
       <div class="col-12 mt-5 px-5">
         <div class="alert alert-success" role="alert">
@@ -24,17 +23,29 @@
     <div class="col-4">
       <div class="chat-users">
 
+        @if ($profile)
+          <h5 class="ml-3">Chats related with 
+            @if ($profile->user->hasRole('company'))
+              <a href="{{ route('admin.companies.show', $profile) }}" target="_blank">{{ $profile->display_name }}</a>
+            @else
+              <a href="{{ route('admin.students.show', $profile) }}" target="_blank">{{ $profile->display_name }}</a>
+            @endif
+            <a href="{{ route('admin.messages.index') }}"><i class="fa fa-times-circle text-muted"></i></a>
+          </h5>
+        @endif
         <ul class="nav nav-users" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
           @php
-            $first = true;
+            $first = $channels->first()->id;
           @endphp
+
           @foreach($channels as $channel)
             <li class="nav-item chat-person">
-              <a class="nav-link p-3 {{ ($first) ? 'active' : '' }}" id="v-pills-{{ $channel->id }}-tab" data-toggle="pill" href="#v-pills-{{ $channel->id }}" role="tab" aria-controls="v-pills-{{ $channel->id }}" aria-selected="false">
+              <a class="nav-link p-3 {{ ($first == $channel->id) ? 'active' : '' }}" id="v-pills-{{ $channel->id }}-tab" data-toggle="pill" href="#v-pills-{{ $channel->id }}" role="tab" aria-controls="v-pills-{{ $channel->id }}" aria-selected="false">
                 <div class="chat-user">
                   <img src="{{ $channel->img }}" alt="{{ $channel->title }}">
                   @if (!$channel->seen)
-                  <span class="chat-new"></span>
+                    <span class="chat-new"></span>
                   @endif
                 </div>
                 <p class="chat-date">
@@ -56,9 +67,6 @@
               </div>
             </li>
 
-            @php
-             $first = false;
-            @endphp
           @endforeach
         </ul>
 
@@ -66,13 +74,16 @@
     </div>
     <div class="col-8 pl-0">
       <div class="tab-content" id="v-pills-tabContent">
-        @php
-         $first = true;
-        @endphp
 
         @foreach($channels as $channel)
-          <div class="tab-pane fade {{ $first ? 'show active' : ''}} " id="v-pills-{{ $channel->id }}" role="tabpanel" aria-labelledby="v-pills-{{ $channel->id }}-tab">
-            <div class="selected-user">To: <span class="selected-user-name">{{ $channel->title }}</span></div>
+          <div class="tab-pane fade {{ $first == $channel->id ? 'show active' : ''}} " id="v-pills-{{ $channel->id }}" role="tabpanel" aria-labelledby="v-pills-{{ $channel->id }}-tab">
+            <div class="selected-user">To: 
+              @if ($channel->recipient->user->hasRole('company'))
+                <a href="{{ route('admin.companies.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
+              @else
+                <a href="{{ route('admin.students.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
+              @endif
+            </div>
             <div class="chat-tab p-3">
               <ul id="js-chat-scroll" class="chat-box pl-0">
 
@@ -102,10 +113,6 @@
                       </div>
                     @endif
                   </li>
-
-                  @php
-                   $first = false;
-                  @endphp
                 @endforeach
 
               </ul>

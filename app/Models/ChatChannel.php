@@ -61,6 +61,11 @@ class ChatChannel extends Model
         return $this->chattable->employer;
     }
 
+    public function getRecipientAttribute()
+    {
+        return $this->chattable->applicant;
+    }
+
     public function getTitleAttribute()
     {
         return $this->chattable->job_post->title;
