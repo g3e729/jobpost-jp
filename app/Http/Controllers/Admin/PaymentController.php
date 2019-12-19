@@ -72,7 +72,7 @@ class PaymentController extends BaseController
 
 		$transactionable->transactions()->whereBetween('created_at', $between)->update(compact('is_approved'));
 
-		return back()->with('success', "Success! Payment succesfully approved!");
+		return back()->withSuccess("Success! Payment succesfully approved!");
 	}
 
 	public function destroy(Transaction $payment)
@@ -82,6 +82,6 @@ class PaymentController extends BaseController
 
 		$transactionable->transactions()->whereBetween('created_at', $between)->delete();
 
-		return back()->with('success', "Success! Ticket succesfully deleted!");
+		return back()->withSuccess("Success! Ticket succesfully deleted!");
 	}
 }

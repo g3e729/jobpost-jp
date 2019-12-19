@@ -93,4 +93,11 @@ class ChatService extends BaseService
     {
         return $this->user = $user;
     }
+
+    public function destroy()
+    {
+        $this->item->chats()->delete();
+        
+        return $this->item->delete();
+    }
 }

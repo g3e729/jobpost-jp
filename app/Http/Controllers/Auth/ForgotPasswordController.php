@@ -19,7 +19,7 @@ class ForgotPasswordController extends Controller
     {
         $password_reset = PasswordReset::create($request->only('email'));
 
-        return back()->with('success', "Success! Token link was sent to {$password_reset->email}");
+        return back()->withSuccess("Success! Token link was sent to {$password_reset->email}");
     }
     
     public function edit($token)

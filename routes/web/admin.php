@@ -29,19 +29,5 @@ Route::group([
 
 	
 	Route::get('messages', 'MessageController@index')->name('messages.index');
-
-	// Route::get('messages', function () {
-	// 	return view('admin.messages.index', ['faker' => Faker\Factory::create('ja_JP')]);
-	// })->name('messages.index');
-
-  	Route::get('messages/{entity}', function () {
-		return view('admin.messages.show', [
-	      'faker' => Faker\Factory::create('ja_JP'),
-	      'type' => Request::input('type')
-	    ]);
-	})->name('messages.show');
-
-	Route::delete('messages', function () {
-		return view('admin.messages.delete');
-	})->name('messages.delete');
+	Route::delete('messages/{channel}', 'MessageController@destroy')->name('messages.destroy');
 });

@@ -21,6 +21,6 @@ class InvitationController extends BaseController
 	{
 		$invitation = Invitation::create($request->only('email', 'type'));
 
-		return back()->with('success', "Success! Invitation was sent to {$invitation->email}");
+		return back()->withSuccess("Success! Invitation was sent to {$invitation->email}");
 	}
 }

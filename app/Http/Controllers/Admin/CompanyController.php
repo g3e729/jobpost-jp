@@ -94,7 +94,7 @@ class CompanyController extends BaseController
         }
 
         return redirect()->route('admin.companies.show', $company)
-            ->with('success', "Success! Employee details is updated!");
+            ->withSuccess("Success! Employee details is updated!");
 	}
     
     public function destroy(Company $company)
@@ -103,6 +103,6 @@ class CompanyController extends BaseController
         $userService->destroy();
 
         return redirect()->route('admin.companies.index')
-            ->with('success', "Success! Company is deleted!");
+            ->withSuccess("Success! Company is deleted!");
     }
 }
