@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 25px 0 -5px; //? -5px
+  margin: 25px 0;
 }
 
 .recruitment-list__actions {
@@ -48,3 +48,136 @@
 
 .recruitment-list {}
 
+.recruitment-list__item {
+  background-color: $color-light-gray;
+
+  &:nth-child(2n + 0) {
+    background-color: $color-white;
+  }
+
+}
+
+.recruitment-list__item--header {
+  background-color: $color-medium-black;
+}
+
+.recruitment-list__item-wrapper {
+  display: flex;
+}
+
+.recruitment-list__item-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: $color-white;
+  letter-spacing: 0.06em;
+
+  text-align: center;
+
+  width: 150px;
+  padding: 20px 0;
+  flex: 0 0 150px;
+
+  &:first-child {
+    flex: 1;
+  }
+}
+
+.recruitment-list__item-column {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 150px;
+  padding: 25px 0 27px;
+  flex: 0 0 150px;
+
+  &:first-child {
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.recruitment-list__item-column-left {
+  width: 135px;
+  flex: 0 0 135px;
+}
+
+.recruitment-list__item-column-right {
+  flex: 1;
+
+  margin-left: 20px;
+}
+
+.recruitment-list__item-column-eyecatch {
+  position: relative;
+  max-height: 192px;
+
+  &:before {
+    content: '';
+    padding-top: 60%;
+    display: block;
+  }
+}
+
+.recruitment-list__item-column-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.recruitment-list__item-column-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+
+  margin-bottom: 10px;
+}
+
+.recruitment-list__item-column-actions {
+  line-height: 1;
+}
+
+.recruitment-list__item-column-actions-button {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: $color-darkest-gray;
+
+  margin-right: 15px;
+
+  i {
+    font-size: 10px;
+    margin-right: 3px;
+  }
+}
+
+.recruitment-list__item-column-status {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+
+  color: #2b99ff;
+
+  &.is-disabled {
+    color: $color-red;
+  }
+}
+
+.recruitment-list__item-column-applicants,
+.recruitment-list__item-column-favorites {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.recruitment-list__pagination {
+  margin-top: 50px;
+}

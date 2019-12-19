@@ -61,7 +61,7 @@ const SeekerList = ({type = null, title, link}) => {
         </>
       ) : null }
       <ul className="seeker-list">
-        { [1, 2, 3, 4, 5].map((_, idx) => (
+        { [...Array(5)].map((_, idx) => (
           <li className="seeker-list__item" key={idx}>
             <div className="seeker-list__item-left">
               <div className="seeker-list__item-avatar">

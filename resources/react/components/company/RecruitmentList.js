@@ -41,9 +41,62 @@ const RecruitmentList = () => (
       />
     </div>
     <ul className="recruitment-list">
-      <li className="recruitment-list__item">
-        sample
+      <li className="recruitment-list__item recruitment-list__item--header">
+        <div className="recruitment-list__item-wrapper">
+          <span className="recruitment-list__item-label">タイトル</span>
+          <span className="recruitment-list__item-label">ステータス</span>
+          <span className="recruitment-list__item-label">応募数</span>
+          <span className="recruitment-list__item-label">お気に入り数</span>
+        </div>
       </li>
+      { [...Array(10)].map((_, idx) => (
+      <li className="recruitment-list__item" key={idx}>
+        <div className="recruitment-list__item-wrapper">
+          <div className="recruitment-list__item-column">
+            <div className="recruitment-list__item-column-left">
+              <div className="recruitment-list__item-column-eyecatch">
+                <div className="recruitment-list__item-column-eyecatch-img" style={{ backgroundImage: 'url("https://lorempixel.com/640/640/business/")' }}></div>
+              </div>
+            </div>
+            <div className="recruitment-list__item-column-right">
+              <h4 className="recruitment-list__item-column-title">
+                自社★C2Cマッチングプラットフォーム開発
+              </h4>
+              <div className="recruitment-list__item-column-actions">
+                <Link to={routes.RECRUITMENT_EDIT} className="button button--link recruitment-list__item-column-actions-button">
+                  <>
+                    <i className="icon icon-pencil"></i>
+                    編集
+                  </>
+                </Link>
+                <Button className="button--link recruitment-list__item-column-actions-button">
+                  <>
+                    <i className="icon icon-cross"></i>
+                    削除
+                  </>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="recruitment-list__item-column">
+            <span className="recruitment-list__item-column-status">
+              募集中
+            </span>
+            {/* <span className="recruitment-list__item-column-status is-disabled">停止する</span> */}
+          </div>
+          <div className="recruitment-list__item-column">
+            <span className="recruitment-list__item-column-applicants">
+              3
+            </span>
+          </div>
+          <div className="recruitment-list__item-column">
+            <span className="recruitment-list__item-column-favorites">
+              7
+            </span>
+          </div>
+        </div>
+      </li>
+      )) }
     </ul>
     <div className="recruitment-list__pagination">
       <Pagination />
