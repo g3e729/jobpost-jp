@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
 import Button from '../common/Button';
 import JobsList from '../jobs/JobsList';
+
+import { routes } from '../../constants/routes';
 
 const Profile = (props) => {
   const { user, accountType } = props;
@@ -403,9 +406,9 @@ const Profile = (props) => {
                 <JobsList hasTitle="true" />
               </div>
               <div className="profile__data-jobs-footer">
-                <Button>
+                <Link to={routes.RECRUITMENT} className="button">
                   もっとみる
-                </Button>
+                </Link>
               </div>
             </div>
           </div>

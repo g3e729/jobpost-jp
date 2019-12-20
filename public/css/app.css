@@ -974,7 +974,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-flex: 0;
           flex: 0 0 300px;
   align-self: stretch;
-  background-color: #3d3e3e;
+  background-color: #393939;
 }
 
 .company-sidebar__menu {
@@ -2943,7 +2943,7 @@ a.pagination__item-link:hover {
           justify-content: space-between;
   -webkit-box-align: center;
           align-items: center;
-  margin: 25px 0 -5px;
+  margin: 25px 0;
 }
 
 .recruitment-list__actions {
@@ -2970,6 +2970,143 @@ a.pagination__item-link:hover {
 .recruitment-list__actions-item-button.is-active {
   font-weight: 700;
   color: #fdb834;
+}
+
+.recruitment-list__item {
+  background-color: #f2f2f0;
+}
+
+.recruitment-list__item:nth-child(2n+0) {
+  background-color: #fff;
+}
+
+.recruitment-list__item--header {
+  background-color: #393939;
+}
+
+.recruitment-list__item-wrapper {
+  display: -webkit-box;
+  display: flex;
+}
+
+.recruitment-list__item-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-align: center;
+  width: 150px;
+  padding: 20px 0;
+  -webkit-box-flex: 0;
+          flex: 0 0 150px;
+}
+
+.recruitment-list__item-label:first-child {
+  -webkit-box-flex: 1;
+          flex: 1;
+}
+
+.recruitment-list__item-column {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  width: 150px;
+  padding: 25px 0 27px;
+  -webkit-box-flex: 0;
+          flex: 0 0 150px;
+}
+
+.recruitment-list__item-column:first-child {
+  -webkit-box-flex: 1;
+          flex: 1;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.recruitment-list__item-column-left {
+  width: 135px;
+  -webkit-box-flex: 0;
+          flex: 0 0 135px;
+}
+
+.recruitment-list__item-column-right {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 20px;
+}
+
+.recruitment-list__item-column-eyecatch {
+  position: relative;
+  max-height: 192px;
+}
+
+.recruitment-list__item-column-eyecatch:before {
+  content: "";
+  padding-top: 60%;
+  display: block;
+}
+
+.recruitment-list__item-column-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.recruitment-list__item-column-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.recruitment-list__item-column-actions {
+  line-height: 1;
+}
+
+.recruitment-list__item-column-actions-button {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: #929292;
+  margin-right: 15px;
+}
+
+.recruitment-list__item-column-actions-button i {
+  font-size: 10px;
+  margin-right: 3px;
+}
+
+.recruitment-list__item-column-status {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #2b99ff;
+}
+
+.recruitment-list__item-column-status.is-disabled {
+  color: #ec1b42;
+}
+
+.recruitment-list__item-column-applicants,
+.recruitment-list__item-column-favorites {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.recruitment-list__pagination {
+  margin-top: 50px;
 }
 
 .search {
