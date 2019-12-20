@@ -42,13 +42,12 @@ class ChatService extends BaseService
                 $channel->seen = 0;
                 $channel->chat_status()->create([
                     'user_id' => $user->id,
-                    'seen' => 1
+                    'seen' => 0
                 ]);
             }
 
-            if ($status && $status->seen == 0) {
+            if ($status->seen == 0) {
                 $channel->seen = 0;
-                $status->update(['seen' => 1]);
             }
         });
 
@@ -92,6 +91,11 @@ class ChatService extends BaseService
         }
 
         return $chat;
+    }
+
+    public function seen()
+    {
+        return $this->item->chat_status()->whereUserId(auth()->user()->id)->update(['seen' => 1]);
     }
 
     public function setUser(User $user)

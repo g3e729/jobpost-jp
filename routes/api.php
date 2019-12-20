@@ -15,6 +15,7 @@ Route::group([
 		Route::patch('account', 'AccountController@update');
 		Route::patch('update-password', 'AccountController@updatePassword');
 		Route::resource('messages', 'MessageController')->only('index', 'show', 'store');
+		Route::patch('messages/{channel}/seen', 'MessageController@seen');
 
 		Route::resource('companies', 'CompanyController')->only('index', 'show');
 		Route::resource('students', 'StudentController')->only('index', 'show');

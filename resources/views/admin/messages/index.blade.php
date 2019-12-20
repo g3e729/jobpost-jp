@@ -40,12 +40,12 @@
           @endphp
 
           @foreach($channels as $channel)
-            <li class="nav-item chat-person">
+            <li class="nav-item chat-person" {{ !$channel->seen ? 'onclick=seen('.$channel->id.')' : '' }}>
               <a class="nav-link p-3 {{ ($first == $channel->id) ? 'active' : '' }}" id="v-pills-{{ $channel->id }}-tab" data-toggle="pill" href="#v-pills-{{ $channel->id }}" role="tab" aria-controls="v-pills-{{ $channel->id }}" aria-selected="false">
                 <div class="chat-user">
                   <img src="{{ $channel->img }}" alt="{{ $channel->title }}">
                   @if (!$channel->seen)
-                    <span class="chat-new"></span>
+                    <span id="seen-{{ $channel->id }}" class="chat-new"></span>
                   @endif
                 </div>
                 <p class="chat-date">
@@ -76,7 +76,7 @@
       <div class="tab-content" id="v-pills-tabContent">
 
         @foreach($channels as $channel)
-          <div class="tab-pane fade {{ $first == $channel->id ? 'show active' : ''}} " id="v-pills-{{ $channel->id }}" role="tabpanel" aria-labelledby="v-pills-{{ $channel->id }}-tab">
+          <div class="tab-pane fade {{ $first == $channel->id ? 'show active' : ''}} " id="v-pills-{{ $channel->id }}" role="tabpanel" aria-labelledby="v-pills-{{ $channel->id }}-tab" {{ !$channel->seen ? 'onclick=seen('.$channel->id.')' : '' }}>
             <div class="selected-user">To: 
               @if ($channel->recipient->user->hasRole('company'))
                 <a href="{{ route('admin.companies.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
@@ -147,6 +147,8 @@
 
 @section('js')
   <script>
+    const xmlHttp = new XMLHttpRequest();
+    const apiToken = "{{ auth()->user()->api_token }}";
     const deleteButtons = document.querySelectorAll('.js-chat-delete');
     const modalSubmit = document.querySelector('#js-modal-submit');
     const modal = document.querySelector('#js-delete-modal');
@@ -157,8 +159,6 @@
         $(modal).modal('show');
         currTarget = event.currentTarget.href;
 
-        console.log(currentTarget);
-
         event.preventDefault();
       })
     });
@@ -168,5 +168,15 @@
       window.location.replace(currTarget);
     });
 
+    function seen(channel_id) {
+      var seenDisp = document.getElementById('seen-'+channel_id);
+      seenDisp.style.display = 'none';
+
+      xmlHttp.open('PATCH', "/api/messages/" + channel_id + "/seen", false);
+      xmlHttp.setRequestHeader("app-auth-token", apiToken);
+      xmlHttp.send(JSON.stringify({
+        _token: "{{ csrf_token() }}"
+      }));
+    }
   </script>
 @endsection
