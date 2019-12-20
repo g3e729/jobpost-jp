@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Pill from '../common/Pill';
+
 const JobsList = ({ hasTitle }) => (
   <>
     { hasTitle ? <h3 className="jobs-list__title">募集</h3> : null }
@@ -37,9 +39,9 @@ const JobsList = ({ hasTitle }) => (
               <li className="job-list__item-pills-item pill">3日前</li>
             </ul>
             <div className="job-list__item-fav">
-              <span className="pill pill--icon">
+              <Pill className="pill--icon">
                 <i className="icon icon-star"></i>1.2k
-              </span>
+              </Pill>
             </div>
           </div>
         </li>

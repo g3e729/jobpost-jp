@@ -2,6 +2,8 @@ import React from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
 
+import Pill from './Pill';
+
 const Slider = _ => {
   const params = {
     noSwiping: true,
@@ -57,9 +59,9 @@ const Slider = _ => {
                 <li className="slider-content__pills-item pill">3日前</li>
               </ul>
               <div className="slider-content__fav">
-                <span className="pill pill--icon">
+                <Pill className="pill--icon">
                   <i className="icon icon-star"></i>1.2k
-                </span>
+                </Pill>
               </div>
             </div>
           </div>

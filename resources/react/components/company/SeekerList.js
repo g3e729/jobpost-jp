@@ -5,6 +5,7 @@ import Select from 'react-select';
 import Avatar from '../common/Avatar';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
+import Pill from '../common/Pill';
 import Search from '../common/Search';
 import { dashboardSelectStyles } from '../../constants/config';
 
@@ -72,7 +73,7 @@ const SeekerList = ({type = null, title, link}) => (
           <div className="seeker-list__item-right">
             <div className="seeker-list__item-right-top">
               <h4 className="seeker-list__item-name">田中義人さんをスカウトしました。</h4>
-              <span className="pill">Develop1コース</span>
+              <Pill>Develop1コース</Pill>
             </div>
             <div className="seeker-list__item-right-bottom">
               <p className="seeker-list__item-description">自社★C2Cマッチングプラットフォーム開発</p>

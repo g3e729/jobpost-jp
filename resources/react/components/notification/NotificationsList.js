@@ -5,6 +5,7 @@ faker.locale = "ja";
 import moment from 'moment';
 
 import Button from '../common/Button';
+import Pill from '../common/Pill';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 import generateRoute from '../../utils/generateRoute';
@@ -30,7 +31,7 @@ const NotificationsList = _ => {
         <li className="notifications-list__item" onMouseOver={_ => setCurrentItem(item.id)} onMouseOut={_ => setCurrentItem(null)} key={item.id}>
           <div className="notifications-list__item-main">
             <time className="notifications-list__item-main-schedule" dateTime={ moment(item.schedule).format('YYYY-MM-DD') }>{ moment(item.schedule).format('YYYY/MM/DD') }</time>
-            { item.isNew ? <span className="pill">New</span> : null }
+            { item.isNew ? <Pill>New</Pill> : null }
             <Link to={generateRoute(routes.NOTIFICATIONS_DETAIL, { id: item.id })}>
               <h4 className="notifications-list__item-main-title">{item.title}</h4>
             </Link>
