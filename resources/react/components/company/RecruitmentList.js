@@ -7,7 +7,7 @@ import Pagination from '../common/Pagination';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 
-const RecruitmentList = () => (
+const RecruitmentList = _ => (
   <div className="recruitment-list__container">
     <h3 className="recruitment-list__title">募集一覧</h3>
     <div className="recruitment-list__action">

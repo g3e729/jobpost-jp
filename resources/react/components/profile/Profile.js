@@ -4,7 +4,6 @@ import { css } from 'emotion';
 
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
-import Button from '../common/Button';
 import JobsList from '../jobs/JobsList';
 
 import { routes } from '../../constants/routes';

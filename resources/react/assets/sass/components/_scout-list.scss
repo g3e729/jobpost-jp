@@ -1,0 +1,46 @@
+.scout-list__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: $color-white;
+}
+
+.scout-list__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  padding-bottom: 14px;
+  border-bottom: solid 1px $color-dark-yellow;
+}
+
+.scout-list__search {
+  position: absolute;
+  top: 32px;
+  right: 15px;
+}
+
+.scout-list__filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 20px 0 -5px;
+}
+
+.scout-list__filters {
+  display: flex;
+  align-items: center;
+}
+
+.scout-list__filters-item {
+  margin-right: 10px;
+}
+
+.scout-list {
+  background-color: pink;
+}
+
+.scout-list__pagination {
+  margin: 50px;
+}

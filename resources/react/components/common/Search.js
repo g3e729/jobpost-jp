@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Button from '../common/Button';
 import Input from '../common/Input';
 
-const Search = _ => {
+const Search = ({placeholder = 'キーワードで検索'}) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = _ => {
@@ -22,7 +22,7 @@ const Search = _ => {
           onChange={e => handleChange(e)}
           name="search"
           type="search"
-          placeholder="キーワードで検索" />
+          placeholder={placeholder} />
         <div className="search__group-append">
           <Button className="button--link" type="submit">
             <i className="icon icon-search text-dark-yellow"></i>
@@ -30,7 +30,6 @@ const Search = _ => {
         </div>
       </div>
     </form>
-
   );
 }
 

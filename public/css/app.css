@@ -3536,6 +3536,56 @@ a.pagination__item-link:hover {
   background-color: #d9d6d6;
 }
 
+.scout-list__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: #fff;
+}
+
+.scout-list__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #fdb834;
+}
+
+.scout-list__search {
+  position: absolute;
+  top: 32px;
+  right: 15px;
+}
+
+.scout-list__filter {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 20px 0 -5px;
+}
+
+.scout-list__filters {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.scout-list__filters-item {
+  margin-right: 10px;
+}
+
+.scout-list {
+  background-color: pink;
+}
+
+.scout-list__pagination {
+  margin: 50px;
+}
+
 .terms__sub {
   letter-spacing: 0.06em;
   margin-top: 60px;
