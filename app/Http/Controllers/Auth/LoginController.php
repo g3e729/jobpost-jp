@@ -85,6 +85,8 @@ class LoginController extends Controller
         $class = request()->get('sidebar-state') == 'close' ? 'toggled' : '';
         session()->put('sidebarState', $class);
 
+        (new UserService($user))->generateApiToken();
+
         if ($user->hasRole('employee')) {
             return redirect()->route('employee.index');
         }
@@ -92,8 +94,6 @@ class LoginController extends Controller
         if ($user->hasRole('admin')) {
             return redirect()->route('admin.index');
         }
-
-        (new UserService($user))->generateApiToken();
 
         if ($user->hasRole('company')) {
             return redirect()->route('top.dashboard.page');

@@ -72,6 +72,11 @@ class UserService extends BaseService
         if ($this->item) {
             $api_token = md5(now().$this->item->email);
             $this->item->update(compact('api_token'));
+
+            if ($this->item->hasRole('admin') || $this->item->hasRole('employee')) {
+                return;
+            }
+
             $account = $this->item->hasRole('company') ? 'company' : 'student';
             session(compact('account', 'api_token'));
         }

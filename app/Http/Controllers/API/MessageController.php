@@ -36,4 +36,13 @@ class MessageController extends BaseController
 
 		return $chatService->sendMessage(compact('content'));
 	}
+	
+	public function seen(ChatChannel $channel, Request $request)
+	{
+		$chatService = (new ChatService($channel));
+		$chatService->seen();
+		$channel = $chatService->getItem();
+
+		return $channel->chats()->orderBy('created_at', 'DESC')->first();
+	}
 }
