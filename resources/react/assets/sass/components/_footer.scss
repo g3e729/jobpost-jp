@@ -60,15 +60,13 @@
   @include max-screen($breakpoint-mobile) {
     font-size: 12px;
 
-    margin: 0 13px;
+    margin: 0 13px 10px;
   }
 }
 
 .footer__menu-item--external {
   @include max-screen($breakpoint-mobile) {
     order: 1;
-
-    margin-top: 10px;
   }
 }
 

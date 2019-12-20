@@ -951,6 +951,15 @@ And you should not feel free to add a new Utility class.
   background: transparent;
 }
 
+.button--more {
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  color: #fdb834;
+  text-decoration: underline;
+  padding: 0;
+  background: transparent;
+}
+
 .button--outline {
   color: #fdb834;
   border: solid 1px #fdb834;
@@ -1041,7 +1050,7 @@ And you should not feel free to add a new Utility class.
   box-shadow: 0px 18px 38px 0px rgba(0, 0, 0, 0.15);
   border-radius: 4px 0 4px 4px;
   width: 300px;
-  z-index: 20;
+  z-index: -1;
   opacity: 0;
   -webkit-transform: translateY(15px);
           transform: translateY(15px);
@@ -1072,18 +1081,14 @@ And you should not feel free to add a new Utility class.
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
+  z-index: 20;
 }
 
 .dropdown.is-active a {
   pointer-events: auto;
 }
 
-.dropdown.is-active .dropdown__menu {
-  display: block;
-}
-
 .dropdown__menu {
-  display: none;
   padding: 18px 25px;
 }
 
@@ -1317,7 +1322,7 @@ And you should not feel free to add a new Utility class.
 @media screen and (max-width: 768px) {
   .footer__menu-item {
     font-size: 12px;
-    margin: 0 13px;
+    margin: 0 13px 10px;
   }
 }
 
@@ -1325,7 +1330,6 @@ And you should not feel free to add a new Utility class.
   .footer__menu-item--external {
     -webkit-box-ordinal-group: 2;
             order: 1;
-    margin-top: 10px;
   }
 }
 
@@ -2252,6 +2256,13 @@ a.pagination__item-link:hover {
   padding-right: 30px;
   left: 6px;
   z-index: 1;
+}
+
+.pill--clear {
+  font-size: 16px;
+  text-align: left;
+  padding: 0;
+  border: none;
 }
 
 .privacy__note {
@@ -3564,7 +3575,7 @@ a.pagination__item-link:hover {
           justify-content: space-between;
   -webkit-box-align: center;
           align-items: center;
-  margin: 20px 0 -5px;
+  margin-top: 20px;
 }
 
 .scout-list__filters {
@@ -3578,8 +3589,114 @@ a.pagination__item-link:hover {
   margin-right: 10px;
 }
 
-.scout-list {
-  background-color: pink;
+.scout-list__item {
+  padding: 50px 30px 40px;
+  margin-top: 25px;
+  border: solid 1px #d9d6d6;
+}
+
+.scout-list__item-top {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-bottom: 30px;
+}
+
+.scout-list__item-top-left {
+  width: 90px;
+  -webkit-box-flex: 0;
+          flex: 0 0 90px;
+}
+
+.scout-list__item-top-right {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 22px;
+}
+
+.scout-list__item-top-header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  line-height: 1;
+}
+
+.scout-list__item-top-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: inline;
+  margin-right: 28px;
+}
+
+.scout-list__item-top-pills {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-top: 20px;
+}
+
+.scout-list__item-top-pills-item {
+  margin-right: 35px;
+}
+
+.scout-list__item-content-list-item {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  padding: 27px 0 25px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.scout-list__item-content-list-item:first-child {
+  border-top: solid 1px #d9d6d6;
+}
+
+.scout-list__item-content-list-item > h5 {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  -webkit-box-flex: 0;
+          flex: 0 0 157px;
+  width: 157px;
+}
+
+.scout-list__item-content-list-item > p,
+.scout-list__item-content-list-item > div {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 25px;
+}
+
+.scout-list__item-content-list-item dl {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scout-list__item-content-list-item dl dt {
+  letter-spacing: 0.06em;
+  width: 117px;
+  -webkit-box-flex: 0;
+          flex: 0 0 117px;
+}
+
+.scout-list__item-content-list-item dl dd {
+  letter-spacing: 0.06em;
+  width: auto;
+  margin-right: 55px;
+}
+
+.scout-list__item-bottom {
+  margin: 26px auto -4px;
+  text-align: center;
 }
 
 .scout-list__pagination {

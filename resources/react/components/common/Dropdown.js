@@ -6,15 +6,16 @@ import Avatar from './Avatar';
 import Button from './Button';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
-
 import { logoutUser } from '../../actions/user';
 import useInterval from '../../utils/useInterval';
+
+import avatarDefault from '../../../img/avatar-default.png';
 
 const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [dropdownHover, setDropdownHover] = useState(false);
   const { user, handleLogoutUser } = props;
-  const avatar = (user.userData && user.userData.profile && user.userData.profile.avatar) || 'https://avatars.dicebear.com/v2/male/john.svg';
+  const avatar = (user.userData && user.userData.profile && user.userData.profile.avatar) || avatarDefault;
   const accountType = (user.userData && user.userData.account_type) || '';
 
   useInterval(_ => {

@@ -8,7 +8,7 @@
   border-radius: 4px 0 4px 4px;
 
   width: 300px;
-  z-index: $z-max;
+  z-index: $z-neg;
 
   opacity: 0;
   transform: translateY(15px);
@@ -39,18 +39,15 @@
     opacity: 1;
     transform: translateY(0);
 
+    z-index: $z-max;
+
     a {
       pointer-events: auto;
-    }
-
-    .dropdown__menu {
-      display: block;
     }
   }
 }
 
 .dropdown__menu {
-  display: none;
   padding: 18px 25px;
 }
 

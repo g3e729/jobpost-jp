@@ -54,9 +54,15 @@ const Slider = _ => {
             </div>
             <div className="slider-content__footer">
               <ul className="slider-content__pills">
-                <li className="slider-content__pills-item pill pill--active">PHP</li>
-                <li className="slider-content__pills-item pill">東京</li>
-                <li className="slider-content__pills-item pill">3日前</li>
+                <li className="slider-content__pills-item">
+                  <Pill className="pill--active">PHP</Pill>
+                </li>
+                <li className="slider-content__pills-item">
+                  <Pill>東京</Pill>
+                </li>
+                <li className="slider-content__pills-item">
+                  <Pill>3日前</Pill>
+                </li>
               </ul>
               <div className="slider-content__fav">
                 <Pill className="pill--icon">

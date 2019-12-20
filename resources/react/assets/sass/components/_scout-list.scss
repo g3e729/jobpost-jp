@@ -25,7 +25,7 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 20px 0 -5px;
+  margin-top: 20px;
 }
 
 .scout-list__filters {
@@ -37,8 +37,118 @@
   margin-right: 10px;
 }
 
-.scout-list {
-  background-color: pink;
+.scout-list {}
+
+.scout-list__item {
+  padding: 50px 30px 40px; //? 40px
+  margin-top: 25px;
+
+  border: solid 1px $color-dark-gray;
+}
+
+.scout-list__item-top {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.scout-list__item-top-left {
+  width: 90px;
+  flex: 0 0 90px;
+}
+
+.scout-list__item-top-avatar { }
+
+.scout-list__item-top-right {
+  flex: 1;
+  margin-left: 22px;
+}
+
+.scout-list__item-top-header {
+  display: flex;
+  align-items: center;
+
+  line-height: 1;
+}
+
+.scout-list__item-top-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  display: inline;
+  margin-right: 28px;
+}
+
+.scout-list__item-top-pills {
+  display: flex;
+  align-items: center;
+
+  margin-top: 20px;
+}
+
+.scout-list__item-top-pills-item {
+  margin-right: 35px;
+}
+
+.scout-list__item-content {}
+
+.scout-list__item-content-list {}
+
+.scout-list__item-content-list-item {
+  display: flex;
+  align-items: flex-start;
+
+  padding: 27px 0 25px;
+  border-bottom: solid 1px $color-dark-gray;
+
+  &:first-child {
+    border-top: solid 1px $color-dark-gray;
+  }
+
+  > h5 {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+
+    flex: 0 0 157px;
+    width: 157px;
+  }
+
+  > p,
+  > div {
+    line-height: 1.857;
+    letter-spacing: 0.06em;
+    white-space: pre-line;
+
+    flex: 1;
+    margin-left: 25px;
+  }
+
+  dl {
+    display: flex;
+    flex-wrap: wrap;
+
+    dt {
+      letter-spacing: 0.06em
+      ;
+      width: 117px;
+      flex: 0 0 117px;
+    }
+
+    dd {
+      letter-spacing: 0.06em;
+
+      width: auto;
+      margin-right: 55px;
+    }
+  }
+}
+
+.scout-list__item-bottom {
+  margin: 26px auto -4px;
+  text-align: center;
 }
 
 .scout-list__pagination {
