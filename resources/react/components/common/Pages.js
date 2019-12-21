@@ -14,6 +14,8 @@ import RecruitmentPage from '../company/RecruitmentPage';
 import CandidatesPage from '../company/CandidatesPage';
 import ScoutPage from '../company/ScoutPage';
 
+import StudentPage from '../student/StudentPage';
+
 import JobsPage from '../jobs/JobsPage';
 
 import NotificationsPage from '../notification/NotificationsPage';
@@ -91,6 +93,11 @@ const Pages = _ => (
         exact
         path={routes.SCOUT}
         component={requireAuth(ScoutPage)}
+      />
+      <Route
+        exact
+        path={routes.STUDENTS_DETAIL}
+        component={requireAuth(StudentPage)}
       />
       <Route
         exact

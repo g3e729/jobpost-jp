@@ -78,4 +78,30 @@ export const accessTable = [
       routes.NOTIFICATIONS_DETAIL,
     ]
   }
-]
+];
+
+export const endpoints = {
+  ACCOUNT: '/account',
+  UPDATE_PASSWORD: '/update-password',
+
+  JOBS: '/jobs',
+  JOBS_FILTER: '/jobs-filters',
+  JOBS_DETAIL: '/jobs/:id',
+
+  LIKE: '/like',
+
+  MESSAGES: '/messages',
+  MESSAGES_DETAIL: '/messages/:id',
+
+  NOTIFICATIONS: '/notifications',
+  NOTIFICATIONS_DETAIL: '/notifications/:id',
+
+  COMPANIES: '/companies',
+  COMPANIES_FILTERS: '/companies-filters',
+  COMPANIES_DETAIL: '/companies/:id',
+
+  STUDENTS: '/students',
+  STUDENTS_FILTERS: '/students-filters',
+  STUDENTS_DETAIL: '/students/:id',
+}
+

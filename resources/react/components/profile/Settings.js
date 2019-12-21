@@ -7,10 +7,10 @@ import Button from '../common/Button';
 import Input from '../common/Input';
 import { state } from '../../constants/state';
 
-import { updateUserPass } from '../../actions/user';
+import { updateUserPass, updateUserEmail } from '../../actions/user';
 
 const Settings = (props) => {
-  const { handleUpdateUserPass } = props;
+  const { handleUpdateUserPass, handleUpdateUserEmail } = props;
   const [tabIndex, setTabIndex] = useState(0);
   const [form1Values, setForm1Values] = useState({
     password_new: '',
@@ -29,7 +29,7 @@ const Settings = (props) => {
 
     if (tabIndex === 0) {
       handleUpdateUserPass(form1Values.password_new).then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           setFormMessage({
             type: 'success',
             message: 'パスワードを変更しました'
@@ -45,8 +45,21 @@ const Settings = (props) => {
         setForm1Values({password_new: '', password_new_confirm: ''});
       });
     } else {
-      // TODO: handle change email
-      // setForm2Value({email_new: ''});
+      handleUpdateUserEmail(form2Value.email_new).then((res) => {
+        if (res.status === 200) {
+          setFormMessage({
+            type: 'success',
+            message: 'メールアドレスを変更しました'
+          });
+        } else {
+          setFormMessage({
+            type: 'error',
+            message: 'There is an error somewhere. Please try again.'
+          });
+        }
+
+        setForm2Value({email_new: ''});
+      });
     }
   }
 
@@ -93,7 +106,7 @@ const Settings = (props) => {
       if (form1Values.password_new.length < 8) {
         setFormMessage({
           type: 'error',
-          message: 'minimum 8 characters' // TODO: Change text
+          message: 'Minimum 8 characters' // TODO: Change text
         });
         setButtonEnable(false);
       }
@@ -159,9 +172,9 @@ const Settings = (props) => {
         </TabPanel>
         <TabPanel className="settings-tab__panel">
           { formMessage.message ? (
-            <div className="settings-tab__message">
+            <div className={`settings-tab__message ${formMessage.type === 'error' ? 'settings-tab__message--warning' : ''}`}>
               <i className="icon icon-check-circle"></i>
-              メールアドレスを変更しました {/* TODO: add text as form message */}
+              { formMessage.message }
             </div>
           )
           : null}
@@ -196,7 +209,10 @@ const Settings = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   handleUpdateUserPass: (password) => {
     return dispatch(updateUserPass(password));
-  }
+  },
+  handleUpdateUserEmail: (email) => {
+    return dispatch(updateUserEmail(email));
+  },
 });
 
 export default connect(null, mapDispatchToProps)(Settings);

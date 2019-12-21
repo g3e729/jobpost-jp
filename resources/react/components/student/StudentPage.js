@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Page from '../common/Page';
 import { endpoints } from '../../constants/routes';
 import { config } from '../../constants/config';
 import generateRoute from '../../utils/generateRoute';
 
-const CompanyPage = (props) => {
-  const [company, setCompany] = useState({});
+const StudentPage = (props) => {
+  const [student, setStudent] = useState({});
 
   useEffect(_ => {
     (async function getCompany() {
       const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
 
-      const companyId = props.match.params.id;
+      const studentId = props.match.params.id;
       const request = await axios.request({
-        url: generateRoute(endpoints.COMPANIES_DETAIL, { id: companyId }),
+        url: generateRoute(endpoints.STUDENTS_DETAIL, { id: studentId }),
         baseURL: config.api.url,
         method: 'get',
         headers: {
@@ -24,24 +25,18 @@ const CompanyPage = (props) => {
 
       return request.data;
     })()
-    .then(res => setCompany(res));
+    .then(res => setStudent(res));
   }, []);
 
   return (
-    <div className='container py-4'>
-      <div className='row justify-content-center'>
-        <div className='col-md-8'>
-          <div className='card'>
-            <div className='card-header'>{company.name}</div>
-            <div className='card-body'>
-              <p>{company.description}</p>
-              <hr />
-            </div>
-          </div>
+    <Page>
+      <div className="l-section l-section--profile section">
+        <div className="l-container">
+          Student content
         </div>
       </div>
-    </div>
+    </Page>
   );
 }
 
-export default CompanyPage;
+export default StudentPage;

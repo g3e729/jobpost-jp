@@ -10,6 +10,7 @@ import Pill from '../common/Pill';
 import Search from '../common/Search';
 import { routes } from '../../constants/routes';
 import { dashboardSelectStyles } from '../../constants/config';
+import generateRoute from '../../utils/generateRoute';
 
 const filterList = [
   { value: 'chocolate',   label: 'Chocolate' },
@@ -155,7 +156,8 @@ const ScoutList = _ => (
             </ul>
           </div>
           <div className="scout-list__item-bottom">
-            <Link to={routes.STUDENTS_DETAIL} className="button button--more scout-list__item-button">
+            <Link to={generateRoute(routes.STUDENTS_DETAIL, { id: 1 })}
+              className="button button--more scout-list__item-button">
               もっと見る
             </Link>
           </div>

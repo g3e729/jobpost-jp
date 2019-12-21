@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { endpoints } from '../constants/endpoints';
+import { endpoints } from '../constants/routes';
 import { config } from '../constants/config';
 
 export const setUser = (payload = '') => ({
@@ -20,7 +20,7 @@ export const getUser = _ => {
     if (['student', 'company'].includes(accountType)) {
       axios.request({
         url: endpoints.ACCOUNT,
-        baseURL: `${config.api.url}/`,
+        baseURL: config.api.url,
         method: 'get',
         headers: {
           'app-auth-token': apiToken
@@ -45,13 +45,39 @@ export const getUser = _ => {
   }
 }
 
+export const updateUserEmail = (email = '') => {
+  const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
+
+  return (dispatch) => {
+    return axios.request({
+      url: endpoints.ACCOUNT,
+      baseURL: config.api.url,
+      method: 'patch',
+      headers: {
+        'app-auth-token': apiToken
+      },
+      params: {
+        email: email,
+        method: '_PATCH'
+      },
+    }).then((result) => {
+      dispatch(setUser({ ...result.data }));
+
+      return result;
+    }).catch(error => {
+      console.log('[Update email]', error);
+      return error;
+    });
+  }
+}
+
 export const updateUserPass = (password = '') => {
   const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
 
   return (dispatch) => {
     return axios.request({
       url: endpoints.UPDATE_PASSWORD,
-      baseURL: `${config.api.url}/`,
+      baseURL: config.api.url,
       method: 'patch',
       headers: {
         'app-auth-token': apiToken
@@ -61,13 +87,12 @@ export const updateUserPass = (password = '') => {
         method: '_PATCH'
       },
     }).then((result) => {
-      localStorage.setItem('api_token', apiToken);
       dispatch(setUser({ ...result.data }));
 
       return result;
     }).catch(error => {
       console.log('[Update password]', error);
-      return 'error';
+      return error;
     });
   }
 }

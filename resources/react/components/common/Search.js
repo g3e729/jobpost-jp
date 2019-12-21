@@ -7,7 +7,7 @@ const Search = ({placeholder = 'キーワードで検索'}) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = _ => {
-    console.log('[submitted]');
+    console.log('[Search]');
   }
 
   const handleChange = e => {
