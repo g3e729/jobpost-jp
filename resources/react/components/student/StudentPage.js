@@ -38,6 +38,7 @@ const StudentPage = (props) => {
       <Heading type="user"
         style={{ backgroundImage: `url("${student.cover_photo || ecPlaceholder}")` }}
         isOwner="false"
+        accountType="student"
         data-avatar={student.avatar || avatarPlaceholder}
         title={student.display_name}
         subTitle={<span><i className="icon icon-book text-dark-yellow"></i>{student.course}</span>}

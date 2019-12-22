@@ -4,7 +4,7 @@ import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Pill from '../common/Pill';
 
-const Heading = ({ type, title, subTitle, isOwner = true, children, ...rest }) => {
+const Heading = ({ type, title, subTitle, isOwner = true, accountType = null, children, ...rest }) => {
   const avatarImg = rest['data-avatar'] || '';
 
   return (
@@ -24,14 +24,16 @@ const Heading = ({ type, title, subTitle, isOwner = true, children, ...rest }) =
                   <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
                 </Button>
               ) : (
-                <>
-                  <Button className="button--large heading__user-button">スカウト</Button>
-                  <Button className="button--link heading__user-fav">
-                    <Pill className="pill--icon text-medium-black">
-                      <i className="icon icon-star"></i>1.2k
-                    </Pill>
-                  </Button>
-                </>
+                accountType === 'student' ? (
+                  <>
+                    <Button className="button--large heading__user-button">スカウト</Button>
+                    <Button className="button--link heading__user-fav">
+                      <Pill className="pill--icon text-medium-black">
+                        <i className="icon icon-star"></i>1.2k
+                      </Pill>
+                    </Button>
+                  </>
+                ) : null
               )}
             </div>
           </div>

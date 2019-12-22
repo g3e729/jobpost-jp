@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Page from '../common/Page';
+import Heading from '../common/Heading';
+import Profile from '../profile/Profile';
 import { endpoints } from '../../constants/routes';
 import { config } from '../../constants/config';
 import generateRoute from '../../utils/generateRoute';
+
+import avatarPlaceholder from '../../../img/avatar-default.png';
+import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const CompanyPage = (props) => {
   const [company, setCompany] = useState({});
@@ -13,7 +19,6 @@ const CompanyPage = (props) => {
       const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
 
       const companyId = props.match.params.id;
-      console.log('companyId :', companyId);
       const request = await axios.request({
         url: generateRoute(endpoints.COMPANIES_DETAIL, { id: companyId }),
         baseURL: config.api.url,
@@ -29,19 +34,20 @@ const CompanyPage = (props) => {
   }, []);
 
   return (
-    <div className='container py-4'>
-      <div className='row justify-content-center'>
-        <div className='col-md-8'>
-          <div className='card'>
-            <div className='card-header'>{company.name}</div>
-            <div className='card-body'>
-              <p>{company.description}</p>
-              <hr />
-            </div>
-          </div>
+    <Page>
+      <Heading type="user"
+        style={{ backgroundImage: `url("${company.cover_photo || ecPlaceholder}")` }}
+        isOwner="false"
+        data-avatar={company.avatar || avatarPlaceholder}
+        title={company.display_name}
+        subTitle={company.homepage}
+      />
+      <div className="l-section l-section--profile section">
+        <div className="l-container">
+          <Profile user={company} accountType="company" isOwner="false" />
         </div>
       </div>
-    </div>
+    </Page>
   );
 }
 
