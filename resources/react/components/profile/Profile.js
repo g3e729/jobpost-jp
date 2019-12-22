@@ -9,8 +9,8 @@ import JobsList from '../jobs/JobsList';
 import { routes } from '../../constants/routes';
 
 const Profile = (props) => {
-  const { user, accountType } = props;
-  const data = user.userData;
+  const { user, accountType, isOwner = true } = props;
+  const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
   return (
     accountType === 'student' ? (
@@ -25,13 +25,13 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">自己紹介</h3>
-                  <p className="profile__main-list-item-copy">{data.profile.intro_text}</p>
+                  <p className="profile__main-list-item-copy">{data.intro_text}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">やってみたいこと</h3>
-                  <p className="profile__main-list-item-copy">{data.profile.what_text}</p>
+                  <p className="profile__main-list-item-copy">{data.what_text}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -260,8 +260,8 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">Github</h3>
                   <div className="profile__data-link">
-                    <a href="{data.profile.github}" className="button button--profile" target="_blank">{data.profile.github}</a>
-                    <Clipboard value="{data.profile.github}" />
+                    <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a>
+                    <Clipboard value="{data.github}" />
                   </div>
                 </div>
               </li>
@@ -274,13 +274,13 @@ const Profile = (props) => {
             <div className="profile__sidebar-content">
               <dl className="profile__sidebar-content-basic">
                 <dt className="profile__sidebar-content-basic-term">生年月日</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.profile.birthday}</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.birthday}</dd>
                 <dt className="profile__sidebar-content-basic-term">性別</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.profile.sex}</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.sex}</dd>
                 <dt className="profile__sidebar-content-basic-term">住所</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.profile.address1}</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.address1}</dd>
                 <dt className="profile__sidebar-content-basic-term">ステータス</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.profile.student_status}</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.student_status}</dd>
               </dl>
             </div>
           </div>
@@ -335,7 +335,7 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">我々のミッションは</h3>
-                  <p className="profile__main-list-item-copy">{data.profile.description}</p>
+                  <p className="profile__main-list-item-copy">{data.description}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -343,11 +343,11 @@ const Profile = (props) => {
                   <h3 className="profile__main-list-item-heading">特徴</h3>
                   <dl className="profile__data-character">
                     <dt className="profile__data-character-term">フラットな組織</dt>
-                    <dd className="profile__data-character-data">{data.profile.what_text}</dd>
+                    <dd className="profile__data-character-data">{data.what_text}</dd>
                     <dt className="profile__data-character-term">メンバーの多様性</dt>
-                    <dd className="profile__data-character-data">{data.profile.why_text}</dd>
+                    <dd className="profile__data-character-data">{data.why_text}</dd>
                     <dt className="profile__data-character-term">こだわりのある オフィス</dt>
-                    <dd className="profile__data-character-data">{data.profile.how_text}</dd>
+                    <dd className="profile__data-character-data">{data.how_text}</dd>
                   </dl>
                 </div>
               </li>

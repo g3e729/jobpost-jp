@@ -127,7 +127,7 @@
   margin-right: 15px;
 }
 
-.heading__user-button {
+.heading__user-pill {
   position: absolute;
   top: calc(50% - 48px);
   right: 50px;
@@ -135,5 +135,25 @@
   @include max-screen($breakpoint-mobile) {
     top: 30px;
     right: 30px;
+  }
+}
+
+.heading__user-button {
+  position: absolute;
+  top: calc(50% - 70px);
+  right: 50px;
+
+  @include max-screen($breakpoint-mobile) {
+    // TODO
+  }
+}
+
+.heading__user-fav {
+  position: absolute;
+  top: calc(50% + 20px);
+  right: 50px;
+
+  @include max-screen($breakpoint-mobile) {
+    // TODO
   }
 }

@@ -13,6 +13,7 @@ const CompanyPage = (props) => {
       const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
 
       const companyId = props.match.params.id;
+      console.log('companyId :', companyId);
       const request = await axios.request({
         url: generateRoute(endpoints.COMPANIES_DETAIL, { id: companyId }),
         baseURL: config.api.url,

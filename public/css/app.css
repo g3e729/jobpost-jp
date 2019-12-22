@@ -1604,17 +1604,29 @@ And you should not feel free to add a new Utility class.
   margin-right: 15px;
 }
 
-.heading__user-button {
+.heading__user-pill {
   position: absolute;
   top: calc(50% - 48px);
   right: 50px;
 }
 
 @media screen and (max-width: 768px) {
-  .heading__user-button {
+  .heading__user-pill {
     top: 30px;
     right: 30px;
   }
+}
+
+.heading__user-button {
+  position: absolute;
+  top: calc(50% - 70px);
+  right: 50px;
+}
+
+.heading__user-fav {
+  position: absolute;
+  top: calc(50% + 20px);
+  right: 50px;
 }
 
 .help__list-item {
