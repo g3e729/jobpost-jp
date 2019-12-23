@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Services\CompanyService;
 use App\Services\JobPostService;
+use App\Services\SeekerService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -39,6 +40,9 @@ class LikeController extends BaseController
 			break;
 			case 'job':
 				$service = (new JobPostService);
+			break;
+			case 'student':
+				$service = (new SeekerService);
 			break;
 		}
 

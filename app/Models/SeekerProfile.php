@@ -83,7 +83,9 @@ class SeekerProfile extends Model
         'student_status',
         'taken_class',
         'occupation',
-        'english_level'
+        'english_level',
+
+        'total_likes'
     ];
 
 	static protected $courses = [
@@ -307,6 +309,11 @@ class SeekerProfile extends Model
         return $this->hasMany(Applicant::class, 'seeker_profile_id');
     }
 
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
     // Attributes
     public function getCourseAttribute()
     {
@@ -346,6 +353,11 @@ class SeekerProfile extends Model
     public function getEnglishLevelAttribute()
     {
         return $this->english_level_id ? self::getEnglishLevels(strtolower($this->english_level_id)) : null;
+    }
+
+    public function getTotalLikesAttribute()
+    {
+        return $this->likes->count();
     }
 
     // Options

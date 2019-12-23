@@ -68,7 +68,8 @@ class CompanyProfile extends Model
         'why_photos',
         'how_photos',
 
-        'industry'
+        'industry',
+        'total_likes',
     ];
 
     public static function boot()
@@ -85,6 +86,11 @@ class CompanyProfile extends Model
     public function getIndustryAttribute()
     {
         return isset(self::$industries[$this->industry_id]) ? ucwords(self::$industries[$this->industry_id]) : null;
+    }
+
+    public function getTotalLikesAttribute()
+    {
+        return $this->likes->count();
     }
 
     // Relationships
