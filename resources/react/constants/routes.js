@@ -2,29 +2,27 @@ export const prefix = (process.env.NODE_ENV === 'development') ? '/app/' : '/';
 
 export const routes = {
   ROOT: `${prefix}`,
-  MY_PROFILE: `${prefix}profile`, // student, company
-  PROFILE_FAV: `${prefix}profile/favorites`, // student
-  PROFILE_APPLY: `${prefix}profile/apply`, // student
-  PROFILE_SCOUTS: `${prefix}profile/scouts`, // student
-  PROFILE_SETTINGS: `${prefix}profile/settings`, // student, company
-  PROFILE_EDIT: `${prefix}profile/edit`, // student, company
+  JOBS: `${prefix}jobs`,
+  JOB_DETAIL: `${prefix}job/:id`,
 
   LOGIN: `${prefix}login`,
 
-  STUDENTS: `${prefix}students`, // company
-  STUDENTS_DETAIL: `${prefix}students/:id`, // company
+  MY_PROFILE: `${prefix}profile`, // student, company
+  PROFILE_EDIT: `${prefix}profile/edit`, // student, company
+  PROFILE_SETTINGS: `${prefix}profile/settings`, // student, company
 
-  COMPANIES: `${prefix}companies`, // !!!NONE!!!
-  COMPANIES_DETAIL: `${prefix}companies/:id`, // student
+  STUDENT_DETAIL: `${prefix}student/:id`, // company
+  PROFILE_FAV: `${prefix}profile/favorites`, // student
+  PROFILE_APPLY: `${prefix}profile/apply`, // student
+  PROFILE_SCOUTS: `${prefix}profile/scouts`, // student
+
+  COMPANY_DETAIL: `${prefix}company/:id`, // student
   DASHBOARD: `${prefix}dashboard`, // company
-  RECRUITMENT: `${prefix}recruitment`, // company
-  RECRUITMENT_ADD: `${prefix}recruitment/add`, // company
-  RECRUITMENT_EDIT: `${prefix}recruitment/:id/edit`, // company
-  CANDIDATES: `${prefix}candidates`, // company
-  SCOUT: `${prefix}scout`, // company
-
-  JOBS: `${prefix}jobs`,
-  JOBS_DETAIL: `${prefix}jobs/:id`,
+  RECRUITMENT: `${prefix}dashboard/recruitment`, // company
+  RECRUITMENT_ADD: `${prefix}dashboard/recruitment/add`, // company
+  RECRUITMENT_EDIT: `${prefix}dashboard/recruitment/:id/edit`, // company
+  CANDIDATES: `${prefix}dashboard/candidates`, // company
+  SCOUT: `${prefix}dashboard/scout`, // company
 
   MESSAGES: `${prefix}messages`, // student, company
 
@@ -45,15 +43,14 @@ export const accessTable = [
       routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
 
+      routes.STUDENT_DETAIL,
+
       routes.DASHBOARD,
       routes.RECRUITMENT,
       routes.RECRUITMENT_ADD,
       routes.RECRUITMENT_EDIT,
       routes.CANDIDATES,
       routes.SCOUT,
-
-      routes.STUDENTS,
-      routes.STUDENTS_DETAIL,
 
       routes.MESSAGES,
 
@@ -64,13 +61,14 @@ export const accessTable = [
   {
     'student': [
       routes.MY_PROFILE,
-      routes.PROFILE_FAV,
-      routes.PROFILE_APPLY,
-      routes.PROFILE_SCOUTS,
       routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
 
-      routes.COMPANIES_DETAIL,
+      routes.COMPANY_DETAIL,
+
+      routes.PROFILE_FAV,
+      routes.PROFILE_APPLY,
+      routes.PROFILE_SCOUTS,
 
       routes.MESSAGES,
 
@@ -86,7 +84,15 @@ export const endpoints = {
 
   JOBS: '/jobs',
   JOBS_FILTER: '/jobs-filters',
-  JOBS_DETAIL: '/jobs/:id',
+  JOB_DETAIL: '/jobs/:id',
+
+  STUDENTS: '/students',
+  STUDENTS_FILTERS: '/students-filters',
+  STUDENT_DETAIL: '/students/:id',
+
+  COMPANIES: '/companies',
+  COMPANIES_FILTERS: '/companies-filters',
+  COMPANY_DETAIL: '/companies/:id',
 
   LIKE: '/like',
 
@@ -95,13 +101,5 @@ export const endpoints = {
 
   NOTIFICATIONS: '/notifications',
   NOTIFICATIONS_DETAIL: '/notifications/:id',
-
-  COMPANIES: '/companies',
-  COMPANIES_FILTERS: '/companies-filters',
-  COMPANIES_DETAIL: '/companies/:id',
-
-  STUDENTS: '/students',
-  STUDENTS_FILTERS: '/students-filters',
-  STUDENTS_DETAIL: '/students/:id',
 }
 

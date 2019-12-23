@@ -1,22 +1,22 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import JobsPage from '../jobs/JobsPage';
+import JobPage from '../jobs/JobPage';
+
 import ProfilePage from '../profile/ProfilePage';
-import FavoritesPage from '../profile/FavoritesPage';
-import ApplyPage from '../profile/ApplyPage';
-import ScoutsPage from '../profile/ScoutsPage';
 import SettingsPage from '../profile/SettingsPage';
 
-import CompaniesPage from '../company/CompaniesPage';
+import StudentPage from '../student/StudentPage';
+import FavoritesPage from '../student/FavoritesPage';
+import ApplyPage from '../student/ApplyPage';
+import ScoutsPage from '../student/ScoutsPage';
+
 import CompanyPage from '../company/CompanyPage';
 import DashboardPage from '../company/DashboardPage';
 import RecruitmentPage from '../company/RecruitmentPage';
 import CandidatesPage from '../company/CandidatesPage';
 import ScoutPage from '../company/ScoutPage';
-
-import StudentPage from '../student/StudentPage';
-
-import JobsPage from '../jobs/JobsPage';
 
 import NotificationsPage from '../notification/NotificationsPage';
 import NotificationPage from '../notification/NotificationPage';
@@ -41,8 +41,28 @@ const Pages = _ => (
       />
       <Route
         exact
+        path={routes.JOBS}
+        component={JobsPage}
+      />
+      <Route
+        exact
+        path={routes.JOB_DETAIL}
+        component={JobPage}
+      />
+      <Route
+        exact
         path={routes.MY_PROFILE}
         component={requireAuth(ProfilePage)}
+      />
+      <Route
+        exact
+        path={routes.PROFILE_SETTINGS}
+        component={requireAuth(SettingsPage)}
+      />
+      <Route
+        exact
+        path={routes.STUDENT_DETAIL}
+        component={requireAuth(StudentPage)}
       />
       <Route
         exact
@@ -61,17 +81,7 @@ const Pages = _ => (
       />
       <Route
         exact
-        path={routes.PROFILE_SETTINGS}
-        component={requireAuth(SettingsPage)}
-      />
-      <Route
-        exact
-        path={routes.COMPANIES}
-        component={CompaniesPage}
-      />
-      <Route
-        exact
-        path={routes.COMPANIES_DETAIL}
+        path={routes.COMPANY_DETAIL}
         component={requireAuth(CompanyPage)}
       />
       <Route
@@ -93,16 +103,6 @@ const Pages = _ => (
         exact
         path={routes.SCOUT}
         component={requireAuth(ScoutPage)}
-      />
-      <Route
-        exact
-        path={routes.STUDENTS_DETAIL}
-        component={requireAuth(StudentPage)}
-      />
-      <Route
-        exact
-        path={routes.JOBS}
-        component={JobsPage}
       />
       <Route
         exact

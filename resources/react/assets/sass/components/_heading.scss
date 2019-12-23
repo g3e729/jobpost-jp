@@ -9,7 +9,8 @@
   }
 }
 
-.heading--user {
+.heading--user,
+.heading--job {
   position: relative;
   margin: 0 60px 125px;
   padding: 0;
@@ -151,6 +152,109 @@
 .heading__user-fav {
   position: absolute;
   top: calc(50% + 20px);
+  right: 50px;
+
+  @include max-screen($breakpoint-mobile) {
+    // TODO
+  }
+}
+
+.heading__job {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  bottom: calc((100% - 131px) * -1);
+  left: 60px;
+
+  height: auto; //? auto
+  padding: 45px 50px 56px;
+  width: calc(100% - 120px);
+
+  background-color: rgba($color-white, 0.95);
+  box-shadow: 0px 0px 60px 0px rgba(57, 57, 57, 0.2);
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+
+    left: 20px;
+    bottom: -210px; //? -210px
+
+    padding: 90px 30px 0; // ?
+    height: 355px; //? 355px
+    width: calc(100% - 40px);
+  }
+}
+
+.heading__job-main {
+  flex: 1;
+
+  text-align: left;
+}
+
+.heading__job-time {
+  font-size: 16px;
+  color: $color-dark-gray;
+  letter-spacing: 0.06em;
+}
+
+.heading__job-title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.667;
+  letter-spacing: 0.06em;
+
+  max-width: 60%;
+  margin: 10px 0 15px;
+}
+
+.heading__job-company {
+  display: flex;
+  align-items: center;
+
+  padding-bottom: 30px;
+  margin-bottom: 32px;
+  border-bottom: solid 1px  $color-dark-gray;
+
+  > img {
+    flex: 0 0 32px;
+
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+  }
+}
+
+.heading__job-company-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  flex: 1;
+  margin-left: 16px;
+}
+
+.heading__job-pills {
+  display: flex;
+}
+
+.heading__job-pills-item {
+  margin-right: 12px;
+}
+
+.heading__job-button {
+  position: absolute;
+  bottom: 150px;
+  right: 50px;
+
+  @include max-screen($breakpoint-mobile) {
+    // TODO
+  }
+}
+
+.heading__job-fav {
+  position: absolute;
+  bottom: 56px;
   right: 50px;
 
   @include max-screen($breakpoint-mobile) {

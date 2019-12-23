@@ -20,7 +20,7 @@ const CompanyPage = (props) => {
 
       const companyId = props.match.params.id;
       const request = await axios.request({
-        url: generateRoute(endpoints.COMPANIES_DETAIL, { id: companyId }),
+        url: generateRoute(endpoints.COMPANY_DETAIL, { id: companyId }),
         baseURL: config.api.url,
         method: 'get',
         headers: {

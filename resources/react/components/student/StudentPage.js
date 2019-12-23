@@ -20,7 +20,7 @@ const StudentPage = (props) => {
 
       const studentId = props.match.params.id;
       const request = await axios.request({
-        url: generateRoute(endpoints.STUDENTS_DETAIL, { id: studentId }),
+        url: generateRoute(endpoints.STUDENT_DETAIL, { id: studentId }),
         baseURL: config.api.url,
         method: 'get',
         headers: {

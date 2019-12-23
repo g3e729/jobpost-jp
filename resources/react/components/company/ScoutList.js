@@ -156,7 +156,7 @@ const ScoutList = _ => (
             </ul>
           </div>
           <div className="scout-list__item-bottom">
-            <Link to={generateRoute(routes.STUDENTS_DETAIL, { id: 1 })}
+            <Link to={generateRoute(routes.STUDENT_DETAIL, { id: 1 })}
               className="button button--more scout-list__item-button">
               もっと見る
             </Link>

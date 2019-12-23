@@ -37,6 +37,31 @@ const Heading = ({ type, title, subTitle, isOwner = true, accountType = null, ch
               )}
             </div>
           </div>
+        ) : type && type === 'job' ? (
+          <div className="heading__job">
+            <div className="heading__job-main">
+              <time className="heading__job-time">2019/07/24</time>
+              <h2 className="heading__job-title">自社★C2Cマッチングプラットフォーム開発【少数精鋭/残業少/フレックス】</h2>
+              <div className="heading__job-company">
+                <img src="https://lorempixel.com/240/240/city/" alt=""/>
+                <div className="heading__job-company-name">
+                  株式会社アクターリアリティ
+                </div>
+              </div>
+              <ul className="heading__job-pills">
+                <li className="heading__job-pills-item pill">PHP</li>
+                <li className="heading__job-pills-item pill">東京</li>
+                <li className="heading__job-pills-item pill">3日前</li>
+              </ul>
+
+              <Button className="button--large heading__job-button">応募する</Button>
+              <Button className="button--link heading__job-fav">
+                <Pill className="pill--icon text-medium-black">
+                  <i className="icon icon-star"></i>1.2k
+                </Pill>
+              </Button>
+            </div>
+          </div>
         ) : (
           <>
             <h2 className="heading__title">{title}</h2>
