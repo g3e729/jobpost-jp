@@ -11,12 +11,12 @@ export const routes = {
   PROFILE_EDIT: `${prefix}profile/edit`, // student, company
   PROFILE_SETTINGS: `${prefix}profile/settings`, // student, company
 
-  STUDENT_DETAIL: `${prefix}student/:id`, // company
+  STUDENT_DETAIL: `${prefix}student/:id`,
   PROFILE_FAV: `${prefix}profile/favorites`, // student
   PROFILE_APPLY: `${prefix}profile/apply`, // student
   PROFILE_SCOUTS: `${prefix}profile/scouts`, // student
 
-  COMPANY_DETAIL: `${prefix}company/:id`, // student
+  COMPANY_DETAIL: `${prefix}company/:id`,
   DASHBOARD: `${prefix}dashboard`, // company
   RECRUITMENT: `${prefix}dashboard/recruitment`, // company
   RECRUITMENT_ADD: `${prefix}dashboard/recruitment/add`, // company
@@ -43,8 +43,6 @@ export const accessTable = [
       routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
 
-      routes.STUDENT_DETAIL,
-
       routes.DASHBOARD,
       routes.RECRUITMENT,
       routes.RECRUITMENT_ADD,
@@ -63,8 +61,6 @@ export const accessTable = [
       routes.MY_PROFILE,
       routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
-
-      routes.COMPANY_DETAIL,
 
       routes.PROFILE_FAV,
       routes.PROFILE_APPLY,

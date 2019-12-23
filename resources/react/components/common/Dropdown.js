@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import Avatar from './Avatar';
 import Button from './Button';
@@ -14,7 +14,8 @@ import avatarDefault from '../../../img/avatar-default.png';
 const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [dropdownHover, setDropdownHover] = useState(false);
-  const { user, handleLogoutUser } = props;
+  const dispatch = useDispatch();
+  const { user } = props;
   const avatar = (user.userData && user.userData.profile && user.userData.profile.avatar) || avatarDefault;
   const accountType = (user.userData && user.userData.account_type) || '';
 
@@ -60,7 +61,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={_ => handleLogoutUser()}>
+                <a onClick={_ => dispatch(logoutUser())}>
                   ログアウト
                 </a>
               </li>
@@ -88,7 +89,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <a onClick={_ => handleLogoutUser()}>
+                <a onClick={_ => dispatch(logoutUser())}>
                   ログアウト
                 </a>
               </li>
@@ -108,10 +109,4 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  handleLogoutUser: _ => {
-    dispatch(logoutUser());
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dropdown);
+export default connect(mapStateToProps)(Dropdown);

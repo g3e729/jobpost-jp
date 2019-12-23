@@ -11,8 +11,8 @@ const footerLinks = [
 ];
 
 const Footer = _ => {
-  let location = useLocation();
-  let path = location.pathname.substr(prefix.length).replace('/', '');
+  const location = useLocation();
+  const path = location.pathname.substr(prefix.length).replace('/', '');
 
   return (
     <footer className="l-footer footer">

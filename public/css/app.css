@@ -821,6 +821,10 @@ And you should not feel free to add a new Utility class.
   padding-top: 110px;
 }
 
+.l-section--job {
+  padding-top: 350px;
+}
+
 .l-section--notifications {
   padding: 100px 0 90px;
 }
@@ -1582,6 +1586,7 @@ And you should not feel free to add a new Utility class.
   letter-spacing: 0.06em;
   padding-top: 18px;
   margin-top: 12px;
+  min-height: 45px;
   border-top: solid 1px #d9d6d6;
 }
 

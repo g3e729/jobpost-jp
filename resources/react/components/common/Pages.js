@@ -62,7 +62,7 @@ const Pages = _ => (
       <Route
         exact
         path={routes.STUDENT_DETAIL}
-        component={requireAuth(StudentPage)}
+        component={StudentPage}
       />
       <Route
         exact
@@ -82,7 +82,7 @@ const Pages = _ => (
       <Route
         exact
         path={routes.COMPANY_DETAIL}
-        component={requireAuth(CompanyPage)}
+        component={CompanyPage}
       />
       <Route
         exact

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import 'react-tabs/style/react-tabs.css';
 
 import Button from '../common/Button';
@@ -9,9 +9,9 @@ import { state } from '../../constants/state';
 
 import { updateUserPass, updateUserEmail } from '../../actions/user';
 
-const Settings = (props) => {
-  const { handleUpdateUserPass, handleUpdateUserEmail } = props;
+const Settings = _ => {
   const [tabIndex, setTabIndex] = useState(0);
+  const dispatch = useDispatch();
   const [form1Values, setForm1Values] = useState({
     password_new: '',
     password_new_confirm: ''
@@ -28,7 +28,7 @@ const Settings = (props) => {
     e.preventDefault();
 
     if (tabIndex === 0) {
-      handleUpdateUserPass(form1Values.password_new).then((res) => {
+      dispatch(updateUserPass(form1Values.password_new)).then((res) => {
         if (res.status === 200) {
           setFormMessage({
             type: 'success',
@@ -45,7 +45,7 @@ const Settings = (props) => {
         setForm1Values({password_new: '', password_new_confirm: ''});
       });
     } else {
-      handleUpdateUserEmail(form2Value.email_new).then((res) => {
+      dispatch(updateUserEmail(form2Value.email_new)).then((res) => {
         if (res.status === 200) {
           setFormMessage({
             type: 'success',
@@ -206,13 +206,4 @@ const Settings = (props) => {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  handleUpdateUserPass: (password) => {
-    return dispatch(updateUserPass(password));
-  },
-  handleUpdateUserEmail: (email) => {
-    return dispatch(updateUserEmail(email));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Settings);
+export default Settings;
