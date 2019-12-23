@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
@@ -8,11 +9,12 @@ import { endpoints } from '../../constants/routes';
 import { config } from '../../constants/config';
 import generateRoute from '../../utils/generateRoute';
 
-import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const JobPage = (props) => {
   const [job, setJob] = useState({});
+  const { user } = props;
+  const accountType = (user.userData && user.userData.account_type) || '';
 
   async function getJob() {
     const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
@@ -43,14 +45,16 @@ const JobPage = (props) => {
           <Heading type="job"
             style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}
             isOwner="false"
-            data-avatar={job.avatar || avatarPlaceholder}
+            isLogged={user.isLogged}
+            accountType={accountType}
             passedFunction={_ => getJob().then(res => setJob(res))}
             title={job.display_name}
             subTitle={job.homepage}
+            data-likes={job.total_likes}
           />
           <div className="l-section l-section--job section">
             <div className="l-container">
-              Job
+              TODO
             </div>
           </div>
         </>
@@ -61,4 +65,8 @@ const JobPage = (props) => {
   );
 }
 
-export default JobPage;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(JobPage);

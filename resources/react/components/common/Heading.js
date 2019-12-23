@@ -108,12 +108,30 @@ const Heading = ({
               <li className="heading__job-pills-item pill">3日前</li>
             </ul>
 
-            <Button className="button--large heading__job-button">応募する</Button>
-            <Button className="button--link heading__job-fav" onClick={e => handleClick(e, 'job')}>
-              <Pill className="pill--icon text-medium-black">
-                <i className="icon icon-star"></i>{userLikes}
-              </Pill>
-            </Button>
+            { isLogged ? (
+              accountType === 'student' ? (
+                <>
+                  <Button className="button--large heading__job-button">応募する</Button>
+                  <Button className="button--link heading__job-fav" onClick={e => handleClick(e, 'job')}>
+                    <Pill className="pill--icon text-medium-black">
+                      <i className="icon icon-star"></i>{userLikes}
+                    </Pill>
+                  </Button>
+                </>
+              ) : (
+                <Button className="button--link heading__job-fav" onClick={e => handleClick(e, 'job')}>
+                  <Pill className="pill--icon text-medium-black">
+                    <i className="icon icon-star"></i>{userLikes}
+                  </Pill>
+                </Button>
+              )
+            ) : (
+              <div className="heading__job-fav">
+                <Pill className="pill--icon text-medium-black">
+                  <i className="icon icon-star"></i>{userLikes}
+                </Pill>
+              </div>
+            )}
           </div>
         </div>
       ) : (
