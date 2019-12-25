@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
+import Job from './Job';
 import { endpoints } from '../../constants/routes';
 import { config } from '../../constants/config';
 import generateRoute from '../../utils/generateRoute';
@@ -54,7 +55,7 @@ const JobPage = (props) => {
           />
           <div className="l-section l-section--job section">
             <div className="l-container">
-              TODO
+              <Job />
             </div>
           </div>
         </>

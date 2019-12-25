@@ -1036,7 +1036,7 @@ And you should not feel free to add a new Utility class.
 .dashboard-section__reminder-tickets {
   font-family: "Avenir", sans-serif;
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 900;
   color: #fdb834;
   letter-spacing: 0.1em;
   margin-right: 20px;
@@ -1397,7 +1397,7 @@ And you should not feel free to add a new Utility class.
 .fraction__numerator {
   font-family: "Avenir", sans-serif;
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 900;
   color: #fdb834;
   position: relative;
   top: -7px;
@@ -1859,6 +1859,202 @@ And you should not feel free to add a new Utility class.
   }
 }
 
+.job {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+
+.job__main {
+  -webkit-box-flex: 1;
+          flex: 1;
+  align-self: stretch;
+  margin-right: 60px;
+}
+
+.job__sidebar {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  width: 300px;
+  -webkit-box-flex: 0;
+          flex: 0 0 300px;
+  align-self: stretch;
+}
+
+.job__sidebar-inner {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+          flex: 1;
+}
+
+.job__sidebar-header {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  padding: 11px;
+  background-color: #393939;
+}
+
+.job__sidebar-content {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-top: 13px;
+  padding: 35px 32px 38px;
+  background-color: #f2f2f0;
+}
+
+.job__sidebar-content-company {
+  margin: 0 -32px;
+}
+
+.job__sidebar-content-company-items {
+  border-top: solid 1px #fff;
+  padding: 35px 32px;
+}
+
+.job__sidebar-content-company-items:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.job__sidebar-content-avatar {
+  text-align: center;
+}
+
+.job__sidebar-content-avatar > img {
+  width: 65px;
+  height: 65px;
+  margin: 20px 0 13px 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.job__sidebar-content-avatar-name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.job__sidebar-content-misc {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  margin-top: 18px;
+}
+
+.job__sidebar-content-misc:nth-of-type(1) {
+  margin-top: 0;
+}
+
+.job__sidebar-content-misc > i {
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.job__sidebar-content-misc-copy {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.job__main-data {
+  margin-bottom: 70px;
+}
+
+.job__main-heading {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding-bottom: 13px;
+  margin-bottom: 35px;
+}
+
+.job__main-heading--left {
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  border-bottom: solid 1px #d9d6d6;
+  padding-bottom: 13px;
+  margin-bottom: 35px;
+}
+
+.job__main-heading--left > h3 {
+  font-size: 24px;
+}
+
+.job__main-heading-en {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: #fdb834;
+  margin-right: 12px;
+}
+
+.job__main-heading-title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: inline-block;
+}
+
+.job__main-images {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  margin: -18px 0 34px;
+}
+
+.job__main-images-holder {
+  position: relative;
+  width: 48%;
+  max-height: 200px;
+}
+
+.job__main-images-holder:before {
+  content: "";
+  padding-top: 60%;
+  display: block;
+}
+
+.job__main-images-holder--full {
+  width: 100%;
+  max-height: 350px;
+}
+
+.job__main-images-holder-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.job__main-desc {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
 .jobs-filter {
   display: -webkit-box;
   display: flex;
@@ -2059,7 +2255,7 @@ And you should not feel free to add a new Utility class.
 .jobs-section__fraction-numeration {
   font-family: "Avenir", sans-serif;
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 900;
   color: #fdb834;
   position: relative;
   top: -7px;
@@ -2543,8 +2739,10 @@ a.pagination__item-link:hover {
 }
 
 .profile__main {
-  margin-right: 60px;
+  -webkit-box-flex: 1;
+          flex: 1;
   align-self: stretch;
+  margin-right: 60px;
 }
 
 .profile__main-data {
@@ -3616,7 +3814,7 @@ a.pagination__item-link:hover {
 .swiper-pagination .slider-pagination__item-number {
   font-family: "Avenir", sans-serif;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 900;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;

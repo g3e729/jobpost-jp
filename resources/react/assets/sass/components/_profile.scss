@@ -4,9 +4,10 @@
 }
 
 .profile__main {
-  margin-right: 60px;
-
+  flex: 1;
   align-self: stretch;
+
+  margin-right: 60px;
 }
 
 .profile__main-data {
