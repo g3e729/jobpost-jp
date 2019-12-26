@@ -17,9 +17,9 @@
 
 .search__group-append {
   position: absolute;
-  right: 1.2rem;
+  right: 19px;
 
   @include max-screen($breakpoint-mobile) {
-    right: 0.6rem;
+    right: 10px;
   }
 }

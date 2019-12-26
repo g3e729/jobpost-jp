@@ -68,11 +68,92 @@ const Job = _ => {
           <div className="job__main-heading job__main-heading--left">
             <h3 className="job__main-heading-title">募集内容</h3>
           </div>
-          ...
+          <dl className="job__main-list job__main-list--table">
+            <dt className="job__main-list-term">ポジション</dt>
+            <dd className="job__main-list-data">WEBエンジニア【リーダー候補】</dd>
+            <dt className="job__main-list-term">開発環境</dt>
+            <dd className="job__main-list-data">
+              <dl>
+                <dt>言語</dt>
+                <dd>Ruby</dd>
+                <dt>フレームワーク</dt>
+                <dd>Ruby on Rails</dd>
+                <dt>データベース</dt>
+                <dd>Mysql</dd>
+                <dt>管理</dt>
+                <dd>Github, Google Drive</dd>
+              </dl>
+            </dd>
+            <dt className="job__main-list-term">応募要件</dt>
+            <dd className="job__main-list-data">{`何らかのシステム開発経験　実務３年以上
+              周囲とのコミュニケーションを図りながら業務対応可能な方
+              決まった作業をキチンとこなすことが出来る方`}</dd>
+            <dt className="job__main-list-term">募集人数</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`WEBエンジニア
+              【リーダー候補】`}</dd>
+            <dt className="job__main-list-term">想定年収</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`500万 〜 600万円`}</dd>
+            <dt className="job__main-list-term">勤務時間</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`10:00〜19:00
+              （コアタイム
+              11:00~16:00）
+              `}</dd>
+            <dt className="job__main-list-term">想定年収</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`・完全週休2日制（土日）
+              ・祝日
+              ・年末年始休暇
+              ・有給休暇
+              ・慶弔休暇
+              ・GW休暇
+              ・夏期休暇`}</dd>
+            <dt className="job__main-list-term">諸手当</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`交通費支給
+              （上限2万円）`}</dd>
+            <dt className="job__main-list-term">インセンティブ</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`なし`}</dd>
+            <dt className="job__main-list-term">昇給・昇格</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`昇格査定あり：
+              年2回（12月、6月）`}</dd>
+            <dt className="job__main-list-term">保険</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`健康保険
+              厚生年金加入
+              雇用保険
+              労災保険適用`}</dd>
+            <dt className="job__main-list-term">試用期間</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`6ヶ月`}</dd>
+            <dt className="job__main-list-term">選考フロー</dt>
+            <dd className="job__main-list-data job__main-list-data--half">{`カジュアル面談：
+              人事、エンジニアチ
+              ームリーダー
+              ▼
+              2次：社長
+              ▼
+              内定
+
+              ※選考フロー、
+              面接回数は状況に
+              応じて変更になる
+              可能性があります`}</dd>
+          </dl>
         </div>
         <div className="job__main-data">
           <div className="job__main-heading job__main-heading--left">
             <h3 className="job__main-heading-title">勤務地</h3>
+          </div>
+          <div className="job__main-address">
+            <div className="job__main-address-holder">
+              <Embed src="https://maps.google.com/maps?q=東京都港区六本木5-2-3 マガジンハウス六本木ビル7F選考フロー&t=&z=5&ie=UTF8&output=embed"
+                className={`embed--4by3 ${css`height: 235px;`}`}
+                allowFullScreen />
+            </div>
+            <dl className="job__main-address-list">
+              <dt>住所</dt>
+              <dd>東京都港区六本木5-2-3 マガジンハウス六本木ビル7F選考フロー</dd>
+              <dt>最寄駅</dt>
+              <dd>{`東京メトロ日比谷線「六本木駅」3番出口より徒歩3分
+                ・都営地下鉄大江戸線「六本木駅」5番出口より徒歩3分`}</dd>
+            </dl>
+
           </div>
           <p className="job__main-desc">外苑東通り沿いを東京タワーの方面に進み、タリーズさん、セブンイレブンさんを右手に通過し、1階に三菱東京UFJ銀行のATMが入ったビルの7Fです。</p>
         </div>

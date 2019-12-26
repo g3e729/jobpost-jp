@@ -1988,7 +1988,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-pack: start;
           justify-content: flex-start;
   border-bottom: solid 1px #d9d6d6;
-  padding-bottom: 13px;
+  padding: 17px 0 13px;
   margin-bottom: 35px;
 }
 
@@ -2053,6 +2053,168 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+}
+
+.job__main-list {
+  padding: 10px 0 4px;
+}
+
+.job__main-list--table {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: stretch;
+          align-items: stretch;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-top: -5px;
+  border: solid 1px #d9d6d6;
+}
+
+.job__main-list-item {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-left: 37px;
+  margin-top: 11px;
+}
+
+.job__main-list-item:first-child {
+  margin-top: 0;
+}
+
+.job__main-list-item:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 9px;
+  height: 8px;
+  width: 8px;
+  background: #fdb834;
+}
+
+.job__main-list-term {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding: 20px 0;
+  width: 23%;
+  -webkit-box-flex: 0;
+          flex: 0 0 23%;
+  border-top: solid 1px #d9d6d6;
+  background-color: #393939;
+}
+
+.job__main-list-term:nth-of-type(1) {
+  border-top: none;
+}
+
+.job__main-list-data {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 17px 18px;
+  width: 75%;
+  -webkit-box-flex: 1;
+          flex: 1 0 75%;
+  border-top: solid 1px #d9d6d6;
+}
+
+.job__main-list-data:nth-of-type(1) {
+  border-top: none;
+}
+
+.job__main-list-data > dl {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: stretch;
+          align-items: stretch;
+  flex-wrap: wrap;
+  margin: -17px -18px;
+}
+
+.job__main-list-data > dl > dt {
+  font-weight: 700;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  width: 27.5%;
+  padding: 12.5px 0;
+  -webkit-box-flex: 0;
+          flex: 0 0 27.5%;
+  border-right: solid 1px #d9d6d6;
+  border-top: solid 1px #d9d6d6;
+  background-color: #f2f2f0;
+}
+
+.job__main-list-data > dl > dt:nth-of-type(1) {
+  border-top: none;
+}
+
+.job__main-list-data > dl > dd {
+  width: 72.5%;
+  padding: 12.5px 22px;
+  -webkit-box-flex: 1;
+          flex: 1 0 72.5%;
+  border-top: solid 1px #d9d6d6;
+}
+
+.job__main-list-data > dl > dd:nth-of-type(1) {
+  border-top: none;
+}
+
+.job__main-list-data--half {
+  width: 25%;
+  -webkit-box-flex: 1;
+          flex: 1 0 25%;
+}
+
+.job__main-address {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 38px;
+}
+
+.job__main-address > * {
+  width: 48%;
+}
+
+.job__main-address-list {
+  padding-top: 15px;
+}
+
+.job__main-address-list > dt {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: #fdb834;
+}
+
+.job__main-address-list > dt:last-of-type {
+  margin-top: 15px;
+}
+
+.job__main-address-list > dd {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  margin-top: 3px;
 }
 
 .jobs-filter {
@@ -3457,12 +3619,12 @@ a.pagination__item-link:hover {
 
 .search__group-append {
   position: absolute;
-  right: 1.2rem;
+  right: 19px;
 }
 
 @media screen and (max-width: 768px) {
   .search__group-append {
-    right: 0.6rem;
+    right: 10px;
   }
 }
 
