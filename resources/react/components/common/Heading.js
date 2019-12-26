@@ -1,12 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Pill from '../common/Pill';
-import { endpoints } from '../..//constants/routes';
-import { config } from '../../constants/config';
+import Like from '../../utils/like';
 
 const Heading = ({
   type,
@@ -24,27 +22,15 @@ const Heading = ({
   const avatarImg = rest['data-avatar'] || '';
 
   const handleClick = (e, type) => {
-    const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
+    Like.toggleLike(type, params.id)
+      .then((result) => {
+        passedFunction();
+        userLikes = result.data.total;
 
-    axios.request({
-      url: endpoints.LIKE,
-      baseURL: config.api.url,
-      method: 'post',
-      headers: {
-        'app-auth-token': apiToken
-      },
-      params: {
-        type,
-        type_id: params.id
-      },
-    }).then((result) => {
-      passedFunction();
-      userLikes = result.data.total;
-
-      console.log('[Liked]', result);
-    }).catch(error => {
-      console.log('[Liked ERROR]', error);
-    });
+        console.log('[Liked]', result);
+      }).catch(error => {
+        console.log('[Liked ERROR]', error);
+      });
   }
 
   return (

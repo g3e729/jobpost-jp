@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import Profile from '../profile/Profile';
-import { endpoints } from '../../constants/routes';
-import { config } from '../../constants/config';
-import generateRoute from '../../utils/generateRoute';
+import CompanyAPI from '../../utils/company';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
@@ -18,17 +15,8 @@ const CompanyPage = (props) => {
   const { user } = props;
 
   async function getCompany() {
-    const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
-
     const companyId = props.match.params.id;
-    const request = await axios.request({
-      url: generateRoute(endpoints.COMPANY_DETAIL, { id: companyId }),
-      baseURL: config.api.url,
-      method: 'get',
-      headers: {
-        'app-auth-token': apiToken
-      }
-    });
+    const request = await CompanyAPI.getCompany(companyId);
 
     return request.data;
   }

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import Job from './Job';
-import { endpoints } from '../../constants/routes';
-import { config } from '../../constants/config';
-import generateRoute from '../../utils/generateRoute';
+import JobAPI from '../../utils/job';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
@@ -18,17 +15,8 @@ const JobPage = (props) => {
   const accountType = (user.userData && user.userData.account_type) || '';
 
   async function getJob() {
-    const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
-
     const jobId = props.match.params.id;
-    const request = await axios.request({
-      url: generateRoute(endpoints.JOB_DETAIL, { id: jobId }),
-      baseURL: config.api.url,
-      method: 'get',
-      headers: {
-        'app-auth-token': apiToken
-      }
-    });
+    const request = await JobAPI.getJob(jobId);
 
     return request.data;
   }

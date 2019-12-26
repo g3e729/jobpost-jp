@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { endpoints } from '../constants/routes';
-import { config } from '../constants/config';
+import User from '../utils/user';
 
 export const setUser = (payload = '') => ({
   type: 'USER_TYPE_SET',
@@ -18,15 +16,7 @@ export const getUser = _ => {
 
   return (dispatch) => {
     if (['student', 'company'].includes(accountType)) {
-      axios.request({
-        url: endpoints.ACCOUNT,
-        baseURL: config.api.url,
-        method: 'get',
-        headers: {
-          'app-auth-token': apiToken
-        },
-      }).then((result) => {
-
+      return User.whoami().then((result) => {
         if ( result.data.account_type === accountType ) { // check accountType meta integrity
           localStorage.setItem('api_token', apiToken);
           dispatch(setUser({ ...result.data }));
@@ -46,54 +36,30 @@ export const getUser = _ => {
 }
 
 export const updateUserEmail = (email = '') => {
-  const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
-
   return (dispatch) => {
-    return axios.request({
-      url: endpoints.ACCOUNT,
-      baseURL: config.api.url,
-      method: 'patch',
-      headers: {
-        'app-auth-token': apiToken
-      },
-      params: {
-        email: email,
-        method: '_PATCH'
-      },
-    }).then((result) => {
-      dispatch(setUser({ ...result.data }));
+    return User.updateEmail(email)
+      .then((result) => {
+        dispatch(setUser({ ...result.data }));
 
-      return result;
-    }).catch(error => {
-      console.log('[Update email]', error);
-      return error;
-    });
+        return result;
+      }).catch(error => {
+        console.log('[Update email]', error);
+        return error;
+      });
   }
 }
 
 export const updateUserPass = (password = '') => {
-  const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
-
   return (dispatch) => {
-    return axios.request({
-      url: endpoints.UPDATE_PASSWORD,
-      baseURL: config.api.url,
-      method: 'patch',
-      headers: {
-        'app-auth-token': apiToken
-      },
-      params: {
-        password: password,
-        method: '_PATCH'
-      },
-    }).then((result) => {
-      dispatch(setUser({ ...result.data }));
+    return User.updatePassword(password)
+      .then((result) => {
+        dispatch(setUser({ ...result.data }));
 
-      return result;
-    }).catch(error => {
-      console.log('[Update password]', error);
-      return error;
-    });
+        return result;
+      }).catch(error => {
+        console.log('[Update password]', error);
+        return error;
+      });
   }
 }
 

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import Profile from '../profile/Profile';
-import { endpoints } from '../../constants/routes';
-import { config } from '../../constants/config';
-import generateRoute from '../../utils/generateRoute';
+import StudentAPI from '../../utils/student';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
@@ -18,17 +15,8 @@ const StudentPage = (props) => {
   const { user } = props;
 
   async function getStudent() {
-    const apiToken = document.querySelector('meta[name="api-token"]').content || localStorage.getItem('api_token');
-
     const studentId = props.match.params.id;
-    const request = await axios.request({
-      url: generateRoute(endpoints.STUDENT_DETAIL, { id: studentId }),
-      baseURL: config.api.url,
-      method: 'get',
-      headers: {
-        'app-auth-token': apiToken
-      }
-    });
+    const request = await StudentAPI.getStudent(studentId);
 
     return request.data;
   }
