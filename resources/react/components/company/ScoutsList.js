@@ -16,8 +16,6 @@ const dummyScouts = new Array(10)
     return e;
   })
 
-console.log('dummyScouts', dummyScouts)
-
 const ScoutsList = _ => {
   const [currentItem, setCurrentItem] = useState(null);
 

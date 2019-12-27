@@ -2523,6 +2523,14 @@ And you should not feel free to add a new Utility class.
   margin-top: 37px;
 }
 
+.notifications-list__item {
+  margin-top: 16px;
+}
+
+.notifications-list__item:first-child {
+  margin-top: 0;
+}
+
 .notifications-list__item-main {
   position: relative;
   padding: 20px 20px 40px;
@@ -2547,28 +2555,28 @@ And you should not feel free to add a new Utility class.
   position: absolute;
   right: 20px;
   top: calc(50% - 7px);
-  display: none;
   z-index: 1;
+  opacity: 0;
+  -webkit-transform: translateY(15px);
+          transform: translateY(15px);
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.notifications-list__item-main-action.is-active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .notifications-list__item-main-action:hover i {
   color: #fdb834;
 }
 
-.notifications-list__item-main-action.is-active {
-  display: block;
-}
-
 .notifications-section__footer {
   padding: 100px 0 60px;
-}
-
-.notifications-list__item {
-  margin-top: 16px;
-}
-
-.notifications-list__item:first-child {
-  margin-top: 0;
 }
 
 .pagescroll {
