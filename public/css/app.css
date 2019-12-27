@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?1c832ec4a113370fcdf2d909490864cb);
-  src: url(/fonts/kredo.eot?1c832ec4a113370fcdf2d909490864cb) format("embedded-opentype"), url(/fonts/kredo.ttf?8a571cc0bcd1c335cc4f082af1da6711) format("truetype"), url(/fonts/kredo.woff?208decc19f3cc4e091bfbfc16941a12b) format("woff"), url(/fonts/kredo.svg?2b37aefe853e22e5c6509a02531c440b) format("svg");
+  src: url(/fonts/kredo.eot?dce9e0cad3a23b76391d20637cc33847);
+  src: url(/fonts/kredo.eot?dce9e0cad3a23b76391d20637cc33847) format("embedded-opentype"), url(/fonts/kredo.ttf?0273f7af8c82064a4ed404040ac68178) format("truetype"), url(/fonts/kredo.woff?b0949332dc3ac4da5dd99e038b1ae02c) format("woff"), url(/fonts/kredo.svg?ab2ccc2f9db352e7742f96967961c89e) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -525,6 +525,10 @@ input:focus {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-right:before {
+  content: "\E91A";
 }
 
 .icon-check-circle:before {
@@ -621,6 +625,22 @@ input:focus {
 
 .icon-external-link:before {
   content: "\E904";
+}
+
+.icon-plus:before {
+  content: "\EA0A";
+}
+
+.icon-facebook:before {
+  content: "\EA90";
+}
+
+.icon-instagram:before {
+  content: "\EA92";
+}
+
+.icon-twitter:before {
+  content: "\EA96";
 }
 
 .icon-pencil:before {
@@ -4178,6 +4198,79 @@ a.pagination__item-link:hover {
 
 .scout-list__pagination {
   margin: 50px;
+}
+
+.scouts-list__item {
+  border: solid 1px #d9d6d6;
+  margin-top: 25px;
+}
+
+.scouts-section__top {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 7px;
+  border-bottom: solid 1px #d9d6d6;
+}
+
+.scouts-section__top-info {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  -webkit-box-flex: 0;
+          flex: 0 0 100%;
+  margin: 5px 0 65px;
+}
+
+.scouts-section__top-info-remain {
+  letter-spacing: 0.06em;
+}
+
+.scouts-section__top-info-remain > span {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-left: 8px;
+}
+
+.scouts-section__top-info-remain > span > small {
+  font-family: "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Hiragino Kaku Gothic ProN", "\30E1\30A4\30EA\30AA", Meiryo, sans-serif;
+  font-size: 16px;
+  position: relative;
+  top: -1px;
+}
+
+.scouts-section__top-info-remain > span:last-child {
+  color: #fdb834;
+}
+
+.scouts-section__top-info-remain > i {
+  margin: 0 7px 0 16px;
+}
+
+.scouts-section__top-button {
+  color: #d9d6d6;
+  padding: 0;
+  border: none;
+}
+
+.scouts-section__top-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.scouts-section__footer {
+  padding: 100px 0 60px;
 }
 
 .terms__sub {

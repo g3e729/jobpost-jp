@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?vqk62r';
+$suffix: '?6q8uqp';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,9 @@ $suffix: '?vqk62r';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-arrow-right:before {
+  content: "\e91a";
+}
 .icon-check-circle:before {
   content: "\e917";
 }
@@ -118,6 +121,18 @@ $suffix: '?vqk62r';
 }
 .icon-external-link:before {
   content: "\e904";
+}
+.icon-plus:before {
+  content: "\ea0a";
+}
+.icon-facebook:before {
+  content: "\ea90";
+}
+.icon-instagram:before {
+  content: "\ea92";
+}
+.icon-twitter:before {
+  content: "\ea96";
 }
 .icon-pencil:before {
   content: "\e910";

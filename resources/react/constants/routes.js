@@ -23,6 +23,7 @@ export const routes = {
   RECRUITMENT_EDIT: `${prefix}dashboard/recruitment/:id/edit`, // company
   CANDIDATES: `${prefix}dashboard/candidates`, // company
   SCOUT: `${prefix}dashboard/scout`, // company
+  SCOUTS: `${prefix}scouts`, // company
 
   MESSAGES: `${prefix}messages`, // student, company
 
@@ -49,6 +50,7 @@ export const accessTable = [
       routes.RECRUITMENT_EDIT,
       routes.CANDIDATES,
       routes.SCOUT,
+      routes.SCOUTS,
 
       routes.MESSAGES,
 

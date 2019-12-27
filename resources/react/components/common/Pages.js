@@ -17,6 +17,7 @@ import DashboardPage from '../company/DashboardPage';
 import RecruitmentPage from '../company/RecruitmentPage';
 import CandidatesPage from '../company/CandidatesPage';
 import ScoutPage from '../company/ScoutPage';
+import CScoutsPage from '../company/ScoutsPage';
 
 import NotificationsPage from '../notification/NotificationsPage';
 import NotificationPage from '../notification/NotificationPage';
@@ -103,6 +104,11 @@ const Pages = _ => (
         exact
         path={routes.SCOUT}
         component={requireAuth(ScoutPage)}
+      />
+      <Route
+        exact
+        path={routes.SCOUTS}
+        component={requireAuth(CScoutsPage)}
       />
       <Route
         exact

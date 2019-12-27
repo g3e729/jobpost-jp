@@ -1,10 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Pill from '../common/Pill';
 import Like from '../../utils/like';
+import { routes } from '../../constants/routes';
 
 const Heading = ({
   type,
@@ -46,14 +47,16 @@ const Heading = ({
               {subTitle}
             </p>
             { isOwner == true ? (
-              <Button className="button--pill heading__user-pill">
+              <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
                 <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
-              </Button>
+              </Link>
             ) : (
               isLogged ? (
                 accountType === 'student' ? (
                   <>
-                    <Button className="button--large heading__user-button">スカウト</Button>
+                    <Link to={routes.SCOUTS} className="button button--large heading__user-button">
+                      スカウト
+                    </Link>
                     <Button className="button--link heading__user-fav" onClick={e => handleClick(e, 'student')}>
                       <Pill className="pill--icon text-medium-black">
                         <i className="icon icon-star"></i>{userLikes}
