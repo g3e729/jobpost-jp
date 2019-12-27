@@ -36,7 +36,7 @@ const Footer = _ => {
             </NavLink>
           </li>
           <li className="footer__menu-item footer__menu-item--external">
-            <a href="#" target="_blank">
+            <a href="https://docs.google.com/forms/d/16ej6ZdxOwVbfByHDaxPtGkP9st_DnH509WecmU018k4/edit?usp=sharing" target="_blank">
               お問い合わせ
               <i className="icon icon-external-link"></i>
             </a>
