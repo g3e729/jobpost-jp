@@ -26,6 +26,8 @@ import TermsPage from '../terms/TermsPage';
 import HelpPage from '../help/HelpPage';
 import PrivacyPage from '../privacy/PrivacyPage';
 
+import Four0FourPage from '../common/404';
+
 import PageTop from '../service/PageTop';
 import requireAuth from '../../utils/requireAuth';
 
@@ -135,6 +137,7 @@ const Pages = _ => (
         path={routes.PRIVACY}
         component={PrivacyPage}
       />
+      <Route component={Four0FourPage} />
     </Switch>
   </div>
 );

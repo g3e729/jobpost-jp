@@ -853,6 +853,28 @@ And you should not feel free to add a new Utility class.
   padding: 0;
 }
 
+.\34 04 {
+  text-align: center;
+}
+
+.\34 04__logo {
+  width: 300px;
+  margin: 0 auto 50px;
+}
+
+.\34 04__logo-image {
+  width: 100%;
+}
+
+.\34 04__desc {
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
+
+.\34 04__button {
+  margin-top: 25px;
+}
+
 .avatar {
   height: 50px;
   width: 50px;
@@ -4201,8 +4223,152 @@ a.pagination__item-link:hover {
 }
 
 .scouts-list__item {
-  border: solid 1px #d9d6d6;
+  border: solid 1px #f2f2f0;
   margin-top: 25px;
+}
+
+.scouts {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 25px;
+  background-color: #fff;
+  -webkit-transition: background-color 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: background-color 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.scouts:hover {
+  background-color: #f2f2f0;
+}
+
+.scouts__left {
+  display: -webkit-box;
+  display: flex;
+  width: 65%;
+  -webkit-box-flex: 0;
+          flex: 0 0 65%;
+}
+
+.scouts__left-inner {
+  width: 265px;
+  -webkit-box-flex: 0;
+          flex: 0 0 265px;
+}
+
+.scouts__left-inner:last-child {
+  margin-top: 25px;
+  margin-left: 35px;
+}
+
+.scouts__right {
+  position: relative;
+  width: 35%;
+  -webkit-box-flex: 1;
+          flex: 1 0 35%;
+}
+
+.scouts__eyecatch {
+  position: relative;
+  max-height: 159px;
+}
+
+.scouts__eyecatch:before {
+  content: "";
+  padding-top: 60%;
+  display: block;
+}
+
+.scouts__eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.scouts__company {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.scouts__company > img {
+  -webkit-box-flex: 0;
+          flex: 0 0 29px;
+  width: 29px;
+  height: 31px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2px;
+}
+
+.scouts__company-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 16px;
+}
+
+.scouts__title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  margin-top: 12px;
+}
+
+.scouts__list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  flex-wrap: wrap;
+  margin-left: 100px;
+}
+
+.scouts__list > * {
+  width: 50%;
+  -webkit-box-flex: 0;
+          flex: 0 0 50%;
+  padding: 5px 0;
+}
+
+.scouts__list.is-hidden {
+  display: none;
+}
+
+.scouts__list-term {
+  letter-spacing: 0.06em;
+}
+
+.scouts__list-data {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.scouts__action {
+  position: absolute;
+  top: calc(50% - 21px);
+  margin-left: 125px;
+  opacity: 0;
+  -webkit-transform: translateY(15px);
+          transform: translateY(15px);
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+}
+
+.scouts__action.is-active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .scouts-section__top {
@@ -4254,7 +4420,8 @@ a.pagination__item-link:hover {
 }
 
 .scouts-section__top-info-remain > i {
-  margin: 0 7px 0 16px;
+  margin-left: 16px;
+  margin-right: 7px;
 }
 
 .scouts-section__top-button {
