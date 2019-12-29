@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import { routes } from '../../constants/routes';

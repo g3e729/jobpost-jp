@@ -3,6 +3,17 @@ import { endpoints } from '../constants/routes';
 import generateRoute from './generateRoute';
 
 export default class Job {
+  static getJobs() {
+    const payload = {
+      url: generateRoute(endpoints.JOBS),
+      method: 'get'
+    }
+
+    return API.request(payload)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static getJob(id) {
     const payload = {
       url: generateRoute(endpoints.JOB_DETAIL, { id }),
