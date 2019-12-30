@@ -20,3 +20,15 @@ export const getJobs = _ => {
     })
   }
 }
+
+export const getFilteredJobs = (params) => {
+  return (dispatch) => {
+    return Job.getFilteredJobs(params).then((result) => {
+      dispatch(setJobs({ ...result.data }));
+    }).catch(error => {
+      dispatch(unsetJobs());
+
+      console.log('[Jobs]', error);
+    })
+  }
+}

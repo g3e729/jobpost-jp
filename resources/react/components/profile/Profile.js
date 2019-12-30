@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
 import JobsList from '../jobs/JobsList';
-
 import { routes } from '../../constants/routes';
+import Job from '../../utils/job';
 
 const Profile = (props) => {
+  const [jobs, setJobs] = useState({});
+  const jobsData = jobs.data || {}; // TODO: Trim 3
   const { user, accountType, isOwner = true } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
+
+  async function getFilteredJobs() {
+    const companyId = data.id;
+    const request = await Job.getFilteredJobs({company_profile_id: companyId});
+
+    return request.data;
+  }
+
+  useEffect(_ => {
+    getFilteredJobs()
+      .then(res => setJobs(res))
+      .catch(error => console.log('[Jobs ERROR]', error));
+  }, []);
 
   return (
     accountType === 'student' ? (
@@ -402,7 +417,7 @@ const Profile = (props) => {
           <div className="profile__data profile__data--jobs">
             <div className="profile__data-jobs">
               <div className="profile__data-jobs-content">
-                <JobsList hasTitle="true" />
+                <JobsList jobs={jobsData} hasTitle="true" />
               </div>
               <div className="profile__data-jobs-footer">
                 <Link to={routes.RECRUITMENT} className="button">

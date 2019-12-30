@@ -1,20 +1,30 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import Page from '../common/Page';
 import Slider from '../common/Slider';
 import PageScroll from '../common/PageScroll';
 import JobsFilter from './JobsFilter';
 import JobsSection from './JobsSection';
-
-import { getJobs } from '../../actions/jobs';
+import { getJobs, getFilteredJobs  } from '../../actions/jobs';
 
 const JobsPage = _ => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
 
   useEffect(_ => {
-    dispatch(getJobs());
-  }, []);
+    const page = urlParams.get('page');
+
+    if (page) {
+      dispatch(getFilteredJobs({page}));
+    }
+    else {
+      dispatch(getJobs());
+    }
+
+  }, [location]);
 
   return (
     <>

@@ -2408,6 +2408,7 @@ And you should not feel free to add a new Utility class.
 .job-list__item-title {
   font-size: 21px;
   font-weight: 700;
+  color: #393939;
   line-height: 1.762;
   letter-spacing: 0.06em;
   margin-top: 29px;
@@ -2537,7 +2538,7 @@ And you should not feel free to add a new Utility class.
   border-bottom: solid 1px #d9d6d6;
 }
 
-.notifications-list__item-main-title {
+.notifications-list__item-title {
   font-size: 16px;
   font-weight: 700;
   color: #393939;
@@ -2545,13 +2546,17 @@ And you should not feel free to add a new Utility class.
   margin-top: 15px;
 }
 
-.notifications-list__item-main-schedule {
+.notifications-list__item-schedule {
   color: #d9d6d6;
   letter-spacing: 0.06em;
   margin-right: 15px;
 }
 
-.notifications-list__item-main-action {
+.notifications-list__item-button {
+  display: block;
+}
+
+.notifications-list__item-action {
   position: absolute;
   right: 20px;
   top: calc(50% - 7px);
@@ -2565,13 +2570,13 @@ And you should not feel free to add a new Utility class.
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
-.notifications-list__item-main-action.is-active {
+.notifications-list__item-action.is-active {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
 
-.notifications-list__item-main-action:hover i {
+.notifications-list__item-action:hover i {
   color: #fdb834;
 }
 

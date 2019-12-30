@@ -30,13 +30,14 @@ const NotificationsList = _ => {
       { dummyNotifications.map((item) => (
         <li className="notifications-list__item" onMouseOver={_ => setCurrentItem(item.id)} onMouseOut={_ => setCurrentItem(null)} key={item.id}>
           <div className="notifications-list__item-main">
-            <time className="notifications-list__item-main-schedule" dateTime={ moment(item.schedule).format('YYYY-MM-DD') }>{ moment(item.schedule).format('YYYY/MM/DD') }</time>
+            <time className="notifications-list__item-schedule" dateTime={ moment(item.schedule).format('YYYY-MM-DD') }>{ moment(item.schedule).format('YYYY/MM/DD') }</time>
             { item.isNew ? <Pill>New</Pill> : null }
-            <Link to={generateRoute(routes.NOTIFICATIONS_DETAIL, { id: item.id })}>
-              <h4 className="notifications-list__item-main-title">{item.title}</h4>
+            <Link to={generateRoute(routes.NOTIFICATIONS_DETAIL, { id: item.id })}
+              className="button button--link notifications-list__item-button">
+              <h4 className="notifications-list__item-title">{item.title}</h4>
             </Link>
 
-            <div className={`notifications-list__item-main-action ${currentItem === item.id ? state.ACTIVE : ''}`}>
+            <div className={`notifications-list__item-action ${currentItem === item.id ? state.ACTIVE : ''}`}>
               <Button className="button--link" onClick={_ => console.log(currentItem)}>
                 <i className="icon icon-cross text-dark-gray"></i>
               </Button>

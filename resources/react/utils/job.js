@@ -14,6 +14,23 @@ export default class Job {
       .catch(error => error);
   }
 
+  static getFilteredJobs(params) {
+    const { page, company_profile_id } = params;
+
+    const payload = {
+      url: generateRoute(endpoints.JOBS),
+      method: 'get',
+      params: {
+        page,
+        company_profile_id
+      }
+    }
+
+    return API.request(payload)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static getJob(id) {
     const payload = {
       url: generateRoute(endpoints.JOB_DETAIL, { id }),

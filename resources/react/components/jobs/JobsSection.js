@@ -11,11 +11,11 @@ import JobsList from './JobsList';
 const JobsSection = (props) => {
   const { jobs } = props;
   const data = jobs.jobsData || {};
-  const innerData = data.data || {};
+  const jobsData = data.data || {};
 
   return (
     <div className="jobs-section">
-      { innerData.length ? (
+      { jobsData.length ? (
         <>
           <div className="jobs-section__top">
             <Fraction numerator="10"
@@ -31,15 +31,14 @@ const JobsSection = (props) => {
             </div>
           </div>
           <div className="jobs-section__content">
-            <JobsList />
+            <JobsList jobs={jobsData} />
           </div>
           <div className="jobs-section__footer">
             <Pagination
-              first={data.from}
-              last={data.last_page}
               current={data.current_page}
               prevPage={data.prev_page_url}
               nextPage={data.next_page_url}
+              lastPage={data.last_page}
             />
           </div>
         </>

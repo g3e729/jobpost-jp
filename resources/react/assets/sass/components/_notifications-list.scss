@@ -14,7 +14,7 @@
   border-bottom: solid 1px $color-dark-gray;
 }
 
-.notifications-list__item-main-title {
+.notifications-list__item-title {
   font-size: 16px;
   font-weight: 700;
   color: $color-medium-black;
@@ -23,14 +23,18 @@
   margin-top: 15px;
 }
 
-.notifications-list__item-main-schedule {
+.notifications-list__item-schedule {
   color: $color-dark-gray;
   letter-spacing: 0.06em;
 
   margin-right: 15px;
 }
 
-.notifications-list__item-main-action {
+.notifications-list__item-button {
+  display: block;
+}
+
+.notifications-list__item-action {
   position: absolute;
   right: 20px;
   top: calc(50% - 7px);

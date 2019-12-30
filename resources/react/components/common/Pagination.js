@@ -6,16 +6,15 @@ import { routes } from '../../constants/routes';
 
 const Pagination = (props) => {
   const {
-    first,
-    last,
     current,
     prevPage,
-    nextPage
+    nextPage,
+    lastPage
   } = props;
 
   return (
     <ul className="pagination" role="navigation">
-      <li className={`pagination__item ${state.DISABLED}`}>
+      <li className={`pagination__item ${ prevPage ? '' : state.DISABLED}`}>
         { prevPage ? (
           <Link to={`${routes.JOBS}?page=${current-1}`} className="pagination__item-link">
             <i className="icon icon-back-arrow"></i>
@@ -28,8 +27,8 @@ const Pagination = (props) => {
         }
       </li>
       { [current-2, current-1, current, current+1, current+2].map((item, idx) => (
-        (item >= first && item <= last) ? (
-          <li className={`pagination__item ${ item === current ? state.ACTIVE : null }`} key={idx}>
+        (item >= 1 && item <= lastPage) ? (
+          <li className={`pagination__item ${ item === current ? state.ACTIVE : '' }`} key={idx}>
             { item === current ? (
               <span className="pagination__item-link">{item}</span>
             ) : (
@@ -40,7 +39,7 @@ const Pagination = (props) => {
           </li>
         ) : null
       ))}
-      <li className="pagination__item">
+      <li className={`pagination__item ${ nextPage ? '' : state.DISABLED}`}>
         { nextPage ? (
           <Link to={`${routes.JOBS}?page=${current+1}`} className="pagination__item-link">
             <i className="icon icon-next-arrow"></i>
