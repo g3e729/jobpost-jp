@@ -1,0 +1,19 @@
+.messages-section {
+  height: calc(100vh - 98px);
+  width: 100%;
+  flex: 1;
+}
+
+.messages-section__header {
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-white;
+  letter-spacing: 0.06em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: $gradient;
+  height: 70px;
+}

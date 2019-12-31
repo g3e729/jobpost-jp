@@ -1,7 +1,63 @@
-.messages-sidebar {}
+.messages-sidebar {
+  height: calc(100vh - 98px);
+  width: 400px;
+  flex: 0 0 400px;
+}
 
-.messages-sidebar__header {}
+.messages-sidebar__header {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 
-.messages-sidebar__chatroom {}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.messages-sidebar__chatroom-item {}
+  background-color: $color-light-gray;
+  height: 70px;
+}
+
+.messages-sidebar__chatroom {
+  height: calc(100% - 70px);
+  overflow: scroll;
+
+  border-right: solid 1px $color-dark-gray;
+}
+
+.messages-sidebar__chatroom-item {
+  display: flex;
+  align-items: flex-end;
+
+  height: 120px;
+  padding: 24px 60px 24px 33px;
+  border-left: solid 5px transparent;
+  border-bottom: solid 1px $color-dark-gray;
+
+  cursor: pointer;
+
+  &.is-active {
+    border-left: solid 5px $color-dark-yellow;
+  }
+}
+
+.messages-sidebar__chatroom-item-left {
+  width: 70px;
+  flex: 0 0 70px;
+}
+
+.messages-sidebar__chatroom-item-right {
+  flex: 1;
+  margin-left: 27px;
+}
+
+.messages-sidebar__chatroom-item-contact {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  margin-bottom: 7px;
+}
+
+.messages-sidebar__chatroom-item-message {
+  letter-spacing: 0.06em;
+}

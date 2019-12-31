@@ -912,6 +912,11 @@ And you should not feel free to add a new Utility class.
   height: 90px;
 }
 
+.avatar--message {
+  width: 70px;
+  height: 70px;
+}
+
 .badge {
   font-family: "Avenir", sans-serif;
   font-size: 13px;
@@ -2479,6 +2484,95 @@ And you should not feel free to add a new Utility class.
 
 .jobs-section__actions-button.is-active {
   color: #fdb834;
+}
+
+.messages-sidebar {
+  height: calc(100vh - 98px);
+  width: 400px;
+  -webkit-box-flex: 0;
+          flex: 0 0 400px;
+}
+
+.messages-sidebar__header {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background-color: #f2f2f0;
+  height: 70px;
+}
+
+.messages-sidebar__chatroom {
+  height: calc(100% - 70px);
+  overflow: scroll;
+  border-right: solid 1px #d9d6d6;
+}
+
+.messages-sidebar__chatroom-item {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  height: 120px;
+  padding: 24px 60px 24px 33px;
+  border-left: solid 5px transparent;
+  border-bottom: solid 1px #d9d6d6;
+  cursor: pointer;
+}
+
+.messages-sidebar__chatroom-item.is-active {
+  border-left: solid 5px #fdb834;
+}
+
+.messages-sidebar__chatroom-item-left {
+  width: 70px;
+  -webkit-box-flex: 0;
+          flex: 0 0 70px;
+}
+
+.messages-sidebar__chatroom-item-right {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 27px;
+}
+
+.messages-sidebar__chatroom-item-contact {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 7px;
+}
+
+.messages-sidebar__chatroom-item-message {
+  letter-spacing: 0.06em;
+}
+
+.messages-section {
+  height: calc(100vh - 98px);
+  width: 100%;
+  -webkit-box-flex: 1;
+          flex: 1;
+}
+
+.messages-section__header {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
+  background-image: linear-gradient(to right, #fdb834, #f7954d);
+  height: 70px;
 }
 
 .notification {
@@ -4276,9 +4370,8 @@ a.pagination__item-link:hover {
 
 .scouts__right {
   position: relative;
-  width: 35%;
   -webkit-box-flex: 1;
-          flex: 1 0 35%;
+          flex: 1;
 }
 
 .scouts__eyecatch {
