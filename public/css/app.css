@@ -2486,6 +2486,65 @@ And you should not feel free to add a new Utility class.
   color: #fdb834;
 }
 
+.message {
+  position: relative;
+}
+
+.message--right .message__avatar {
+  left: auto;
+  right: -100px;
+}
+
+.message--right .message__text {
+  background-color: #f2f2f0;
+  border: solid 1px #f2f2f0;
+}
+
+.message--right .message__main {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+          flex-direction: row-reverse;
+}
+
+.message__avatar {
+  position: absolute;
+  top: -15px;
+  left: -100px;
+}
+
+.message__main {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.message__name {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.message__time {
+  color: #d9d6d6;
+  letter-spacing: 0.06em;
+}
+
+.message__text {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  width: 100%;
+  margin-top: 15px;
+  padding: 25px 30px;
+  border: solid 1px #f2f2f0;
+  border-radius: 15px;
+}
+
 .messages-sidebar {
   height: calc(100vh - 98px);
   width: 400px;
@@ -2573,6 +2632,47 @@ And you should not feel free to add a new Utility class.
   background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
   background-image: linear-gradient(to right, #fdb834, #f7954d);
   height: 70px;
+}
+
+.messages-section__main {
+  position: relative;
+  height: calc(100% - 70px);
+}
+
+.messages-section__main-footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+  background-color: #f2f2f0;
+}
+
+.messages-section__main-footer-intro {
+  font-weight: 700;
+  line-height: 2.857;
+  letter-spacing: 0.06em;
+  margin-right: 22px;
+}
+
+.messages-section__main-list {
+  height: calc(100% - 100px);
+  padding: 45px 0 100px;
+  overflow: scroll;
+}
+
+.messages-section__main-list-item {
+  padding: 0 170px 0 140px;
+  margin-top: 45px;
+}
+
+.messages-section__main-list-item:first-child {
+  margin-top: 0;
 }
 
 .notification {

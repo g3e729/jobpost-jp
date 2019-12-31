@@ -17,3 +17,44 @@
   background-image: $gradient;
   height: 70px;
 }
+
+.messages-section__main {
+  position: relative;
+  height: calc(100% - 70px);
+}
+
+.messages-section__main-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+
+  background-color: $color-light-gray;
+}
+
+.messages-section__main-footer-intro {
+  font-weight: 700;
+  line-height: 2.857;
+  letter-spacing: 0.06em;
+
+  margin-right: 22px;
+}
+
+.messages-section__main-list {
+  height: calc(100% - 100px);
+  padding: 45px 0 100px;
+  overflow: scroll;
+}
+
+.messages-section__main-list-item {
+  padding: 0 170px 0 140px;
+  margin-top: 45px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
