@@ -2653,6 +2653,10 @@ And you should not feel free to add a new Utility class.
   background-color: #f2f2f0;
 }
 
+.messages-section__main-footer.is-hidden {
+  display: none;
+}
+
 .messages-section__main-footer-intro {
   font-weight: 700;
   line-height: 2.857;
@@ -2673,6 +2677,37 @@ And you should not feel free to add a new Utility class.
 
 .messages-section__main-list-item:first-child {
   margin-top: 0;
+}
+
+.messages-section__main-form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+  padding: 20px 20px 20px 50px;
+}
+
+.messages-section__main-form.is-hidden {
+  display: none;
+}
+
+.messages-section__main-form-main {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.messages-section__main-form-input {
+  letter-spacing: 0.06em;
+  -webkit-box-flex: 1;
+          flex: 1;
+  height: 40px;
+  padding: 0 20px;
+  margin-right: 20px;
+  border: solid 1px #d9d6d6;
 }
 
 .notification {
