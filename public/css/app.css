@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?dce9e0cad3a23b76391d20637cc33847);
-  src: url(/fonts/kredo.eot?dce9e0cad3a23b76391d20637cc33847) format("embedded-opentype"), url(/fonts/kredo.ttf?0273f7af8c82064a4ed404040ac68178) format("truetype"), url(/fonts/kredo.woff?b0949332dc3ac4da5dd99e038b1ae02c) format("woff"), url(/fonts/kredo.svg?ab2ccc2f9db352e7742f96967961c89e) format("svg");
+  src: url(/fonts/kredo.eot?eafe8a5e29782b89e266a6ead64d986f);
+  src: url(/fonts/kredo.eot?eafe8a5e29782b89e266a6ead64d986f) format("embedded-opentype"), url(/fonts/kredo.ttf?499f9a2b21a62630c8972f73e3b8a6a6) format("truetype"), url(/fonts/kredo.woff?320915b51e295ec9c3070e9ee9f6e69e) format("woff"), url(/fonts/kredo.svg?f8f35d2e14b93199469ecff51606b88d) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -527,8 +527,8 @@ input:focus {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow-right:before {
-  content: "\E91A";
+.icon-paperplane:before {
+  content: "\E919";
 }
 
 .icon-check-circle:before {
@@ -623,24 +623,12 @@ input:focus {
   content: "\E903";
 }
 
+.icon-arrow-right:before {
+  content: "\E91A";
+}
+
 .icon-external-link:before {
   content: "\E904";
-}
-
-.icon-plus:before {
-  content: "\EA0A";
-}
-
-.icon-facebook:before {
-  content: "\EA90";
-}
-
-.icon-instagram:before {
-  content: "\EA92";
-}
-
-.icon-twitter:before {
-  content: "\EA96";
 }
 
 .icon-pencil:before {

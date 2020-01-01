@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getUser } from '../actions/user';
-
 import Header from './common/Header';
 import Footer from './common/Footer';
 import Pages from './common/Pages';
+import { getUser } from '../actions/user';
+import { getFilters } from '../actions/filters';
 
 const App = _ => {
   const dispatch = useDispatch();
 
   useEffect(_ => {
     dispatch(getUser());
+    dispatch(getFilters());
   }, []);
 
   return (

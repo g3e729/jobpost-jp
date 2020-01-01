@@ -72,7 +72,7 @@ const MessagesSection = _ => {
             />
             <Button className="button--icon" type="submit">
               <>
-                <i className="icon icon-todo"></i>
+                <i className="icon icon-paperplane"></i>
                 送信
               </>
             </Button>
