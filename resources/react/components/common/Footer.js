@@ -4,15 +4,14 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { routes, prefix } from '../../constants/routes';
 import { state } from '../../constants/state';
 
-const footerLinks = [
-  'terms',
-  'help',
-  'privacy'
-];
-
 const Footer = _ => {
   const location = useLocation();
   const path = location.pathname.substr(prefix.length).replace('/', '');
+  const footerLinks = [
+    'terms',
+    'help',
+    'privacy'
+  ];
 
   return (
     <footer className="l-footer footer">

@@ -38,55 +38,71 @@ const Heading = ({
   return (
     <div className={`heading heading--${type || 'default'}`} {...rest}>
       { type && type === 'user' ? (
-        <div className="heading__user">
-          <Avatar className="avatar--profile"
-            style={{ backgroundImage: `url("${avatarImg}")` }}
-          />
-          <div className="heading__user-main">
-            <h2 className="heading__user-name">{title || 'TODO if remove api auth-token'}</h2>
-            <p className="heading__user-position">
-              {subTitle}
-            </p>
-            { isOwner == true ? (
-              isEdit ? (
-                <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
-                  <span><i className="icon icon-toodo text-dark-yellow"></i>更新</span>
-                </Link>
+        <>
+          { isEdit ? (
+            <div className="heading__edit">
+              <Button className="button--eyecatch">
+                <>
+                  <i className="icon icon-disk"></i>
+                  変更する
+                </>
+              </Button>
+            </div>
+          ) : null }
+          <div className="heading__user">
+            <Avatar className="avatar--profile"
+              style={{ backgroundImage: `url("${avatarImg}")` }}
+              isEdit={isEdit}
+            />
+            <div className="heading__user-main">
+              <h2 className="heading__user-name">{title || 'TODO if remove api auth-token'}</h2>
+              <p className="heading__user-position">
+                {subTitle}
+              </p>
+              { isOwner == true ? (
+                isEdit ? (
+                  <Button className="button--pill heading__user-pill">
+                    <>
+                      <i className="icon icon-disk text-dark-yellow"></i>
+                      更新
+                    </>
+                  </Button>
+                ) : (
+                  <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
+                    <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
+                  </Link>
+                )
               ) : (
-                <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
-                  <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
-                </Link>
-              )
-            ) : (
-              isLogged ? (
-                accountType === 'student' ? (
-                  <>
-                    <Link to={routes.SCOUTS} className="button button--large heading__user-button">
-                      スカウト
-                    </Link>
-                    <Button className="button--link heading__user-fav" onClick={e => handleClick(e, 'student')}>
+                isLogged ? (
+                  accountType === 'student' ? (
+                    <>
+                      <Link to={routes.SCOUTS} className="button button--large heading__user-button">
+                        スカウト
+                      </Link>
+                      <Button className="button--link heading__user-fav" onClick={e => handleClick(e, 'student')}>
+                        <Pill className="pill--icon text-medium-black">
+                          <i className="icon icon-star"></i>{userLikes}
+                        </Pill>
+                      </Button>
+                    </>
+                  ) : accountType === 'company' ? (
+                    <Button className="button--link heading__user-fav" onClick={e => handleClick(e, 'company')}>
                       <Pill className="pill--icon text-medium-black">
                         <i className="icon icon-star"></i>{userLikes}
                       </Pill>
                     </Button>
-                  </>
-                ) : accountType === 'company' ? (
-                  <Button className="button--link heading__user-fav" onClick={e => handleClick(e, 'company')}>
+                  ) : null
+                ) : (
+                  <div className="heading__user-fav">
                     <Pill className="pill--icon text-medium-black">
                       <i className="icon icon-star"></i>{userLikes}
                     </Pill>
-                  </Button>
-                ) : null
-              ) : (
-                <div className="heading__user-fav">
-                  <Pill className="pill--icon text-medium-black">
-                    <i className="icon icon-star"></i>{userLikes}
-                  </Pill>
-                </div>
-              )
-            )}
+                  </div>
+                )
+              )}
+            </div>
           </div>
-        </div>
+        </>
       ) : type && type === 'job' ? (
         <div className="heading__job">
           <div className="heading__job-main">

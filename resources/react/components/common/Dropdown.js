@@ -4,10 +4,10 @@ import { connect, useDispatch } from 'react-redux';
 
 import Avatar from './Avatar';
 import Button from './Button';
+import useInterval from '../../utils/useInterval';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 import { logoutUser } from '../../actions/user';
-import useInterval from '../../utils/useInterval';
 
 import avatarDefault from '../../../img/avatar-default.png';
 

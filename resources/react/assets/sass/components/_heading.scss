@@ -262,3 +262,12 @@
     // TODO
   }
 }
+
+.heading__edit {
+  position: absolute;
+  right: 0;
+
+  @include max-screen($breakpoint-mobile) {
+    // TODO
+  }
+}

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
 import ScoutsList from './ScoutsList';
-
 import { routes } from '../../constants/routes';
 
 const ScoutsSection = _ => (

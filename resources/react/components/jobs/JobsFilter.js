@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
-import _ from 'lodash';
 
 import { jobSelectStyles } from '../../constants/config';
 

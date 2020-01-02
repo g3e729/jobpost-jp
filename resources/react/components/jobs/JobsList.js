@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Pill from '../common/Pill';
-import { routes } from '../../constants/routes';
 import generateRoute from '../../utils/generateRoute';
+import { routes } from '../../constants/routes';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 

@@ -30,7 +30,7 @@ const ProfilePage = (props) => {
       />
       <div className="l-section l-section--profile section">
         <div className="l-container">
-          <Profile user={user} accountType={accountType} />
+          <Profile user={user} isEdit="true" accountType={accountType} />
         </div>
       </div>
     </Page>

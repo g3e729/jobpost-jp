@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
-import _ from 'lodash';
 
+import Button from '../common/Button';
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
 import JobsList from '../jobs/JobsList';
-import { routes } from '../../constants/routes';
 import Job from '../../utils/job';
+import { routes } from '../../constants/routes';
 
 const Profile = (props) => {
   const [jobs, setJobs] = useState({});
   let jobsData = jobs.data || {};
-  const { user, accountType, isOwner = true } = props;
+  const { user, accountType, isEdit = false, isOwner = true } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
   if (!_.isEmpty(jobsData)) {
@@ -45,18 +46,42 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">自己紹介</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <p className="profile__main-list-item-copy">{data.intro_text}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">やってみたいこと</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <p className="profile__main-list-item-copy">{data.what_text}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">職歴</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-work">
                     <dt className="profile__data-work-term">社長室　広報</dt>
                     <dd className="profile__data-work-data">
@@ -77,6 +102,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">学歴</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-work">
                     <dt className="profile__data-work-term">日本工学院専門学校</dt>
                     <dd className="profile__data-work-data">
@@ -91,6 +124,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ムービー</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <div className="profile__data-video">
                     <Embed src="https://www.youtube.com/embed/zpOULjyy-n8"
                       className={`embed--16by9 ${css`margin-bottom: 22px`}`}
@@ -113,6 +154,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">プログラミング言語</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-skills">
                     <dt className="profile__data-skills-term">C＃</dt>
                     <dd className="profile__data-skills-data">1年以内</dd>
@@ -140,6 +189,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">フレームワーク</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-skills">
                     <dt className="profile__data-skills-term">Laravel</dt>
                     <dd className="profile__data-skills-data">1年以内</dd>
@@ -163,6 +220,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">その他</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-skills">
                     <dt className="profile__data-skills-term">Linux</dt>
                     <dd className="profile__data-skills-data">1年以内</dd>
@@ -190,6 +255,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">経験分野</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-skills profile__data-skills--full">
                     <dt className="profile__data-skills-term">Web開発（サーバサイドエンジニア） 　</dt>
                     <dd className="profile__data-skills-data">1年以内</dd>
@@ -213,12 +286,28 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">話し言葉</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <span className="profile__main-list-item-desc">英語、中国語</span>
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">TOEIC</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <span className="profile__main-list-item-desc">６５０点</span>
                 </div>
               </li>
@@ -233,6 +322,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <ul className="profile__data-websites">
                     <li className="profile__data-websites-item">
                       <div className="profile__data-websites-eyecatch">
@@ -279,6 +376,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">Github</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <div className="profile__data-link">
                     <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a>
                     <Clipboard value="{data.github}" />
@@ -355,12 +460,28 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">我々のミッションは</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <p className="profile__main-list-item-copy">{data.description}</p>
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">特徴</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  ) : null }
                   <dl className="profile__data-character">
                     <dt className="profile__data-character-term">フラットな組織</dt>
                     <dd className="profile__data-character-data">{data.what_text}</dd>
@@ -374,6 +495,14 @@ const Profile = (props) => {
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
+                  { isEdit ? (
+                    <Button className="button--pill">
+                      <>
+                        <i className="icon icon-plus text-dark-yellow"></i>
+                        追加
+                      </>
+                    </Button>
+                  ) : null }
                   <ul className="profile__data-websites">
                     <li className="profile__data-websites-item">
                       <div className="profile__data-websites-eyecatch">

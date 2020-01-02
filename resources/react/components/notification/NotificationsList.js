@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import moment from 'moment';
 import faker from 'faker';
 faker.locale = "ja";
-import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Pill from '../common/Pill';
+import generateRoute from '../../utils/generateRoute';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
-import generateRoute from '../../utils/generateRoute';
 
 const dummyNotifications = new Array(10)
   .fill(null)

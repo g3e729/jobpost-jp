@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
@@ -8,9 +8,9 @@ import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
 import Pill from '../common/Pill';
 import Search from '../common/Search';
+import generateRoute from '../../utils/generateRoute';
 import { routes } from '../../constants/routes';
 import { dashboardSelectStyles } from '../../constants/config';
-import generateRoute from '../../utils/generateRoute';
 
 const filterList = [
   { value: 'chocolate',   label: 'Chocolate' },

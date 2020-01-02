@@ -63,9 +63,16 @@
 }
 
 .profile__main-list-item-box {
+  position: relative;
   padding: 28px 30px 30px;
 
   border: solid 1px $color-dark-gray;
+
+  > button {
+    position: absolute;
+    top: 21px;
+    right: 30px;
+  }
 }
 
 .profile__main-list-item-heading {

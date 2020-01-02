@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useDispatch } from 'react-redux';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
 import { state } from '../../constants/state';
-
 import { updateUserPass, updateUserEmail } from '../../actions/user';
 
 const Settings = _ => {

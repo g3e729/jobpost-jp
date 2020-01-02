@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Pagination from '../common/Pagination';
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
-import { state } from '../../constants/state';
 import JobsList from './JobsList';
+import { state } from '../../constants/state';
 
 const JobsSection = (props) => {
   const { jobs } = props;

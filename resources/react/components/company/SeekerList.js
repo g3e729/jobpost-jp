@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 
 import Avatar from '../common/Avatar';
 import Fraction from '../common/Fraction';

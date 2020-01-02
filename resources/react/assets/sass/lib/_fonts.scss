@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?ubaqwt';
+$suffix: '?2nyp2f';
 
 @font-face {
   font-family: 'kredo';
@@ -47,6 +47,9 @@ $suffix: '?ubaqwt';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-disk:before {
+  content: "\e91b";
+}
 .icon-paperplane:before {
   content: "\e919";
 }
