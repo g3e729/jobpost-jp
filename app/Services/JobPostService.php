@@ -74,6 +74,8 @@ class JobPostService extends BaseService
                 }
             }
 
+            $sort = strtoupper($sort);
+
             $que = $que->orderBy('created_at', $sort);
 
             if ($paginated) {
