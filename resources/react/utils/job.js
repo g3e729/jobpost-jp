@@ -18,7 +18,7 @@ export default class Job {
     const {
       page,
       position,
-      status,
+      employment_type,
       programming_language,
       framework,
       prefecture,
@@ -31,7 +31,7 @@ export default class Job {
       params: {
         page,
         position,
-        status,
+        employment_type,
         programming_language,
         framework,
         prefecture,

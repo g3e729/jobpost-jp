@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import _ from 'lodash';
 
 import { jobSelectStyles } from '../../constants/config';
@@ -18,7 +19,8 @@ const JobsFilter = (props) => {
   const [programmingFilter, setProgrammingFilter] = useState([]);
   const [regionsFilter, setRegionsFilter] = useState([]);
   const [statusFilter, setStatusFilter] = useState([]);
-  const [urlParams, setUrlParams] = useState('');
+  const urlParams = new URLSearchParams(location.search);
+  const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '');
   let history = useHistory();
   const { filters } = props;
   const data = filters.filtersData;
@@ -49,16 +51,22 @@ const JobsFilter = (props) => {
   }, [data]);
 
   useEffect(_ => {
-    if (urlParams) {
-      history.push(urlParams);
+    if (urlParamsTmp) {
+      history.push(urlParamsTmp);
     }
-  }, [urlParams])
+  }, [urlParamsTmp])
 
   const handleChange = (e, type) => {
-    if (urlParams) {
-      setUrlParams(`${urlParams}&${type}=${e.value}`);
+    if (urlParamsTmp) {
+      if (urlParamsTmp.includes(type)) {
+        urlParams.set(type, e.value);
+        setUrlParamsTmp(`?${urlParams.toString()}`);
+      }
+      else {
+        setUrlParamsTmp(`${urlParamsTmp}&${type}=${e.value}`);
+      }
     } else {
-      setUrlParams(`?${type}=${e.value}`);
+      setUrlParamsTmp(`?${type}=${e.value}`);
     }
   }
 
@@ -86,7 +94,7 @@ const JobsFilter = (props) => {
             <Select options={statusFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
-              onChange={e => handleChange(e, 'status')}
+              onChange={e => handleChange(e, 'employment_type')}
             />
           </li>
           <li className="jobs-filter-content__list-item">
