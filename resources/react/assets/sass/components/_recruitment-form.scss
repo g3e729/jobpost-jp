@@ -32,8 +32,16 @@
 
   > *:last-child {
     flex: 1;
+  }
+}
 
-    background-color: pink; //? TODO
+.recruitment-form__main-group-cluster {
+  > * {
+    margin-top: 15px;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 
@@ -50,6 +58,16 @@
 
     display: block;
   }
+}
+
+.recruitment-form__main-group-input {
+  padding-left: 14px;
+
+  width: 100% !important;
+  min-height: 50px;
+  resize: none;
+
+  border: solid 1px $color-dark-gray;
 }
 
 .recruitment-form__button {

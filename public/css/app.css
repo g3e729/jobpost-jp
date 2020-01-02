@@ -3763,7 +3763,14 @@ a.pagination__item-link:hover {
 .recruitment-form__main-group > *:last-child {
   -webkit-box-flex: 1;
           flex: 1;
-  background-color: pink;
+}
+
+.recruitment-form__main-group-cluster > * {
+  margin-top: 15px;
+}
+
+.recruitment-form__main-group-cluster > *:first-child {
+  margin-top: 0;
 }
 
 .recruitment-form__main-group-label {
@@ -3777,6 +3784,14 @@ a.pagination__item-link:hover {
   font-weight: 400;
   color: #d9d6d6;
   display: block;
+}
+
+.recruitment-form__main-group-input {
+  padding-left: 14px;
+  width: 100% !important;
+  min-height: 50px;
+  resize: none;
+  border: solid 1px #d9d6d6;
 }
 
 .recruitment-form__button {
