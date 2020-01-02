@@ -13,7 +13,7 @@ const CompanySidebar = _ => (
         </NavLink>
       </li>
       <li className="company-sidebar__menu-item">
-        <NavLink exact to={routes.RECRUITMENT} activeClassName={state.ACTIVE}>
+        <NavLink to={routes.RECRUITMENT} activeClassName={state.ACTIVE}>
           募集
         </NavLink>
       </li>

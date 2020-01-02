@@ -1,0 +1,58 @@
+.recruitment-form {}
+
+.recruitment-form__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: $color-white;
+}
+
+.recruitment-form__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  padding-bottom: 14px;
+  border-bottom: solid 1px $color-dark-yellow;
+}
+
+.recruitment-form__main {}
+
+.recruitment-form__main-group {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  margin-top: 40px;
+
+  > *:first-child {
+    width: 150px;
+    flex: 0 0 150px;
+  }
+
+  > *:last-child {
+    flex: 1;
+
+    background-color: pink; //? TODO
+  }
+}
+
+.recruitment-form__main-group-label {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+
+  margin-top: 15px;
+
+  > span {
+    font-weight: 400;
+    color: $color-dark-gray;
+
+    display: block;
+  }
+}
+
+.recruitment-form__button {
+  text-align: center;
+  margin-top: 25px;
+}

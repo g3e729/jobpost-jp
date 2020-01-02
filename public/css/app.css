@@ -3730,6 +3730,60 @@ a.pagination__item-link:hover {
   letter-spacing: 0.06em;
 }
 
+.recruitment-form__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: #fff;
+}
+
+.recruitment-form__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #fdb834;
+}
+
+.recruitment-form__main-group {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: stretch;
+          align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.recruitment-form__main-group > *:first-child {
+  width: 150px;
+  -webkit-box-flex: 0;
+          flex: 0 0 150px;
+}
+
+.recruitment-form__main-group > *:last-child {
+  -webkit-box-flex: 1;
+          flex: 1;
+  background-color: pink;
+}
+
+.recruitment-form__main-group-label {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  margin-top: 15px;
+}
+
+.recruitment-form__main-group-label > span {
+  font-weight: 400;
+  color: #d9d6d6;
+  display: block;
+}
+
+.recruitment-form__button {
+  text-align: center;
+  margin-top: 25px;
+}
+
 .recruitment-list__container {
   position: relative;
   padding: 45px 50px 50px;

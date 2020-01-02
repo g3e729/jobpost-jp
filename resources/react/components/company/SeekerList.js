@@ -15,9 +15,9 @@ const filterList = [
   { value: 'vanilla',     label: 'Vanilla' }
 ];
 
-const SeekerList = ({type = null, title, link}) => (
+const SeekerList = ({type = null, title = '', link}) => (
   <div className="seeker-list__container">
-    { title ? <h3 className="seeker-list__title">{title}</h3> : null }
+    <h3 className="seeker-list__title">{title}</h3>
     { type ? (
       <>
         <div className="seeker-list__search">

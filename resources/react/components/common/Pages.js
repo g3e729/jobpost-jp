@@ -16,6 +16,8 @@ import ScoutsPage from '../student/ScoutsPage';
 import CompanyPage from '../company/CompanyPage';
 import DashboardPage from '../company/DashboardPage';
 import RecruitmentPage from '../company/RecruitmentPage';
+import AddRecruitmentPage from '../company/AddRecruitmentPage';
+import EditRecruitmentPage from '../company/EditRecruitmentPage';
 import CandidatesPage from '../company/CandidatesPage';
 import ScoutPage from '../company/ScoutPage';
 import CScoutsPage from '../company/ScoutsPage';
@@ -104,6 +106,16 @@ const Pages = _ => (
         exact
         path={routes.RECRUITMENT}
         component={requireAuth(RecruitmentPage)}
+      />
+      <Route
+        exact
+        path={routes.RECRUITMENT_ADD}
+        component={requireAuth(AddRecruitmentPage)}
+      />
+      <Route
+        exact
+        path={routes.RECRUITMENT_EDIT}
+        component={requireAuth(EditRecruitmentPage)}
       />
       <Route
         exact

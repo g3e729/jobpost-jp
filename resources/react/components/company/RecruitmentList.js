@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
+import generateRoute from '../../utils/generateRoute';
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
 
@@ -63,7 +64,7 @@ const RecruitmentList = _ => (
                 自社★C2Cマッチングプラットフォーム開発
               </h4>
               <div className="recruitment-list__item-column-actions">
-                <Link to={routes.RECRUITMENT_EDIT} className="button button--link recruitment-list__item-column-actions-button">
+                <Link to={generateRoute(routes.RECRUITMENT_EDIT, { id: 1 })} className="button button--link recruitment-list__item-column-actions-button">
                   <>
                     <i className="icon icon-pencil"></i>
                     編集
