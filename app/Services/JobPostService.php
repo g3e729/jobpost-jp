@@ -57,7 +57,7 @@ class JobPostService extends BaseService
         }
     }
     
-    public function search($fields, $paginated = true)
+    public function search($fields, $paginated = true, $sort = 'DESC')
     {
         try {
             $fields = array_filter($fields);
@@ -73,6 +73,8 @@ class JobPostService extends BaseService
                     break;
                 }
             }
+
+            $que = $que->orderBy('created_at', $sort);
 
             if ($paginated) {
                 return $que->paginate(config('site_settings.per_page'));
