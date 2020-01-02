@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
 
 import { jobSelectStyles } from '../../constants/config';
@@ -17,6 +18,8 @@ const JobsFilter = (props) => {
   const [programmingFilter, setProgrammingFilter] = useState([]);
   const [regionsFilter, setRegionsFilter] = useState([]);
   const [statusFilter, setStatusFilter] = useState([]);
+  const [urlParams, setUrlParams] = useState('');
+  let history = useHistory();
   const { filters } = props;
   const data = filters.filtersData;
   const inputPlaceholder = '指定なし';
@@ -45,6 +48,20 @@ const JobsFilter = (props) => {
     }
   }, [data]);
 
+  useEffect(_ => {
+    if (urlParams) {
+      history.push(urlParams);
+    }
+  }, [urlParams])
+
+  const handleChange = (e, type) => {
+    if (urlParams) {
+      setUrlParams(`${urlParams}&${type}=${e.value}`);
+    } else {
+      setUrlParams(`?${type}=${e.value}`);
+    }
+  }
+
   return (
     <aside className="jobs-filter">
       <h3 className="jobs-filter__header">絞り込み</h3>
@@ -58,6 +75,7 @@ const JobsFilter = (props) => {
             <Select options={positionsFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
+              onChange={e => handleChange(e, 'position')}
             />
           </li>
           <li className="jobs-filter-content__list-item">
@@ -68,6 +86,7 @@ const JobsFilter = (props) => {
             <Select options={statusFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
+              onChange={e => handleChange(e, 'status')}
             />
           </li>
           <li className="jobs-filter-content__list-item">
@@ -78,6 +97,7 @@ const JobsFilter = (props) => {
             <Select options={programmingFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
+              onChange={e => handleChange(e, 'programming_language')}
             />
           </li>
           <li className="jobs-filter-content__list-item">
@@ -88,6 +108,7 @@ const JobsFilter = (props) => {
             <Select options={frameworksFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
+              onChange={e => handleChange(e, 'framework')}
             />
           </li>
           <li className="jobs-filter-content__list-item">
@@ -108,6 +129,7 @@ const JobsFilter = (props) => {
             <Select options={regionsFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
+              onChange={e => handleChange(e, 'prefecture')}
             />
           </li>
           <li className="jobs-filter-content__list-item">

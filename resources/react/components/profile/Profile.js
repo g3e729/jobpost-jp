@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
+import _ from 'lodash';
 
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
@@ -10,9 +11,13 @@ import Job from '../../utils/job';
 
 const Profile = (props) => {
   const [jobs, setJobs] = useState({});
-  const jobsData = jobs.data || {}; // TODO: Trim 3
+  let jobsData = jobs.data || {};
   const { user, accountType, isOwner = true } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
+
+  if (!_.isEmpty(jobsData)) {
+    jobsData.splice(0, 3);
+  }
 
   async function getFilteredJobs() {
     const companyId = data.id;

@@ -41,8 +41,8 @@ export const accessTable = [
   {
     'company': [
       routes.MY_PROFILE,
-      routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
+      routes.PROFILE_SETTINGS,
 
       routes.DASHBOARD,
       routes.RECRUITMENT,
@@ -61,8 +61,8 @@ export const accessTable = [
   {
     'student': [
       routes.MY_PROFILE,
-      routes.PROFILE_SETTINGS,
       routes.PROFILE_EDIT,
+      routes.PROFILE_SETTINGS,
 
       routes.PROFILE_FAV,
       routes.PROFILE_APPLY,

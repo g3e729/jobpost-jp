@@ -12,6 +12,7 @@ const Heading = ({
   title,
   subTitle,
   isOwner = true,
+  isEdit = false,
   isLogged = false,
   accountType = null,
   passedFunction = null,
@@ -47,9 +48,15 @@ const Heading = ({
               {subTitle}
             </p>
             { isOwner == true ? (
-              <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
-                <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
-              </Link>
+              isEdit ? (
+                <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
+                  <span><i className="icon icon-toodo text-dark-yellow"></i>更新</span>
+                </Link>
+              ) : (
+                <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
+                  <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
+                </Link>
+              )
             ) : (
               isLogged ? (
                 accountType === 'student' ? (

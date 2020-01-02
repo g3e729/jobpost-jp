@@ -5,7 +5,6 @@ import Pagination from '../common/Pagination';
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import { state } from '../../constants/state';
-
 import JobsList from './JobsList';
 
 const JobsSection = (props) => {
@@ -18,7 +17,7 @@ const JobsSection = (props) => {
       { jobsData.length ? (
         <>
           <div className="jobs-section__top">
-            <Fraction numerator="10"
+            <Fraction numerator={jobsData.length}
               denominator={data.total}
             />
             <div className="jobs-section__actions">

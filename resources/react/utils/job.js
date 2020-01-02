@@ -15,13 +15,26 @@ export default class Job {
   }
 
   static getFilteredJobs(params) {
-    const { page, company_profile_id } = params;
+    const {
+      page,
+      position,
+      status,
+      programming_language,
+      framework,
+      prefecture,
+      company_profile_id
+    } = params;
 
     const payload = {
       url: generateRoute(endpoints.JOBS),
       method: 'get',
       params: {
         page,
+        position,
+        status,
+        programming_language,
+        framework,
+        prefecture,
         company_profile_id
       }
     }

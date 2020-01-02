@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { state } from '../../constants/state';
-import { routes } from '../../constants/routes';
 
 const Pagination = (props) => {
   const {
@@ -16,7 +15,7 @@ const Pagination = (props) => {
     <ul className="pagination" role="navigation">
       <li className={`pagination__item ${ prevPage ? '' : state.DISABLED}`}>
         { prevPage ? (
-          <Link to={`${routes.JOBS}?page=${current-1}`} className="pagination__item-link">
+          <Link to={`?page=${current-1}`} className="pagination__item-link">
             <i className="icon icon-back-arrow"></i>
           </Link>
           ) : (
@@ -32,7 +31,7 @@ const Pagination = (props) => {
             { item === current ? (
               <span className="pagination__item-link">{item}</span>
             ) : (
-              <Link to={`${routes.JOBS}?page=${item}`} className="pagination__item-link">
+              <Link to={`?page=${item}`} className="pagination__item-link">
                 {item}
               </Link>
             )}
@@ -41,7 +40,7 @@ const Pagination = (props) => {
       ))}
       <li className={`pagination__item ${ nextPage ? '' : state.DISABLED}`}>
         { nextPage ? (
-          <Link to={`${routes.JOBS}?page=${current+1}`} className="pagination__item-link">
+          <Link to={`?page=${current+1}`} className="pagination__item-link">
             <i className="icon icon-next-arrow"></i>
           </Link>
           ) : (

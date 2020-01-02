@@ -5,6 +5,7 @@ import JobsPage from '../jobs/JobsPage';
 import JobPage from '../jobs/JobPage';
 
 import ProfilePage from '../profile/ProfilePage';
+import EditProfilePage from '../profile/EditProfilePage';
 import SettingsPage from '../profile/SettingsPage';
 
 import StudentPage from '../student/StudentPage';
@@ -58,6 +59,11 @@ const Pages = _ => (
         exact
         path={routes.MY_PROFILE}
         component={requireAuth(ProfilePage)}
+      />
+      <Route
+        exact
+        path={routes.PROFILE_EDIT}
+        component={requireAuth(EditProfilePage)}
       />
       <Route
         exact

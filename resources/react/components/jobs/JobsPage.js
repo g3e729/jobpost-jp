@@ -15,10 +15,25 @@ const JobsPage = _ => {
   const urlParams = new URLSearchParams(location.search);
 
   useEffect(_ => {
+    // By Page
     const page = urlParams.get('page');
 
-    if (page) {
-      dispatch(getFilteredJobs({page}));
+    // By Filter
+    const position = urlParams.get('position');
+    const status = urlParams.get('status'); // TODO: not working on via api
+    const programming_language = urlParams.get('programming_language'); // TODO: not working on via api
+    const framework = urlParams.get('framework');
+    const prefecture = urlParams.get('prefecture'); // TODO: not working on via api
+
+    if (page || position || status || programming_language || framework || prefecture) {
+      dispatch(getFilteredJobs({
+        page,
+        position,
+        status,
+        programming_language,
+        framework,
+        prefecture
+      }));
     }
     else {
       dispatch(getJobs());
