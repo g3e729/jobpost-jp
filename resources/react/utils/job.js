@@ -22,6 +22,7 @@ export default class Job {
       programming_language,
       framework,
       prefecture,
+      sort,
       company_profile_id
     } = params;
 
@@ -35,6 +36,7 @@ export default class Job {
         programming_language,
         framework,
         prefecture,
+        sort,
         company_profile_id
       }
     }

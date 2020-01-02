@@ -20,6 +20,10 @@ const JobsFilter = (props) => {
   const [statusFilter, setStatusFilter] = useState([]);
   const urlParams = new URLSearchParams(location.search);
   const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '');
+  const sortFilter = [
+    { value: 'desc', label: '降順' },
+    { value: 'asc', label: '上昇' }
+  ];
   let history = useHistory();
   const { filters } = props;
   const data = filters.filtersData;
@@ -142,11 +146,12 @@ const JobsFilter = (props) => {
           <li className="jobs-filter-content__list-item">
             <div className="jobs-filter-content__header">
               <i className="icon icon-sort-down text-dark-yellow"></i>
-              ソート TODO
+              ソート
             </div>
-            <Select options={filterList}
+            <Select options={sortFilter}
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
+              onChange={e => handleChange(e, 'sort')}
             />
           </li>
         </ul>
