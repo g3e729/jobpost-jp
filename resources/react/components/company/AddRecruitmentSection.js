@@ -4,6 +4,8 @@ import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 
+import ecPlaceholder from '../../../img/eyecatch-default.jpg';
+
 const AddRecruitmentSection = _ => {
   const [formValues, setFormValues] = useState({
     title: '',
@@ -41,15 +43,36 @@ const AddRecruitmentSection = _ => {
               />
             </div>
 
-            {/* <div className="recruitment-form__main-group">
+            <div className="recruitment-form__main-group">
               <div className="recruitment-form__main-group-label">
                 会社ロゴ<span>1246 x 420 (px)</span>
               </div>
-              <Input className="recruitment-form__main-group-input"
-                name="company_logo"
-                type="text"
-              />
-            </div> */}
+              <div className="recruitment-form__main-group-cluster">
+                {/* <Input className="recruitment-form__main-group-input"
+                  name="company_logo"
+                  type="file"
+                /> */}
+                <div className="recruitment-form__main-group-eyecatch">
+                  <div className="recruitment-form__main-group-eyecatch-img" style={{ backgroundImage: `url("${ecPlaceholder}")` }}></div>
+                </div>
+                <div className="recruitment-form__main-group-actions">
+                  <Button className="button--pill">
+                    <>
+                      <i className="icon icon-image text-dark-yellow"></i>
+                      アップロード
+                    </>
+                  </Button>
+                  <Button className="button--link recruitment-form__main-group-actions-button">
+                    <>
+                      <i className="icon icon-cross"></i>
+                      画像を削除
+                    </>
+                  </Button>
+                </div>
+
+              </div>
+
+            </div>
 
             <div className="recruitment-form__main-group">
               <div className="recruitment-form__main-group-label">{`
@@ -63,14 +86,17 @@ const AddRecruitmentSection = _ => {
               />
             </div>
 
-            {/* <div className="recruitment-form__main-group">
+            <div className="recruitment-form__main-group">
               <div className="recruitment-form__main-group-label">
                 募集内容
               </div>
-              <Textarea className="recruitment-form__main-group-input"
-                name="description"
-              />
-            </div> */}
+              <div className="recruitment-form__main-group-cluster">
+                Table
+                {/* <Textarea className="recruitment-form__main-group-input"
+                  name="description"
+                /> */}
+              </div>
+            </div>
 
             <div className="recruitment-form__main-group">
               <div className="recruitment-form__main-group-label">

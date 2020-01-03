@@ -3794,6 +3794,43 @@ a.pagination__item-link:hover {
   border: solid 1px #d9d6d6;
 }
 
+.recruitment-form__main-group-eyecatch {
+  position: relative;
+  max-height: 238px;
+}
+
+.recruitment-form__main-group-eyecatch:before {
+  content: "";
+  padding-top: 32%;
+  display: block;
+}
+
+.recruitment-form__main-group-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.recruitment-form__main-group-actions {
+  margin-top: 24px;
+}
+
+.recruitment-form__main-group-actions-button {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: #d9d6d6;
+  margin-left: 17px;
+}
+
+.recruitment-form__main-group-actions-button > i {
+  font-size: 10px;
+  margin-right: 5px;
+}
+
 .recruitment-form__button {
   text-align: center;
   margin-top: 25px;

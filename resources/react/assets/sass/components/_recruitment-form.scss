@@ -70,6 +70,46 @@
   border: solid 1px $color-dark-gray;
 }
 
+.recruitment-form__main-group-eyecatch {
+  position: relative;
+  max-height: 238px;
+
+  &:before {
+    content: '';
+    padding-top: 32%;
+    display: block;
+  }
+}
+
+.recruitment-form__main-group-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.recruitment-form__main-group-actions {
+  margin-top: 24px;
+}
+
+.recruitment-form__main-group-actions-button {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: $color-dark-gray;
+
+  margin-left: 17px;
+
+  > i {
+    font-size: 10px;
+
+    margin-right: 5px;
+  }
+}
+
 .recruitment-form__button {
   text-align: center;
   margin-top: 25px;
