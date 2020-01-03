@@ -24,7 +24,7 @@ const JobsFilter = (props) => {
     { value: 'desc', label: '降順' },
     { value: 'asc', label: '上昇' }
   ];
-  let history = useHistory();
+  const history = useHistory();
   const { filters } = props;
   const data = filters.filtersData;
   const inputPlaceholder = '指定なし';

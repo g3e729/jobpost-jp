@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
+import { prefix } from '../../constants/routes';
 
 const Search = ({placeholder = 'キーワードで検索'}) => {
   const [searchValue, setSearchValue] = useState('');
+  let history = useHistory();
 
-  const handleSubmit = _ => {
-    console.log('[Search]');
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    history.push(`${prefix}search?query=${searchValue}`);
   }
 
   const handleChange = e => {
@@ -15,7 +20,7 @@ const Search = ({placeholder = 'キーワードで検索'}) => {
   }
 
   return (
-    <form className="search" onSubmit={_ => handleSubmit()}>
+    <form className="search" onSubmit={e => handleSubmit(e)}>
       <div className="search__group">
         <Input className="input--search"
           value={searchValue}

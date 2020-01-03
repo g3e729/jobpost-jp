@@ -25,7 +25,6 @@ const Pagination = (props) => {
     }
   }, [location]);
 
-
   return (
     <ul className="pagination" role="navigation" style={{ display: (lastPage < 2) ? 'none' : ''}}>
       <li className={`pagination__item ${ prevPage ? '' : state.DISABLED}`}>

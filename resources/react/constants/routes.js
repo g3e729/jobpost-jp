@@ -25,6 +25,8 @@ export const routes = {
   SCOUT: `${prefix}dashboard/scout`, // company
   SCOUTS: `${prefix}scouts`, // company
 
+  SEARCH: `${prefix}search`,
+
   MESSAGES: `${prefix}messages`, // student, company
 
   NOTIFICATIONS: `${prefix}notifications`, // student, company
