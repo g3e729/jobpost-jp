@@ -3893,6 +3893,12 @@ a.pagination__item-link:hover {
           flex: 1 0 25%;
 }
 
+.recruitment-form__main-group-table > dd input,
+.recruitment-form__main-group-table > dd textarea {
+  width: 100%;
+  resize: none;
+}
+
 .recruitment-form__main-group-table > dd > dl {
   display: -webkit-box;
   display: flex;

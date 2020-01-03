@@ -12,6 +12,22 @@ const AddRecruitmentSection = _ => {
     title: '',
     description: '',
     eyecatch: '',
+    position: '',
+    programming_language: '',
+    framework: '',
+    database: '',
+    management: '',
+    requirements: '',
+    total_applicants: '',
+    annual_income: '',
+    working_hours: '',
+    holidays: '',
+    benefits: '',
+    incentive: '',
+    promotion: '',
+    insurance: '',
+    trial_period: '',
+    selection_flow: '',
     address1: '',
     address2: '',
     address3: '',
@@ -133,72 +149,152 @@ const AddRecruitmentSection = _ => {
                 <dl className="recruitment-form__main-group-table">
                   <dt>ポジション</dt>
                   <dd>
-                    placeholder
+                    <Input
+                      value={formValues.position}
+                      onChange={e => handleChange(e)}
+                      name="position"
+                      type="text"
+                    />
                   </dd>
                   <dt>開発環境</dt>
                   <dd>
                     <dl>
                       <dt>言語</dt>
                       <dd>
-                        placeholder
+                        <Input
+                          value={formValues.programming_language}
+                          onChange={e => handleChange(e)}
+                          name="programming_language"
+                          type="text"
+                        />
                       </dd>
                       <dt>フレームワーク</dt>
                       <dd>
-                        placeholder
+                        <Input
+                          value={formValues.framework}
+                          onChange={e => handleChange(e)}
+                          name="framework"
+                          type="text"
+                        />
                       </dd>
                       <dt>データベース</dt>
                       <dd>
-                        placeholder
+                        <Input
+                          value={formValues.database}
+                          onChange={e => handleChange(e)}
+                          name="database"
+                          type="text"
+                        />
                       </dd>
                       <dt>管理</dt>
                       <dd>
-                        placeholder
+                        <Input
+                          value={formValues.management}
+                          onChange={e => handleChange(e)}
+                          name="management"
+                          type="text"
+                        />
                       </dd>
                     </dl>
                   </dd>
                   <dt>応募要件</dt>
                   <dd>
-                    placeholder
+                    <Textarea
+                      value={formValues.requirements}
+                      onChange={e => handleChange(e)}
+                      name="requirements"
+                      row="4"
+                    />
                   </dd>
                   <dt>募集人数</dt>
                   <dd className="half">
-                    placeholder
+                    <Input
+                      value={formValues.total_applicants}
+                      onChange={e => handleChange(e)}
+                      name="total_applicants"
+                      type="number"
+                    />
                   </dd>
                   <dt>想定年収</dt>
                   <dd className="half">
-                    placeholder
+                    <Input
+                      value={formValues.annual_income}
+                      onChange={e => handleChange(e)}
+                      name="annual_income"
+                      type="text"
+                    />
                   </dd>
                   <dt>勤務時間</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.working_hours}
+                      onChange={e => handleChange(e)}
+                      name="working_hours"
+                      row="4"
+                    />
                   </dd>
                   <dt>想定年収</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.holidays}
+                      onChange={e => handleChange(e)}
+                      name="holidays"
+                      row="4"
+                    />
                   </dd>
                   <dt>諸手当</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.benefits}
+                      onChange={e => handleChange(e)}
+                      name="benefits"
+                      row="2"
+                    />
                   </dd>
                   <dt>インセンティブ</dt>
                   <dd className="half">
-                    placeholder
+                    <Input
+                      value={formValues.incentive}
+                      onChange={e => handleChange(e)}
+                      name="incentive"
+                      type="text"
+                    />
                   </dd>
                   <dt>昇給・昇格</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.promotion}
+                      onChange={e => handleChange(e)}
+                      name="promotion"
+                      row="4"
+                    />
                   </dd>
                   <dt>保険</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.insurance}
+                      onChange={e => handleChange(e)}
+                      name="insurance"
+                      row="4"
+                    />
                   </dd>
                   <dt>試用期間</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.trial_period}
+                      onChange={e => handleChange(e)}
+                      name="trial_period"
+                      row="8"
+                    />
                   </dd>
                   <dt>選考フロー</dt>
                   <dd className="half">
-                    placeholder
+                    <Textarea
+                      value={formValues.selection_flow}
+                      onChange={e => handleChange(e)}
+                      name="selection_flow"
+                      row="8"
+                    />
                   </dd>
                 </dl>
               </div>
