@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 
@@ -12,24 +11,22 @@ import { routes } from '../../constants/routes';
 
 const Profile = (props) => {
   const [jobs, setJobs] = useState({});
-  let jobsData = jobs.data || {};
   const { user, accountType, isEdit = false, isOwner = true } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
-  if (!_.isEmpty(jobsData)) {
-    jobsData.splice(0, 3);
-  }
-
   async function getFilteredJobs() {
     const companyId = data.id;
-    const request = await Job.getFilteredJobs({company_profile_id: companyId});
+    const request = await Job.getFilteredJobs({
+      company_profile_id: companyId,
+      sort: 'desc'
+    });
 
     return request.data;
   }
 
   useEffect(_ => {
     getFilteredJobs()
-      .then(res => setJobs(res))
+      .then(res => setJobs(res.data.splice(0, 3)))
       .catch(error => console.log('[Jobs ERROR]', error));
   }, []);
 
@@ -551,7 +548,7 @@ const Profile = (props) => {
           <div className="profile__data profile__data--jobs">
             <div className="profile__data-jobs">
               <div className="profile__data-jobs-content">
-                <JobsList jobs={jobsData} hasTitle="true" />
+                <JobsList jobs={jobs} hasTitle="true" />
               </div>
               <div className="profile__data-jobs-footer">
                 <Link to={routes.RECRUITMENT} className="button">
