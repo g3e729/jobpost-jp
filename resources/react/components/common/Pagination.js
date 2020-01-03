@@ -15,12 +15,10 @@ const Pagination = (props) => {
   } = props;
 
   useEffect(_ => {
-    const page = urlParams.get('page');
-
     if (urlParams.toString()) {
-      if (page) {
-        urlParams.set('page', '');
-        setUrlParamsTmp(`?${urlParams.toString()}`);
+      if (urlParams.has('page')) {
+        urlParams.delete('page');
+        setUrlParamsTmp(`?${urlParams.toString()}&page=`);
       } else {
         setUrlParamsTmp(`${urlParamsTmp}&page=`);
       }
