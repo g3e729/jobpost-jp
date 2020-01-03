@@ -1,21 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import { state } from '../../constants/state';
 
 const Pagination = (props) => {
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+  const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '?page=');
   const {
     current,
     prevPage,
     nextPage,
-    lastPage
+    lastPage = 0
   } = props;
 
+  useEffect(_ => {
+    const page = urlParams.get('page');
+
+    if (urlParams.toString()) {
+      if (page) {
+        urlParams.set('page', '');
+        setUrlParamsTmp(`?${urlParams.toString()}`);
+      } else {
+        setUrlParamsTmp(`${urlParamsTmp}&page=`);
+      }
+    }
+  }, [location]);
+
+
   return (
-    <ul className="pagination" role="navigation">
+    <ul className="pagination" role="navigation" style={{ display: (lastPage < 2) ? 'none' : ''}}>
       <li className={`pagination__item ${ prevPage ? '' : state.DISABLED}`}>
         { prevPage ? (
-          <Link to={`?page=${current-1}`} className="pagination__item-link">
+          <Link to={`${urlParamsTmp}${current-1}`} className="pagination__item-link">
             <i className="icon icon-back-arrow"></i>
           </Link>
           ) : (
@@ -31,7 +48,7 @@ const Pagination = (props) => {
             { item === current ? (
               <span className="pagination__item-link">{item}</span>
             ) : (
-              <Link to={`?page=${item}`} className="pagination__item-link">
+              <Link to={`${urlParamsTmp}${item}`} className="pagination__item-link">
                 {item}
               </Link>
             )}
@@ -40,7 +57,7 @@ const Pagination = (props) => {
       ))}
       <li className={`pagination__item ${ nextPage ? '' : state.DISABLED}`}>
         { nextPage ? (
-          <Link to={`?page=${current+1}`} className="pagination__item-link">
+          <Link to={`${urlParamsTmp}${current+1}`} className="pagination__item-link">
             <i className="icon icon-next-arrow"></i>
           </Link>
           ) : (
