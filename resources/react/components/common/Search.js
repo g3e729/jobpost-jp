@@ -7,7 +7,7 @@ import { prefix } from '../../constants/routes';
 
 const Search = ({placeholder = 'キーワードで検索'}) => {
   const [searchValue, setSearchValue] = useState('');
-  let history = useHistory();
+  const history = useHistory();
 
   const handleSubmit = e => {
     e.preventDefault();
