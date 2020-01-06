@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
+import Pill from '../common/Pill';
 import { state } from '../../constants/state';
 
 const Search = _ => {
@@ -93,8 +94,25 @@ const Search = _ => {
             <div className="search-tab__panel-content-main">
               <ul className="search-tab__panel-content-list">
                 { dummyJobs.splice(0, 3).map((item, idx) => (
-                  <li className="search-tab__panel-content-item" key={idx}>
-                    {item.title}
+                  <li className="search-tab__panel-content-item search-tab__panel-content-item--jobs" key={idx}>
+                    <div className="search-tab__panel-content-item-left">
+                      <div className="search-tab__panel-content-eyecatch">
+                        <div className="search-tab__panel-content-eyecatch-img" style={{ backgroundImage: 'url("https://lorempixel.com/640/640/business/")' }}></div>
+                      </div>
+                    </div>
+                    <div className="search-tab__panel-content-item-right">
+                      <ul className="search-tab__panel-content-pills">
+                        <li className="search-tab__panel-content-pills-item">
+                          <Pill className="pill--large">PHP</Pill>
+                        </li>
+                        <li className="search-tab__panel-content-pills-item">
+                          <Pill className="pill--large">バックエンドエンジニア</Pill>
+                        </li>
+                      </ul>
+                      <div className="search-tab__panel-content-job">
+                        {item.title}
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -151,8 +169,25 @@ const Search = _ => {
             <div className="search-tab__panel-content-main">
               <ul className="search-tab__panel-content-list">
                 { dummyJobs.map((item, idx) => (
-                  <li className="search-tab__panel-content-item" key={idx}>
-                    {item.title}
+                  <li className="search-tab__panel-content-item search-tab__panel-content-item--jobs" key={idx}>
+                    <div className="search-tab__panel-content-item-left">
+                      <div className="search-tab__panel-content-eyecatch">
+                        <div className="search-tab__panel-content-eyecatch-img" style={{ backgroundImage: 'url("https://lorempixel.com/640/640/business/")' }}></div>
+                      </div>
+                    </div>
+                    <div className="search-tab__panel-content-item-right">
+                      <ul className="search-tab__panel-content-pills">
+                        <li className="search-tab__panel-content-pills-item">
+                          <Pill className="pill--large">PHP</Pill>
+                        </li>
+                        <li className="search-tab__panel-content-pills-item">
+                          <Pill className="pill--large">バックエンドエンジニア</Pill>
+                        </li>
+                      </ul>
+                      <div className="search-tab__panel-content-job">
+                        {item.title}
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>

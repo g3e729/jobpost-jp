@@ -9,6 +9,10 @@
   border-radius: 30px;
 }
 
+.pill--large {
+  padding: 4px 15px;
+}
+
 .pill--active {
   color: $color-white;
   background-color: $color-dark-yellow;

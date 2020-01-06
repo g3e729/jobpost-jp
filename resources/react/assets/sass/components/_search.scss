@@ -115,6 +115,48 @@
   }
 }
 
+.search-tab__panel-content-item--jobs {
+  align-items: flex-start;
+
+  padding: 25px 0;
+
+  &:first-child {
+    padding-top: 40px;
+  }
+}
+
+.search-tab__panel-content-item-left {
+  width: 165px;
+  flex: 0 0 165px;
+}
+
+.search-tab__panel-content-item-right {
+  flex: 1;
+  margin-left: 25px;
+}
+
+.search-tab__panel-content-eyecatch {
+  position: relative;
+  max-height: 96px;
+
+  &:before {
+    content: '';
+    padding-top: 60%;
+    display: block;
+  }
+}
+
+.search-tab__panel-content-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
 .search-tab__panel-content-company {
   font-size: 16px;
   font-weight: 700;
@@ -122,6 +164,24 @@
 
   flex: 1;
   margin-left: 16px;
+}
+
+.search-tab__panel-content-pills {
+  margin-bottom: 15px;
+}
+
+.search-tab__panel-content-pills-item {
+  display: inline-block;
+
+  margin-right: 5px;
+}
+
+.search-tab__panel-content-job {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
 }
 
 .search-tab__panel-content-bottom {
