@@ -20,14 +20,16 @@ const JobsPage = _ => {
     const employment_type = urlParams.get('employment_type');
     const programming_language = urlParams.get('programming_language');
     const prefecture = urlParams.get('prefecture');
+    const sort = urlParams.get('sort');
 
-    if (page || position || employment_type || programming_language || prefecture) {
+    if (page || position || employment_type || programming_language || prefecture || sort) {
       dispatch(getFilteredJobs({
         page,
         position,
         employment_type,
         programming_language,
-        prefecture
+        prefecture,
+        sort
       }));
     }
     else {

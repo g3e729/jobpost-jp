@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Pagination from '../common/Pagination';
 import Button from '../common/Button';
@@ -8,9 +9,31 @@ import JobsList from './JobsList';
 import { state } from '../../constants/state';
 
 const JobsSection = (props) => {
+  const history = useHistory();
+  const urlParams = new URLSearchParams(history.location.search);
+  const [sortTab, setSortTab] = useState();
   const { jobs } = props;
   const data = jobs.jobsData || {};
   const jobsData = data.data || {};
+
+  useEffect(_ => {
+    const sort = urlParams.get('sort');
+    if (sort === 'popular') {
+      setSortTab(2);
+    }
+  }, [sortTab]);
+
+  const handleSortNew = _ => {
+    setSortTab(1);
+
+    history.push(history.location.pathname);
+  }
+
+  const handleSortPopular = _ => {
+    setSortTab(2);
+
+    history.push(`${history.location.pathname}?sort=popular`);
+  }
 
   return (
     <div className="jobs-section">
@@ -21,10 +44,10 @@ const JobsSection = (props) => {
               denominator={data.total}
             />
             <div className="jobs-section__actions">
-              <Button className={`button--link jobs-section__actions-button ${state.ACTIVE}`}>
+              <Button className={`button--link jobs-section__actions-button ${sortTab === 1 || !sortTab ? state.ACTIVE : ''}`} onClick={e => handleSortNew(e)}>
                 新着順
               </Button>
-              <Button className="button--link jobs-section__actions-button">
+              <Button className={`button--link jobs-section__actions-button ${sortTab === 2 ? state.ACTIVE : ''}`} onClick={e => handleSortPopular(e)}>
                 人気順
               </Button>
             </div>

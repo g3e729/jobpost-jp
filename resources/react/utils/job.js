@@ -5,7 +5,7 @@ import generateRoute from './generateRoute';
 export default class Job {
   static getJobs() {
     const payload = {
-      url: generateRoute(endpoints.JOBS),
+      url: endpoints.JOBS,
       method: 'get'
     }
 
@@ -26,7 +26,7 @@ export default class Job {
     } = params;
 
     const payload = {
-      url: generateRoute(endpoints.JOBS),
+      url: endpoints.JOBS,
       method: 'get',
       params: {
         page,

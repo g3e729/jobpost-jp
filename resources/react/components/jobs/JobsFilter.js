@@ -6,24 +6,13 @@ import { useHistory } from 'react-router-dom';
 
 import { jobSelectStyles } from '../../constants/config';
 
-const filterList = [ //? TODO
-  { value: 'chocolate',   label: 'Chocolate' },
-  { value: 'strawberry',  label: 'Strawberry' },
-  { value: 'vanilla',     label: 'Vanilla' }
-];
-
 const JobsFilter = (props) => {
-  const [frameworksFilter, setFrameworksFilter] = useState([]);
   const [positionsFilter, setPositionsFilter] = useState([]);
   const [programmingFilter, setProgrammingFilter] = useState([]);
   const [regionsFilter, setRegionsFilter] = useState([]);
   const [statusFilter, setStatusFilter] = useState([]);
   const urlParams = new URLSearchParams(location.search);
   const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '');
-  const sortFilter = [
-    { value: 'desc', label: '降順' },
-    { value: 'asc', label: '上昇' }
-  ];
   const history = useHistory();
   const { filters } = props;
   const data = filters.filtersData;
@@ -31,10 +20,6 @@ const JobsFilter = (props) => {
 
   useEffect(_ => {
     if (data) {
-      setFrameworksFilter(data.frameworks.map(item => {
-        return { value: item, label: item };
-      }));
-
       setPositionsFilter(data.positions.map(item => {
         return { value: item, label: item };
       }));

@@ -47,5 +47,8 @@
 
   &.is-active {
     color: $color-dark-yellow;
+
+    cursor: default;
+    pointer-events: none;
   }
 }

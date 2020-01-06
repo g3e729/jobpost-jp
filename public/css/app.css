@@ -2514,6 +2514,8 @@ And you should not feel free to add a new Utility class.
 
 .jobs-section__actions-button.is-active {
   color: #fdb834;
+  cursor: default;
+  pointer-events: none;
 }
 
 .message {
