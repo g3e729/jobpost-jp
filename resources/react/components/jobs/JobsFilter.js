@@ -113,27 +113,6 @@ const JobsFilter = (props) => {
           </li>
           <li className="jobs-filter-content__list-item">
             <div className="jobs-filter-content__header">
-              <i className="icon icon-framework text-dark-yellow"></i>
-              フレームワーク
-            </div>
-            <Select options={frameworksFilter}
-              styles={jobSelectStyles}
-              placeholder={inputPlaceholder}
-              onChange={e => handleChange(e, 'framework')}
-            />
-          </li>
-          <li className="jobs-filter-content__list-item">
-            <div className="jobs-filter-content__header">
-              <i className="icon icon-laptop text-dark-yellow"></i>
-              その他開発環境 TODO
-            </div>
-            <Select options={filterList}
-              styles={jobSelectStyles}
-              placeholder={inputPlaceholder}
-            />
-          </li>
-          <li className="jobs-filter-content__list-item">
-            <div className="jobs-filter-content__header">
               <i className="icon icon-marker text-dark-yellow"></i>
               地域
             </div>
@@ -141,17 +120,6 @@ const JobsFilter = (props) => {
               styles={jobSelectStyles}
               placeholder={inputPlaceholder}
               onChange={e => handleChange(e, 'prefecture')}
-            />
-          </li>
-          <li className="jobs-filter-content__list-item">
-            <div className="jobs-filter-content__header">
-              <i className="icon icon-sort-down text-dark-yellow"></i>
-              ソート
-            </div>
-            <Select options={sortFilter}
-              styles={jobSelectStyles}
-              placeholder={inputPlaceholder}
-              onChange={e => handleChange(e, 'sort')}
             />
           </li>
         </ul>

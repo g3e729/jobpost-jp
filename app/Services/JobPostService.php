@@ -56,12 +56,12 @@ class JobPostService extends BaseService
             abort(505, $e->getMessage());
         }
     }
-    
+
     public function search($fields, $paginated = true, $sort = 'DESC')
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model)->popular();
+            $que = (new $this->model);
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
@@ -82,7 +82,7 @@ class JobPostService extends BaseService
                     $que = $que->orderBy('created_at', $sort);
                 break;
                 case 'POPULAR':
-                    $que = $que->orderByDesc('total_likes');
+                    $que = $que->popular()->orderByDesc('total_likes');
                 break;
             }
 

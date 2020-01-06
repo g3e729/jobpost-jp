@@ -20,7 +20,6 @@ export default class Job {
       position,
       employment_type,
       programming_language,
-      framework,
       prefecture,
       sort,
       company_profile_id
@@ -34,7 +33,6 @@ export default class Job {
         position,
         employment_type,
         programming_language,
-        framework,
         prefecture,
         sort,
         company_profile_id
