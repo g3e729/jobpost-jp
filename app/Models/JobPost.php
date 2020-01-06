@@ -82,12 +82,11 @@ class JobPost extends Model
 
     public function scopePopular($query)
     {
-        return $query->select(\DB::raw(
-                'job_posts.*,
-                count(likes.id) as total_likes')
-            )->leftJoin('likes', 'likes.likeable_id', '=', 'job_posts.id')
-            ->where('likes.likeable_type', get_class($this))
-            ->groupBy('job_posts.id');
+        return $query->withCount([
+            'likes' => function ($q) {
+                $q->where('likes.likeable_type', get_class($this));
+            }
+        ]);
     }
 
     // Attributes

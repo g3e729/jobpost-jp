@@ -61,7 +61,7 @@ class JobPostService extends BaseService
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model);
+            $que = (new $this->model)->popular();
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
@@ -82,7 +82,7 @@ class JobPostService extends BaseService
                     $que = $que->orderBy('created_at', $sort);
                 break;
                 case 'POPULAR':
-                    $que = $que->popular()->orderByDesc('total_likes');
+                    $que = $que->orderByDesc('likes_count');
                 break;
             }
 
