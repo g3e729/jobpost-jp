@@ -23,3 +23,40 @@
     right: 10px;
   }
 }
+
+.search-tab {
+  display: flex;
+  align-items: flex-start;
+}
+
+.search-tab__list {
+  width: 340px;
+  flex: 0 0 340px;
+}
+
+.search-tab__list-item {
+  font-size: 15px;
+  font-weight: 700;
+  color: $color-medium-black;
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+
+  padding: 14px 0 14px 37px;
+  border-left: solid 5px transparent;
+
+  &.is-active {
+    color: $color-dark-yellow;
+
+    cursor: default;
+    border-left: solid 5px $color-dark-yellow;
+    border-radius: 0;
+  }
+}
+
+.search-tab__panel {
+  position: relative;
+  display: none;
+  flex: 1;
+  margin-left: 40px;
+}
