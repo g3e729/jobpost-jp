@@ -954,6 +954,12 @@ And you should not feel free to add a new Utility class.
   pointer-events: none;
 }
 
+.button--small {
+  font-size: 14px;
+  height: 30px;
+  padding: 0 21px;
+}
+
 .button--large {
   font-size: 20px;
   padding: 10px 27px;
@@ -4173,9 +4179,9 @@ a.pagination__item-link:hover {
 }
 
 .search-tab__list {
-  width: 340px;
+  width: 280px;
   -webkit-box-flex: 0;
-          flex: 0 0 340px;
+          flex: 0 0 280px;
 }
 
 .search-tab__list-item {
@@ -4201,6 +4207,77 @@ a.pagination__item-link:hover {
   -webkit-box-flex: 1;
           flex: 1;
   margin-left: 40px;
+}
+
+.search-tab__panel-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-top: -5px;
+  margin-bottom: -7px;
+}
+
+.search-tab__panel-content {
+  margin-top: 30px;
+  padding: 18px 30px 25px;
+  border: solid 1px #d9d6d6;
+}
+
+.search-tab__panel-content-top {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.search-tab__panel-content-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.search-tab__panel-content-main {
+  margin-top: 3px;
+}
+
+.search-tab__panel-content-item {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 19px 0;
+  border-top: solid 1px #d9d6d6;
+}
+
+.search-tab__panel-content-item:first-child {
+  padding-top: 35px;
+  border-top: solid 1px #fdb834;
+}
+
+.search-tab__panel-content-item > img {
+  -webkit-box-flex: 0;
+          flex: 0 0 29px;
+  width: 29px;
+  height: 31px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.search-tab__panel-content-company {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-left: 16px;
+}
+
+.search-tab__panel-content-bottom {
+  text-align: center;
+  padding-top: 25px;
+  border-top: solid 1px #d9d6d6;
 }
 
 .seeker-list__container {
@@ -4327,9 +4404,9 @@ a.pagination__item-link:hover {
 }
 
 .settings-tab__list {
-  width: 340px;
+  width: 280px;
   -webkit-box-flex: 0;
-          flex: 0 0 340px;
+          flex: 0 0 280px;
 }
 
 .settings-tab__list-item {
