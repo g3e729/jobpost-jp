@@ -61,7 +61,7 @@ class JobPostService extends BaseService
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model);
+            $que = (new $this->model)->popular();
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
@@ -76,7 +76,15 @@ class JobPostService extends BaseService
 
             $sort = empty($sort) ? 'DESC' : strtoupper($sort);
 
-            $que = $que->orderBy('created_at', $sort);
+            switch ($sort) {
+                case 'DESC':
+                case 'ASC':
+                    $que = $que->orderBy('created_at', $sort);
+                break;
+                case 'POPULAR':
+                    $que = $que->orderByDesc('total_likes');
+                break;
+            }
 
             if ($paginated) {
                 return $que->paginate(config('site_settings.per_page'));

@@ -26,6 +26,8 @@ Route::group([
 		Route::post('like', 'LikeController@like');
 		Route::post('apply', 'ApplyController@store');
 
+		Route::post('jobs', 'JobPostController@store')->name('jobs.store');
+
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
 	});
 });

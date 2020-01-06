@@ -57,7 +57,7 @@ class JobPost extends Model
         'in' => 'Internship',
     ];
 
-    protected $appends = ['cover_photo', 'total_likes'];
+    protected $appends = ['cover_photo'];
 
     public static function boot()
     {
@@ -80,6 +80,16 @@ class JobPost extends Model
             ->orWhere('database', 'LIKE', "%{$value}%");
     }
 
+    public function scopePopular($query)
+    {
+        return $query->select(\DB::raw(
+                'job_posts.*,
+                count(likes.id) as total_likes')
+            )->leftJoin('likes', 'likes.likeable_id', '=', 'job_posts.id')
+            ->where('likes.likeable_type', get_class($this))
+            ->groupBy('job_posts.id');
+    }
+
     // Attributes
     public function getCoverPhotoAttribute()
     {
@@ -88,11 +98,6 @@ class JobPost extends Model
         }
         
         return FileService::retrievePath($this->file->url);
-    }
-
-    public function getTotalLikesAttribute()
-    {
-        return $this->likes->count();
     }
 
     // Relationships

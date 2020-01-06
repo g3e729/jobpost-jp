@@ -25,6 +25,19 @@ class JobPostController extends BaseController
 	{
 		return $job;
 	}
+
+	public function store(Request $request)
+	{
+		$user = auth()->user();
+
+		if ($user && !$user->hasRole('company')) {
+			abort(404);
+		}
+
+		$company = $user->profile;
+
+		$company->jobPosts()->create($request->all());
+	}
 	
 	public function getJobFilters(Request $request)
 	{
