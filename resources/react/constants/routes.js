@@ -96,6 +96,8 @@ export const endpoints = {
 
   LIKE: '/like',
 
+  SEARCH: '/search',
+
   MESSAGES: '/messages',
   MESSAGES_DETAIL: '/messages/:id',
 

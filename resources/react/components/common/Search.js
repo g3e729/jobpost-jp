@@ -12,7 +12,7 @@ const Search = ({placeholder = 'キーワードで検索'}) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    history.push(`${prefix}search?query=${searchValue}`);
+    history.push(`${prefix}search?search=${searchValue}`);
   }
 
   const handleChange = e => {

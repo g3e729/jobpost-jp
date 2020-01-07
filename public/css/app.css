@@ -4205,6 +4205,11 @@ a.pagination__item-link:hover {
   border-radius: 0;
 }
 
+.search-tab__list-item.is-disabled,
+.search-tab__list-item.react-tabs__tab--disabled {
+  pointer-events: none;
+}
+
 .search-tab__panel {
   position: relative;
   display: none;

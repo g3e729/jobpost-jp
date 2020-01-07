@@ -23,8 +23,8 @@ const CompanyPage = (props) => {
 
   useEffect(_ => {
     getCompany()
-    .then(res => setCompany(res))
-    .catch(error => console.log('[Company detail ERROR]', error));
+      .then(res => setCompany(res))
+      .catch(error => console.log('[Company detail ERROR]', error));
   }, []);
 
   return (

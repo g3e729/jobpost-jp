@@ -52,6 +52,11 @@
     border-left: solid 5px $color-dark-yellow;
     border-radius: 0;
   }
+
+  &.is-disabled,
+  &.react-tabs__tab--disabled {
+    pointer-events: none;
+  }
 }
 
 .search-tab__panel {
