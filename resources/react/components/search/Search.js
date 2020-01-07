@@ -52,10 +52,10 @@ const Search = _ => {
         <TabList className="search-tab__list">
           <Tab className="search-tab__list-item" selectedClassName={state.ACTIVE} onClick={_ => handleTabChange(0)}>すべて</Tab>
           <Tab className="search-tab__list-item" selectedClassName={state.ACTIVE}
-            disabled={!companies.data || (companies.data && companies.data.length <= 3)}
+            disabled={!companies.data || (companies.data && companies.data.length <= 3 && (urlParams.get('companies_page') == 1) || !urlParams.get('companies_page'))}
             onClick={_ => handleTabChange(1)}>会社</Tab>
           <Tab className="search-tab__list-item" selectedClassName={state.ACTIVE}
-            disabled={!jobs.data || (jobs.data && jobs.data.length <= 3)}
+            disabled={!jobs.data || (jobs.data && jobs.data.length <= 3 && (urlParams.get('jobs_page') == 1) || !urlParams.get('jobs_page'))}
             onClick={_ => handleTabChange(2)}>募集</Tab>
         </TabList>
 
@@ -84,7 +84,7 @@ const Search = _ => {
               ) : null }
             </div>
             <div className="search-tab__panel-content-bottom">
-              { companies.data && companies.data.length > 3 ? (
+              { (companies.data && companies.data.length > 3) || (companies.data && companies.data.length && urlParams.get('companies_page') > 1) ? (
                 <Button className="button--small" onClick={_ => setTabIndex(1)}>
                   もっと見る
                 </Button>
@@ -128,7 +128,7 @@ const Search = _ => {
               ) : null }
             </div>
             <div className="search-tab__panel-content-bottom">
-              { jobs.data && jobs.data.length > 3 ? (
+              { (jobs.data && jobs.data.length > 3) || (jobs.data && jobs.data.length && urlParams.get('jobs_page') > 1) ? (
                 <Button className="button--small" onClick={_ => setTabIndex(2)}>
                   もっと見る
                 </Button>
@@ -165,6 +165,7 @@ const Search = _ => {
                 prevPage={companies.prev_page_url}
                 nextPage={companies.next_page_url}
                 lastPage={companies.last_page}
+                searchUrl="companies_page"
               />
             </div>
           </div>
@@ -214,6 +215,7 @@ const Search = _ => {
                 prevPage={jobs.prev_page_url}
                 nextPage={jobs.next_page_url}
                 lastPage={jobs.last_page}
+                searchUrl="jobs_page"
               />
             </div>
           </div>
