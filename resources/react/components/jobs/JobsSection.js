@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Pagination from '../common/Pagination';
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
+import Nada from '../common/Nada';
 import JobsList from './JobsList';
 import { state } from '../../constants/state';
 
@@ -18,6 +19,7 @@ const JobsSection = (props) => {
 
   useEffect(_ => {
     const sort = urlParams.get('sort');
+
     if (sort === 'popular') {
       setSortTab(2);
     }
@@ -64,7 +66,14 @@ const JobsSection = (props) => {
             />
           </div>
         </>
-      ) : null }
+      ) :
+        <Nada className="nada--center">
+          <span className="nada__emphasize">
+            募集が見つかりませんでした
+          </span>
+          条件を変えて探してみましょう。
+        </Nada>
+      }
     </div>
   );
 }

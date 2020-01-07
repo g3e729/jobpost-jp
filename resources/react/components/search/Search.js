@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
+import Nada from '../common/Nada';
 import Pill from '../common/Pill';
 import SearchAPI from '../../utils/search';
 import generateRoute from '../../utils/generateRoute';
@@ -86,15 +87,17 @@ const Search = _ => {
                     </li>
                   ))}
                 </ul>
-              ) : null }
+              ) :
+                <Nada>条件を変えて探してみましょう。</Nada>
+              }
             </div>
-            <div className="search-tab__panel-content-bottom">
-              { companies.total > 3 ? (
+            { companies.total > 3 ? (
+              <div className="search-tab__panel-content-bottom">
                 <Button className="button--small" onClick={_ => setTabIndex(1)}>
                   もっと見る
                 </Button>
-              ) : null }
-            </div>
+              </div>
+            ) : null }
           </div>
 
           <div className="search-tab__panel-content">
@@ -133,15 +136,17 @@ const Search = _ => {
                     </li>
                   ))}
                 </ul>
-              ) : null }
+              ) :
+                <Nada>条件を変えて探してみましょう。</Nada>
+              }
             </div>
-            <div className="search-tab__panel-content-bottom">
-              { jobs.total > 3 ? (
+            { jobs.total > 3 ? (
+              <div className="search-tab__panel-content-bottom">
                 <Button className="button--small" onClick={_ => setTabIndex(2)}>
                   もっと見る
                 </Button>
-              ) : null }
-            </div>
+              </div>
+            ) : null }
           </div>
         </TabPanel>
 
