@@ -2,9 +2,7 @@
 export const config = {
   api: {
     url: (process.env.NODE_ENV === 'development')
-      ? (process.env.MIX_REACT_APP_LOCALHOST
-        ? `http://${process.env.MIX_REACT_APP_LOCALHOST}:${location.port}/api`
-        : `http://localhost:${location.port}/api`)
+      ? process.env.MIX_REACT_APP_LOCALHOST
       : process.env.MIX_REACT_APP_API_URL_FULL
   }
 }
