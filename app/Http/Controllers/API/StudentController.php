@@ -19,7 +19,7 @@ class StudentController extends BaseController
 
 	public function show(Student $student)
 	{
-		return $student;
+        return Student::popular()->whereId($student->id)->first();
 	}
 
 	public function update(Student $student, Request $request)

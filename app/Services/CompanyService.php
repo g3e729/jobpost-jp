@@ -119,6 +119,10 @@ class CompanyService extends BaseService
                 }
             }
 
+            if ($paginated === 'que') {
+                return $que;
+            }
+
             if ($paginated) {
                 return $que->paginate(config('site_settings.per_page'));
             }

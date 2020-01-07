@@ -68,8 +68,7 @@ class CompanyProfile extends Model
         'why_photos',
         'how_photos',
 
-        'industry',
-        'total_likes',
+        'industry'
     ];
 
     public static function boot()
@@ -80,6 +79,15 @@ class CompanyProfile extends Model
     public function scopeSearch($query, $value)
     {
         return $query->where('company_name', 'LIKE', "%{$value}%");
+    }
+
+    public function scopePopular($query)
+    {
+        return $query->withCount([
+            'likes' => function ($q) {
+                $q->where('likes.likeable_type', get_class($this));
+            }
+        ]);
     }
 
     // Attributes
