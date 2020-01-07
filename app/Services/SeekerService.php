@@ -145,7 +145,7 @@ class SeekerService extends BaseService
             $fields = array_filter($fields);
             $status = array_get($fields, 'status');
             $fields = array_except($fields, 'status');
-            $que = (new $this->model);
+            $que = (new $this->model)->popular();
 
             switch ($status) {
                 case 1:

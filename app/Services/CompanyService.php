@@ -106,7 +106,7 @@ class CompanyService extends BaseService
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model);
+            $que = (new $this->model)->popular();
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
