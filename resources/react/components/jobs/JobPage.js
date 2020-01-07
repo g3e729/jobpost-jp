@@ -39,7 +39,7 @@ const JobPage = (props) => {
             passedFunction={_ => getJob().then(res => setJob(res))}
             title={job.display_name}
             subTitle={job.homepage}
-            data-likes={job.total_likes}
+            data-likes={job.likes_count}
           />
           <div className="l-section l-section--job section">
             <div className="l-container">

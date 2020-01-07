@@ -40,7 +40,7 @@ const StudentPage = (props) => {
             subTitle={<span><i className="icon icon-book text-dark-yellow"></i>{student.course}</span>}
             passedFunction={_ => getStudent().then(res => setStudent(res))}
             data-avatar={student.avatar || avatarPlaceholder}
-            data-likes={student.total_likes}
+            data-likes={student.likes_count}
           />
           <div className="l-section l-section--profile section">
             <div className="l-container">

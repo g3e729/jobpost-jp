@@ -40,7 +40,7 @@ const CompanyPage = (props) => {
             subTitle={company.homepage}
             passedFunction={_ => getCompany().then(res => setCompany(res))}
             data-avatar={company.avatar || avatarPlaceholder}
-            data-likes={company.total_likes}
+            data-likes={company.likes_count}
           />
           <div className="l-section l-section--profile section">
             <div className="l-container">
