@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
 import Pill from '../common/Pill';
 import SearchAPI from '../../utils/search';
+import generateRoute from '../../utils/generateRoute';
 import { state } from '../../constants/state';
+import { routes } from '../../constants/routes';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
@@ -75,9 +77,12 @@ const Search = _ => {
                   { [...companies.data].splice(0, 3).map((item, idx) => (
                     <li className="search-tab__panel-content-item" key={idx}>
                       <img src={item.avatar || avatarPlaceholder} alt=""/>
-                      <div className="search-tab__panel-content-company">
-                        {item.company_name}
-                      </div>
+                      <Link to={generateRoute(routes.COMPANY_DETAIL, { id: item.id })}
+                        className="button button--link">
+                        <div className="search-tab__panel-content-company">
+                          {item.company_name}
+                        </div>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -118,9 +123,12 @@ const Search = _ => {
                             <Pill className="pill--large">バックエンドエンジニア</Pill>
                           </li>
                         </ul>
-                        <div className="search-tab__panel-content-job">
-                          {item.title}
-                        </div>
+                        <Link to={generateRoute(routes.JOB_DETAIL, { id: item.id })}
+                          className="button button--link">
+                          <div className="search-tab__panel-content-job">
+                            {item.title}
+                          </div>
+                        </Link>
                       </div>
                     </li>
                   ))}
@@ -151,9 +159,12 @@ const Search = _ => {
                   { companies.data.map((item, idx) => (
                     <li className="search-tab__panel-content-item" key={idx}>
                       <img src={item.avatar || avatarPlaceholder} alt=""/>
-                      <div className="search-tab__panel-content-company">
-                        {item.company_name}
-                      </div>
+                      <Link to={generateRoute(routes.COMPANY_DETAIL, { id: item.id })}
+                        className="button button--link">
+                        <div className="search-tab__panel-content-company">
+                          {item.company_name}
+                        </div>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -200,9 +211,12 @@ const Search = _ => {
                             <Pill className="pill--large">バックエンドエンジニア</Pill>
                           </li>
                         </ul>
-                        <div className="search-tab__panel-content-job">
-                          {item.title}
-                        </div>
+                        <Link to={generateRoute(routes.JOB_DETAIL, { id: item.id })}
+                          className="button button--link">
+                          <div className="search-tab__panel-content-job">
+                            {item.title}
+                          </div>
+                        </Link>
                       </div>
                     </li>
                   ))}
