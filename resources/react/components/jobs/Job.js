@@ -71,8 +71,8 @@ const Job = _ => {
           <dl className="job__main-list job__main-list--table">
             <dt className="job__main-list-term">ポジション</dt>
             <dd className="job__main-list-data">WEBエンジニア【リーダー候補】</dd>
-            <dt className="job__main-list-term">開発環境</dt>
-            <dd className="job__main-list-data">
+            <dt className="job__main-list-term job__main-list-term--mobile-full">開発環境</dt>
+            <dd className="job__main-list-data job__main-list-data--mobile-full">
               <dl>
                 <dt>言語</dt>
                 <dd>Ruby</dd>

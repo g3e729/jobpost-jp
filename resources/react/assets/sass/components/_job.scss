@@ -1,6 +1,10 @@
 .job {
   display: flex;
   align-items: flex-start;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+  }
 }
 
 .job__main {
@@ -8,6 +12,10 @@
   align-self: stretch;
 
   margin-right: 60px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-right: 0;
+  }
 }
 
 .job__sidebar {
@@ -17,6 +25,10 @@
   width: 300px;
   flex: 0 0 300px;
   align-self: stretch;
+
+  @include max-screen($breakpoint-mobile) {
+    width: 100%;
+  }
 }
 
 .job__sidebar-inner {
@@ -111,6 +123,10 @@
 
   padding-bottom: 13px;
   margin-bottom: 35px; //? 35px
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+  }
 }
 
 .job__main-heading--left {
@@ -123,6 +139,10 @@
   > h3 {
     font-size: 24px;
   }
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: row;
+  }
 }
 
 .job__main-heading-en {
@@ -133,6 +153,11 @@
   color: $color-dark-yellow;
 
   margin-right: 12px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-right: 0;
+    font-size: 20px;
+  }
 }
 
 .job__main-heading-title {
@@ -141,6 +166,10 @@
   letter-spacing: 0.06em;
 
   display: inline-block;
+
+  @include max-screen($breakpoint-mobile) {
+    font-size: 18px;
+  }
 }
 
 .job__main-images {
@@ -149,6 +178,11 @@
   justify-content: space-between;
 
   margin: -18px 0 34px;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+    margin: -18px 0 0;
+  }
 }
 
 .job__main-images-holder {
@@ -160,6 +194,12 @@
     content: '';
     padding-top: 60%;
     display: block;
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    max-height: none;
+    width: 100%;
+    margin-bottom: 30px;
   }
 }
 
@@ -242,6 +282,13 @@
   &:nth-of-type(1) {
     border-top: none;
   }
+
+  @include max-screen($breakpoint-mobile) {
+    width: 43%;
+    flex: 0 0 43%;
+    justify-content: flex-start;
+    padding: 20px 15px;
+  }
 }
 
 .job__main-list-data {
@@ -284,6 +331,13 @@
       &:nth-of-type(1) {
         border-top: none;
       }
+
+      @include max-screen($breakpoint-mobile) {
+        width: 43%;
+        flex: 0 0 43%;
+        justify-content: flex-start;
+        padding: 12.5px 15px;
+      }
     }
 
     > dd {
@@ -296,13 +350,43 @@
       &:nth-of-type(1) {
         border-top: none;
       }
+
+      @include max-screen($breakpoint-mobile) {
+        width: 57%;
+        flex: 1 0 57%;
+      }
     }
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    width: 57%;
+    flex: 1 0 57%;
+  }
+}
+
+.job__main-list-term--mobile-full {
+  @include max-screen($breakpoint-mobile) {
+    width: 100%;
+    flex: 1 0 100%;
+    justify-content: center;
   }
 }
 
 .job__main-list-data--half {
   width: 25%;
   flex: 1 0 25%;
+
+  @include max-screen($breakpoint-mobile) {
+    width: 57%;
+    flex: 1 0 57%;
+  }
+}
+
+.job__main-list-data--mobile-full {
+  @include max-screen($breakpoint-mobile) {
+    width: 100%;
+    flex: 1 0 100%;
+  }
 }
 
 .job__main-address {
@@ -314,6 +398,14 @@
 
   > * {
     width: 48%;
+
+    @include max-screen($breakpoint-mobile) {
+      width: 100%;
+    }
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
   }
 }
 

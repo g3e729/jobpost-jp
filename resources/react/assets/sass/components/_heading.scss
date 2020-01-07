@@ -181,9 +181,10 @@
     left: 20px;
     bottom: -210px; //? -210px
 
-    padding: 90px 30px 0; // ?
-    height: 355px; //? 355px
+    padding: 60px 30px 0; // ?
+    height: 390px; //? 355px
     width: calc(100% - 40px);
+
   }
 }
 
@@ -197,6 +198,10 @@
   font-size: 16px;
   color: $color-dark-gray;
   letter-spacing: 0.06em;
+
+  @include max-screen($breakpoint-mobile) {
+    font-size: 12px;
+  }
 }
 
 .heading__job-title {
@@ -207,6 +212,13 @@
 
   max-width: 60%;
   margin: 10px 0 15px;
+
+  @include max-screen($breakpoint-mobile) {
+    font-size: 20px;
+    max-width: none;
+    margin: 15px 0 15px;
+    letter-spacing: 0.09em;
+  }
 }
 
 .heading__job-company {
@@ -233,6 +245,10 @@
 
   flex: 1;
   margin-left: 16px;
+
+  @include max-screen($breakpoint-mobile) {
+    font-size: 13px;
+  }
 }
 
 .heading__job-pills {
@@ -241,6 +257,10 @@
 
 .heading__job-pills-item {
   margin-right: 12px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-right: 5px;
+  }
 }
 
 .heading__job-button {
@@ -249,7 +269,11 @@
   right: 50px;
 
   @include max-screen($breakpoint-mobile) {
-    // TODO
+    bottom: 307px;
+    right: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 42px;
   }
 }
 
@@ -259,7 +283,8 @@
   right: 50px;
 
   @include max-screen($breakpoint-mobile) {
-    // TODO
+    bottom: 62px;
+    right: 30px;
   }
 }
 

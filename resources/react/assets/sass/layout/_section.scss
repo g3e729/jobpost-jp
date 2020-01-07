@@ -16,6 +16,10 @@
 
 .l-section--job {
   padding-top: 350px;
+
+  @include max-screen($breakpoint-mobile) {
+    padding-top: 152px;
+  }
 }
 
 .l-section--notifications {
