@@ -8,6 +8,11 @@ Route::group([
 	Route::get('jobs-filters', 'JobPostController@getJobFilters');
 	Route::resource('jobs', 'JobPostController')->only('index', 'show');
 
+	Route::resource('companies', 'CompanyController')->only('index', 'show');
+	Route::resource('students', 'StudentController')->only('index', 'show');
+
+	Route::get('search', 'SearchController@search');
+
 	Route::group([
 	    'middleware' => ['App\Http\Middleware\ApiCheck'],
 	], function () {
@@ -17,8 +22,6 @@ Route::group([
 		Route::resource('messages', 'MessageController')->only('index', 'show', 'store');
 		Route::patch('messages/{channel}/seen', 'MessageController@seen');
 
-		Route::resource('companies', 'CompanyController')->only('index', 'show');
-		Route::resource('students', 'StudentController')->only('index', 'show');
 
 		Route::get('companies-filters', 'CompanyController@getCompanyFilters');
 		Route::get('students-filters', 'StudentController@getStudentFilters');

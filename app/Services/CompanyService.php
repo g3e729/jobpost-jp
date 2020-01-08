@@ -106,7 +106,7 @@ class CompanyService extends BaseService
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model);
+            $que = (new $this->model)->popular();
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
@@ -117,6 +117,10 @@ class CompanyService extends BaseService
                         $que = $que->where($column, $value);
                     break;
                 }
+            }
+
+            if ($paginated === 'que') {
+                return $que;
             }
 
             if ($paginated) {

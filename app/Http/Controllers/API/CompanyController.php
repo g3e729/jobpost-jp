@@ -19,7 +19,7 @@ class CompanyController extends BaseController
 
 	public function show(CompanyProfile $company)
 	{
-		return $company;
+		return CompanyProfile::popular()->whereId($company->id)->first();
 	}
 
 	public function update(CompanyProfile $company, Request $request)

@@ -23,7 +23,7 @@ class JobPostController extends BaseController
 
 	public function show(JobPost $job)
 	{
-		return $job;
+		return JobPost::popular()->whereId($job->id)->first();
 	}
 
 	public function store(Request $request)

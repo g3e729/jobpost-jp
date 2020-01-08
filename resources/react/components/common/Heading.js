@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import Avatar from '../common/Avatar';
@@ -20,14 +20,14 @@ const Heading = ({
   ...rest
 }) => {
   const params = useParams();
-  let userLikes = rest['data-likes'] || 0;
+  const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
 
   const handleClick = (e, type) => {
     Like.toggleLike(type, params.id)
       .then((result) => {
         passedFunction();
-        userLikes = result.data.total;
+        setUserLikes(result.data.total);
 
         console.log('[Liked]', result);
       }).catch(error => {

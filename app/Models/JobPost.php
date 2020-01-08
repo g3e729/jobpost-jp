@@ -73,11 +73,12 @@ class JobPost extends Model
     public function scopeSearch($query, $value)
     {
         return $query->where('title', 'LIKE', "%{$value}%")
-            ->orWhere('position', 'LIKE', "%{$value}%")
-            ->orWhere('programming_language', 'LIKE', "%{$value}%")
-            ->orWhere('framework', 'LIKE', "%{$value}%")
-            ->orWhere('environment', 'LIKE', "%{$value}%")
-            ->orWhere('database', 'LIKE', "%{$value}%");
+            ->orWhere('description', 'LIKE', "%{$value}%");
+            // ->orWhere('position', 'LIKE', "%{$value}%")
+            // ->orWhere('programming_language', 'LIKE', "%{$value}%")
+            // ->orWhere('framework', 'LIKE', "%{$value}%")
+            // ->orWhere('environment', 'LIKE', "%{$value}%")
+            // ->orWhere('database', 'LIKE', "%{$value}%");
     }
 
     public function scopePopular($query)

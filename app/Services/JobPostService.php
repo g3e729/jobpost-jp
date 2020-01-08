@@ -74,6 +74,10 @@ class JobPostService extends BaseService
                 }
             }
 
+            if ($paginated === 'que') {
+                return $que;
+            }
+
             $sort = empty($sort) ? 'DESC' : strtoupper($sort);
 
             switch ($sort) {

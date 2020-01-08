@@ -51,7 +51,7 @@ const JobsList = (props) => {
                 </ul>
                 <div className="job-list__item-fav">
                   <Pill className="pill--icon">
-                    <i className="icon icon-star"></i>{job.total_likes}
+                    <i className="icon icon-star"></i>{job.likes_count}
                   </Pill>
                 </div>
               </div>

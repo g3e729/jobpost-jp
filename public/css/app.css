@@ -2524,6 +2524,10 @@ And you should not feel free to add a new Utility class.
   pointer-events: none;
 }
 
+.loading {
+  display: block;
+}
+
 .message {
   position: relative;
 }
@@ -2746,6 +2750,103 @@ And you should not feel free to add a new Utility class.
   padding: 0 20px;
   margin-right: 20px;
   border: solid 1px #d9d6d6;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.modal__header {
+  position: relative;
+  padding: 25px 0 20px 48px;
+  height: 70px;
+}
+
+.modal__header--background {
+  background-color: #f2f2f0;
+}
+
+.modal__header-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.modal__header-button {
+  position: absolute;
+  top: calc(50% - 5px);
+  right: 28px;
+}
+
+.modal__content {
+  padding: 30px 50px 26px 50px;
+}
+
+.modal__content--center {
+  text-align: center;
+}
+
+.modal__footer {
+  padding: 12px 0 98px;
+}
+
+.modal__content-icon {
+  font-size: 70px;
+  color: #ff8181;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 24px;
+}
+
+.modal__content-desc {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.875;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.modal__actions {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.modal__actions > button {
+  max-width: 165px;
+}
+
+.modal__actions-button {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: #d9d6d6;
+  margin-top: 9px;
+}
+
+.modal__actions-button > i {
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.nada {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  margin-bottom: 15px;
+}
+
+.nada--center {
+  text-align: center;
+}
+
+.nada__emphasize {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  display: block;
 }
 
 .notification {
@@ -4205,6 +4306,11 @@ a.pagination__item-link:hover {
   border-radius: 0;
 }
 
+.search-tab__list-item.is-disabled,
+.search-tab__list-item.react-tabs__tab--disabled {
+  pointer-events: none;
+}
+
 .search-tab__panel {
   position: relative;
   display: none;
@@ -4316,6 +4422,7 @@ a.pagination__item-link:hover {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  color: #393939;
   -webkit-box-flex: 1;
           flex: 1;
   margin-left: 16px;
@@ -4335,6 +4442,7 @@ a.pagination__item-link:hover {
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
+  color: #393939;
   white-space: pre-line;
 }
 

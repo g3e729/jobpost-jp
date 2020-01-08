@@ -1,6 +1,6 @@
 const initialState = {
   visible: false,
-  message: ''
+  modalType: ''
 };
 
 const modalReducer = (state = initialState, action) => {
@@ -9,13 +9,13 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         visible: true,
-        message: action.payload
+        modalType: action.payload
       };
     case 'MODAL_UNSET':
       return {
         ...state,
         visible: false,
-        message: ''
+        modalType: ''
       };
     default:
       return state;

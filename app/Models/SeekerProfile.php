@@ -304,6 +304,15 @@ class SeekerProfile extends Model
         });
     }
 
+    public function scopePopular($query)
+    {
+        return $query->withCount([
+            'likes' => function ($q) {
+                $q->where('likes.likeable_type', get_class($this));
+            }
+        ]);
+    }
+
     public function applications()
     {
         return $this->hasMany(Applicant::class, 'seeker_profile_id');

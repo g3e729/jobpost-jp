@@ -11,16 +11,17 @@ const Pagination = (props) => {
     current,
     prevPage,
     nextPage,
-    lastPage = 0
+    lastPage = 0,
+    searchUrl = 'page',
   } = props;
 
   useEffect(_ => {
     if (urlParams.toString()) {
-      if (urlParams.has('page')) {
-        urlParams.delete('page');
-        setUrlParamsTmp(`?${urlParams.toString()}&page=`);
+      if (urlParams.has(searchUrl)) {
+        urlParams.delete(searchUrl);
+        setUrlParamsTmp(`?${urlParams.toString()}&${searchUrl}=`);
       } else {
-        setUrlParamsTmp(`${urlParamsTmp}&page=`);
+        setUrlParamsTmp(`${urlParamsTmp}&${searchUrl}=`);
       }
     }
   }, [location]);

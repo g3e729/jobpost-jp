@@ -14,6 +14,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
+    "@bit/bondz.react-epic-spinners.self-building-square-spinner": "^0.3.0",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "axios": "^0.18",
@@ -34,6 +35,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.12.0",
     "react-id-swiper": "^2.4.0",
+    "react-modal": "^3.11.1",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",

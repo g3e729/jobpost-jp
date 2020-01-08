@@ -52,6 +52,11 @@
     border-left: solid 5px $color-dark-yellow;
     border-radius: 0;
   }
+
+  &.is-disabled,
+  &.react-tabs__tab--disabled {
+    pointer-events: none;
+  }
 }
 
 .search-tab__panel {
@@ -161,6 +166,7 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  color: $color-medium-black;
 
   flex: 1;
   margin-left: 16px;
@@ -181,6 +187,7 @@
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
+  color: $color-medium-black;
   white-space: pre-line;
 }
 
