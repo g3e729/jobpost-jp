@@ -7,6 +7,7 @@ import Profile from './Profile';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
+import PageUp from '../common/PageUp';
 
 const ProfilePage = (props) => {
   const { user } = props;
@@ -32,6 +33,7 @@ const ProfilePage = (props) => {
           <Profile user={user} accountType={accountType} />
         </div>
       </div>
+      <PageUp />
     </Page>
   );
 }
