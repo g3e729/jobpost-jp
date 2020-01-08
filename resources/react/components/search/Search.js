@@ -5,8 +5,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Fraction from '../common/Fraction';
-import Pagination from '../common/Pagination';
+import Loading from '../common/Loading';
 import Nada from '../common/Nada';
+import Pagination from '../common/Pagination';
 import Pill from '../common/Pill';
 import SearchAPI from '../../utils/search';
 import generateRoute from '../../utils/generateRoute';
@@ -17,6 +18,7 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const Search = _ => {
+  const [isLoading, setIsLoading] = useState(true);
   const [tabIndex, setTabIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [jobs, setJobs] = useState({});
@@ -41,12 +43,20 @@ const Search = _ => {
   }
 
   useEffect(_ => {
+    setIsLoading(true);
+
     getResults()
       .then(res => {
         setJobs(res.jobs);
         setCompanies(res.companies);
+
+        setIsLoading(false);
       })
-      .catch(error => console.log('[Search ERROR]', error));
+      .catch(error => {
+        console.log('[Search ERROR]', error);
+
+        setIsLoading(false);
+      });
   }, [location.search]);
 
   return (
@@ -73,23 +83,25 @@ const Search = _ => {
               />
             </div>
             <div className="search-tab__panel-content-main">
-              { companies.data && companies.data.length ? (
-                <ul className="search-tab__panel-content-list">
-                  { [...companies.data].splice(0, 3).map((item, idx) => (
-                    <li className="search-tab__panel-content-item" key={idx}>
-                      <img src={item.avatar || avatarPlaceholder} alt=""/>
-                      <Link to={generateRoute(routes.COMPANY_DETAIL, { id: item.id })}
-                        className="button button--link">
-                        <div className="search-tab__panel-content-company">
-                          {item.company_name}
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) :
-                <Nada>条件を変えて探してみましょう。</Nada>
-              }
+              { isLoading ? (
+                <Loading />
+              ) : (
+                companies.data && companies.data.length ? (
+                  <ul className="search-tab__panel-content-list">
+                    { [...companies.data].splice(0, 3).map((item, idx) => (
+                      <li className="search-tab__panel-content-item" key={idx}>
+                        <img src={item.avatar || avatarPlaceholder} alt=""/>
+                        <Link to={generateRoute(routes.COMPANY_DETAIL, { id: item.id })}
+                          className="button button--link">
+                          <div className="search-tab__panel-content-company">
+                            {item.company_name}
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : <Nada>条件を変えて探してみましょう。</Nada>
+              )}
             </div>
             { companies.total > 3 ? (
               <div className="search-tab__panel-content-bottom">
@@ -108,37 +120,39 @@ const Search = _ => {
               />
             </div>
             <div className="search-tab__panel-content-main">
-              { jobs.data && jobs.data.length ? (
-                <ul className="search-tab__panel-content-list">
-                  { [...jobs.data].splice(0, 3).map((item, idx) => (
-                    <li className="search-tab__panel-content-item search-tab__panel-content-item--jobs" key={idx}>
-                      <div className="search-tab__panel-content-item-left">
-                        <div className="search-tab__panel-content-eyecatch">
-                          <div className="search-tab__panel-content-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
-                        </div>
-                      </div>
-                      <div className="search-tab__panel-content-item-right">
-                        <ul className="search-tab__panel-content-pills">
-                          <li className="search-tab__panel-content-pills-item">
-                            <Pill className="pill--large">PHP</Pill>
-                          </li>
-                          <li className="search-tab__panel-content-pills-item">
-                            <Pill className="pill--large">バックエンドエンジニア</Pill>
-                          </li>
-                        </ul>
-                        <Link to={generateRoute(routes.JOB_DETAIL, { id: item.id })}
-                          className="button button--link">
-                          <div className="search-tab__panel-content-job">
-                            {item.title}
+              { isLoading ? (
+                <Loading />
+              ) : (
+                jobs.data && jobs.data.length ? (
+                  <ul className="search-tab__panel-content-list">
+                    { [...jobs.data].splice(0, 3).map((item, idx) => (
+                      <li className="search-tab__panel-content-item search-tab__panel-content-item--jobs" key={idx}>
+                        <div className="search-tab__panel-content-item-left">
+                          <div className="search-tab__panel-content-eyecatch">
+                            <div className="search-tab__panel-content-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
                           </div>
-                        </Link>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              ) :
-                <Nada>条件を変えて探してみましょう。</Nada>
-              }
+                        </div>
+                        <div className="search-tab__panel-content-item-right">
+                          <ul className="search-tab__panel-content-pills">
+                            <li className="search-tab__panel-content-pills-item">
+                              <Pill className="pill--large">PHP</Pill>
+                            </li>
+                            <li className="search-tab__panel-content-pills-item">
+                              <Pill className="pill--large">バックエンドエンジニア</Pill>
+                            </li>
+                          </ul>
+                          <Link to={generateRoute(routes.JOB_DETAIL, { id: item.id })}
+                            className="button button--link">
+                            <div className="search-tab__panel-content-job">
+                              {item.title}
+                            </div>
+                          </Link>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : <Nada>条件を変えて探してみましょう。</Nada>
+              )}
             </div>
             { jobs.total > 3 ? (
               <div className="search-tab__panel-content-bottom">

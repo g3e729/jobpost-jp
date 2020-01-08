@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -10,11 +10,14 @@ import JobsSection from './JobsSection';
 import { getJobs, getFilteredJobs  } from '../../actions/jobs';
 
 const JobsPage = _ => {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
 
   useEffect(_ => {
+    setIsLoading(true);
+
     const page = urlParams.get('page');
     const position = urlParams.get('position');
     const employment_type = urlParams.get('employment_type');
@@ -30,10 +33,14 @@ const JobsPage = _ => {
         programming_language,
         prefecture,
         sort
-      }));
+      }))
+        .then(_ => setIsLoading(false))
+        .catch(_ => setIsLoading(false));
     }
     else {
-      dispatch(getJobs());
+      dispatch(getJobs())
+        .then(_ => setIsLoading(false))
+        .catch(_ => setIsLoading(false));
     }
 
   }, [location]);
@@ -46,7 +53,7 @@ const JobsPage = _ => {
         <div className="l-section l-section--main section">
           <div className="l-container l-container--main">
             <JobsFilter />
-            <JobsSection />
+            <JobsSection isLoading={isLoading} />
           </div>
         </div>
       </Page>
