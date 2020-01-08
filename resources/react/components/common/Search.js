@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../common/Button';
@@ -8,6 +8,16 @@ import { prefix } from '../../constants/routes';
 const Search = ({placeholder = 'キーワードで検索'}) => {
   const [searchValue, setSearchValue] = useState('');
   const history = useHistory();
+  const urlParams = new URLSearchParams(history.location.search);
+
+  useEffect(_ => {
+    if (history.location.pathname.includes('search')) {
+      setSearchValue(urlParams.get('search'));
+    } else {
+      setSearchValue('');
+    }
+
+  }, [history.location.pathname])
 
   const handleSubmit = e => {
     e.preventDefault();
