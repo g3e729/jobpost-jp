@@ -1,0 +1,84 @@
+.ReactModalPortal {}
+
+.ReactModal__Overlay {
+  background-color: rgba($color-black, 0.3) !important;
+}
+
+.ReactModal__Content {}
+
+.modal {}
+
+.modal__header {
+  position: relative;
+  padding: 25px 0 20px 48px;
+  height: 70px;
+}
+
+.modal__header--background {
+  background-color: $color-light-gray;
+}
+
+.modal__header-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.modal__header-button {
+  position: absolute;
+  top: calc(50% - 5px);
+  right: 28px;
+}
+
+.modal__content {
+  padding: 30px 50px 26px 50px;
+}
+
+.modal__content--center {
+  text-align: center;
+}
+
+.modal__footer {
+  padding: 12px 0 98px;
+}
+
+.modal__content-icon {
+  font-size: 70px;
+  color: $color-light-red;
+
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 24px;
+}
+
+.modal__content-desc {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.875;
+  letter-spacing: 0.06em;
+
+  white-space: pre-line;
+}
+
+.modal__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > button {
+    max-width: 165px;
+  }
+}
+
+.modal__actions-button {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: $color-dark-gray;
+
+  margin-top: 9px;
+
+  > i {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+}

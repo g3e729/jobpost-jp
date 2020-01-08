@@ -35,6 +35,7 @@ import PrivacyPage from '../privacy/PrivacyPage';
 
 import Four0FourPage from '../common/404';
 
+import Modal from '../service/Modal';
 import PageTop from '../service/PageTop';
 import requireAuth from '../../utils/requireAuth';
 
@@ -43,6 +44,7 @@ import { routes } from '../../constants/routes';
 const Pages = _ => (
   <div className="pages">
     <PageTop />
+    <Modal />
     <Switch>
       <Route
         exact

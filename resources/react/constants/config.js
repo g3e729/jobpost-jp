@@ -105,3 +105,21 @@ export const dashboardSelectStyles =  {
     letterSpacing: '0.06em',
   }),
 };
+
+export const modalStyles = {
+  content : {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+
+    marginRight: '-50%',
+    padding: '0',
+    width: '700px',
+
+    borderRadius: '0',
+
+    zIndex: '9999'
+  }
+};
