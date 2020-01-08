@@ -28,6 +28,10 @@
 
 .l-section--notifications {
   padding: 100px 0 90px;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 52px 0 90px;
+  }
 }
 
 .l-section--full {

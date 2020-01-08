@@ -1,16 +1,28 @@
 .notification {
   margin: -5px 0 60px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin: 10px 0 60px;
+  }
 }
 
 .notification__top {
   display: flex;
   justify-content: space-between;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column-reverse;
+  }
 }
 
 .notification__title {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: 0.06em;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-top: 5px;
+  }
 }
 
 .notification__schedule {
