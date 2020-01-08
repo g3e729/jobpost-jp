@@ -8,6 +8,10 @@
 
 .l-section--main {
   padding: 48px 0 90px;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 70px 0 90px;
+  }
 }
 
 .l-section--profile {

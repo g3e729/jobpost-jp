@@ -9,6 +9,13 @@
   opacity: 0;
   transition: opacity $duration $easing-cubic;
 
+  @include max-screen($breakpoint-mobile) {
+    position: absolute;
+    display: block;
+    right: calc(50% - 20px);
+    bottom: 45px;
+  }
+
   button {
     pointer-events: none;
   }
@@ -19,14 +26,6 @@
     button {
       pointer-events: auto;
     }
-  }
-
-  @include max-screen($breakpoint-mobile) {
-    position: absolute;
-    display: block;
-    right: calc(50% - 20px);
-    bottom: 60px;
-
   }
 }
 
