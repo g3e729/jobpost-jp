@@ -2754,6 +2754,7 @@ And you should not feel free to add a new Utility class.
 
 .ReactModal__Overlay {
   background-color: rgba(0, 0, 0, 0.3) !important;
+  z-index: 20;
 }
 
 .modal__header {
