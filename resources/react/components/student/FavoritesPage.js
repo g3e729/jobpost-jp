@@ -3,6 +3,7 @@ import React from 'react';
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import FavoritesSection from './FavoritesSection';
+import PageUp from '../common/PageUp';
 
 const FavoritesPage = _ => {
   return (
@@ -16,6 +17,7 @@ const FavoritesPage = _ => {
           <FavoritesSection />
         </div>
       </div>
+      <PageUp />
     </Page>
   );
 }
