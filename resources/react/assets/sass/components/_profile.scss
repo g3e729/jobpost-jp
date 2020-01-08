@@ -1,6 +1,10 @@
 .profile {
   display: flex;
   align-items: flex-start;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+  }
 }
 
 .profile__main {
@@ -8,6 +12,10 @@
   align-self: stretch;
 
   margin-right: 60px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-right: 0;
+  }
 }
 
 .profile__main-data {
@@ -40,14 +48,26 @@
   flex-wrap: wrap;
 
   margin: 0 -15px;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+  }
 }
 
 .profile__main-list--half {
   .profile__main-list-item {
     width: 50%;
 
+    @include max-screen($breakpoint-mobile) {
+      width: 100%;
+    }
+
     &:nth-child(-n + 2) {
       margin-top: 0;
+
+      @include max-screen($breakpoint-mobile) {
+        margin-top: 30px;
+      }
     }
   }
 }
@@ -162,6 +182,12 @@
 
   margin-top: 32px;
 
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
   &:first-child {
     margin-top: 0;
   }
@@ -195,6 +221,10 @@
   flex: 1;
 
   margin-left: 30px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-left: 0;
+  }
 }
 
 .profile__data-websites-name {
@@ -203,6 +233,10 @@
   letter-spacing: 0.06em;
 
   margin-bottom: 5px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-top: 15px;
+  }
 }
 
 .profile__data-websites-desc {
@@ -214,6 +248,10 @@
 
 .profile__data-video {
   padding: 5px 40px 0;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 0;
+  }
 }
 
 .profile__data-work {}
@@ -312,6 +350,10 @@
   width: 300px;
   flex: 0 0 300px;
   align-self: stretch;
+
+  @include max-screen($breakpoint-mobile) {
+    width: 100%;
+  }
 }
 
 .profile__sidebar--single {
