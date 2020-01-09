@@ -15,11 +15,7 @@ const FavoritesSection = _ => (
       <FavoritesList />
     </div>
     <div className="favorites-section__footer">
-    <Pagination
-      current="1"
-      prevPage="aaaa"
-      nextPage="bbb"
-      lastPage="5" />
+    <Pagination />
     </div>
   </div>
 );
