@@ -11,8 +11,8 @@ const JobDeleteModal = _ => {
     <BaseModal>
       <div className="modal__content modal__content--center">
         <i className="icon icon-warning-circle modal__content-icon"></i>
-        <p className="modal__content-desc">自社★C2Cマッチングプラットフォ
-          ーム開発を削除しますか？
+        <p className="modal__content-desc">{`自社★C2Cマッチングプラットフォ
+          ーム開発を削除しますか？`}
         </p>
       </div>
       <div className="modal__footer">

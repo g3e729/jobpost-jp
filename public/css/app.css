@@ -2820,6 +2820,60 @@ And you should not feel free to add a new Utility class.
   white-space: pre-line;
 }
 
+.modal__content-remain {
+  letter-spacing: 0.06em;
+  margin-top: -10px;
+}
+
+.modal__content-remain > span {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fdb834;
+  letter-spacing: 0.1em;
+  position: relative;
+  top: 1px;
+  margin-left: 5px;
+}
+
+.modal__content-remain > span > small {
+  font-family: "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Hiragino Kaku Gothic ProN", "\30E1\30A4\30EA\30AA", Meiryo, sans-serif;
+  font-size: 16px;
+  position: relative;
+  top: -1px;
+}
+
+.modal__content-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-top: 60px;
+  margin-bottom: -5px;
+}
+
+.modal__content-pills {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  padding: 40px 0 12px;
+}
+
+.modal__content-pills-button {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 15px;
+  padding: 9px 0;
+  width: 240px;
+}
+
+.modal__content-pills-button:first-child {
+  margin-top: 0;
+}
+
 .modal__actions {
   display: -webkit-box;
   display: flex;
@@ -2831,7 +2885,7 @@ And you should not feel free to add a new Utility class.
 }
 
 .modal__actions > button {
-  max-width: 165px;
+  width: 165px;
 }
 
 .modal__actions--cto {

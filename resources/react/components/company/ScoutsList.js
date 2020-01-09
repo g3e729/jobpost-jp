@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import faker from 'faker';
 faker.locale = "ja";
+import { useDispatch } from 'react-redux';
 
 import Button from '../common/Button';
 import { state } from '../../constants/state';
+import { modalType } from '../../constants/config';
+import { setModal } from '../../actions/modal';
 
 const dummyScouts = new Array(10)
   .fill(null)
@@ -17,7 +20,12 @@ const dummyScouts = new Array(10)
   })
 
 const ScoutsList = _ => {
+  const dispatch = useDispatch();
   const [currentItem, setCurrentItem] = useState(null);
+
+  const handleClick = (idx) => {
+    dispatch(setModal(modalType.STUDENT_SCOUT));
+  }
 
   return (
     <ul className="scouts-list">
@@ -54,7 +62,7 @@ const ScoutsList = _ => {
                 <dd className="scouts__list-data">450万円</dd>
               </dl>
               <div className={`scouts__action ${currentItem === item.id ? state.ACTIVE : ''}`}>
-                <Button onClick={_ => console.log(currentItem)}>
+                <Button onClick={_ => handleClick(item.id)}>
                   応募する
                 </Button>
               </div>

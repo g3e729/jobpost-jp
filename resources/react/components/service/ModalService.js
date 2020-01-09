@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import JobApplyModal from './JobApplyModal';
 import JobDeleteModal from './JobDeleteModal';
 import JobStopModal from './JobStopModal';
+import StudentScotModal from './StudentScoutModal';
 import { modalStyles, modalType } from '../../constants/config';
 
 const ModalService = (props) => {
@@ -26,6 +27,8 @@ const ModalService = (props) => {
               return <JobDeleteModal />
             case modalType.JOB_STOP:
               return <JobStopModal />
+            case modalType.STUDENT_SCOUT:
+              return <StudentScotModal />
             default:
               return null
           }

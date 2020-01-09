@@ -129,4 +129,6 @@ export const modalType = {
 
   JOB_DELETE: 'job_delete', // route: dashboard/recruitment
   JOB_STOP: 'job_stop', // route: dashboard/recruitment
+
+  STUDENT_SCOUT: 'student_scout', // route: scouts
 }
