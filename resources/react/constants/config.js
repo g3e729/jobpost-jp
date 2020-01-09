@@ -126,9 +126,18 @@ export const modalStyles = {
 
 export const modalType = {
   JOB_APPLY: 'job_apply', // route: job:id
-
   JOB_DELETE: 'job_delete', // route: dashboard/recruitment
   JOB_STOP: 'job_stop', // route: dashboard/recruitment
 
   STUDENT_SCOUT: 'student_scout', // route: scouts
+
+  PROFILE_AVATAR: 'profile_avatar', // route: profile/edit
+  PROFILE_EYECATCH: 'profile_eyecatch', // route: profile/edit
+  PROFILE_WORK: 'profile_work', // route: profile/edit
+  PROFILE_EDUCATION: 'profile_education', // route: profile/edit
+  PROFILE_PROGRAMMING: 'profile_programming', // route: profile/edit
+  PROFILE_FRAMEWORK: 'profile_framework', // route: profile/edit
+  PROFILE_OTHER: 'profile_other', // route: profile/edit
+  PROFILE_EXPERIENCE: 'profile_experience', // route: profile/edit
+  PROFILE_PORTFOLIO: 'profile_portfolio', // route: profile/edit
 }
