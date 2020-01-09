@@ -9,8 +9,8 @@ const JobApplyModal = _ => {
 
   return (
     <BaseModal title="応募する">
-      <div className="modal__content modal__content--flex">
-        <div className="modal__actions">
+      <div className="modal__content">
+        <div className="modal__actions modal__actions--cto">
           <Button className="button--cto">
             話を聞いてみたい
           </Button>

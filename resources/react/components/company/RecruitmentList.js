@@ -14,15 +14,11 @@ import { setModal } from '../../actions/modal';
 const RecruitmentList = _ => {
   const dispatch = useDispatch();
 
-  const handleJobDelete = (e, idx) => {
-    e.preventDefault();
-
+  const handleJobDelete = (idx) => {
     dispatch(setModal(modalType.JOB_DELETE));
   }
 
-  const handleJobStop = (e, idx) => {
-    e.preventDefault();
-
+  const handleJobStop = (idx) => {
     dispatch(setModal(modalType.JOB_STOP));
   }
 
@@ -88,7 +84,7 @@ const RecruitmentList = _ => {
                       編集
                     </>
                   </Link>
-                  <Button className="button--link recruitment-list__item-column-actions-button" onClick={e => handleJobDelete(e, idx)}>
+                  <Button className="button--link recruitment-list__item-column-actions-button" onClick={_ => handleJobDelete(idx)}>
                     <>
                       <i className="icon icon-cross"></i>
                       削除
@@ -98,7 +94,7 @@ const RecruitmentList = _ => {
               </div>
             </div>
             <div className="recruitment-list__item-column">
-              <Button className="button--link " onClick={e => handleJobStop(e, idx)}>
+              <Button className="button--link " onClick={_ => handleJobStop(idx)}>
                 <span className="recruitment-list__item-column-status">
                   募集中
                 </span>

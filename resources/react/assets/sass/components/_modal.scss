@@ -72,6 +72,14 @@
   }
 }
 
+.modal__actions--cto {
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 0 -20px;
+  padding: 45px 50px 55px;
+}
+
 .modal__actions-button {
   font-size: 14px;
   letter-spacing: 0.12em;

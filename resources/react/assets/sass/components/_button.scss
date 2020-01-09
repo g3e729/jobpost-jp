@@ -136,3 +136,18 @@
     margin-right: 4px;
   }
 }
+
+.button--cto {
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-medium-black;
+
+  margin: 0 10px;
+  padding: 60px 0 58px;
+  width: 100%;
+  max-width: none !important;
+
+  border: solid 1px $color-dark-yellow;
+  border-radius: 10px;
+  background: none;
+}

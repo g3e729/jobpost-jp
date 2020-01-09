@@ -1055,6 +1055,19 @@ And you should not feel free to add a new Utility class.
   margin-right: 4px;
 }
 
+.button--cto {
+  font-size: 20px;
+  font-weight: 700;
+  color: #393939;
+  margin: 0 10px;
+  padding: 60px 0 58px;
+  width: 100%;
+  max-width: none !important;
+  border: solid 1px #fdb834;
+  border-radius: 10px;
+  background: none;
+}
+
 .company-sidebar {
   display: -webkit-box;
   display: flex;
@@ -2819,6 +2832,16 @@ And you should not feel free to add a new Utility class.
 
 .modal__actions > button {
   max-width: 165px;
+}
+
+.modal__actions--cto {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  margin: 0 -20px;
+  padding: 45px 50px 55px;
 }
 
 .modal__actions-button {
