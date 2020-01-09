@@ -1061,8 +1061,7 @@ And you should not feel free to add a new Utility class.
   color: #393939;
   margin: 0 10px;
   padding: 60px 0 58px;
-  width: 100%;
-  max-width: none !important;
+  width: 100% !important;
   border: solid 1px #fdb834;
   border-radius: 10px;
   background: none;

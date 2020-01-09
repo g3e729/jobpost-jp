@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
+import { useDispatch } from 'react-redux';
 
 import Button from '../common/Button';
 import Clipboard from '../common/Clipboard';
@@ -8,8 +9,11 @@ import Embed from '../common/Embed';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
 import { routes } from '../../constants/routes';
+import { modalType } from '../../constants/config';
+import { setModal } from '../../actions/modal';
 
 const Profile = (props) => {
+  const dispatch = useDispatch();
   const [jobs, setJobs] = useState({});
   const { user, accountType, isEdit = false, isOwner = true } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
@@ -29,6 +33,10 @@ const Profile = (props) => {
       .then(res => setJobs(res.data.splice(0, 3)))
       .catch(error => console.log('[Jobs ERROR]', error));
   }, []);
+
+  const handleModal = type => {
+    dispatch(setModal(type));
+  }
 
   return (
     accountType === 'student' ? (
@@ -72,7 +80,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">職歴</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_WORK)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -100,7 +108,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">学歴</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_EDUCATION)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -152,7 +160,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">プログラミング言語</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PROGRAMMING)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -187,7 +195,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">フレームワーク</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_FRAMEWORK)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -218,7 +226,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">その他</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_OTHER)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -253,7 +261,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">経験分野</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_EXPERIENCE)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -320,7 +328,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -493,7 +501,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加

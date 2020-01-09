@@ -27,20 +27,20 @@ const Heading = ({
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
 
-  const handleApply = _ => {
-    dispatch(setModal(modalType.JOB_APPLY));
-  }
-
   const handleLike = (type) => {
     Like.toggleLike(type, params.id)
-      .then((result) => {
-        passedFunction();
-        setUserLikes(result.data.total);
+    .then((result) => {
+      passedFunction();
+      setUserLikes(result.data.total);
 
-        console.log('[Liked]', result);
-      }).catch(error => {
-        console.log('[Liked ERROR]', error);
-      });
+      console.log('[Liked]', result);
+    }).catch(error => {
+      console.log('[Liked ERROR]', error);
+    });
+  }
+
+  const handleModal = type => {
+    dispatch(setModal(type));
   }
 
   return (
@@ -49,7 +49,7 @@ const Heading = ({
         <>
           { isEdit ? (
             <div className="heading__edit">
-              <Button className="button--eyecatch">
+              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH)}>
                 <>
                   <i className="icon icon-disk"></i>
                   変更する
@@ -61,7 +61,16 @@ const Heading = ({
             <Avatar className="avatar--profile"
               style={{ backgroundImage: `url("${avatarImg}")` }}
               isEdit={isEdit}
-            />
+            >
+              { isEdit ? (
+                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR)}>
+                  <>
+                    <i className="icon icon-image"></i>
+                    変更する
+                  </>
+                </Button>
+              ) : null }
+            </Avatar>
             <div className="heading__user-main">
               <h2 className="heading__user-name">{title || 'TODO if remove api auth-token'}</h2>
               <p className="heading__user-position">
@@ -87,14 +96,14 @@ const Heading = ({
                       <Link to={routes.SCOUTS} className="button button--large heading__user-button">
                         スカウト
                       </Link>
-                      <Button className="button--link heading__user-fav" onClick={e => handleLike(e, 'student')}>
+                      <Button className="button--link heading__user-fav" onClick={e => handleLike('student')}>
                         <Pill className="pill--icon text-medium-black">
                           <i className="icon icon-star"></i>{userLikes}
                         </Pill>
                       </Button>
                     </>
                   ) : accountType === 'company' ? (
-                    <Button className="button--link heading__user-fav" onClick={e => handleLike(e, 'company')}>
+                    <Button className="button--link heading__user-fav" onClick={e => handleLike('company')}>
                       <Pill className="pill--icon text-medium-black">
                         <i className="icon icon-star"></i>{userLikes}
                       </Pill>
@@ -130,8 +139,8 @@ const Heading = ({
 
             { isLogged ? (
               <>
-                { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleApply()}>応募する</Button> : null }
-                <Button className="button--link heading__job-fav" onClick={e => handleLike(e, 'job')}>
+                { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY)}>応募する</Button> : null }
+                <Button className="button--link heading__job-fav" onClick={e => handleLike('job')}>
                   <Pill className="pill--icon text-medium-black">
                     <i className="icon icon-star"></i>{userLikes}
                   </Pill>
