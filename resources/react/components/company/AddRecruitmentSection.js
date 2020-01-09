@@ -50,17 +50,6 @@ const AddRecruitmentSection = _ => {
     setFile(e.target.files[0]);
   }
 
-  useEffect(_ => {
-    if (file) {
-      // TODO: Upload file to s3 bucket
-
-      reader.readAsDataURL(file);
-      reader.onload = ev => {
-        eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
-      }
-    }
-  }, [file]);
-
   const handleOpenFile = e => {
     e.preventDefault();
 
@@ -73,6 +62,17 @@ const AddRecruitmentSection = _ => {
     setFile('');
     eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
   }
+
+  useEffect(_ => {
+    if (file) {
+      // TODO: Upload file to s3 bucket
+
+      reader.readAsDataURL(file);
+      reader.onload = ev => {
+        eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
+      }
+    }
+  }, [file]);
 
   return (
     <div className="dashboard-section">

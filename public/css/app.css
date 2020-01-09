@@ -2873,6 +2873,63 @@ And you should not feel free to add a new Utility class.
   margin-top: 0;
 }
 
+.modal__content-form-avatar {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.modal__content-form-avatar:before {
+  content: "";
+  padding-top: 100%;
+  display: block;
+}
+
+.modal__content-form-avatar-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.modal__content-form-actions {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-top: 21px;
+  margin-bottom: 27px;
+}
+
+.modal__content-form-actions > button {
+  width: 142px;
+}
+
+.modal__content-form-actions-button {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: #393939;
+  margin-top: 12px;
+  background-color: transparent !important;
+}
+
+.modal__content-form-actions-button i {
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.modal__content-form-actions-button.is-disabled {
+  color: #d9d6d6;
+}
+
 .modal__actions {
   display: -webkit-box;
   display: flex;
