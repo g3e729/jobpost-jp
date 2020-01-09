@@ -61,7 +61,7 @@ class JobPostService extends BaseService
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model)->popular();
+            $que = (new $this->model)->with('company')->popular();
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
