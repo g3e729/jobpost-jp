@@ -146,6 +146,28 @@
   border-radius: 50%;
 }
 
+.modal__content-form-eyecatch {
+  position: relative;
+  max-height: 203px;
+
+  &:before {
+    content: '';
+    padding-top: 34%;
+    display: block;
+  }
+}
+
+.modal__content-form-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
 .modal__content-form-actions {
   display: flex;
   flex-direction: column;
