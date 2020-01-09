@@ -3,28 +3,29 @@ import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root');
 import { connect } from 'react-redux';
 
+import JobApplyModal from './JobApplyModal';
 import JobDeleteModal from './JobDeleteModal';
 import JobStopModal from './JobStopModal';
 import { modalStyles, modalType } from '../../constants/config';
 
 const ModalService = (props) => {
-  const { modalProp } = props;
+  const { modal } = props;
 
   return (
-    modalProp.visible ? (
+    modal.visible ? (
       <ReactModal
         isOpen={true}
         contentLabel="Modal"
         style={modalStyles}
       >
         {(_ => {
-          switch(modalProp.modalType) {
+          switch(modal.modalType) {
+            case modalType.JOB_APPLY:
+              return <JobApplyModal />
             case modalType.JOB_DELETE:
               return <JobDeleteModal />
-              break;
             case modalType.JOB_STOP:
               return <JobStopModal />
-              break;
             default:
               return null
           }
@@ -35,7 +36,7 @@ const ModalService = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  modalProp: state.modal
+  modal: state.modal
 });
 
 export default connect(mapStateToProps)(ModalService);

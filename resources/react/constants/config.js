@@ -125,6 +125,8 @@ export const modalStyles = {
 };
 
 export const modalType = {
+  JOB_APPLY: 'job_apply', // route: job:id
+
   JOB_DELETE: 'job_delete', // route: dashboard/recruitment
-  JOB_STOP: 'job_stop' // route: dashboard/recruitment
+  JOB_STOP: 'job_stop', // route: dashboard/recruitment
 }
