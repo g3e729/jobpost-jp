@@ -15,6 +15,10 @@ const ProfileWorkModal = _ => {
   const [formValues, setFormValues] = useState({
     companyname: '',
     position: '',
+    monthfrom: '',
+    yearfrom: '',
+    monthto: '',
+    yearto: '',
     isCurrent: false,
     description: '',
   });
@@ -22,8 +26,8 @@ const ProfileWorkModal = _ => {
     .fill(null)
     .map((e, idx) => {
       e = {};
-      e.value = (idx < 10) ? `0${idx + 1}`: idx + 1;
-      e.label = (idx < 10) ? `0${idx + 1}`: idx + 1;
+      e.value = (idx < 9) ? `0${idx + 1}` : `${idx + 1}`;
+      e.label = (idx < 9) ? `0${idx + 1}` : `${idx + 1}`;
 
       return e;
   });

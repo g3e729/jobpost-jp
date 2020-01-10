@@ -127,6 +127,7 @@ export const modalStyles = {
 
     borderRadius: '0',
 
+    overflow: 'visible',
     zIndex: '9999'
   }
 };
