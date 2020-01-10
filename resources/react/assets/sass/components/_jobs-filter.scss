@@ -5,6 +5,10 @@
   width: 280px;
   flex: 0 0 280px;
   align-self: stretch;
+
+  @include max-screen($breakpoint-mobile) {
+    display: none;
+  }
 }
 
 .jobs-filter__header {
