@@ -208,8 +208,6 @@
 .modal__content-form-portfolio {
   display: flex;
   align-items: flex-start;
-
-  margin-bottom: 30px;
 }
 
 .modal__content-form-portfolio-left {
@@ -228,6 +226,10 @@
 
   &:first-child {
     margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 30px;
   }
 }
 

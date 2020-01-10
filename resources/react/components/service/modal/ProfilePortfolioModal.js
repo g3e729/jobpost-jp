@@ -15,6 +15,7 @@ const ProfilePortfolioModal = _ => {
     title: '',
     eyecatch: '',
     description: '',
+    url: '',
   });
   const [file, setFile] = useState('');
   const reader = new FileReader();

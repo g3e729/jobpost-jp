@@ -1,0 +1,45 @@
+.radio {
+  display: flex;
+  align-items: center;
+
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+
+  > input {
+    display: none;
+
+    &[type='checkbox']:checked + span:before,
+    &[type='radio']:checked + span:before {
+      content: '';
+
+      position: absolute;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+
+      width: 10px;
+      height: 10px;
+
+      background-color: $color-dark-yellow;
+      border-radius: 50%;
+    }
+  }
+
+  > span {
+    position: relative;
+
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-right: 12px;
+
+    border: solid 1px $color-dark-gray;
+    border-radius: 50%;
+  }
+}
+
+.radio--labeled {
+  > span {
+    margin-right: 12px;
+  }
+}

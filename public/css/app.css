@@ -2960,7 +2960,6 @@ And you should not feel free to add a new Utility class.
   display: flex;
   -webkit-box-align: start;
           align-items: flex-start;
-  margin-bottom: 30px;
 }
 
 .modal__content-form-portfolio-left {
@@ -2982,6 +2981,10 @@ And you should not feel free to add a new Utility class.
 
 .modal__content-form-group:first-child {
   margin-top: 0;
+}
+
+.modal__content-form-group:last-child {
+  margin-bottom: 30px;
 }
 
 .modal__content-form-group-label {
@@ -4043,6 +4046,45 @@ a.pagination__item-link:hover {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+.radio {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.radio > input {
+  display: none;
+}
+
+.radio > input[type=checkbox]:checked + span:before,
+.radio > input[type=radio]:checked + span:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  background-color: #fdb834;
+  border-radius: 50%;
+}
+
+.radio > span {
+  position: relative;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-right: 12px;
+  border: solid 1px #d9d6d6;
+  border-radius: 50%;
+}
+
+.radio--labeled > span {
+  margin-right: 12px;
 }
 
 .recruitment-form__container {
