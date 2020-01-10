@@ -157,6 +157,12 @@
   }
 }
 
+.modal__content-form-eyecatch--portfolio {
+  &:before {
+    padding-top: 70%;
+  }
+}
+
 .modal__content-form-eyecatch-img {
   position: absolute;
   top: 0;
@@ -197,6 +203,48 @@
   &.is-disabled {
     color: $color-dark-gray;
   }
+}
+
+.modal__content-form-portfolio {
+  display: flex;
+  align-items: flex-start;
+
+  margin-bottom: 30px;
+}
+
+.modal__content-form-portfolio-left {
+  width: 200px;
+  flex: 0 0 200px;
+}
+
+.modal__content-form-portfolio-right {
+  flex: 1;
+  margin-top: -2px;
+  margin-left: 30px;
+}
+
+.modal__content-form-group {
+  margin-top: 28px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.modal__content-form-group-label {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  margin-bottom: 5px;
+}
+
+.modal__content-form-group-input {
+  width: 100%;
+  padding: 5px 0 5px 14px;
+  min-height: 40px;
+
+  resize: none;
+  border: solid 1px $color-dark-gray;
 }
 
 .modal__actions {
