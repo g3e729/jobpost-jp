@@ -14,7 +14,8 @@ class Like extends Model
     protected $hidden = [
         'likeable_id',
         'likeable_type',
-        'updated_at'
+        'updated_at',
+        'liker',
     ];
 
     protected $fillable = [
@@ -23,8 +24,22 @@ class Like extends Model
         'likeable_type'
     ];
 
+    protected $appends = [
+        'liker_id'
+    ];
+
     public function likeable()
     {
         return $this->morphTo();
+    }
+
+    public function liker()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getLikerIdAttribute()
+    {
+        return $this->liker->api_token ?? null;
     }
 }
