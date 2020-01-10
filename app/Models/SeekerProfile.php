@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasLike;
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SeekerProfile extends Model
 {
-    use HasUser, SoftDeletes;
+    use HasLike, HasUser, SoftDeletes;
 
 	const ROLE = 'seeker';
 
@@ -61,14 +62,6 @@ class SeekerProfile extends Model
         'deleted_at'
     ];
 
-    // static protected $get_attr = [
-    //     'course',
-    //     'student_status',
-    //     'taken_class',
-    //     'occupation',
-    //     'english_level'
-    // ];
-
     protected $appends = [
         'email',
         'name',
@@ -83,9 +76,7 @@ class SeekerProfile extends Model
         'student_status',
         'taken_class',
         'occupation',
-        'english_level',
-
-        'total_likes'
+        'english_level'
     ];
 
 	static protected $courses = [
@@ -306,7 +297,7 @@ class SeekerProfile extends Model
 
     public function scopePopular($query)
     {
-        return $query->withCount([
+        return $query->with('likes')->withCount([
             'likes' => function ($q) {
                 $q->where('likes.likeable_type', get_class($this));
             }
@@ -362,11 +353,6 @@ class SeekerProfile extends Model
     public function getEnglishLevelAttribute()
     {
         return $this->english_level_id ? self::getEnglishLevels(strtolower($this->english_level_id)) : null;
-    }
-
-    public function getTotalLikesAttribute()
-    {
-        return $this->likes->count();
     }
 
     // Options

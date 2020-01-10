@@ -74,10 +74,6 @@ class JobPostService extends BaseService
                 }
             }
 
-            if ($paginated === 'que') {
-                return $que;
-            }
-
             $sort = empty($sort) ? 'DESC' : strtoupper($sort);
 
             switch ($sort) {
@@ -89,15 +85,11 @@ class JobPostService extends BaseService
                     $que = $que->orderByDesc('likes_count');
                 break;
             }
-
-            if ($paginated) {
-                return $que->paginate(config('site_settings.per_page'));
-            }
-
-            return $que->get();
+            
+            return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
-            return collect([]);
+            return $this->toReturn();
         }
     }
 
