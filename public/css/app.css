@@ -3001,6 +3001,27 @@ And you should not feel free to add a new Utility class.
   border: solid 1px #d9d6d6;
 }
 
+.modal__content-form-group-inputs {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 0 -10px;
+}
+
+.modal__content-form-group-inputs > * {
+  -webkit-box-flex: 1;
+          flex: 1;
+  padding: 0 10px;
+}
+
+.modal__content-form-group-radio {
+  margin-top: 13px;
+  margin-bottom: -5px;
+}
+
 .modal__actions {
   display: -webkit-box;
   display: flex;

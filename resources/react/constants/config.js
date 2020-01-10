@@ -11,7 +11,7 @@ export const values = {
   mvHeight: 660
 };
 
-export const jobSelectStyles = {
+export const defaultSelectStyles = {
   control: (provided) => ({
     ...provided,
     borderWidth: '1px',
@@ -20,10 +20,8 @@ export const jobSelectStyles = {
   indicatorSeparator: _ => ({
     display: 'none',
   }),
-  dropdownIndicator: (provided, state) => ({
-    ...provided,
-    transition: 'transform .25s ease',
-    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null
+  dropdownIndicator: _ => ({
+    display: 'none',
   }),
   menu: (provided) => ({
     ...provided,
@@ -49,6 +47,15 @@ export const jobSelectStyles = {
     ...provided,
     padding: '4px 0 4px 12px',
     letterSpacing: '0.06em',
+  }),
+};
+
+export const jobSelectStyles = {
+  ...defaultSelectStyles,
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    transition: 'transform .25s ease',
+    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null
   }),
 };
 

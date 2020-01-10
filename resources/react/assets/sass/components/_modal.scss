@@ -249,6 +249,24 @@
   border: solid 1px $color-dark-gray;
 }
 
+.modal__content-form-group-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 -10px;
+
+  > * {
+    flex: 1;
+    padding: 0 10px;
+  }
+}
+
+.modal__content-form-group-radio {
+  margin-top: 13px;
+  margin-bottom: -5px;
+}
+
 .modal__actions {
   display: flex;
   flex-direction: column;
