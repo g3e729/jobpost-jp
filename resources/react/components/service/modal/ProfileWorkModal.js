@@ -66,34 +66,34 @@ const ProfileWorkModal = _ => {
   return (
     <BaseModal title="職歴">
       <div className="modal__content">
-        <form className="modal__content-form" onSubmit={_ => console.log('Submit work')}>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+        <form className="modal__form" onSubmit={_ => console.log('Submit work')}>
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               企業名
             </div>
-            <Input className="modal__content-form-group-input"
+            <Input className="modal__form-group-input"
               value={formValues.companyname}
               onChange={e => handleChange(e)}
               name="companyname"
               type="text"
             />
           </div>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               役職
             </div>
-            <Input className="modal__content-form-group-input"
+            <Input className="modal__form-group-input"
               value={formValues.position}
               onChange={e => handleChange(e)}
               name="position"
               type="text"
             />
           </div>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               在籍期間
             </div>
-            <div className="modal__content-form-group-inputs">
+            <div className="modal__form-group-inputs">
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
                 placeholder='MM'
@@ -116,7 +116,7 @@ const ProfileWorkModal = _ => {
                 onChange={e => handleSelect(e, 'yearto')}
               />
             </div>
-            <Radio className="radio--labeled modal__content-form-group-radio"
+            <Radio className="radio--labeled modal__form-group-radio"
               label="在職中"
               checked={formValues.isCurrent}
               onChange={e => toggleChange(e)}
@@ -124,11 +124,11 @@ const ProfileWorkModal = _ => {
               type="checkbox"
             />
           </div>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               学んだこと
             </div>
-            <Textarea className="modal__content-form-group-input"
+            <Textarea className="modal__form-group-input"
               value={formValues.description}
               onChange={e => handleChange(e)}
               name="description"

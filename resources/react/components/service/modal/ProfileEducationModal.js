@@ -54,23 +54,23 @@ const ProfileEducationModal = _ => {
   return (
     <BaseModal title="学歴">
       <div className="modal__content">
-        <form className="modal__content-form" onSubmit={_ => console.log('Submit work')}>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+        <form className="modal__form" onSubmit={_ => console.log('Submit education')}>
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               学校名
             </div>
-            <Input className="modal__content-form-group-input"
+            <Input className="modal__form-group-input"
               value={formValues.schoolname}
               onChange={e => handleChange(e)}
               name="schoolname"
               type="text"
             />
           </div>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               学部、専攻、学科
             </div>
-            <Input className="modal__content-form-group-input"
+            <Input className="modal__form-group-input"
               value={formValues.attainment}
               onChange={e => handleChange(e)}
               name="attainment"
@@ -78,11 +78,11 @@ const ProfileEducationModal = _ => {
             />
           </div>
 
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               卒業
             </div>
-            <div className="modal__content-form-group-inputs">
+            <div className="modal__form-group-inputs">
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
                 placeholder='MM'
@@ -95,11 +95,11 @@ const ProfileEducationModal = _ => {
               />
             </div>
           </div>
-          <div className="modal__content-form-group">
-            <div className="modal__content-form-group-label">
+          <div className="modal__form-group">
+            <div className="modal__form-group-label">
               学んだこと
             </div>
-            <Textarea className="modal__content-form-group-input"
+            <Textarea className="modal__form-group-input"
               value={formValues.description}
               onChange={e => handleChange(e)}
               name="description"

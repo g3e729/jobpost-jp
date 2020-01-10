@@ -46,9 +46,9 @@ const ProfileEyecatchModal = _ => {
   return (
     <BaseModal title="画像の変更">
       <div className="modal__content modal__content--center">
-        <form className="modal__content-form" onSubmit={_ => console.log('Upload eyecatch')}>
-          <div className="modal__content-form-cluster">
-            <input className="input modal__content-form-input"
+        <form className="modal__form" onSubmit={_ => console.log('Upload eyecatch')}>
+          <div className="modal__form-cluster">
+            <input className="input modal__form-input"
               onChange={e => handleUpdateFile(e)}
               onClick={e => e.target.value = null}
               ref={imageInputRef}
@@ -56,17 +56,17 @@ const ProfileEyecatchModal = _ => {
               type="file"
               style={{ display: 'none' }}
             />
-            <div className="modal__content-form-eyecatch">
-              <div className="modal__content-form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${ecPlaceholder}")` }}></div>
+            <div className="modal__form-eyecatch">
+              <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${ecPlaceholder}")` }}></div>
             </div>
-            <div className="modal__content-form-actions">
+            <div className="modal__form-actions">
               <Button className="button--pill" onClick={e => handleOpenFile(e)}>
                 <>
                   <i className="icon icon-image text-dark-yellow"></i>
                   アップロード
                 </>
               </Button>
-              <Button className={`button--link modal__content-form-actions-button ${!file && state.DISABLED}`}
+              <Button className={`button--link modal__form-actions-button ${!file && state.DISABLED}`}
                 onClick={e => handleRemoveFile(e)}>
                 <>
                   <i className="icon icon-cross"></i>
