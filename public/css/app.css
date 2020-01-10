@@ -3058,6 +3058,7 @@ And you should not feel free to add a new Utility class.
 
 .modal__form-table-item-key {
   letter-spacing: 0.06em;
+  white-space: pre-line;
   padding-left: 50px;
 }
 
