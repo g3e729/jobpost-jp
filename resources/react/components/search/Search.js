@@ -26,6 +26,10 @@ const Search = _ => {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
 
+  const handleTabChange = index => {
+    setTabIndex(index);
+  }
+
   async function getResults() {
     setSearchTerm(urlParams.get('search'));
 
@@ -36,10 +40,6 @@ const Search = _ => {
     });
 
     return request.data;
-  }
-
-  const handleTabChange = index => {
-    setTabIndex(index);
   }
 
   useEffect(_ => {

@@ -23,6 +23,10 @@ const Profile = (props) => {
   } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
+  const handleModal = type => {
+    dispatch(setModal(type));
+  }
+
   async function getFilteredJobs() {
     const companyId = data.id;
     const request = await Job.getFilteredJobs({
@@ -38,10 +42,6 @@ const Profile = (props) => {
       .then(res => setJobs(res.data.splice(0, 3)))
       .catch(error => console.log('[Jobs ERROR]', error));
   }, []);
-
-  const handleModal = type => {
-    dispatch(setModal(type));
-  }
 
   return (
     accountType === 'student' ? (
