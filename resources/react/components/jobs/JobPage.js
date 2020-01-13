@@ -3,7 +3,9 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import Page from '../common/Page';
+import Four0FourPage from '../common/404';
 import Heading from '../common/Heading';
+import Loading from '../common/Loading';
 import Job from './Job';
 import JobAPI from '../../utils/job';
 
@@ -12,6 +14,7 @@ import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 const JobPage = (props) => {
   const [job, setJob] = useState({});
   const [hasLiked, setHasLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = props;
   const accountType = (user.userData && user.userData.account_type) || '';
 
@@ -24,8 +27,15 @@ const JobPage = (props) => {
 
   useEffect(_ => {
     getJob()
-      .then(res => setJob(res))
-      .catch(error => console.log('[Job detail ERROR]', error));
+      .then(res => {
+        setJob(res);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        setIsLoading(false);
+
+        console.log('[Job detail ERROR]', error);
+      });
   }, []);
 
   useEffect(() => {
@@ -40,27 +50,31 @@ const JobPage = (props) => {
 
   return (
     <Page>
-      { !_.isEmpty(job) ? (
-        <>
-          <Heading type="job"
-            style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}
-            isOwner="false"
-            isLogged={user.isLogged}
-            accountType={accountType}
-            passedFunction={_ => getJob().then(res => setJob(res))}
-            hasLiked={hasLiked}
-            title={job.display_name}
-            subTitle={job.homepage}
-            data-likes={job.likes_count}
-          />
-          <div className="l-section l-section--job section">
-            <div className="l-container">
-              <Job />
-            </div>
-          </div>
-        </>
+      { isLoading ? (
+        <Loading className="loading--full" />
       ) : (
-        null
+        !_.isEmpty(job) ? (
+          <>
+            <Heading type="job"
+              style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}
+              isOwner="false"
+              isLogged={user.isLogged}
+              accountType={accountType}
+              passedFunction={_ => getJob().then(res => setJob(res))}
+              hasLiked={hasLiked}
+              title={job.title}
+              subTitle={job.homepage}
+              data-likes={job.likes_count}
+            />
+            <div className="l-section l-section--job section">
+              <div className="l-container">
+                <Job job={job} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <Four0FourPage />
+        )
       )}
     </Page>
   );

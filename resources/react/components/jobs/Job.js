@@ -3,7 +3,9 @@ import { css } from 'emotion';
 
 import Embed from '../common/Embed';
 
-const Job = _ => {
+const Job = (props) => {
+  const { job } = props;
+
   return (
     <div className="job">
       <div className="job__main">
@@ -70,16 +72,16 @@ const Job = _ => {
           </div>
           <dl className="job__main-list job__main-list--table">
             <dt className="job__main-list-term">ポジション</dt>
-            <dd className="job__main-list-data">WEBエンジニア【リーダー候補】</dd>
+            <dd className="job__main-list-data">{job.position}</dd>
             <dt className="job__main-list-term">開発環境</dt>
             <dd className="job__main-list-data">
               <dl>
                 <dt>言語</dt>
-                <dd>Ruby</dd>
+                <dd>{job.programming_language}</dd>
                 <dt>フレームワーク</dt>
-                <dd>Ruby on Rails</dd>
+                <dd>{job.framework}</dd>
                 <dt>データベース</dt>
-                <dd>Mysql</dd>
+                <dd>{job.database}</dd>
                 <dt>管理</dt>
                 <dd>Github, Google Drive</dd>
               </dl>

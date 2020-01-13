@@ -34,15 +34,13 @@ const Heading = (props) => {
 
   const handleLike = _.debounce((type) => {
     Like.toggleLike(type, params.id)
-      .then((result) => {
+      .then(result => {
         passedFunction();
         setUserLikes(result.data.total);
         setHasUserLiked(!hasUserLiked);
 
-        console.log('[Liked]', result);
-      }).catch(error => {
-        console.log('[Liked ERROR]', error);
-      });
+        console.log('[Like SUCCESS]', result);
+      }).catch(error => console.log('[Like ERROR]', error));
   }, 400);
 
   const handleModal = type => {
@@ -134,7 +132,7 @@ const Heading = (props) => {
         <div className="heading__job">
           <div className="heading__job-main">
             <time className="heading__job-time">2019/07/24</time>
-            <h2 className="heading__job-title">自社★C2Cマッチングプラットフォーム開発【少数精鋭/残業少/フレックス】</h2>
+            <h2 className="heading__job-title">{title}</h2>
             <div className="heading__job-company">
               <img src="https://lorempixel.com/240/240/city/" alt=""/>
               <div className="heading__job-company-name">

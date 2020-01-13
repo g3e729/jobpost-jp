@@ -11,24 +11,24 @@ export const unsetJobs = _ => ({
 
 export const getJobs = _ => {
   return (dispatch) => {
-    return Job.getJobs().then((result) => {
+    return Job.getJobs().then(result => {
       dispatch(setJobs({ ...result.data }));
     }).catch(error => {
       dispatch(unsetJobs());
 
-      console.log('[Jobs]', error);
+      console.log('[Jobs ERROR]', error);
     })
   }
 }
 
 export const getFilteredJobs = (params) => {
   return (dispatch) => {
-    return Job.getFilteredJobs(params).then((result) => {
+    return Job.getFilteredJobs(params).then(result => {
       dispatch(setJobs({ ...result.data }));
     }).catch(error => {
       dispatch(unsetJobs());
 
-      console.log('[Jobs]', error);
+      console.log('[Jobs ERROR]', error);
     })
   }
 }

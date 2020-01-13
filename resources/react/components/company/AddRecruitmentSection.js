@@ -1,13 +1,15 @@
 import React, { useState, useEffect, createRef } from 'react';
+import _ from 'lodash';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
+import Job from '../../utils/job';
 import { state } from '../../constants/state';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
-const AddRecruitmentSection = _ => {
+const AddRecruitmentSection = () => {
   const [formValues, setFormValues] = useState({
     title: '',
     description: '',
@@ -31,7 +33,7 @@ const AddRecruitmentSection = _ => {
     address1: '',
     address2: '',
     address3: '',
-    nearest_station: '',
+    prefecture: '',
   });
   const [file, setFile] = useState('');
   const reader = new FileReader();
@@ -62,6 +64,40 @@ const AddRecruitmentSection = _ => {
     setFile('');
     eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
   }
+
+  const handleSubmit = _.debounce((e) => {
+    e.persist();
+
+    // TODO: handle validation
+
+    Job.addJob({
+      title: formValues.title,
+      description: formValues.description,
+      // eyecatch: formValues.eyecatch,
+      position: formValues.position,
+      programming_language: formValues.programming_language,
+      framework: formValues.framework,
+      database: formValues.database,
+      // management: formValues.management,
+      // requirements: formValues.requirements,
+      // total_applicants: formValues.total_applicants,
+      // annual_income: formValues.annual_income,
+      // working_hours: formValues.working_hours,
+      // holidays: formValues.holidays,
+      // benefits: formValues.benefits,
+      // incentive: formValues.incentive,
+      // promotion: formValues.promotion,
+      // insurance: formValues.insurance,
+      // trial_period: formValues.trial_period,
+      // selection_flow: formValues.selection_flow,
+      address1: formValues.address1,
+      address2: formValues.address2,
+      address3: formValues.address3,
+      prefecture: formValues.prefecture,
+    })
+      .then(result => console.log('result :', result))
+      .catch(error => console.log('error :', error));
+  }, 400);
 
   useEffect(_ => {
     if (file) {
@@ -337,16 +373,16 @@ const AddRecruitmentSection = _ => {
                 最寄駅
               </div>
               <Input className="recruitment-form__main-group-input"
-                value={formValues.nearest_station}
+                value={formValues.prefecture}
                 onChange={e => handleChange(e)}
-                name="nearest_station"
+                name="prefecture"
                 type="text"
               />
             </div>
 
           </form>
           <div className="recruitment-form__button">
-            <Button>送信</Button>
+            <Button type="submit" onClick={e => handleSubmit(e)}>送信</Button>
           </div>
         </div>
       </div>

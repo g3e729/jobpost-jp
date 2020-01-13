@@ -13,8 +13,8 @@ class JobPostController extends BaseController
 	public function index(Request $request)
 	{
 		$jobs = (new JobPostService)->search(
-			$request->except('_token', 'page', 'sort'), 
-			true, 
+			$request->except('_token', 'page', 'sort'),
+			true,
 			$request->get('sort')
 		);
 
@@ -36,9 +36,9 @@ class JobPostController extends BaseController
 
 		$company = $user->profile;
 
-		$company->jobPosts()->create($request->all());
+		return $company->jobPosts()->create($request->all());
 	}
-	
+
 	public function getJobFilters(Request $request)
 	{
 		$filters = (new JobPostService)->jobFilters();

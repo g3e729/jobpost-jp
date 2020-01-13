@@ -23,7 +23,7 @@ const JobsList = (props) => {
 
   const handleLike = _.debounce((type, id) => {
     Like.toggleLike(type, id)
-      .then((result) => {
+      .then(result => {
         setJobsTmp(jobsTmp.map(job => {
           if (job.id == id) {
             return { ...job,
@@ -35,10 +35,8 @@ const JobsList = (props) => {
           return job;
         }));
 
-        console.log('[Liked]', result);
-      }).catch(error => {
-        console.log('[Liked ERROR]', error);
-      });
+        console.log('[Like SUCCESS]', result);
+      }).catch(error => console.log('[Like ERROR]', error));
   }, 400);
 
   useEffect(() => {
