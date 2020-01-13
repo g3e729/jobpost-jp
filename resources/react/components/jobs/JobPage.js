@@ -36,8 +36,6 @@ const JobPage = (props) => {
         return like.liker_id == userData.api_token
       }));
     }
-
-    console.log('hasLiked :', hasLiked);
   }, [user, job])
 
   return (

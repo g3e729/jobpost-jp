@@ -14,8 +14,13 @@ import { setModal } from '../../actions/modal';
 
 const Profile = (props) => {
   const dispatch = useDispatch();
-  const [jobs, setJobs] = useState({});
-  const { user, accountType, isEdit = false, isOwner = true } = props;
+  const [jobs, setJobs] = useState([]);
+  const {
+    user,
+    accountType,
+    isEdit = false,
+    isOwner = true
+  } = props;
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
   async function getFilteredJobs() {

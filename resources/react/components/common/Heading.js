@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -11,37 +12,38 @@ import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 
-const Heading = ({
-  type,
-  title,
-  subTitle,
-  isOwner = true,
-  isEdit = false,
-  isLogged = false,
-  hasLiked = false,
-  accountType = null,
-  passedFunction = null,
-  children,
-  ...rest
-}) => {
+const Heading = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
+  const {
+    type,
+    title,
+    subTitle,
+    isOwner = true,
+    isEdit = false,
+    isLogged = false,
+    hasLiked = false,
+    accountType = null,
+    passedFunction = null,
+    children,
+    ...rest
+  } = props;
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const [hasUserLiked, setHasUserLiked] = useState(false);
   const avatarImg = rest['data-avatar'] || '';
 
-  const handleLike = (type) => {
+  const handleLike = _.debounce((type) => {
     Like.toggleLike(type, params.id)
-    .then((result) => {
-      passedFunction();
-      setUserLikes(result.data.total);
-      setHasUserLiked(!hasUserLiked);
+      .then((result) => {
+        passedFunction();
+        setUserLikes(result.data.total);
+        setHasUserLiked(!hasUserLiked);
 
-      console.log('[Liked]', result);
-    }).catch(error => {
-      console.log('[Liked ERROR]', error);
-    });
-  }
+        console.log('[Liked]', result);
+      }).catch(error => {
+        console.log('[Liked ERROR]', error);
+      });
+  }, 400);
 
   const handleModal = type => {
     dispatch(setModal(type));

@@ -1,21 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Button from '../common/Button';
 import Pill from '../common/Pill';
+import Like from '../../utils/like';
 import generateRoute from '../../utils/generateRoute';
+import { state } from '../../constants/state';
 import { routes } from '../../constants/routes';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const JobsList = (props) => {
-  const { jobs = {}, hasTitle } = props;
+  const {
+    jobs = [],
+    user,
+    hasTitle
+  } = props;
+  const [isLogged, setIsLogged] = useState(false);
+  const [jobsTmp, setJobsTmp] = useState(jobs);
+
+  const handleLike = _.debounce((type, id) => {
+    Like.toggleLike(type, id)
+      .then((result) => {
+        setJobsTmp(jobsTmp.map(job => {
+          if (job.id == id) {
+            return { ...job,
+              likes_count: result.data.total,
+              hasUserLiked: !job.hasUserLiked
+            }
+          }
+
+          return job;
+        }));
+
+        console.log('[Liked]', result);
+      }).catch(error => {
+        console.log('[Liked ERROR]', error);
+      });
+  }, 400);
+
+  useEffect(() => {
+    if (user.isLogged && !_.isEmpty(jobs)) {
+      const { userData } = user;
+
+      setIsLogged(true);
+      setJobsTmp(jobs.map(job => {
+        return {
+          ...job,
+          hasUserLiked : job.likes.some(like => {
+            return like.liker_id == userData.api_token
+          })
+        }
+      }))
+    }
+  }, [user, jobs])
 
   return (
     <>
       { hasTitle ? <h3 className="jobs-list__title">募集</h3> : null }
-      { jobs.length ? (
+      { jobsTmp.length ? (
         <ul className={`jobs-list ${hasTitle ? 'jobs-list--titled' : ''}`}>
-          { jobs.map(job => (
+          { jobsTmp.map(job => (
             <li className="jobs-list__item" key={job.id}>
               <div className="job-list__item-top">
                 <div className="job-list__item-top-left">
@@ -50,9 +97,17 @@ const JobsList = (props) => {
                   <li className="job-list__item-pills-item pill">3日前</li>
                 </ul>
                 <div className="job-list__item-fav">
-                  <Pill className="pill--icon">
-                    <i className="icon icon-star"></i>{job.likes_count}
-                  </Pill>
+                  { isLogged ? (
+                    <Button className="button--link" onClick={e => handleLike('job', job.id)}>
+                      <Pill className={`pill--icon text-medium-black ${job.hasUserLiked ? state.ACTIVE : ''}`}>
+                        <i className="icon icon-star"></i>{job.likes_count}
+                      </Pill>
+                    </Button>
+                  ) : (
+                    <Pill className="pill--icon">
+                      <i className="icon icon-star"></i>{job.likes_count}
+                    </Pill>
+                  )}
                 </div>
               </div>
             </li>
@@ -63,4 +118,8 @@ const JobsList = (props) => {
   );
 };
 
-export default JobsList;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(JobsList);
