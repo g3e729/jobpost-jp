@@ -30,7 +30,7 @@ const ProfileOtherModal = _ => {
   return (
     <BaseModal title="その他">
       <div className="modal__content">
-        <form className="modal__form" onSubmit={_ => console.log('Submit programming')}>
+        <form className="modal__form" onSubmit={_ => console.log('Submit other')}>
           <ul className="modal__form-table">
             <li className="modal__form-table-item modal__form-table-item--header">
               <div className="modal__form-table-item-wrapper">

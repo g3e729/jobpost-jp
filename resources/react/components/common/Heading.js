@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -6,6 +6,7 @@ import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Pill from '../common/Pill';
 import Like from '../../utils/like';
+import { state } from '../../constants/state';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
@@ -17,6 +18,7 @@ const Heading = ({
   isOwner = true,
   isEdit = false,
   isLogged = false,
+  hasLiked = false,
   accountType = null,
   passedFunction = null,
   children,
@@ -25,6 +27,7 @@ const Heading = ({
   const dispatch = useDispatch();
   const params = useParams();
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
+  const [hasUserLiked, setHasUserLiked] = useState(false);
   const avatarImg = rest['data-avatar'] || '';
 
   const handleLike = (type) => {
@@ -32,6 +35,7 @@ const Heading = ({
     .then((result) => {
       passedFunction();
       setUserLikes(result.data.total);
+      setHasUserLiked(!hasUserLiked);
 
       console.log('[Liked]', result);
     }).catch(error => {
@@ -42,6 +46,10 @@ const Heading = ({
   const handleModal = type => {
     dispatch(setModal(type));
   }
+
+  useEffect(_ => {
+    setHasUserLiked(hasLiked);
+  }, [hasLiked])
 
   return (
     <div className={`heading heading--${type || 'default'}`} {...rest}>
@@ -97,14 +105,14 @@ const Heading = ({
                         スカウト
                       </Link>
                       <Button className="button--link heading__user-fav" onClick={e => handleLike('student')}>
-                        <Pill className="pill--icon text-medium-black">
+                        <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                           <i className="icon icon-star"></i>{userLikes}
                         </Pill>
                       </Button>
                     </>
                   ) : accountType === 'company' ? (
                     <Button className="button--link heading__user-fav" onClick={e => handleLike('company')}>
-                      <Pill className="pill--icon text-medium-black">
+                      <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                         <i className="icon icon-star"></i>{userLikes}
                       </Pill>
                     </Button>
@@ -141,7 +149,7 @@ const Heading = ({
               <>
                 { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY)}>応募する</Button> : null }
                 <Button className="button--link heading__job-fav" onClick={e => handleLike('job')}>
-                  <Pill className="pill--icon text-medium-black">
+                  <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                     <i className="icon icon-star"></i>{userLikes}
                   </Pill>
                 </Button>

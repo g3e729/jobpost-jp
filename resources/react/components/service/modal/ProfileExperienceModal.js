@@ -27,7 +27,7 @@ const ProfileExperienceModal = _ => {
   return (
     <BaseModal title="経験分野">
       <div className="modal__content">
-        <form className="modal__form" onSubmit={_ => console.log('Submit programming')}>
+        <form className="modal__form" onSubmit={_ => console.log('Submit experience')}>
           <ul className="modal__form-table">
             <li className="modal__form-table-item modal__form-table-item--header">
               <div className="modal__form-table-item-wrapper">

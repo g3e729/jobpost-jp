@@ -12,6 +12,7 @@ import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const StudentPage = (props) => {
   const [student, setStudent] = useState({});
+  const [hasLiked, setHasLiked] = useState(false);
   const { user } = props;
 
   async function getStudent() {
@@ -27,6 +28,16 @@ const StudentPage = (props) => {
       .catch(error => console.log('[Student detail ERROR]', error));
   }, []);
 
+  useEffect(() => {
+    if (user.isLogged && !_.isEmpty(student)) {
+      const { userData } = user;
+
+      setHasLiked(student.likes.some(like => {
+        return like.liker_id == userData.api_token
+      }));
+    }
+  }, [user, student])
+
   return (
     <Page>
       { !_.isEmpty(student) ? (
@@ -39,6 +50,7 @@ const StudentPage = (props) => {
             title={student.display_name}
             subTitle={<span><i className="icon icon-book text-dark-yellow"></i>{student.course}</span>}
             passedFunction={_ => getStudent().then(res => setStudent(res))}
+            hasLiked={hasLiked}
             data-avatar={student.avatar || avatarPlaceholder}
             data-likes={student.likes_count}
           />

@@ -11,6 +11,7 @@ import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const JobPage = (props) => {
   const [job, setJob] = useState({});
+  const [hasLiked, setHasLiked] = useState(false);
   const { user } = props;
   const accountType = (user.userData && user.userData.account_type) || '';
 
@@ -27,6 +28,18 @@ const JobPage = (props) => {
       .catch(error => console.log('[Job detail ERROR]', error));
   }, []);
 
+  useEffect(() => {
+    if (user.isLogged && !_.isEmpty(job)) {
+      const { userData } = user;
+
+      setHasLiked(job.likes.some(like => {
+        return like.liker_id == userData.api_token
+      }));
+    }
+
+    console.log('hasLiked :', hasLiked);
+  }, [user, job])
+
   return (
     <Page>
       { !_.isEmpty(job) ? (
@@ -37,6 +50,7 @@ const JobPage = (props) => {
             isLogged={user.isLogged}
             accountType={accountType}
             passedFunction={_ => getJob().then(res => setJob(res))}
+            hasLiked={hasLiked}
             title={job.display_name}
             subTitle={job.homepage}
             data-likes={job.likes_count}

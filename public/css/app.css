@@ -3431,6 +3431,19 @@ a.pagination__item-link:hover {
   z-index: 1;
 }
 
+.pill--icon.is-active {
+  font-weight: 700;
+  border: solid 1px #f2f2f0;
+}
+
+.pill--icon.is-active:before {
+  background-color: #f2f2f0;
+}
+
+.pill--icon.is-active > i {
+  color: #fdb834;
+}
+
 .pill--clear {
   font-size: 16px;
   text-align: left;
