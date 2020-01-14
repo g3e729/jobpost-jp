@@ -13,7 +13,7 @@ const AddRecruitmentSection = () => {
   const [formValues, setFormValues] = useState({
     title: '',
     description: '',
-    eyecatch: '',
+    cover_photo: '',
     position: '',
     programming_language: '',
     framework: '',
@@ -21,7 +21,7 @@ const AddRecruitmentSection = () => {
     environment: '',
     requirements: '',
     number_of_applicants: '',
-    income: '',
+    salary: '',
     work_time: '',
     holidays: '',
     allowance: '',
@@ -34,7 +34,7 @@ const AddRecruitmentSection = () => {
     address1: '',
     address2: '',
     address3: '',
-    nearest_station: '',
+    station: '',
     files: '',
   });
   const [file, setFile] = useState('');
@@ -72,44 +72,44 @@ const AddRecruitmentSection = () => {
 
     // TODO: handle validation
 
-    Job.addJob({
-      title: formValues.title,
-      description: formValues.description,
-      // eyecatch: formValues.eyecatch,
-      position: formValues.position,
-      programming_language: formValues.programming_language,
-      framework: formValues.framework,
-      database: formValues.database,
-      environment: formValues.environment,
-      requirements: formValues.requirements,
-      number_of_applicants: formValues.number_of_applicants,
-      income: formValues.income,
-      work_time: formValues.work_time,
-      holidays: formValues.holidays,
-      allowance: formValues.allowance,
-      incentive: formValues.incentive,
-      salary_increase: formValues.salary_increase,
-      insurance: formValues.insurance,
-      contract_period: formValues.contract_period,
-      screening_flow: formValues.screening_flow,
-      prefecture: formValues.prefecture,
-      address1: formValues.address1,
-      address2: formValues.address2,
-      address3: formValues.address3,
-      nearest_station: formValues.nearest_station,
-      files: formValues.files,
-    })
+    const formdata = new FormData();
+    formdata.append('title', formValues.title);
+    formdata.append('description', formValues.description);
+    formdata.append('cover_photo', formValues.cover_photo);
+    formdata.append('position', formValues.position);
+    formdata.append('programming_language', formValues.programming_language);
+    formdata.append('framework', formValues.framework);
+    formdata.append('database', formValues.database);
+    formdata.append('environment', formValues.environment);
+    formdata.append('requirements', formValues.requirements);
+    formdata.append('number_of_applicants', formValues.number_of_applicants);
+    formdata.append('salary', formValues.salary);
+    formdata.append('work_time', formValues.work_time);
+    formdata.append('holidays', formValues.holidays);
+    formdata.append('allowance', formValues.allowance);
+    formdata.append('incentive', formValues.incentive);
+    formdata.append('salary_increase', formValues.salary_increase);
+    formdata.append('insurance', formValues.insurance);
+    formdata.append('contract_period', formValues.contract_period);
+    formdata.append('screening_flow', formValues.screening_flow);
+    formdata.append('address1', formValues.address1);
+    formdata.append('address2', formValues.address2);
+    formdata.append('address3', formValues.address3);
+    formdata.append('station', formValues.station);
+
+    Job.addJob(formdata)
       .then(result => console.log('result :', result))
       .catch(error => console.log('error :', error));
   }, 400);
 
   useEffect(_ => {
     if (file) {
-      // TODO: Upload file to s3 bucket
-
       reader.readAsDataURL(file);
       reader.onload = ev => {
         eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
+        setFormValues(prevState => {
+          return { ...prevState, cover_photo: file }
+        });
       }
     }
   }, [file]);
@@ -258,10 +258,10 @@ const AddRecruitmentSection = () => {
                   <dt>想定年収</dt>
                   <dd className="half">
                     <Input
-                      value={formValues.income}
+                      value={formValues.salary}
                       onChange={e => handleChange(e)}
-                      name="income"
-                      type="text"
+                      name="salary"
+                      type="number"
                     />
                   </dd>
                   <dt>勤務時間</dt>
@@ -377,9 +377,9 @@ const AddRecruitmentSection = () => {
                 最寄駅
               </div>
               <Input className="recruitment-form__main-group-input"
-                value={formValues.nearest_station}
+                value={formValues.station}
                 onChange={e => handleChange(e)}
-                name="nearest_station"
+                name="station"
                 type="text"
               />
             </div>

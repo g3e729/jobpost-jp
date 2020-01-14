@@ -91,7 +91,7 @@ const Job = (props) => {
             <dt className="job__main-list-term">募集人数</dt>
             <dd className="job__main-list-data job__main-list-data--half">{job.number_of_applicants}</dd>
             <dt className="job__main-list-term">想定年収</dt>
-            <dd className="job__main-list-data job__main-list-data--half">{job.income}</dd>
+            <dd className="job__main-list-data job__main-list-data--half">{job.salary}</dd>
             <dt className="job__main-list-term">勤務時間</dt>
             <dd className="job__main-list-data job__main-list-data--half">{job.work_time}</dd>
             <dt className="job__main-list-term">休日、休暇</dt>
@@ -127,10 +127,10 @@ const Job = (props) => {
                   <dd>{job.address1} {job.address2} {job.address3} {job.prefecture}</dd>
                 </>
               ) : null }
-              { job.nearest_station ? (
+              { job.station ? (
                 <>
                   <dt>最寄駅</dt>
-                  <dd>{job.nearest_station}</dd>
+                  <dd>{job.station}</dd>
                 </>
               ) : null }
             </dl>

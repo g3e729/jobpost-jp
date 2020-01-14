@@ -85,11 +85,13 @@ class JobPost extends Model
     // Attributes
     public function getCoverPhotoAttribute()
     {
-        if (! $this->file) {
+        $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
+
+        if (! $url) {
             return null;
         }
-        
-        return FileService::retrievePath($this->file->url);
+
+        return FileService::retrievePath($url);
     }
 
     // Relationships
@@ -98,9 +100,9 @@ class JobPost extends Model
         return $this->belongsTo(CompanyProfile::class, 'company_profile_id');
     }
 
-    public function file()
+    public function files()
     {
-        return $this->morphOne(File::class, 'fileable');
+        return $this->morphMany(File::class, 'fileable');
     }
 
     public function applicants()

@@ -55,68 +55,14 @@ export default class Job {
       .catch(error => error);
   }
 
-  static addJob(params) {
-    const {
-      title,
-      description,
-      eyecatch,
-      position,
-      programming_language,
-      framework,
-      database,
-      environment,
-      requirements,
-      number_of_applicants,
-      income,
-      work_time,
-      holidays,
-      allowance,
-      incentive,
-      salary_increase,
-      insurance,
-      contract_period,
-      screening_flow,
-      prefecture,
-      address1,
-      address2,
-      address3,
-      nearest_station,
-      files,
-    } = params;
-
+  static addJob(formdata) {
     const payload = {
       url: endpoints.JOBS,
       method: 'post',
-      data: {
-        title,
-        description,
-        // eyecatch,
-        position,
-        programming_language,
-        framework,
-        database,
-        environment,
-        requirements,
-        number_of_applicants,
-        income,
-        work_time,
-        holidays,
-        allowance,
-        incentive,
-        salary_increase,
-        insurance,
-        contract_period,
-        screening_flow,
-        // prefecture,
-        address1,
-        address2,
-        address3,
-        nearest_station,
-        // files,
-      }
+      data: formdata
     }
 
-    return API.request(payload, true)
+    return API.request(payload, true, true)
       .then(res => res)
       .catch(error => error);
 

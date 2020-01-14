@@ -8,13 +8,12 @@ export default class API {
     const headerAppAuth = hasAuth ? { 'app-auth-token': apiToken } : null;
     const headerMultipart = multipart ? { 'content-type': 'multipart/form-data' } : null;
 
-    let headers = hasAuth ?
-      {
-        headers: {
-          ...headerAppAuth,
-          ...headerMultipart
-        }
-      } : null
+    let headers = hasAuth ? {
+      headers: {
+        ...headerAppAuth,
+        ...headerMultipart
+      }
+    } : null
 
     return axios.request({
       baseURL: config.api.url,
