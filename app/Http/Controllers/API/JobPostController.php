@@ -28,25 +28,17 @@ class JobPostController extends BaseController
 
 	public function store(Request $request)
 	{
-		$user = auth()->user();
-
-		if ($user && !$user->hasRole('company')) {
-			abort(404);
-		}
-
-		$company = $user->profile;
-
-		return (new ModelService(null, $company))->createJob($request->all());
+		return (new ModelService(null, auth()->user()->profile))->createJob($request->all());
 	}
 
 	public function update(Model $job, Request $request)
 	{
-		$user = auth()->user();
+		$company = auth()->user()->profile;
 
-		if ($user && !$user->hasRole('company')) {
-			abort(404);
+		if ($job->company_profile_id != $company->id) {
+			abort(503);
 		}
-		
+
 		$jobPostService = (new ModelService($job));
 		$jobPostService->updateJob($request->except('_token', '_method', 'company_id'));
 

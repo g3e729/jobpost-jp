@@ -26,37 +26,24 @@ class StudentController extends BaseController
 	{
         $seekerService = new ModelService($student);
 
-        switch ($request->get('type')) {
-            case 'basic':
-                $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
-                $seekerService->updateUser($request->only('email', 'japanese_name', 'name'));
-            break;
-            case 'work_history':
-                $seekerService->updateWorkHistory($request->get('work_history'));
-            break;
-            case 'education_history':
-                $seekerService->updateEducationHistory($request->get('education_history'));
-            break;
-            case 'movie':
-                $seekerService->update($request->except('_token', '_method'));
-            break;
-            case 'photo':
-                if ($request->file('avatar') || $request->get('avatar_delete')) {
-                    $seekerService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
-                }
+        $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+        $seekerService->updateUser($request->only('email', 'japanese_name', 'name'));
 
-                if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
-                    $seekerService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
-                }
-            break;
-            case 'skills':
-                $seekerService->updateSkills($request);
-            break;
-            case 'portfolios':
-                if ($request->has('portfolios')) {
-                    (new PortfolioService)->insertOrUpdate($student, $request->portfolios);
-                }
-            break;
+        $seekerService->updateWorkHistory($request->get('work_history'));
+        $seekerService->updateEducationHistory($request->get('education_history'));
+
+        if ($request->file('avatar') || $request->get('avatar_delete')) {
+            $seekerService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
+        }
+
+        if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
+            $seekerService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
+        }
+
+        $seekerService->updateSkills($request);
+
+        if ($request->has('portfolios')) {
+            (new PortfolioService)->insertOrUpdate($student, $request->portfolios);
         }
         
         return (new ModelService)->show($student->id);

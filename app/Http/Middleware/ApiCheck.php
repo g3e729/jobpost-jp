@@ -14,13 +14,17 @@ class ApiCheck
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
         $userService = (new UserService);
         $user = $userService->findApiToken($request->header('app-auth-token'));
 
         if ($user) {
             auth()->login($user);
+
+            if ($role && !$user->hasRole($role)) {
+                abort(404);
+            }
 
             return $next($request);
         }

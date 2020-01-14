@@ -25,51 +25,47 @@ class CompanyController extends BaseController
 
 	public function update(Model $company, Request $request)
 	{
+        $company_id = auth()->user()->profile->id;
+
+        if ($company_id != $company->id) {
+            abort(503);
+        }
+
         $companyService = new ModelService($company);
 
-        switch ($request->get('type')) {
-            case 'basic':
-                $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
-                $companyService->updateUser($request->only('email', 'japanese_name', 'name'));
-                $companyService->updateSocialMedia($request->get('social_media', []));
-            break;
-            case 'photo':
-                if ($request->file('avatar') || $request->get('avatar_delete')) {
-                    $companyService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
-                }
-                
-                if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
-                    $companyService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
-                }
-            break;
-            case 'features':
-                $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
-                
-                if ($request->photos) {
-                    $companyService->wwhPhotoUploader($request->photos);
-                }
-            break;
-            case 'features':
-                if ($request->has('features')) {
-                    $company->features()->delete();
-                    $features = $request->get('features');
+        $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+        $companyService->updateUser($request->only('email', 'japanese_name', 'name'));
+        $companyService->updateSocialMedia($request->get('social_media', []));
 
-                    foreach([0, 1, 2] as $i) {
-                        $feature = $features[$i];
+        if ($request->file('avatar') || $request->get('avatar_delete')) {
+            $companyService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
+        }
+        
+        if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
+            $companyService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
+        }
+        
+        if ($request->photos) {
+            $companyService->wwhPhotoUploader($request->photos);
+        }
 
-                        if (empty($feature['title']) && empty($feature['description'])) {
-                            continue;
-                        }
+        if ($request->has('features')) {
+            $company->features()->delete();
+            $features = $request->get('features');
 
-                        $company->features()->create($feature);
-                    }
+            foreach([0, 1, 2] as $i) {
+                $feature = $features[$i];
+
+                if (empty($feature['title']) && empty($feature['description'])) {
+                    continue;
                 }
-            break;
-            case 'portfolio':
-                if ($request->has('portfolios')) {
-                    (new PortfolioService)->insertOrUpdate($company, $request->portfolios);
-                }
-            break;
+
+                $company->features()->create($feature);
+            }
+        }
+        
+        if ($request->has('portfolios')) {
+            (new PortfolioService)->insertOrUpdate($company, $request->portfolios);
         }
 
         return (new ModelService)->show($company->id);
