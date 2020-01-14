@@ -13,9 +13,9 @@ import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const JobPage = (props) => {
   const [job, setJob] = useState({});
+  const [jobData, setJobData] = useState({});
   const [hasLiked, setHasLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [jobData, setJobData] = useState({});
   const { user } = props;
   const accountType = (user.userData && user.userData.account_type) || '';
 
