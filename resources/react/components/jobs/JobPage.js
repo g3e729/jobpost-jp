@@ -62,6 +62,7 @@ const JobPage = (props) => {
               accountType={accountType}
               passedFunction={_ => getJob().then(res => setJob(res))}
               hasLiked={hasLiked}
+              company={job.company}
               title={job.title}
               subTitle={job.homepage}
               data-likes={job.likes_count}

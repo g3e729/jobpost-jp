@@ -18,18 +18,18 @@ const AddRecruitmentSection = () => {
     programming_language: '',
     framework: '',
     database: '',
-    management: '',
+    environment: '',
     requirements: '',
-    total_applicants: '',
-    annual_income: '',
-    working_hours: '',
+    number_of_applicants: '',
+    income: '',
+    work_time: '',
     holidays: '',
-    benefits: '',
+    allowance: '',
     incentive: '',
-    promotion: '',
+    salary_increase: '',
     insurance: '',
-    trial_period: '',
-    selection_flow: '',
+    contract_period: '',
+    screening_flow: '',
     address1: '',
     address2: '',
     address3: '',
@@ -78,18 +78,18 @@ const AddRecruitmentSection = () => {
       programming_language: formValues.programming_language,
       framework: formValues.framework,
       database: formValues.database,
-      // management: formValues.management,
-      // requirements: formValues.requirements,
-      // total_applicants: formValues.total_applicants,
-      // annual_income: formValues.annual_income,
-      // working_hours: formValues.working_hours,
-      // holidays: formValues.holidays,
-      // benefits: formValues.benefits,
-      // incentive: formValues.incentive,
-      // promotion: formValues.promotion,
-      // insurance: formValues.insurance,
-      // trial_period: formValues.trial_period,
-      // selection_flow: formValues.selection_flow,
+      environment: formValues.environment,
+      requirements: formValues.requirements,
+      number_of_applicants: formValues.number_of_applicants,
+      income: formValues.income,
+      work_time: formValues.work_time,
+      holidays: formValues.holidays,
+      allowance: formValues.allowance,
+      incentive: formValues.incentive,
+      salary_increase: formValues.salary_increase,
+      insurance: formValues.insurance,
+      contract_period: formValues.contract_period,
+      screening_flow: formValues.screening_flow,
       address1: formValues.address1,
       address2: formValues.address2,
       address3: formValues.address3,
@@ -225,9 +225,9 @@ const AddRecruitmentSection = () => {
                       <dt>管理</dt>
                       <dd>
                         <Input
-                          value={formValues.management}
+                          value={formValues.environment}
                           onChange={e => handleChange(e)}
-                          name="management"
+                          name="environment"
                           type="text"
                         />
                       </dd>
@@ -245,31 +245,31 @@ const AddRecruitmentSection = () => {
                   <dt>募集人数</dt>
                   <dd className="half">
                     <Input
-                      value={formValues.total_applicants}
+                      value={formValues.number_of_applicants}
                       onChange={e => handleChange(e)}
-                      name="total_applicants"
+                      name="number_of_applicants"
                       type="number"
                     />
                   </dd>
                   <dt>想定年収</dt>
                   <dd className="half">
                     <Input
-                      value={formValues.annual_income}
+                      value={formValues.income}
                       onChange={e => handleChange(e)}
-                      name="annual_income"
+                      name="income"
                       type="text"
                     />
                   </dd>
                   <dt>勤務時間</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.working_hours}
+                      value={formValues.work_time}
                       onChange={e => handleChange(e)}
-                      name="working_hours"
+                      name="work_time"
                       row="4"
                     />
                   </dd>
-                  <dt>想定年収</dt>
+                  <dt>休日、休暇</dt>
                   <dd className="half">
                     <Textarea
                       value={formValues.holidays}
@@ -281,9 +281,9 @@ const AddRecruitmentSection = () => {
                   <dt>諸手当</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.benefits}
+                      value={formValues.allowance}
                       onChange={e => handleChange(e)}
-                      name="benefits"
+                      name="allowance"
                       row="2"
                     />
                   </dd>
@@ -299,9 +299,9 @@ const AddRecruitmentSection = () => {
                   <dt>昇給・昇格</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.promotion}
+                      value={formValues.salary_increase}
                       onChange={e => handleChange(e)}
-                      name="promotion"
+                      name="salary_increase"
                       row="4"
                     />
                   </dd>
@@ -317,18 +317,18 @@ const AddRecruitmentSection = () => {
                   <dt>試用期間</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.trial_period}
+                      value={formValues.contract_period}
                       onChange={e => handleChange(e)}
-                      name="trial_period"
+                      name="contract_period"
                       row="8"
                     />
                   </dd>
                   <dt>選考フロー</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.selection_flow}
+                      value={formValues.screening_flow}
                       onChange={e => handleChange(e)}
-                      name="selection_flow"
+                      name="screening_flow"
                       row="8"
                     />
                   </dd>
