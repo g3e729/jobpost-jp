@@ -76,10 +76,12 @@ export default class Job {
       insurance,
       contract_period,
       screening_flow,
+      prefecture,
       address1,
       address2,
       address3,
-      prefecture,
+      nearest_station,
+      files,
     } = params;
 
     const payload = {
@@ -105,10 +107,12 @@ export default class Job {
         insurance,
         contract_period,
         screening_flow,
+        // prefecture,
         address1,
         address2,
         address3,
-        prefecture,
+        nearest_station,
+        // files,
       }
     }
 

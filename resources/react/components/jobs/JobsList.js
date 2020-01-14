@@ -10,6 +10,7 @@ import generateRoute from '../../utils/generateRoute';
 import { state } from '../../constants/state';
 import { routes } from '../../constants/routes';
 
+import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const JobsList = (props) => {
@@ -70,9 +71,9 @@ const JobsList = (props) => {
                 </div>
                 <div className="job-list__item-top-right">
                   <div className="job-list__item-company">
-                    <img src="https://lorempixel.com/240/240/city/" alt=""/>
+                    <img src={job.company.avatar || avatarPlaceholder} alt=""/>
                     <div className="job-list__item-company-name">
-                      ジーコム株式会社
+                      {job.company.company_name}
                     </div>
                   </div>
                   <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}

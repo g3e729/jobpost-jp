@@ -15,6 +15,7 @@ const JobPage = (props) => {
   const [job, setJob] = useState({});
   const [hasLiked, setHasLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [jobData, setJobData] = useState({});
   const { user } = props;
   const accountType = (user.userData && user.userData.account_type) || '';
 
@@ -30,6 +31,20 @@ const JobPage = (props) => {
       .then(res => {
         setJob(res);
         setIsLoading(false);
+
+        const programming_language = res.programming_language ? { programming_language: res.programming_language} : null;
+        const prefecture = res.prefecture ? { prefecture: res.prefecture } : null;
+
+        setJobData({
+          companyAvatar: res.company.avatar,
+          companyName: res.company.company_name,
+          time: res.created_at,
+          pills: {
+            ...programming_language,
+            ...prefecture
+            // ...TODO date ago from registration?
+          }
+        })
       })
       .catch(error => {
         setIsLoading(false);
@@ -62,7 +77,7 @@ const JobPage = (props) => {
               accountType={accountType}
               passedFunction={_ => getJob().then(res => setJob(res))}
               hasLiked={hasLiked}
-              company={job.company}
+              jobData={jobData}
               title={job.title}
               subTitle={job.homepage}
               data-likes={job.likes_count}

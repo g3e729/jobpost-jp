@@ -30,10 +30,12 @@ const AddRecruitmentSection = () => {
     insurance: '',
     contract_period: '',
     screening_flow: '',
+    prefecture: '',
     address1: '',
     address2: '',
     address3: '',
-    prefecture: '',
+    nearest_station: '',
+    files: '',
   });
   const [file, setFile] = useState('');
   const reader = new FileReader();
@@ -90,10 +92,12 @@ const AddRecruitmentSection = () => {
       insurance: formValues.insurance,
       contract_period: formValues.contract_period,
       screening_flow: formValues.screening_flow,
+      prefecture: formValues.prefecture,
       address1: formValues.address1,
       address2: formValues.address2,
       address3: formValues.address3,
-      prefecture: formValues.prefecture,
+      nearest_station: formValues.nearest_station,
+      files: formValues.files,
     })
       .then(result => console.log('result :', result))
       .catch(error => console.log('error :', error));
@@ -373,9 +377,9 @@ const AddRecruitmentSection = () => {
                 最寄駅
               </div>
               <Input className="recruitment-form__main-group-input"
-                value={formValues.prefecture}
+                value={formValues.nearest_station}
                 onChange={e => handleChange(e)}
-                name="prefecture"
+                name="nearest_station"
                 type="text"
               />
             </div>

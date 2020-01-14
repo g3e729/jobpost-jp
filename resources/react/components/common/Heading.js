@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import _ from 'lodash';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -12,6 +13,8 @@ import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 
+import avatarPlaceholder from '../../../img/avatar-default.png';
+
 const Heading = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
@@ -23,14 +26,14 @@ const Heading = (props) => {
     isEdit = false,
     isLogged = false,
     hasLiked = false,
-    company = {},
+    jobData = {},
     accountType = null,
     passedFunction = null,
     children,
     ...rest
   } = props;
-  const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const [hasUserLiked, setHasUserLiked] = useState(false);
+  const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
 
   const handleLike = _.debounce((type) => {
@@ -132,17 +135,17 @@ const Heading = (props) => {
       ) : type && type === 'job' ? (
         <div className="heading__job">
           <div className="heading__job-main">
-            <time className="heading__job-time">2019/07/24</time>
+            <time className="heading__job-time" datatime={jobData.time}>{moment(jobData.time).format('YYYY/MM/DD')}</time>
             <h2 className="heading__job-title">{title}</h2>
             <div className="heading__job-company">
-              <img src="https://lorempixel.com/240/240/city/" alt=""/>
+              <img src={jobData.companyAvatar || avatarPlaceholder} alt=""/>
               <div className="heading__job-company-name">
-                株式会社アクターリアリティ
+                {jobData.companyName}
               </div>
             </div>
             <ul className="heading__job-pills">
-              <li className="heading__job-pills-item pill">PHP</li>
-              <li className="heading__job-pills-item pill">東京</li>
+              { jobData.pills && jobData.pills.programming_language ? <li className="heading__job-pills-item pill">{jobData.pills.programming_language}</li> : null }
+              { jobData.pills && jobData.pills.prefecture ? <li className="heading__job-pills-item pill">{jobData.pills.prefecture}</li> : null }
               <li className="heading__job-pills-item pill">3日前</li>
             </ul>
 
