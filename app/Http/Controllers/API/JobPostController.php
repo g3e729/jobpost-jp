@@ -36,7 +36,7 @@ class JobPostController extends BaseController
 
 		$company = $user->profile;
 
-		return $company->jobPosts()->create($request->all());
+		return (new ModelService(null, $company))->createJob($request->all());
 	}
 
 	public function getJobFilters(Request $request)
