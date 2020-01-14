@@ -11,13 +11,15 @@ class JobPostService extends BaseService
     protected $company;
     protected $item;
 
-    public function __construct($item = null)
+    public function __construct($item = null, CompanyProfile $company = null)
     {
         parent::__construct(ServiceModel::class);
 
         if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->company = $item->company;
+        } elseif ($company) {
+            $this->company = $company;
         }
     }
 
