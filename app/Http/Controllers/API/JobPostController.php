@@ -39,6 +39,20 @@ class JobPostController extends BaseController
 		return (new ModelService(null, $company))->createJob($request->all());
 	}
 
+	public function update(Model $job, Request $request)
+	{
+		$user = auth()->user();
+
+		if ($user && !$user->hasRole('company')) {
+			abort(404);
+		}
+		
+		$jobPostService = (new ModelService($job));
+		$jobPostService->updateJob($request->except('_token', '_method', 'company_id'));
+
+		return (new ModelService)->show($job->id);
+	}
+
 	public function getJobFilters(Request $request)
 	{
 		$filters = (new ModelService)->jobFilters();
