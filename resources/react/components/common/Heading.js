@@ -23,6 +23,7 @@ const Heading = (props) => {
     isEdit = false,
     isLogged = false,
     hasLiked = false,
+    company = {},
     accountType = null,
     passedFunction = null,
     children,
