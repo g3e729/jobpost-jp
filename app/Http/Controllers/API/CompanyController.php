@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\CompanyProfile as Model;
 use App\Services\CompanyService as ModelService;
+use App\Services\PortfolioService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -24,22 +25,54 @@ class CompanyController extends BaseController
 
 	public function update(Model $company, Request $request)
 	{
-        $company->update(
-            $request->except('_token', '_method', 'email', 'japanese_name', 'name')
-        );
+        $companyService = new ModelService($company);
 
-        $company->user()->update(
-            $request->only('email', 'japanese_name', 'name')
-        );
+        switch ($request->get('type')) {
+            case 'basic':
+                $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+                $companyService->updateUser($request->only('email', 'japanese_name', 'name'));
+                $companyService->updateSocialMedia($request->get('social_media', []));
+            break;
+            case 'photo':
+                if ($request->file('avatar') || $request->get('avatar_delete')) {
+                    $companyService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
+                }
+                
+                if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
+                    $companyService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
+                }
+            break;
+            case 'features':
+                $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
+                
+                if ($request->photos) {
+                    $companyService->wwhPhotoUploader($request->photos);
+                }
+            break;
+            case 'features':
+                if ($request->has('features')) {
+                    $company->features()->delete();
+                    $features = $request->get('features');
 
-        $social_media_accounts = $request->get('social_media', []);
-        $company->social_media()->delete();
+                    foreach([0, 1, 2] as $i) {
+                        $feature = $features[$i];
 
-        foreach ($social_media_accounts as $social_media => $url) {
-        	$company->social_media()->create(compact('social_media', 'url'));
+                        if (empty($feature['title']) && empty($feature['description'])) {
+                            continue;
+                        }
+
+                        $company->features()->create($feature);
+                    }
+                }
+            break;
+            case 'portfolio':
+                if ($request->has('portfolios')) {
+                    (new PortfolioService)->insertOrUpdate($company, $request->portfolios);
+                }
+            break;
         }
 
-        return $company;
+        return (new ModelService)->show($company->id);
 	}
 
     public function getCompanyFilters(Request $request)
