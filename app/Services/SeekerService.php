@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\SeekerProfile;
 use App\Models\JobPost;
+use App\Models\SeekerProfile as ServiceModel;
 use App\Services\UserService;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class SeekerService extends BaseService
 {
@@ -17,12 +16,19 @@ class SeekerService extends BaseService
 
     public function __construct($item = null)
     {
-        parent::__construct(SeekerProfile::class);
+        parent::__construct(ServiceModel::class);
         
-        if ($item instanceof SeekerProfile) {
+        if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->user = $item->user;
         }
+    }
+
+    public function show($id)
+    {
+        return ServiceModel::popular()
+            ->whereId($id)
+            ->first();
     }
 
     public function create($fields = [])
@@ -223,11 +229,11 @@ class SeekerService extends BaseService
 
     public function studentFilters()
     {
-        $experiences = SeekerProfile::getExperiences();
-        $frameworks = SeekerProfile::getFrameworks();
-        $languages = SeekerProfile::getLanguages();
-        $others = SeekerProfile::getOthers();
-        $programming_languages = SeekerProfile::getProgrammingLanguages();
+        $experiences = ServiceModel::getExperiences();
+        $frameworks = ServiceModel::getFrameworks();
+        $languages = ServiceModel::getLanguages();
+        $others = ServiceModel::getOthers();
+        $programming_languages = ServiceModel::getProgrammingLanguages();
 
         return compact('experiences', 'frameworks', 'languages', 'others', 'programming_languages');
     }

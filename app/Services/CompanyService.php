@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use App\Models\CompanyProfile;
+use App\Models\CompanyProfile as ServiceModel;
 use App\Services\UserService;
 use App\Services\FileService;
 use Exception;
@@ -16,12 +15,19 @@ class CompanyService extends BaseService
 
     public function __construct($item = null)
     {
-        parent::__construct(CompanyProfile::class);
+        parent::__construct(ServiceModel::class);
 
-        if ($item instanceof CompanyProfile) {
+        if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->user = $item->user;
         }
+    }
+
+    public function show($id)
+    {
+        return ServiceModel::popular()
+            ->whereId($id)
+            ->first();
     }
 
     public function create($fields = [])
@@ -128,7 +134,7 @@ class CompanyService extends BaseService
 
     public function companyFilters()
     {
-        $industries = CompanyProfile::getIndustries();
+        $industries = ServiceModel::getIndustries();
 
         return compact('industries');
     }

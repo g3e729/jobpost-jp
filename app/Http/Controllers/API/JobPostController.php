@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\JobPost;
-use App\Services\JobPostService;
+use App\Models\JobPost as Model;
+use App\Services\JobPostService as ModelService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class JobPostController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$jobs = (new JobPostService)->search(
+		$jobs = (new ModelService)->search(
 			$request->except('_token', 'page', 'sort'),
 			true,
 			$request->get('sort')
@@ -21,9 +21,9 @@ class JobPostController extends BaseController
 		return $jobs;
 	}
 
-	public function show(JobPost $job)
+	public function show(Model $job)
 	{
-		return JobPost::popular()->whereId($job->id)->first();
+		return (new ModelService)->show($job->id);
 	}
 
 	public function store(Request $request)
@@ -41,7 +41,7 @@ class JobPostController extends BaseController
 
 	public function getJobFilters(Request $request)
 	{
-		$filters = (new JobPostService)->jobFilters();
+		$filters = (new ModelService)->jobFilters();
 
 		return $filters;
 	}

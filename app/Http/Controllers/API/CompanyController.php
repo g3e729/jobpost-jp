@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\CompanyProfile;
-use App\Services\CompanyService;
+use App\Models\CompanyProfile as Model;
+use App\Services\CompanyService as ModelService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -12,17 +12,17 @@ class CompanyController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$companies = (new CompanyService)->search($request->except('_token', 'page'));
+		$companies = (new ModelService)->search($request->except('_token', 'page'));
 
 		return $companies;
 	}
 
-	public function show(CompanyProfile $company)
+	public function show(Model $company)
 	{
-		return CompanyProfile::popular()->whereId($company->id)->first();
+        return (new ModelService)->show($company->id);
 	}
 
-	public function update(CompanyProfile $company, Request $request)
+	public function update(Model $company, Request $request)
 	{
         $company->update(
             $request->except('_token', '_method', 'email', 'japanese_name', 'name')
@@ -44,7 +44,7 @@ class CompanyController extends BaseController
 
     public function getCompanyFilters(Request $request)
     {
-        $filters = (new CompanyService)->companyFilters();
+        $filters = (new ModelService)->companyFilters();
 
         return $filters;
     }
