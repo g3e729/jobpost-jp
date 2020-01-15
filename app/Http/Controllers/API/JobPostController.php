@@ -21,9 +21,21 @@ class JobPostController extends BaseController
 		return $jobs;
 	}
 
-	public function show(Model $job)
+	public function show($id)
 	{
-		return (new ModelService)->show($job->id);
+		$job = (new ModelService)->show($id);
+
+		if ($job->deleted_at != null) {
+			$company = auth()->user()->profile ?? null;
+
+			if ($company && $company->id == $job->company_profile_id) {
+				return $job;
+			}
+		} else {
+			return $job;
+		}
+
+		return abort(404);
 	}
 
 	public function store(Request $request)
@@ -44,6 +56,18 @@ class JobPostController extends BaseController
 
 		return (new ModelService)->show($job->id);
 	}
+
+	public function destroy(Model $job)
+	{
+		$job->delete();
+	}
+
+    public function companyJobs(Request $request)
+    {
+		$company = auth()->user()->profile;
+
+    	return (new ModelService(null, $company))->getCompanyJobs($request->get('status'));
+    }
 
 	public function getJobFilters(Request $request)
 	{

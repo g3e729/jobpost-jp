@@ -21,15 +21,12 @@ class ApiCheck
 
         if ($user) {
             auth()->login($user);
-
-            if ($role && !$user->hasRole($role)) {
-                abort(404);
-            }
-
-            return $next($request);
         }
 
-        abort(404);
+        if ($role && (!$user || !$user->hasRole($role))) {
+            abort(404);
+        }
 
+        return $next($request);
     }
 }

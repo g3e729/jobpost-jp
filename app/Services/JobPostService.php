@@ -25,7 +25,7 @@ class JobPostService extends BaseService
 
     public function show($id)
     {
-        return ServiceModel::with('company')->popular()
+        return ServiceModel::with('company')->withTrashed()->popular()
             ->whereId($id)
             ->first();
     }
@@ -95,6 +95,26 @@ class JobPostService extends BaseService
                 break;
             }
             
+            return $this->toReturn($que, $paginated);
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return $this->toReturn();
+        }
+    }
+
+    public function getCompanyJobs(bool $status = null, $paginated = true)
+    {
+        try {
+            $que = $this->company->jobPosts();
+
+            if ($status === false) {
+                $que = $que->onlyTrashed();
+            } elseif ($status === true) {
+                $que = $que;
+            } else {
+                $que = $que->withTrashed();
+            }
+
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
