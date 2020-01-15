@@ -1055,6 +1055,18 @@ And you should not feel free to add a new Utility class.
   margin-right: 4px;
 }
 
+.button--cto {
+  font-size: 20px;
+  font-weight: 700;
+  color: #393939;
+  margin: 0 10px;
+  padding: 60px 0 58px;
+  width: 100% !important;
+  border: solid 1px #fdb834;
+  border-radius: 10px;
+  background: none;
+}
+
 .company-sidebar {
   display: -webkit-box;
   display: flex;
@@ -2286,11 +2298,12 @@ And you should not feel free to add a new Utility class.
   color: #fff;
   display: inline-block;
   padding: 3px 6px;
+  margin-top: 15px;
   background-color: #fdb834;
 }
 
-.job__main-address-list > dt:last-of-type {
-  margin-top: 15px;
+.job__main-address-list > dt:first-child {
+  margin-top: 0;
 }
 
 .job__main-address-list > dd {
@@ -2528,6 +2541,16 @@ And you should not feel free to add a new Utility class.
   display: block;
 }
 
+.loading--full {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  height: 100vh;
+}
+
 .message {
   position: relative;
 }
@@ -2754,6 +2777,7 @@ And you should not feel free to add a new Utility class.
 
 .ReactModal__Overlay {
   background-color: rgba(0, 0, 0, 0.3) !important;
+  z-index: 20;
 }
 
 .modal__header {
@@ -2806,6 +2830,254 @@ And you should not feel free to add a new Utility class.
   white-space: pre-line;
 }
 
+.modal__content-remain {
+  letter-spacing: 0.06em;
+  margin-top: -10px;
+}
+
+.modal__content-remain > span {
+  font-family: "Avenir", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fdb834;
+  letter-spacing: 0.1em;
+  position: relative;
+  top: 1px;
+  margin-left: 5px;
+}
+
+.modal__content-remain > span > small {
+  font-family: "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Hiragino Kaku Gothic ProN", "\30E1\30A4\30EA\30AA", Meiryo, sans-serif;
+  font-size: 16px;
+  position: relative;
+  top: -1px;
+}
+
+.modal__content-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-top: 60px;
+  margin-bottom: -5px;
+}
+
+.modal__content-pills {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  padding: 40px 0 12px;
+}
+
+.modal__content-pills-button {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 15px;
+  padding: 9px 0;
+  width: 240px;
+}
+
+.modal__content-pills-button:first-child {
+  margin-top: 0;
+}
+
+.modal__form-avatar {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.modal__form-avatar:before {
+  content: "";
+  padding-top: 100%;
+  display: block;
+}
+
+.modal__form-avatar-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.modal__form-eyecatch {
+  position: relative;
+  max-height: 203px;
+}
+
+.modal__form-eyecatch:before {
+  content: "";
+  padding-top: 34%;
+  display: block;
+}
+
+.modal__form-eyecatch--portfolio:before {
+  padding-top: 70%;
+}
+
+.modal__form-eyecatch-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+  background-position: center;
+  background-size: cover;
+}
+
+.modal__form-actions {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-top: 21px;
+  margin-bottom: 27px;
+}
+
+.modal__form-actions > button {
+  width: 142px;
+}
+
+.modal__form-actions-button {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: #393939;
+  margin-top: 12px;
+  background-color: transparent !important;
+}
+
+.modal__form-actions-button i {
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.modal__form-actions-button.is-disabled {
+  color: #d9d6d6;
+}
+
+.modal__form-portfolio {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+
+.modal__form-portfolio-left {
+  width: 200px;
+  -webkit-box-flex: 0;
+          flex: 0 0 200px;
+}
+
+.modal__form-portfolio-right {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin-top: -2px;
+  margin-left: 30px;
+}
+
+.modal__form-group {
+  margin-top: 28px;
+}
+
+.modal__form-group:first-child {
+  margin-top: 0;
+}
+
+.modal__form-group:last-child {
+  margin-bottom: 30px;
+}
+
+.modal__form-group-label {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+}
+
+.modal__form-group-input {
+  width: 100%;
+  padding: 5px 0 5px 14px;
+  min-height: 40px;
+  resize: none;
+  border: solid 1px #d9d6d6;
+}
+
+.modal__form-group-inputs {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 0 -10px;
+}
+
+.modal__form-group-inputs > * {
+  -webkit-box-flex: 1;
+          flex: 1;
+  padding: 0 10px;
+}
+
+.modal__form-group-radio {
+  margin-top: 13px;
+  margin-bottom: -5px;
+}
+
+.modal__form-table {
+  margin: -30px -50px 30px -50px;
+}
+
+.modal__form-table-item--header {
+  background-color: #393939;
+}
+
+.modal__form-table-item-wrapper {
+  display: -webkit-box;
+  display: flex;
+}
+
+.modal__form-table-item-wrapper > * {
+  width: 94px;
+  -webkit-box-flex: 0;
+          flex: 0 0 94px;
+  padding: 14px 0;
+  border: solid 0.5px #f2f2f0;
+  border-left: none;
+}
+
+.modal__form-table-item-wrapper > *:first-child {
+  -webkit-box-flex: 1;
+          flex: 1;
+}
+
+.modal__form-table-item-label {
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.modal__form-table-item-key {
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  padding-left: 50px;
+}
+
+.modal__form-table-item-value {
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
 .modal__actions {
   display: -webkit-box;
   display: flex;
@@ -2817,7 +3089,17 @@ And you should not feel free to add a new Utility class.
 }
 
 .modal__actions > button {
-  max-width: 165px;
+  width: 165px;
+}
+
+.modal__actions--cto {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  margin: 0 -20px;
+  padding: 45px 50px 55px;
 }
 
 .modal__actions-button {
@@ -3158,6 +3440,19 @@ a.pagination__item-link:hover {
   padding-right: 30px;
   left: 6px;
   z-index: 1;
+}
+
+.pill--icon.is-active {
+  font-weight: 700;
+  border: solid 1px #f2f2f0;
+}
+
+.pill--icon.is-active:before {
+  background-color: #f2f2f0;
+}
+
+.pill--icon.is-active > i {
+  color: #fdb834;
 }
 
 .pill--clear {
@@ -3841,6 +4136,45 @@ a.pagination__item-link:hover {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+.radio {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.radio > input {
+  display: none;
+}
+
+.radio > input[type=checkbox]:checked + span:before,
+.radio > input[type=radio]:checked + span:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  background-color: #fdb834;
+  border-radius: 50%;
+}
+
+.radio > span {
+  position: relative;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-right: 12px;
+  border: solid 1px #d9d6d6;
+  border-radius: 50%;
+}
+
+.radio--labeled > span {
+  margin-right: 12px;
 }
 
 .recruitment-form__container {

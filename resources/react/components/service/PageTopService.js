@@ -6,7 +6,7 @@ import Button from '../common/Button';
 import { values } from '../../constants/config';
 import { state } from '../../constants/state';
 
-const PageTop = _ => {
+const PageTopService = _ => {
   const [hideOnScroll, setHideOnScroll] = useState(false);
 
   useScrollPosition(({ prevPos, currPos }) => {
@@ -35,4 +35,4 @@ const PageTop = _ => {
   );
 }
 
-export default PageTop;
+export default PageTopService;

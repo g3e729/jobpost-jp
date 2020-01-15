@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -17,6 +16,20 @@ const JobsFilter = (props) => {
   const { filters } = props;
   const data = filters.filtersData;
   const inputPlaceholder = '指定なし';
+
+  const handleChange = (e, type) => {
+    if (urlParamsTmp) {
+      if (urlParamsTmp.includes(type)) {
+        urlParams.set(type, e.value);
+        setUrlParamsTmp(`?${urlParams.toString()}`);
+      }
+      else {
+        setUrlParamsTmp(`${urlParamsTmp}&${type}=${e.value}`);
+      }
+    } else {
+      setUrlParamsTmp(`?${type}=${e.value}`);
+    }
+  }
 
   useEffect(_ => {
     if (data) {
@@ -43,20 +56,6 @@ const JobsFilter = (props) => {
       history.push(urlParamsTmp);
     }
   }, [urlParamsTmp])
-
-  const handleChange = (e, type) => {
-    if (urlParamsTmp) {
-      if (urlParamsTmp.includes(type)) {
-        urlParams.set(type, e.value);
-        setUrlParamsTmp(`?${urlParams.toString()}`);
-      }
-      else {
-        setUrlParamsTmp(`${urlParamsTmp}&${type}=${e.value}`);
-      }
-    } else {
-      setUrlParamsTmp(`?${type}=${e.value}`);
-    }
-  }
 
   return (
     <aside className="jobs-filter">

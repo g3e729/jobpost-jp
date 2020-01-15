@@ -54,4 +54,17 @@ export default class Job {
       .then(res => res)
       .catch(error => error);
   }
+
+  static addJob(formdata) {
+    const payload = {
+      url: endpoints.JOBS,
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res)
+      .catch(error => error);
+
+  }
 }

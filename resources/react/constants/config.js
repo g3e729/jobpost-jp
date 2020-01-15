@@ -3,7 +3,7 @@ export const config = {
   api: {
     url: (process.env.NODE_ENV === 'development')
       ? process.env.MIX_REACT_APP_LOCALHOST
-      : process.env.MIX_REACT_APP_API_URL_FULL
+      : process.env.MIX_REACT_APP_PRODUCTION
   }
 }
 
@@ -11,7 +11,7 @@ export const values = {
   mvHeight: 660
 };
 
-export const jobSelectStyles = {
+export const defaultSelectStyles = {
   control: (provided) => ({
     ...provided,
     borderWidth: '1px',
@@ -20,10 +20,8 @@ export const jobSelectStyles = {
   indicatorSeparator: _ => ({
     display: 'none',
   }),
-  dropdownIndicator: (provided, state) => ({
-    ...provided,
-    transition: 'transform .25s ease',
-    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null
+  dropdownIndicator: _ => ({
+    display: 'none',
   }),
   menu: (provided) => ({
     ...provided,
@@ -49,6 +47,15 @@ export const jobSelectStyles = {
     ...provided,
     padding: '4px 0 4px 12px',
     letterSpacing: '0.06em',
+  }),
+};
+
+export const jobSelectStyles = {
+  ...defaultSelectStyles,
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    transition: 'transform .25s ease',
+    transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null
   }),
 };
 
@@ -120,6 +127,25 @@ export const modalStyles = {
 
     borderRadius: '0',
 
+    overflow: 'visible',
     zIndex: '9999'
   }
 };
+
+export const modalType = {
+  JOB_APPLY: 'job_apply', // route: job:id
+  JOB_DELETE: 'job_delete', // route: dashboard/recruitment
+  JOB_STOP: 'job_stop', // route: dashboard/recruitment
+
+  STUDENT_SCOUT: 'student_scout', // route: scouts
+
+  PROFILE_AVATAR: 'profile_avatar', // route: profile/edit
+  PROFILE_EYECATCH: 'profile_eyecatch', // route: profile/edit
+  PROFILE_WORK: 'profile_work', // route: profile/edit
+  PROFILE_EDUCATION: 'profile_education', // route: profile/edit
+  PROFILE_PROGRAMMING: 'profile_programming', // route: profile/edit
+  PROFILE_FRAMEWORK: 'profile_framework', // route: profile/edit
+  PROFILE_OTHER: 'profile_other', // route: profile/edit
+  PROFILE_EXPERIENCE: 'profile_experience', // route: profile/edit
+  PROFILE_PORTFOLIO: 'profile_portfolio', // route: profile/edit
+}

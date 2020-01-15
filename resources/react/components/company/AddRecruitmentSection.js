@@ -1,37 +1,41 @@
 import React, { useState, useEffect, createRef } from 'react';
+import _ from 'lodash';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
+import Job from '../../utils/job';
 import { state } from '../../constants/state';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
-const AddRecruitmentSection = _ => {
+const AddRecruitmentSection = () => {
   const [formValues, setFormValues] = useState({
     title: '',
     description: '',
-    eyecatch: '',
+    cover_photo: '',
     position: '',
     programming_language: '',
     framework: '',
     database: '',
-    management: '',
+    environment: '',
     requirements: '',
-    total_applicants: '',
-    annual_income: '',
-    working_hours: '',
+    number_of_applicants: '',
+    salary: '',
+    work_time: '',
     holidays: '',
-    benefits: '',
+    allowance: '',
     incentive: '',
-    promotion: '',
+    salary_increase: '',
     insurance: '',
-    trial_period: '',
-    selection_flow: '',
+    contract_period: '',
+    screening_flow: '',
+    prefecture: '',
     address1: '',
     address2: '',
     address3: '',
-    nearest_station: '',
+    station: '',
+    files: '',
   });
   const [file, setFile] = useState('');
   const reader = new FileReader();
@@ -50,17 +54,6 @@ const AddRecruitmentSection = _ => {
     setFile(e.target.files[0]);
   }
 
-  useEffect(_ => {
-    if (file) {
-      // TODO: Upload file to s3 bucket
-
-      reader.readAsDataURL(file);
-      reader.onload = ev => {
-        eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
-      }
-    }
-  }, [file]);
-
   const handleOpenFile = e => {
     e.preventDefault();
 
@@ -73,6 +66,53 @@ const AddRecruitmentSection = _ => {
     setFile('');
     eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
   }
+
+  const handleSubmit = _.debounce((e) => {
+    e.persist();
+
+    // TODO: handle validation
+
+    const formdata = new FormData();
+    formdata.append('title', formValues.title);
+    formdata.append('description', formValues.description);
+    formdata.append('cover_photo', formValues.cover_photo);
+    formdata.append('position', formValues.position);
+    formdata.append('programming_language', formValues.programming_language);
+    formdata.append('framework', formValues.framework);
+    formdata.append('database', formValues.database);
+    formdata.append('environment', formValues.environment);
+    formdata.append('requirements', formValues.requirements);
+    formdata.append('number_of_applicants', formValues.number_of_applicants);
+    formdata.append('salary', formValues.salary);
+    formdata.append('work_time', formValues.work_time);
+    formdata.append('holidays', formValues.holidays);
+    formdata.append('allowance', formValues.allowance);
+    formdata.append('incentive', formValues.incentive);
+    formdata.append('salary_increase', formValues.salary_increase);
+    formdata.append('insurance', formValues.insurance);
+    formdata.append('contract_period', formValues.contract_period);
+    formdata.append('screening_flow', formValues.screening_flow);
+    formdata.append('address1', formValues.address1);
+    formdata.append('address2', formValues.address2);
+    formdata.append('address3', formValues.address3);
+    formdata.append('station', formValues.station);
+
+    Job.addJob(formdata)
+      .then(result => console.log('result :', result))
+      .catch(error => console.log('error :', error));
+  }, 400);
+
+  useEffect(_ => {
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onload = ev => {
+        eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
+        setFormValues(prevState => {
+          return { ...prevState, cover_photo: file }
+        });
+      }
+    }
+  }, [file]);
 
   return (
     <div className="dashboard-section">
@@ -189,9 +229,9 @@ const AddRecruitmentSection = _ => {
                       <dt>管理</dt>
                       <dd>
                         <Input
-                          value={formValues.management}
+                          value={formValues.environment}
                           onChange={e => handleChange(e)}
-                          name="management"
+                          name="environment"
                           type="text"
                         />
                       </dd>
@@ -209,31 +249,31 @@ const AddRecruitmentSection = _ => {
                   <dt>募集人数</dt>
                   <dd className="half">
                     <Input
-                      value={formValues.total_applicants}
+                      value={formValues.number_of_applicants}
                       onChange={e => handleChange(e)}
-                      name="total_applicants"
+                      name="number_of_applicants"
                       type="number"
                     />
                   </dd>
                   <dt>想定年収</dt>
                   <dd className="half">
                     <Input
-                      value={formValues.annual_income}
+                      value={formValues.salary}
                       onChange={e => handleChange(e)}
-                      name="annual_income"
-                      type="text"
+                      name="salary"
+                      type="number"
                     />
                   </dd>
                   <dt>勤務時間</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.working_hours}
+                      value={formValues.work_time}
                       onChange={e => handleChange(e)}
-                      name="working_hours"
+                      name="work_time"
                       row="4"
                     />
                   </dd>
-                  <dt>想定年収</dt>
+                  <dt>休日、休暇</dt>
                   <dd className="half">
                     <Textarea
                       value={formValues.holidays}
@@ -245,9 +285,9 @@ const AddRecruitmentSection = _ => {
                   <dt>諸手当</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.benefits}
+                      value={formValues.allowance}
                       onChange={e => handleChange(e)}
-                      name="benefits"
+                      name="allowance"
                       row="2"
                     />
                   </dd>
@@ -263,9 +303,9 @@ const AddRecruitmentSection = _ => {
                   <dt>昇給・昇格</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.promotion}
+                      value={formValues.salary_increase}
                       onChange={e => handleChange(e)}
-                      name="promotion"
+                      name="salary_increase"
                       row="4"
                     />
                   </dd>
@@ -281,18 +321,18 @@ const AddRecruitmentSection = _ => {
                   <dt>試用期間</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.trial_period}
+                      value={formValues.contract_period}
                       onChange={e => handleChange(e)}
-                      name="trial_period"
+                      name="contract_period"
                       row="8"
                     />
                   </dd>
                   <dt>選考フロー</dt>
                   <dd className="half">
                     <Textarea
-                      value={formValues.selection_flow}
+                      value={formValues.screening_flow}
                       onChange={e => handleChange(e)}
-                      name="selection_flow"
+                      name="screening_flow"
                       row="8"
                     />
                   </dd>
@@ -337,16 +377,16 @@ const AddRecruitmentSection = _ => {
                 最寄駅
               </div>
               <Input className="recruitment-form__main-group-input"
-                value={formValues.nearest_station}
+                value={formValues.station}
                 onChange={e => handleChange(e)}
-                name="nearest_station"
+                name="station"
                 type="text"
               />
             </div>
 
           </form>
           <div className="recruitment-form__button">
-            <Button>送信</Button>
+            <Button type="submit" onClick={e => handleSubmit(e)}>送信</Button>
           </div>
         </div>
       </div>

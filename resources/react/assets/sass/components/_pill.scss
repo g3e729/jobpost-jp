@@ -43,6 +43,20 @@
     left: 6px;
     z-index: 1;
   }
+
+  &.is-active {
+    font-weight: 700;
+
+    border: solid 1px $color-light-gray;
+
+    &:before {
+      background-color: $color-light-gray;
+    }
+
+    > i {
+      color: $color-dark-yellow;
+    }
+  }
 }
 
 .pill--clear {

@@ -136,7 +136,6 @@ class StudentController extends BaseController
 			break;
 		}
 
-
 		return redirect()->route('admin.students.show', $student)
             ->withSuccess("Success! Student details is updated!");
 	}

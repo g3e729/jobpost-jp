@@ -11,12 +11,12 @@ export const unsetFilters = _ => ({
 
 export const getFilters = _ => {
   return (dispatch) => {
-    return Filter.getFilters().then((result) => {
+    return Filter.getFilters().then(result => {
       dispatch(setFilters({ ...result.data }));
     }).catch(error => {
       dispatch(unsetFilters());
 
-      console.log('[Filters]', error);
+      console.log('[Filters ERROR]', error);
     })
   }
 }

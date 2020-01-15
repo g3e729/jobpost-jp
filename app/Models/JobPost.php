@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasLike;
 use App\Services\FileService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JobPost extends Model
 {
-    use SoftDeletes;
+    use HasLike, SoftDeletes;
 
     protected $dates = [
         'created_at',
@@ -81,23 +82,16 @@ class JobPost extends Model
             // ->orWhere('database', 'LIKE', "%{$value}%");
     }
 
-    public function scopePopular($query)
-    {
-        return $query->withCount([
-            'likes' => function ($q) {
-                $q->where('likes.likeable_type', get_class($this));
-            }
-        ]);
-    }
-
     // Attributes
     public function getCoverPhotoAttribute()
     {
-        if (! $this->file) {
+        $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
+
+        if (! $url) {
             return null;
         }
-        
-        return FileService::retrievePath($this->file->url);
+
+        return FileService::retrievePath($url);
     }
 
     // Relationships
@@ -106,14 +100,9 @@ class JobPost extends Model
         return $this->belongsTo(CompanyProfile::class, 'company_profile_id');
     }
 
-    public function file()
+    public function files()
     {
-        return $this->morphOne(File::class, 'fileable');
-    }
-
-    public function likes()
-    {
-        return $this->morphMany(Like::class, 'likeable');
+        return $this->morphMany(File::class, 'fileable');
     }
 
     public function applicants()

@@ -139,4 +139,21 @@ class BaseService
     {
         return $this->item;
     }
+
+    public function toReturn($que = null, $paginated = true)
+    {
+        if (!$que || empty($que) || is_null($que)) {
+            return collect([]);
+        }
+
+        if ($paginated === 'que') {
+            return $que;
+        }
+
+        if ($paginated) {
+            return $que->paginate(config('site_settings.per_page'));
+        }
+
+        return $que->get();
+    }
 }

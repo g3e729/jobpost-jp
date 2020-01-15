@@ -1,11 +1,13 @@
 import React from 'react';
-import SelfBuildingSquareSpinner from '@bit/bondz.react-epic-spinners.self-building-square-spinner';
+import PulseLoader from "react-spinners/PulseLoader";
 
-const Loading = ({ className, color = '#fdb834', size = 50 }) => (
+const Loading = ({ className, color = '#fdb834', size = 15, margin = 5 }) => (
   <div className={`loading ${className || ''}`}>
-    <SelfBuildingSquareSpinner
+    <PulseLoader
       color={color}
       size={size}
+      margin={margin}
+      loading={true}
     />
   </div>
 );

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\JobPost;
+use App\Models\JobPost as ServiceModel;
 use App\Models\CompanyProfile;
 use Exception;
 
@@ -11,14 +11,23 @@ class JobPostService extends BaseService
     protected $company;
     protected $item;
 
-    public function __construct($item = null)
+    public function __construct($item = null, CompanyProfile $company = null)
     {
-        parent::__construct(JobPost::class);
+        parent::__construct(ServiceModel::class);
 
-        if ($item instanceof JobPost) {
+        if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->company = $item->company;
+        } elseif ($company) {
+            $this->company = $company;
         }
+    }
+
+    public function show($id)
+    {
+        return ServiceModel::with('company')->popular()
+            ->whereId($id)
+            ->first();
     }
 
     public function createJob($fields = [])
@@ -61,7 +70,7 @@ class JobPostService extends BaseService
     {
         try {
             $fields = array_filter($fields);
-            $que = (new $this->model)->popular();
+            $que = (new $this->model)->with('company')->popular();
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
@@ -72,10 +81,6 @@ class JobPostService extends BaseService
                         $que = $que->where($column, $value);
                     break;
                 }
-            }
-
-            if ($paginated === 'que') {
-                return $que;
             }
 
             $sort = empty($sort) ? 'DESC' : strtoupper($sort);
@@ -89,21 +94,17 @@ class JobPostService extends BaseService
                     $que = $que->orderByDesc('likes_count');
                 break;
             }
-
-            if ($paginated) {
-                return $que->paginate(config('site_settings.per_page'));
-            }
-
-            return $que->get();
+            
+            return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
-            return collect([]);
+            return $this->toReturn();
         }
     }
 
     public function jobFilters()
     {
-        $jobs = JobPost::get();
+        $jobs = ServiceModel::get();
 
         $frameworks = $jobs->groupBy(function ($item, $key) {
             return $item->framework;
@@ -119,7 +120,7 @@ class JobPostService extends BaseService
 
         $regions = getPrefecture();
 
-        $status = JobPost::getEmploymentTypes();
+        $status = ServiceModel::getEmploymentTypes();
 
         return collect(compact('frameworks', 'positions', 'programming_languages', 'regions', 'status'));
     }

@@ -17,15 +17,6 @@ const JobsSection = (props) => {
   const { jobs, isLoading } = props;
   const data = jobs.jobsData || {};
   const jobsData = data.data || {};
-
-  useEffect(_ => {
-    const sort = urlParams.get('sort');
-
-    if (sort === 'popular') {
-      setSortTab(2);
-    }
-  }, [sortTab]);
-
   const handleSortNew = _ => {
     setSortTab(1);
 
@@ -37,6 +28,15 @@ const JobsSection = (props) => {
 
     history.push(`${history.location.pathname}?sort=popular`);
   }
+
+  useEffect(_ => {
+    const sort = urlParams.get('sort');
+    setSortTab(1);
+
+    if (sort === 'popular') {
+      setSortTab(2);
+    }
+  }, [sortTab, history.location]);
 
   return (
     <div className="jobs-section">

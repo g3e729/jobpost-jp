@@ -29,8 +29,14 @@ Route::group([
 		Route::post('like', 'LikeController@like');
 		Route::post('apply', 'ApplyController@store');
 
-		Route::post('jobs', 'JobPostController@store')->name('jobs.store');
-
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
+	});
+
+
+	Route::group([
+	    'middleware' => ['App\Http\Middleware\ApiCheck:company'],
+	], function () {
+		Route::resource('jobs', 'JobPostController')->only('store', 'update');
+		Route::patch('companies/{company}', 'CompanyController@update');
 	});
 });

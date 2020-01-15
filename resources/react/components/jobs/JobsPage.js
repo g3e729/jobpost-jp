@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import Page from '../common/Page';
+import Loading from '../common/Loading';
 import Slider from '../common/Slider';
 import PageScroll from '../common/PageScroll';
 import JobsFilter from './JobsFilter';
@@ -10,6 +11,7 @@ import JobsSection from './JobsSection';
 import { getJobs, getFilteredJobs  } from '../../actions/jobs';
 
 const JobsPage = _ => {
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -34,30 +36,46 @@ const JobsPage = _ => {
         prefecture,
         sort
       }))
-        .then(_ => setIsLoading(false))
-        .catch(_ => setIsLoading(false));
+        .then(_ => {
+          setIsLoading(false);
+          setIsPageLoading(false);
+        })
+        .catch(_ => {
+          setIsLoading(false);
+          setIsPageLoading(false);
+        });
     }
     else {
       dispatch(getJobs())
-        .then(_ => setIsLoading(false))
-        .catch(_ => setIsLoading(false));
+        .then(_ => {
+          setIsLoading(false);
+          setIsPageLoading(false);
+        })
+        .catch(_ => {
+          setIsLoading(false);
+          setIsPageLoading(false);
+        });
     }
 
   }, [location]);
 
   return (
-    <>
-      <PageScroll />
-      <Page>
-        <Slider />
-        <div className="l-section l-section--main section">
-          <div className="l-container l-container--main">
-            <JobsFilter />
-            <JobsSection isLoading={isLoading} />
+    isPageLoading ? (
+      <Loading className="loading--full" />
+    ) :  (
+      <>
+        <PageScroll />
+        <Page>
+          <Slider />
+          <div className="l-section l-section--main section">
+            <div className="l-container l-container--main">
+              <JobsFilter />
+              <JobsSection isLoading={isLoading} />
+            </div>
           </div>
-        </div>
-      </Page>
-    </>
+        </Page>
+      </>
+    )
   );
 }
 

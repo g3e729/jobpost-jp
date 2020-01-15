@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\JobPost;
-use App\Services\JobPostService;
+use App\Models\JobPost as Model;
+use App\Services\JobPostService as ModelService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -12,36 +12,42 @@ class JobPostController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$jobs = (new JobPostService)->search(
-			$request->except('_token', 'page', 'sort'), 
-			true, 
+		$jobs = (new ModelService)->search(
+			$request->except('_token', 'page', 'sort'),
+			true,
 			$request->get('sort')
 		);
 
 		return $jobs;
 	}
 
-	public function show(JobPost $job)
+	public function show(Model $job)
 	{
-		return JobPost::popular()->whereId($job->id)->first();
+		return (new ModelService)->show($job->id);
 	}
 
 	public function store(Request $request)
 	{
-		$user = auth()->user();
+		return (new ModelService(null, auth()->user()->profile))->createJob($request->all());
+	}
 
-		if ($user && !$user->hasRole('company')) {
-			abort(404);
+	public function update(Model $job, Request $request)
+	{
+		$company = auth()->user()->profile;
+
+		if ($job->company_profile_id != $company->id) {
+			abort(503);
 		}
 
-		$company = $user->profile;
+		$jobPostService = (new ModelService($job));
+		$jobPostService->updateJob($request->except('_token', '_method', 'company_id'));
 
-		$company->jobPosts()->create($request->all());
+		return (new ModelService)->show($job->id);
 	}
-	
+
 	public function getJobFilters(Request $request)
 	{
-		$filters = (new JobPostService)->jobFilters();
+		$filters = (new ModelService)->jobFilters();
 
 		return $filters;
 	}

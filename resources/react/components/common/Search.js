@@ -10,15 +10,6 @@ const Search = ({placeholder = 'キーワードで検索'}) => {
   const history = useHistory();
   const urlParams = new URLSearchParams(history.location.search);
 
-  useEffect(_ => {
-    if (history.location.pathname.includes('search')) {
-      setSearchValue(urlParams.get('search'));
-    } else {
-      setSearchValue('');
-    }
-
-  }, [history.location.pathname])
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -28,6 +19,15 @@ const Search = ({placeholder = 'キーワードで検索'}) => {
   const handleChange = e => {
     setSearchValue(e.target.value);
   }
+
+  useEffect(_ => {
+    if (history.location.pathname.includes('search')) {
+      setSearchValue(urlParams.get('search'));
+    } else {
+      setSearchValue('');
+    }
+
+  }, [history.location.pathname])
 
   return (
     <form className="search" onSubmit={e => handleSubmit(e)}>

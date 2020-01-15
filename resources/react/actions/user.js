@@ -16,7 +16,7 @@ export const getUser = _ => {
 
   return (dispatch) => {
     if (['student', 'company'].includes(accountType)) {
-      return User.whoami().then((result) => {
+      return User.whoami().then(result => {
         if ( result.data.account_type === accountType ) { // check accountType meta integrity
           localStorage.setItem('api_token', apiToken);
           dispatch(setUser({ ...result.data }));
@@ -26,7 +26,7 @@ export const getUser = _ => {
       }).catch(error => {
         dispatch(logoutUser());
 
-        console.log('[Login]', error);
+        console.log('[Login ERROR]', error);
       });
     }
     else {
@@ -38,12 +38,12 @@ export const getUser = _ => {
 export const updateUserEmail = (email = '') => {
   return (dispatch) => {
     return User.updateEmail(email)
-      .then((result) => {
+      .then(result => {
         dispatch(setUser({ ...result.data }));
 
         return result;
       }).catch(error => {
-        console.log('[Update email]', error);
+        console.log('[Update email ERROR]', error);
         return error;
       });
   }
@@ -52,12 +52,12 @@ export const updateUserEmail = (email = '') => {
 export const updateUserPass = (password = '') => {
   return (dispatch) => {
     return User.updatePassword(password)
-      .then((result) => {
+      .then(result => {
         dispatch(setUser({ ...result.data }));
 
         return result;
       }).catch(error => {
-        console.log('[Update password]', error);
+        console.log('[Update password ERROR]', error);
         return error;
       });
   }
