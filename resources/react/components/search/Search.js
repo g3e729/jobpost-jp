@@ -21,8 +21,8 @@ const Search = _ => {
   const [isLoading, setIsLoading] = useState(true);
   const [tabIndex, setTabIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
-  const [jobs, setJobs] = useState({});
-  const [companies, setCompanies] = useState({});
+  const [jobs, setJobs] = useState([]);
+  const [companies, setCompanies] = useState([]);
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
 

@@ -14,6 +14,20 @@ export default class Job {
       .catch(error => error);
   }
 
+  static getMyJobs(param) {
+    const { status } = param;
+
+    const payload = {
+      url: endpoints.MY_JOBS,
+      method: 'get',
+      params: { status }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static getFilteredJobs(params) {
     const {
       page,

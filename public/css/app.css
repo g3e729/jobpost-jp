@@ -2152,6 +2152,39 @@ And you should not feel free to add a new Utility class.
   white-space: pre-line;
 }
 
+.job__main-description {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.job__main-description > ul {
+  padding: 10px 0 4px;
+  line-height: 0;
+}
+
+.job__main-description > ul > li {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-left: 37px;
+  margin-top: 11px;
+}
+
+.job__main-description > ul > li:first-child {
+  margin-top: 0;
+}
+
+.job__main-description > ul > li:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 9px;
+  height: 8px;
+  width: 8px;
+  background: #fdb834;
+}
+
 .job__main-list {
   padding: 10px 0 4px;
 }
@@ -2165,28 +2198,6 @@ And you should not feel free to add a new Utility class.
   padding: 0;
   margin-top: -5px;
   border: solid 1px #d9d6d6;
-}
-
-.job__main-list-item {
-  line-height: 1.857;
-  letter-spacing: 0.06em;
-  position: relative;
-  padding-left: 37px;
-  margin-top: 11px;
-}
-
-.job__main-list-item:first-child {
-  margin-top: 0;
-}
-
-.job__main-list-item:before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 9px;
-  height: 8px;
-  width: 8px;
-  background: #fdb834;
 }
 
 .job__main-list-term {

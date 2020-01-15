@@ -83,6 +83,7 @@ export const endpoints = {
   UPDATE_PASSWORD: '/update-password',
 
   JOBS: '/jobs',
+  MY_JOBS: '/my-jobs',
   JOBS_FILTER: '/jobs-filters',
   JOB_DETAIL: '/jobs/:id',
 

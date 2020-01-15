@@ -69,18 +69,9 @@ const Job = (props) => {
         ) : null }
         <div className="job__main-data">
           <div className="job__main-heading job__main-heading--left">
-            <h3 className="job__main-heading-title">こんなことをやります</h3>
+            <h3 className="job__main-heading-title">こんなことやります</h3>
           </div>
-          <p className="job__main-desc">{`ベテラン/若手/転籍/復職など、様々なメンバーを纏めるリーダー候補を募集中！
-            組込・制御系設計開発のリーダーとして若手を含むメンバーの取り纏
-
-            め、進捗/工数管理等をしていただきます。
-            （主なプロジェクト例）`}</p>
-          <ul className="job__main-list">
-            <li className="job__main-list-item">情報機器関連の組込開発</li>
-            <li className="job__main-list-item">自動車ECU/カーナビゲーションの組込開発</li>
-            <li className="job__main-list-item">産業用工作機械のソフトウェア開発</li>
-          </ul>
+          <div className="job__main-description" dangerouslySetInnerHTML={{ __html: job.description }} />
         </div>
         <div className="job__main-data">
           <div className="job__main-heading job__main-heading--left">
