@@ -17,7 +17,7 @@ class ApplyController extends BaseController
 		$job_post = (new JobPostService)->find($request->get('job_post_id'));
 
 		if (!$seekerService->getItem() || !$job_post) {
-			abort(404);
+			return apiAbort(404);
 		}
 
 		return $seekerService->applyJobPost($job_post);

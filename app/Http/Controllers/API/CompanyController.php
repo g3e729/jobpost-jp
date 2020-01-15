@@ -28,7 +28,7 @@ class CompanyController extends BaseController
         $company_id = auth()->user()->profile->id;
 
         if ($company_id != $company->id) {
-            abort(503);
+            return apiAbort(503);
         }
 
         $companyService = new ModelService($company);

@@ -16,7 +16,7 @@ class AccountController extends BaseController
 			return $this->returnData($user);
 		}
 
-		return response()->json(['message' => 'Not Found.'], 404);
+		return apiAbort(404);
 	}
 
 	public function update(Request $request)
@@ -29,7 +29,7 @@ class AccountController extends BaseController
 			return $this->returnData($user);
 		}
 
-		return response()->json(['message' => 'Not Found.'], 404);
+		return apiAbort(404);
 	}
 
 	public function updatePassword(Request $request)
@@ -41,7 +41,7 @@ class AccountController extends BaseController
 			return $this->returnData($user);
 		}
 
-		return response()->json(['message' => 'Not Found.'], 404);
+		return apiAbort(404);
 	}
 
 	private function returnData($user = null)
