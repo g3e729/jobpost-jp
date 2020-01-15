@@ -16,112 +16,112 @@
 
     @if (!$channels->count())
       <div class="col-12 mt-5">
-        <p class="text-center">No results</p>
+        <p class="text-center">No results <br><br><a href="{{ route('admin.messages.index') }}">すべてのメッセージを表示</a></p>
       </div>
-    @endif
+    @else
+      @php
+        $first = $channels->first()->id;
+      @endphp
 
-    <div class="col-4">
-      <div class="chat-users">
+      <div class="col-4">
+        <div class="chat-users">
 
-        @if ($profile)
-          <h5 class="ml-3">Chats related with 
-            @if ($profile->user->hasRole('company'))
-              <a href="{{ route('admin.companies.show', $profile) }}" target="_blank">{{ $profile->display_name }}</a>
-            @else
-              <a href="{{ route('admin.students.show', $profile) }}" target="_blank">{{ $profile->display_name }}</a>
-            @endif
-            <a href="{{ route('admin.messages.index') }}"><i class="fa fa-times-circle text-muted"></i></a>
-          </h5>
-        @endif
-        <ul class="nav nav-users" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          @if ($profile)
+            <h5 class="ml-3">Chats related with 
+              @if ($profile->user->hasRole('company'))
+                <a href="{{ route('admin.companies.show', $profile) }}" target="_blank">{{ $profile->display_name }}</a>
+              @else
+                <a href="{{ route('admin.students.show', $profile) }}" target="_blank">{{ $profile->display_name }}</a>
+              @endif
+              <a href="{{ route('admin.messages.index') }}"><i class="fa fa-times-circle text-muted"></i></a>
+            </h5>
+          @endif
+          <ul class="nav nav-users" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-          @php
-            $first = $channels->first()->id;
-          @endphp
+            @foreach($channels as $channel)
+              <li class="nav-item chat-person" {{ !$channel->seen ? 'onclick=seen('.$channel->id.')' : '' }}>
+                <a class="nav-link p-3 {{ ($first == $channel->id) ? 'active' : '' }}" id="v-pills-{{ $channel->id }}-tab" data-toggle="pill" href="#v-pills-{{ $channel->id }}" role="tab" aria-controls="v-pills-{{ $channel->id }}" aria-selected="false">
+                  <div class="chat-user">
+                    <img src="{{ $channel->img }}" alt="{{ $channel->title }}">
+                    @if (!$channel->seen)
+                      <span id="seen-{{ $channel->id }}" class="chat-new"></span>
+                    @endif
+                  </div>
+                  <p class="chat-date">
+                    <span class="d-block">{{ $channel->title }}</span>
+                    <time>{{ $channel->updated_at }}</time>
+                  </p>
+                </a>
+
+                <div class="chat-actions">
+                  <button form="deleteForm-{{ $channel->id }}" class="chat-link js-chat-delete">
+                    <i class="fa fa-trash-alt text-muted"></i>
+                  </button>
+                  <form id="deleteForm-{{ $channel->id }}" method="POST" action="{{ route('admin.messages.destroy', $channel) }}" novalidate style="visibility: hidden; position: absolute;">
+                    @csrf
+                    {{ method_field('DELETE') }}
+
+                    <button type="submit">削除</button>
+                  </form>
+                </div>
+              </li>
+
+            @endforeach
+          </ul>
+
+        </div>
+      </div>
+      <div class="col-8 pl-0">
+        <div class="tab-content" id="v-pills-tabContent">
 
           @foreach($channels as $channel)
-            <li class="nav-item chat-person" {{ !$channel->seen ? 'onclick=seen('.$channel->id.')' : '' }}>
-              <a class="nav-link p-3 {{ ($first == $channel->id) ? 'active' : '' }}" id="v-pills-{{ $channel->id }}-tab" data-toggle="pill" href="#v-pills-{{ $channel->id }}" role="tab" aria-controls="v-pills-{{ $channel->id }}" aria-selected="false">
-                <div class="chat-user">
-                  <img src="{{ $channel->img }}" alt="{{ $channel->title }}">
-                  @if (!$channel->seen)
-                    <span id="seen-{{ $channel->id }}" class="chat-new"></span>
-                  @endif
-                </div>
-                <p class="chat-date">
-                  <span class="d-block">{{ $channel->title }}</span>
-                  <time>{{ $channel->updated_at }}</time>
-                </p>
-              </a>
-
-              <div class="chat-actions">
-                <button form="deleteForm-{{ $channel->id }}" class="chat-link js-chat-delete">
-                  <i class="fa fa-trash-alt text-muted"></i>
-                </button>
-                <form id="deleteForm-{{ $channel->id }}" method="POST" action="{{ route('admin.messages.destroy', $channel) }}" novalidate style="visibility: hidden; position: absolute;">
-                  @csrf
-                  {{ method_field('DELETE') }}
-
-                  <button type="submit">削除</button>
-                </form>
+            <div class="tab-pane fade {{ $first == $channel->id ? 'show active' : ''}} " id="v-pills-{{ $channel->id }}" role="tabpanel" aria-labelledby="v-pills-{{ $channel->id }}-tab" {{ !$channel->seen ? 'onclick=seen('.$channel->id.')' : '' }}>
+              <div class="selected-user">To: 
+                @if ($channel->recipient->user->hasRole('company'))
+                  <a href="{{ route('admin.companies.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
+                @else
+                  <a href="{{ route('admin.students.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
+                @endif
               </div>
-            </li>
+              <div class="chat-tab p-3">
+                <ul id="js-chat-scroll" class="chat-box pl-0">
 
+                  @php
+                    $id = $channel->owner->user_id;
+                  @endphp
+
+                  @foreach($channel->chats as $chat)
+                    <li class="{{ $id == $chat->user_id ? 'chat-left' : 'chat-right' }}">
+                      @if ($id != $chat->user_id)
+                        <span class="chat-hour">{{ $chat->created_at->diffForHumans() }}</span>
+                      @else
+                        <div class="chat-avatar text-center">
+                          <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
+                          <div class="chat-name">{{ $channel->name }}</div>
+                        </div>
+                      @endif
+                      <div class="chat-text">
+                        {{ $chat->content }}
+                      </div>
+                      @if ($id == $chat->user_id)
+                        <span class="chat-hour">{{ $chat->created_at->diffForHumans() }}</span>
+                      @else
+                        <div class="chat-avatar text-center">
+                          <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
+                          <div class="chat-name">{{ $channel->name }}</div>
+                        </div>
+                      @endif
+                    </li>
+                  @endforeach
+
+                </ul>
+              </div>
+            </div>
           @endforeach
-        </ul>
+        </div>
 
       </div>
-    </div>
-    <div class="col-8 pl-0">
-      <div class="tab-content" id="v-pills-tabContent">
-
-        @foreach($channels as $channel)
-          <div class="tab-pane fade {{ $first == $channel->id ? 'show active' : ''}} " id="v-pills-{{ $channel->id }}" role="tabpanel" aria-labelledby="v-pills-{{ $channel->id }}-tab" {{ !$channel->seen ? 'onclick=seen('.$channel->id.')' : '' }}>
-            <div class="selected-user">To: 
-              @if ($channel->recipient->user->hasRole('company'))
-                <a href="{{ route('admin.companies.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
-              @else
-                <a href="{{ route('admin.students.show', $channel->recipient) }}" target="_blank">{{ $channel->recipient->display_name }}</a>
-              @endif
-            </div>
-            <div class="chat-tab p-3">
-              <ul id="js-chat-scroll" class="chat-box pl-0">
-
-                @php
-                  $id = $channel->owner->user_id;
-                @endphp
-
-                @foreach($channel->chats as $chat)
-                  <li class="{{ $id == $chat->user_id ? 'chat-left' : 'chat-right' }}">
-                    @if ($id != $chat->user_id)
-                      <span class="chat-hour">{{ $chat->created_at->diffForHumans() }}</span>
-                    @else
-                      <div class="chat-avatar text-center">
-                        <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
-                        <div class="chat-name">{{ $channel->name }}</div>
-                      </div>
-                    @endif
-                    <div class="chat-text">
-                      {{ $chat->content }}
-                    </div>
-                    @if ($id == $chat->user_id)
-                      <span class="chat-hour">{{ $chat->created_at->diffForHumans() }}</span>
-                    @else
-                      <div class="chat-avatar text-center">
-                        <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
-                        <div class="chat-name">{{ $channel->name }}</div>
-                      </div>
-                    @endif
-                  </li>
-                @endforeach
-
-              </ul>
-            </div>
-          </div>
-        @endforeach
-      </div>
-
-    </div>
+    @endif
   </div>
 
   <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">

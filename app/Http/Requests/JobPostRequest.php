@@ -55,7 +55,7 @@ class JobPostRequest extends FormRequest
 			'station' => '',
 			'published_at' => '',
 
-			'cover_photo' => 'mimes:jpeg,bmp,png|size:3000'
+			'cover_photo' => 'max:3000'
         ];
     }
 }

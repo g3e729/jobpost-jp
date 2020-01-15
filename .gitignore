@@ -8,6 +8,7 @@ app/storage/
 
 # Laravel 5 & Lumen specific
 public/js/*.js
+public/js/
 !prmovie-common.js
 public/css/*.css
 !prmovie-reset.css
