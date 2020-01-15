@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+moment.locale('ja');
 import _ from 'lodash';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -146,7 +147,7 @@ const Heading = (props) => {
             <ul className="heading__job-pills">
               { jobData.pills && jobData.pills.programming_language ? <li className="heading__job-pills-item pill">{jobData.pills.programming_language}</li> : null }
               { jobData.pills && jobData.pills.prefecture ? <li className="heading__job-pills-item pill">{jobData.pills.prefecture}</li> : null }
-              <li className="heading__job-pills-item pill">3日前</li>
+              { jobData.time ? <li className="heading__job-pills-item pill">{moment(jobData.time).fromNow()}</li> : null }
             </ul>
 
             { isLogged ? (

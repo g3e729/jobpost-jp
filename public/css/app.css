@@ -2062,6 +2062,8 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .job__main-data {
@@ -2234,6 +2236,8 @@ And you should not feel free to add a new Utility class.
   -webkit-box-align: stretch;
           align-items: stretch;
   flex-wrap: wrap;
+  -webkit-box-flex: 1;
+          flex: 1;
   margin: -17px -18px;
 }
 
