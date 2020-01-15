@@ -35,7 +35,7 @@ class JobPostController extends BaseController
 			return $job;
 		}
 
-		return abort(404);
+        return apiAbort(404);
 	}
 
 	public function store(Request $request)
@@ -48,7 +48,7 @@ class JobPostController extends BaseController
 		$company = auth()->user()->profile;
 
 		if ($job->company_profile_id != $company->id) {
-			abort(503);
+			return apiAbort(503);
 		}
 
 		$jobPostService = (new ModelService($job));
