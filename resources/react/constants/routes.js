@@ -86,6 +86,7 @@ export const endpoints = {
   MY_JOBS: '/my-jobs',
   JOBS_FILTER: '/jobs-filters',
   JOB_DETAIL: '/jobs/:id',
+  JOB_STATUS: '/jobs/:id/update-status',
 
   STUDENTS: '/students',
   STUDENTS_FILTERS: '/students-filters',

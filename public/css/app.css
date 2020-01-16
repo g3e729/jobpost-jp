@@ -2565,6 +2565,10 @@ And you should not feel free to add a new Utility class.
   height: 100vh;
 }
 
+.loading--padded {
+  padding: 40px 0;
+}
+
 .message {
   position: relative;
 }
@@ -3136,6 +3140,10 @@ And you should not feel free to add a new Utility class.
 
 .nada--center {
   text-align: center;
+}
+
+.nada--padded {
+  padding: 40px 0;
 }
 
 .nada__emphasize {

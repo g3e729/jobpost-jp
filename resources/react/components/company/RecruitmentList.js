@@ -86,88 +86,90 @@ const RecruitmentList = (props) => {
           denominator={data.total}
         />
       </div>
-      { isLoading ? (
-        <Loading />
-      ) : (
-        jobsData.length ? (
-          <>
-            <ul className="recruitment-list">
-              <li className="recruitment-list__item recruitment-list__item--header">
-                <div className="recruitment-list__item-wrapper">
-                  <span className="recruitment-list__item-label">タイトル</span>
-                  { statusIndex === 0 ? <span className="recruitment-list__item-label">ステータス</span> : null }
-                  <span className="recruitment-list__item-label">応募数</span>
-                  <span className="recruitment-list__item-label">お気に入り数</span>
-                </div>
-              </li>
-              { jobsData.map(job => (
-              <li className="recruitment-list__item" key={job.id}>
-                <div className="recruitment-list__item-wrapper">
-                  <div className="recruitment-list__item-column">
-                    <div className="recruitment-list__item-column-left">
-                      <div className="recruitment-list__item-column-eyecatch">
-                        <div className="recruitment-list__item-column-eyecatch-img" style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
-                      </div>
-                    </div>
-                    <div className="recruitment-list__item-column-right">
-                      <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
-                        className="button button--link">
-                        <h4 className="recruitment-list__item-column-title">
-                          {job.title}
-                        </h4>
-                      </Link>
-
-                      <div className="recruitment-list__item-column-actions">
-                        <Link to={generateRoute(routes.RECRUITMENT_EDIT, { id: job.id })} className="button button--link recruitment-list__item-column-actions-button">
-                          <>
-                            <i className="icon icon-pencil"></i>
-                            編集
-                          </>
-                        </Link>
-                        <Button className="button--link recruitment-list__item-column-actions-button" onClick={_ => handleJobDelete(job.id)}>
-                          <>
-                            <i className="icon icon-cross"></i>
-                            削除
-                          </>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  { statusIndex === 0 ? (
-                    <div className="recruitment-list__item-column">
-                      <Button className="button--link " onClick={_ => handleJobStop(job.id)}>
-                        <span className="recruitment-list__item-column-status">
-                          募集中
-                        </span>
-                      </Button>
-                      {/* <span className="recruitment-list__item-column-status is-disabled">停止する</span> */}
-                    </div>
-                  ) : null }
-                  <div className="recruitment-list__item-column">
-                    <span className="recruitment-list__item-column-applicants">
-                      {job.applicants_count}
-                    </span>
-                  </div>
-                  <div className="recruitment-list__item-column">
-                    <span className="recruitment-list__item-column-favorites">
-                      {job.likes_count}
-                    </span>
-                  </div>
-                </div>
-              </li>
-              )) }
-            </ul>
-            <div className="recruitment-list__pagination">
-              <Pagination
-                current={data.current_page}
-                prevPage={data.prev_page_url}
-                nextPage={data.next_page_url}
-                lastPage={data.last_page}
-              />
+      <>
+        <ul className="recruitment-list">
+          <li className="recruitment-list__item recruitment-list__item--header">
+            <div className="recruitment-list__item-wrapper">
+              <span className="recruitment-list__item-label">タイトル</span>
+              { statusIndex === 0 ? <span className="recruitment-list__item-label">ステータス</span> : null }
+              <span className="recruitment-list__item-label">応募数</span>
+              <span className="recruitment-list__item-label">お気に入り数</span>
             </div>
-          </>
-        ) : <Nada>条件を変えて探してみましょう。</Nada>
-      )}
+          </li>
+          { isLoading ? (
+            <Loading className="loading--padded" />
+          ) : (
+            jobsData.length ? (
+              jobsData.map(job => (
+                <li className="recruitment-list__item" key={job.id}>
+                  <div className="recruitment-list__item-wrapper">
+                    <div className="recruitment-list__item-column">
+                      <div className="recruitment-list__item-column-left">
+                        <div className="recruitment-list__item-column-eyecatch">
+                          <div className="recruitment-list__item-column-eyecatch-img" style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
+                        </div>
+                      </div>
+                      <div className="recruitment-list__item-column-right">
+                        <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
+                          className="button button--link">
+                          <h4 className="recruitment-list__item-column-title">
+                            {job.title}
+                          </h4>
+                        </Link>
+
+                        <div className="recruitment-list__item-column-actions">
+                          <Link to={generateRoute(routes.RECRUITMENT_EDIT, { id: job.id })} className="button button--link recruitment-list__item-column-actions-button">
+                            <>
+                              <i className="icon icon-pencil"></i>
+                              編集
+                            </>
+                          </Link>
+                          <Button className="button--link recruitment-list__item-column-actions-button" onClick={_ => handleJobDelete(job.id)}>
+                            <>
+                              <i className="icon icon-cross"></i>
+                              削除
+                            </>
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    { statusIndex === 0 ? (
+                      <div className="recruitment-list__item-column">
+                        <Button className="button--link " onClick={_ => handleJobStop(job.id)}>
+                          <span className="recruitment-list__item-column-status">
+                            募集中
+                          </span>
+                        </Button>
+                        {/* <span className="recruitment-list__item-column-status is-disabled">停止する</span> */}
+                      </div>
+                    ) : null }
+                    <div className="recruitment-list__item-column">
+                      <span className="recruitment-list__item-column-applicants">
+                        {job.applicants_count}
+                      </span>
+                    </div>
+                    <div className="recruitment-list__item-column">
+                      <span className="recruitment-list__item-column-favorites">
+                        {job.likes_count}
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              ))
+            ) : <Nada className="nada--padded">条件を変えて探してみましょう。</Nada>
+          )}
+        </ul>
+        { isLoading ? null : (
+          <div className="recruitment-list__pagination">
+            <Pagination
+              current={data.current_page}
+              prevPage={data.prev_page_url}
+              nextPage={data.next_page_url}
+              lastPage={data.last_page}
+            />
+          </div>
+        )}
+      </>
     </div>
   );
 }
