@@ -16,7 +16,7 @@ class CompanyController extends BaseController
 		$companies = (new ModelService)->search(
             $request->except('_token', 'page', 'sort', 'paginated', 'sort_by'),
             $request->get('paginated', true),
-            $request->get('sort', 'DESC')
+            $request->get('sort', 'ASC')
         );
 
 		return $companies;
