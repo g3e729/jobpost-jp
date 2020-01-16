@@ -82,6 +82,11 @@ class JobPost extends Model
             // ->orWhere('database', 'LIKE', "%{$value}%");
     }
 
+    public function scopeNumberApplicants($query)
+    {
+        return $query->with('applicants')->withCount(['applicants']);
+    }
+
     // Attributes
     public function getCoverPhotoAttribute()
     {
@@ -107,7 +112,7 @@ class JobPost extends Model
 
     public function applicants()
     {
-        return $this->hasMany(Applicant::class, 'likeable');
+        return $this->hasMany(Applicant::class);
     }
 
     static function getEmploymentTypes($index = null)
