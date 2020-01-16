@@ -1,6 +1,6 @@
 import API from './api';
-import { endpoints } from '../constants/routes';
 import generateRoute from './generateRoute';
+import { endpoints } from '../constants/routes';
 
 export default class Job {
   static getJobs() {
@@ -25,6 +25,21 @@ export default class Job {
         status,
         sort: 'desc'
       }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
+  static toggleMyJob(id) {
+    const formdata = new FormData();
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.JOB_STATUS, { id }),
+      method: 'post',
+      data: formdata
     }
 
     return API.request(payload, true)

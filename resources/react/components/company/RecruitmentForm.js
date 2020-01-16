@@ -1,11 +1,11 @@
 import React, { useState, useEffect, createRef } from 'react';
 import _ from 'lodash';
+import { useParams } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import JobAPI from '../../utils/job';
-import { useParams } from 'react-router-dom';
 import { state } from '../../constants/state';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';

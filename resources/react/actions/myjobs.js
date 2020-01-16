@@ -20,3 +20,13 @@ export const getMyJobs = (params) => {
     })
   }
 }
+
+export const toggleMyJob = (id) => {
+  return (dispatch) => {
+    return Job.toggleMyJob(id)
+      .then(result => result)
+      .catch(error => {
+        console.log('[MyJobs Status ERROR]', error);
+      })
+  }
+}

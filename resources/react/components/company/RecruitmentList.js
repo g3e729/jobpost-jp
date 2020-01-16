@@ -25,11 +25,11 @@ const RecruitmentList = (props) => {
   const jobsData = data.data || {};
 
   const handleJobDelete = (id) => {
-    dispatch(setModal(modalType.JOB_DELETE));
+    dispatch(setModal(modalType.JOB_DELETE, id));
   }
 
   const handleJobStop = (id) => {
-    dispatch(setModal(modalType.JOB_STOP));
+    dispatch(setModal(modalType.JOB_STOP, id));
   }
 
   const handleStatusTab = index => {
@@ -136,11 +136,10 @@ const RecruitmentList = (props) => {
                     { statusIndex === 0 ? (
                       <div className="recruitment-list__item-column">
                         <Button className="button--link " onClick={_ => handleJobStop(job.id)}>
-                          <span className="recruitment-list__item-column-status">
-                            募集中
+                          <span className={`recruitment-list__item-column-status ${job.deleted_at ? state.DISABLED : ''}`}>
+                            { job.deleted_at ? '停止中' : '募集中' }
                           </span>
                         </Button>
-                        {/* <span className="recruitment-list__item-column-status is-disabled">停止する</span> */}
                       </div>
                     ) : null }
                     <div className="recruitment-list__item-column">
