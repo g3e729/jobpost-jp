@@ -67,7 +67,11 @@ class JobPostController extends BaseController
     {
 		$company = auth()->user()->profile;
 
-    	return (new ModelService(null, $company))->getCompanyJobs($request->get('status'), $request->get('paginated', true));
+    	return (new ModelService(null, $company))->getCompanyJobs(
+    		$request->get('status'),
+    		$request->get('paginated', true),
+			$request->get('sort')
+    	);
     }
 
 	public function getJobFilters(Request $request)
