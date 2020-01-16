@@ -113,13 +113,15 @@ class JobPostController extends BaseController
 			
 		$job = (new ModelService(null, $company))->show($id);
 
-		if ($job->trashed()) {
+		if ($job) {
+			if ($job->trashed()) {
 
-			if ($company && $company->id == $job->company_profile_id) {
+				if ($company && $company->id == $job->company_profile_id) {
+					return $job;
+				}
+			} else {
 				return $job;
 			}
-		} else {
-			return $job;
 		}
 
 		return apiAbort(404);
