@@ -19,11 +19,12 @@ const JobDeleteModal = ({modal}) => {
 
   const handleDelete = _ => {
     const page = urlParams.get('page');
+    const status = urlParams.get('status');
 
     Job.deleteMyJob(modal.actionId)
       .then(_ => {
         handleCloseModal()
-        dispatch(getMyJobs({page}))
+        dispatch(getMyJobs({page, status}))
       })
       .catch(_ => handleCloseModal());
   }
