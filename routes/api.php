@@ -36,8 +36,9 @@ Route::group([
 	Route::group([
 	    'middleware' => ['App\Http\Middleware\ApiCheck:company'],
 	], function () {
-		Route::resource('jobs', 'JobPostController')->only('store', 'update', 'destroy');
-		Route::patch('jobs/{job}/restore', 'JobPostController@restore');
+		Route::resource('jobs', 'JobPostController')->only('store', 'update');
+		Route::delete('jobs/{job}', 'JobPostController@destroy');
+		Route::patch('jobs/{job}/update-status', 'JobPostController@toggleStatus');
 		Route::get('my-jobs', 'JobPostController@companyJobs');
 		Route::patch('companies/{company}', 'CompanyController@update');
 	});

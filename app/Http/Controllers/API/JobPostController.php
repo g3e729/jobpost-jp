@@ -45,20 +45,7 @@ class JobPostController extends BaseController
 		return (new ModelService)->show($job->id);
 	}
 
-	public function destroy(Model $job)
-	{
-		$company = auth()->user()->profile ?? null;
-
-		if (!$company || $job->company_profile_id != $company->id) {
-			return apiAbort(503);
-		}
-
-		$job->delete();
-
-		return $job;
-	}
-
-	public function restore($id)
+	public function destroy($id)
 	{
 		$job = $this->getJob($id);
 
@@ -70,7 +57,31 @@ class JobPostController extends BaseController
 				return apiAbort(503);
 			}
 
-			$job->restore();
+			$job->forceDelete();
+
+			return $job;
+        }
+
+		return apiAbort(503);
+	}
+
+	public function toggleStatus($id)
+	{
+		$job = $this->getJob($id);
+
+        if ($job instanceof Model) {
+
+			$company = auth()->user()->profile ?? null;
+
+			if (!$company || $job->company_profile_id != $company->id) {
+				return apiAbort(503);
+			}
+
+			if ($job->trashed()) {
+				$job->restore();
+			} else {
+				$job->delete();
+			}
 
 			return $job;
         }
@@ -102,7 +113,7 @@ class JobPostController extends BaseController
 			
 		$job = (new ModelService(null, $company))->show($id);
 
-		if ($job->deleted_at != null) {
+		if ($job->trashed()) {
 
 			if ($company && $company->id == $job->company_profile_id) {
 				return $job;
