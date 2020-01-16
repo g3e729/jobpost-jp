@@ -109,7 +109,7 @@ class JobPostService extends BaseService
         }
     }
 
-    public function getCompanyJobs(bool $status = null, $paginated = true)
+    public function getCompanyJobs(bool $status = null, $paginated = true, $sort = 'DESC')
     {
         try {
             $que = $this->company->jobPosts()
@@ -123,6 +123,8 @@ class JobPostService extends BaseService
             } else {
                 $que = $que->withTrashed();
             }
+
+            $que->orderBy('created_at', $sort);
 
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {

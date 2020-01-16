@@ -12,7 +12,10 @@ class StudentController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$students = (new ModelService)->search($request->except('_token', 'page'));
+		$students = (new ModelService)->search(
+            $request->except('_token', 'page', 'sort', 'paginated')
+            $request->get('paginated', true)
+        );
 
 		return $students;
 	}

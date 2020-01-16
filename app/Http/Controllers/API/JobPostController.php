@@ -13,8 +13,8 @@ class JobPostController extends BaseController
 	public function index(Request $request)
 	{
 		$jobs = (new ModelService)->search(
-			$request->except('_token', 'page', 'sort'),
-			true,
+			$request->except('_token', 'page', 'sort', 'paginated'),
+            $request->get('paginated', true),
 			$request->get('sort')
 		);
 
@@ -67,7 +67,7 @@ class JobPostController extends BaseController
     {
 		$company = auth()->user()->profile;
 
-    	return (new ModelService(null, $company))->getCompanyJobs($request->get('status'));
+    	return (new ModelService(null, $company))->getCompanyJobs($request->get('status'), $request->get('paginated', true));
     }
 
 	public function getJobFilters(Request $request)
