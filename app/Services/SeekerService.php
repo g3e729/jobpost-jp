@@ -145,7 +145,7 @@ class SeekerService extends BaseService
         }
     }
     
-    public function search($fields, $paginated = true)
+    public function search($fields, $paginated = true, $sort = 'ASC')
     {
         try {
             $fields = array_filter($fields);
@@ -206,6 +206,13 @@ class SeekerService extends BaseService
                         $que = $que->where($column, $value);
                     break;
                 }
+            }
+
+            if (request()->has('sort_by')) {
+                $que = $que->orderBy(request()->get('sort_by'), $sort);
+            } else {
+                $que = $que->join('users', 'seeker_profiles.user_id', '=', 'users.id')
+                    ->orderBy('users.name', $sort);
             }
             
             return $this->toReturn($que, $paginated);
