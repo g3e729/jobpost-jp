@@ -1,11 +1,32 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Job from '../../../utils/job';
+import { unsetModal } from '../../../actions/modal';
+import { getMyJobs } from '../../../actions/myjobs';
 
-const JobDeleteModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
+const JobDeleteModal = ({modal}) => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+
+  const handleCloseModal = _ => {
+    dispatch(unsetModal());
+  }
+
+  const handleDelete = _ => {
+    const page = urlParams.get('page');
+
+    Job.deleteMyJob(modal.actionId)
+      .then(_ => {
+        handleCloseModal()
+        dispatch(getMyJobs({page}))
+      })
+      .catch(_ => handleCloseModal());
+  }
 
   return (
     <BaseModal>
@@ -17,8 +38,8 @@ const JobDeleteModal = _ => {
       </div>
       <div className="modal__footer">
         <div className="modal__actions">
-          <Button className="button--large">削除する</Button>
-          <Button className="button--link modal__actions-button">
+          <Button className="button--large" onClick={_ => handleDelete()}>削除する</Button>
+          <Button className="button--link modal__actions-button" onClick={_ => handleCloseModal()}>
             <>
               <i className="icon icon-cross"></i>
               キャンセル
@@ -30,4 +51,8 @@ const JobDeleteModal = _ => {
   );
 }
 
-export default JobDeleteModal;
+const mapStateToProps = (state) => ({
+  modal: state.modal
+});
+
+export default connect(mapStateToProps)(JobDeleteModal);

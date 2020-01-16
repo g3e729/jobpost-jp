@@ -47,6 +47,21 @@ export default class Job {
       .catch(error => error);
   }
 
+  static deleteMyJob(id) {
+    const formdata = new FormData();
+    formdata.append('_method', 'DELETE');
+
+    const payload = {
+      url: generateRoute(endpoints.JOB_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static getFilteredJobs(params) {
     const {
       page,

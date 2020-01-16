@@ -4,8 +4,9 @@ import { useLocation } from 'react-router-dom';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Job from '../../../utils/job';
 import { unsetModal } from '../../../actions/modal';
-import { toggleMyJob, getMyJobs } from '../../../actions/myjobs';
+import { getMyJobs } from '../../../actions/myjobs';
 
 const JobStopModal = ({modal}) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const JobStopModal = ({modal}) => {
   const handleToggleStatus = _ => {
     const page = urlParams.get('page');
 
-    dispatch(toggleMyJob(modal.actionId))
+    Job.toggleMyJob(modal.actionId)
       .then(_ => {
         handleCloseModal()
         dispatch(getMyJobs({page}))
