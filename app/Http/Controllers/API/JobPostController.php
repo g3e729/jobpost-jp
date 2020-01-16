@@ -23,20 +23,7 @@ class JobPostController extends BaseController
 
 	public function show($id)
 	{
-		$company = auth()->user()->profile ?? null;
-			
-		$job = (new ModelService(null, $company))->show($id);
-
-		if ($job->deleted_at != null) {
-
-			if ($company && $company->id == $job->company_profile_id) {
-				return $job;
-			}
-		} else {
-			return $job;
-		}
-
-        return apiAbort(404);
+		return $this->getJob($id);
 	}
 
 	public function store(Request $request)
@@ -46,9 +33,9 @@ class JobPostController extends BaseController
 
 	public function update(Model $job, Request $request)
 	{
-		$company = auth()->user()->profile;
+		$company = auth()->user()->profile ?? null;
 
-		if ($job->company_profile_id != $company->id) {
+		if (!$company || $job->company_profile_id != $company->id) {
 			return apiAbort(503);
 		}
 
@@ -60,12 +47,40 @@ class JobPostController extends BaseController
 
 	public function destroy(Model $job)
 	{
+		$company = auth()->user()->profile ?? null;
+
+		if (!$company || $job->company_profile_id != $company->id) {
+			return apiAbort(503);
+		}
+
 		$job->delete();
+
+		return $job;
+	}
+
+	public function restore($id)
+	{
+		$job = $this->getJob($id);
+
+        if ($job instanceof Model) {
+
+			$company = auth()->user()->profile ?? null;
+
+			if (!$company || $job->company_profile_id != $company->id) {
+				return apiAbort(503);
+			}
+
+			$job->restore();
+
+			return $job;
+        }
+
+		return apiAbort(503);
 	}
 
     public function companyJobs(Request $request)
     {
-		$company = auth()->user()->profile;
+		$company = auth()->user()->profile ?? null;
 
     	return (new ModelService(null, $company))->getCompanyJobs(
     		$request->get('status'),
@@ -79,5 +94,23 @@ class JobPostController extends BaseController
 		$filters = (new ModelService)->jobFilters();
 
 		return $filters;
+	}
+
+	private function getJob($id)
+	{
+		$company = auth()->user()->profile ?? null;
+			
+		$job = (new ModelService(null, $company))->show($id);
+
+		if ($job->deleted_at != null) {
+
+			if ($company && $company->id == $job->company_profile_id) {
+				return $job;
+			}
+		} else {
+			return $job;
+		}
+
+		return apiAbort(404);
 	}
 }
