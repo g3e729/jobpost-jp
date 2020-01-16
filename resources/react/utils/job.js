@@ -64,7 +64,7 @@ export default class Job {
       method: 'get'
     }
 
-    return API.request(payload)
+    return API.request(payload, true)
       .then(res => res)
       .catch(error => error);
   }

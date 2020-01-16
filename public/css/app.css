@@ -1096,7 +1096,6 @@ And you should not feel free to add a new Utility class.
 .company-sidebar__menu-item a.is-active {
   color: #fff;
   background-color: #313232;
-  pointer-events: none;
 }
 
 .dashboard-section {
@@ -4553,6 +4552,7 @@ a.pagination__item-link:hover {
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: 0.06em;
+  color: #393939;
   margin-bottom: 10px;
 }
 

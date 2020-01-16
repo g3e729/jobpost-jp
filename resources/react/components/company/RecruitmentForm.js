@@ -4,24 +4,28 @@ import _ from 'lodash';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
-import Job from '../../utils/job';
+import JobAPI from '../../utils/job';
+import { useParams } from 'react-router-dom';
 import { state } from '../../constants/state';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
-const AddRecruitmentSection = () => {
+const RecruitmentForm = () => {
+  const params = useParams();
+  const [job, setJob] = useState({});
   const [formValues, setFormValues] = useState({
     title: '',
     description: '',
-    cover_photo: '',
+    cover_photo: null,
+    cover_photo_delete: 0,
     position: '',
     programming_language: '',
     framework: '',
     database: '',
     environment: '',
     requirements: '',
-    number_of_applicants: '',
-    salary: '',
+    number_of_applicants: null,
+    salary: null,
     work_time: '',
     holidays: '',
     allowance: '',
@@ -33,11 +37,11 @@ const AddRecruitmentSection = () => {
     prefecture: '',
     address1: '',
     address2: '',
-    address3: '',
+    address3: null,
     station: '',
-    files: '',
   });
   const [file, setFile] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
@@ -64,6 +68,10 @@ const AddRecruitmentSection = () => {
     e.preventDefault();
 
     setFile('');
+    setFormValues(prevState => {
+      return { ...prevState, cover_photo_delete: 1 }
+    });
+
     eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
   }
 
@@ -76,6 +84,7 @@ const AddRecruitmentSection = () => {
     formdata.append('title', formValues.title);
     formdata.append('description', formValues.description);
     formdata.append('cover_photo', formValues.cover_photo);
+    formdata.append('cover_photo_delete', formValues.cover_photo_delete);
     formdata.append('position', formValues.position);
     formdata.append('programming_language', formValues.programming_language);
     formdata.append('framework', formValues.framework);
@@ -97,10 +106,17 @@ const AddRecruitmentSection = () => {
     formdata.append('address3', formValues.address3);
     formdata.append('station', formValues.station);
 
-    Job.addJob(formdata)
+    JobAPI.addJob(formdata)
       .then(result => console.log('result :', result))
       .catch(error => console.log('error :', error));
   }, 400);
+
+  async function getJob() {
+    const jobId = params.id;
+    const request = await JobAPI.getJob(jobId);
+
+    return request.data;
+  }
 
   useEffect(_ => {
     if (file) {
@@ -113,6 +129,54 @@ const AddRecruitmentSection = () => {
       }
     }
   }, [file]);
+
+  useEffect(_ => {
+    if (params.id) {
+      getJob()
+        .then(res => {
+          setJob(res);
+          setIsLoading(false);
+
+          if (res.cover_photo) {
+            // TODO: convert url to File object
+          }
+
+          setFormValues({
+            title: res.title,
+            description: res.description,
+            cover_photo: res.cover_photo,
+            position: res.position,
+            programming_language: res.programming_language,
+            framework: res.framework,
+            database: res.database,
+            environment: res.environment,
+            requirements: res.requirements,
+            number_of_applicants: res.number_of_applicants,
+            salary: res.salary,
+            work_time: res.work_time,
+            holidays: res.holidays,
+            allowance: res.allowance,
+            incentive: res.incentive,
+            salary_increase: res.salary_increase,
+            insurance: res.insurance,
+            contract_period: res.contract_period,
+            screening_flow: res.screening_flow,
+            prefecture: res.prefecture,
+            address1: res.address1,
+            address2: res.address2,
+            address3: res.address3,
+            station: res.station,
+          });
+        })
+        .catch(error => {
+          setIsLoading(false);
+
+          console.log('[Job detail ERROR]', error);
+        })
+    }
+
+    setIsLoading(false);
+  }, [params])
 
   return (
     <div className="dashboard-section">
@@ -147,7 +211,7 @@ const AddRecruitmentSection = () => {
                   style={{ display: 'none' }}
                 />
                 <div className="recruitment-form__main-group-eyecatch">
-                  <div className="recruitment-form__main-group-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${ecPlaceholder}")` }}></div>
+                  <div className="recruitment-form__main-group-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
                 </div>
                 <div className="recruitment-form__main-group-actions">
                   <Button className="button--pill" onClick={e => handleOpenFile(e)}>
@@ -156,7 +220,7 @@ const AddRecruitmentSection = () => {
                       アップロード
                     </>
                   </Button>
-                  <Button className={`button--link recruitment-form__main-group-actions-button ${!file && state.DISABLED}`}
+                  <Button className={`button--link recruitment-form__main-group-actions-button ${!file ? state.DISABLED : ''}`}
                     onClick={e => handleRemoveFile(e)}>
                     <>
                       <i className="icon icon-cross"></i>
@@ -392,7 +456,6 @@ const AddRecruitmentSection = () => {
       </div>
     </div>
   );
-
 }
 
-export default AddRecruitmentSection;
+export default RecruitmentForm;
