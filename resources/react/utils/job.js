@@ -111,8 +111,21 @@ export default class Job {
     }
 
     return API.request(payload, true, true)
-      .then(res => res)
+      .then(res => res.data)
       .catch(error => error);
+  }
 
+  static updateJob(formdata, id) {
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.JOB_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res.data)
+      .catch(error => error);
   }
 }
