@@ -105,7 +105,7 @@ class JobPostService extends BaseService
     public function getCompanyJobs(bool $status = null, $paginated = true)
     {
         try {
-            $que = $this->company->jobPosts();
+            $que = $this->company->jobPosts()->popular();
 
             if ($status === false) {
                 $que = $que->onlyTrashed();
