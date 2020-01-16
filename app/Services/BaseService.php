@@ -151,7 +151,7 @@ class BaseService
         }
 
         if ($paginated) {
-            return $que->paginate(config('site_settings.per_page'));
+            return $que->paginate(10);
         }
 
         return $que->get();

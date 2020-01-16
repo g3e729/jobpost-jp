@@ -95,7 +95,7 @@ class JobPostService extends BaseService
             switch ($sort) {
                 case 'DESC':
                 case 'ASC':
-                    $que = $que->orderBy('created_at', $sort);
+                    $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
                 break;
                 case 'POPULAR':
                     $que = $que->orderByDesc('likes_count');
@@ -124,7 +124,7 @@ class JobPostService extends BaseService
                 $que = $que->withTrashed();
             }
 
-            $que->orderBy('created_at', $sort);
+            $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
