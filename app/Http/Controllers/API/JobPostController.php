@@ -23,10 +23,11 @@ class JobPostController extends BaseController
 
 	public function show($id)
 	{
-		$job = (new ModelService)->show($id);
+		$company = auth()->user()->profile ?? null;
+			
+		$job = (new ModelService(null, $company))->show($id);
 
 		if ($job->deleted_at != null) {
-			$company = auth()->user()->profile ?? null;
 
 			if ($company && $company->id == $job->company_profile_id) {
 				return $job;

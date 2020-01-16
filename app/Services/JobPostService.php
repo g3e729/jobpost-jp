@@ -25,9 +25,16 @@ class JobPostService extends BaseService
 
     public function show($id)
     {
-        return ServiceModel::with('company')->withTrashed()->popular()
-            ->whereId($id)
-            ->first();
+        $que = ServiceModel::with('company')
+            ->withTrashed()
+            ->popular();
+
+        if ($this->company) {
+            $que = $que->numberApplicants()
+                ->where('company_profile_id', $this->company->id);
+        }
+
+        return $que->whereId($id)->first();
     }
 
     public function createJob($fields = [])
