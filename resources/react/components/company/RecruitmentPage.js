@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import Page from '../common/Page';
 import RecruitmentSection from './RecruitmentSection';
 import CompanySidebar from './CompanySidebar';
-import { getFilteredJobs } from '../../actions/myjobs';
+import { getMyJobs } from '../../actions/myjobs';
 
-const RecruitmentPage = (props) => {
+const RecruitmentPage = _ => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { user } = props;
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
 
   useEffect(_ => {
-    const companyId = user.userData && user.userData.profile.id;
-    dispatch(getFilteredJobs({
-      company_profile_id: companyId,
-      sort: 'desc'
-    }))
+    setIsLoading(true);
+
+    const page = urlParams.get('page');
+    const status = urlParams.get('status');
+
+    dispatch(getMyJobs({page, status}))
       .then(_ => setIsLoading(false))
       .catch(_ => setIsLoading(false));
-  }, [])
+
+  }, [location]);
 
   return (
     <Page>
@@ -33,8 +37,4 @@ const RecruitmentPage = (props) => {
   );
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-});
-
-export default connect(mapStateToProps)(RecruitmentPage);
+export default RecruitmentPage;

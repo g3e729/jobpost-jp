@@ -4529,6 +4529,7 @@ a.pagination__item-link:hover {
 .recruitment-list__item-column-eyecatch {
   position: relative;
   max-height: 192px;
+  border: solid 1px #929292;
 }
 
 .recruitment-list__item-column-eyecatch:before {

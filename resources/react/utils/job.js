@@ -14,13 +14,17 @@ export default class Job {
       .catch(error => error);
   }
 
-  static getMyJobs(param) {
-    const { status } = param;
+  static getMyJobs(params) {
+    const { page = 1, status } = params;
 
     const payload = {
       url: endpoints.MY_JOBS,
       method: 'get',
-      params: { status }
+      params: {
+        page,
+        status,
+        sort: 'desc'
+      }
     }
 
     return API.request(payload, true)

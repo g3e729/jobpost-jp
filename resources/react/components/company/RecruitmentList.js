@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, connect } from 'react-redux';
 
 import Button from '../common/Button';
@@ -16,8 +16,11 @@ import { setModal } from '../../actions/modal';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const RecruitmentList = (props) => {
+  const history = useHistory();
+  const urlParams = new URLSearchParams(history.location.search);
   const dispatch = useDispatch();
   const { myJobs, isLoading } = props;
+  const [statusIndex, setStatusIndex] = useState(0);
   const data = myJobs.myJobsData || {};
   const jobsData = data.data || {};
 
@@ -28,6 +31,27 @@ const RecruitmentList = (props) => {
   const handleJobStop = (id) => {
     dispatch(setModal(modalType.JOB_STOP));
   }
+
+  const handleStatusTab = index => {
+    setStatusIndex(index);
+
+    if (index !== 0) {
+      const urlIndex = index === 1 ? index : 0;
+
+      history.push(`${history.location.pathname}?status=${urlIndex}`);
+    } else {
+      history.push(history.location.pathname);
+    }
+  }
+
+  useEffect(_ => {
+    const status = urlParams.get('status');
+
+    setStatusIndex(
+      status == 0 ? 2 :
+      (status == 1 ? 1 : 0)
+    );
+  }, [history.location])
 
   return (
     <div className="recruitment-list__container">
@@ -43,17 +67,17 @@ const RecruitmentList = (props) => {
             </Link>
           </li>
           <li className="recruitment-list__actions-item">
-            <Button className={`button--link recruitment-list__actions-item-button ${state.ACTIVE}`}>
+            <Button className={`button--link recruitment-list__actions-item-button ${statusIndex === 0 ? state.ACTIVE : ''}`} onClick={_ => handleStatusTab(0)}>
               すべて
             </Button>
           </li>
           <li className="recruitment-list__actions-item">
-            <Button className={`button--link recruitment-list__actions-item-button`}>
+            <Button className={`button--link recruitment-list__actions-item-button ${statusIndex === 1 ? state.ACTIVE : ''}`} onClick={_ => handleStatusTab(1)}>
               募集中
             </Button>
           </li>
           <li className="recruitment-list__actions-item">
-            <Button className={`button--link recruitment-list__actions-item-button`}>
+            <Button className={`button--link recruitment-list__actions-item-button ${statusIndex === 2 ? state.ACTIVE : ''}`} onClick={_ => handleStatusTab(2)}>
               停止中
             </Button>
           </li>
@@ -71,7 +95,7 @@ const RecruitmentList = (props) => {
               <li className="recruitment-list__item recruitment-list__item--header">
                 <div className="recruitment-list__item-wrapper">
                   <span className="recruitment-list__item-label">タイトル</span>
-                  <span className="recruitment-list__item-label">ステータス</span>
+                  { statusIndex === 0 ? <span className="recruitment-list__item-label">ステータス</span> : null }
                   <span className="recruitment-list__item-label">応募数</span>
                   <span className="recruitment-list__item-label">お気に入り数</span>
                 </div>
@@ -109,22 +133,24 @@ const RecruitmentList = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className="recruitment-list__item-column">
-                    <Button className="button--link " onClick={_ => handleJobStop(job.id)}>
-                      <span className="recruitment-list__item-column-status">
-                        募集中
-                      </span>
-                    </Button>
-                    {/* <span className="recruitment-list__item-column-status is-disabled">停止する</span> */}
-                  </div>
+                  { statusIndex === 0 ? (
+                    <div className="recruitment-list__item-column">
+                      <Button className="button--link " onClick={_ => handleJobStop(job.id)}>
+                        <span className="recruitment-list__item-column-status">
+                          募集中
+                        </span>
+                      </Button>
+                      {/* <span className="recruitment-list__item-column-status is-disabled">停止する</span> */}
+                    </div>
+                  ) : null }
                   <div className="recruitment-list__item-column">
                     <span className="recruitment-list__item-column-applicants">
-                      3
+                      {job.applicants_count}
                     </span>
                   </div>
                   <div className="recruitment-list__item-column">
                     <span className="recruitment-list__item-column-favorites">
-                      7
+                      {job.likes_count}
                     </span>
                   </div>
                 </div>

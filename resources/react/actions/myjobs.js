@@ -9,9 +9,9 @@ export const unsetMyJobs = _ => ({
   type: 'MY_JOBS_UNSET'
 });
 
-export const getFilteredJobs = (param) => {
+export const getMyJobs = (params) => {
   return (dispatch) => {
-    return Job.getMyJobs(param).then(result => {
+    return Job.getMyJobs(params).then(result => {
       dispatch(setMyJobs({ ...result.data }));
     }).catch(error => {
       dispatch(unsetMyJobs());

@@ -16,8 +16,8 @@ const RecruitmentForm = () => {
   const [formValues, setFormValues] = useState({
     title: '',
     description: '',
-    cover_photo: null,
-    cover_photo_delete: 0,
+    cover_photo: '',
+    cover_photo_delete: null,
     position: '',
     programming_language: '',
     framework: '',
