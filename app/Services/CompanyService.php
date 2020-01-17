@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CompanyProfile as ServiceModel;
+use App\Models\Applicant;
 use App\Services\UserService;
 use App\Services\FileService;
 use Exception;
@@ -138,9 +139,9 @@ class CompanyService extends BaseService
     {
         $company = $this->item;
 
-        $que = $company->jobPosts()->whereHas('applicants', function ($q) use ($company, $search) {
-            $q->search($search, $company);
-        });
+        $que = (new Applicant)->whereHas('job_post', function ($q) use ($company) {
+            $q->whereCompanyProfileId($company->id);
+        })->search($search, $company);
 
 
         return $this->toReturn($que, $paginated);
