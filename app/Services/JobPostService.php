@@ -27,6 +27,8 @@ class JobPostService extends BaseService
 
     public function show($id)
     {
+        $user = auth()->user();
+
         $que = ServiceModel::with('company')
             ->withTrashed()
             ->popular();
@@ -36,7 +38,11 @@ class JobPostService extends BaseService
                 ->where('company_profile_id', $this->company->id);
         }
 
-        return $que->whereId($id)->first();
+        $job = $que->whereId($id)->first();
+        $applied_tokens = $job->applicants->pluck('applicant.user.api_token')->toArray();
+        $job->applied = in_array($user->api_token, $applied_tokens);
+
+        return $job;
     }
 
     public function createJob($fields = [])
