@@ -11,14 +11,16 @@ class JobPostService extends BaseService
     protected $company;
     protected $item;
 
-    public function __construct($item = null, CompanyProfile $company = null)
+    public function __construct($item = null, $company = null)
     {
         parent::__construct(ServiceModel::class);
 
         if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->company = $item->company;
-        } elseif ($company) {
+        }
+
+        if ($company instanceof CompanyProfile) {
             $this->company = $company;
         }
     }
@@ -101,7 +103,7 @@ class JobPostService extends BaseService
                     $que = $que->orderByDesc('likes_count');
                 break;
             }
-            
+
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
