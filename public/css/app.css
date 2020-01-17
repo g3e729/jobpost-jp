@@ -1309,6 +1309,7 @@ And you should not feel free to add a new Utility class.
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
+  color: #393939;
   margin-top: 18px;
 }
 
@@ -1346,6 +1347,7 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   margin-top: 18px;
+  overflow: hidden;
 }
 
 .footer__heading {
@@ -3144,6 +3146,15 @@ And you should not feel free to add a new Utility class.
 
 .nada--padded {
   padding: 40px 0;
+}
+
+.nada--full {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding: 75px 0;
+  height: calc(100vh - 273px);
 }
 
 .nada__emphasize {

@@ -4,20 +4,29 @@ import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
 import FavoritesList from './FavoritesList';
 
-const FavoritesSection = _ => (
-  <div className="favorites-section">
-    <div className="favorites-section__top">
-      <Fraction numerator="09"
-        denominator="45"
-      />
+const FavoritesSection = ({data}) => {
+  const jobsData = data.data || {};
+
+  return (
+    <div className="favorites-section">
+      <div className="favorites-section__top">
+        <Fraction numerator={jobsData.length}
+          denominator={data.total}
+        />
+      </div>
+      <div className="favorites-section__content">
+        <FavoritesList jobs={jobsData} />
+      </div>
+      <div className="favorites-section__footer">
+        <Pagination
+          current={data.current_page}
+          prevPage={data.prev_page_url}
+          nextPage={data.next_page_url}
+          lastPage={data.last_page}
+        />
+      </div>
     </div>
-    <div className="favorites-section__content">
-      <FavoritesList />
-    </div>
-    <div className="favorites-section__footer">
-      <Pagination />
-    </div>
-  </div>
-);
+  );
+}
 
 export default FavoritesSection;

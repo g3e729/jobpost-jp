@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
-import _ from 'lodash';
+import moment from 'moment';
+moment.locale('ja');
 import { connect } from 'react-redux';
 
 import Button from '../common/Button';
@@ -91,15 +93,15 @@ const Slider = (props) => {
               </div>
               <div className="slider-content__footer">
                 <ul className="slider-content__pills">
-                  <li className="slider-content__pills-item">
-                    <Pill className="pill--active">PHP</Pill>
-                  </li>
-                  <li className="slider-content__pills-item">
-                    <Pill>東京</Pill>
-                  </li>
-                  <li className="slider-content__pills-item">
-                    <Pill>3日前</Pill>
-                  </li>
+                  { job.programming_language ? (
+                    <li className="slider-content__pills-item"><Pill className="pill--active">{job.programming_language}</Pill></li>
+                  ) : null }
+                  { job.prefecture ? (
+                    <li className="slider-content__pills-item"><Pill>{job.prefecture}</Pill></li>
+                  ) : null }
+                  { job.created_at ? (
+                    <li className="slider-content__pills-item"><Pill>{moment(job.created_at).fromNow()}</Pill></li>
+                  ) : null }
                 </ul>
                 <div className="slider-content__fav">
                   { user && user.isLogged ? (
