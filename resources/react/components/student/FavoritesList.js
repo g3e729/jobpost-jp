@@ -9,9 +9,6 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const FavoritesList = ({jobs}) => {
-
-  console.log('jobs :', jobs);
-
   return (
     <ul className="favorites-list">
       { jobs.map(job => (

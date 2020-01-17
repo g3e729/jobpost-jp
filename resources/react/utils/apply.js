@@ -7,7 +7,8 @@ export default class Apply {
       url: endpoints.APPLICATIONS,
       method: 'get',
       params: {
-        page
+        page,
+        per_page: 12
       }
     }
 

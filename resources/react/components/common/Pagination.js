@@ -18,8 +18,17 @@ const Pagination = (props) => {
   useEffect(_ => {
     if (urlParams.toString()) {
       if (urlParams.has(searchUrl)) {
+        const totalParams = Array.from(urlParams.keys())
+        .filter((value, index, self) => {
+          return self.indexOf(value) === index;
+        }).length;
+
         urlParams.delete(searchUrl);
-        setUrlParamsTmp(`?${urlParams.toString()}&${searchUrl}=`);
+        if ( totalParams === 1) {
+          setUrlParamsTmp(`?${urlParams.toString()}${searchUrl}=`);
+        } else {
+          setUrlParamsTmp(`?${urlParams.toString()}&${searchUrl}=`);
+        }
       } else {
         setUrlParamsTmp(`${urlParamsTmp}&${searchUrl}=`);
       }
