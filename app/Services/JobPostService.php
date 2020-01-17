@@ -39,8 +39,12 @@ class JobPostService extends BaseService
         }
 
         $job = $que->whereId($id)->first();
-        $applied_tokens = $job->applicants->pluck('applicant.user.api_token')->toArray();
-        $job->applied = in_array($user->api_token, $applied_tokens);
+        $job->applied = false;
+
+        if ($user) {
+            $applied_tokens = $job->applicants->pluck('applicant.user.api_token')->toArray();
+            $job->applied = in_array($user->api_token, $applied_tokens);
+        }
 
         return $job;
     }
