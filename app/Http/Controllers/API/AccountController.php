@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Services\UserService;
+use App\Services\CompanyService;
+use App\Services\SeekerService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,52 @@ class AccountController extends BaseController
 		if (auth()->user()) {
 			$user = auth()->user();
 			$user->update($request->only('email', 'japanese_name', 'name'));
-			$user->profile->update($request->except('email', 'japanese_name', 'name'));
+
+			$profile = $user->profile;
+
+			$profile->update($request->except('email', 'japanese_name', 'name'));
+
+			if ($user->hasRole('seeker')) {
+				$service = (new SeekerService($profile));
+				
+		        $seekerService->updateWorkHistory($request->get('work_history'));
+		        $seekerService->updateEducationHistory($request->get('education_history'));
+
+        		$service->updateSkills($request);
+			} elseif ($user->hasRole('company')) {
+				$service = (new CompanyService($profile));
+
+		        if ($request->photos) {
+		            $service->wwhPhotoUploader($request->photos);
+		        }
+
+		        if ($request->has('features')) {
+		            $company->features()->delete();
+		            $features = $request->get('features');
+
+		            foreach([0, 1, 2] as $i) {
+		                $feature = $features[$i];
+
+		                if (empty($feature['title']) && empty($feature['description'])) {
+		                    continue;
+		                }
+
+		                $profile->features()->create($feature);
+		            }
+		        }
+			}
+
+	        if ($request->file('avatar') || $request->get('avatar_delete')) {
+	            $service->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
+	        }
+
+	        if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
+	            $service->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
+	        }
+		        
+	        if ($request->has('portfolios')) {
+	            (new PortfolioService)->insertOrUpdate($profile, $request->portfolios);
+	        }
 
 			return $this->returnData($user);
 		}
