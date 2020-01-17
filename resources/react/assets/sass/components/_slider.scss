@@ -4,13 +4,22 @@ $container-width: 60px;
   overflow: visible !important;
   margin-left: $container-width !important;
   margin-bottom: 60px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-left: 0 !important;
+  }
 }
 
 .swiper-slide {
   &.slider {
     position: relative;
     height: calc(100vh - 98px);
+    height: 100vh;
     min-height: 660px;
+
+    @include max-screen($breakpoint-mobile) {
+      height: calc(100vh - 61px);
+    }
   }
 
   .slider__eyecatch {
@@ -50,7 +59,7 @@ $container-width: 60px;
     z-index: 1;
 
     @include max-screen($breakpoint-mobile) {
-      width: 90%;
+      width: 75%;
       top: 140px;
       padding: 40px 31px 21px 30px;
     }
@@ -144,7 +153,16 @@ $container-width: 60px;
     width: auto !important;
 
     @include max-screen($breakpoint-mobile) {
-      display: none;
+      top: auto;
+      left: 0 !important;
+      bottom: 0 !important;
+      right: auto;
+      width: 100% !important;
+      background-color: #fff;
+      text-align: left;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding: 20px 16px 10px;
     }
   }
 
@@ -154,6 +172,26 @@ $container-width: 60px;
     height: 55px;
 
     cursor: pointer;
+
+    @include max-screen($breakpoint-mobile) {
+      display: inline-block;
+      width: 44px;
+      height: 44px;
+    }
+
+    &.is-active {
+      .slider-pagination__item-line {
+        background-color: #333;
+      }
+
+      .slider-pagination__item-svg {
+        > .path-bg {
+          @include max-screen($breakpoint-mobile) {
+            stroke: #333;
+          }
+        }
+      }
+    }
   }
 
   .slider-pagination__item-number {
@@ -170,6 +208,10 @@ $container-width: 60px;
     left: 0;
     width: 100%;
     height: 100%;
+
+    @include max-screen($breakpoint-mobile) {
+      font-size: 15px;
+    }
   }
 
   .slider-pagination__item-bg {
@@ -193,6 +235,10 @@ $container-width: 60px;
 
       // stroke-dashoffset: 105.872;
       // stroke-dasharray: 252.378px, 262.378px;
+
+      @include max-screen($breakpoint-mobile) {
+        stroke: transparent;
+      }
     }
 
     > .path-bg {
@@ -200,6 +246,10 @@ $container-width: 60px;
       stroke: rgba($color-black, 0.15);
       stroke-miterlimit: 10;
       stroke-width: 2px;
+
+      @include max-screen($breakpoint-mobile) {
+        stroke: transparent;
+      }
     }
   }
 
@@ -211,5 +261,13 @@ $container-width: 60px;
     height: 1px;
 
     background-color: $color-dark-gray;
+
+    @include max-screen($breakpoint-mobile) {
+      height: 42px;
+      width: 1px;
+      left: calc(50% - 1px);
+      top: -47px;
+      background-color: transparent;
+    }
   }
 }
