@@ -1,6 +1,7 @@
-export const setModal = (payload = '', actionId = null) => ({
+export const setModal = (payload = '', actionId = null, actionText = '') => ({
   type: 'MODAL_SET',
   actionId: actionId,
+  actionText: actionText,
   payload
 });
 

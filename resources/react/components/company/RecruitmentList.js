@@ -24,12 +24,12 @@ const RecruitmentList = (props) => {
   const data = myJobs.myJobsData || {};
   const jobsData = data.data || {};
 
-  const handleJobDelete = (id) => {
-    dispatch(setModal(modalType.JOB_DELETE, id));
+  const handleJobDelete = (id, text) => {
+    dispatch(setModal(modalType.JOB_DELETE, id, text));
   }
 
-  const handleJobStop = (id) => {
-    dispatch(setModal(modalType.JOB_STOP, id));
+  const handleJobStop = (id, text) => {
+    dispatch(setModal(modalType.JOB_STOP, id, text));
   }
 
   const handleStatusTab = index => {
@@ -124,7 +124,7 @@ const RecruitmentList = (props) => {
                               編集
                             </>
                           </Link>
-                          <Button className="button--link recruitment-list__item-column-actions-button" onClick={_ => handleJobDelete(job.id)}>
+                          <Button className="button--link recruitment-list__item-column-actions-button" onClick={_ => handleJobDelete(job.id, job.title)}>
                             <>
                               <i className="icon icon-cross"></i>
                               削除
@@ -135,7 +135,7 @@ const RecruitmentList = (props) => {
                     </div>
                     { statusIndex === 0 ? (
                       <div className="recruitment-list__item-column">
-                        <Button className="button--link " onClick={_ => handleJobStop(job.id)}>
+                        <Button className="button--link " onClick={_ => handleJobStop(job.id, job.title)}>
                           <span className={`recruitment-list__item-column-status ${job.deleted_at ? state.DISABLED : ''}`}>
                             { job.deleted_at ? '停止中' : '募集中' }
                           </span>

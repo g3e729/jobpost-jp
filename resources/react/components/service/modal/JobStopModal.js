@@ -32,7 +32,7 @@ const JobStopModal = ({modal}) => {
     <BaseModal>
       <div className="modal__content modal__content--center">
         <i className="icon icon-warning-circle modal__content-icon"></i>
-        <p className="modal__content-desc">{`自社★C2Cマッチングプラットフォー
+        <p className="modal__content-desc">{`${modal.actionText}
           ム開発を停止させますか？`}
         </p>
       </div>

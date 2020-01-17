@@ -33,7 +33,7 @@ const JobDeleteModal = ({modal}) => {
     <BaseModal>
       <div className="modal__content modal__content--center">
         <i className="icon icon-warning-circle modal__content-icon"></i>
-        <p className="modal__content-desc">{`自社★C2Cマッチングプラットフォ
+        <p className="modal__content-desc">{`${modal.actionText}
           ーム開発を削除しますか？`}
         </p>
       </div>
