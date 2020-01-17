@@ -335,6 +335,10 @@ class SeekerProfile extends Model
 
     public function getTakenClassAttribute()
     {
+        if ($this->taken_id === null) {
+            return [];
+        }
+
         $courses = [];
         $taken = is_array($this->taken_id) ? $this->taken_id : json_decode($this->taken_id);
 

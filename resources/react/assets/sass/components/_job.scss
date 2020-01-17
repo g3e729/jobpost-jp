@@ -110,6 +110,8 @@
   letter-spacing: 0.06em;
 
   white-space: pre-line;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .job__main-data {
@@ -225,6 +227,41 @@
   white-space: pre-line;
 }
 
+.job__main-description {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+
+  > ul {
+    padding: 10px 0 4px;
+    line-height: 0;
+
+    > li {
+      line-height: 1.857;
+      letter-spacing: 0.06em;
+
+      position: relative;
+      padding-left: 37px;
+      margin-top: 11px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 9px;
+
+        height: 8px;
+        width: 8px;
+        background: $color-dark-yellow;
+      }
+    }
+  }
+}
+
 .job__main-list {
   padding: 10px 0 4px;
 }
@@ -237,30 +274,6 @@
   padding: 0;
   margin-top: -5px;
   border: solid 1px $color-dark-gray;
-}
-
-.job__main-list-item {
-  line-height: 1.857;
-  letter-spacing: 0.06em;
-
-  position: relative;
-  padding-left: 37px;
-  margin-top: 11px;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 15px;
-    top: 9px;
-
-    height: 8px;
-    width: 8px;
-    background: $color-dark-yellow;
-  }
 }
 
 .job__main-list-term {
@@ -312,6 +325,7 @@
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
+    flex: 1;
 
     margin: -17px -18px;
 

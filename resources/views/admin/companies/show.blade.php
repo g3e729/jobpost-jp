@@ -11,7 +11,7 @@
               <div class="card-actions text-right">
                 <a href="{{ route('admin.companies.edit', $company) }}" class="card-link">編集する</a>
                 <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link">募集を作成する</a>
-                <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link">メッセージ</a>
+                <a href="{{ route('admin.messages.index', ['user_id' => $company->user_id]) }}" class="card-link">メッセージ</a>
                 <button id="js-item-delete" type="submit" form="deleteForm" class="btn btn-link text-decoration-none text-muted">削除</button>
                 <form id="deleteForm" method="POST" action="{{ route('admin.companies.destroy', $company) }}" novalidate style="visibility: hidden; position: absolute;">
                   @csrf

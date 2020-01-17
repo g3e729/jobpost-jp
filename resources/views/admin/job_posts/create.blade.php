@@ -11,6 +11,16 @@
       </div>
     @endif
 
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
+
     <h2 class="py-4 text-center alt-font">新規募集作成フォーム</h2>
 	  
     <form class="needs-validation py-2 mb-4" method="POST" action="{{ route('admin.recruitments.store') }}" enctype="multipart/form-data" novalidate>

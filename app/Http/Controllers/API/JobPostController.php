@@ -13,17 +13,17 @@ class JobPostController extends BaseController
 	public function index(Request $request)
 	{
 		$jobs = (new ModelService)->search(
-			$request->except('_token', 'page', 'sort'),
-			true,
-			$request->get('sort')
+			$request->except('_token', 'page', 'sort', 'paginated', 'sort_by'),
+            $request->get('paginated', true),
+			$request->get('sort', 'DESC')
 		);
 
 		return $jobs;
 	}
 
-	public function show(Model $job)
+	public function show($id)
 	{
-		return (new ModelService)->show($job->id);
+		return $this->getJob($id);
 	}
 
 	public function store(Request $request)
@@ -33,10 +33,10 @@ class JobPostController extends BaseController
 
 	public function update(Model $job, Request $request)
 	{
-		$company = auth()->user()->profile;
+		$company = auth()->user()->profile ?? null;
 
-		if ($job->company_profile_id != $company->id) {
-			abort(503);
+		if (!$company || $job->company_profile_id != $company->id) {
+			return apiAbort(503);
 		}
 
 		$jobPostService = (new ModelService($job));
@@ -45,10 +45,85 @@ class JobPostController extends BaseController
 		return (new ModelService)->show($job->id);
 	}
 
+	public function destroy($id)
+	{
+		$job = $this->getJob($id);
+
+        if ($job instanceof Model) {
+
+			$company = auth()->user()->profile ?? null;
+
+			if (!$company || $job->company_profile_id != $company->id) {
+				return apiAbort(503);
+			}
+
+			$job->forceDelete();
+
+			return $job;
+        }
+
+		return apiAbort(503);
+	}
+
+	public function toggleStatus($id)
+	{
+		$job = $this->getJob($id);
+
+        if ($job instanceof Model) {
+
+			$company = auth()->user()->profile ?? null;
+
+			if (!$company || $job->company_profile_id != $company->id) {
+				return apiAbort(503);
+			}
+
+			if ($job->trashed()) {
+				$job->restore();
+			} else {
+				$job->delete();
+			}
+
+			return $job;
+        }
+
+		return apiAbort(503);
+	}
+
+    public function companyJobs(Request $request)
+    {
+		$company = auth()->user()->profile ?? null;
+
+    	return (new ModelService(null, $company))->getCompanyJobs(
+    		$request->get('status'),
+    		$request->get('paginated', true),
+			$request->get('sort', 'DESC')
+    	);
+    }
+
 	public function getJobFilters(Request $request)
 	{
 		$filters = (new ModelService)->jobFilters();
 
 		return $filters;
+	}
+
+	private function getJob($id)
+	{
+		$company = auth()->user()->profile ?? null;
+			
+		$job = (new ModelService(null, $company))->show($id);
+
+		if ($job) {
+			if ($job->trashed()) {
+
+				if ($company && $company->id == $job->company_profile_id) {
+					return $job;
+				}
+			} else {
+				return $job;
+			}
+		}
+
+		return apiAbort(404);
 	}
 }

@@ -1127,7 +1127,6 @@ And you should not feel free to add a new Utility class.
 .company-sidebar__menu-item a.is-active {
   color: #fff;
   background-color: #313232;
-  pointer-events: none;
 }
 
 .dashboard-section {
@@ -2241,6 +2240,8 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .job__main-data {
@@ -2375,6 +2376,39 @@ And you should not feel free to add a new Utility class.
   white-space: pre-line;
 }
 
+.job__main-description {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.job__main-description > ul {
+  padding: 10px 0 4px;
+  line-height: 0;
+}
+
+.job__main-description > ul > li {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  position: relative;
+  padding-left: 37px;
+  margin-top: 11px;
+}
+
+.job__main-description > ul > li:first-child {
+  margin-top: 0;
+}
+
+.job__main-description > ul > li:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 9px;
+  height: 8px;
+  width: 8px;
+  background: #fdb834;
+}
+
 .job__main-list {
   padding: 10px 0 4px;
 }
@@ -2388,28 +2422,6 @@ And you should not feel free to add a new Utility class.
   padding: 0;
   margin-top: -5px;
   border: solid 1px #d9d6d6;
-}
-
-.job__main-list-item {
-  line-height: 1.857;
-  letter-spacing: 0.06em;
-  position: relative;
-  padding-left: 37px;
-  margin-top: 11px;
-}
-
-.job__main-list-item:first-child {
-  margin-top: 0;
-}
-
-.job__main-list-item:before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 9px;
-  height: 8px;
-  width: 8px;
-  background: #fdb834;
 }
 
 .job__main-list-term {
@@ -2470,6 +2482,8 @@ And you should not feel free to add a new Utility class.
   -webkit-box-align: stretch;
           align-items: stretch;
   flex-wrap: wrap;
+  -webkit-box-flex: 1;
+          flex: 1;
   margin: -17px -18px;
 }
 
@@ -2893,6 +2907,10 @@ And you should not feel free to add a new Utility class.
   -webkit-box-pack: center;
           justify-content: center;
   height: 100vh;
+}
+
+.loading--padded {
+  padding: 40px 0;
 }
 
 .message {
@@ -3466,6 +3484,10 @@ And you should not feel free to add a new Utility class.
 
 .nada--center {
   text-align: center;
+}
+
+.nada--padded {
+  padding: 40px 0;
 }
 
 .nada__emphasize {
@@ -5011,6 +5033,7 @@ a.pagination__item-link:hover {
 .recruitment-list__item-column-eyecatch {
   position: relative;
   max-height: 192px;
+  border: solid 1px #929292;
 }
 
 .recruitment-list__item-column-eyecatch:before {
@@ -5034,6 +5057,7 @@ a.pagination__item-link:hover {
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: 0.06em;
+  color: #393939;
   margin-bottom: 10px;
 }
 

@@ -42,7 +42,6 @@ const JobPage = (props) => {
           pills: {
             ...programming_language,
             ...prefecture
-            // ...TODO date ago from registration?
           }
         })
       })

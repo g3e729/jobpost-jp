@@ -108,7 +108,7 @@ class CompanyService extends BaseService
         }
     }
     
-    public function search($fields, $paginated = true)
+    public function search($fields, $paginated = true, $sort = 'ASC')
     {
         try {
             $fields = array_filter($fields);
@@ -124,6 +124,8 @@ class CompanyService extends BaseService
                     break;
                 }
             }
+            
+            $que = $que->orderBy(request()->get('sort_by', 'company_name'), $sort);
 
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {

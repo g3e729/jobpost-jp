@@ -13,7 +13,11 @@ class CompanyController extends BaseController
 {
 	public function index(Request $request)
 	{
-		$companies = (new ModelService)->search($request->except('_token', 'page'));
+		$companies = (new ModelService)->search(
+            $request->except('_token', 'page', 'sort', 'paginated', 'sort_by'),
+            $request->get('paginated', true),
+            $request->get('sort', 'ASC')
+        );
 
 		return $companies;
 	}
@@ -28,7 +32,7 @@ class CompanyController extends BaseController
         $company_id = auth()->user()->profile->id;
 
         if ($company_id != $company->id) {
-            abort(503);
+            return apiAbort(503);
         }
 
         $companyService = new ModelService($company);

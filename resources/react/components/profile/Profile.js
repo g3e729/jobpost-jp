@@ -38,9 +38,11 @@ const Profile = (props) => {
   }
 
   useEffect(_ => {
-    getFilteredJobs()
-      .then(res => setJobs(res.data.splice(0, 3)))
-      .catch(error => console.log('[Jobs ERROR]', error));
+    if (accountType === 'company') {
+      getFilteredJobs()
+        .then(res => setJobs(res.data.splice(0, 3)))
+        .catch(error => console.log('[Jobs ERROR]', error));
+    }
   }, []);
 
   return (

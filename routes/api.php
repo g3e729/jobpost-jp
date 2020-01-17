@@ -3,6 +3,7 @@
 
 Route::group([
     'namespace'  => 'API',
+	'middleware' => ['App\Http\Middleware\ApiCheck'],
 ], function () {
 	
 	Route::get('jobs-filters', 'JobPostController@getJobFilters');
@@ -14,7 +15,6 @@ Route::group([
 	Route::get('search', 'SearchController@search');
 
 	Route::group([
-	    'middleware' => ['App\Http\Middleware\ApiCheck'],
 	], function () {
 		Route::get('account', 'AccountController@details');
 		Route::patch('account', 'AccountController@update');
@@ -37,6 +37,9 @@ Route::group([
 	    'middleware' => ['App\Http\Middleware\ApiCheck:company'],
 	], function () {
 		Route::resource('jobs', 'JobPostController')->only('store', 'update');
+		Route::delete('jobs/{job}', 'JobPostController@destroy');
+		Route::patch('jobs/{job}/update-status', 'JobPostController@toggleStatus');
+		Route::get('my-jobs', 'JobPostController@companyJobs');
 		Route::patch('companies/{company}', 'CompanyController@update');
 	});
 });

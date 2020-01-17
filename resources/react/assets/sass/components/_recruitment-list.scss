@@ -116,6 +116,8 @@
   position: relative;
   max-height: 192px;
 
+  border: solid 1px $color-darkest-gray;
+
   &:before {
     content: '';
     padding-top: 60%;
@@ -138,6 +140,7 @@
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: 0.06em;
+  color: $color-medium-black;
 
   margin-bottom: 10px;
 }

@@ -7,6 +7,7 @@ use App\Services\CompanyService;
 use App\Services\JobPostService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Http\Requests\JobPostRequest;
 
 class JobPostController extends BaseController
 {
@@ -41,7 +42,7 @@ class JobPostController extends BaseController
 		return view('admin.job_posts.create', compact('company', 'employment_types', 'prefectures', 'range'));
 	}
 
-	public function store(Request $request)
+	public function store(JobPostRequest $request)
 	{
 		$company = (new CompanyService)->find($request->get('company_id'));
 

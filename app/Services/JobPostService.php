@@ -11,23 +11,32 @@ class JobPostService extends BaseService
     protected $company;
     protected $item;
 
-    public function __construct($item = null, CompanyProfile $company = null)
+    public function __construct($item = null, $company = null)
     {
         parent::__construct(ServiceModel::class);
 
         if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->company = $item->company;
-        } elseif ($company) {
+        }
+
+        if ($company instanceof CompanyProfile) {
             $this->company = $company;
         }
     }
 
     public function show($id)
     {
-        return ServiceModel::with('company')->popular()
-            ->whereId($id)
-            ->first();
+        $que = ServiceModel::with('company')
+            ->withTrashed()
+            ->popular();
+
+        if ($this->company) {
+            $que = $que->numberApplicants()
+                ->where('company_profile_id', $this->company->id);
+        }
+
+        return $que->whereId($id)->first();
     }
 
     public function createJob($fields = [])
@@ -88,13 +97,37 @@ class JobPostService extends BaseService
             switch ($sort) {
                 case 'DESC':
                 case 'ASC':
-                    $que = $que->orderBy('created_at', $sort);
+                    $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
                 break;
                 case 'POPULAR':
                     $que = $que->orderByDesc('likes_count');
                 break;
             }
-            
+
+            return $this->toReturn($que, $paginated);
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return $this->toReturn();
+        }
+    }
+
+    public function getCompanyJobs(bool $status = null, $paginated = true, $sort = 'DESC')
+    {
+        try {
+            $que = $this->company->jobPosts()
+                ->popular()
+                ->numberApplicants();
+
+            if ($status === false) {
+                $que = $que->onlyTrashed();
+            } elseif ($status === true) {
+                $que = $que;
+            } else {
+                $que = $que->withTrashed();
+            }
+
+            $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
+
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());

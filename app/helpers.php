@@ -122,3 +122,29 @@ if (! function_exists('getProfileUrl')) {
         return '#';
     }
 }
+
+if (! function_exists('apiAbort')) {
+    function apiAbort($error)
+    {
+        switch ($error) {
+            case '403':
+                $message = 'Unauthorized.';
+            break;
+            case '404':
+                $message = 'Not Found.';
+            break;
+            case '419':
+                $message = 'Page Expired.';
+            break;
+            case '503':
+                $message = 'Service Currently Not Available.';
+            break;
+            case '505':
+            default:
+                $message = 'Internal Server Error.';
+            break;
+        }
+
+        return response()->json(compact('message'), $error);
+    }
+}

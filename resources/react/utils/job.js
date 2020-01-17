@@ -1,6 +1,6 @@
 import API from './api';
-import { endpoints } from '../constants/routes';
 import generateRoute from './generateRoute';
+import { endpoints } from '../constants/routes';
 
 export default class Job {
   static getJobs() {
@@ -10,6 +10,54 @@ export default class Job {
     }
 
     return API.request(payload)
+      .then(res => res)
+      .catch(error => error);
+  }
+
+  static getMyJobs(params) {
+    const { page = 1, status } = params;
+
+    const payload = {
+      url: endpoints.MY_JOBS,
+      method: 'get',
+      params: {
+        page,
+        status,
+        sort: 'desc'
+      }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
+  static toggleMyJob(id) {
+    const formdata = new FormData();
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.JOB_STATUS, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
+  static deleteMyJob(id) {
+    const formdata = new FormData();
+    formdata.append('_method', 'DELETE');
+
+    const payload = {
+      url: generateRoute(endpoints.JOB_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true)
       .then(res => res)
       .catch(error => error);
   }
@@ -50,7 +98,7 @@ export default class Job {
       method: 'get'
     }
 
-    return API.request(payload)
+    return API.request(payload, true)
       .then(res => res)
       .catch(error => error);
   }
@@ -63,8 +111,21 @@ export default class Job {
     }
 
     return API.request(payload, true, true)
-      .then(res => res)
+      .then(res => res.data)
       .catch(error => error);
+  }
 
+  static updateJob(formdata, id) {
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.JOB_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res.data)
+      .catch(error => error);
   }
 }
