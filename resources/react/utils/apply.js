@@ -17,7 +17,20 @@ export default class Apply {
       .catch(error => error);
   }
 
-  static applyJob() {}
+  static applyJob(id) {
+    const payload = {
+      url: endpoints.APPLY,
+      method: 'post',
+      params: {
+        job_post_id: id
+      }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+
+  }
 
   static cancelApplication() {}
 }

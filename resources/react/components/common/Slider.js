@@ -5,12 +5,15 @@ import 'swiper/css/swiper.css';
 import moment from 'moment';
 moment.locale('ja');
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Loading from './Loading';
 import Pill from './Pill';
 import Like from '../../utils/like';
+import generateRoute from '../../utils/generateRoute';
 import { state } from '../../constants/state';
+import { routes } from '../../constants/routes';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
@@ -89,7 +92,10 @@ const Slider = (props) => {
                 <h3 className="slider-content__title">{job.company.company_name}</h3>
               </div>
               <div className="slider-content__main">
-                <p className="slider-content__desc">{job.title}</p>
+                <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
+                  className="button button--link">
+                  <p className="slider-content__desc">{job.title}</p>
+                </Link>
               </div>
               <div className="slider-content__footer">
                 <ul className="slider-content__pills">

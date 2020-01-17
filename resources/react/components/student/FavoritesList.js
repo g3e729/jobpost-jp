@@ -12,13 +12,13 @@ const FavoritesList = ({jobs}) => {
   return (
     <ul className="favorites-list">
       { jobs.map(job => (
-        <li className="favorites-list__item" key={job.id}>
+        <li className="favorites-list__item" key={job.job_post.id}>
           <div className="favorites">
             <div className="favorites__top">
               <div className="favorites__eyecatch">
                 <div className="favorites__eyecatch-img" style={{ backgroundImage: `url("${job.job_post.cover_photo || ecPlaceholder}")` }}></div>
               </div>
-              <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
+              <Link to={generateRoute(routes.JOB_DETAIL, { id: job.job_post.id })}
                 className="button button--link">
                 <h4 className="favorites__title">
                   {job.job_post.title}

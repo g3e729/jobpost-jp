@@ -48,8 +48,8 @@ const Heading = (props) => {
       }).catch(error => console.log('[Like ERROR]', error));
   }, 400);
 
-  const handleModal = type => {
-    dispatch(setModal(type));
+  const handleModal = (type, id) => {
+    dispatch(setModal(type, id));
   }
 
   useEffect(_ => {
@@ -152,7 +152,7 @@ const Heading = (props) => {
 
             { isLogged ? (
               <>
-                { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY)}>応募する</Button> : null }
+                { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY, params.id)}>応募する</Button> : null }
                 <Button className="button--link heading__job-fav" onClick={e => handleLike('job')}>
                   <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                     <i className="icon icon-star"></i>{userLikes}

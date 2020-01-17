@@ -5124,6 +5124,7 @@ a.pagination__item-link:hover {
   font-weight: 700;
   line-height: 1.9;
   letter-spacing: 0.06em;
+  color: #393939;
 }
 
 .swiper-slide .slider-content__footer {
