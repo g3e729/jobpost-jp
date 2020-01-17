@@ -34,6 +34,23 @@ class Applicant extends Model
         static::created(function ($model) {
             $model->chat_channel()->create([]);
         });
+        static::deleting(function ($model) {
+            $model->chat_channel()->forceDelete();
+        });
+    }
+
+    public function scopeSearch($query, $value, $model)
+    {
+        if ($model instanceof SeekerProfile) {
+            return $query->whereHas('job_post', function ($q) use ($value) {
+                $q->search($value);
+            });
+        } elseif ($model instanceof CompanyProfile) {
+            return $query->whereHas('applicant', function ($q) use ($value) {
+                $q->search($value);
+            });
+        }
+
     }
 
     // Relations

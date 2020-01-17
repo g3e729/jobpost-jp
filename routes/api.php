@@ -28,6 +28,8 @@ Route::group([
 
 		Route::post('like', 'LikeController@like');
 		Route::post('apply', 'ApplyController@store');
+		Route::get('applications', 'ApplyController@index');
+		Route::delete('cancel-application', 'ApplyController@destroy');
 
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
 	});

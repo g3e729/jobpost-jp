@@ -134,6 +134,18 @@ class CompanyService extends BaseService
         }
     }
 
+    public function getApplicants($search, $paginated = true, $sort = 'DESC')
+    {
+        $company = $this->item;
+
+        $que = $company->jobPosts()->whereHas('applicants', function ($q) use ($company, $search) {
+            $q->search($search, $company);
+        });
+
+
+        return $this->toReturn($que, $paginated);
+    }
+
     public function companyFilters()
     {
         $industries = ServiceModel::getIndustries();

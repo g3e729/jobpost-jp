@@ -222,9 +222,17 @@ class SeekerService extends BaseService
         }
     }
 
+    public function getAppliedJobs($search, $paginated = true, $sort = 'DESC')
+    {
+        $que = $this->item->applications()->search($search, $this->item);
+
+        return $this->toReturn($que, $paginated);
+    }
+
     public function applyJobPost(JobPost $job_post)
     {
         $que = $this->item->applications()->whereJobPostId($job_post->id);
+
         if (!$que->count()) {
             return $this->item->applications()->create([
                 'job_post_id' => $job_post->id
@@ -232,6 +240,11 @@ class SeekerService extends BaseService
         }
 
         return $que->first();
+    }
+
+    public function cancelApplication(JobPost $job_post)
+    {
+        return $this->item->applications()->whereJobPostId($job_post->id)->delete();
     }
 
     public function studentFilters()
