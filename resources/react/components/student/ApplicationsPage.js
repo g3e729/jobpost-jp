@@ -8,7 +8,7 @@ import Nada from '../common/Nada';
 import FavoritesSection from './FavoritesSection';
 import Apply from '../../utils/apply';
 
-const ApplyPage = _ => {
+const ApplicationsPage = _ => {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +41,7 @@ const ApplyPage = _ => {
       ) : (
         <>
           <Heading type={null}
-            title="APPLICATION"
+            title="APPLICATIONS"
             subTitle="応募した募集一覧"
           />
           { jobs.data && jobs.data.length ? (
@@ -63,4 +63,4 @@ const ApplyPage = _ => {
   );
 }
 
-export default ApplyPage;
+export default ApplicationsPage;
