@@ -39,6 +39,7 @@ const JobPage = (props) => {
           companyAvatar: res.company.avatar,
           companyName: res.company.company_name,
           time: res.created_at,
+          applied: res.applied,
           pills: {
             ...programming_language,
             ...prefecture

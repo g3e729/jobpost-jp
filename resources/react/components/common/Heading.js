@@ -152,7 +152,13 @@ const Heading = (props) => {
 
             { isLogged ? (
               <>
-                { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY, params.id)}>応募する</Button> : null }
+                { accountType === 'student' ?
+                  (
+                    jobData.applied
+                      ? <Button className={`button--large heading__job-button ${state.DISABLED}`}>応募済み</Button>
+                      : <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY, params.id)}>応募する</Button>
+                  )
+                : null }
                 <Button className="button--link heading__job-fav" onClick={e => handleLike('job')}>
                   <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                     <i className="icon icon-star"></i>{userLikes}
