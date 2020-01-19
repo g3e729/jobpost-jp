@@ -29,8 +29,20 @@ export default class Apply {
     return API.request(payload, true)
       .then(res => res)
       .catch(error => error);
-
   }
 
-  static cancelApplication() {}
+  static cancelApplyJob(id) {
+    const payload = {
+      url: endpoints.CANCEL_APPLICATION,
+      method: 'post',
+      params: {
+        job_post_id: id,
+        _method: 'DELETE'
+      }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
 }

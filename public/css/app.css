@@ -2571,6 +2571,25 @@ And you should not feel free to add a new Utility class.
   padding: 40px 0;
 }
 
+.loading--overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.loading--overlay > div {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
 .message {
   position: relative;
 }
@@ -3118,6 +3137,7 @@ And you should not feel free to add a new Utility class.
           flex-direction: row;
   -webkit-box-pack: justify;
           justify-content: space-between;
+  position: relative;
   margin: 0 -20px;
   padding: 45px 50px 55px;
 }

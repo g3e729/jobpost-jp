@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
 import Apply from '../../../utils/apply';
 import { unsetModal } from '../../../actions/modal';
 
 const JobApplyModal = ({modal}) => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleCloseModal = _ => {
@@ -16,8 +18,12 @@ const JobApplyModal = ({modal}) => {
   const handleApply = _ => {
     Apply.applyJob(modal.actionId)
       .then(_ => {
-        handleCloseModal();
-        location.reload();
+        setIsLoading(true);
+
+        setTimeout(_ => {
+          location.reload();
+          handleCloseModal();
+        }, 500);
       })
       .catch(error => {
         handleCloseModal();
@@ -36,6 +42,9 @@ const JobApplyModal = ({modal}) => {
           <Button className="button--cto" onClick={_ => handleApply()}>
             すぐに働きたい
           </Button>
+          { isLoading ? (
+            <Loading className="loading--overlay"/>
+          ) : null }
         </div>
       </div>
     </BaseModal>

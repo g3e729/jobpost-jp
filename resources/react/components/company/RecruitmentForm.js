@@ -91,7 +91,9 @@ const RecruitmentForm = () => {
     formdata.append('title', formValues.title);
     formdata.append('description', formValues.description);
     formdata.append('cover_photo', formValues.cover_photo || '');
-    formdata.append('cover_photo_delete', parseInt(formValues.cover_photo_delete) || null);
+    if (formValues.cover_photo) {
+      formdata.append('cover_photo_delete', parseInt(formValues.cover_photo_delete));
+    }
     formdata.append('position', formValues.position);
     formdata.append('programming_language', formValues.programming_language);
     formdata.append('framework', formValues.framework);
