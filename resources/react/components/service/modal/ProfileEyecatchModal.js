@@ -1,19 +1,25 @@
 import React, { useState, useEffect, createRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import { state } from '../../../constants/state';
+import { unsetModal } from '../../../actions/modal';
 
 import ecPlaceholder from '../../../../img/eyecatch-default.jpg';
 
-const ProfileEyecatchModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
-  const [formEyecatch, setFormEyecatch] = useState('');
+const ProfileEyecatchModal = ({modal}) => {
+  const dispatch = useDispatch();
   const [file, setFile] = useState('');
+  const [hasFile, setHasFile] = useState(!modal.actionImage.includes('eyecatch-default') && true);
+  const [placeholderImg, setPlaceholderImg] = useState(modal.actionImage || ecPlaceholder);
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
+  const [formValues, setFormValues] = useState({
+    cover_photo: '',
+    cover_photo_delete: null,
+  });
 
   const handleUpdateFile = e => {
     setFile(e.target.files[0]);
@@ -29,13 +35,17 @@ const ProfileEyecatchModal = _ => {
     e.preventDefault();
 
     setFile('');
-    eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
+    eyecatchRef.current.style.backgroundImage = `url("${placeholderImg}")`;
+  }
+
+  const handleSubmit = _ => {
+    // TODO: handle cover_photo change
+
+    dispatch(unsetModal());
   }
 
   useEffect(_ => {
     if (file) {
-      // TODO: Upload file to s3 bucket
-
       reader.readAsDataURL(file);
       reader.onload = ev => {
         eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
@@ -57,7 +67,7 @@ const ProfileEyecatchModal = _ => {
               style={{ display: 'none' }}
             />
             <div className="modal__form-eyecatch">
-              <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${ecPlaceholder}")` }}></div>
+              <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${modal.actionImage || placeholderImg}")` }}></div>
             </div>
             <div className="modal__form-actions">
               <Button className="button--pill" onClick={e => handleOpenFile(e)}>
@@ -78,7 +88,7 @@ const ProfileEyecatchModal = _ => {
           </div>
         </form>
         <div className="modal__actions">
-          <Button className="button--icon">
+          <Button className="button--icon" onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
               セーブ
@@ -90,4 +100,8 @@ const ProfileEyecatchModal = _ => {
   )
 }
 
-export default ProfileEyecatchModal;
+const mapStateToProps = (state) => ({
+  modal: state.modal
+});
+
+export default connect(mapStateToProps)(ProfileEyecatchModal);

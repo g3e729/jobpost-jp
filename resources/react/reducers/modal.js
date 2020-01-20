@@ -1,6 +1,7 @@
 const initialState = {
   visible: false,
   actionId: null,
+  actionImage: null,
   actionText: '',
   modalType: '',
 };
@@ -12,6 +13,7 @@ const modalReducer = (state = initialState, action) => {
         ...state,
         visible: true,
         actionId: action.actionId,
+        actionImage: action.actionImage,
         actionText: action.actionText,
         modalType: action.payload
       };
@@ -20,6 +22,7 @@ const modalReducer = (state = initialState, action) => {
         ...state,
         visible: false,
         actionID: null,
+        actionImage: null,
         actionText: '',
         modalType: ''
       };

@@ -63,6 +63,23 @@ export const updateUserPass = (password = '') => {
   }
 }
 
+export const updateUser = (params) => {
+  return (dispatch) => {
+    return User.updateUser(params)
+      .then(result => {
+        // dispatch(setUser({ ...result.data }));
+        console.log('result :', result);
+        debugger
+
+        // return result;
+      })
+      .catch(error => {
+        console.log('[Update user ERROR]', error);
+        return error;
+      })
+  }
+}
+
 export const logoutUser = _ => {
   return _ => {
     const elLogoutForm = document.querySelector('#js-logout-form');

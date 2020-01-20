@@ -26,6 +26,7 @@ const ProfilePage = (props) => {
             data.profile.homepage
           ) : null
         }
+        data-cover-photo={data.profile.cover_photo || ecPlaceholder}
         data-avatar={data.profile.avatar || avatarPlaceholder}
       />
       <div className="l-section l-section--profile section">

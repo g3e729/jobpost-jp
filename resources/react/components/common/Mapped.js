@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { compose, withProps, lifecycle } from 'recompose';
 
-const apiKey = 'AIzaSyCTokV_nYzrTmSBKmI_fkabm6FtyiwMrdU';
+const apiKey = 'AIzaSyA2eYXOXNa6mbAJXrqgGul5qXP3Cpx_HIA';
 
 const Mapped = (props) => {
   const {

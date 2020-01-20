@@ -36,6 +36,7 @@ const Heading = (props) => {
   const [hasUserLiked, setHasUserLiked] = useState(false);
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
+  const coverPhotoImg = rest['data-cover-photo'] || '';
 
   const handleLike = _.debounce((type) => {
     Like.toggleLike(type, params.id)
@@ -48,8 +49,8 @@ const Heading = (props) => {
       }).catch(error => console.log('[Like ERROR]', error));
   }, 400);
 
-  const handleModal = (type, id) => {
-    dispatch(setModal(type, id));
+  const handleModal = (type, id, text, image) => {
+    dispatch(setModal(type, id, text, image));
   }
 
   useEffect(_ => {
@@ -62,7 +63,7 @@ const Heading = (props) => {
         <>
           { isEdit ? (
             <div className="heading__edit">
-              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH)}>
+              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH, null, '', coverPhotoImg)}>
                 <>
                   <i className="icon icon-disk"></i>
                   変更する

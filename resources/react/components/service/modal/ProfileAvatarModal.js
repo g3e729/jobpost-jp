@@ -34,8 +34,6 @@ const ProfileAvatarModal = _ => {
 
   useEffect(_ => {
     if (file) {
-      // TODO: Upload file to s3 bucket
-
       reader.readAsDataURL(file);
       reader.onload = ev => {
         avatarRef.current.style.backgroundImage = `url("${ev.target.result}")`;

@@ -43,21 +43,16 @@ export default class User {
       .catch(error => error);
   }
 
-  static updateAccount(params) {
-    const {
-      name
-    } = params;
+  static updateUser(formdata) {
+    formdata.append('_method', 'PATCH');
 
     const payload = {
       url: endpoints.ACCOUNT,
       method: 'post',
-      params: {
-        name,
-        method: '_PATCH'
-      }
+      data: formdata
     }
 
-    return API.request(payload, true)
+    return API.request(payload, true, true)
       .then(res => res)
       .catch(error => error);
   }
