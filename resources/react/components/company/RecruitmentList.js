@@ -118,12 +118,14 @@ const RecruitmentList = (props) => {
                         </Link>
 
                         <div className="recruitment-list__item-column-actions">
-                          <Link to={generateRoute(routes.RECRUITMENT_EDIT, { id: job.id })} className="button button--link recruitment-list__item-column-actions-button">
-                            <>
-                              <i className="icon icon-pencil"></i>
-                              編集
-                            </>
-                          </Link>
+                          { !job.deleted_at ? (
+                            <Link to={generateRoute(routes.RECRUITMENT_EDIT, { id: job.id })} className="button button--link recruitment-list__item-column-actions-button">
+                              <>
+                                <i className="icon icon-pencil"></i>
+                                編集
+                              </>
+                            </Link>
+                          ) : null }
                           <Button className="button--link recruitment-list__item-column-actions-button" onClick={_ => handleJobDelete(job.id, job.title)}>
                             <>
                               <i className="icon icon-cross"></i>
