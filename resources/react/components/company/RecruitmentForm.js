@@ -1,5 +1,7 @@
 import React, { useState, useEffect, createRef } from 'react';
+import Select from 'react-select';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -11,10 +13,11 @@ import Textarea from '../common/Textarea';
 import JobAPI from '../../utils/job';
 import { state } from '../../constants/state';
 import { prefix, routes } from '../../constants/routes';
+import { jobSelectStyles } from '../../constants/config';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
-const RecruitmentForm = () => {
+const RecruitmentForm = ({filters}) => {
   const params = useParams();
   const history = useHistory();
   const [job, setJob] = useState({});
@@ -25,6 +28,7 @@ const RecruitmentForm = () => {
     cover_photo: '',
     cover_photo_delete: null,
     position: '',
+    employment_type: '',
     programming_language: '',
     framework: '',
     database: '',
@@ -49,15 +53,24 @@ const RecruitmentForm = () => {
   const [file, setFile] = useState('');
   const [hasFile, setHasFile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [regionsFilter, setRegionsFilter] = useState([]);
+  const [statusFilter, setStatusFilter] = useState([]);
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
+  const data = filters.filtersData;
 
   const handleChange = e => {
     e.persist();
 
     setFormValues(prevState => {
       return { ...prevState, [e.target.name]: e.target.value }
+    });
+  }
+
+  const handleSelect = (e, type) => {
+    setFormValues(prevState => {
+      return { ...prevState, [type]: e.value }
     });
   }
 
@@ -97,6 +110,7 @@ const RecruitmentForm = () => {
       formdata.append('cover_photo_delete', parseInt(formValues.cover_photo_delete));
     }
     formdata.append('position', formValues.position);
+    formdata.append('employment_type', formValues.employment_type);
     formdata.append('programming_language', formValues.programming_language);
     formdata.append('framework', formValues.framework);
     formdata.append('database', formValues.database);
@@ -112,6 +126,7 @@ const RecruitmentForm = () => {
     formdata.append('insurance', formValues.insurance);
     formdata.append('contract_period', formValues.contract_period);
     formdata.append('screening_flow', formValues.screening_flow);
+    formdata.append('prefecture', formValues.prefecture);
     formdata.append('address1', formValues.address1);
     formdata.append('address2', formValues.address2);
     formdata.append('address3', parseInt(formValues.address3) || null);
@@ -182,6 +197,7 @@ const RecruitmentForm = () => {
             description: res.description,
             // cover_photo: res.cover_photo, // DISABLE SET
             position: res.position,
+            employment_type: res.employment_type,
             programming_language: res.programming_language,
             framework: res.framework,
             database: res.database,
@@ -213,6 +229,18 @@ const RecruitmentForm = () => {
 
     setIsLoading(false);
   }, [params])
+
+  useEffect(_ => {
+    if (data) {
+      setRegionsFilter(Object.keys(data.regions).map((item, idx) => {
+        return {value: item, label: Object.values(data.regions)[idx]};
+      }));
+
+      setStatusFilter(Object.keys(data.status).map((item, idx) => {
+        return {value: item, label: Object.values(data.regions)[idx]};
+      }));
+    }
+  }, [data]);
 
   return (
     <div className="dashboard-section">
@@ -299,6 +327,15 @@ const RecruitmentForm = () => {
                             onChange={e => handleChange(e)}
                             name="position"
                             type="text"
+                          />
+                        </dd>
+                        <dt>ステータス</dt>
+                        <dd>
+                          <Select options={statusFilter}
+                            styles={jobSelectStyles}
+                            placeholder=''
+                            isForm
+                            onChange={e => handleSelect(e, 'employment_type')}
                           />
                         </dd>
                         <dt>開発環境</dt>
@@ -450,6 +487,13 @@ const RecruitmentForm = () => {
                       住所
                     </div>
                     <div className="recruitment-form__main-group-cluster">
+                      <Select options={regionsFilter}
+                        styles={jobSelectStyles}
+                        placeholder=''
+                        height='50px'
+                        onChange={e => handleSelect(e, 'prefecture')}
+                      />
+
                       <Input className="recruitment-form__main-group-input"
                         value={formValues.address1}
                         onChange={e => handleChange(e)}
@@ -512,4 +556,8 @@ const RecruitmentForm = () => {
   );
 }
 
-export default RecruitmentForm;
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(RecruitmentForm);

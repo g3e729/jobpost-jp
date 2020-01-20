@@ -49,6 +49,8 @@ const Profile = (props) => {
     }
   }, []);
 
+  console.log('data', data)
+
   return (
     accountType === 'student' ? (
       <div className="profile">
@@ -632,7 +634,7 @@ const Profile = (props) => {
                 </li>
                 <li className="profile__sidebar-content-company-items">
                   <Mapped
-                    address="Cebu City"
+                    address={`${data.address1} ${data.address2}`}
                     zoom={10}
                     height="400px"
                   />
