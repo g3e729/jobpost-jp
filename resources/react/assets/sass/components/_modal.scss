@@ -225,17 +225,33 @@
 .modal__form-portfolio {
   display: flex;
   align-items: flex-start;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-wrap: wrap;
+  }
 }
 
 .modal__form-portfolio-left {
   width: 200px;
   flex: 0 0 200px;
+
+  @include max-screen($breakpoint-mobile) {
+    flex: 1 1 100%;
+    width: 100%;
+  }
 }
 
 .modal__form-portfolio-right {
   flex: 1;
   margin-top: -2px;
   margin-left: 30px;
+
+  @include max-screen($breakpoint-mobile) {
+    flex: 1 1 100%;
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .modal__form-group {
@@ -455,9 +471,28 @@
     }
   }
 }
+.modal__form-table--edit-programming {
+  .modal__form-table-item--header {
+    @include max-screen($breakpoint-mobile) {
+      display: none;
+    }
+  }
+}
 .modal__form-table-item--edit-programming {
+  .modal__form-table-item-wrapper {
+    > * {
+      &:first-child {
+        flex: 1;
+
+        @include max-screen($breakpoint-mobile) {
+          flex: 100% !important;
+        }
+      }
+    }
+  }
+
   @include max-screen($breakpoint-mobile) {
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #d9d6d6;
   }
 }
 .modal__content--edit-programming {
