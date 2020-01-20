@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 import { useDispatch } from 'react-redux';
@@ -6,11 +7,14 @@ import { useDispatch } from 'react-redux';
 import Button from '../common/Button';
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
+import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
+
+import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const Profile = (props) => {
   const dispatch = useDispatch();
@@ -580,26 +584,31 @@ const Profile = (props) => {
               <ul className="profile__sidebar-content-company">
                 <li className="profile__sidebar-content-company-items">
                   <div className="profile__sidebar-content-avatar">
-                    <img src="https://lorempixel.com/240/240/city/" alt=""/>
-                    <h4 className="profile__sidebar-content-avatar-name">株式会社アクターリアリティ</h4>
+                    <img src={data.avatar || avatarPlaceholder} alt=""/>
+                    <h4 className="profile__sidebar-content-avatar-name">{data.company_name}</h4>
                   </div>
                 </li>
-                <li className="profile__sidebar-content-company-items">
-                  <div className="profile__sidebar-content-misc">
-                    <i className="icon icon-marker text-dark-yellow"></i>
-                    <p className="profile__sidebar-content-misc-copy">{`東京都港区芝2-13-4 住友不動産芝ビル4号館 9F`}</p>
-                  </div>
-                  <div className="profile__sidebar-content-misc">
-                    <i className="icon icon-globe text-dark-yellow"></i>
-                    <p className="profile__sidebar-content-misc-copy">{`https://hogehoge.com`}</p>
-                  </div>
-                </li>
+                { data.address1 || data.address2 || data.address3 || data.prefecture || data.homepage ? (
+                  <li className="profile__sidebar-content-company-items">
+                    { data.address1 || data.address2 || data.address3 || data.prefecture ? (
+                      <div className="profile__sidebar-content-misc">
+                        <i className="icon icon-marker text-dark-yellow"></i>
+                        <p className="profile__sidebar-content-misc-copy">{data.address1} {data.address2} {data.address3} {data.prefecture}</p>
+                      </div>
+                    ) : null}
+                    { data.prefecture ? (
+                      <div className="profile__sidebar-content-misc">
+                        <i className="icon icon-globe text-dark-yellow"></i>
+                        <p className="profile__sidebar-content-misc-copy">{data.homepage}</p>
+                      </div>
+                    ) : null}
+                  </li>
+                ) : null}
                 <li className="profile__sidebar-content-company-items">
                   <div className="profile__sidebar-content-misc">
                     <i className="icon icon-building text-dark-yellow"></i>
-                    <p className="profile__sidebar-content-misc-copy">{`2008/1 に設立
-                      飯田 悠司 が創業
-                    `}</p>
+                    <p className="profile__sidebar-content-misc-copy">{`${moment(data.created_at).format('YYYY/MM')} に設立
+                      ${data.ceo}`}</p>
                   </div>
                 </li>
                 <li className="profile__sidebar-content-company-items">
@@ -622,11 +631,11 @@ const Profile = (props) => {
                   </ul>
                 </li>
                 <li className="profile__sidebar-content-company-items">
-                  <div className="profile__sidebar-content-company-map">
-                    <Embed src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                      className={`embed--4by3 ${css`height: 400px;`}`}
-                      allowFullScreen />
-                  </div>
+                  <Mapped
+                    address="Cebu City"
+                    zoom={10}
+                    height="400px"
+                  />
                 </li>
               </ul>
             </div>
