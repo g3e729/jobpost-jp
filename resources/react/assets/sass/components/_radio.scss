@@ -36,6 +36,14 @@
     border: solid 1px $color-dark-gray;
     border-radius: 50%;
   }
+
+  > em {
+    @include max-screen($breakpoint-mobile) {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
 }
 
 .radio--labeled {

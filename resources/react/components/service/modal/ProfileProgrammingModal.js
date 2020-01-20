@@ -25,10 +25,10 @@ const ProfileProgrammingModal = _ => {
 
   return (
     <BaseModal title="プログラミング言語">
-      <div className="modal__content">
+      <div className="modal__content modal__content--edit-programming">
         <form className="modal__form" onSubmit={_ => console.log('Submit programming')}>
-          <ul className="modal__form-table">
-            <li className="modal__form-table-item modal__form-table-item--header">
+          <ul className="modal__form-table modal__form-table--edit-programming">
+            <li className="modal__form-table-item">
               <div className="modal__form-table-item-wrapper">
                 <span className="modal__form-table-item-label"></span>
                 <span className="modal__form-table-item-label">なし</span>
@@ -38,7 +38,7 @@ const ProfileProgrammingModal = _ => {
                 <span className="modal__form-table-item-label">２年以上</span>
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   HTML5&CSS3
@@ -49,34 +49,39 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="なし"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1b"
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="半年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1c"
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="1年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1d"
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="1年以上"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1e"
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="２年以上"
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   Javascript
@@ -114,7 +119,7 @@ const ProfileProgrammingModal = _ => {
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   PHP
@@ -152,7 +157,7 @@ const ProfileProgrammingModal = _ => {
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   Python
@@ -190,7 +195,7 @@ const ProfileProgrammingModal = _ => {
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   Ruby

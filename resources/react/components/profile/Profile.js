@@ -87,7 +87,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">職歴</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_WORK)}>
+                    <Button className="test button--pill" onClick={_ => handleModal(modalType.PROFILE_WORK)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加

@@ -6,7 +6,16 @@
   z-index: $z-max;
 }
 
-.ReactModal__Content {}
+.ReactModal__Content {
+
+  @include max-screen($breakpoint-mobile) {
+    width: calc(100% - 40px) !important;
+    max-height: 90%;
+    height: 90%;
+    overflow: scroll !important;
+    // width: calc(100% - 60px) !important;
+  }
+}
 
 .modal {}
 
@@ -14,6 +23,10 @@
   position: relative;
   padding: 25px 0 20px 48px;
   height: 70px;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 25px 0 20px 30px;
+  }
 }
 
 .modal__header--background {
@@ -34,6 +47,10 @@
 
 .modal__content {
   padding: 30px 50px 26px 50px;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 30px 30px 26px;
+  }
 }
 
 .modal__content--center {
@@ -255,6 +272,7 @@
   align-items: center;
 
   margin: 0 -10px;
+  padding: 0 30px 0 10px;
 
   > * {
     flex: 1;
@@ -287,10 +305,6 @@
 
     border: solid 0.5px $color-light-gray;
     border-left: none;
-
-    &:first-child {
-      flex: 1;
-    }
   }
 }
 
@@ -340,5 +354,129 @@
   > i {
     font-size: 10px;
     margin-right: 5px;
+  }
+}
+
+//MODIFIER
+.modal__form-group-inputs--education-period {
+  
+  > * {
+    @include max-screen($breakpoint-mobile) {
+      &:first-child {
+        flex: 1;
+        padding-left: 0;
+      }
+    }
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 0 15px 0 10px;
+  }
+}
+
+.modal__form-group-inputs--enrolment-period {
+
+  @include max-screen($breakpoint-mobile) {
+    display: inline-block !important;
+    width: 100%;
+    padding: 0 !important;
+  }
+  
+  > * {}
+  
+  > div {
+    
+    @include max-screen($breakpoint-mobile) {
+      width: 50%;
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 10px;
+    }
+
+    &:nth-child(2) {
+      position: relative;
+      @include max-screen($breakpoint-mobile) {
+        &:before {
+          position: absolute;
+          content: "";
+          height: 2px;
+          width: 10px;
+          top: 50%;
+          right: -5px;
+          transform: translateY(-50%);
+          background-color: #333;
+        }
+      }
+    }
+
+    &:nth-child(4), &:last-child {
+      @include max-screen($breakpoint-mobile) {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  span {
+    @include max-screen($breakpoint-mobile) {
+      display: none !important;
+    }
+  }
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 0 15px 0 10px;
+  }
+}
+.modal__form-table--edit-programming {
+  @include max-screen($breakpoint-mobile) {
+    margin: 0;
+  }
+  
+  .modal__form-table-item-wrapper {
+    @include max-screen($breakpoint-mobile) {
+      display: flex;
+      width: 100%;
+      flex-flow: row wrap;  
+    }
+  }
+  .modal__form-table-item-key {
+    @include max-screen($breakpoint-mobile) {
+      flex-basis: 100%;
+      padding-left: 0;
+    }
+  }
+  .modal__form-table-item {
+    @include max-screen($breakpoint-mobile) {}
+  }
+  .modal__form-table-item-value {
+    @include max-screen($breakpoint-mobile) {
+      flex-basis: 50%;
+      width: 50%;
+      justify-content: left;
+    }
+  }
+}
+.modal__form-table-item--edit-programming {
+  @include max-screen($breakpoint-mobile) {
+    border-bottom: 1px solid red;
+  }
+}
+.modal__content--edit-programming {
+  @include max-screen($breakpoint-mobile) {
+    padding: 0;
+  }
+
+  .modal__form-table-item-wrapper {
+    @include max-screen($breakpoint-mobile) {
+      padding: 30px;
+
+      > * {
+        border: 0;
+      }
+    }
+  }
+  .modal__actions {
+    @include max-screen($breakpoint-mobile) {
+      padding: 20px 0;
+    }
   }
 }

@@ -3142,10 +3142,25 @@ And you should not feel free to add a new Utility class.
   z-index: 20;
 }
 
+@media screen and (max-width: 768px) {
+  .ReactModal__Content {
+    width: calc(100% - 40px) !important;
+    max-height: 90%;
+    height: 90%;
+    overflow: scroll !important;
+  }
+}
+
 .modal__header {
   position: relative;
   padding: 25px 0 20px 48px;
   height: 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__header {
+    padding: 25px 0 20px 30px;
+  }
 }
 
 .modal__header--background {
@@ -3166,6 +3181,12 @@ And you should not feel free to add a new Utility class.
 
 .modal__content {
   padding: 30px 50px 26px 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content {
+    padding: 30px 30px 26px;
+  }
 }
 
 .modal__content--center {
@@ -3382,6 +3403,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-align: center;
           align-items: center;
   margin: 0 -10px;
+  padding: 0 30px 0 10px;
 }
 
 .modal__form-group-inputs > * {
@@ -3415,11 +3437,6 @@ And you should not feel free to add a new Utility class.
   padding: 14px 0;
   border: solid 0.5px #f2f2f0;
   border-left: none;
-}
-
-.modal__form-table-item-wrapper > *:first-child {
-  -webkit-box-flex: 1;
-          flex: 1;
 }
 
 .modal__form-table-item-label {
@@ -3474,6 +3491,135 @@ And you should not feel free to add a new Utility class.
 .modal__actions-button > i {
   font-size: 10px;
   margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--education-period > *:first-child {
+    -webkit-box-flex: 1;
+            flex: 1;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--education-period {
+    padding: 0 15px 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period {
+    display: inline-block !important;
+    width: 100%;
+    padding: 0 !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period > div {
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 10px;
+  }
+}
+
+.modal__form-group-inputs--enrolment-period > div:nth-child(2) {
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period > div:nth-child(2):before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 10px;
+    top: 50%;
+    right: -5px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    background-color: #333;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period > div:nth-child(4),
+  .modal__form-group-inputs--enrolment-period > div:last-child {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period span {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period {
+    padding: 0 15px 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item-wrapper {
+    display: -webkit-box;
+    display: flex;
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item-key {
+    flex-basis: 100%;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item-value {
+    flex-basis: 50%;
+    width: 50%;
+    -webkit-box-pack: left;
+            justify-content: left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table-item--edit-programming {
+    border-bottom: 1px solid red;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content--edit-programming {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content--edit-programming .modal__form-table-item-wrapper {
+    padding: 30px;
+  }
+
+  .modal__content--edit-programming .modal__form-table-item-wrapper > * {
+    border: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content--edit-programming .modal__actions {
+    padding: 20px 0;
+  }
 }
 
 .nada {
@@ -4689,6 +4835,14 @@ a.pagination__item-link:hover {
   margin-right: 12px;
   border: solid 1px #d9d6d6;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .radio > em {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+  }
 }
 
 .radio--labeled > span {
