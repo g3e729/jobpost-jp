@@ -33,9 +33,9 @@ class AccountController extends BaseController
 
 			if ($user->hasRole('seeker')) {
 				$service = (new SeekerService($profile));
-				
-		        $seekerService->updateWorkHistory($request->get('work_history'));
-		        $seekerService->updateEducationHistory($request->get('education_history'));
+
+		        $service->updateWorkHistory($request->get('work_history'));
+		        $service->updateEducationHistory($request->get('education_history'));
 
         		$service->updateSkills($request);
 			} elseif ($user->hasRole('company')) {
@@ -68,7 +68,7 @@ class AccountController extends BaseController
 	        if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
 	            $service->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
 	        }
-		        
+
 	        if ($request->has('portfolios')) {
 	            (new PortfolioService)->insertOrUpdate($profile, $request->portfolios);
 	        }

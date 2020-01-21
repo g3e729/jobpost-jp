@@ -79,6 +79,8 @@ const Job = (props) => {
           <dl className="job__main-list job__main-list--table">
             <dt className="job__main-list-term">ポジション</dt>
             <dd className="job__main-list-data">{job.position}</dd>
+            <dt className="job__main-list-term">ステータス</dt>
+            <dd className="job__main-list-data">{job.display_employment_type}</dd>
             <dt className="job__main-list-term">開発環境</dt>
             <dd className="job__main-list-data">
               <dl>

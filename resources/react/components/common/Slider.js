@@ -102,8 +102,8 @@ const Slider = (props) => {
                   { job.programming_language ? (
                     <li className="slider-content__pills-item"><Pill className="pill--active">{job.programming_language}</Pill></li>
                   ) : null }
-                  { job.prefecture ? (
-                    <li className="slider-content__pills-item"><Pill>{job.prefecture}</Pill></li>
+                  { job.display_prefecture ? (
+                    <li className="slider-content__pills-item"><Pill>{job.display_prefecture}</Pill></li>
                   ) : null }
                   { job.created_at ? (
                     <li className="slider-content__pills-item"><Pill>{moment(job.created_at).fromNow()}</Pill></li>
