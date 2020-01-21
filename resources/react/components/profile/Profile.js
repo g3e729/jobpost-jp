@@ -90,21 +90,46 @@ const Profile = (props) => {
                       </>
                     </Button>
                   ) : null }
-                  <p className="profile__main-list-item-copy">{data.intro_text}</p>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.intro_text}
+                      type="textarea"
+                      onSave={e => handleSubmit(e, 'intro_text')}
+                      editing={isEditing}
+                    />
+                  : <p className="profile__main-list-item-copy">data.intro_text</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">やってみたいこと</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <p className="profile__main-list-item-copy">{data.what_text}</p>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.what_text}
+                      type="textarea"
+                      onSave={e => handleSubmit(e, 'what_text')}
+                      editing={isEditing}
+                    />
+                  : <p className="profile__main-list-item-copy">{data.what_text}</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -161,19 +186,36 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ムービー</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
                   <div className="profile__data-video">
                     <Embed src="https://www.youtube.com/embed/zpOULjyy-n8"
                       className={`embed--16by9 ${css`margin-bottom: 22px`}`}
                       allowFullScreen />
                     <div className="profile__data-link">
-                      <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                      { isEdit ?
+                        <EdiText
+                          submitOnEnter
+                          value={data.movie_url}
+                          type="text"
+                          onSave={e => handleSubmit(e, 'movie_url')}
+                          editing={isEditing}
+                        />
+                      : <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">{data.movie_url}</a>  }
                       <Clipboard value="https://github.com/MyznEiji" />
                     </div>
                   </div>
@@ -323,28 +365,62 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">話し言葉</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <span className="profile__main-list-item-desc">英語、中国語</span>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.language}
+                      type="text"
+                      onSave={e => handleSubmit(e, 'language')}
+                      editing={isEditing}
+                    />
+                  : <span className="profile__main-list-item-desc">{data.todo_language}</span>}
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">TOEIC</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <span className="profile__main-list-item-desc">６５０点</span>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.toeic_score}
+                      type="text"
+                      onSave={e => handleSubmit(e, 'toeic_score')}
+                      editing={isEditing}
+                    />
+                  : <span className="profile__main-list-item-desc">{data.toeic_score}</span>}
                 </div>
               </li>
             </ul>
@@ -413,16 +489,33 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">Github</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
                   <div className="profile__data-link">
-                    <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a>
-                    <Clipboard value="{data.github}" />
+                    { isEdit ?
+                      <EdiText
+                        submitOnEnter
+                        value={data.github}
+                        type="text"
+                        onSave={e => handleSubmit(e, 'github')}
+                        editing={isEditing}
+                      />
+                    : <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a> }
+                    <Clipboard value={data.github} />
                   </div>
                 </div>
               </li>
@@ -518,7 +611,6 @@ const Profile = (props) => {
                       submitOnEnter
                       value={data.description}
                       type="textarea"
-                      name="description"
                       onSave={e => handleSubmit(e, 'description')}
                       editing={isEditing}
                     />

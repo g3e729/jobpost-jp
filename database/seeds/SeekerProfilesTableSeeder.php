@@ -94,7 +94,7 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['speaking'] = rand(0, 600);
             $fields['writing'] = rand(0, 600);
             $fields['english_level_id'] = $english_levels->random();
-            $fields['toiec_score'] = rand(0, 600);
+            $fields['toeic_score'] = rand(0, 600);
 
             $profile = (new SeekerService)->create($fields);
 
