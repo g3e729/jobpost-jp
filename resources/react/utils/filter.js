@@ -12,4 +12,15 @@ export default class Filter {
       .then(res => res)
       .catch(error => error);
   }
+
+  static getStudentFilters() {
+    const payload = {
+      url: endpoints.STUDENTS_FILTERS,
+      method: 'get'
+    }
+
+    return API.request(payload)
+      .then(res => res)
+      .catch(error => error);
+  }
 }

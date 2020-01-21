@@ -58,7 +58,7 @@ const RecruitmentForm = ({filters}) => {
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
-  const data = filters.filtersData;
+  const data = (filters.filtersData && filters.filtersData.jobs);
 
   const handleChange = e => {
     e.persist();

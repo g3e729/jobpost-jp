@@ -14,7 +14,7 @@ const JobsFilter = (props) => {
   const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '');
   const history = useHistory();
   const { filters } = props;
-  const data = filters.filtersData;
+  const data = (filters.filtersData && filters.filtersData.jobs);
   const inputPlaceholder = '指定なし';
 
   const handleChange = (e, type) => {
