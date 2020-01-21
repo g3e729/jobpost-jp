@@ -1,9 +1,15 @@
 const editReducer = (state = {}, action) => {
   switch(action.type) {
     case 'EDIT_SET':
-      return true;
+      return {
+        ...state,
+        isEdit: true
+      };
     case 'EDIT_UNSET':
-      return false;
+      return {
+        ...state,
+        isEdit: false
+      };
     default:
       return state;
   }

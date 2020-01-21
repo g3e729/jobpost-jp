@@ -5,14 +5,14 @@ import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import Apply from '../../../utils/apply';
-import { unsetModal } from '../../../actions/modal';
+import { unSetModal } from '../../../actions/modal';
 
 const JobApplyModal = ({modal}) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleCloseModal = _ => {
-    dispatch(unsetModal());
+    dispatch(unSetModal());
   }
 
   const handleApply = _ => {

@@ -18,18 +18,26 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const Profile = (props) => {
   const dispatch = useDispatch();
-  const [jobs, setJobs] = useState([]);
   const {
     user,
     accountType,
     isEdit = false,
     isOwner = true
   } = props;
+  const [jobs, setJobs] = useState([]);
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
   const handleModal = type => {
     dispatch(setModal(type));
   }
+
+  const handleEdit = _ => {}
+
+  const handleSave = _ => {}
+
+  const handleSubmit = value => {
+    console.log(value);
+  };
 
   async function getFilteredJobs() {
     const companyId = data.id;

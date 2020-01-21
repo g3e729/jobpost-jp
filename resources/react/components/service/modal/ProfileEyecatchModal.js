@@ -6,7 +6,7 @@ import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import { state } from '../../../constants/state';
-import { unsetModal } from '../../../actions/modal';
+import { unSetModal } from '../../../actions/modal';
 import { updateUser } from '../../../actions/user';
 
 import ecPlaceholder from '../../../../img/eyecatch-default.jpg';
@@ -57,11 +57,11 @@ const ProfileEyecatchModal = ({modal}) => {
     dispatch(updateUser(formdata))
       .then(_ => {
         setIsLoading(false);
-        dispatch(unsetModal());
+        dispatch(unSetModal());
       })
       .catch(error => {
         setIsLoading(false);
-        dispatch(unsetModal());
+        dispatch(unSetModal());
 
         console.log('[Upload eyecatch ERROR]', error);
       });

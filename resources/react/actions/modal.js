@@ -4,6 +4,6 @@ export const setModal = (payload = '', data = {}) => ({
   data
 });
 
-export const unsetModal = _ => ({
+export const unSetModal = _ => ({
   type: 'MODAL_UNSET'
 });

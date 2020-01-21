@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EdiText from "react-editext";
 import moment from 'moment';
 moment.locale('ja');
 import _ from 'lodash';
@@ -13,6 +14,7 @@ import { state } from '../../constants/state';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
+import { updateUser } from '../../actions/user';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
@@ -33,6 +35,7 @@ const Heading = (props) => {
     children,
     ...rest
   } = props;
+  const [isEditing, setIsEditing] = useState(false);
   const [hasUserLiked, setHasUserLiked] = useState(false);
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
@@ -49,9 +52,30 @@ const Heading = (props) => {
       }).catch(error => console.log('[Like ERROR]', error));
   }, 400);
 
-  const handleModal = (type, id, text, image) => {
-    dispatch(setModal(type, id, text, image));
+  const handleModal = (type, data) => {
+    dispatch(setModal(type, data));
   }
+
+  const handleEdit = _ => {
+    setIsEditing(true);
+  }
+
+  const handleSave = _ => {
+    setIsEditing(false);
+  }
+
+  const handleSubmit = _.debounce((value) => {
+    const formdata = new FormData();
+
+    if (accountType === 'student') {
+      formdata.append('name', value || '');
+    }
+    else {
+      formdata.append('company_name', value || '');
+    }
+
+    dispatch(updateUser(formdata));
+  }, 400)
 
   useEffect(_ => {
     setHasUserLiked(hasLiked);
@@ -86,18 +110,36 @@ const Heading = (props) => {
               ) : null }
             </Avatar>
             <div className="heading__user-main">
-              <h2 className="heading__user-name">{title || 'TODO if remove api auth-token'}</h2>
+              <h2 className="heading__user-name">
+                { isEdit ?
+                  <EdiText
+                    value={title}
+                    type="text"
+                    onSave={handleSubmit}
+                    editing={isEditing}
+                  />
+                : title }
+              </h2>
               <p className="heading__user-position">
                 {subTitle}
               </p>
               { isOwner == true ? (
                 isEdit ? (
-                  <Button className="button--pill heading__user-pill">
-                    <>
-                      <i className="icon icon-disk text-dark-yellow"></i>
-                      更新
-                    </>
-                  </Button>
+                  isEditing ? (
+                    <Button className="button--pill heading__user-pill" onClick={_ => handleSave()}>
+                      <>
+                        <i className="icon icon-disk text-dark-yellow"></i>
+                        更新
+                      </>
+                    </Button>
+                  ) : (
+                    <Button className="button--pill heading__user-pill" onClick={_ => handleEdit()}>
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  )
                 ) : (
                   <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
                     <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>

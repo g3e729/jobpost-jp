@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import Job from '../../../utils/job';
-import { unsetModal } from '../../../actions/modal';
+import { unSetModal } from '../../../actions/modal';
 import { getMyJobs } from '../../../actions/myjobs';
 
 const JobStopModal = ({modal}) => {
@@ -14,7 +14,7 @@ const JobStopModal = ({modal}) => {
   const urlParams = new URLSearchParams(location.search);
 
   const handleCloseModal = _ => {
-    dispatch(unsetModal());
+    dispatch(unSetModal());
   }
 
   const handleToggleStatus = _ => {

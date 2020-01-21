@@ -18,6 +18,7 @@ const ProfilePage = (props) => {
       <Heading type="user"
         isEdit="true"
         style={{ backgroundImage: `url("${data.profile.cover_photo || ecPlaceholder}")` }}
+        accountType={accountType}
         title={data.profile.display_name}
         subTitle={
           accountType === 'student' ? (
