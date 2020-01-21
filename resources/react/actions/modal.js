@@ -2,12 +2,12 @@ export const setModal = (
   payload = '',
   actionId = null,
   actionText = '',
-  actionImage = null
+  actionData = {}
 ) => ({
     type: 'MODAL_SET',
-    actionId: actionId,
-    actionText: actionText,
-    actionImage: actionImage,
+    actionId,
+    actionText,
+    actionData,
     payload
   });
 

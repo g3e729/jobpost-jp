@@ -63,7 +63,7 @@ const Heading = (props) => {
         <>
           { isEdit ? (
             <div className="heading__edit">
-              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH, null, '', coverPhotoImg)}>
+              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH, null, '', {image: coverPhotoImg})}>
                 <>
                   <i className="icon icon-disk"></i>
                   変更する
@@ -77,7 +77,7 @@ const Heading = (props) => {
               isEdit={isEdit}
             >
               { isEdit ? (
-                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR, null, '', avatarImg)}>
+                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR, null, '', {image: avatarImg})}>
                   <>
                     <i className="icon icon-image"></i>
                     変更する
