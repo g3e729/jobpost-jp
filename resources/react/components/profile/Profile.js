@@ -49,8 +49,6 @@ const Profile = (props) => {
     }
   }, []);
 
-  console.log('data', data)
-
   return (
     accountType === 'student' ? (
       <div className="profile">

@@ -19,7 +19,7 @@ const ProfileAvatarModal = ({modal}) => {
   });
   const [file, setFile] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const placeholderImg = (modal.actionData && modal.actionData.image) || avatarPlaceholder;
+  const placeholderImg = (modal.data && modal.data.image) || avatarPlaceholder;
   const reader = new FileReader();
   const imageInputRef = createRef();
   const avatarRef = createRef();
@@ -93,7 +93,7 @@ const ProfileAvatarModal = ({modal}) => {
               style={{ display: 'none' }}
             />
             <div className="modal__form-avatar">
-              <div className="modal__form-avatar-img" ref={avatarRef} style={{ backgroundImage: `url("${(modal.actionData && modal.actionData.image) || avatarPlaceholder}")` }}></div>
+              <div className="modal__form-avatar-img" ref={avatarRef} style={{ backgroundImage: `url("${(modal.data && modal.data.image) || avatarPlaceholder}")` }}></div>
             </div>
             <div className="modal__form-actions">
               <Button className="button--pill" onClick={e => handleOpenFile(e)}>

@@ -16,7 +16,7 @@ const JobApplyModal = ({modal}) => {
   }
 
   const handleApply = _ => {
-    Apply.applyJob(modal.actionId)
+    Apply.applyJob((modal.data && modal.data.id))
       .then(_ => {
         setIsLoading(true);
 

@@ -25,11 +25,11 @@ const RecruitmentList = (props) => {
   const jobsData = data.data || {};
 
   const handleJobDelete = (id, text) => {
-    dispatch(setModal(modalType.JOB_DELETE, id, text));
+    dispatch(setModal(modalType.JOB_DELETE, {id, text}));
   }
 
   const handleJobStop = (id, text) => {
-    dispatch(setModal(modalType.JOB_STOP, id, text));
+    dispatch(setModal(modalType.JOB_STOP, {id, text}));
   }
 
   const handleStatusTab = index => {

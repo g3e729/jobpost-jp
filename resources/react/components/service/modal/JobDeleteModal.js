@@ -21,7 +21,7 @@ const JobDeleteModal = ({modal}) => {
     const page = urlParams.get('page');
     const status = urlParams.get('status');
 
-    Job.deleteMyJob(modal.actionId)
+    Job.deleteMyJob((modal.data && modal.data.id))
       .then(_ => {
         handleCloseModal()
         dispatch(getMyJobs({page, status}))
@@ -33,7 +33,7 @@ const JobDeleteModal = ({modal}) => {
     <BaseModal>
       <div className="modal__content modal__content--center">
         <i className="icon icon-warning-circle modal__content-icon"></i>
-        <p className="modal__content-desc">{`${modal.actionText}
+        <p className="modal__content-desc">{`${(modal.data && modal.data.text)}
           ーム開発を削除しますか？`}
         </p>
       </div>

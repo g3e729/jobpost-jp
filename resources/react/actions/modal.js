@@ -1,14 +1,10 @@
 export const setModal = (
   payload = '',
-  actionId = null,
-  actionText = '',
-  actionData = {}
+  data = {}
 ) => ({
     type: 'MODAL_SET',
-    actionId,
-    actionText,
-    actionData,
-    payload
+    payload,
+    data
   });
 
 export const unsetModal = _ => ({

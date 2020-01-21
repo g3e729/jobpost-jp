@@ -20,7 +20,7 @@ const JobStopModal = ({modal}) => {
   const handleToggleStatus = _ => {
     const page = urlParams.get('page');
 
-    Job.toggleMyJob(modal.actionId)
+    Job.toggleMyJob((modal.data && modal.data.id))
       .then(_ => {
         handleCloseModal()
         dispatch(getMyJobs({page}))
@@ -32,7 +32,7 @@ const JobStopModal = ({modal}) => {
     <BaseModal>
       <div className="modal__content modal__content--center">
         <i className="icon icon-warning-circle modal__content-icon"></i>
-        <p className="modal__content-desc">{`${modal.actionText}
+        <p className="modal__content-desc">{`${(modal.data && modal.data.text)}
           ム開発を停止させますか？`}
         </p>
       </div>

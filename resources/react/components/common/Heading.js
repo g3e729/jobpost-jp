@@ -63,7 +63,7 @@ const Heading = (props) => {
         <>
           { isEdit ? (
             <div className="heading__edit">
-              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH, null, '', {image: coverPhotoImg})}>
+              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH, {image: coverPhotoImg})}>
                 <>
                   <i className="icon icon-disk"></i>
                   変更する
@@ -77,7 +77,7 @@ const Heading = (props) => {
               isEdit={isEdit}
             >
               { isEdit ? (
-                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR, null, '', {image: avatarImg})}>
+                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR, {image: avatarImg})}>
                   <>
                     <i className="icon icon-image"></i>
                     変更する
@@ -157,7 +157,7 @@ const Heading = (props) => {
                   (
                     jobData.applied
                       ? <Button className={`button--large heading__job-button ${state.DISABLED}`}>応募済み</Button>
-                      : <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY, params.id)}>応募する</Button>
+                      : <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY, {id: params.id})}>応募する</Button>
                   )
                 : null }
                 <Button className="button--link heading__job-fav" onClick={e => handleLike('job')}>

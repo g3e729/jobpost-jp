@@ -19,7 +19,7 @@ const ProfileEyecatchModal = ({modal}) => {
   });
   const [file, setFile] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const placeholderImg = (modal.actionData && modal.actionData.image) || ecPlaceholder;
+  const placeholderImg = (modal.data && modal.data.image) || ecPlaceholder;
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
@@ -93,7 +93,7 @@ const ProfileEyecatchModal = ({modal}) => {
               style={{ display: 'none' }}
             />
             <div className="modal__form-eyecatch">
-              <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${(modal.actionData && modal.actionData.image) || placeholderImg}")` }}></div>
+              <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${(modal.data && modal.data.image) || placeholderImg}")` }}></div>
             </div>
             <div className="modal__form-actions">
               <Button className="button--pill" onClick={e => handleOpenFile(e)}>
