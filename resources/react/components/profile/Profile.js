@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import EdiText from 'react-editext';
 import moment from 'moment';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 import { useDispatch } from 'react-redux';
@@ -13,6 +15,7 @@ import Job from '../../utils/job';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
+import { updateUser } from '../../actions/user';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
@@ -25,19 +28,28 @@ const Profile = (props) => {
     isOwner = true
   } = props;
   const [jobs, setJobs] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
   const handleModal = type => {
     dispatch(setModal(type));
   }
 
-  const handleEdit = _ => {}
+  const handleEdit = _ => {
+    setIsEditing(true);
+  }
 
-  const handleSave = _ => {}
+  const handleSave = _ => {
+    setIsEditing(false);
+  }
 
-  const handleSubmit = value => {
-    console.log(value);
-  };
+  const handleSubmit = _.debounce((value, type) => {
+    const formdata = new FormData();
+    formdata.append(type, (value || ''));
+
+    dispatch(updateUser(formdata));
+    setIsEditing(false);
+  }, 400)
 
   async function getFilteredJobs() {
     const companyId = data.id;
@@ -485,14 +497,32 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">我々のミッションは</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill heading__user-pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill heading__user-pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <p className="profile__main-list-item-copy">{data.description}</p>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.description}
+                      type="textarea"
+                      name="description"
+                      onSave={e => handleSubmit(e, 'description')}
+                      editing={isEditing}
+                    />
+                  : <p className="profile__main-list-item-copy">data.description</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">

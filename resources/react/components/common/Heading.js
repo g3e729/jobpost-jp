@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EdiText from "react-editext";
+import EdiText from 'react-editext';
 import moment from 'moment';
 moment.locale('ja');
 import _ from 'lodash';
@@ -75,6 +75,7 @@ const Heading = (props) => {
     }
 
     dispatch(updateUser(formdata));
+    setIsEditing(false);
   }, 400)
 
   useEffect(_ => {
@@ -113,6 +114,7 @@ const Heading = (props) => {
               <h2 className="heading__user-name">
                 { isEdit ?
                   <EdiText
+                    submitOnEnter
                     value={title}
                     type="text"
                     onSave={handleSubmit}
