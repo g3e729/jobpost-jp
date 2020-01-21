@@ -69,10 +69,6 @@ class AccountController extends BaseController
 	            $service->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
 	        }
 
-	        if ($request->has('portfolios')) {
-	            (new PortfolioService)->insertOrUpdate($profile, $request->portfolios);
-	        }
-
 			return $this->returnData($user);
 		}
 
@@ -98,7 +94,14 @@ class AccountController extends BaseController
 		}
 
 		$user->account_type = $user->hasRole('company') ? 'company' : 'student';
-		$user->profile = $user->profile;
+		$profile = $user->profile;
+
+		if ($user->account_type == 'company') {
+			$profile->features = $profile->features ?? [];
+			$profile->portfolios = $profile->portfolios ?? [];
+		}
+
+		$user->profile = $profile;
 
 		return $user;
 	}
