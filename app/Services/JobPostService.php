@@ -33,11 +33,6 @@ class JobPostService extends BaseService
             ->withTrashed()
             ->popular();
 
-        if ($this->company) {
-            $que = $que->numberApplicants()
-                ->where('company_profile_id', $this->company->id);
-        }
-
         $job = $que->whereId($id)->first();
         $job->applied = false;
 

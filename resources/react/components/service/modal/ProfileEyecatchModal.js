@@ -65,7 +65,7 @@ const ProfileEyecatchModal = ({modal}) => {
 
         console.log('[Upload eyecatch ERROR]', error);
       });
-  }, 700);
+  }, 400);
 
   useEffect(_ => {
     if (file) {
