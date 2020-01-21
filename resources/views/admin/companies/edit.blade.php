@@ -14,7 +14,7 @@
                     <i class="fas fa-chevron-circle-left"></i> Back
                   </a>
                   <a href="{{ route('admin.recruitments.create', ['company_id' => $company]) }}" class="card-link">募集を作成する</a>
-                  <a href="{{ route('admin.messages.show', [$company, 'type' => 'company']) }}" class="card-link mr-4">メッセージ</a>
+                  <a href="{{ route('admin.messages.index', ['user_id' => $company->user_id]) }}" class="card-link mr-4">メッセージ</a>
                   <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
                 </div>
                 <div class="card-body-img text-center">
