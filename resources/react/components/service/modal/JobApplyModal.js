@@ -42,10 +42,10 @@ const JobApplyModal = ({modal}) => {
           <Button className="button--cto" onClick={_ => handleApply()}>
             すぐに働きたい
           </Button>
-          { isLoading ? (
-            <Loading className="loading--overlay"/>
-          ) : null }
         </div>
+        { isLoading ? (
+          <Loading className="loading--overlay"/>
+        ) : null }
       </div>
     </BaseModal>
   );

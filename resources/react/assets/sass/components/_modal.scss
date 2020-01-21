@@ -33,6 +33,7 @@
 }
 
 .modal__content {
+  position: relative;
   padding: 30px 50px 26px 50px;
 }
 
@@ -326,7 +327,6 @@
   flex-direction: row;
   justify-content: space-between;
 
-  position: relative;
   margin: 0 -20px;
   padding: 45px 50px 55px;
 }
