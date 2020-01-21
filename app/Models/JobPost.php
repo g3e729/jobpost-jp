@@ -58,7 +58,7 @@ class JobPost extends Model
         'in' => 'Internship',
     ];
 
-    protected $appends = ['cover_photo'];
+    protected $appends = ['cover_photo', 'display_employment_type'];
 
     public static function boot()
     {
@@ -97,6 +97,17 @@ class JobPost extends Model
         }
 
         return FileService::retrievePath($url);
+    }
+
+    public function getDisplayEmploymentTypeAttribute()
+    {
+        $type = $this->employment_type;
+    
+        if (empty($type)) {
+            return 'none';
+        }
+
+        return self::getEmploymentTypes($type);
     }
 
     // Relationships
