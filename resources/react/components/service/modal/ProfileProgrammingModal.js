@@ -8,14 +8,14 @@ import Radio from '../../common/Radio';
 const ProfileProgrammingModal = _ => {
   const dispatch = useDispatch(); // TODO on other events
   const [formValues, setFormValues] = useState({
-    item1: '',
-    item2: '',
-    item3: '',
-    item4: '',
-    item5: '',
+    item1: 'item1a',
+    item2: 'item2a',
+    item3: 'item3a',
+    item4: 'item4a',
+    item5: 'item5a',
   });
 
-  const toggleChange = e => { // TODO, buggy return
+  const toggleChange = e => {
     e.persist();
 
     setFormValues(prevState => {
@@ -23,6 +23,7 @@ const ProfileProgrammingModal = _ => {
     });
   }
 
+  // TODO: use map
   return (
     <BaseModal title="プログラミング言語">
       <div className="modal__content">
@@ -45,31 +46,35 @@ const ProfileProgrammingModal = _ => {
                 </div>
                 <Radio className="modal__form-table-item-value"
                   value="item1a"
-                  checked={true}
+                  checked={formValues.item1 === "item1a"}
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1b"
+                  checked={formValues.item1 === "item1b"}
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1c"
+                  checked={formValues.item1 === "item1c"}
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1d"
+                  checked={formValues.item1 === "item1d"}
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1e"
+                  checked={formValues.item1 === "item1e"}
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
@@ -83,31 +88,35 @@ const ProfileProgrammingModal = _ => {
                 </div>
                 <Radio className="modal__form-table-item-value"
                   value="item2a"
-                  checked={true}
+                  checked={formValues.item2 === "item2a"}
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2b"
+                  checked={formValues.item2 === "item2b"}
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2c"
+                  checked={formValues.item2 === "item2c"}
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2d"
+                  checked={formValues.item2 === "item2d"}
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2e"
+                  checked={formValues.item2 === "item2e"}
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
@@ -121,31 +130,35 @@ const ProfileProgrammingModal = _ => {
                 </div>
                 <Radio className="modal__form-table-item-value"
                   value="item3a"
-                  checked={true}
+                  checked={formValues.item3 === "item3a"}
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3b"
+                  checked={formValues.item3 === "item3b"}
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3c"
+                  checked={formValues.item3 === "item3c"}
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3d"
+                  checked={formValues.item3 === "item3d"}
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3e"
+                  checked={formValues.item3 === "item3e"}
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
@@ -159,31 +172,35 @@ const ProfileProgrammingModal = _ => {
                 </div>
                 <Radio className="modal__form-table-item-value"
                   value="item4a"
-                  checked={true}
+                  checked={formValues.item4 === "item4a"}
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4b"
+                  checked={formValues.item4 === "item4b"}
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4c"
+                  checked={formValues.item4 === "item4c"}
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4d"
+                  checked={formValues.item4 === "item4d"}
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4e"
+                  checked={formValues.item4 === "item4e"}
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
@@ -197,31 +214,35 @@ const ProfileProgrammingModal = _ => {
                 </div>
                 <Radio className="modal__form-table-item-value"
                   value="item5a"
-                  checked={true}
+                  checked={formValues.item5 === "item5a"}
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5b"
+                  checked={formValues.item5 === "item5b"}
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5c"
+                  checked={formValues.item5 === "item5c"}
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5d"
+                  checked={formValues.item5 === "item5d"}
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5e"
+                  checked={formValues.item5 === "item5e"}
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
