@@ -67,11 +67,8 @@ export const updateUser = (params) => {
   return (dispatch) => {
     return User.updateUser(params)
       .then(result => {
-        // dispatch(setUser({ ...result.data }));
-        console.log('result :', result);
-        debugger
-
-        // return result;
+        dispatch(setUser({ ...result.data }));
+        return result;
       })
       .catch(error => {
         console.log('[Update user ERROR]', error);

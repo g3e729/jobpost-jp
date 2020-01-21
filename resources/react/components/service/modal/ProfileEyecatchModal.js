@@ -1,25 +1,28 @@
 import React, { useState, useEffect, createRef } from 'react';
+import _ from 'lodash';
 import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
 import { state } from '../../../constants/state';
 import { unsetModal } from '../../../actions/modal';
+import { updateUser } from '../../../actions/user';
 
 import ecPlaceholder from '../../../../img/eyecatch-default.jpg';
 
 const ProfileEyecatchModal = ({modal}) => {
   const dispatch = useDispatch();
-  const [file, setFile] = useState('');
-  const [hasFile, setHasFile] = useState(!modal.actionImage.includes('eyecatch-default') && true);
-  const [placeholderImg, setPlaceholderImg] = useState(modal.actionImage || ecPlaceholder);
-  const reader = new FileReader();
-  const imageInputRef = createRef();
-  const eyecatchRef = createRef();
   const [formValues, setFormValues] = useState({
     cover_photo: '',
     cover_photo_delete: null,
   });
+  const [file, setFile] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const placeholderImg = modal.actionImage || ecPlaceholder;
+  const reader = new FileReader();
+  const imageInputRef = createRef();
+  const eyecatchRef = createRef();
 
   const handleUpdateFile = e => {
     setFile(e.target.files[0]);
@@ -35,20 +38,43 @@ const ProfileEyecatchModal = ({modal}) => {
     e.preventDefault();
 
     setFile('');
+    setFormValues(prevState => {
+      return { ...prevState, cover_photo_delete: 1 }
+    });
+
     eyecatchRef.current.style.backgroundImage = `url("${placeholderImg}")`;
   }
 
-  const handleSubmit = _ => {
-    // TODO: handle cover_photo change
+  const handleSubmit = _.debounce(_ => {
+    setIsLoading(true);
 
-    dispatch(unsetModal());
-  }
+    const formdata = new FormData();
+    formdata.append('cover_photo', formValues.cover_photo || '');
+    if (formValues.cover_photo) {
+      formdata.append('cover_photo_delete', parseInt(formValues.cover_photo_delete));
+    }
+
+    dispatch(updateUser(formdata))
+      .then(_ => {
+        setIsLoading(false);
+        dispatch(unsetModal());
+      })
+      .catch(error => {
+        setIsLoading(false);
+        dispatch(unsetModal());
+
+        console.log('[Upload eyecatch ERROR]', error);
+      });
+  }, 700);
 
   useEffect(_ => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onload = ev => {
         eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
+        setFormValues(prevState => {
+          return { ...prevState, cover_photo: file, cover_photo_delete: 1 }
+        });
       }
     }
   }, [file]);
@@ -76,7 +102,7 @@ const ProfileEyecatchModal = ({modal}) => {
                   アップロード
                 </>
               </Button>
-              <Button className={`button--link modal__form-actions-button ${!file && state.DISABLED}`}
+              <Button className={`button--link modal__form-actions-button ${!file ? state.DISABLED : ''}`}
                 onClick={e => handleRemoveFile(e)}>
                 <>
                   <i className="icon icon-cross"></i>
@@ -88,13 +114,16 @@ const ProfileEyecatchModal = ({modal}) => {
           </div>
         </form>
         <div className="modal__actions">
-          <Button className="button--icon" onClick={_ => handleSubmit()}>
+          <Button className={`button--icon ${!file ? state.DISABLED : ''}`} onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
               セーブ
             </>
           </Button>
         </div>
+        { isLoading ? (
+          <Loading className="loading--overlay"/>
+        ) : null }
       </div>
     </BaseModal>
   )

@@ -1,14 +1,17 @@
 import React, { useState, useEffect, createRef } from 'react';
-import { useDispatch } from 'react-redux';
+import _ from 'lodash';
+import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import { state } from '../../../constants/state';
+import { unsetModal } from '../../../actions/modal';
+import { updateUser } from '../../../actions/user';
 
 import avatarPlaceholder from '../../../../img/avatar-default.png';
 
 const ProfileAvatarModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
+  const dispatch = useDispatch();
   const [formAvatar, setFormAvatar] = useState('');
   const [file, setFile] = useState('');
   const reader = new FileReader();
