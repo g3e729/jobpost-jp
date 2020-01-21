@@ -231,13 +231,22 @@ class SeekerService extends BaseService
 
     public function applyJobPost(JobPost $job_post, bool $scouted = false)
     {
+        $auth_user = auth()->user();
+
+        if ($scouted && (!$auth_user->hasRole('company') || $job_post->company_profile_id != $auth_user->profile->id)) {
+            return null;
+        }
+
         $que = $this->item->applications()->whereJobPostId($job_post->id);
+
 
         if (!$que->count()) {
             return $this->item->applications()->create([
                 'job_post_id' => $job_post->id,
                 'scouted' => $scouted
             ]);
+        } else {
+            $que->update(compact('scouted'));
         }
 
         return $que->first();

@@ -48,7 +48,9 @@ class ApplyController extends BaseController
 			return $status;
 		}
 
-		return $this->seekerService->applyJobPost($this->job_post, $request->get('scouted', false));
+		$application = $this->seekerService->applyJobPost($this->job_post, $request->get('scouted', false));
+
+		return $application ?? apiAbort(404);
 	}
 
 	public function destroy(Request $request)
@@ -70,7 +72,15 @@ class ApplyController extends BaseController
 			return apiAbort(404);
 		}
 
-		$this->seekerService = (new SeekerService($this->user->profile));
+		if ($this->user->hasRole('company') && $request->has('seeker_profile_id')) {
+			$this->seekerService = (new SeekerService);
+			$this->seekerService->find(request()->get('seeker_profile_id'));
+		}
+
+		if ($this->user->hasRole('seeker')) {
+			$this->seekerService = (new SeekerService($this->user->profile));
+		}
+
 		$this->job_post = (new JobPostService)->find($request->get('job_post_id'));
 
 		if (!$this->seekerService->getItem() || !$this->job_post) {
