@@ -135,14 +135,19 @@ class CompanyService extends BaseService
         }
     }
 
-    public function getApplicants($search, $paginated = true, $sort = 'DESC')
+    public function getApplicants($search, bool $scout = null, $paginated = true, $sort = 'DESC')
     {
         $company = $this->item;
 
         $que = (new Applicant)->whereHas('job_post', function ($q) use ($company) {
             $q->whereCompanyProfileId($company->id);
-        })->search($search, $company);
+        });
 
+        if ($scout === true || $scout === false) {
+            $que = $que->where('scouted', $scout);
+        }
+
+        $que = $que->search($search, $company);
 
         return $this->toReturn($que, $paginated);
     }
