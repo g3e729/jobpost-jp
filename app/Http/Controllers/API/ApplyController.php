@@ -31,6 +31,7 @@ class ApplyController extends BaseController
 		} elseif ($user->hasRole('company')) {
 			$applications = (new CompanyService($profile))->getApplicants(
 				$request->get('search'),
+				$request->get('scouted', null),
 	            $request->get('paginated', true),
 				$request->get('sort', 'DESC')
 			);
@@ -47,7 +48,7 @@ class ApplyController extends BaseController
 			return $status;
 		}
 
-		return $this->seekerService->applyJobPost($this->job_post);
+		return $this->seekerService->applyJobPost($this->job_post, $request->get('scouted', false));
 	}
 
 	public function destroy(Request $request)

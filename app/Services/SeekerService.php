@@ -229,13 +229,14 @@ class SeekerService extends BaseService
         return $this->toReturn($que, $paginated);
     }
 
-    public function applyJobPost(JobPost $job_post)
+    public function applyJobPost(JobPost $job_post, bool $scouted = false)
     {
         $que = $this->item->applications()->whereJobPostId($job_post->id);
 
         if (!$que->count()) {
             return $this->item->applications()->create([
-                'job_post_id' => $job_post->id
+                'job_post_id' => $job_post->id,
+                'scouted' => $scouted
             ]);
         }
 
