@@ -16,7 +16,7 @@ class Applicant extends Model
         'seeker_profile_id',
         'notes',
         'status_id',
-        'scout'
+        'scouted'
     ];
 
     protected $hidden = [

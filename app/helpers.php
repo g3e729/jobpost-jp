@@ -126,6 +126,10 @@ if (! function_exists('getProfileUrl')) {
 if (! function_exists('apiAbort')) {
     function apiAbort($error)
     {
+        if ($error === null) {
+            $error = 404;
+        }
+
         switch ($error) {
             case '403':
                 $message = 'Unauthorized.';
