@@ -7,6 +7,7 @@ import Pages from './common/Pages';
 import { getUser } from '../actions/user';
 import { getFilters } from '../actions/filters';
 import { unsetModal } from '../actions/modal';
+import { unsetEdit } from '../actions/edit';
 
 const App = _ => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const App = _ => {
     dispatch(getUser());
     dispatch(getFilters());
     dispatch(unsetModal());
+    dispatch(unsetEdit());
   }, []);
 
   return (
