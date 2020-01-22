@@ -126,6 +126,7 @@ class SeekerService extends BaseService
 
     public function updateSkills(Request $request)
     {
+        $student_skills = $this->item->skills;
         $skills = array_merge(
             $this->item->getEnglishLevels()->toArray(),
             $this->item->getExperiences()->toArray(),
@@ -136,13 +137,21 @@ class SeekerService extends BaseService
         );
 
         $skills = array_keys($skills);
-        $this->item->skills()->delete();
+        // $this->item->skills()->delete();
 
         foreach($request->only($skills) as $skill_id => $skill_rate) {
-            if ($skill_rate) {
+            $skill_rate = $skill_rate ?? 1;
+
+            $skill = $student_skills->where('skill_id', $skill_id)->first();
+
+            if ($skill) {
+                $skill->update(compact('skill_rate'));
+            } else {
                 $this->item->skills()->create(compact('skill_id', 'skill_rate'));
             }
         }
+
+        return true;
     }
     
     public function search($fields, $paginated = true, $sort = 'ASC')
