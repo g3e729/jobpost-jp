@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
+import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
 import Radio from '../../common/Radio';
+import { unSetModal } from '../../../actions/modal';
+import { updateUser } from '../../../actions/user';
 
-const ProfileProgrammingModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
-  const [formValues, setFormValues] = useState({
-    item1: 'item1a',
-    item2: 'item2a',
-    item3: 'item3a',
-    item4: 'item4a',
-    item5: 'item5a',
-  });
+const ProfileProgrammingModal = (props) => {
+  const dispatch = useDispatch();
+  const [formValues, setFormValues] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const { filters } = props;
+  const data = (filters.filtersData && filters.filtersData.students);
+  const programmingFilter = data.programming_languages;
 
   const toggleChange = e => {
     e.persist();
@@ -23,261 +25,110 @@ const ProfileProgrammingModal = _ => {
     });
   }
 
-  // TODO: use map
+  const handleSubmit = _.debounce(_ => {
+    setIsLoading(true);
+
+    const formdata = new FormData();
+    Object.keys(formValues).map((item, idx) => {
+      formdata.append(item, parseInt(Object.values(formValues)[idx]));
+    });
+
+    dispatch(updateUser(formdata))
+      .then(_ => {
+        setIsLoading(false);
+        dispatch(unSetModal());
+      })
+      .catch(error => {
+        setIsLoading(false);
+        dispatch(unSetModal());
+
+        console.log('[Submit programming ERROR]', error);
+      });
+  }, 400);
+
+  useEffect(_ => {
+    if (programmingFilter) {
+      let filterTmp = {...programmingFilter};
+      for (const key in filterTmp){
+        if (filterTmp.hasOwnProperty(key)){
+          filterTmp[key] = '1';
+        }
+      }
+
+      setFormValues(filterTmp);
+    }
+  }, [programmingFilter])
+
   return (
     <BaseModal title="プログラミング言語">
       <div className="modal__content modal__content--edit-programming">
         <form className="modal__form" onSubmit={_ => console.log('Submit programming')}>
-          <ul className="modal__form-table modal__form-table--edit-programming">
-            <li className="modal__form-table-item modal__form-table-item--header">
-              <div className="modal__form-table-item-wrapper">
-                <span className="modal__form-table-item-label"></span>
-                <span className="modal__form-table-item-label">なし</span>
-                <span className="modal__form-table-item-label">半年以内</span>
-                <span className="modal__form-table-item-label">1年以内</span>
-                <span className="modal__form-table-item-label">1年以上</span>
-                <span className="modal__form-table-item-label">２年以上</span>
-              </div>
-            </li>
-            <li className="modal__form-table-item modal__form-table-item--edit-programming">
-              <div className="modal__form-table-item-wrapper">
-                <div className="modal__form-table-item-key">
-                  HTML5&CSS3
+          { Object.keys(programmingFilter).length ? (
+            <ul className="modal__form-table modal__form-table--edit-programming">
+              <li className="modal__form-table-item modal__form-table-item--header">
+                <div className="modal__form-table-item-wrapper">
+                  <span className="modal__form-table-item-label"></span>
+                  <span className="modal__form-table-item-label">なし</span>
+                  <span className="modal__form-table-item-label">半年以内</span>
+                  <span className="modal__form-table-item-label">1年以内</span>
+                  <span className="modal__form-table-item-label">1年以上</span>
+                  <span className="modal__form-table-item-label">２年以上</span>
                 </div>
-                <Radio className="modal__form-table-item-value"
-                  value="item1a"
-                  checked={formValues.item1 === "item1a"}
-                  onChange={e => toggleChange(e)}
-                  name="item1"
-                  type="radio"
-                  text="なし"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item1b"
-                  checked={formValues.item1 === "item1b"}
-                  onChange={e => toggleChange(e)}
-                  name="item1"
-                  type="radio"
-                  text="半年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item1c"
-                  checked={formValues.item1 === "item1c"}
-                  onChange={e => toggleChange(e)}
-                  name="item1"
-                  type="radio"
-                  text="1年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item1d"
-                  checked={formValues.item1 === "item1d"}
-                  onChange={e => toggleChange(e)}
-                  name="item1"
-                  type="radio"
-                  text="1年以上"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item1e"
-                  checked={formValues.item1 === "item1e"}
-                  onChange={e => toggleChange(e)}
-                  name="item1"
-                  type="radio"
-                  text="２年以上"
-                />
-              </div>
-            </li>
-            <li className="modal__form-table-item modal__form-table-item--edit-programming">
-              <div className="modal__form-table-item-wrapper">
-                <div className="modal__form-table-item-key">
-                  Javascript
-                </div>
-                <Radio className="modal__form-table-item-value"
-                  value="item2a"
-                  checked={formValues.item2 === "item2a"}
-                  onChange={e => toggleChange(e)}
-                  name="item2"
-                  type="radio"
-                  text="なし"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item2b"
-                  checked={formValues.item2 === "item2b"}
-                  onChange={e => toggleChange(e)}
-                  name="item2"
-                  type="radio"
-                  text="半年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item2c"
-                  checked={formValues.item2 === "item2c"}
-                  onChange={e => toggleChange(e)}
-                  name="item2"
-                  type="radio"
-                  text="1年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item2d"
-                  checked={formValues.item2 === "item2d"}
-                  onChange={e => toggleChange(e)}
-                  name="item2"
-                  type="radio"
-                  text="1年以上"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item2e"
-                  checked={formValues.item2 === "item2e"}
-                  onChange={e => toggleChange(e)}
-                  name="item2"
-                  type="radio"
-                  text="２年以上"
-                />
-              </div>
-            </li>
-            <li className="modal__form-table-item modal__form-table-item--edit-programming">
-              <div className="modal__form-table-item-wrapper">
-                <div className="modal__form-table-item-key">
-                  PHP
-                </div>
-                <Radio className="modal__form-table-item-value"
-                  value="item3a"
-                  checked={formValues.item3 === "item3a"}
-                  onChange={e => toggleChange(e)}
-                  name="item3"
-                  type="radio"
-                  text="なし"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item3b"
-                  checked={formValues.item3 === "item3b"}
-                  onChange={e => toggleChange(e)}
-                  name="item3"
-                  type="radio"
-                  text="半年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item3c"
-                  checked={formValues.item3 === "item3c"}
-                  onChange={e => toggleChange(e)}
-                  name="item3"
-                  type="radio"
-                  text="1年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item3d"
-                  checked={formValues.item3 === "item3d"}
-                  onChange={e => toggleChange(e)}
-                  name="item3"
-                  type="radio"
-                  text="1年以上"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item3e"
-                  checked={formValues.item3 === "item3e"}
-                  onChange={e => toggleChange(e)}
-                  name="item3"
-                  type="radio"
-                  text="２年以上"
-                />
-              </div>
-            </li>
-            <li className="modal__form-table-item modal__form-table-item--edit-programming">
-              <div className="modal__form-table-item-wrapper">
-                <div className="modal__form-table-item-key">
-                  Python
-                </div>
-                <Radio className="modal__form-table-item-value"
-                  value="item4a"
-                  checked={formValues.item4 === "item4a"}
-                  onChange={e => toggleChange(e)}
-                  name="item4"
-                  type="radio"
-                  text="なし"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item4b"
-                  checked={formValues.item4 === "item4b"}
-                  onChange={e => toggleChange(e)}
-                  name="item4"
-                  type="radio"
-                  text="半年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item4c"
-                  checked={formValues.item4 === "item4c"}
-                  onChange={e => toggleChange(e)}
-                  name="item4"
-                  type="radio"
-                  text="1年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item4d"
-                  checked={formValues.item4 === "item4d"}
-                  onChange={e => toggleChange(e)}
-                  name="item4"
-                  type="radio"
-                  text="1年以上"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item4e"
-                  checked={formValues.item4 === "item4e"}
-                  onChange={e => toggleChange(e)}
-                  name="item4"
-                  type="radio"
-                  text="２年以上"
-                />
-              </div>
-            </li>
-            <li className="modal__form-table-item modal__form-table-item--edit-programming">
-              <div className="modal__form-table-item-wrapper">
-                <div className="modal__form-table-item-key">
-                  Ruby
-                </div>
-                <Radio className="modal__form-table-item-value"
-                  value="item5a"
-                  checked={formValues.item5 === "item5a"}
-                  onChange={e => toggleChange(e)}
-                  name="item5"
-                  type="radio"
-                  text="なし"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item5b"
-                  checked={formValues.item5 === "item5b"}
-                  onChange={e => toggleChange(e)}
-                  name="item5"
-                  type="radio"
-                  text="半年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item5c"
-                  checked={formValues.item5 === "item5c"}
-                  onChange={e => toggleChange(e)}
-                  name="item5"
-                  type="radio"
-                  text="1年以内"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item5d"
-                  checked={formValues.item5 === "item5d"}
-                  onChange={e => toggleChange(e)}
-                  name="item5"
-                  type="radio"
-                  text="1年以上"
-                />
-                <Radio className="modal__form-table-item-value"
-                  value="item5e"
-                  checked={formValues.item5 === "item5e"}
-                  onChange={e => toggleChange(e)}
-                  name="item5"
-                  type="radio"
-                  text="２年以上"
-                />
-              </div>
-            </li>
-          </ul>
+              </li>
+              { Object.keys(programmingFilter).map((item, idx) => (
+                <li className="modal__form-table-item modal__form-table-item--edit-programming" key={idx}>
+                  <div className="modal__form-table-item-wrapper">
+                    <div className="modal__form-table-item-key">
+                      {Object.values(programmingFilter)[idx]}
+                    </div>
+                    <Radio className="modal__form-table-item-value"
+                      value="1"
+                      checked={formValues[Object.keys(programmingFilter)[idx]] == 1}
+                      onChange={e => toggleChange(e)}
+                      name={item}
+                      type="radio"
+                      text="なし"
+                    />
+                    <Radio className="modal__form-table-item-value"
+                      value="2"
+                      checked={formValues[Object.keys(programmingFilter)[idx]] == 2}
+                      onChange={e => toggleChange(e)}
+                      name={item}
+                      type="radio"
+                      text="半年以内"
+                    />
+                    <Radio className="modal__form-table-item-value"
+                      value="3"
+                      checked={formValues[Object.keys(programmingFilter)[idx]] == 3}
+                      onChange={e => toggleChange(e)}
+                      name={item}
+                      type="radio"
+                      text="1年以内"
+                    />
+                    <Radio className="modal__form-table-item-value"
+                      value="4"
+                      checked={formValues[Object.keys(programmingFilter)[idx]] == 4}
+                      onChange={e => toggleChange(e)}
+                      name={item}
+                      type="radio"
+                      text="1年以上"
+                    />
+                    <Radio className="modal__form-table-item-value"
+                      value="5"
+                      checked={formValues[Object.keys(programmingFilter)[idx]] == 5}
+                      onChange={e => toggleChange(e)}
+                      name={item}
+                      type="radio"
+                      text="２年以上"
+                    />
+                  </div>
+                </li>
+              )) }
+            </ul>
+          ) : null }
         </form>
         <div className="modal__actions">
-          <Button className="button--icon">
+          <Button className="button--icon" onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
               セーブ
@@ -285,8 +136,15 @@ const ProfileProgrammingModal = _ => {
           </Button>
         </div>
       </div>
+      { isLoading ? (
+        <Loading className="loading--overlay"/>
+      ) : null }
     </BaseModal>
   )
 }
 
-export default ProfileProgrammingModal;
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(ProfileProgrammingModal);

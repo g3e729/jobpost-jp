@@ -3492,6 +3492,11 @@ And you should not feel free to add a new Utility class.
   text-align: center;
 }
 
+.modal__form-table-item-label:first-child {
+  -webkit-box-flex: 1;
+          flex: 1;
+}
+
 .modal__form-table-item-key {
   letter-spacing: 0.06em;
   white-space: pre-line;
@@ -3664,9 +3669,18 @@ And you should not feel free to add a new Utility class.
   }
 }
 
+.modal__content--edit-programming {
+  max-height: 400px;
+  overflow: scroll;
+}
+
 @media screen and (max-width: 768px) {
   .modal__content--edit-programming {
     padding: 0;
+    max-height: -webkit-max-content;
+    max-height: -moz-max-content;
+    max-height: max-content;
+    overflow: visible;
   }
 }
 
