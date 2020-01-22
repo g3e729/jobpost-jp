@@ -2,66 +2,62 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Transaction as Model;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 class TransactionController extends BaseController
 {
+	protected $profile;
+	protected $transaction;
+
 	public function store(Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine();
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
-
-		return $profile->transactions()->create($request->only('amount', 'type', 'type_id', 'description'));
+		return $this->profile->transactions()->create($this->requestField());
 	}
 
-	public function update(Model $transaction, Request $request)
+	public function update($id, Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
+		$this->transaction->update($this->requestField());
 
-		$transaction = $profile->transactions()->find($transaction->id);
-
-		if (!$transaction) {
-			return apiAbort(404);
-		}
-
-		if ($transaction->is_approved) {
-			return apiAbort(403);
-		}
-
-		$transaction->update($request->only('amount', 'type', 'type_id', 'description'));
-
-		return $profile->transactions()->find($transaction->id);
+		return $this->profile->transactions()->find($id);
 	}
 
-	public function destroy(Model $transaction)
+	public function destroy($id)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
+		$this->transaction->delete();
+
+		return $this->transaction;
+	}
+
+	private function routine($id = null)
+	{
+		$this->profile = auth()->user()->profile ?? null;
+
+		if (!$this->profile) {
+			apiAbort(404);
 		}
 
-		$transaction = $profile->transactions()->find($transaction->id);
+		if ($id) {
+			$this->transaction = $this->profile->transactions()->find($id);
 
-		if (!$transaction) {
-			return apiAbort(404);
+			if (!$this->transaction) {
+				apiAbort(404);
+			}
+
+			if ($this->transaction->is_approved) {
+				apiAbort(403);
+			}
 		}
+	}
 
-		if ($transaction->is_approved) {
-			return apiAbort(403);
-		}
-
-		$transaction->delete();
-
-		return $transaction;
+	private function requestField()
+	{
+		return request()->only('amount', 'type', 'type_id', 'description');
 	}
 }

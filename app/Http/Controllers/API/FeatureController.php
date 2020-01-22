@@ -2,39 +2,58 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Feature;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 class FeatureController extends BaseController
 {
+	protected $profile;
+	protected $feature;
+
 	public function store(Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine();
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
-
-		return $profile->features()->create($request->only('title', 'description'));
+		return $this->profile->features()->create($this->requestField());
 	}
 
-	public function update(Feature $feature, Request $request)
+	public function update($id, Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
+		$this->feature->update($this->requestField());
+
+		return $this->profile->features()->find($id);
+	}
+
+	public function destroy($id)
+	{
+		$this->routine($id);
+
+		$this->feature->delete();
+
+		return $this->feature;
+	}
+
+	private function routine($id = null)
+	{
+		$this->profile = auth()->user()->profile ?? null;
+
+		if (!$this->profile) {
+			apiAbort(404);
 		}
 
-		$feature = $profile->features()->find($feature->id);
+		if ($id) {
+			$this->feature = $this->profile->features()->find($id);
 
-		if (!$feature) {
-			return apiAbort(403);
+			if (!$this->feature) {
+				apiAbort(404);
+			}
 		}
+	}
 
-		$feature->update($request->only('title', 'description'));
-
-		return $profile->features()->find($feature->id);
+	private function requestField()
+	{
+		return request()->only('title', 'description');
 	}
 }

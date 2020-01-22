@@ -14,7 +14,7 @@ class PortfolioController extends BaseController
 		$profile = auth()->user()->profile ?? null;
 
 		if (!$profile) {
-			return apiAbort(404);
+			apiAbort(404);
 		}
 
 		return (new PortfolioService)->insert($profile, $request->only('title', 'description', 'url'));
@@ -25,7 +25,7 @@ class PortfolioController extends BaseController
 		$profile = auth()->user()->profile ?? null;
 
 		if (!$profile) {
-			return apiAbort(404);
+			apiAbort(404);
 		}
 
 		return (new PortfolioService)->revise($portfolio->id, $request->only('title', 'description', 'url'));

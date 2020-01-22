@@ -69,7 +69,7 @@ class ApplyController extends BaseController
 		$this->user = auth()->user();
 
 		if (!$this->user) {
-			return apiAbort(404);
+			apiAbort(404);
 		}
 
 		if ($this->user->hasRole('company') && $request->has('seeker_profile_id')) {
@@ -84,7 +84,7 @@ class ApplyController extends BaseController
 		$this->job_post = (new JobPostService)->find($request->get('job_post_id'));
 
 		if (!$this->seekerService->getItem() || !$this->job_post) {
-			return apiAbort(404);
+			apiAbort(404);
 		}
 
 		return true;

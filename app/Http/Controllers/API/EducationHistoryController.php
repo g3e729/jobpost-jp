@@ -2,61 +2,58 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\EducationHistory as Model;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 class EducationHistoryController extends BaseController
 {
+	protected $profile;
+	protected $education_history;
+
 	public function store(Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine();
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
-
-		return $profile->education_history()
-			->create($request->only('school_name', 'faculty', 'major', 'department', 'content', 'historiable_id', 'historiable_type', 'graduated_at'));
+		return $this->profile->education_history()->create($this->requestField());
 	}
 
-	public function update(Model $education_history, Request $request)
+	public function update($id, Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
+		$this->education_history->update($this->requestField());
 
-		$education_history = $profile->education_history()->find($education_history->id);
-
-		if (!$education_history) {
-			return apiAbort(403);
-		}
-
-		$education_history->update(
-			$request->only('school_name', 'faculty', 'major', 'department', 'content', 'historiable_id', 'historiable_type', 'graduated_at')
-		);
-
-		return $profile->education_history()->find($education_history->id);
+		return $this->profile->education_history()->find($id);
 	}
 
-	public function destroy(Model $education_history)
+	public function destroy($id)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
+		$this->education_history->delete();
+
+		return $this->education_history;
+	}
+
+	private function routine($id = null)
+	{
+		$this->profile = auth()->user()->profile ?? null;
+
+		if (!$this->profile) {
+			apiAbort(404);
 		}
 
-		$education_history = $profile->education_history()->find($education_history->id);
+		if ($id) {
+			$this->education_history = $this->profile->education_history()->find($id);
 
-		if (!$education_history) {
-			return apiAbort(404);
+			if (!$this->education_history) {
+				apiAbort(404);
+			}
 		}
+	}
 
-		$education_history->delete();
-
-		return $education_history;
+	private function requestField()
+	{
+		return request()->only('school_name', 'faculty', 'major', 'department', 'content', 'historiable_id', 'historiable_type', 'graduated_at');
 	}
 }

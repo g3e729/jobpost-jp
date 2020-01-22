@@ -36,7 +36,7 @@ class JobPostController extends BaseController
 		$company = auth()->user()->profile ?? null;
 
 		if (!$company || $job->company_profile_id != $company->id) {
-			return apiAbort(503);
+			apiAbort(503);
 		}
 
 		$jobPostService = (new ModelService($job));
@@ -54,7 +54,7 @@ class JobPostController extends BaseController
 			$company = auth()->user()->profile ?? null;
 
 			if (!$company || $job->company_profile_id != $company->id) {
-				return apiAbort(503);
+				apiAbort(503);
 			}
 
 			$job->forceDelete();
@@ -62,7 +62,7 @@ class JobPostController extends BaseController
 			return $job;
         }
 
-		return apiAbort(503);
+		apiAbort(503);
 	}
 
 	public function toggleStatus($id)
@@ -74,7 +74,7 @@ class JobPostController extends BaseController
 			$company = auth()->user()->profile ?? null;
 
 			if (!$company || $job->company_profile_id != $company->id) {
-				return apiAbort(503);
+				apiAbort(503);
 			}
 
 			if ($job->trashed()) {
@@ -86,7 +86,7 @@ class JobPostController extends BaseController
 			return $job;
         }
 
-		return apiAbort(503);
+		apiAbort(503);
 	}
 
     public function companyJobs(Request $request)
@@ -124,6 +124,6 @@ class JobPostController extends BaseController
 			}
 		}
 
-		return apiAbort(404);
+		apiAbort(404);
 	}
 }

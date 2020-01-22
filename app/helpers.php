@@ -124,13 +124,13 @@ if (! function_exists('getProfileUrl')) {
 }
 
 if (! function_exists('apiAbort')) {
-    function apiAbort($error)
+    function apiAbort($code)
     {
-        if ($error === null) {
-            $error = 404;
+        if ($code === null) {
+            $code = 404;
         }
 
-        switch ($error) {
+        switch ($code) {
             case '403':
                 $message = 'Unauthorized.';
             break;
@@ -149,6 +149,8 @@ if (! function_exists('apiAbort')) {
             break;
         }
 
-        return response()->json(compact('message'), $error);
+        header('Content-Type: application/json');
+        print json_encode(compact('code', 'message'));
+        die;
     }
 }

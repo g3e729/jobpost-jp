@@ -24,7 +24,7 @@ class ApiCheck
         }
 
         if ($role && (!$user || !$user->hasRole($role))) {
-            abort(404);
+            apiAbort(404);
         }
 
         return $next($request);

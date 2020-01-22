@@ -2,61 +2,58 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\WorkHistory as Model;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 class WorkHistoryController extends BaseController
 {
+	protected $profile;
+	protected $work_history;
+
 	public function store(Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine();
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
-
-		return $profile->work_history()
-			->create($request->only('company_name', 'role', 'content', 'historiable_id', 'historiable_type', 'is_present', 'started_at', 'ended_at'));
+		return $this->profile->work_history()->create($this->requestField());
 	}
 
-	public function update(Model $work_history, Request $request)
+	public function update($id, Request $request)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
-		}
+		$this->work_history->update($this->requestField());
 
-		$work_history = $profile->work_history()->find($work_history->id);
-
-		if (!$work_history) {
-			return apiAbort(403);
-		}
-
-		$work_history->update(
-			$request->only('company_name', 'role', 'content', 'historiable_id', 'historiable_type', 'is_present', 'started_at', 'ended_at')
-		);
-
-		return $profile->work_history()->find($work_history->id);
+		return $this->profile->work_history()->find($id);
 	}
 
-	public function destroy(Model $work_history)
+	public function destroy($id)
 	{
-		$profile = auth()->user()->profile ?? null;
+		$this->routine($id);
 
-		if (!$profile) {
-			return apiAbort(404);
+		$this->work_history->delete();
+
+		return $this->work_history;
+	}
+
+	private function routine($id = null)
+	{
+		$this->profile = auth()->user()->profile ?? null;
+
+		if (!$this->profile) {
+			apiAbort(404);
 		}
 
-		$work_history = $profile->work_history()->find($work_history->id);
+		if ($id) {
+			$this->work_history = $this->profile->work_history()->find($id);
 
-		if (!$work_history) {
-			return apiAbort(404);
+			if (!$this->work_history) {
+				apiAbort(404);
+			}
 		}
+	}
 
-		$work_history->delete();
-
-		return $work_history;
+	private function requestField()
+	{
+		return request()->only('company_name', 'role', 'content', 'historiable_id', 'historiable_type', 'is_present', 'started_at', 'ended_at');
 	}
 }
