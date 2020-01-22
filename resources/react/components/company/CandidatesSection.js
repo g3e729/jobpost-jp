@@ -2,10 +2,15 @@ import React from 'react';
 
 import SeekerList from './SeekerList';
 
-const CandidatesSection = _ => (
+const CandidatesSection = ({students, isLoading}) => (
   <div className="dashboard-section">
     <div className="dashboard-section__content">
-      <SeekerList type="full" title="候補者一覧" />
+      <SeekerList
+        type="full"
+        title="候補者一覧"
+        students={students}
+        isLoading={isLoading}
+      />
     </div>
   </div>
 );

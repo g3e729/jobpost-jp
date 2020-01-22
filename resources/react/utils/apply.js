@@ -17,6 +17,25 @@ export default class Apply {
       .catch(error => error);
   }
 
+  static getApplicationsCompany(params) {
+    const {
+      page,
+    } = params;
+
+    const payload = {
+      url: endpoints.APPLICATIONS,
+      method: 'get',
+      params: {
+        page,
+        per_page: 12
+      }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static applyJob(id) {
     const payload = {
       url: endpoints.APPLY,
