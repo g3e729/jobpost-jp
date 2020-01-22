@@ -1,4 +1,5 @@
 import API from './api';
+import generateRoute from './generateRoute';
 import { endpoints } from '../constants/routes';
 
 export default class User {

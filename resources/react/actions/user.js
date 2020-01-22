@@ -77,6 +77,34 @@ export const updateUser = (params) => {
   }
 }
 
+export const addUserFeature = (params) => {
+  return (dispatch) => {
+    return User.addFeature(params)
+      .then(result => {
+        dispatch(getUser());
+        return result;
+      })
+      .catch(error => {
+        console.log('[Add feature ERROR]', error);
+        return error;
+      })
+  }
+}
+
+export const updateUserFeature = (params, id) => {
+  return (dispatch) => {
+    return User.updateFeature(params, id)
+      .then(result => {
+        dispatch(getUser());
+        return result;
+      })
+      .catch(error => {
+        console.log('[Add feature ERROR]', error);
+        return error;
+      })
+  }
+}
+
 export const logoutUser = _ => {
   return _ => {
     const elLogoutForm = document.querySelector('#js-logout-form');

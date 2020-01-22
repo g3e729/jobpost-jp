@@ -16,7 +16,7 @@ import { routes } from '../../constants/routes';
 import { skills } from '../../constants/state';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
-import { updateUser } from '../../actions/user';
+import { updateUser, addUserFeature, updateUserFeature } from '../../actions/user';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
@@ -61,6 +61,22 @@ const Profile = (props) => {
     formdata.append(type, (value || ''));
 
     dispatch(updateUser(formdata));
+    setIsEditing(false);
+  }, 400)
+
+  const handleAddFeature = _.debounce((value, type) => {
+    const formdata = new FormData();
+    formdata.append(type, (value || ''));
+
+    dispatch(addUserFeature(formdata));
+    setIsEditing(false);
+  }, 400)
+
+  const handleUpdateFeature = _.debounce((value, type, id) => {
+    const formdata = new FormData();
+    formdata.append(type, (value || ''));
+
+    dispatch(updateUserFeature(formdata, id));
     setIsEditing(false);
   }, 400)
 
@@ -614,19 +630,48 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">特徴</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill heading__user-pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill heading__user-pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
                   <dl className="profile__data-character">
                     { data.features.length && data.features
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">{item.title}</dt>
-                          <dd className="profile__data-skills-data">{item.description}</dd>
+                          <dt className="profile__data-skills-term">
+                            { isEdit ?
+                              <EdiText
+                                submitOnEnter
+                                value={data.features[idx].title || ''}
+                                type="text"
+                                onSave={e => handleUpdateFeature(e, 'title', item.id)}
+                                editing={isEditing}
+                              />
+                            : item.title }
+                          </dt>
+                          <dd className="profile__data-skills-data">
+                            { isEdit ?
+                              <EdiText
+                                submitOnEnter
+                                value={data.features[idx].description || ''}
+                                type="text"
+                                onSave={e => handleUpdateFeature(e, 'description', item.id)}
+                                editing={isEditing}
+                              />
+                            : item.description }
+                          </dd>
                         </React.Fragment>
                       ))
                     }
