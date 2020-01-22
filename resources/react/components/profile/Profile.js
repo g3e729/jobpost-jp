@@ -127,7 +127,7 @@ const Profile = (props) => {
                       onSave={e => handleSubmit(e, 'intro_text')}
                       editing={isEditing}
                     />
-                  : <p className="profile__main-list-item-copy">data.intro_text</p> }
+                  : <p className="profile__main-list-item-copy">{data.intro_text}</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
