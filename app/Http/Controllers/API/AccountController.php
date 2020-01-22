@@ -34,9 +34,6 @@ class AccountController extends BaseController
 			if ($user->hasRole('seeker')) {
 				$service = (new SeekerService($profile));
 
-		        $service->updateWorkHistory($request->get('work_history'));
-		        $service->updateEducationHistory($request->get('education_history'));
-
         		$service->updateSkills($request);
 			} elseif ($user->hasRole('company')) {
 				$service = (new CompanyService($profile));

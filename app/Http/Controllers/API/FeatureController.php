@@ -28,6 +28,11 @@ class FeatureController extends BaseController
 		}
 
 		$feature = $profile->features()->find($feature->id);
+
+		if (!$feature) {
+			return apiAbort(403);
+		}
+
 		$feature->update($request->only('title', 'description'));
 
 		return $profile->features()->find($feature->id);

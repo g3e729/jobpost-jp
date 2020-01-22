@@ -47,4 +47,11 @@ Route::group([
 		Route::get('my-jobs', 'JobPostController@companyJobs');
 		Route::patch('companies/{company}', 'CompanyController@update');
 	});
+
+	Route::group([
+	    'middleware' => ['App\Http\Middleware\ApiCheck:seeker'],
+	], function () {
+		Route::resource('work-histories', 'WorkHistoryController')->only('store', 'update', 'destroy');
+		Route::resource('education-histories', 'EducationHistoryController')->only('store', 'update', 'destroy');
+	});
 });
