@@ -56,4 +56,30 @@ export default class User {
       .then(res => res)
       .catch(error => error);
   }
+
+  static addFeature(formdata) {
+    const payload = {
+      url: endpoints.FEATURES,
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
+  static updateFeature(formdata, id) {
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.FEATURES_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res)
+      .catch(error => error);
+  }
 }

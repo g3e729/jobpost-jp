@@ -255,7 +255,9 @@ const Profile = (props) => {
                   ) : null }
                   <dl className="profile__data-skills">
                     { data.skills.length && data.skills
-                      .filter(item => programmingFilter.includes(item.skill_id))
+                      .filter(item => {
+                        return (programmingFilter.includes(item.skill_id) && item.skill_rate > 1)
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">{Object.values(programming_languages)[idx]}</dt>
@@ -279,7 +281,9 @@ const Profile = (props) => {
                   ) : null }
                   <dl className="profile__data-skills">
                     { data.skills.length && data.skills
-                      .filter(item => frameworkFilter.includes(item.skill_id))
+                      .filter(item => {
+                        return (frameworkFilter.includes(item.skill_id) && item.skill_rate > 1)
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">{Object.values(frameworks)[idx]}</dt>
@@ -303,7 +307,9 @@ const Profile = (props) => {
                   ) : null }
                   <dl className="profile__data-skills">
                     { data.skills.length && data.skills
-                      .filter(item => otherFilter.includes(item.skill_id))
+                      .filter(item => {
+                        return (otherFilter.includes(item.skill_id) && item.skill_rate > 1)
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">{Object.values(others)[idx]}</dt>
@@ -327,7 +333,9 @@ const Profile = (props) => {
                   ) : null }
                   <dl className="profile__data-skills profile__data-skills--full">
                     { data.skills.length && data.skills
-                      .filter(item => experienceFilter.includes(item.skill_id))
+                      .filter(item => {
+                        return (experienceFilter.includes(item.skill_id) && item.skill_rate > 1)
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">{Object.values(experiences)[idx]}</dt>
@@ -614,12 +622,14 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-character">
-                    <dt className="profile__data-character-term">フラットな組織</dt>
-                    <dd className="profile__data-character-data">{data.what_text}</dd>
-                    <dt className="profile__data-character-term">メンバーの多様性</dt>
-                    <dd className="profile__data-character-data">{data.why_text}</dd>
-                    <dt className="profile__data-character-term">こだわりのある オフィス</dt>
-                    <dd className="profile__data-character-data">{data.how_text}</dd>
+                    { data.features.length && data.features
+                      .map((item, idx) => (
+                        <React.Fragment key={idx}>
+                          <dt className="profile__data-skills-term">{item.title}</dt>
+                          <dd className="profile__data-skills-data">{item.description}</dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>

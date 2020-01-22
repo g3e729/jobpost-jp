@@ -96,6 +96,9 @@ export const endpoints = {
   COMPANIES_FILTERS: '/companies-filters',
   COMPANY_DETAIL: '/companies/:id',
 
+  FEATURES: '/features',
+  FEATURES_DETAIL: '/features/:id',
+
   APPLY: 'apply',
   APPLICATIONS: 'applications',
   CANCEL_APPLICATION: 'cancel-application',
