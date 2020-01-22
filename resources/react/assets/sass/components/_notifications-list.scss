@@ -3,6 +3,10 @@
 .notifications-list__item {
   margin-top: 16px;
 
+  @include max-screen($breakpoint-mobile) {
+    margin-top: 5px;
+  }
+
   &:first-child {
     margin-top: 0;
   }
@@ -12,6 +16,10 @@
   position: relative;
   padding: 20px 20px 40px;
   border-bottom: solid 1px $color-dark-gray;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 20px 0 22px;
+  }
 }
 
 .notifications-list__item-title {
@@ -21,6 +29,10 @@
   letter-spacing: 0.06em;
 
   margin-top: 15px;
+
+  @include max-screen($breakpoint-mobile) {
+    marign-top: 10px;
+  }
 }
 
 .notifications-list__item-schedule {
@@ -28,6 +40,11 @@
   letter-spacing: 0.06em;
 
   margin-right: 15px;
+
+  @include max-screen($breakpoint-mobile) {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
 
 .notifications-list__item-button {

@@ -3,6 +3,7 @@
 import Page from '../common/Page';
 import Heading from '../common/Heading';
 import Notification from './Notification';
+import PageUp from '../common/PageUp';
 
 const NotificationPage = _ => (
   <Page>
@@ -15,6 +16,7 @@ const NotificationPage = _ => (
         <Notification />
       </div>
     </div>
+    <PageUp />
   </Page>
  );
 

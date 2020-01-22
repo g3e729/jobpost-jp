@@ -26,9 +26,9 @@ const ProfileProgrammingModal = _ => {
   // TODO: use map
   return (
     <BaseModal title="プログラミング言語">
-      <div className="modal__content">
+      <div className="modal__content modal__content--edit-programming">
         <form className="modal__form" onSubmit={_ => console.log('Submit programming')}>
-          <ul className="modal__form-table">
+          <ul className="modal__form-table modal__form-table--edit-programming">
             <li className="modal__form-table-item modal__form-table-item--header">
               <div className="modal__form-table-item-wrapper">
                 <span className="modal__form-table-item-label"></span>
@@ -39,7 +39,7 @@ const ProfileProgrammingModal = _ => {
                 <span className="modal__form-table-item-label">２年以上</span>
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   HTML5&CSS3
@@ -50,6 +50,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="なし"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1b"
@@ -57,6 +58,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="半年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1c"
@@ -64,6 +66,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="1年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1d"
@@ -71,6 +74,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="1年以上"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item1e"
@@ -78,10 +82,11 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item1"
                   type="radio"
+                  text="２年以上"
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   Javascript
@@ -92,6 +97,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
+                  text="なし"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2b"
@@ -99,6 +105,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
+                  text="半年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2c"
@@ -106,6 +113,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
+                  text="1年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2d"
@@ -113,6 +121,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
+                  text="1年以上"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item2e"
@@ -120,10 +129,11 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item2"
                   type="radio"
+                  text="２年以上"
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   PHP
@@ -134,6 +144,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
+                  text="なし"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3b"
@@ -141,6 +152,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
+                  text="半年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3c"
@@ -148,6 +160,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
+                  text="1年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3d"
@@ -155,6 +168,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
+                  text="1年以上"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item3e"
@@ -162,10 +176,11 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item3"
                   type="radio"
+                  text="２年以上"
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   Python
@@ -176,6 +191,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
+                  text="なし"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4b"
@@ -183,6 +199,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
+                  text="半年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4c"
@@ -190,6 +207,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
+                  text="1年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4d"
@@ -197,6 +215,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
+                  text="1年以上"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item4e"
@@ -204,10 +223,11 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item4"
                   type="radio"
+                  text="２年以上"
                 />
               </div>
             </li>
-            <li className="modal__form-table-item">
+            <li className="modal__form-table-item modal__form-table-item--edit-programming">
               <div className="modal__form-table-item-wrapper">
                 <div className="modal__form-table-item-key">
                   Ruby
@@ -218,6 +238,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
+                  text="なし"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5b"
@@ -225,6 +246,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
+                  text="半年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5c"
@@ -232,6 +254,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
+                  text="1年以内"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5d"
@@ -239,6 +262,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
+                  text="1年以上"
                 />
                 <Radio className="modal__form-table-item-value"
                   value="item5e"
@@ -246,6 +270,7 @@ const ProfileProgrammingModal = _ => {
                   onChange={e => toggleChange(e)}
                   name="item5"
                   type="radio"
+                  text="２年以上"
                 />
               </div>
             </li>

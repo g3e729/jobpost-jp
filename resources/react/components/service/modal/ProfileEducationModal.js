@@ -82,7 +82,7 @@ const ProfileEducationModal = _ => {
             <div className="modal__form-group-label">
               卒業
             </div>
-            <div className="modal__form-group-inputs">
+            <div className="modal__form-group-inputs  modal__form-group-inputs--education-period">
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
                 placeholder='MM'

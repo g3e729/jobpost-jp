@@ -4,6 +4,10 @@
 
   flex: 1;
   align-self: stretch;
+
+  @include max-screen($breakpoint-mobile) {
+    padding: 0 18px;
+  }
 }
 
 .dashboard-section__reminder {
@@ -12,6 +16,17 @@
   align-items: center;
 
   margin-right: 18px;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 0;
+    margin-top: 31px;
+
+    > .button {
+      font-size: 16px;
+    }
+  }
 }
 
 .dashboard-section__reminder-text {

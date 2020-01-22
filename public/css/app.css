@@ -829,6 +829,12 @@ And you should not feel free to add a new Utility class.
   padding: 48px 0 90px;
 }
 
+@media screen and (max-width: 768px) {
+  .l-section--main {
+    padding: 70px 0 90px;
+  }
+}
+
 .l-section--profile {
   padding-top: 110px;
 }
@@ -837,8 +843,20 @@ And you should not feel free to add a new Utility class.
   padding-top: 350px;
 }
 
+@media screen and (max-width: 768px) {
+  .l-section--job {
+    padding-top: 152px;
+  }
+}
+
 .l-section--notifications {
   padding: 100px 0 90px;
+}
+
+@media screen and (max-width: 768px) {
+  .l-section--notifications {
+    padding: 52px 0 90px;
+  }
 }
 
 .l-section--full {
@@ -902,6 +920,13 @@ And you should not feel free to add a new Utility class.
 .avatar--seeker {
   width: 90px;
   height: 90px;
+}
+
+@media screen and (max-width: 768px) {
+  .avatar--seeker {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .avatar--message {
@@ -1080,6 +1105,12 @@ And you should not feel free to add a new Utility class.
   background-color: #393939;
 }
 
+@media screen and (max-width: 768px) {
+  .company-sidebar {
+    display: none;
+  }
+}
+
 .company-sidebar__menu {
   padding: 50px 0;
 }
@@ -1106,6 +1137,12 @@ And you should not feel free to add a new Utility class.
   align-self: stretch;
 }
 
+@media screen and (max-width: 768px) {
+  .dashboard-section {
+    padding: 0 18px;
+  }
+}
+
 .dashboard-section__reminder {
   display: -webkit-box;
   display: flex;
@@ -1114,6 +1151,20 @@ And you should not feel free to add a new Utility class.
   -webkit-box-align: center;
           align-items: center;
   margin-right: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-section__reminder {
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+            justify-content: center;
+    margin-right: 0;
+    margin-top: 31px;
+  }
+
+  .dashboard-section__reminder > .button {
+    font-size: 16px;
+  }
 }
 
 .dashboard-section__reminder-text {
@@ -1258,6 +1309,12 @@ And you should not feel free to add a new Utility class.
   padding: 100px 0 60px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites-section__footer {
+    padding: 75px 0 60px;
+  }
+}
+
 .favorites-list {
   display: -webkit-box;
   display: flex;
@@ -1267,6 +1324,14 @@ And you should not feel free to add a new Utility class.
   margin: 0 -20px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites-list {
+    padding: 0 20px;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .favorites-list__item {
   width: 33.3%;
   flex-basis: 33.3%;
@@ -1274,13 +1339,33 @@ And you should not feel free to add a new Utility class.
   margin-top: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites-list__item {
+    width: calc(50% - 10px);
+    flex-basis: calc(50% - 10px);
+    padding: 0;
+  }
+}
+
 .favorites-list__item:nth-child(-n+3) {
   margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .favorites-list__item:nth-child(-n+3) {
+    margin-top: 30px;
+  }
 }
 
 .favorites {
   padding: 30px 25px 25px;
   border: solid 1px #d9d6d6;
+}
+
+@media screen and (max-width: 768px) {
+  .favorites {
+    padding: 15px 12.5px;
+  }
 }
 
 .favorites__eyecatch {
@@ -1313,6 +1398,13 @@ And you should not feel free to add a new Utility class.
   margin-top: 18px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites__title {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+}
+
 .favorites__content {
   margin-top: 12px;
   padding-top: 17px;
@@ -1336,6 +1428,15 @@ And you should not feel free to add a new Utility class.
   border-radius: 2px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites__company > img {
+    width: 15px;
+    height: 15px;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
+  }
+}
+
 .favorites__company-name {
   font-size: 15px;
   font-weight: 700;
@@ -1343,11 +1444,25 @@ And you should not feel free to add a new Utility class.
   margin-left: 16px;
 }
 
+@media screen and (max-width: 768px) {
+  .favorites__company-name {
+    font-size: 10px;
+    margin-left: 10px;
+  }
+}
+
 .favorites__description {
   line-height: 1.857;
   letter-spacing: 0.06em;
   margin-top: 18px;
   overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .favorites__description {
+    font-size: 10px;
+    margin-top: 5px;
+  }
 }
 
 .footer__heading {
@@ -1749,8 +1864,8 @@ And you should not feel free to add a new Utility class.
             flex-direction: column;
     left: 20px;
     bottom: -210px;
-    padding: 90px 30px 0;
-    height: 355px;
+    padding: 60px 30px 0;
+    height: 390px;
     width: calc(100% - 40px);
   }
 }
@@ -1767,6 +1882,12 @@ And you should not feel free to add a new Utility class.
   letter-spacing: 0.06em;
 }
 
+@media screen and (max-width: 768px) {
+  .heading__job-time {
+    font-size: 12px;
+  }
+}
+
 .heading__job-title {
   font-size: 30px;
   font-weight: 700;
@@ -1774,6 +1895,15 @@ And you should not feel free to add a new Utility class.
   letter-spacing: 0.06em;
   max-width: 60%;
   margin: 10px 0 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .heading__job-title {
+    font-size: 20px;
+    max-width: none;
+    margin: 15px 0 15px;
+    letter-spacing: 0.09em;
+  }
 }
 
 .heading__job-company {
@@ -1804,6 +1934,12 @@ And you should not feel free to add a new Utility class.
   margin-left: 16px;
 }
 
+@media screen and (max-width: 768px) {
+  .heading__job-company-name {
+    font-size: 13px;
+  }
+}
+
 .heading__job-pills {
   display: -webkit-box;
   display: flex;
@@ -1813,16 +1949,39 @@ And you should not feel free to add a new Utility class.
   margin-right: 12px;
 }
 
+@media screen and (max-width: 768px) {
+  .heading__job-pills-item {
+    margin-right: 5px;
+  }
+}
+
 .heading__job-button {
   position: absolute;
   bottom: 150px;
   right: 50px;
 }
 
+@media screen and (max-width: 768px) {
+  .heading__job-button {
+    bottom: 307px;
+    right: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 42px;
+  }
+}
+
 .heading__job-fav {
   position: absolute;
   bottom: 56px;
   right: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .heading__job-fav {
+    bottom: 62px;
+    right: 30px;
+  }
 }
 
 .heading__edit {
@@ -1962,11 +2121,25 @@ And you should not feel free to add a new Utility class.
           align-items: flex-start;
 }
 
+@media screen and (max-width: 768px) {
+  .job {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 .job__main {
   -webkit-box-flex: 1;
           flex: 1;
   align-self: stretch;
   margin-right: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .job__main {
+    margin-right: 0;
+  }
 }
 
 .job__sidebar {
@@ -1979,6 +2152,12 @@ And you should not feel free to add a new Utility class.
   -webkit-box-flex: 0;
           flex: 0 0 300px;
   align-self: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .job__sidebar {
+    width: 100%;
+  }
 }
 
 .job__sidebar-inner {
@@ -2082,6 +2261,14 @@ And you should not feel free to add a new Utility class.
   margin-bottom: 35px;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-heading {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 .job__main-heading--left {
   -webkit-box-pack: start;
           justify-content: flex-start;
@@ -2094,6 +2281,14 @@ And you should not feel free to add a new Utility class.
   font-size: 24px;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-heading--left {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+}
+
 .job__main-heading-en {
   font-family: "Avenir", sans-serif;
   font-size: 26px;
@@ -2103,11 +2298,24 @@ And you should not feel free to add a new Utility class.
   margin-right: 12px;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-heading-en {
+    margin-right: 0;
+    font-size: 20px;
+  }
+}
+
 .job__main-heading-title {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: 0.06em;
   display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-heading-title {
+    font-size: 18px;
+  }
 }
 
 .job__main-images {
@@ -2120,6 +2328,15 @@ And you should not feel free to add a new Utility class.
   margin: -18px 0 34px;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-images {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    margin: -18px 0 0;
+  }
+}
+
 .job__main-images-holder {
   position: relative;
   width: 48%;
@@ -2130,6 +2347,14 @@ And you should not feel free to add a new Utility class.
   content: "";
   padding-top: 60%;
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-images-holder {
+    max-height: none;
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }
 
 .job__main-images-holder--full {
@@ -2223,6 +2448,17 @@ And you should not feel free to add a new Utility class.
   border-top: none;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-list-term {
+    width: 43%;
+    -webkit-box-flex: 0;
+            flex: 0 0 43%;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+    padding: 20px 15px;
+  }
+}
+
 .job__main-list-data {
   line-height: 1.857;
   letter-spacing: 0.06em;
@@ -2272,6 +2508,17 @@ And you should not feel free to add a new Utility class.
   border-top: none;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-list-data > dl > dt {
+    width: 43%;
+    -webkit-box-flex: 0;
+            flex: 0 0 43%;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+    padding: 12.5px 15px;
+  }
+}
+
 .job__main-list-data > dl > dd {
   width: 72.5%;
   padding: 12.5px 22px;
@@ -2284,10 +2531,52 @@ And you should not feel free to add a new Utility class.
   border-top: none;
 }
 
+@media screen and (max-width: 768px) {
+  .job__main-list-data > dl > dd {
+    width: 57%;
+    -webkit-box-flex: 1;
+            flex: 1 0 57%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-list-data {
+    width: 57%;
+    -webkit-box-flex: 1;
+            flex: 1 0 57%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-list-term--mobile-full {
+    width: 100%;
+    -webkit-box-flex: 1;
+            flex: 1 0 100%;
+    -webkit-box-pack: center;
+            justify-content: center;
+  }
+}
+
 .job__main-list-data--half {
   width: 25%;
   -webkit-box-flex: 1;
           flex: 1 0 25%;
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-list-data--half {
+    width: 57%;
+    -webkit-box-flex: 1;
+            flex: 1 0 57%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-list-data--mobile-full {
+    width: 100%;
+    -webkit-box-flex: 1;
+            flex: 1 0 100%;
+  }
 }
 
 .job__main-address {
@@ -2302,6 +2591,20 @@ And you should not feel free to add a new Utility class.
 
 .job__main-address > * {
   width: 48%;
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-address > * {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .job__main-address {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
 }
 
 .job__main-address-list {
@@ -2339,6 +2642,12 @@ And you should not feel free to add a new Utility class.
   -webkit-box-flex: 0;
           flex: 0 0 280px;
   align-self: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .jobs-filter {
+    display: none;
+  }
 }
 
 .jobs-filter__header {
@@ -2401,10 +2710,26 @@ And you should not feel free to add a new Utility class.
   display: flex;
 }
 
+@media screen and (max-width: 768px) {
+  .job-list__item-top {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 .job-list__item-top-left {
   width: 320px;
   -webkit-box-flex: 0;
           flex: 0 0 320px;
+}
+
+@media screen and (max-width: 768px) {
+  .job-list__item-top-left {
+    width: auto;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
+  }
 }
 
 .job-list__item-top-right {
@@ -2414,8 +2739,21 @@ And you should not feel free to add a new Utility class.
   margin-left: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .job-list__item-top-right {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
 .job-list__item-content {
   margin-top: 22px;
+}
+
+@media screen and (max-width: 768px) {
+  .job-list__item-content {
+    margin-top: 8px;
+  }
 }
 
 .job-list__item-footer {
@@ -2505,6 +2843,12 @@ And you should not feel free to add a new Utility class.
           flex: 1;
   margin-left: 40px;
   align-self: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .jobs-section {
+    margin-left: 0;
+  }
 }
 
 .jobs-section__top {
@@ -2819,10 +3163,25 @@ And you should not feel free to add a new Utility class.
   z-index: 20;
 }
 
+@media screen and (max-width: 768px) {
+  .ReactModal__Content {
+    width: calc(100% - 40px) !important;
+    max-height: 90%;
+    height: 90%;
+    overflow: scroll !important;
+  }
+}
+
 .modal__header {
   position: relative;
   padding: 25px 0 20px 48px;
   height: 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__header {
+    padding: 25px 0 20px 30px;
+  }
 }
 
 .modal__header--background {
@@ -2844,6 +3203,12 @@ And you should not feel free to add a new Utility class.
 .modal__content {
   position: relative;
   padding: 30px 50px 26px 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content {
+    padding: 30px 30px 26px;
+  }
 }
 
 .modal__content--center {
@@ -3013,10 +3378,24 @@ And you should not feel free to add a new Utility class.
           align-items: flex-start;
 }
 
+@media screen and (max-width: 768px) {
+  .modal__form-portfolio {
+    flex-wrap: wrap;
+  }
+}
+
 .modal__form-portfolio-left {
   width: 200px;
   -webkit-box-flex: 0;
           flex: 0 0 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-portfolio-left {
+    -webkit-box-flex: 1;
+            flex: 1 1 100%;
+    width: 100%;
+  }
 }
 
 .modal__form-portfolio-right {
@@ -3024,6 +3403,16 @@ And you should not feel free to add a new Utility class.
           flex: 1;
   margin-top: -2px;
   margin-left: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-portfolio-right {
+    -webkit-box-flex: 1;
+            flex: 1 1 100%;
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .modal__form-group {
@@ -3060,6 +3449,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-align: center;
           align-items: center;
   margin: 0 -10px;
+  padding: 0 30px 0 10px;
 }
 
 .modal__form-group-inputs > * {
@@ -3093,11 +3483,6 @@ And you should not feel free to add a new Utility class.
   padding: 14px 0;
   border: solid 0.5px #f2f2f0;
   border-left: none;
-}
-
-.modal__form-table-item-wrapper > *:first-child {
-  -webkit-box-flex: 1;
-          flex: 1;
 }
 
 .modal__form-table-item-label {
@@ -3154,6 +3539,153 @@ And you should not feel free to add a new Utility class.
   margin-right: 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--education-period > *:first-child {
+    -webkit-box-flex: 1;
+            flex: 1;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--education-period {
+    padding: 0 15px 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period {
+    display: inline-block !important;
+    width: 100%;
+    padding: 0 !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period > div {
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 10px;
+  }
+}
+
+.modal__form-group-inputs--enrolment-period > div:nth-child(2) {
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period > div:nth-child(2):before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 10px;
+    top: 50%;
+    right: -5px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    background-color: #333;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period > div:nth-child(4),
+  .modal__form-group-inputs--enrolment-period > div:last-child {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period span {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-group-inputs--enrolment-period {
+    padding: 0 15px 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item-wrapper {
+    display: -webkit-box;
+    display: flex;
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item-key {
+    flex-basis: 100%;
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item-value {
+    flex-basis: 50%;
+    width: 50%;
+    -webkit-box-pack: left;
+            justify-content: left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table--edit-programming .modal__form-table-item--header {
+    display: none;
+  }
+}
+
+.modal__form-table-item--edit-programming .modal__form-table-item-wrapper > *:first-child {
+  -webkit-box-flex: 1;
+          flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table-item--edit-programming .modal__form-table-item-wrapper > *:first-child {
+    -webkit-box-flex: 100% !important;
+            flex: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__form-table-item--edit-programming {
+    border-bottom: 1px solid #d9d6d6;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content--edit-programming {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content--edit-programming .modal__form-table-item-wrapper {
+    padding: 30px;
+  }
+
+  .modal__content--edit-programming .modal__form-table-item-wrapper > * {
+    border: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal__content--edit-programming .modal__actions {
+    padding: 20px 0;
+  }
+}
+
 .nada {
   font-size: 16px;
   letter-spacing: 0.06em;
@@ -3188,6 +3720,12 @@ And you should not feel free to add a new Utility class.
   margin: -5px 0 60px;
 }
 
+@media screen and (max-width: 768px) {
+  .notification {
+    margin: 10px 0 60px;
+  }
+}
+
 .notification__top {
   display: -webkit-box;
   display: flex;
@@ -3195,10 +3733,24 @@ And you should not feel free to add a new Utility class.
           justify-content: space-between;
 }
 
+@media screen and (max-width: 768px) {
+  .notification__top {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
+  }
+}
+
 .notification__title {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 768px) {
+  .notification__title {
+    margin-top: 5px;
+  }
 }
 
 .notification__schedule {
@@ -3231,6 +3783,12 @@ And you should not feel free to add a new Utility class.
   margin-top: 16px;
 }
 
+@media screen and (max-width: 768px) {
+  .notifications-list__item {
+    margin-top: 5px;
+  }
+}
+
 .notifications-list__item:first-child {
   margin-top: 0;
 }
@@ -3241,6 +3799,12 @@ And you should not feel free to add a new Utility class.
   border-bottom: solid 1px #d9d6d6;
 }
 
+@media screen and (max-width: 768px) {
+  .notifications-list__item-main {
+    padding: 20px 0 22px;
+  }
+}
+
 .notifications-list__item-title {
   font-size: 16px;
   font-weight: 700;
@@ -3249,10 +3813,23 @@ And you should not feel free to add a new Utility class.
   margin-top: 15px;
 }
 
+@media screen and (max-width: 768px) {
+  .notifications-list__item-title {
+    marign-top: 10px;
+  }
+}
+
 .notifications-list__item-schedule {
   color: #d9d6d6;
   letter-spacing: 0.06em;
   margin-right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .notifications-list__item-schedule {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
 
 .notifications-list__item-button {
@@ -3287,12 +3864,24 @@ And you should not feel free to add a new Utility class.
   padding: 100px 0 60px;
 }
 
+@media screen and (max-width: 768px) {
+  .notifications-section__footer {
+    padding: 100px 0 0;
+  }
+}
+
 .pagescroll {
   position: absolute;
   left: 20px;
   top: calc(660px - 86px);
   overflow: visible;
   z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .pagescroll {
+    display: none;
+  }
 }
 
 .pagescroll__icon {
@@ -3329,6 +3918,12 @@ And you should not feel free to add a new Utility class.
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
+@media screen and (max-width: 768px) {
+  .pagetop {
+    display: none;
+  }
+}
+
 .pagetop button {
   pointer-events: none;
 }
@@ -3341,12 +3936,6 @@ And you should not feel free to add a new Utility class.
   pointer-events: auto;
 }
 
-@media screen and (max-width: 768px) {
-  .pagetop {
-    display: none;
-  }
-}
-
 .pagetop__icon {
   display: block;
   height: 68px;
@@ -3354,6 +3943,12 @@ And you should not feel free to add a new Utility class.
   margin: 0 20px;
   position: relative;
   background-color: #393939;
+}
+
+@media screen and (max-width: 768px) {
+  .pagetop__icon {
+    height: 40px;
+  }
 }
 
 .pagetop__icon:after {
@@ -3368,6 +3963,18 @@ And you should not feel free to add a new Utility class.
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
           writing-mode: vertical-lr;
+}
+
+@media screen and (max-width: 768px) {
+  .pagetop__icon:after {
+    width: 68px;
+    -webkit-writing-mode: lr;
+        -ms-writing-mode: lr;
+            writing-mode: lr;
+    left: -32px;
+    bottom: -25px;
+    font-size: 8px;
+  }
 }
 
 .pageup {
@@ -3414,6 +4021,13 @@ And you should not feel free to add a new Utility class.
   height: 30px;
   margin: 0 5px;
   border: solid 1px #fdb834;
+}
+
+@media screen and (max-width: 768px) {
+  .pagination__item {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .pagination__item.is-active {
@@ -3675,11 +4289,25 @@ a.pagination__item-link:hover {
           align-items: flex-start;
 }
 
+@media screen and (max-width: 768px) {
+  .profile {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 .profile__main {
   -webkit-box-flex: 1;
           flex: 1;
   align-self: stretch;
   margin-right: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__main {
+    margin-right: 0;
+  }
 }
 
 .profile__main-data {
@@ -3715,12 +4343,32 @@ a.pagination__item-link:hover {
   margin: 0 -15px;
 }
 
+@media screen and (max-width: 768px) {
+  .profile__main-list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 .profile__main-list--half .profile__main-list-item {
   width: 50%;
 }
 
+@media screen and (max-width: 768px) {
+  .profile__main-list--half .profile__main-list-item {
+    width: 100%;
+  }
+}
+
 .profile__main-list--half .profile__main-list-item:nth-child(-n+2) {
   margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__main-list--half .profile__main-list-item:nth-child(-n+2) {
+    margin-top: 30px;
+  }
 }
 
 .profile__main-list-item {
@@ -3836,6 +4484,18 @@ a.pagination__item-link:hover {
   margin-top: 32px;
 }
 
+@media screen and (max-width: 768px) {
+  .profile__data-websites-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+}
+
 .profile__data-websites-item:first-child {
   margin-top: 0;
 }
@@ -3870,11 +4530,23 @@ a.pagination__item-link:hover {
   margin-left: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .profile__data-websites-content {
+    margin-left: 0;
+  }
+}
+
 .profile__data-websites-name {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.06em;
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__data-websites-name {
+    margin-top: 15px;
+  }
 }
 
 .profile__data-websites-desc {
@@ -3885,6 +4557,12 @@ a.pagination__item-link:hover {
 
 .profile__data-video {
   padding: 5px 40px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__data-video {
+    padding: 0;
+  }
 }
 
 .profile__data-work-term {
@@ -3977,6 +4655,12 @@ a.pagination__item-link:hover {
   -webkit-box-flex: 0;
           flex: 0 0 300px;
   align-self: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__sidebar {
+    width: 100%;
+  }
 }
 
 .profile__sidebar--single {
@@ -4224,6 +4908,14 @@ a.pagination__item-link:hover {
   margin-right: 12px;
   border: solid 1px #d9d6d6;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .radio > em {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+  }
 }
 
 .radio--labeled > span {
@@ -4856,6 +5548,12 @@ a.pagination__item-link:hover {
   border-bottom: solid 1px #fdb834;
 }
 
+@media screen and (max-width: 768px) {
+  .seeker-list__title {
+    font-size: 14px;
+  }
+}
+
 .seeker-list__search {
   position: absolute;
   top: 32px;
@@ -4898,10 +5596,26 @@ a.pagination__item-link:hover {
           flex: 0 0 90px;
 }
 
+@media screen and (max-width: 768px) {
+  .seeker-list__item-left {
+    width: 60px;
+    -webkit-box-flex: 0;
+            flex: 0 0 60px;
+    margin-top: -60px;
+    align-self: flex-start;
+  }
+}
+
 .seeker-list__item-right {
   -webkit-box-flex: 1;
           flex: 1;
   margin-left: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .seeker-list__item-right {
+    margin-left: 12px;
+  }
 }
 
 .seeker-list__item-right-top {
@@ -4911,10 +5625,31 @@ a.pagination__item-link:hover {
           align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  .seeker-list__item-right-top {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+
+  .seeker-list__item-right-top > .pill {
+    font-size: 10px;
+    font-weight: 600;
+  }
+}
+
 .seeker-list__item-name {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 768px) {
+  .seeker-list__item-name {
+    font-size: 14px;
+  }
 }
 
 .seeker-list__item-right-bottom {
@@ -4925,11 +5660,28 @@ a.pagination__item-link:hover {
   margin-top: 16px;
 }
 
+@media screen and (max-width: 768px) {
+  .seeker-list__item-right-bottom {
+    flex-wrap: wrap;
+    margin-left: -70px;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .seeker-list__item-description {
   font-size: 15px;
   line-height: 0.867;
   letter-spacing: 0.06em;
   margin-right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .seeker-list__item-description {
+    font-size: 14px;
+    -webkit-box-flex: 0;
+            flex: 0 1 100%;
+  }
 }
 
 .seeker-list__item-tag {
@@ -4940,12 +5692,26 @@ a.pagination__item-link:hover {
   padding: 2px 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .seeker-list__item-tag {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+}
+
 .seeker-list__item-time {
   -webkit-box-flex: 1;
           flex: 1;
   color: #d9d6d6;
   text-align: right;
   letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 768px) {
+  .seeker-list__item-time {
+    font-size: 11px;
+    margin-top: 8px;
+  }
 }
 
 .seeker-list__button {
@@ -5076,10 +5842,23 @@ a.pagination__item-link:hover {
   margin-bottom: 60px;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-container {
+    margin-left: 0 !important;
+  }
+}
+
 .swiper-slide.slider {
   position: relative;
   height: calc(100vh - 98px);
+  height: 100vh;
   min-height: 660px;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide.slider {
+    height: calc(100vh - 61px);
+  }
 }
 
 .swiper-slide .slider__eyecatch {
@@ -5116,10 +5895,25 @@ a.pagination__item-link:hover {
   z-index: 1;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content {
+    width: 75%;
+    top: 140px;
+    padding: 40px 31px 21px 30px;
+  }
+}
+
 .swiper-slide .slider-content > img {
   float: left;
   width: 50px;
   height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content > img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .swiper-slide .slider-content__top {
@@ -5133,10 +5927,23 @@ a.pagination__item-link:hover {
   border-top: solid 1px #d9d6d6;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content__main {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
+
 .swiper-slide .slider-content__title {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content__title {
+    font-size: 13px;
+  }
 }
 
 .swiper-slide .slider-content__desc {
@@ -5157,11 +5964,25 @@ a.pagination__item-link:hover {
   margin-top: 46px;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content__footer {
+    margin-top: 20px;
+  }
+}
+
 .swiper-slide .slider-content__pills {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content__pills {
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 .swiper-slide .slider-content__pills-item {
@@ -5172,6 +5993,12 @@ a.pagination__item-link:hover {
   margin-right: 85px;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-slide .slider-content__fav {
+    margin-right: 0;
+  }
+}
+
 .swiper-pagination.slider-pagination {
   position: absolute;
   top: 23px;
@@ -5180,11 +6007,44 @@ a.pagination__item-link:hover {
   width: auto !important;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-pagination.slider-pagination {
+    top: auto;
+    left: 0 !important;
+    bottom: 0 !important;
+    right: auto;
+    width: 100% !important;
+    background-color: #fff;
+    text-align: left;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding: 20px 16px 10px;
+  }
+}
+
 .swiper-pagination .slider-pagination__item {
   position: relative;
   width: 55px;
   height: 55px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-pagination .slider-pagination__item {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.swiper-pagination .slider-pagination__item.is-active .slider-pagination__item-line {
+  background-color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-pagination .slider-pagination__item.is-active .slider-pagination__item-svg > .path-bg {
+    stroke: #333;
+  }
 }
 
 .swiper-pagination .slider-pagination__item-number {
@@ -5202,6 +6062,12 @@ a.pagination__item-link:hover {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-pagination .slider-pagination__item-number {
+    font-size: 15px;
+  }
 }
 
 .swiper-pagination .slider-pagination__item-bg {
@@ -5222,11 +6088,23 @@ a.pagination__item-link:hover {
   stroke-dasharray: 0px, 999999px;
 }
 
+@media screen and (max-width: 768px) {
+  .swiper-pagination .slider-pagination__item-svg > .path-progress {
+    stroke: transparent;
+  }
+}
+
 .swiper-pagination .slider-pagination__item-svg > .path-bg {
   fill: none;
   stroke: rgba(0, 0, 0, 0.15);
   stroke-miterlimit: 10;
   stroke-width: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-pagination .slider-pagination__item-svg > .path-bg {
+    stroke: transparent;
+  }
 }
 
 .swiper-pagination .slider-pagination__item-line {
@@ -5236,6 +6114,16 @@ a.pagination__item-link:hover {
   width: 113px;
   height: 1px;
   background-color: #d9d6d6;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper-pagination .slider-pagination__item-line {
+    height: 42px;
+    width: 1px;
+    left: calc(50% - 1px);
+    top: -47px;
+    background-color: transparent;
+  }
 }
 
 .scout-list__container {

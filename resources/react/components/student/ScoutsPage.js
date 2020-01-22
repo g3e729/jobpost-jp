@@ -4,6 +4,7 @@ import Page from '../common/Page';
 import Heading from '../common/Heading';
 import Loading from '../common/Loading';
 import Nada from '../common/Nada';
+import PageUp from '../common/PageUp';
 import FavoritesSection from './FavoritesSection';
 
 const ScoutsPage = _ => {
@@ -33,6 +34,7 @@ const ScoutsPage = _ => {
               </span>
             </Nada>
           )}
+          <PageUp />
         </>
       )}
     </Page>
