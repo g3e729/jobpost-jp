@@ -4,7 +4,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import Button from '../common/Button';
 import Clipboard from '../common/Clipboard';
@@ -13,6 +13,7 @@ import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
 import { routes } from '../../constants/routes';
+import { skills } from '../../constants/state';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 import { updateUser } from '../../actions/user';
@@ -25,11 +26,23 @@ const Profile = (props) => {
     user,
     accountType,
     isEdit = false,
-    isOwner = true
+    isOwner = true,
+    filters
   } = props;
   const [jobs, setJobs] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
+  const filterData = filters && filters.filtersData;
+  const {
+    experiences = [],
+    frameworks = [],
+    others = [],
+    programming_languages = []
+  } = (filterData !== undefined && filterData.students);
+  const experienceFilter = Object.keys(experiences).map(item => item);
+  const frameworkFilter = Object.keys(frameworks).map(item => item);
+  const otherFilter = Object.keys(others).map(item => item);
+  const programmingFilter = Object.keys(programming_languages).map(item => item);
 
   const handleModal = type => {
     dispatch(setModal(type));
@@ -241,26 +254,15 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills">
-                    <dt className="profile__data-skills-term">C＃</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">PHP</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Ruby</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Python 2</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Python 3</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Javascript</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">HTML +CSS3</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Sass</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">SQL</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Bash</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
+                    { data.skills.length && data.skills
+                      .filter(item => programmingFilter.includes(item.skill_id))
+                      .map((item, idx) => (
+                        <React.Fragment key={idx}>
+                          <dt className="profile__data-skills-term">{Object.values(programming_languages)[idx]}</dt>
+                          <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>
@@ -276,22 +278,15 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills">
-                    <dt className="profile__data-skills-term">Laravel</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Ruby on Rails</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Django</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Flask</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Unity</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Vue.js</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Bootstrap</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Tensorflow</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
+                    { data.skills.length && data.skills
+                      .filter(item => frameworkFilter.includes(item.skill_id))
+                      .map((item, idx) => (
+                        <React.Fragment key={idx}>
+                          <dt className="profile__data-skills-term">{Object.values(frameworks)[idx]}</dt>
+                          <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>
@@ -307,26 +302,15 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills">
-                    <dt className="profile__data-skills-term">Linux</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Mac OS X</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Cent OS</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Debian</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Apache</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">nginx</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Unicorn</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Amazon Web Service</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">WordPress</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Vim</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
+                    { data.skills.length && data.skills
+                      .filter(item => otherFilter.includes(item.skill_id))
+                      .map((item, idx) => (
+                        <React.Fragment key={idx}>
+                          <dt className="profile__data-skills-term">{Object.values(others)[idx]}</dt>
+                          <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>
@@ -342,14 +326,15 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills profile__data-skills--full">
-                    <dt className="profile__data-skills-term">Web開発（サーバサイドエンジニア） 　</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">Web開発（フロントエンドエンジニア）</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">研究開発（画像処理,自然言語処理,機械学習,AIなど）</dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
-                    <dt className="profile__data-skills-term">コンシューマーゲーム開発 </dt>
-                    <dd className="profile__data-skills-data">1年以内</dd>
+                    { data.skills.length && data.skills
+                      .filter(item => experienceFilter.includes(item.skill_id))
+                      .map((item, idx) => (
+                        <React.Fragment key={idx}>
+                          <dt className="profile__data-skills-term">{Object.values(experiences)[idx]}</dt>
+                          <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>
@@ -775,4 +760,9 @@ const Profile = (props) => {
     ) : null
   )
 }
-export default Profile;
+
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(Profile);
