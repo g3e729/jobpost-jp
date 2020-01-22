@@ -10865,7 +10865,7 @@ new _components_form_validation__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/regene/Documents/Projects/Kredo-Career/resources/js/register.js */"./resources/js/register.js");
+module.exports = __webpack_require__(/*! /Users/kamlig/Projects/kredo-career/resources/js/register.js */"./resources/js/register.js");
 
 
 /***/ })

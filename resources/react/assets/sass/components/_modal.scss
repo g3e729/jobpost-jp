@@ -330,6 +330,10 @@
   color: $color-white;
   letter-spacing: 0.06em;
   text-align: center;
+
+  &:first-child {
+    flex: 1;
+  }
 }
 
 .modal__form-table-item-key {
@@ -376,7 +380,7 @@
 
 //MODIFIER
 .modal__form-group-inputs--education-period {
-  
+
   > * {
     @include max-screen($breakpoint-mobile) {
       &:first-child {
@@ -398,11 +402,11 @@
     width: 100%;
     padding: 0 !important;
   }
-  
+
   > * {}
-  
+
   > div {
-    
+
     @include max-screen($breakpoint-mobile) {
       width: 50%;
       display: inline-block;
@@ -447,12 +451,12 @@
   @include max-screen($breakpoint-mobile) {
     margin: 0;
   }
-  
+
   .modal__form-table-item-wrapper {
     @include max-screen($breakpoint-mobile) {
       display: flex;
       width: 100%;
-      flex-flow: row wrap;  
+      flex-flow: row wrap;
     }
   }
   .modal__form-table-item-key {
@@ -497,8 +501,14 @@
   }
 }
 .modal__content--edit-programming {
+  max-height: 400px;
+  overflow: scroll;
+
   @include max-screen($breakpoint-mobile) {
     padding: 0;
+
+    max-height: max-content;
+    overflow: visible;
   }
 
   .modal__form-table-item-wrapper {

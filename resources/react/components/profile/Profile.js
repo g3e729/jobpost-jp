@@ -93,7 +93,7 @@ const Profile = (props) => {
                   { isEdit ?
                     <EdiText
                       submitOnEnter
-                      value={data.intro_text}
+                      value={data.intro_text || ''}
                       type="textarea"
                       onSave={e => handleSubmit(e, 'intro_text')}
                       editing={isEditing}
@@ -124,7 +124,7 @@ const Profile = (props) => {
                   { isEdit ?
                     <EdiText
                       submitOnEnter
-                      value={data.what_text}
+                      value={data.what_text || ''}
                       type="textarea"
                       onSave={e => handleSubmit(e, 'what_text')}
                       editing={isEditing}
@@ -210,7 +210,7 @@ const Profile = (props) => {
                       { isEdit ?
                         <EdiText
                           submitOnEnter
-                          value={data.movie_url}
+                          value={data.movie_url || ''}
                           type="text"
                           onSave={e => handleSubmit(e, 'movie_url')}
                           editing={isEditing}
@@ -384,7 +384,7 @@ const Profile = (props) => {
                   { isEdit ?
                     <EdiText
                       submitOnEnter
-                      value={data.language}
+                      value={data.language || ''}
                       type="text"
                       onSave={e => handleSubmit(e, 'language')}
                       editing={isEditing}
@@ -415,8 +415,8 @@ const Profile = (props) => {
                   { isEdit ?
                     <EdiText
                       submitOnEnter
-                      value={data.toeic_score}
-                      type="text"
+                      value={`${data.toeic_score || 0}`}
+                      type="number"
                       onSave={e => handleSubmit(e, 'toeic_score')}
                       editing={isEditing}
                     />
@@ -509,7 +509,7 @@ const Profile = (props) => {
                     { isEdit ?
                       <EdiText
                         submitOnEnter
-                        value={data.github}
+                        value={data.github || ''}
                         type="text"
                         onSave={e => handleSubmit(e, 'github')}
                         editing={isEditing}
@@ -609,7 +609,7 @@ const Profile = (props) => {
                   { isEdit ?
                     <EdiText
                       submitOnEnter
-                      value={data.description}
+                      value={data.description || ''}
                       type="textarea"
                       onSave={e => handleSubmit(e, 'description')}
                       editing={isEditing}
