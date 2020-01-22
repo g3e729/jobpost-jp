@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import EdiText from 'react-editext';
+import moment from 'moment';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { css } from 'emotion';
 import { useDispatch } from 'react-redux';
@@ -6,26 +9,47 @@ import { useDispatch } from 'react-redux';
 import Button from '../common/Button';
 import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
+import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
+import { updateUser } from '../../actions/user';
+
+import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const Profile = (props) => {
   const dispatch = useDispatch();
-  const [jobs, setJobs] = useState([]);
   const {
     user,
     accountType,
     isEdit = false,
     isOwner = true
   } = props;
+  const [jobs, setJobs] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
 
   const handleModal = type => {
     dispatch(setModal(type));
   }
+
+  const handleEdit = _ => {
+    setIsEditing(true);
+  }
+
+  const handleSave = _ => {
+    setIsEditing(false);
+  }
+
+  const handleSubmit = _.debounce((value, type) => {
+    const formdata = new FormData();
+    formdata.append(type, (value || ''));
+
+    dispatch(updateUser(formdata));
+    setIsEditing(false);
+  }, 400)
 
   async function getFilteredJobs() {
     const companyId = data.id;
@@ -66,28 +90,53 @@ const Profile = (props) => {
                       </>
                     </Button>
                   ) : null }
-                  <p className="profile__main-list-item-copy">{data.intro_text}</p>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.intro_text}
+                      type="textarea"
+                      onSave={e => handleSubmit(e, 'intro_text')}
+                      editing={isEditing}
+                    />
+                  : <p className="profile__main-list-item-copy">data.intro_text</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">やってみたいこと</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <p className="profile__main-list-item-copy">{data.what_text}</p>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.what_text}
+                      type="textarea"
+                      onSave={e => handleSubmit(e, 'what_text')}
+                      editing={isEditing}
+                    />
+                  : <p className="profile__main-list-item-copy">{data.what_text}</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">職歴</h3>
                   { isEdit ? (
-                    <Button className="test button--pill" onClick={_ => handleModal(modalType.PROFILE_WORK)}>
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_WORK)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -137,19 +186,36 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ムービー</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
                   <div className="profile__data-video">
                     <Embed src="https://www.youtube.com/embed/zpOULjyy-n8"
                       className={`embed--16by9 ${css`margin-bottom: 22px`}`}
                       allowFullScreen />
                     <div className="profile__data-link">
-                      <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                      { isEdit ?
+                        <EdiText
+                          submitOnEnter
+                          value={data.movie_url}
+                          type="text"
+                          onSave={e => handleSubmit(e, 'movie_url')}
+                          editing={isEditing}
+                        />
+                      : <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">{data.movie_url}</a>  }
                       <Clipboard value="https://github.com/MyznEiji" />
                     </div>
                   </div>
@@ -299,28 +365,62 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">話し言葉</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <span className="profile__main-list-item-desc">英語、中国語</span>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.language}
+                      type="text"
+                      onSave={e => handleSubmit(e, 'language')}
+                      editing={isEditing}
+                    />
+                  : <span className="profile__main-list-item-desc">{data.todo_language}</span>}
                 </div>
               </li>
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">TOEIC</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <span className="profile__main-list-item-desc">６５０点</span>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.toeic_score}
+                      type="text"
+                      onSave={e => handleSubmit(e, 'toeic_score')}
+                      editing={isEditing}
+                    />
+                  : <span className="profile__main-list-item-desc">{data.toeic_score}</span>}
                 </div>
               </li>
             </ul>
@@ -389,16 +489,33 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">Github</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
                   <div className="profile__data-link">
-                    <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a>
-                    <Clipboard value="{data.github}" />
+                    { isEdit ?
+                      <EdiText
+                        submitOnEnter
+                        value={data.github}
+                        type="text"
+                        onSave={e => handleSubmit(e, 'github')}
+                        editing={isEditing}
+                      />
+                    : <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a> }
+                    <Clipboard value={data.github} />
                   </div>
                 </div>
               </li>
@@ -473,14 +590,31 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">我々のミッションは</h3>
                   { isEdit ? (
-                    <Button className="button--pill">
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
+                    isEditing ? (
+                      <Button className="button--pill heading__user-pill" onClick={_ => handleSave()}>
+                        <>
+                          <i className="icon icon-disk text-dark-yellow"></i>
+                          更新
+                        </>
+                      </Button>
+                    ) : (
+                      <Button className="button--pill heading__user-pill" onClick={_ => handleEdit()}>
+                        <>
+                          <i className="icon icon-pencil text-dark-yellow"></i>
+                          編集
+                        </>
+                      </Button>
+                    )
                   ) : null }
-                  <p className="profile__main-list-item-copy">{data.description}</p>
+                  { isEdit ?
+                    <EdiText
+                      submitOnEnter
+                      value={data.description}
+                      type="textarea"
+                      onSave={e => handleSubmit(e, 'description')}
+                      editing={isEditing}
+                    />
+                  : <p className="profile__main-list-item-copy">data.description</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -580,26 +714,31 @@ const Profile = (props) => {
               <ul className="profile__sidebar-content-company">
                 <li className="profile__sidebar-content-company-items">
                   <div className="profile__sidebar-content-avatar">
-                    <img src="https://lorempixel.com/240/240/city/" alt=""/>
-                    <h4 className="profile__sidebar-content-avatar-name">株式会社アクターリアリティ</h4>
+                    <img src={data.avatar || avatarPlaceholder} alt=""/>
+                    <h4 className="profile__sidebar-content-avatar-name">{data.company_name}</h4>
                   </div>
                 </li>
-                <li className="profile__sidebar-content-company-items">
-                  <div className="profile__sidebar-content-misc">
-                    <i className="icon icon-marker text-dark-yellow"></i>
-                    <p className="profile__sidebar-content-misc-copy">{`東京都港区芝2-13-4 住友不動産芝ビル4号館 9F`}</p>
-                  </div>
-                  <div className="profile__sidebar-content-misc">
-                    <i className="icon icon-globe text-dark-yellow"></i>
-                    <p className="profile__sidebar-content-misc-copy">{`https://hogehoge.com`}</p>
-                  </div>
-                </li>
+                { data.address1 || data.address2 || data.address3 || data.prefecture || data.homepage ? (
+                  <li className="profile__sidebar-content-company-items">
+                    { data.address1 || data.address2 || data.address3 || data.prefecture ? (
+                      <div className="profile__sidebar-content-misc">
+                        <i className="icon icon-marker text-dark-yellow"></i>
+                        <p className="profile__sidebar-content-misc-copy">{data.address1} {data.address2} {data.address3} {data.prefecture}</p>
+                      </div>
+                    ) : null}
+                    { data.prefecture ? (
+                      <div className="profile__sidebar-content-misc">
+                        <i className="icon icon-globe text-dark-yellow"></i>
+                        <p className="profile__sidebar-content-misc-copy">{data.homepage}</p>
+                      </div>
+                    ) : null}
+                  </li>
+                ) : null}
                 <li className="profile__sidebar-content-company-items">
                   <div className="profile__sidebar-content-misc">
                     <i className="icon icon-building text-dark-yellow"></i>
-                    <p className="profile__sidebar-content-misc-copy">{`2008/1 に設立
-                      飯田 悠司 が創業
-                    `}</p>
+                    <p className="profile__sidebar-content-misc-copy">{`${moment(data.created_at).format('YYYY/MM')} に設立
+                      ${data.ceo}`}</p>
                   </div>
                 </li>
                 <li className="profile__sidebar-content-company-items">
@@ -622,11 +761,11 @@ const Profile = (props) => {
                   </ul>
                 </li>
                 <li className="profile__sidebar-content-company-items">
-                  <div className="profile__sidebar-content-company-map">
-                    <Embed src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                      className={`embed--4by3 ${css`height: 400px;`}`}
-                      allowFullScreen />
-                  </div>
+                  <Mapped
+                    address={`${data.address1} ${data.address2}`}
+                    zoom={10}
+                    height="400px"
+                  />
                 </li>
               </ul>
             </div>

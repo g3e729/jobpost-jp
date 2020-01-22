@@ -8,14 +8,36 @@ import Slider from '../common/Slider';
 import PageScroll from '../common/PageScroll';
 import JobsFilter from './JobsFilter';
 import JobsSection from './JobsSection';
+import Job from '../../utils/job';
 import { getJobs, getFilteredJobs  } from '../../actions/jobs';
 
 const JobsPage = _ => {
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [sliderJobs, setSliderJobs] = useState([]);
   const dispatch = useDispatch();
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
+
+  useEffect(_ => {
+    async function getSliderJobs() {
+      const apiToken = localStorage.getItem('api_token');
+      const response = await Job.getFilteredJobs({sort: 'popular'});
+
+      if (response.statusText === 'OK') {
+        setSliderJobs(response.data.data.splice(0, 3).map(job => {
+          return {
+            ...job,
+            hasUserLiked : job.likes.some(like => {
+              return like.liker_id == apiToken
+            })
+          }
+        }))
+      }
+    }
+
+    getSliderJobs();
+  }, [])
 
   useEffect(_ => {
     setIsLoading(true);
@@ -66,7 +88,7 @@ const JobsPage = _ => {
       <>
         <PageScroll />
         <Page>
-          <Slider />
+          <Slider jobs={sliderJobs} isLoading={isPageLoading} />
           <div className="l-section l-section--main section">
             <div className="l-container l-container--main">
               <JobsFilter />

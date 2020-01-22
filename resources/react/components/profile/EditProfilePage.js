@@ -18,6 +18,7 @@ const ProfilePage = (props) => {
       <Heading type="user"
         isEdit="true"
         style={{ backgroundImage: `url("${data.profile.cover_photo || ecPlaceholder}")` }}
+        accountType={accountType}
         title={data.profile.display_name}
         subTitle={
           accountType === 'student' ? (
@@ -26,6 +27,7 @@ const ProfilePage = (props) => {
             data.profile.homepage
           ) : null
         }
+        data-cover-photo={data.profile.cover_photo || ecPlaceholder}
         data-avatar={data.profile.avatar || avatarPlaceholder}
       />
       <div className="l-section l-section--profile section">

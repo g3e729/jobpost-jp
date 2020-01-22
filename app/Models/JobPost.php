@@ -58,7 +58,7 @@ class JobPost extends Model
         'in' => 'Internship',
     ];
 
-    protected $appends = ['cover_photo'];
+    protected $appends = ['cover_photo', 'display_employment_type', 'display_prefecture'];
 
     public static function boot()
     {
@@ -97,6 +97,28 @@ class JobPost extends Model
         }
 
         return FileService::retrievePath($url);
+    }
+
+    public function getDisplayEmploymentTypeAttribute()
+    {
+        $type = $this->employment_type;
+    
+        if (empty($type)) {
+            return '--';
+        }
+
+        return self::getEmploymentTypes($type);
+    }
+
+    public function getDisplayPrefectureAttribute()
+    {
+        $prefecture = $this->prefecture;
+    
+        if (empty($prefecture)) {
+            return '--';
+        }
+
+        return getPrefecture($prefecture);
     }
 
     // Relationships

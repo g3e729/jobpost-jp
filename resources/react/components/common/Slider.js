@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import _ from 'lodash';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
+import moment from 'moment';
+moment.locale('ja');
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+import Button from '../common/Button';
+import Loading from './Loading';
 import Pill from './Pill';
+import Like from '../../utils/like';
+import generateRoute from '../../utils/generateRoute';
+import { state } from '../../constants/state';
+import { routes } from '../../constants/routes';
 
-const Slider = _ => {
+import avatarPlaceholder from '../../../img/avatar-default.png';
+import ecPlaceholder from '../../../img/eyecatch-default.jpg';
+
+const Slider = (props) => {
+  const {
+    jobs,
+    user,
+    isLoading
+  } = props;
+  const [jobsTmp, setJobsTmp] = useState(jobs);
   const params = {
     noSwiping: true,
     slidesPerView: 1,
@@ -37,44 +57,83 @@ const Slider = _ => {
     }
   }
 
+  const handleLike = _.debounce((type, id) => {
+    Like.toggleLike(type, id)
+      .then(result => {
+        setJobsTmp(jobsTmp.map(job => {
+          if (job.id == id) {
+            return { ...job,
+              likes_count: result.data.total,
+              hasUserLiked: !job.hasUserLiked
+            }
+          }
+
+          return job;
+        }));
+
+        console.log('[Like SUCCESS]', result);
+      }).catch(error => console.log('[Like ERROR]', error));
+  }, 400);
+
   return (
-    <Swiper {...params}>
-      { [0, 1, 3].map((_, idx) => (
-        <div className="slider" key={idx}>
-          <div className="slider__eyecatch">
-            <div className="slider__eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-          </div>
-          <div className="slider-content">
-            <img src="https://lorempixel.com/240/240/city/" alt="Company Name"/>
-            <div className="slider-content__top">
-              <h3 className="slider-content__title">株式会社アクターリアリティ {idx + 1}</h3>
+    isLoading ? (
+      <Loading />
+    ) : (
+      jobsTmp.length ? (
+        <Swiper {...params}>
+        { jobsTmp.map(job => (
+          <div className="slider" key={job.id}>
+            <div className="slider__eyecatch">
+              <div className="slider__eyecatch-img" style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
             </div>
-            <div className="slider-content__main">
-              <p className="slider-content__desc">自社★C2Cマッチングプラットフォーム開発<br/>【少数精鋭/残業少/フレックス】</p>
-            </div>
-            <div className="slider-content__footer">
-              <ul className="slider-content__pills">
-                <li className="slider-content__pills-item">
-                  <Pill className="pill--active">PHP</Pill>
-                </li>
-                <li className="slider-content__pills-item">
-                  <Pill>東京</Pill>
-                </li>
-                <li className="slider-content__pills-item">
-                  <Pill>3日前</Pill>
-                </li>
-              </ul>
-              <div className="slider-content__fav">
-                <Pill className="pill--icon">
-                  <i className="icon icon-star"></i>1.2k
-                </Pill>
+            <div className="slider-content">
+              <img src={job.company.avatar || avatarPlaceholder} alt="Company Name"/>
+              <div className="slider-content__top">
+                <h3 className="slider-content__title">{job.company.company_name}</h3>
+              </div>
+              <div className="slider-content__main">
+                <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
+                  className="button button--link">
+                  <p className="slider-content__desc">{job.title}</p>
+                </Link>
+              </div>
+              <div className="slider-content__footer">
+                <ul className="slider-content__pills">
+                  { job.programming_language ? (
+                    <li className="slider-content__pills-item"><Pill className="pill--active">{job.programming_language}</Pill></li>
+                  ) : null }
+                  { job.display_prefecture ? (
+                    <li className="slider-content__pills-item"><Pill>{job.display_prefecture}</Pill></li>
+                  ) : null }
+                  { job.created_at ? (
+                    <li className="slider-content__pills-item"><Pill>{moment(job.created_at).fromNow()}</Pill></li>
+                  ) : null }
+                </ul>
+                <div className="slider-content__fav">
+                  { user && user.isLogged ? (
+                    <Button className="button--link" onClick={e => handleLike('job', job.id)}>
+                      <Pill className={`pill--icon text-medium-black ${job.hasUserLiked ? state.ACTIVE : ''}`}>
+                        <i className="icon icon-star"></i>{job.likes_count}
+                      </Pill>
+                    </Button>
+                  ) : (
+                    <Pill className="pill--icon">
+                      <i className="icon icon-star"></i>{job.likes_count}
+                    </Pill>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )) }
-    </Swiper>
+        ))}
+        </Swiper>
+      ) : null
+    )
   );
 }
 
-export default Slider;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Slider);

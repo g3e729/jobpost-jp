@@ -1,8 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import { css } from 'emotion';
 
-import Embed from '../common/Embed';
+import Mapped from '../common/Mapped';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
@@ -80,6 +79,8 @@ const Job = (props) => {
           <dl className="job__main-list job__main-list--table">
             <dt className="job__main-list-term">ポジション</dt>
             <dd className="job__main-list-data">{job.position}</dd>
+            <dt className="job__main-list-term">ステータス</dt>
+            <dd className="job__main-list-data">{job.display_employment_type}</dd>
             <dt className="job__main-list-term">開発環境</dt>
             <dd className="job__main-list-data">
               <dl>
@@ -122,11 +123,11 @@ const Job = (props) => {
             <h3 className="job__main-heading-title">勤務地</h3>
           </div>
           <div className="job__main-address">
-            <div className="job__main-address-holder">
-              <Embed src="https://maps.google.com/maps?q=東京都港区六本木5-2-3 マガジンハウス六本木ビル7F選考フロー&t=&z=5&ie=UTF8&output=embed"
-                className={`embed--4by3 ${css`height: 235px;`}`}
-                allowFullScreen />
-            </div>
+            <Mapped
+              address={`${job.address1} ${job.address2}`}
+              zoom={10}
+              height="235px"
+            />
             <dl className="job__main-address-list">
               { job.address1 || job.address2 || job.address3 || job.prefecture ? (
                 <>
@@ -180,11 +181,11 @@ const Job = (props) => {
               </div>
             </li>
             <li className="job__sidebar-content-company-items">
-              <div className="job__sidebar-content-company-map">
-                <Embed src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  className={`embed--4by3 ${css`height: 400px;`}`}
-                  allowFullScreen />
-              </div>
+              <Mapped
+                address={`${company.address1} ${company.address2}`}
+                zoom={10}
+                height="400px"
+              />
             </li>
             </ul>
           </div>

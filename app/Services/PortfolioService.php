@@ -60,4 +60,18 @@ class PortfolioService extends BaseService
 		}
         return $this->item;
     }
+
+    public function insert($model, $request_data)
+    {
+    	return $model->portfolios()->create($request_data);
+    }
+
+    public function revise($id, $request_data)
+    {
+    	$portfolio = Portfolio::find($id);
+
+    	$portfolio->update($request_data);
+
+    	return $portfolio;
+    }
 }

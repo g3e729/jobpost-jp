@@ -12,10 +12,19 @@ export const values = {
 };
 
 export const defaultSelectStyles = {
-  control: (provided) => ({
+  container: (provided, { selectProps: { isForm }}) => (
+    isForm ? {
+      ...provided,
+      margin: '-17px -18px',
+      height: '61px',
+      flex: '1'
+    } : {...provided}
+  ),
+  control: (provided, { selectProps: { isForm, height }}) => ({
     ...provided,
-    borderWidth: '1px',
+    borderWidth: isForm ? 'none' : '1px',
     borderRadius: '0',
+    height: isForm ? '100%' : ( height || 'auto'),
   }),
   indicatorSeparator: _ => ({
     display: 'none',

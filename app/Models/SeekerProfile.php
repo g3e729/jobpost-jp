@@ -43,6 +43,7 @@ class SeekerProfile extends Model
         'address3',
         'city',
         'country',
+        'language',
         'birthday',
         'github',
 
@@ -58,8 +59,9 @@ class SeekerProfile extends Model
         'what_text',
         'intro_text',
         'movie_url',
-        
-        'deleted_at'
+
+        'deleted_at',
+        'toeic_score'
     ];
 
     protected $appends = [
@@ -71,7 +73,7 @@ class SeekerProfile extends Model
         'cover_photo',
         'social_media_accounts',
         'listed_skills',
-        
+
         'course',
         'student_status',
         'taken_class',

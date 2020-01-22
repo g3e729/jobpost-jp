@@ -89,6 +89,7 @@
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
+  color: $color-medium-black;
 
   margin-top: 18px;
 
@@ -142,6 +143,7 @@
   letter-spacing: 0.06em;
 
   margin-top: 18px;
+  overflow: hidden;
 
   @include max-screen($breakpoint-mobile) {
     font-size: 10px;

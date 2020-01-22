@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+moment.locale('ja');
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -91,9 +93,9 @@ const JobsList = (props) => {
               </div>
               <div className="job-list__item-footer">
                 <ul className="job-list__item-pills">
-                  <li className="job-list__item-pills-item pill">PHP</li>
-                  <li className="job-list__item-pills-item pill">東京</li>
-                  <li className="job-list__item-pills-item pill">3日前</li>
+                  { job.programming_language ? <li className="job-list__item-pills-item pill">{job.programming_language}</li> : null }
+                  { job.display_prefecture ? <li className="job-list__item-pills-item pill">{job.display_prefecture}</li> : null }
+                  { job.created_at ? <li className="job-list__item-pills-item pill">{moment(job.created_at).fromNow()}</li> : null }
                 </ul>
                 <div className="job-list__item-fav">
                   { isLogged ? (

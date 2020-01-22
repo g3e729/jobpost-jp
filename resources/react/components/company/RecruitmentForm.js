@@ -1,18 +1,23 @@
 import React, { useState, useEffect, createRef } from 'react';
+import Select from 'react-select';
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useParams, useHistory } from 'react-router-dom';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Loading from '../common/Loading';
+import Nada from '../common/Nada';
 import Textarea from '../common/Textarea';
 import JobAPI from '../../utils/job';
 import { state } from '../../constants/state';
-import { prefix } from '../../constants/routes';
+import { prefix, routes } from '../../constants/routes';
+import { jobSelectStyles } from '../../constants/config';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
-const RecruitmentForm = () => {
+const RecruitmentForm = ({filters}) => {
   const params = useParams();
   const history = useHistory();
   const [job, setJob] = useState({});
@@ -23,6 +28,7 @@ const RecruitmentForm = () => {
     cover_photo: '',
     cover_photo_delete: null,
     position: '',
+    employment_type: '',
     programming_language: '',
     framework: '',
     database: '',
@@ -47,15 +53,24 @@ const RecruitmentForm = () => {
   const [file, setFile] = useState('');
   const [hasFile, setHasFile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [regionsFilter, setRegionsFilter] = useState([]);
+  const [statusFilter, setStatusFilter] = useState([]);
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
+  const data = (filters.filtersData && filters.filtersData.jobs);
 
   const handleChange = e => {
     e.persist();
 
     setFormValues(prevState => {
       return { ...prevState, [e.target.name]: e.target.value }
+    });
+  }
+
+  const handleSelect = (e, type) => {
+    setFormValues(prevState => {
+      return { ...prevState, [type]: e.value }
     });
   }
 
@@ -91,8 +106,11 @@ const RecruitmentForm = () => {
     formdata.append('title', formValues.title);
     formdata.append('description', formValues.description);
     formdata.append('cover_photo', formValues.cover_photo || '');
-    formdata.append('cover_photo_delete', parseInt(formValues.cover_photo_delete) || null);
+    if (formValues.cover_photo) {
+      formdata.append('cover_photo_delete', parseInt(formValues.cover_photo_delete));
+    }
     formdata.append('position', formValues.position);
+    formdata.append('employment_type', formValues.employment_type);
     formdata.append('programming_language', formValues.programming_language);
     formdata.append('framework', formValues.framework);
     formdata.append('database', formValues.database);
@@ -108,6 +126,7 @@ const RecruitmentForm = () => {
     formdata.append('insurance', formValues.insurance);
     formdata.append('contract_period', formValues.contract_period);
     formdata.append('screening_flow', formValues.screening_flow);
+    formdata.append('prefecture', formValues.prefecture);
     formdata.append('address1', formValues.address1);
     formdata.append('address2', formValues.address2);
     formdata.append('address3', parseInt(formValues.address3) || null);
@@ -178,6 +197,7 @@ const RecruitmentForm = () => {
             description: res.description,
             // cover_photo: res.cover_photo, // DISABLE SET
             position: res.position,
+            employment_type: res.employment_type,
             programming_language: res.programming_language,
             framework: res.framework,
             database: res.database,
@@ -210,6 +230,18 @@ const RecruitmentForm = () => {
     setIsLoading(false);
   }, [params])
 
+  useEffect(_ => {
+    if (data) {
+      setRegionsFilter(Object.keys(data.regions).map((item, idx) => {
+        return {value: item, label: Object.values(data.regions)[idx]};
+      }));
+
+      setStatusFilter(Object.keys(data.status).map((item, idx) => {
+        return {value: item, label: Object.values(data.regions)[idx]};
+      }));
+    }
+  }, [data]);
+
   return (
     <div className="dashboard-section">
       <div className="dashboard-section__content">
@@ -218,277 +250,305 @@ const RecruitmentForm = () => {
           { isLoading ? (
             <Loading className="loading--padded" />
           ) : (
-            <>
-              <form className="recruitment-form__main" onSubmit={_ => console.log('Add job')}>
+            !job.deleted_at ? (
+              <>
+                <form className="recruitment-form__main" onSubmit={_ => console.log('Add job')}>
 
-                <div className="recruitment-form__main-group">
-                  <div className="recruitment-form__main-group-label">
-                    タイトル
-                  </div>
-                  <Input className="recruitment-form__main-group-input"
-                    value={formValues.title}
-                    onChange={e => handleChange(e)}
-                    name="title"
-                    type="text"
-                  />
-                </div>
-
-                <div className="recruitment-form__main-group">
-                  <div className="recruitment-form__main-group-label">
-                    会社ロゴ<span>1246 x 420 (px)</span>
-                  </div>
-                  <div className="recruitment-form__main-group-cluster">
-                    <input className="input recruitment-form__main-group-input"
-                      onChange={e => handleUpdateFile(e)}
-                      onClick={e => e.target.value = null}
-                      ref={imageInputRef}
-                      accept="image/*"
-                      type="file"
-                      style={{ display: 'none' }}
-                    />
-                    <div className="recruitment-form__main-group-eyecatch">
-                      <div className="recruitment-form__main-group-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
+                  <div className="recruitment-form__main-group">
+                    <div className="recruitment-form__main-group-label">
+                      タイトル
                     </div>
-                    <div className="recruitment-form__main-group-actions">
-                      <Button className="button--pill" onClick={e => handleOpenFile(e)}>
-                        <>
-                          <i className="icon icon-image text-dark-yellow"></i>
-                          アップロード
-                        </>
-                      </Button>
-                      <Button className={`button--link recruitment-form__main-group-actions-button ${!hasFile ? state.DISABLED : ''}`}
-                        onClick={e => handleRemoveFile(e)}>
-                        <>
-                          <i className="icon icon-cross"></i>
-                          画像を削除
-                        </>
-                      </Button>
+                    <Input className="recruitment-form__main-group-input"
+                      value={formValues.title}
+                      onChange={e => handleChange(e)}
+                      name="title"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="recruitment-form__main-group">
+                    <div className="recruitment-form__main-group-label">
+                      会社ロゴ<span>1246 x 420 (px)</span>
+                    </div>
+                    <div className="recruitment-form__main-group-cluster">
+                      <input className="input recruitment-form__main-group-input"
+                        onChange={e => handleUpdateFile(e)}
+                        onClick={e => e.target.value = null}
+                        ref={imageInputRef}
+                        accept="image/*"
+                        type="file"
+                        style={{ display: 'none' }}
+                      />
+                      <div className="recruitment-form__main-group-eyecatch">
+                        <div className="recruitment-form__main-group-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
+                      </div>
+                      <div className="recruitment-form__main-group-actions">
+                        <Button className="button--pill" onClick={e => handleOpenFile(e)}>
+                          <>
+                            <i className="icon icon-image text-dark-yellow"></i>
+                            アップロード
+                          </>
+                        </Button>
+                        <Button className={`button--link recruitment-form__main-group-actions-button ${!hasFile ? state.DISABLED : ''}`}
+                          onClick={e => handleRemoveFile(e)}>
+                          <>
+                            <i className="icon icon-cross"></i>
+                            画像を削除
+                          </>
+                        </Button>
+                      </div>
+
                     </div>
 
                   </div>
 
-                </div>
-
-                <div className="recruitment-form__main-group">
-                  <div className="recruitment-form__main-group-label">{`
-                    こんなこと
-                    やります
-                  `}</div>
-                  <Textarea className="recruitment-form__main-group-input"
-                    value={formValues.description}
-                    onChange={e => handleChange(e)}
-                    name="description"
-                  />
-                </div>
-
-                <div className="recruitment-form__main-group">
-                  <div className="recruitment-form__main-group-label">
-                    募集内容
-                  </div>
-                  <div className="recruitment-form__main-group-cluster">
-                    <dl className="recruitment-form__main-group-table">
-                      <dt>ポジション</dt>
-                      <dd>
-                        <Input
-                          value={formValues.position}
-                          onChange={e => handleChange(e)}
-                          name="position"
-                          type="text"
-                        />
-                      </dd>
-                      <dt>開発環境</dt>
-                      <dd>
-                        <dl>
-                          <dt>言語</dt>
-                          <dd>
-                            <Input
-                              value={formValues.programming_language}
-                              onChange={e => handleChange(e)}
-                              name="programming_language"
-                              type="text"
-                            />
-                          </dd>
-                          <dt>フレームワーク</dt>
-                          <dd>
-                            <Input
-                              value={formValues.framework}
-                              onChange={e => handleChange(e)}
-                              name="framework"
-                              type="text"
-                            />
-                          </dd>
-                          <dt>データベース</dt>
-                          <dd>
-                            <Input
-                              value={formValues.database}
-                              onChange={e => handleChange(e)}
-                              name="database"
-                              type="text"
-                            />
-                          </dd>
-                          <dt>管理</dt>
-                          <dd>
-                            <Input
-                              value={formValues.environment}
-                              onChange={e => handleChange(e)}
-                              name="environment"
-                              type="text"
-                            />
-                          </dd>
-                        </dl>
-                      </dd>
-                      <dt>応募要件</dt>
-                      <dd>
-                        <Textarea
-                          value={formValues.requirements}
-                          onChange={e => handleChange(e)}
-                          name="requirements"
-                          row="4"
-                        />
-                      </dd>
-                      <dt>募集人数</dt>
-                      <dd className="half">
-                        <Input
-                          value={formValues.number_of_applicants}
-                          onChange={e => handleChange(e)}
-                          name="number_of_applicants"
-                          type="number"
-                        />
-                      </dd>
-                      <dt>想定年収</dt>
-                      <dd className="half">
-                        <Input
-                          value={formValues.salary}
-                          onChange={e => handleChange(e)}
-                          name="salary"
-                          type="number"
-                        />
-                      </dd>
-                      <dt>勤務時間</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.work_time}
-                          onChange={e => handleChange(e)}
-                          name="work_time"
-                          row="4"
-                        />
-                      </dd>
-                      <dt>休日、休暇</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.holidays}
-                          onChange={e => handleChange(e)}
-                          name="holidays"
-                          row="4"
-                        />
-                      </dd>
-                      <dt>諸手当</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.allowance}
-                          onChange={e => handleChange(e)}
-                          name="allowance"
-                          row="2"
-                        />
-                      </dd>
-                      <dt>インセンティブ</dt>
-                      <dd className="half">
-                        <Input
-                          value={formValues.incentive}
-                          onChange={e => handleChange(e)}
-                          name="incentive"
-                          type="text"
-                        />
-                      </dd>
-                      <dt>昇給・昇格</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.salary_increase}
-                          onChange={e => handleChange(e)}
-                          name="salary_increase"
-                          row="4"
-                        />
-                      </dd>
-                      <dt>保険</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.insurance}
-                          onChange={e => handleChange(e)}
-                          name="insurance"
-                          row="4"
-                        />
-                      </dd>
-                      <dt>試用期間</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.contract_period}
-                          onChange={e => handleChange(e)}
-                          name="contract_period"
-                          row="8"
-                        />
-                      </dd>
-                      <dt>選考フロー</dt>
-                      <dd className="half">
-                        <Textarea
-                          value={formValues.screening_flow}
-                          onChange={e => handleChange(e)}
-                          name="screening_flow"
-                          row="8"
-                        />
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-
-                <div className="recruitment-form__main-group">
-                  <div className="recruitment-form__main-group-label">
-                    住所
-                  </div>
-                  <div className="recruitment-form__main-group-cluster">
-                    <Input className="recruitment-form__main-group-input"
-                      value={formValues.address1}
+                  <div className="recruitment-form__main-group">
+                    <div className="recruitment-form__main-group-label">{`
+                      こんなこと
+                      やります
+                    `}</div>
+                    <Textarea className="recruitment-form__main-group-input"
+                      value={formValues.description}
                       onChange={e => handleChange(e)}
-                      name="address1"
+                      name="description"
+                    />
+                  </div>
+
+                  <div className="recruitment-form__main-group">
+                    <div className="recruitment-form__main-group-label">
+                      募集内容
+                    </div>
+                    <div className="recruitment-form__main-group-cluster">
+                      <dl className="recruitment-form__main-group-table">
+                        <dt>ポジション</dt>
+                        <dd>
+                          <Input
+                            value={formValues.position}
+                            onChange={e => handleChange(e)}
+                            name="position"
+                            type="text"
+                          />
+                        </dd>
+                        <dt>ステータス</dt>
+                        <dd>
+                          <Select options={statusFilter}
+                            styles={jobSelectStyles}
+                            placeholder=''
+                            isForm
+                            onChange={e => handleSelect(e, 'employment_type')}
+                          />
+                        </dd>
+                        <dt>開発環境</dt>
+                        <dd>
+                          <dl>
+                            <dt>言語</dt>
+                            <dd>
+                              <Input
+                                value={formValues.programming_language}
+                                onChange={e => handleChange(e)}
+                                name="programming_language"
+                                type="text"
+                              />
+                            </dd>
+                            <dt>フレームワーク</dt>
+                            <dd>
+                              <Input
+                                value={formValues.framework}
+                                onChange={e => handleChange(e)}
+                                name="framework"
+                                type="text"
+                              />
+                            </dd>
+                            <dt>データベース</dt>
+                            <dd>
+                              <Input
+                                value={formValues.database}
+                                onChange={e => handleChange(e)}
+                                name="database"
+                                type="text"
+                              />
+                            </dd>
+                            <dt>管理</dt>
+                            <dd>
+                              <Input
+                                value={formValues.environment}
+                                onChange={e => handleChange(e)}
+                                name="environment"
+                                type="text"
+                              />
+                            </dd>
+                          </dl>
+                        </dd>
+                        <dt>応募要件</dt>
+                        <dd>
+                          <Textarea
+                            value={formValues.requirements}
+                            onChange={e => handleChange(e)}
+                            name="requirements"
+                            row="4"
+                          />
+                        </dd>
+                        <dt>募集人数</dt>
+                        <dd className="half">
+                          <Input
+                            value={formValues.number_of_applicants}
+                            onChange={e => handleChange(e)}
+                            name="number_of_applicants"
+                            type="number"
+                          />
+                        </dd>
+                        <dt>想定年収</dt>
+                        <dd className="half">
+                          <Input
+                            value={formValues.salary}
+                            onChange={e => handleChange(e)}
+                            name="salary"
+                            type="number"
+                          />
+                        </dd>
+                        <dt>勤務時間</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.work_time}
+                            onChange={e => handleChange(e)}
+                            name="work_time"
+                            row="4"
+                          />
+                        </dd>
+                        <dt>休日、休暇</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.holidays}
+                            onChange={e => handleChange(e)}
+                            name="holidays"
+                            row="4"
+                          />
+                        </dd>
+                        <dt>諸手当</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.allowance}
+                            onChange={e => handleChange(e)}
+                            name="allowance"
+                            row="2"
+                          />
+                        </dd>
+                        <dt>インセンティブ</dt>
+                        <dd className="half">
+                          <Input
+                            value={formValues.incentive}
+                            onChange={e => handleChange(e)}
+                            name="incentive"
+                            type="text"
+                          />
+                        </dd>
+                        <dt>昇給・昇格</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.salary_increase}
+                            onChange={e => handleChange(e)}
+                            name="salary_increase"
+                            row="4"
+                          />
+                        </dd>
+                        <dt>保険</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.insurance}
+                            onChange={e => handleChange(e)}
+                            name="insurance"
+                            row="4"
+                          />
+                        </dd>
+                        <dt>試用期間</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.contract_period}
+                            onChange={e => handleChange(e)}
+                            name="contract_period"
+                            row="8"
+                          />
+                        </dd>
+                        <dt>選考フロー</dt>
+                        <dd className="half">
+                          <Textarea
+                            value={formValues.screening_flow}
+                            onChange={e => handleChange(e)}
+                            name="screening_flow"
+                            row="8"
+                          />
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+
+                  <div className="recruitment-form__main-group">
+                    <div className="recruitment-form__main-group-label">
+                      住所
+                    </div>
+                    <div className="recruitment-form__main-group-cluster">
+                      <Select options={regionsFilter}
+                        styles={jobSelectStyles}
+                        placeholder=''
+                        height='50px'
+                        onChange={e => handleSelect(e, 'prefecture')}
+                      />
+
+                      <Input className="recruitment-form__main-group-input"
+                        value={formValues.address1}
+                        onChange={e => handleChange(e)}
+                        name="address1"
+                        type="text"
+                        placeholder="番地まで"
+                      />
+
+                      <Input className="recruitment-form__main-group-input"
+                        value={formValues.address2}
+                        onChange={e => handleChange(e)}
+                        name="address2"
+                        type="text"
+                        placeholder="ビル名、部屋番号"
+                      />
+
+                      <Input className="recruitment-form__main-group-input"
+                        value={formValues.address3}
+                        onChange={e => handleChange(e)}
+                        name="address3"
+                        type="number"
+                        placeholder="郵便番号"
+                      />
+
+                    </div>
+                  </div>
+
+                  <div className="recruitment-form__main-group">
+                    <div className="recruitment-form__main-group-label">
+                      最寄駅
+                    </div>
+                    <Input className="recruitment-form__main-group-input"
+                      value={formValues.station}
+                      onChange={e => handleChange(e)}
+                      name="station"
                       type="text"
-                      placeholder="番地まで"
                     />
-
-                    <Input className="recruitment-form__main-group-input"
-                      value={formValues.address2}
-                      onChange={e => handleChange(e)}
-                      name="address2"
-                      type="text"
-                      placeholder="ビル名、部屋番号"
-                    />
-
-                    <Input className="recruitment-form__main-group-input"
-                      value={formValues.address3}
-                      onChange={e => handleChange(e)}
-                      name="address3"
-                      type="number"
-                      placeholder="郵便番号"
-                    />
-
                   </div>
-                </div>
 
-                <div className="recruitment-form__main-group">
-                  <div className="recruitment-form__main-group-label">
-                    最寄駅
-                  </div>
-                  <Input className="recruitment-form__main-group-input"
-                    value={formValues.station}
-                    onChange={e => handleChange(e)}
-                    name="station"
-                    type="text"
-                  />
+                </form>
+                <div className="recruitment-form__button">
+                  <Button type="submit" onClick={e => handleSubmit(e)}>送信</Button>
                 </div>
+              </>
+            ) : (
+              <Nada className="nada--padded">
+                <span className="nada__emphasize">
+                Please enable job listing.
+                </span>
 
-              </form>
-              <div className="recruitment-form__button">
-                <Button type="submit" onClick={e => handleSubmit(e)}>送信</Button>
-              </div>
-            </>
+                <Link className="button button--pill" to={routes.RECRUITMENT}>
+                  <span><i className="icon icon-back-curve text-dark-yellow"></i>通知リストに戻る</span>
+                </Link>
+              </Nada>
+            )
           ) }
         </div>
       </div>
@@ -496,4 +556,8 @@ const RecruitmentForm = () => {
   );
 }
 
-export default RecruitmentForm;
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(RecruitmentForm);

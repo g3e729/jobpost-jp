@@ -6,7 +6,7 @@ import Footer from './common/Footer';
 import Pages from './common/Pages';
 import { getUser } from '../actions/user';
 import { getFilters } from '../actions/filters';
-import { unsetModal } from '../actions/modal';
+import { unSetModal } from '../actions/modal';
 
 const App = _ => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const App = _ => {
   useEffect(_ => {
     dispatch(getUser());
     dispatch(getFilters());
-    dispatch(unsetModal());
+    dispatch(unSetModal());
   }, []);
 
   return (

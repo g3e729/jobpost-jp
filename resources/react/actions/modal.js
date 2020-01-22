@@ -1,9 +1,9 @@
-export const setModal = (payload = '', actionId = null) => ({
+export const setModal = (payload = '', data = {}) => ({
   type: 'MODAL_SET',
-  actionId: actionId,
-  payload
+  payload,
+  data
 });
 
-export const unsetModal = _ => ({
+export const unSetModal = _ => ({
   type: 'MODAL_UNSET'
 });

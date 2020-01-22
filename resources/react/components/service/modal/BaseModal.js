@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Button from '../../common/Button';
-import { unsetModal } from '../../../actions/modal';
+import { unSetModal } from '../../../actions/modal';
 
 const BaseModal = ({ title, children }) => {
   const dispatch = useDispatch();
 
   const handleCloseModal = _ => {
-    dispatch(unsetModal());
+    dispatch(unSetModal());
   }
 
   return (

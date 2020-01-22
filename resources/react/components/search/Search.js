@@ -134,12 +134,16 @@ const Search = _ => {
                         </div>
                         <div className="search-tab__panel-content-item-right">
                           <ul className="search-tab__panel-content-pills">
-                            <li className="search-tab__panel-content-pills-item">
-                              <Pill className="pill--large">PHP</Pill>
-                            </li>
-                            <li className="search-tab__panel-content-pills-item">
-                              <Pill className="pill--large">バックエンドエンジニア</Pill>
-                            </li>
+                            { item.programming_language ? (
+                              <li className="search-tab__panel-content-pills-item">
+                                <Pill className="pill--large">{item.programming_language}</Pill>
+                              </li>
+                            ) : null}
+                            { item.position ? (
+                              <li className="search-tab__panel-content-pills-item">
+                                <Pill className="pill--large">{item.position}</Pill>
+                              </li>
+                            ) : null}
                           </ul>
                           <Link to={generateRoute(routes.JOB_DETAIL, { id: item.id })}
                             className="button button--link">
@@ -223,12 +227,16 @@ const Search = _ => {
                       </div>
                       <div className="search-tab__panel-content-item-right">
                         <ul className="search-tab__panel-content-pills">
-                          <li className="search-tab__panel-content-pills-item">
-                            <Pill className="pill--large">PHP</Pill>
-                          </li>
-                          <li className="search-tab__panel-content-pills-item">
-                            <Pill className="pill--large">バックエンドエンジニア</Pill>
-                          </li>
+                          { item.programming_language ? (
+                            <li className="search-tab__panel-content-pills-item">
+                              <Pill className="pill--large">{item.programming_language}</Pill>
+                            </li>
+                          ) : null}
+                          { item.position ? (
+                            <li className="search-tab__panel-content-pills-item">
+                              <Pill className="pill--large">{item.position}</Pill>
+                            </li>
+                          ) : null}
                         </ul>
                         <Link to={generateRoute(routes.JOB_DETAIL, { id: item.id })}
                           className="button button--link">

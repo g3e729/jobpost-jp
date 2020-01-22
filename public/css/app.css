@@ -1394,6 +1394,7 @@ And you should not feel free to add a new Utility class.
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
+  color: #393939;
   margin-top: 18px;
 }
 
@@ -1454,6 +1455,7 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   margin-top: 18px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
@@ -2913,6 +2915,25 @@ And you should not feel free to add a new Utility class.
   padding: 40px 0;
 }
 
+.loading--overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.loading--overlay > div {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
 .message {
   position: relative;
 }
@@ -3180,6 +3201,7 @@ And you should not feel free to add a new Utility class.
 }
 
 .modal__content {
+  position: relative;
   padding: 30px 50px 26px 50px;
 }
 
@@ -3676,6 +3698,15 @@ And you should not feel free to add a new Utility class.
 
 .nada--padded {
   padding: 40px 0;
+}
+
+.nada--full {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding: 75px 0;
+  height: calc(100vh - 273px);
 }
 
 .nada__emphasize {
@@ -5920,6 +5951,7 @@ a.pagination__item-link:hover {
   font-weight: 700;
   line-height: 1.9;
   letter-spacing: 0.06em;
+  color: #393939;
 }
 
 .swiper-slide .slider-content__footer {

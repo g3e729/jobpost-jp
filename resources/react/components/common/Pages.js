@@ -10,7 +10,7 @@ import SettingsPage from '../profile/SettingsPage';
 
 import StudentPage from '../student/StudentPage';
 import FavoritesPage from '../student/FavoritesPage';
-import ApplyPage from '../student/ApplyPage';
+import ApplicationsPage from '../student/ApplicationsPage';
 import ScoutsPage from '../student/ScoutsPage';
 
 import CompanyPage from '../company/CompanyPage';
@@ -88,8 +88,8 @@ const Pages = _ => (
       />
       <Route
         exact
-        path={routes.PROFILE_APPLY}
-        component={requireAuth(ApplyPage)}
+        path={routes.PROFILE_APPLICATIONS}
+        component={requireAuth(ApplicationsPage)}
       />
       <Route
         exact

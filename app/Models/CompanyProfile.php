@@ -36,7 +36,6 @@ class CompanyProfile extends Model
         'ceo',
         'number_of_employees',
         'established_date',
-        'portfolio',
         
         'what_text',
         'why_text',

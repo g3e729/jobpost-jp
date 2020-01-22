@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CompanyProfile as ServiceModel;
+use App\Models\Applicant;
 use App\Services\UserService;
 use App\Services\FileService;
 use Exception;
@@ -132,6 +133,23 @@ class CompanyService extends BaseService
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return $this->toReturn();
         }
+    }
+
+    public function getApplicants($search, bool $scout = null, $paginated = true, $sort = 'DESC')
+    {
+        $company = $this->item;
+
+        $que = (new Applicant)->whereHas('job_post', function ($q) use ($company) {
+            $q->whereCompanyProfileId($company->id);
+        });
+
+        if ($scout === true || $scout === false) {
+            $que = $que->where('scouted', $scout);
+        }
+
+        $que = $que->search($search, $company);
+
+        return $this->toReturn($que, $paginated);
     }
 
     public function companyFilters()

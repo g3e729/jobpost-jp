@@ -46,7 +46,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_APPLY} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_APPLICATIONS} activeClassName={state.ACTIVE}>
                   応募した募集
                 </NavLink>
               </li>

@@ -13,7 +13,7 @@ export const routes = {
 
   STUDENT_DETAIL: `${prefix}student/:id`,
   PROFILE_FAV: `${prefix}profile/favorites`, // student
-  PROFILE_APPLY: `${prefix}profile/apply`, // student
+  PROFILE_APPLICATIONS: `${prefix}profile/applications`, // student
   PROFILE_SCOUTS: `${prefix}profile/scouts`, // student
 
   COMPANY_DETAIL: `${prefix}company/:id`,
@@ -67,7 +67,7 @@ export const accessTable = [
       routes.PROFILE_SETTINGS,
 
       routes.PROFILE_FAV,
-      routes.PROFILE_APPLY,
+      routes.PROFILE_APPLICATIONS,
       routes.PROFILE_SCOUTS,
 
       routes.MESSAGES,
@@ -95,6 +95,10 @@ export const endpoints = {
   COMPANIES: '/companies',
   COMPANIES_FILTERS: '/companies-filters',
   COMPANY_DETAIL: '/companies/:id',
+
+  APPLY: 'apply',
+  APPLICATIONS: 'applications',
+  CANCEL_APPLICATION: 'cancel-application',
 
   LIKE: '/like',
 

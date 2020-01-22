@@ -46,6 +46,7 @@
 }
 
 .modal__content {
+  position: relative;
   padding: 30px 50px 26px 50px;
 
   @include max-screen($breakpoint-mobile) {

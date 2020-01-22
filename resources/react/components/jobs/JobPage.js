@@ -33,12 +33,13 @@ const JobPage = (props) => {
         setIsLoading(false);
 
         const programming_language = res.programming_language ? { programming_language: res.programming_language} : null;
-        const prefecture = res.prefecture ? { prefecture: res.prefecture } : null;
+        const prefecture = res.display_prefecture ? { prefecture: res.display_prefecture } : null;
 
         setJobData({
           companyAvatar: res.company.avatar,
           companyName: res.company.company_name,
           time: res.created_at,
+          applied: res.applied,
           pills: {
             ...programming_language,
             ...prefecture

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import Job from '../../../utils/job';
-import { unsetModal } from '../../../actions/modal';
+import { unSetModal } from '../../../actions/modal';
 import { getMyJobs } from '../../../actions/myjobs';
 
 const JobStopModal = ({modal}) => {
@@ -14,13 +14,13 @@ const JobStopModal = ({modal}) => {
   const urlParams = new URLSearchParams(location.search);
 
   const handleCloseModal = _ => {
-    dispatch(unsetModal());
+    dispatch(unSetModal());
   }
 
   const handleToggleStatus = _ => {
     const page = urlParams.get('page');
 
-    Job.toggleMyJob(modal.actionId)
+    Job.toggleMyJob((modal.data && modal.data.id))
       .then(_ => {
         handleCloseModal()
         dispatch(getMyJobs({page}))
@@ -32,7 +32,7 @@ const JobStopModal = ({modal}) => {
     <BaseModal>
       <div className="modal__content modal__content--center">
         <i className="icon icon-warning-circle modal__content-icon"></i>
-        <p className="modal__content-desc">{`自社★C2Cマッチングプラットフォー
+        <p className="modal__content-desc">{`${(modal.data && modal.data.text)}
           ム開発を停止させますか？`}
         </p>
       </div>

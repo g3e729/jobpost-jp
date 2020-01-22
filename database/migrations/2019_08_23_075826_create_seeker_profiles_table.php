@@ -24,7 +24,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->string('contact_number')->nullable();
             $table->double('study_abroad_fee', 20, 2)->nullable();
             $table->string('passport_number')->nullable();
-            
+
             $table->integer('type_of_room')->nullable();
             $table->timestamp('enrollment_date')->nullable();
             $table->timestamp('graduation_date')->nullable();
@@ -40,9 +40,10 @@ class CreateSeekerProfilesTable extends Migration
             $table->string('address3')->nullable();
             $table->string('city')->nullable();
             $table->string('country', 3)->nullable();
+            $table->string('language')->nullable();
             $table->timestamp('birthday')->nullable();
             $table->string('github')->nullable();
-            
+
             $table->integer('course_id')->default(0);
             $table->json('taken_id')->nullable();
             $table->integer('it_level')->default(0);
@@ -51,7 +52,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->integer('speaking')->default(0);
             $table->integer('writing')->default(0);
             $table->string('english_level_id')->default(0);
-            $table->integer('toiec_score')->default(0);
+            $table->integer('toeic_score')->default(0);
 
             $table->text('what_text')->nullable();
             $table->text('intro_text')->nullable();

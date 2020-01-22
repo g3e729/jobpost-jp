@@ -12,7 +12,12 @@ export const unsetFilters = _ => ({
 export const getFilters = _ => {
   return (dispatch) => {
     return Filter.getFilters().then(result => {
-      dispatch(setFilters({ ...result.data }));
+      Filter.getStudentFilters().then(resultInner => {
+        dispatch(setFilters({
+          jobs: result.data,
+          students: resultInner.data
+        }));
+      })
     }).catch(error => {
       dispatch(unsetFilters());
 

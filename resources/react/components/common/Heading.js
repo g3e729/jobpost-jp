@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EdiText from 'react-editext';
 import moment from 'moment';
 moment.locale('ja');
 import _ from 'lodash';
@@ -13,6 +14,7 @@ import { state } from '../../constants/state';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
+import { updateUser } from '../../actions/user';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
@@ -33,9 +35,11 @@ const Heading = (props) => {
     children,
     ...rest
   } = props;
+  const [isEditing, setIsEditing] = useState(false);
   const [hasUserLiked, setHasUserLiked] = useState(false);
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
+  const coverPhotoImg = rest['data-cover-photo'] || '';
 
   const handleLike = _.debounce((type) => {
     Like.toggleLike(type, params.id)
@@ -48,9 +52,31 @@ const Heading = (props) => {
       }).catch(error => console.log('[Like ERROR]', error));
   }, 400);
 
-  const handleModal = type => {
-    dispatch(setModal(type));
+  const handleModal = (type, data) => {
+    dispatch(setModal(type, data));
   }
+
+  const handleEdit = _ => {
+    setIsEditing(true);
+  }
+
+  const handleSave = _ => {
+    setIsEditing(false);
+  }
+
+  const handleSubmit = _.debounce((value) => {
+    const formdata = new FormData();
+
+    if (accountType === 'student') {
+      formdata.append('name', value || '');
+    }
+    else {
+      formdata.append('company_name', value || '');
+    }
+
+    dispatch(updateUser(formdata));
+    setIsEditing(false);
+  }, 400)
 
   useEffect(_ => {
     setHasUserLiked(hasLiked);
@@ -62,7 +88,7 @@ const Heading = (props) => {
         <>
           { isEdit ? (
             <div className="heading__edit">
-              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH)}>
+              <Button className="button--eyecatch" onClick={_ => handleModal(modalType.PROFILE_EYECATCH, {image: coverPhotoImg})}>
                 <>
                   <i className="icon icon-disk"></i>
                   変更する
@@ -76,7 +102,7 @@ const Heading = (props) => {
               isEdit={isEdit}
             >
               { isEdit ? (
-                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR)}>
+                <Button className="button--avatar" onClick={_ => handleModal(modalType.PROFILE_AVATAR, {image: avatarImg})}>
                   <>
                     <i className="icon icon-image"></i>
                     変更する
@@ -85,18 +111,37 @@ const Heading = (props) => {
               ) : null }
             </Avatar>
             <div className="heading__user-main">
-              <h2 className="heading__user-name">{title || 'TODO if remove api auth-token'}</h2>
+              <h2 className="heading__user-name">
+                { isEdit ?
+                  <EdiText
+                    submitOnEnter
+                    value={title}
+                    type="text"
+                    onSave={handleSubmit}
+                    editing={isEditing}
+                  />
+                : title }
+              </h2>
               <p className="heading__user-position">
                 {subTitle}
               </p>
               { isOwner == true ? (
                 isEdit ? (
-                  <Button className="button--pill heading__user-pill">
-                    <>
-                      <i className="icon icon-disk text-dark-yellow"></i>
-                      更新
-                    </>
-                  </Button>
+                  isEditing ? (
+                    <Button className="button--pill heading__user-pill" onClick={_ => handleSave()}>
+                      <>
+                        <i className="icon icon-disk text-dark-yellow"></i>
+                        更新
+                      </>
+                    </Button>
+                  ) : (
+                    <Button className="button--pill heading__user-pill" onClick={_ => handleEdit()}>
+                      <>
+                        <i className="icon icon-pencil text-dark-yellow"></i>
+                        編集
+                      </>
+                    </Button>
+                  )
                 ) : (
                   <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
                     <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
@@ -152,7 +197,13 @@ const Heading = (props) => {
 
             { isLogged ? (
               <>
-                { accountType === 'student' ? <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY)}>応募する</Button> : null }
+                { accountType === 'student' ?
+                  (
+                    jobData.applied
+                      ? <Button className={`button--large heading__job-button ${state.DISABLED}`}>応募済み</Button>
+                      : <Button className="button--large heading__job-button" onClick={_ => handleModal(modalType.JOB_APPLY, {id: params.id})}>応募する</Button>
+                  )
+                : null }
                 <Button className="button--link heading__job-fav" onClick={e => handleLike('job')}>
                   <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                     <i className="icon icon-star"></i>{userLikes}
