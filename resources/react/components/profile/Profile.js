@@ -647,7 +647,8 @@ const Profile = (props) => {
                     )
                   ) : null }
                   <dl className="profile__data-character">
-                    { data.features.length && data.features
+                    { data.features.length > 0 && data.features
+                      .slice(0,3)
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">
@@ -671,6 +672,34 @@ const Profile = (props) => {
                                 editing={isEditing}
                               />
                             : item.description }
+                          </dd>
+                        </React.Fragment>
+                      ))
+                    }
+                    { data.features.length < 3 && [...Array(3 - data.features.length)]
+                      .map((_, idx) => (
+                        <React.Fragment key={idx}>
+                          <dt className="profile__data-skills-term">
+                            { isEdit ?
+                              <EdiText
+                                submitOnEnter
+                                value=''
+                                type="text"
+                                onSave={e => handleAddFeature(e, 'title')}
+                                editing={isEditing}
+                              />
+                            : null }
+                          </dt>
+                          <dd className="profile__data-skills-data">
+                            { isEdit ?
+                              <EdiText
+                                submitOnEnter
+                                value=''
+                                type="text"
+                                onSave={e => handleAddFeature(e, 'description')}
+                                editing={isEditing}
+                              />
+                            : null }
                           </dd>
                         </React.Fragment>
                       ))
