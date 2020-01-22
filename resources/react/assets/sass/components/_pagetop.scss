@@ -9,6 +9,10 @@
   opacity: 0;
   transition: opacity $duration $easing-cubic;
 
+  @include max-screen($breakpoint-mobile) {
+    display: none;
+  }
+
   button {
     pointer-events: none;
   }
@@ -20,10 +24,6 @@
       pointer-events: auto;
     }
   }
-
-  @include max-screen($breakpoint-mobile) {
-    display: none;
-  }
 }
 
 .pagetop__icon {
@@ -34,6 +34,10 @@
 
   position: relative;
   background-color: $color-medium-black;
+
+  @include max-screen($breakpoint-mobile) {
+    height: 40px;
+  }
 
   &:after {
     content: "PAGE TOP";
@@ -47,5 +51,13 @@
     bottom: -75px;
 
     writing-mode: vertical-lr;
+
+    @include max-screen($breakpoint-mobile) {
+      width: 68px;
+      writing-mode: lr;
+      left: -32px;
+      bottom: -25px;
+      font-size: 8px;
+    }
   }
 }

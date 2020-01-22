@@ -93,7 +93,7 @@ const ProfileWorkModal = _ => {
             <div className="modal__form-group-label">
               在籍期間
             </div>
-            <div className="modal__form-group-inputs">
+            <div className="modal__form-group-inputs modal__form-group-inputs--enrolment-period">
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
                 placeholder='MM'

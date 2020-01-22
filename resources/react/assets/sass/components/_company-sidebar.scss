@@ -7,6 +7,10 @@
   align-self: stretch;
 
   background-color: $color-medium-black;
+
+  @include max-screen($breakpoint-mobile) {
+    display: none;
+  }
 }
 
 .company-sidebar__menu {

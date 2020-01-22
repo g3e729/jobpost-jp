@@ -5,6 +5,10 @@
 
   overflow: visible;
   z-index: $z-min2;
+
+  @include max-screen($breakpoint-mobile) {
+    display: none;  
+  }
 }
 
 .pagescroll__icon {

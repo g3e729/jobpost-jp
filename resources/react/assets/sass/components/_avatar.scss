@@ -33,6 +33,11 @@
 .avatar--seeker {
   width: 90px;
   height: 90px;
+
+  @include max-screen($breakpoint-mobile) {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .avatar--message {

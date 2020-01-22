@@ -24,21 +24,39 @@
 
 .job-list__item-top {
   display: flex;
+
+  @include max-screen($breakpoint-mobile) {
+    flex-direction: column;
+  }
 }
 
 .job-list__item-top-left {
   width: 320px;
   flex: 0 0 320px;
+
+  @include max-screen($breakpoint-mobile) {
+    width: auto;
+    flex: 0 1 auto;
+  }
 }
 
 .job-list__item-top-right {
   flex: 1;
   margin-top: 12px;
   margin-left: 30px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
 
 .job-list__item-content {
   margin-top: 22px;
+
+  @include max-screen($breakpoint-mobile) {
+    margin-top: 8px;
+  }
 }
 
 .job-list__item-footer {
