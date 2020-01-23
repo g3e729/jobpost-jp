@@ -19,7 +19,11 @@ export default class Student {
 
   static getFilteredStudents(params) {
     const {
-      page
+      page,
+      scouted,
+      applied,
+      liked,
+      per_page = 5
     } = params;
 
     const payload = {
@@ -27,7 +31,10 @@ export default class Student {
       method: 'get',
       params: {
         page,
-        per_page: 5
+        scouted,
+        applied,
+        liked,
+        per_page
       }
     }
 

@@ -1,8 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
+import moment from 'moment';
+moment.locale('ja');
 import { Link } from 'react-router-dom';
 
 import Avatar from '../common/Avatar';
+import Button from '../common/Button';
 import Fraction from '../common/Fraction';
 import Loading from '../common/Loading';
 import Nada from '../common/Nada';
@@ -68,6 +71,13 @@ const SeekerList = (props) => {
                   width='112px'
                 />
               </li>
+              <li className="seeker-list__filters-item">
+                <Button className="button--link">
+                  <Pill className="pill--icon text-medium-black">
+                    <i className="icon icon-star"></i>気になる生徒
+                  </Pill>
+                </Button>
+              </li>
             </ul>
             <Fraction numerator={studentsData.length}
               denominator={data.total}
@@ -91,13 +101,13 @@ const SeekerList = (props) => {
                 </div>
                 <div className="seeker-list__item-right">
                   <div className="seeker-list__item-right-top">
-                    <h4 className="seeker-list__item-name">田中義人さんをスカウトしました。</h4>re
+                    <h4 className="seeker-list__item-name">{item.display_name}</h4>
                     <Pill>Develop1コース</Pill>
                   </div>
                   <div className="seeker-list__item-right-bottom">
-                    <p className="seeker-list__item-description">自社★C2Cマッチングプラットフォーム開発</p>
+                    <p className="seeker-list__item-description">{item.description}</p>
                     <span className="seeker-list__item-tag">でのスカウト</span>
-                    <time className="seeker-list__item-time">約13時間前</time>
+                    <time className="seeker-list__item-time">{moment(item.updated_at).fromNow()}</time>
                   </div>
                 </div>
               </li>
@@ -117,13 +127,11 @@ const SeekerList = (props) => {
           </div>
         )
       ) : (
-        data.total ? (
-          <div className="seeker-list__button">
-            <Link to={link} className="button">
-              もっと見る
-            </Link>
-          </div>
-        ) : null
+        <div className="seeker-list__button">
+          <Link to={link} className="button">
+            もっと見る
+          </Link>
+        </div>
       )}
     </div>
   );

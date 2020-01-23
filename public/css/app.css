@@ -5658,6 +5658,7 @@ a.pagination__item-link:hover {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 768px) {

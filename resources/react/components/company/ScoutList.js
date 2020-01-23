@@ -85,13 +85,6 @@ const ScoutList = (props) => {
               width='112px'
             />
           </li>
-          <li className="scout-list__filters-item">
-            <Button className="button--link">
-              <Pill className="pill--icon text-medium-black">
-                <i className="icon icon-star"></i>気になる生徒
-              </Pill>
-            </Button>
-          </li>
         </ul>
         <Fraction numerator={studentsData.length}
           denominator={data.total}
