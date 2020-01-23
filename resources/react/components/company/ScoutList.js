@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
-import { Link } from 'react-router-dom';
+import moment from 'moment';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
@@ -12,7 +13,7 @@ import Pagination from '../common/Pagination';
 import Pill from '../common/Pill';
 import Search from '../common/Search';
 import generateRoute from '../../utils/generateRoute';
-import { routes } from '../../constants/routes';
+import { routes, prefix } from '../../constants/routes';
 import { skills } from '../../constants/state';
 import { dashboardSelectStyles } from '../../constants/config';
 
@@ -25,6 +26,7 @@ const filterList = [
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const ScoutList = (props) => {
+  const history = useHistory();
   const {
     students = [],
     isLoading = false,
@@ -40,6 +42,12 @@ const ScoutList = (props) => {
   const data = students || {};
   const studentsData = students.data || {};
   const skillsFilter = { ...experiences, ...frameworks, ...others, ...programming_languages };
+
+  const handleScout = id => {
+    localStorage.setItem('scout_id', id);
+
+    history.push(`${prefix}scouts`);
+  }
 
   return (
     <div className="scout-list__container">
@@ -106,23 +114,26 @@ const ScoutList = (props) => {
                   </div>
                   <div className="scout-list__item-top-right">
                     <div className="scout-list__item-top-header">
-                      <h4 className="scout-list__item-top-name">女性</h4>
+                      <h4 className="scout-list__item-top-name">{item.sex === 'm' ? '男' : '女性'}</h4>
                       <Pill className="pill--icon">
-                        <i className="icon icon-star"></i>1.2k
+                        <i className="icon icon-star"></i>{item.likes_count}
                       </Pill>
                     </div>
                     <ul className="scout-list__item-top-pills">
                       <li className="scout-list__item-top-pills-item">
-                        <Pill className="pill--clear">20代</Pill>
+                        <Pill className="pill--clear">{moment().diff(item.birthday, 'years',false)}代</Pill>
                       </li>
                       <li className="scout-list__item-top-pills-item">
                         <Pill className="pill--clear">PHPコース</Pill>
                       </li>
-                      <li className="scout-list__item-top-pills-item">
+                      {/* <li className="scout-list__item-top-pills-item">
                         <Pill className="pill--clear">留学費 50万円</Pill>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
+                  <Button className="button button--large scout-list__item-top-button" onClick={_ => handleScout(item.id)}>
+                    スカウトする
+                  </Button>
                 </div>
                 <div className="scout-list__item-content">
                   <ul className="scout-list__item-content-list">

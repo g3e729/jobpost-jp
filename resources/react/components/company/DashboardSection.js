@@ -18,20 +18,20 @@ const DashboardSection = _ => (
     <div className="dashboard-section__content">
       <SeekerList title="最近スカウト"
         link={{
-          pathname: routes.CANDIDATES,
-          search: "?type=scout&sort=desc",
+          pathname: routes.SCOUT,
+          search: "?scouted=1",
           state: { fromDashboard: true }
         }} />
       <SeekerList title="最近の応募"
         link={{
-          pathname: routes.CANDIDATES,
-          search: "?type=applicants&sort=desc",
+          pathname: routes.SCOUT,
+          search: "?applied=1",
           state: { fromDashboard: true }
         }} />
       <SeekerList title="最近のお気に入り"
         link={{
-          pathname: routes.CANDIDATES,
-          search: "?type=favorites&sort=desc",
+          pathname: routes.SCOUT,
+          search: "?liked=1",
           state: { fromDashboard: true }
         }} />
     </div>
