@@ -34,6 +34,11 @@ class JobPostService extends BaseService
             ->popular();
 
         $job = $que->whereId($id)->first();
+
+        if (!$job) {
+            return null;
+        }
+
         $job->applied = false;
 
         if ($user) {

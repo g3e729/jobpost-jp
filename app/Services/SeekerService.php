@@ -262,7 +262,9 @@ class SeekerService extends BaseService
 
     public function getAppliedJobs($search, $paginated = true, $sort = 'DESC')
     {
-        $que = $this->item->applications()->search($search, $this->item);
+        $que = $this->item->applications()->where('scouted', request()->get('scouted', 0));
+
+        $que = $que->search($search, $this->item);
 
         return $this->toReturn($que, $paginated);
     }

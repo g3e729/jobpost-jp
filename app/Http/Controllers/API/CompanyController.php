@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\CompanyProfile as Model;
 use App\Services\CompanyService as ModelService;
 use App\Services\PortfolioService;
 use App\Services\UserService;
@@ -11,31 +10,30 @@ use Illuminate\Http\Request;
 
 class CompanyController extends BaseController
 {
+    protected $company;
+    protected $profile;
+
 	public function index(Request $request)
 	{
-		$companies = (new ModelService)->search(
+		return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
         );
-
-		return $companies;
 	}
 
-	public function show(Model $company)
+	public function show($id)
 	{
-        return (new ModelService)->show($company->id);
+        $this->routine($id);
+
+        return $this->company;
 	}
 
-	public function update(Model $company, Request $request)
+	public function update($id, Request $request)
 	{
-        $company_id = auth()->user()->profile->id;
+        $this->routine($id);
 
-        if ($company_id != $company->id) {
-            apiAbort(503);
-        }
-
-        $companyService = new ModelService($company);
+        $companyService = new ModelService($this->company);
 
         $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
         $companyService->updateUser($request->only('email', 'japanese_name', 'name'));
@@ -54,7 +52,7 @@ class CompanyController extends BaseController
         }
 
         if ($request->has('features')) {
-            $company->features()->delete();
+            $this->company->features()->delete();
             $features = $request->get('features');
 
             foreach([0, 1, 2] as $i) {
@@ -64,21 +62,37 @@ class CompanyController extends BaseController
                     continue;
                 }
 
-                $company->features()->create($feature);
+                $this->company->features()->create($feature);
             }
         }
         
         if ($request->has('portfolios')) {
-            (new PortfolioService)->insertOrUpdate($company, $request->portfolios);
+            (new PortfolioService)->insertOrUpdate($this->company, $request->portfolios);
         }
 
-        return (new ModelService)->show($company->id);
+        return (new ModelService)->show($this->company->id);
 	}
 
     public function getCompanyFilters(Request $request)
     {
-        $filters = (new ModelService)->companyFilters();
+        return (new ModelService)->companyFilters();
+    }
 
-        return $filters;
+    private function routine($id = null)
+    {
+        $this->company = (new ModelService)->show($id);
+
+        if (!$this->company) {
+            apiAbort(404);
+        }
+
+        if (in_array(request()->getMethod(), ['PATCH', 'DELETE'])) {
+
+            $this->profile = auth()->user()->profile ?? null;
+
+            if (!$this->profile || $this->profile->id != $this->company->id) {
+                apiAbort(403);
+            }
+        }
     }
 }

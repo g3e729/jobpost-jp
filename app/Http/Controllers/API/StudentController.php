@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\SeekerProfile as Model;
 use App\Services\SeekerService as ModelService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
@@ -10,25 +9,30 @@ use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
+    protected $student;
+    protected $profile;
+
 	public function index(Request $request)
 	{
-		$students = (new ModelService)->search(
+		return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
         );
-
-		return $students;
 	}
 
-    public function show(Model $student)
+    public function show($id)
     {
-        return (new ModelService)->show($student->id);
+        $this->routine($id);
+
+        return $this->student;
     }
 
-	public function update(Model $student, Request $request)
+	public function update($id, Request $request)
 	{
-        $seekerService = new ModelService($student);
+        $this->routine($id);
+
+        $seekerService = new ModelService($this->student);
 
         $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
         $seekerService->updateUser($request->only('email', 'japanese_name', 'name'));
@@ -47,16 +51,32 @@ class StudentController extends BaseController
         $seekerService->updateSkills($request);
 
         if ($request->has('portfolios')) {
-            (new PortfolioService)->insertOrUpdate($student, $request->portfolios);
+            (new PortfolioService)->insertOrUpdate($this->student, $request->portfolios);
         }
         
-        return (new ModelService)->show($student->id);
+        return (new ModelService)->show($this->student->id);
 	}
 
     public function getStudentFilters(Request $request)
     {
-        $filters = (new ModelService)->studentFilters();
+        return (new ModelService)->studentFilters();
+    }
 
-        return $filters;
+    private function routine($id = null)
+    {
+        $this->student = (new ModelService)->show($id);
+
+        if (!$this->student) {
+            apiAbort(404);
+        }
+
+        if (in_array(request()->getMethod(), ['PATCH', 'DELETE'])) {
+
+            $this->profile = auth()->user()->profile ?? null;
+
+            if (!$this->profile || $this->profile->id != $this->student->id) {
+                apiAbort(403);
+            }
+        }
     }
 }
