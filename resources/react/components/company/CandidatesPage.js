@@ -13,7 +13,7 @@ const CandidatesPage = _ => {
   const [students, setStudents] = useState([]);
 
   async function getApplicationsCompany() {
-    const page = urlParams.get('page') || null;
+    const page = urlParams.get('page');
     const request = await Apply.getApplicationsCompany({page});
 
     return request.data;

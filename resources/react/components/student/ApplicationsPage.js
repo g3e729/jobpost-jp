@@ -16,7 +16,7 @@ const ApplicationsPage = _ => {
   const [jobs, setJobs] = useState([]);
 
   async function getApplications() {
-    const page = urlParams.get('page') || null;
+    const page = urlParams.get('page');
     const request = await Apply.getApplications({page});
 
     return request.data;

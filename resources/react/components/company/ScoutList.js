@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
@@ -12,6 +13,7 @@ import Pill from '../common/Pill';
 import Search from '../common/Search';
 import generateRoute from '../../utils/generateRoute';
 import { routes } from '../../constants/routes';
+import { skills } from '../../constants/state';
 import { dashboardSelectStyles } from '../../constants/config';
 
 const filterList = [
@@ -25,10 +27,19 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 const ScoutList = (props) => {
   const {
     students = [],
-    isLoading = false
+    isLoading = false,
+    filters
   } = props;
+  const filterData = filters && filters.filtersData;
+  const {
+    experiences = [],
+    frameworks = [],
+    others = [],
+    programming_languages = []
+  } = (filterData !== undefined && filterData.students);
   const data = students || {};
   const studentsData = students.data || {};
+  const skillsFilter = { ...experiences, ...frameworks, ...others, ...programming_languages };
 
   return (
     <div className="scout-list__container">
@@ -136,33 +147,25 @@ const ScoutList = (props) => {
                         <p>{item.toeic_score}</p>
                       </li>
                     ) : null }
-                    <li className="scout-list__item-content-list-item">
-                      <h5>スキル</h5>
-                      <div>
-                        <dl>
-                          <dt>C#</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>PHP</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>Ruby</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>Python2</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>Python3</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>Javascript</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>HTML5+CSS3</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>Sass</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>SQL</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                          <dt>BASH</dt>
-                          <dd>[趣味or実務１年未満]</dd>
-                        </dl>
-                      </div>
-                    </li>
+                    { item.skills.length ? (
+                      <li className="scout-list__item-content-list-item">
+                        <h5>スキル</h5>
+                        <div>
+                          <dl>
+                            { item.skills
+                                .filter(item => item.skill_rate > 1)
+                                .slice(0, 10)
+                                .map((item, idx) => (
+                                  <React.Fragment key={idx}>
+                                    <dt>{skillsFilter[item.skill_id]}</dt>
+                                    <dt>{skills[item.skill_rate]}</dt>
+                                  </React.Fragment>
+                                ))
+                            }
+                          </dl>
+                        </div>
+                      </li>
+                    ) : null }
                   </ul>
                 </div>
                 <div className="scout-list__item-bottom">
@@ -190,4 +193,8 @@ const ScoutList = (props) => {
   );
 }
 
-export default ScoutList;
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(ScoutList);

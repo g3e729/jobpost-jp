@@ -12,15 +12,15 @@ const ScoutPage = _ => {
   const [isLoading, setIsLoading] = useState(true);
   const [students, setStudents] = useState([]);
 
-  async function getStudents() { // TODO: use getFilteredStudents
-    const page = urlParams.get('page') || null;
-    const request = await Student.getStudents();
+  async function getFilteredStudents() {
+    const page = urlParams.get('page');
+    const request = await Student.getFilteredStudents({page});
 
     return request.data;
   }
 
   useEffect(_ => {
-    getStudents()
+    getFilteredStudents()
       .then(res => {
         setStudents(res);
         setIsLoading(false);

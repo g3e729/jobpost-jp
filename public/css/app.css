@@ -6276,9 +6276,9 @@ a.pagination__item-link:hover {
 
 .scout-list__item-content-list-item dl dt {
   letter-spacing: 0.06em;
-  width: 117px;
+  width: 25%;
   -webkit-box-flex: 0;
-          flex: 0 0 117px;
+          flex: 0 0 25%;
 }
 
 .scout-list__item-content-list-item dl dd {

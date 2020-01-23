@@ -7,9 +7,9 @@ export default class Student {
     const payload = {
       url: endpoints.STUDENTS,
       method: 'get',
-      // params: { // TODO: Empty return
-      //   per_page: 12
-      // }
+      params: {
+        per_page: 12
+      }
     }
 
     return API.request(payload, true)
@@ -27,7 +27,7 @@ export default class Student {
       method: 'get',
       params: {
         page,
-        per_page: 3
+        per_page: 5
       }
     }
 
