@@ -128,8 +128,9 @@ class JobPostService extends BaseService
 
     public function getCompanyJobs(bool $status = null, $paginated = true, $sort = 'DESC')
     {
-        try {
-            $que = $this->company->jobPosts()
+        // try {
+            $que = $this->company
+                ->jobPosts()
                 ->popular()
                 ->numberApplicants();
 
@@ -141,22 +142,29 @@ class JobPostService extends BaseService
                 $que = $que->withTrashed();
             }
 
+            $excluded = request()->get('excluded');
+            $excluded = empty($excluded) ? [] : explode(',', $excluded);
+            $applicants = request()->get('applicants');
 
-            if (request()->has('applicants')) {
-                if (request()->get('applicants') == true) {
-                    $que = $que->whereHas('applicants');
-                } elseif (request()->get('applicants') == false) {
-                    $que = $que->whereDoesntHave('applicants');
-                }
+            if ($applicants === '1') {
+                $que = $que->whereHas('applicants');
+            } elseif ($applicants === '0') {
+                $que = $que->whereDoesntHave('applicants');
+            }
+
+            if (count($excluded)) {
+                $que = $que->whereDoesntHave('applicants', function ($q) use ($excluded) {
+                    $q->whereIn('seeker_profile_id', $excluded);
+                });
             }
 
             $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);
-        } catch (Exception $e) {
-            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
-            return $this->toReturn();
-        }
+        // } catch (Exception $e) {
+        //     \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+        //     return $this->toReturn();
+        // }
     }
 
     public function jobFilters()

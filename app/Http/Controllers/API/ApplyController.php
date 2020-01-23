@@ -42,11 +42,7 @@ class ApplyController extends BaseController
 
 	public function store(Request $request)
 	{
-		$status = $this->setItems($request);
-		
-		if ($status !== true) {
-			return $status;
-		}
+		$this->routine($request);
 
 		$application = $this->seekerService->applyJobPost($this->job_post, $request->get('scouted', false));
 
@@ -55,16 +51,12 @@ class ApplyController extends BaseController
 
 	public function destroy(Request $request)
 	{
-		$status = $this->setItems($request);
-		
-		if ($status !== true) {
-			return $status;
-		}
+		$this->routine($request);
 
 		return $this->seekerService->cancelApplication($this->job_post);
 	}
 
-	private function setItems($request)
+	private function routine($request)
 	{
 		$this->user = auth()->user();
 
@@ -86,8 +78,6 @@ class ApplyController extends BaseController
 		if (!$this->seekerService->getItem() || !$this->job_post) {
 			apiAbort(404);
 		}
-
-		return true;
 	}
 
 }
