@@ -9,21 +9,20 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const FavoritesList = ({jobs, type = ''}) => {
-  const actualJobs = jobs.job_post || jobs;
 
   return (
     <ul className="favorites-list">
-      { actualJobs.map(job => (
+      { jobs.map(job => (
         <li className="favorites-list__item" key={job.id}>
           <div className="favorites">
             <div className="favorites__top">
               <div className="favorites__eyecatch">
-                <div className="favorites__eyecatch-img" style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}></div>
+                <div className="favorites__eyecatch-img" style={{ backgroundImage: `url("${(type === 'job' ? job.cover_photo : job.job_post.cover_photo) || ecPlaceholder}")` }}></div>
               </div>
-              <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
+              <Link to={generateRoute(routes.JOB_DETAIL, { id: (type === 'job' ? job.id : job.job_post.id) })}
                 className="button button--link">
                 <h4 className="favorites__title">
-                  {job.title}
+                  {type === 'job' ? job.title : job.job_post.title}
                 </h4>
               </Link>
             </div>
@@ -35,7 +34,7 @@ const FavoritesList = ({jobs, type = ''}) => {
                 </div>
               </div>
               <p className="favorites__description">
-                {_.truncate(job.description, { 'length': 125, 'separator': '...'})}
+                {_.truncate(((type === 'job' ? job.description : job.job_post.description)), { 'length': 125, 'separator': '...'})}
                 </p>
             </div>
           </div>

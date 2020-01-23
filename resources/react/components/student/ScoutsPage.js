@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
@@ -6,10 +7,33 @@ import Loading from '../common/Loading';
 import Nada from '../common/Nada';
 import PageUp from '../common/PageUp';
 import FavoritesSection from './FavoritesSection';
+import Apply from '../../utils/apply';
 
 const ScoutsPage = _ => {
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
   const [isLoading, setIsLoading] = useState(true);
   const [jobs, setJobs] = useState([]);
+
+  async function getScoutedApplications() {
+    const page = urlParams.get('page');
+    const request = await Apply.getScoutedApplications({page});
+
+    return request.data;
+  }
+
+  useEffect(_ => {
+    getScoutedApplications()
+      .then(res => {
+        setJobs(res);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        setIsLoading(false);
+
+        console.log('[Scouted Applications ERROR]', error);
+      });
+  }, [location])
 
   return (
     <Page>
