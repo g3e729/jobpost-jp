@@ -17,11 +17,7 @@ export default class Apply {
       .catch(error => error);
   }
 
-  static getApplicationsCompany(params) {
-    const {
-      page,
-    } = params;
-
+  static getApplicationsCompany({page}) {
     const payload = {
       url: endpoints.APPLICATIONS,
       method: 'get',
@@ -36,13 +32,18 @@ export default class Apply {
       .catch(error => error);
   }
 
-  static getScoutedApplications({page}) {
+  static getFilteredApplications(params) {
+    const {
+      page,
+      scouted
+    } = params;
+
     const payload = {
       url: endpoints.APPLICATIONS,
       method: 'get',
       params: {
         page,
-        scouted: 1,
+        scouted,
         per_page: 12
       }
     }

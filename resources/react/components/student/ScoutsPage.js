@@ -15,15 +15,15 @@ const ScoutsPage = _ => {
   const [isLoading, setIsLoading] = useState(true);
   const [jobs, setJobs] = useState([]);
 
-  async function getScoutedApplications() {
+  async function getFilteredApplications() {
     const page = urlParams.get('page');
-    const request = await Apply.getScoutedApplications({page});
+    const request = await Apply.getFilteredApplications({page, scouted: 1});
 
     return request.data;
   }
 
   useEffect(_ => {
-    getScoutedApplications()
+    getFilteredApplications()
       .then(res => {
         setJobs(res);
         setIsLoading(false);

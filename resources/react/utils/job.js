@@ -15,7 +15,11 @@ export default class Job {
   }
 
   static getMyJobs(params) {
-    const { page = 1, status } = params;
+    const {
+      page,
+      status,
+      applicants
+    } = params;
 
     const payload = {
       url: endpoints.MY_JOBS,
@@ -23,6 +27,7 @@ export default class Job {
       params: {
         page,
         status,
+        applicants,
         sort: 'desc'
       }
     }

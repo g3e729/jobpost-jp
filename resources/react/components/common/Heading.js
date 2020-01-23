@@ -3,7 +3,7 @@ import EdiText from 'react-editext';
 import moment from 'moment';
 moment.locale('ja');
 import _ from 'lodash';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Avatar from '../common/Avatar';
@@ -11,7 +11,7 @@ import Button from '../common/Button';
 import Pill from '../common/Pill';
 import Like from '../../utils/like';
 import { state } from '../../constants/state';
-import { routes } from '../../constants/routes';
+import { routes, prefix } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 import { updateUser } from '../../actions/user';
@@ -19,6 +19,7 @@ import { updateUser } from '../../actions/user';
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const Heading = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
   const {
@@ -62,6 +63,12 @@ const Heading = (props) => {
 
   const handleSave = _ => {
     setIsEditing(false);
+  }
+
+  const handleScout = id => {
+    localStorage.setItem('scout_id', id);
+
+    history.push(`${prefix}scouts`);
   }
 
   const handleSubmit = _.debounce((value) => {
@@ -151,9 +158,9 @@ const Heading = (props) => {
                 isLogged ? (
                   accountType === 'student' ? (
                     <>
-                      <Link to={routes.SCOUTS} className="button button--large heading__user-button">
+                      <Button className="button--large heading__user-button" onClick={_ => handleScout(params.id)}>
                         スカウト
-                      </Link>
+                      </Button>
                       <Button className="button--link heading__user-fav" onClick={e => handleLike('student')}>
                         <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                           <i className="icon icon-star"></i>{userLikes}
