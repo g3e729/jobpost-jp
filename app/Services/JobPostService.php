@@ -91,6 +91,11 @@ class JobPostService extends BaseService
                     case 'search':
                         $que = $que->search($fields['search']);
                     break;
+                    case 'liked':
+                        $que = $que->whereHas('likes', function ($q) {
+                            $q->where('user_id', auth()->user()->id);
+                        });
+                    break;
                     default:
                         $que = $que->where($column, $value);
                     break;

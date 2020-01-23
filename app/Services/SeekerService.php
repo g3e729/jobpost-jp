@@ -202,6 +202,8 @@ class SeekerService extends BaseService
                 break;
             }
 
+            $user = auth()->user();
+
             foreach ($fields as $column => $value) {
                 if (in_array($column, ['from', 'to'])) {
                     continue;
@@ -210,6 +212,33 @@ class SeekerService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
+                    break;
+                    case 'scouted':
+                        if ($user->hasRole('company')) {
+                            $que = $que->whereHas('applications', function ($q) use ($user) {
+                                $q->where('scouted', true)
+                                    ->whereHas('job_post', function ($q) use ($user) {
+                                        $q->where('company_profile_id', $user->profile->id ?? 0);
+                                    });
+                            });
+                        }
+                    break;
+                    case 'liked':
+                        if ($user->hasRole('company')) {
+                            $que = $que->whereHas('likes', function ($q) use ($user) {
+                                $q->where('user_id', $user->id);
+                            });
+                        }
+                    break;
+                    case 'applied':
+                        if ($user->hasRole('company')) {
+                            $que = $que->whereHas('applications', function ($q) use ($user) {
+                                $q->where('scouted', false)
+                                    ->whereHas('job_post', function ($q) use ($user) {
+                                        $q->where('company_profile_id', $user->profile->id ?? 0);
+                                    });
+                            });
+                        }
                     break;
                     default:
                         $que = $que->where($column, $value);
