@@ -141,6 +141,15 @@ class JobPostService extends BaseService
                 $que = $que->withTrashed();
             }
 
+
+            if (request()->has('applicants')) {
+                if (request()->get('applicants') == true) {
+                    $que = $que->whereHas('applicants');
+                } elseif (request()->get('applicants') == false) {
+                    $que = $que->whereDoesntHave('applicants');
+                }
+            }
+
             $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);
