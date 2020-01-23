@@ -270,7 +270,7 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills">
-                    { data.skills.length && data.skills
+                    { data.skills && data.skills.length && data.skills
                       .filter(item => {
                         return (programmingFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
@@ -296,7 +296,7 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills">
-                    { data.skills.length && data.skills
+                    { data.skills && data.skills.length && data.skills
                       .filter(item => {
                         return (frameworkFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
@@ -322,7 +322,7 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills">
-                    { data.skills.length && data.skills
+                    { data.skills && data.skills.length && data.skills
                       .filter(item => {
                         return (otherFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
@@ -348,7 +348,7 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-skills profile__data-skills--full">
-                    { data.skills.length && data.skills
+                    { data.skills && data.skills.length && data.skills
                       .filter(item => {
                         return (experienceFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
@@ -647,7 +647,7 @@ const Profile = (props) => {
                     )
                   ) : null }
                   <dl className="profile__data-character">
-                    { data.features.length > 0 && data.features
+                    { data.features && data.features.length > 0 && data.features
                       .slice(0,3)
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
@@ -676,7 +676,7 @@ const Profile = (props) => {
                         </React.Fragment>
                       ))
                     }
-                    { data.features.length < 3 && [...Array(3 - data.features.length)]
+                    { data.features && data.features.length < 3 && [...Array(3 - (data.features && data.features.length))]
                       .map((_, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">

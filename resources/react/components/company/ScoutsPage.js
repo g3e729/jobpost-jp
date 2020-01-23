@@ -25,7 +25,7 @@ const ScoutsPage = _ => {
   }
 
   useEffect(_ => {
-    if (!localStorage.getItem('scout_id')) {
+    if (!localStorage.getItem('seeker_id')) {
       history.push(`${prefix}dashboard/scout`);
     }
   }, [])

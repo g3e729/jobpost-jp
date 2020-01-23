@@ -81,4 +81,16 @@ export default class Apply {
       .then(res => res)
       .catch(error => error);
   }
+
+  static scoutJob(formdata) {
+    const payload = {
+      url: endpoints.APPLY,
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
 }

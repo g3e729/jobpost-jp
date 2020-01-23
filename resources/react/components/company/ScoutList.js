@@ -44,7 +44,7 @@ const ScoutList = (props) => {
   const skillsFilter = { ...experiences, ...frameworks, ...others, ...programming_languages };
 
   const handleScout = id => {
-    localStorage.setItem('scout_id', id);
+    localStorage.setItem('seeker_id', id);
 
     history.push(`${prefix}scouts`);
   }

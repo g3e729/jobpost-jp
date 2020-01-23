@@ -66,7 +66,7 @@ const Heading = (props) => {
   }
 
   const handleScout = id => {
-    localStorage.setItem('scout_id', id);
+    localStorage.setItem('seeker_id', id);
 
     history.push(`${prefix}scouts`);
   }
