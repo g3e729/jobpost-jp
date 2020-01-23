@@ -14,7 +14,7 @@ class CompanyController extends BaseController
 	public function index(Request $request)
 	{
 		$companies = (new ModelService)->search(
-            $request->except('_token', 'page', 'sort', 'paginated', 'sort_by'),
+            searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
         );

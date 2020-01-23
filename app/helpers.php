@@ -123,6 +123,13 @@ if (! function_exists('getProfileUrl')) {
     }
 }
 
+if (! function_exists('requestExcept')) {
+    function searchInputs()
+    {
+        return request()->except('_token', 'page', 'per_page', 'sort', 'paginated', 'sort_by');
+    }
+}
+
 if (! function_exists('apiAbort')) {
     function apiAbort($code)
     {
