@@ -4,7 +4,7 @@ import Fraction from '../common/Fraction';
 import Pagination from '../common/Pagination';
 import FavoritesList from './FavoritesList';
 
-const FavoritesSection = ({data}) => {
+const FavoritesSection = ({data, type}) => {
   const jobsData = data.data || {};
 
   return (
@@ -15,7 +15,7 @@ const FavoritesSection = ({data}) => {
         />
       </div>
       <div className="favorites-section__content">
-        <FavoritesList jobs={jobsData} />
+        <FavoritesList jobs={jobsData} type={type} />
       </div>
       <div className="favorites-section__footer">
         <Pagination

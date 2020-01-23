@@ -92,6 +92,22 @@ export default class Job {
       .catch(error => error);
   }
 
+  static getLikedJobs({page}) {
+    const payload = {
+      url: endpoints.JOBS,
+      method: 'get',
+      params: {
+        page,
+        liked: 1,
+        per_page: 12
+      }
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static getJob(id) {
     const payload = {
       url: generateRoute(endpoints.JOB_DETAIL, { id }),
