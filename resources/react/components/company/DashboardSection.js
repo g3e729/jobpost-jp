@@ -1,8 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Button from '../common/Button';
 import SeekerList from './SeekerList';
 import { routes } from '../../constants/routes';
+import { modalType } from '../../constants/config';
+import { setModal } from '../../actions/modal';
 
 const DashboardSection = (props) => {
   const {
@@ -11,6 +14,11 @@ const DashboardSection = (props) => {
     liked,
     isLoading = false
   } = props;
+  const dispatch = useDispatch();
+
+  const handleAddTickets = _ => {
+    dispatch(setModal(modalType.STUDENT_SCOUT));
+  }
 
   return (
     <div className="dashboard-section">
@@ -18,7 +26,7 @@ const DashboardSection = (props) => {
         <div className="dashboard-section__reminder">
           <div className="dashboard-section__reminder-text">残りのスカウトチケット数</div>
           <div className="dashboard-section__reminder-tickets">29<span>枚</span></div>
-          <Button className="button--large">
+          <Button className="button--large" onClick={_ => handleAddTickets()}>
             チケットの追加
           </Button>
         </div>

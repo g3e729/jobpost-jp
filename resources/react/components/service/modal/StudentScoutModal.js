@@ -1,13 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
+import _ from 'lodash';
 import { css } from 'emotion';
-import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
+import Apply from '../../../utils/apply';
+import { prefix } from '../../../constants/routes';
+import { unSetModal } from '../../../actions/modal';
 
-const StudentScoutModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
-  const hasTickets = Math.random() >= 0.5;
+const StudentScoutModal = ({modal}) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const hasTickets = Math.random() >= 0.01 && (modal.data && modal.data.id); // TODO: change random to actual no.tickets
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleCloseModal = _ => {
+    dispatch(unSetModal());
+  }
+
+  const handleBuyTickets = _ => {
+    console.log('buy tickets')
+  }
+
+  const handleScout = _.debounce(_ => {
+    setIsLoading(true);
+
+    const formdata = new FormData();
+    formdata.append('scouted', 1);
+    formdata.append('seeker_profile_id', localStorage.getItem('seeker_id'));
+    formdata.append('job_post_id', (modal.data && modal.data.id));
+
+    Apply.scoutJob(formdata)
+      .then(result => {
+        localStorage.removeItem('seeker_id');
+
+        setTimeout(_ => {
+          setIsLoading(false);
+          handleCloseModal();
+          history.push(`${prefix}dashboard/scout`);
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
+        handleCloseModal();
+
+        console.log('[Scout ERROR] :', error);
+      })
+  }, 400);
 
   return (
     <BaseModal>
@@ -38,20 +80,27 @@ const StudentScoutModal = _ => {
       <div className="modal__footer">
         <div className="modal__actions">
           { hasTickets ? (
-            <Button className={`button--large ${css`width: 240px !important;`}`}>メッセージをする</Button>
+            <Button className={`button--large ${css`width: 240px !important;`}`} onClick={_ => handleScout()}>メッセージをする</Button>
           ) : (
             <Button className={`button--large ${css`width: 240px !important;`}`}>購入する</Button>
           )}
-          <Button className="button--link modal__actions-button">
+          <Button className="button--link modal__actions-button" onClick={_ => handleCloseModal()}>
             <>
               <i className="icon icon-cross"></i>
               キャンセル
             </>
           </Button>
         </div>
+        { isLoading ? (
+          <Loading className="loading--overlay"/>
+        ) : null }
       </div>
     </BaseModal>
   );
 }
 
-export default StudentScoutModal;
+const mapStateToProps = (state) => ({
+  modal: state.modal
+});
+
+export default connect(mapStateToProps)(StudentScoutModal);
