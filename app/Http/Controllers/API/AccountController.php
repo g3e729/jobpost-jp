@@ -95,8 +95,9 @@ class AccountController extends BaseController
 
 		if ($user->account_type == 'company') {
 			$profile->features = $profile->features ?? [];
-			$profile->portfolios = $profile->portfolios ?? [];
 		}
+
+		$profile->portfolios = $profile->portfolios ?? [];
 
 		$user->profile = $profile;
 

@@ -25,6 +25,13 @@ class Transaction extends Model
         'transactionable_type'
     ];
 
+    // Scopes
+    public function scopeSearch($query, $value)
+    {
+        return $query->where('description', 'LIKE', "%{$value}%");
+    }
+
+    // Relations
     public function transactionable()
     {
         return $this->morphTo();
