@@ -12,6 +12,9 @@ import Nada from '../common/Nada';
 import Pagination from '../common/Pagination';
 import Pill from '../common/Pill';
 import Search from '../common/Search';
+import generateRoute from '../../utils/generateRoute';
+import { sex } from '../../constants/state';
+import { routes } from '../../constants/routes';
 import { dashboardSelectStyles } from '../../constants/config';
 
 const filterList = [
@@ -95,18 +98,20 @@ const SeekerList = (props) => {
                 <div className="seeker-list__item-left">
                   <div className="seeker-list__item-avatar">
                     <Avatar className="avatar--seeker"
-                      style={{ backgroundImage: `url("${item.avatar || avatarPlaceholder}")` }}
+                      style={{ backgroundImage: `url("${(item.applications_count > 0) ? item.avatar : avatarPlaceholder}")` }}
                     />
                   </div>
                 </div>
                 <div className="seeker-list__item-right">
                   <div className="seeker-list__item-right-top">
-                    <h4 className="seeker-list__item-name">{item.display_name}</h4>
-                    <Pill>Develop1コース</Pill>
+                    <Link to={generateRoute(routes.STUDENT_DETAIL, { id: item.id })}
+                      className="button button--link">
+                      <h4 className="seeker-list__item-name">{(item.applications_count > 0) ? item.display_name : sex[`${item.sex}`] }</h4>
+                    </Link>
                   </div>
                   <div className="seeker-list__item-right-bottom">
                     <p className="seeker-list__item-description">{item.description}</p>
-                    <span className="seeker-list__item-tag">でのスカウト</span>
+                    {item.applications_count > 0 ? <span className="seeker-list__item-tag">でのスカウト</span> : null }
                     <time className="seeker-list__item-time">{moment(item.updated_at).fromNow()}</time>
                   </div>
                 </div>

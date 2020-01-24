@@ -14,7 +14,7 @@ import Pill from '../common/Pill';
 import Search from '../common/Search';
 import generateRoute from '../../utils/generateRoute';
 import { routes, prefix } from '../../constants/routes';
-import { skills } from '../../constants/state';
+import { sex, skills } from '../../constants/state';
 import { dashboardSelectStyles } from '../../constants/config';
 
 const filterList = [
@@ -102,15 +102,21 @@ const ScoutList = (props) => {
                   <div className="scout-list__item-top-left">
                     <div className="scout-list__item-top-avatar">
                       <Avatar className="avatar--seeker"
-                        style={{ backgroundImage: `url("${item.avatar || avatarPlaceholder}")` }}
+                        style={{ backgroundImage: `url("${(item.applications_count > 0) ? item.avatar : avatarPlaceholder}")` }}
                       />
                     </div>
                   </div>
                   <div className="scout-list__item-top-right">
                     <div className="scout-list__item-top-header">
                       <h4 className="scout-list__item-top-name">
-                        <span>{item.display_name}</span>
-                        {item.sex === 'm' ? '男' : '女性'}
+                        {(item.applications_count > 0) ? (
+                          <>
+                            <span>{item.display_name}</span>
+                            {sex[`${item.sex}`]}
+                          </>
+                        ) : (
+                          <span>{sex[`${item.sex}`]}</span>
+                        )}
                       </h4>
                       <Pill className="pill--icon">
                         <i className="icon icon-star"></i>{item.likes_count}

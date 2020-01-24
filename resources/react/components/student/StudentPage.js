@@ -15,6 +15,7 @@ import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 const StudentPage = (props) => {
   const [student, setStudent] = useState({});
   const [hasLiked, setHasLiked] = useState(false);
+  const [hasScouted, setHasScouted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = props;
 
@@ -30,6 +31,7 @@ const StudentPage = (props) => {
       .then(res => {
         setStudent(res);
         setIsLoading(false);
+        setHasScouted(!!res.applications_count);
       })
       .catch(error => {
         setIsLoading(false);
@@ -64,6 +66,8 @@ const StudentPage = (props) => {
               subTitle={<span><i className="icon icon-book text-dark-yellow"></i>{student.course}</span>}
               passedFunction={_ => getStudent().then(res => setStudent(res))}
               hasLiked={hasLiked}
+              hasScouted={hasScouted}
+              viewerType={user.userData && user.userData.account_type}
               data-avatar={student.avatar || avatarPlaceholder}
               data-likes={student.likes_count}
             />

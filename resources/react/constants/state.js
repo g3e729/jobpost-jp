@@ -5,6 +5,11 @@ export const state = {
   HIDDEN: 'is-hidden',
 }
 
+export const sex = {
+  m: '男',
+  f: '女性'
+}
+
 export const skills = {
   0: 'なし',
   1: 'なし',

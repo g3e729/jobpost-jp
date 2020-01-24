@@ -30,6 +30,8 @@ const Heading = (props) => {
     isEdit = false,
     isLogged = false,
     hasLiked = false,
+    hasScouted = false,
+    viewerType = null,
     jobData = {},
     accountType = null,
     passedFunction = null,
@@ -106,7 +108,7 @@ const Heading = (props) => {
           ) : null }
           <div className="heading__user">
             <Avatar className="avatar--profile"
-              style={{ backgroundImage: `url("${avatarImg}")` }}
+              style={{ backgroundImage: `url("${(hasScouted || isOwner === true) ? avatarImg : avatarPlaceholder}")` }}
               isEdit={isEdit}
             >
               { isEdit ? (
@@ -128,7 +130,7 @@ const Heading = (props) => {
                     onSave={handleSubmit}
                     editing={isEditing}
                   />
-                : title }
+                : (hasScouted || isOwner === true) ? title : accountType }
               </h2>
               <p className="heading__user-position">
                 {subTitle}
@@ -159,9 +161,11 @@ const Heading = (props) => {
                 isLogged ? (
                   accountType === 'student' ? (
                     <>
-                      <Button className="button--large heading__user-button" onClick={_ => handleScout(params.id, title)}>
-                        スカウト
-                      </Button>
+                      { viewerType === 'company' ? (
+                        <Button className="button--large heading__user-button" onClick={_ => handleScout(params.id, title)}>
+                          スカウト
+                        </Button>
+                      ) : null }
                       <Button className="button--link heading__user-fav" onClick={e => handleLike('student')}>
                         <Pill className={`pill--icon text-medium-black ${hasUserLiked ? state.ACTIVE : ''}`}>
                           <i className="icon icon-star"></i>{userLikes}

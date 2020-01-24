@@ -211,45 +211,47 @@ const Profile = (props) => {
                   </dl>
                 </div>
               </li>
-              <li className="profile__main-list-item">
-                <div className="profile__main-list-item-box">
-                  <h3 className="profile__main-list-item-heading">ムービー</h3>
-                  { isEdit ? (
-                    isEditing ? (
-                      <Button className="button--pill" onClick={_ => handleSave()}>
-                        <>
-                          <i className="icon icon-disk text-dark-yellow"></i>
-                          更新
-                        </>
-                      </Button>
-                    ) : (
-                      <Button className="button--pill" onClick={_ => handleEdit()}>
-                        <>
-                          <i className="icon icon-pencil text-dark-yellow"></i>
-                          編集
-                        </>
-                      </Button>
-                    )
-                  ) : null }
-                  <div className="profile__data-video">
-                    <Embed src="https://www.youtube.com/embed/zpOULjyy-n8"
-                      className={`embed--16by9 ${css`margin-bottom: 22px`}`}
-                      allowFullScreen />
-                    <div className="profile__data-link">
-                      { isEdit ?
-                        <EdiText
-                          submitOnEnter
-                          value={data.movie_url || ''}
-                          type="text"
-                          onSave={e => handleSubmit(e, 'movie_url')}
-                          editing={isEditing}
-                        />
-                      : <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">{data.movie_url}</a>  }
-                      <Clipboard value="https://github.com/MyznEiji" />
-                    </div>
+              { data.applications_count || isOwner === true ? (
+                <li className="profile__main-list-item">
+                  <div className="profile__main-list-item-box">
+                    <h3 className="profile__main-list-item-heading">ムービー</h3>
+                    { isEdit ? (
+                      isEditing ? (
+                        <Button className="button--pill" onClick={_ => handleSave()}>
+                          <>
+                            <i className="icon icon-disk text-dark-yellow"></i>
+                            更新
+                          </>
+                        </Button>
+                      ) : (
+                        <Button className="button--pill" onClick={_ => handleEdit()}>
+                          <>
+                            <i className="icon icon-pencil text-dark-yellow"></i>
+                            編集
+                          </>
+                        </Button>
+                      )
+                    ) : null }
+                      <div className="profile__data-video">
+                        <Embed src="https://www.youtube.com/embed/zpOULjyy-n8"
+                          className={`embed--16by9 ${css`margin-bottom: 22px`}`}
+                          allowFullScreen />
+                        <div className="profile__data-link">
+                          { isEdit ?
+                            <EdiText
+                              submitOnEnter
+                              value={data.movie_url || ''}
+                              type="text"
+                              onSave={e => handleSubmit(e, 'movie_url')}
+                              editing={isEditing}
+                            />
+                          : <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">{data.movie_url}</a>  }
+                          <Clipboard value="https://github.com/MyznEiji" />
+                        </div>
+                      </div>
                   </div>
-                </div>
-              </li>
+                </li>
+              ) : null }
             </ul>
           </div>
           <div className="profile__main-data">
