@@ -16,16 +16,17 @@ const ScoutsPage = _ => {
   const urlParams = new URLSearchParams(location.search);
   const [isLoading, setIsLoading] = useState(true);
   const [jobs, setJobs] = useState([]);
+  const seekerId = localStorage.getItem('seeker_id') || '';
 
   async function getMyJobs() {
     const page = urlParams.get('page');
-    const request = await Job.getMyJobs({page, status: 1});
+    const request = await Job.getMyJobs({page, status: 1, excluded: seekerId});
 
     return request.data;
   }
 
   useEffect(_ => {
-    if (!localStorage.getItem('seeker_id')) {
+    if (!seekerId) {
       history.push(`${prefix}dashboard/scout`);
     }
   }, [])

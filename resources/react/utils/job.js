@@ -18,7 +18,8 @@ export default class Job {
     const {
       page,
       status,
-      applicants
+      applicants,
+      excluded
     } = params;
 
     const payload = {
@@ -28,6 +29,7 @@ export default class Job {
         page,
         status,
         applicants,
+        excluded,
         sort: 'desc'
       }
     }
