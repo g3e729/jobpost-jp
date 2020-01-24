@@ -19,6 +19,7 @@ class Transaction extends Model
 		'amount',
 		'type',
 		'type_id',
+        'tickets',
 		'description',
 		'is_approved',
         'transactionable_id',

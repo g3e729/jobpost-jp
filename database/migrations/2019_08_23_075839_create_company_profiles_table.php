@@ -40,6 +40,8 @@ class CreateCompanyProfilesTable extends Migration
             $table->text('why_text')->nullable();
             $table->text('how_text')->nullable();
 
+            $table->integer('available_tickets')->default(0);
+
             $table->softDeletes();
             $table->timestamps();
         });
