@@ -9,7 +9,7 @@ import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import Apply from '../../../utils/apply';
 import Transantion from '../../../utils/transaction';
-import { state } from '../../../constants/state';
+import { state, tier } from '../../../constants/state';
 import { prefix } from '../../../constants/routes';
 import { unSetModal } from '../../../actions/modal';
 
@@ -28,8 +28,9 @@ const StudentScoutModal = ({modal}) => {
     setIsLoading(true);
 
     const formdata = new FormData();
-    formdata.append('amount', 1000);
     formdata.append('type', 'ticket');
+    formdata.append('amount', tier[(ticketIndex || 1)].amount);
+    formdata.append('tickets', tier[(ticketIndex || 1)].tickets);
     formdata.append('description', '');
 
     Transantion.addTransaction(formdata)
@@ -92,7 +93,7 @@ const StudentScoutModal = ({modal}) => {
               スカウトするには購入する必要があります。`}
             </p>
             <div className="modal__content-pills">
-              <Button className={`modal__content-pills-button ${ticketIndex === 1 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(1)}>５枚</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 1 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(1)}>3枚</Button>
               <Button className={`modal__content-pills-button ${ticketIndex === 2 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(2)}>10枚</Button>
               <Button className={`modal__content-pills-button ${ticketIndex === 3 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(3)}>30枚</Button>
             </div>

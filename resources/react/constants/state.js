@@ -13,3 +13,9 @@ export const skills = {
   4: '1年以上',
   5: '２年以上',
 }
+
+export const tier = {
+  1: { tickets: 3, amount: '30000'},
+  2: { tickets: 10, amount: '90000'},
+  3: { tickets: 30, amount:'250000'},
+}
