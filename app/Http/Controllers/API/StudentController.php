@@ -14,11 +14,21 @@ class StudentController extends BaseController
 
 	public function index(Request $request)
 	{
+        $user = auth()->user();
+        $job_ids = [];
+
+        if ($user && $user->hasRole('company')) {
+            $job_ids = $user->profile->jobPosts->pluck('id')->toArray();
+        }
+
 		return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
-        );
+        )->each(function ($item) use ($job_ids) {
+            $applied_job_ids = $item->applications->pluck('job_post_id')->toArray();
+            $item->applied = count(array_intersect($applied_job_ids, $job_ids)) ? true : false;
+        });
 	}
 
     public function show($id)
