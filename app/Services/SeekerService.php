@@ -279,14 +279,17 @@ class SeekerService extends BaseService
 
         $que = $this->item->applications()->whereJobPostId($job_post->id);
 
-
         if (!$que->count()) {
             return $this->item->applications()->create([
                 'job_post_id' => $job_post->id,
                 'scouted' => $scouted
             ]);
-        } else {
-            $que->update(compact('scouted'));
+        }
+
+        if ($scouted && $auth_user->hasRole('company')) {
+            $available_tickets = $auth_user->profile->available_tickets - 1;
+
+            $auth_user->profile->update(compact('available_tickets'));
         }
 
         return $que->first();

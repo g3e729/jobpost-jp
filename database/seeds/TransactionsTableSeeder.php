@@ -44,6 +44,7 @@ class TransactionsTableSeeder extends Seeder
 			$company->transactions()->create([
 				'amount' => $amount,
 				'type' => 'ticket',
+				'tickets' => rand(5, 30),
 				'created_at' => $day,
 				'updated_at' => $day,
     		]);

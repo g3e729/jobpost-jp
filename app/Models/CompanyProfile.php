@@ -41,6 +41,8 @@ class CompanyProfile extends Model
         'why_text',
         'how_text',
 
+        'available_tickets',
+
         'deleted_at'
     ];
 

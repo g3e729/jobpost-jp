@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->double('amount', 20, 2)->default(0);
             $table->string('type')->nullable();
             $table->string('type_id')->nullable();
+            $table->integer('tickets')->default(0);
             $table->text('description')->nullable();
             $table->boolean('is_approved')->default(0);
             $table->integer('transactionable_id');

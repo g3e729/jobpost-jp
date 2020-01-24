@@ -9,25 +9,20 @@ use Illuminate\Http\Request;
 
 class StudentController extends BaseController
 {
+    protected $user;
     protected $student;
     protected $profile;
 
 	public function index(Request $request)
 	{
-        $user = auth()->user();
-        $job_ids = [];
-
-        if ($user && $user->hasRole('company')) {
-            $job_ids = $user->profile->jobPosts->pluck('id')->toArray();
-        }
+        $this->routine();
 
 		return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
-        )->each(function ($item) use ($job_ids) {
-            $applied_job_ids = $item->applications->pluck('job_post_id')->toArray();
-            $item->applied = count(array_intersect($applied_job_ids, $job_ids)) ? true : false;
+        )->each(function ($student) {
+            $student->applied = $this->setApplied($student);
         });
 	}
 
@@ -74,19 +69,36 @@ class StudentController extends BaseController
 
     private function routine($id = null)
     {
-        $this->student = (new ModelService)->show($id);
+        $this->user = auth()->user();
 
-        if (!$this->student) {
-            apiAbort(404);
+        $this->profile = $this->user->profile ?? null;
+        $this->job_ids = [];
+
+        if ($this->user && $this->user->hasRole('company')) {
+            $this->job_ids = $this->user->profile->jobPosts->pluck('id')->toArray();
+        }
+
+        if ($id) {
+            $this->student = (new ModelService)->show($id);
+
+            $this->student->applied = $this->setApplied($this->student);
+
+            if (!$this->student) {
+                apiAbort(404);
+            }
         }
 
         if (in_array(request()->getMethod(), ['PATCH', 'DELETE'])) {
-
-            $this->profile = auth()->user()->profile ?? null;
 
             if (!$this->profile || $this->profile->id != $this->student->id) {
                 apiAbort(403);
             }
         }
+    }
+
+    private function setApplied($student)
+    {
+        $applied_job_ids = $student->applications->pluck('job_post_id')->toArray();
+        return count(array_intersect($applied_job_ids, $this->job_ids)) ? true : false;
     }
 }
