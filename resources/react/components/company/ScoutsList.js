@@ -16,7 +16,7 @@ const ScoutsList = ({data}) => {
   const jobsData = data.data || {};
 
   const handleClick = (id) => {
-    dispatch(setModal(modalType.STUDENT_SCOUT, {id}));
+    dispatch(setModal(modalType.STUDENT_SCOUT, {id, text: localStorage.getItem('seeker_name')}));
   }
   return (
     <ul className="scouts-list">

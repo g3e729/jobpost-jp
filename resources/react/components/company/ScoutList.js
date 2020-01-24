@@ -40,11 +40,12 @@ const ScoutList = (props) => {
     programming_languages = []
   } = (filterData !== undefined && filterData.students);
   const data = students || {};
-  const studentsData = students.data || {};
+  const studentsData = students.data || data;
   const skillsFilter = { ...experiences, ...frameworks, ...others, ...programming_languages };
 
-  const handleScout = id => {
+  const handleScout = (id, name) => {
     localStorage.setItem('seeker_id', id);
+    localStorage.setItem('seeker_name', name);
 
     history.push(`${prefix}scouts`);
   }
@@ -127,7 +128,7 @@ const ScoutList = (props) => {
                       </li> */}
                     </ul>
                   </div>
-                  <Button className="button button--large scout-list__item-top-button" onClick={_ => handleScout(item.id)}>
+                  <Button className="button button--large scout-list__item-top-button" onClick={_ => handleScout(item.id, item.display_name)}>
                     スカウトする
                   </Button>
                 </div>

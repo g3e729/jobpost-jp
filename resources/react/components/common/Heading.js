@@ -65,8 +65,9 @@ const Heading = (props) => {
     setIsEditing(false);
   }
 
-  const handleScout = id => {
+  const handleScout = (id, name) => {
     localStorage.setItem('seeker_id', id);
+    localStorage.setItem('seeker_name', name);
 
     history.push(`${prefix}scouts`);
   }
@@ -158,7 +159,7 @@ const Heading = (props) => {
                 isLogged ? (
                   accountType === 'student' ? (
                     <>
-                      <Button className="button--large heading__user-button" onClick={_ => handleScout(params.id)}>
+                      <Button className="button--large heading__user-button" onClick={_ => handleScout(params.id, title)}>
                         スカウト
                       </Button>
                       <Button className="button--link heading__user-fav" onClick={e => handleLike('student')}>

@@ -25,6 +25,7 @@ const CandidatesPage = _ => {
       page, per_page: 10
     });
 
+    return request.data;
   }
 
   useEffect(_ => {

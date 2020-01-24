@@ -11,12 +11,14 @@ import Apply from '../../../utils/apply';
 import Transantion from '../../../utils/transaction';
 import { state, tier } from '../../../constants/state';
 import { prefix } from '../../../constants/routes';
-import { unSetModal } from '../../../actions/modal';
+import { unSetModal } from '../../../actions/modal';;
+import { getUser } from '../../../actions/user';
 
-const StudentScoutModal = ({modal}) => {
+const StudentScoutModal = ({user, modal}) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const hasTickets = Math.random() >= 0.01 && (modal.data && modal.data.id); // TODO: change random to actual no.tickets
+  const tickets = (user.userData && user.userData.profile && user.userData.profile.available_tickets) || 0;
+  const hasTickets = tickets && (modal.data && modal.data.id);
   const [isLoading, setIsLoading] = useState(false);
   const [ticketIndex, setTicketIndex] = useState(null);
 
@@ -59,11 +61,23 @@ const StudentScoutModal = ({modal}) => {
     Apply.scoutJob(formdata)
       .then(result => {
         localStorage.removeItem('seeker_id');
+        localStorage.removeItem('seeker_name');
 
         setTimeout(_ => {
-          setIsLoading(false);
-          handleCloseModal();
-          history.push(`${prefix}dashboard/scout`);
+          dispatch(getUser())
+            .then(_ => {
+              setIsLoading(false);
+              dispatch(unSetModal());
+
+              history.push(`${prefix}dashboard/scout`);
+            })
+            .catch(error => {
+              setIsLoading(false);
+              dispatch(unSetModal());
+              history.push(`${prefix}dashboard/scout`);
+
+              console.log('[Update ERROR]', error);
+            });
         }, 500);
       })
       .catch(error => {
@@ -81,11 +95,11 @@ const StudentScoutModal = ({modal}) => {
           <>
             <div className="modal__content-remain">
               残りのチケット
-              <span>29
+              <span>{tickets - 1}
                 <small>枚</small>
               </span>
             </div>
-            <h3 className="modal__content-title">Y.Tさんをスカウトしました。</h3>
+            <h3 className="modal__content-title">{modal.data && modal.data.text}さんをスカウトしました。</h3>
           </>
         ) : (
           <>
@@ -125,6 +139,7 @@ const StudentScoutModal = ({modal}) => {
 }
 
 const mapStateToProps = (state) => ({
+  user: state.user,
   modal: state.modal
 });
 

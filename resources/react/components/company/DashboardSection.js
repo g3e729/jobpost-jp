@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import Button from '../common/Button';
 import SeekerList from './SeekerList';
@@ -12,9 +12,11 @@ const DashboardSection = (props) => {
     scouted,
     applied,
     liked,
-    isLoading = false
+    isLoading = false,
+    user
   } = props;
   const dispatch = useDispatch();
+  const tickets = (user.userData && user.userData.profile && user.userData.profile.available_tickets) || 0;
 
   const handleAddTickets = _ => {
     dispatch(setModal(modalType.STUDENT_SCOUT));
@@ -25,7 +27,7 @@ const DashboardSection = (props) => {
       <div className="dashboard-section__top">
         <div className="dashboard-section__reminder">
           <div className="dashboard-section__reminder-text">残りのスカウトチケット数</div>
-          <div className="dashboard-section__reminder-tickets">29<span>枚</span></div>
+          <div className="dashboard-section__reminder-tickets">{tickets}<span>枚</span></div>
           <Button className="button--large" onClick={_ => handleAddTickets()}>
             チケットの追加
           </Button>
@@ -61,4 +63,8 @@ const DashboardSection = (props) => {
   );
 }
 
-export default DashboardSection;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(DashboardSection);

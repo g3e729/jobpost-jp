@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Fraction from '../common/Fraction';
@@ -6,7 +7,12 @@ import Pagination from '../common/Pagination';
 import ScoutsList from './ScoutsList';
 import { routes } from '../../constants/routes';
 
-const ScoutsSection = ({data}) => {
+const ScoutsSection = (props) => {
+  const {
+    user,
+    data
+  } = props;
+  const tickets = (user.userData && user.userData.profile && user.userData.profile.available_tickets) || 0;
 
   return (
     <div className="scouts-section">
@@ -17,9 +23,15 @@ const ScoutsSection = ({data}) => {
           </Link>
           <div className="scouts-section__top-info-remain">
             残りのチケット
-            <span>30<small>枚</small></span>
-            <i className="icon icon-arrow-right"></i>
-            <span>29<small>枚</small></span>
+            { tickets > 0 ? (
+              <>
+                <span>{tickets}<small>枚</small></span>
+                <i className="icon icon-arrow-right"></i>
+                <span>{tickets - 1}<small>枚</small></span>
+              </>
+            ) : (
+              <span>{tickets}<small>枚</small></span>
+            )}
           </div>
         </div>
         <h3 className="scouts-section__top-title">スカウトする募集の選択</h3>
@@ -42,4 +54,8 @@ const ScoutsSection = ({data}) => {
   );
 }
 
-export default ScoutsSection;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(ScoutsSection);

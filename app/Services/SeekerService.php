@@ -17,7 +17,7 @@ class SeekerService extends BaseService
     public function __construct($item = null)
     {
         parent::__construct(ServiceModel::class);
-        
+
         if ($item instanceof ServiceModel) {
             $this->item = $item;
             $this->user = $item->user;
@@ -154,7 +154,7 @@ class SeekerService extends BaseService
 
         return true;
     }
-    
+
     public function search($fields, $paginated = true, $sort = 'ASC')
     {
         try {
@@ -255,7 +255,7 @@ class SeekerService extends BaseService
             // }
 
             $que = $que->orderBy('id', 'ASC');
-            
+
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
@@ -283,17 +283,18 @@ class SeekerService extends BaseService
         $que = $this->item->applications()->whereJobPostId($job_post->id);
 
         if (!$que->count()) {
-            return $this->item->applications()->create([
-                'job_post_id' => $job_post->id,
-                'scouted' => $scouted
+          $this->item->applications()->create([
+            'job_post_id' => $job_post->id,
+            'scouted' => $scouted
             ]);
+
+            if ($scouted && $auth_user->hasRole('company')) {
+                $available_tickets = $auth_user->profile->available_tickets - 1;
+
+                $auth_user->profile->update(compact('available_tickets'));
+            }
         }
 
-        if ($scouted && $auth_user->hasRole('company')) {
-            $available_tickets = $auth_user->profile->available_tickets - 1;
-
-            $auth_user->profile->update(compact('available_tickets'));
-        }
 
         return $que->first();
     }
