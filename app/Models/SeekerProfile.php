@@ -306,6 +306,22 @@ class SeekerProfile extends Model
         ]);
     }
 
+    public function scopeApplied($query)
+    {
+        $user = auth()->user();
+        $job_ids = ($user && $user->hasRole('company')) ? $user->profile->jobPosts()->pluck('id')->toArray() : [];
+
+        if (count($job_ids)) {
+            return $query->with('applications')->withCount([
+                'applications' => function ($q) use ($job_ids) {
+                    $q->whereIn('job_post_id', $job_ids);
+                }
+            ]);
+        }
+
+        return $query;
+    }
+
     public function applications()
     {
         return $this->hasMany(Applicant::class, 'seeker_profile_id');

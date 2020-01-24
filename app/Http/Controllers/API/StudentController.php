@@ -21,9 +21,7 @@ class StudentController extends BaseController
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
-        )->each(function ($student) {
-            $student->applied = $this->setApplied($student);
-        });
+        );
 	}
 
     public function show($id)
@@ -80,8 +78,6 @@ class StudentController extends BaseController
 
         if ($id) {
             $this->student = (new ModelService)->show($id);
-
-            $this->student->applied = $this->setApplied($this->student);
 
             if (!$this->student) {
                 apiAbort(404);

@@ -27,6 +27,7 @@ class SeekerService extends BaseService
     public function show($id)
     {
         return ServiceModel::popular()
+            ->applied()
             ->whereId($id)
             ->first();
     }
@@ -160,7 +161,7 @@ class SeekerService extends BaseService
             $fields = array_filter($fields);
             $status = array_get($fields, 'status');
             $fields = array_except($fields, 'status');
-            $que = (new $this->model)->popular();
+            $que = (new $this->model)->popular()->applied();
 
             switch ($status) {
                 case 1:
@@ -246,12 +247,14 @@ class SeekerService extends BaseService
                 }
             }
 
-            if (request()->has('sort_by')) {
-                $que = $que->orderBy(request()->get('sort_by'), $sort);
-            } else {
-                $que = $que->join('users', 'seeker_profiles.user_id', '=', 'users.id')
-                    ->orderBy('users.name', $sort);
-            }
+            // if (request()->has('sort_by')) {
+            //     $que = $que->orderBy(request()->get('sort_by'), $sort);
+            // } else {
+            //     $que = $que->join('users', 'seeker_profiles.user_id', '=', 'users.id')
+            //         ->orderBy('users.name', $sort);
+            // }
+
+            $que = $que->orderBy('id', 'ASC');
             
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
