@@ -128,7 +128,7 @@ class JobPostService extends BaseService
 
     public function getCompanyJobs(bool $status = null, $paginated = true, $sort = 'DESC')
     {
-        // try {
+        try {
             $que = $this->company
                 ->jobPosts()
                 ->popular()
@@ -161,10 +161,10 @@ class JobPostService extends BaseService
             $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);
-        // } catch (Exception $e) {
-        //     \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
-        //     return $this->toReturn();
-        // }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return $this->toReturn();
+        }
     }
 
     public function jobFilters()

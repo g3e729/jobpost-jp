@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Services\TransactionService as ModelService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,24 @@ class TransactionController extends BaseController
 {
 	protected $profile;
 	protected $transaction;
+
+	public function index(Request $request)
+	{
+		$this->routine();
+
+		return (new ModelService(null, $this->profile))->search(
+			searchInputs(),
+            $request->get('paginated', true),
+			$request->get('sort', 'DESC')
+		);
+	}
+
+	public function show($id)
+	{
+		$this->routine();
+
+		return (new ModelService)->find($id);
+	}
 
 	public function store(Request $request)
 	{
@@ -56,7 +75,7 @@ class TransactionController extends BaseController
 		}
 	}
 
-	private function requestField()
+	private function requestField($request = null)
 	{
 		return request()->only('amount', 'type', 'type_id', 'description');
 	}

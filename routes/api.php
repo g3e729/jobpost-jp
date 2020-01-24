@@ -40,7 +40,7 @@ Route::group([
 	    'middleware' => ['App\Http\Middleware\ApiCheck:company'],
 	], function () {
 		Route::resource('features', 'FeatureController')->only('store', 'update', 'destroy');
-		Route::resource('transactions', 'TransactionController')->only('store', 'update', 'destroy');
+		Route::resource('transactions', 'TransactionController');
 		Route::resource('jobs', 'JobPostController')->only('store', 'update');
 		Route::delete('jobs/{job}', 'JobPostController@destroy');
 		Route::patch('jobs/{job}/update-status', 'JobPostController@toggleStatus');
