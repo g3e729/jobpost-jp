@@ -64,6 +64,7 @@ const CompanyPage = (props) => {
               subTitle={company.homepage}
               passedFunction={_ => getCompany().then(res => setCompany(res))}
               hasLiked={hasLiked}
+              hasScouted={true}
               data-avatar={company.avatar || avatarPlaceholder}
               data-likes={company.likes_count}
             />

@@ -129,10 +129,10 @@ const Job = (props) => {
               height="235px"
             />
             <dl className="job__main-address-list">
-              { job.address1 || job.address2 || job.address3 || job.prefecture ? (
+              { job.address1 || job.address2 || job.address3 || job.display_prefecture ? (
                 <>
                   <dt>住所</dt>
-                  <dd>{job.address1} {job.address2} {job.address3} {job.prefecture}</dd>
+                  <dd>{job.address1} {job.address2} {job.address3} {job.display_prefecture}</dd>
                 </>
               ) : null }
               { job.station ? (
@@ -157,12 +157,12 @@ const Job = (props) => {
                 <h4 className="job__sidebar-content-avatar-name">{company.company_name}</h4>
               </div>
             </li>
-            { company.address1 || company.address2 || company.address3 || company.prefecture || company.homepage ? (
+            { company.address1 || company.address2 || company.address3 || company.display_prefecture || company.homepage ? (
               <li className="job__sidebar-content-company-items">
-                { company.address1 || company.address2 || company.address3 || company.prefecture ? (
+                { company.address1 || company.address2 || company.address3 || company.display_prefecture ? (
                   <div className="job__sidebar-content-misc">
                     <i className="icon icon-marker text-dark-yellow"></i>
-                    <p className="job__sidebar-content-misc-copy">{company.address1} {company.address2} {company.address3} {company.prefecture}</p>
+                    <p className="job__sidebar-content-misc-copy">{company.address1} {company.address2} {company.address3} {company.display_prefecture}</p>
                   </div>
                 ) : null}
                 { company.homepage ? (

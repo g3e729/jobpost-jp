@@ -13,7 +13,7 @@ import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
 import { routes } from '../../constants/routes';
-import { skills } from '../../constants/state';
+import { sex, skills } from '../../constants/state';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 import { updateUser, addUserFeature, updateUserFeature } from '../../actions/user';
@@ -39,10 +39,12 @@ const Profile = (props) => {
     others = [],
     programming_languages = []
   } = (filterData !== undefined && filterData.students);
-  const experienceFilter = Object.keys(experiences).map(item => item);
-  const frameworkFilter = Object.keys(frameworks).map(item => item);
-  const otherFilter = Object.keys(others).map(item => item);
-  const programmingFilter = Object.keys(programming_languages).map(item => item);
+  const experienceFilter = Object.keys(experiences);
+  const frameworkFilter = Object.keys(frameworks);
+  const otherFilter = Object.keys(others);
+  const programmingFilter = Object.keys(programming_languages);
+
+  console.log('expie :', experiences);
 
   const handleModal = type => {
     dispatch(setModal(type));
@@ -539,9 +541,9 @@ const Profile = (props) => {
             <div className="profile__sidebar-content">
               <dl className="profile__sidebar-content-basic">
                 <dt className="profile__sidebar-content-basic-term">生年月日</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.birthday}</dd>
+                <dd className="profile__sidebar-content-basic-data">{moment(data.birthday).format('YYYY/MM/DD')}</dd>
                 <dt className="profile__sidebar-content-basic-term">性別</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.sex}</dd>
+                <dd className="profile__sidebar-content-basic-data">{sex[`${data.sex}`]}</dd>
                 <dt className="profile__sidebar-content-basic-term">住所</dt>
                 <dd className="profile__sidebar-content-basic-data">{data.address1}</dd>
                 <dt className="profile__sidebar-content-basic-term">ステータス</dt>
@@ -789,12 +791,12 @@ const Profile = (props) => {
                     <h4 className="profile__sidebar-content-avatar-name">{data.company_name}</h4>
                   </div>
                 </li>
-                { data.address1 || data.address2 || data.address3 || data.prefecture || data.homepage ? (
+                { data.address1 || data.address2 || data.address3 || data.display_prefecture || data.homepage ? (
                   <li className="profile__sidebar-content-company-items">
-                    { data.address1 || data.address2 || data.address3 || data.prefecture ? (
+                    { data.address1 || data.address2 || data.address3 || data.display_prefecture ? (
                       <div className="profile__sidebar-content-misc">
                         <i className="icon icon-marker text-dark-yellow"></i>
-                        <p className="profile__sidebar-content-misc-copy">{data.address1} {data.address2} {data.address3} {data.prefecture}</p>
+                        <p className="profile__sidebar-content-misc-copy">{data.address1} {data.address2} {data.address3} {data.display_prefecture}</p>
                       </div>
                     ) : null}
                     { data.prefecture ? (

@@ -812,6 +812,7 @@ And you should not feel free to add a new Utility class.
 
 .pages {
   position: relative;
+  min-height: calc(100vh - 98px);
   overflow: hidden;
 }
 
@@ -1099,6 +1100,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-direction: normal;
           flex-direction: column;
   width: 300px;
+  min-height: 100vh;
   -webkit-box-flex: 0;
           flex: 0 0 300px;
   align-self: stretch;
@@ -1262,8 +1264,7 @@ And you should not feel free to add a new Utility class.
 }
 
 .dropdown__menu-item a.is-active {
-  color: #fff;
-  background-color: rgba(253, 184, 52, 0.5);
+  background-color: #f2f2f0;
   pointer-events: none;
 }
 
