@@ -33,10 +33,14 @@ const Search = _ => {
   async function getResults() {
     setSearchTerm(urlParams.get('search'));
 
+    const search = urlParams.get('search');
+    const jobs_page = urlParams.get('jobs_page');
+    const companies_page = urlParams.get('companies_page');
+
     const request = await SearchAPI.getResults({
-      search: urlParams.get('search'),
-      jobs_page: urlParams.get('jobs_page'),
-      companies_page: urlParams.get('companies_page')
+      search,
+      jobs_page,
+      companies_page
     });
 
     return request.data;

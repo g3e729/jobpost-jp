@@ -36,7 +36,7 @@ const DashboardSection = (props) => {
           students={scouted}
           isLoading={isLoading}
           link={{
-            pathname: routes.SCOUT,
+            pathname: routes.CANDIDATES,
             search: "?scouted=1",
             state: { fromDashboard: true }
           }} />
@@ -44,7 +44,7 @@ const DashboardSection = (props) => {
           students={applied}
           isLoading={isLoading}
           link={{
-            pathname: routes.SCOUT,
+            pathname: routes.CANDIDATES,
             search: "?applied=1",
             state: { fromDashboard: true }
           }} />
@@ -52,7 +52,7 @@ const DashboardSection = (props) => {
           students={liked}
           isLoading={isLoading}
           link={{
-            pathname: routes.SCOUT,
+            pathname: routes.CANDIDATES,
             search: "?liked=1",
             state: { fromDashboard: true }
           }} />

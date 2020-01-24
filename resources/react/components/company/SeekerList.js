@@ -31,7 +31,7 @@ const SeekerList = (props) => {
     isLoading = false
   } = props;
   const data = students || {};
-  const studentsData = students.data || {};
+  const studentsData = students.data || data;
 
   return (
     <div className="seeker-list__container">
