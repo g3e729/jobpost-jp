@@ -6218,11 +6218,17 @@ a.pagination__item-link:hover {
 }
 
 .scout-list__item-top-name {
-  font-size: 20px;
-  font-weight: 700;
   letter-spacing: 0.06em;
+  color: #d9d6d6;
   display: inline;
   margin-right: 28px;
+}
+
+.scout-list__item-top-name > span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #393939;
+  margin-right: 10px;
 }
 
 .scout-list__item-top-pills {
@@ -6332,7 +6338,6 @@ a.pagination__item-link:hover {
 }
 
 .scouts__left-inner:last-child {
-  margin-top: 25px;
   margin-left: 35px;
 }
 
@@ -6394,7 +6399,12 @@ a.pagination__item-link:hover {
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
-  margin-top: 12px;
+}
+
+.scouts__desc {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+  margin-top: 10px;
 }
 
 .scouts__list {

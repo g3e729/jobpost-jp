@@ -8,6 +8,8 @@ import BaseModal from './BaseModal';
 import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import Apply from '../../../utils/apply';
+import Transantion from '../../../utils/transaction';
+import { state } from '../../../constants/state';
 import { prefix } from '../../../constants/routes';
 import { unSetModal } from '../../../actions/modal';
 
@@ -16,13 +18,33 @@ const StudentScoutModal = ({modal}) => {
   const dispatch = useDispatch();
   const hasTickets = Math.random() >= 0.01 && (modal.data && modal.data.id); // TODO: change random to actual no.tickets
   const [isLoading, setIsLoading] = useState(false);
+  const [ticketIndex, setTicketIndex] = useState(null);
 
   const handleCloseModal = _ => {
     dispatch(unSetModal());
   }
 
   const handleBuyTickets = _ => {
-    console.log('buy tickets')
+    setIsLoading(true);
+
+    const formdata = new FormData();
+    formdata.append('amount', 1000);
+    formdata.append('type', 'ticket');
+    formdata.append('description', '');
+
+    Transantion.addTransaction(formdata)
+      .then(result => {
+        setTimeout(_ => {
+          setIsLoading(false);
+          handleCloseModal();
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
+        handleCloseModal();
+
+        console.log('[Transaction ERROR] :', error);
+      });
   }
 
   const handleScout = _.debounce(_ => {
@@ -70,9 +92,9 @@ const StudentScoutModal = ({modal}) => {
               スカウトするには購入する必要があります。`}
             </p>
             <div className="modal__content-pills">
-              <Button className="button--pill modal__content-pills-button">５枚</Button>
-              <Button className="button--pill modal__content-pills-button">10枚</Button>
-              <Button className="button--pill modal__content-pills-button">30枚</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 1 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(1)}>５枚</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 2 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(2)}>10枚</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 3 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(3)}>30枚</Button>
             </div>
           </>
         )}
@@ -82,7 +104,9 @@ const StudentScoutModal = ({modal}) => {
           { hasTickets ? (
             <Button className={`button--large ${css`width: 240px !important;`}`} onClick={_ => handleScout()}>メッセージをする</Button>
           ) : (
-            <Button className={`button--large ${css`width: 240px !important;`}`}>購入する</Button>
+            <Button className={`button--large ${!ticketIndex ? state.DISABLED : ''} ${css`width: 240px !important;`}`}
+              onClick={_ => handleBuyTickets()}
+            >購入する</Button>
           )}
           <Button className="button--link modal__actions-button" onClick={_ => handleCloseModal()}>
             <>

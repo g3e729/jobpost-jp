@@ -31,7 +31,6 @@
   flex: 0 0 265px;
 
   &:last-child {
-    margin-top: 25px;
     margin-left: 35px;
   }
 }
@@ -92,8 +91,13 @@
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: 0.06em;
+}
 
-  margin-top: 12px;
+.scouts__desc {
+  line-height: 1.857;
+  letter-spacing: 0.06em;
+
+  margin-top: 10px;
 }
 
 .scouts__list {

@@ -107,7 +107,10 @@ const ScoutList = (props) => {
                   </div>
                   <div className="scout-list__item-top-right">
                     <div className="scout-list__item-top-header">
-                      <h4 className="scout-list__item-top-name">{item.sex === 'm' ? '男' : '女性'}</h4>
+                      <h4 className="scout-list__item-top-name">
+                        <span>{item.display_name}</span>
+                        {item.sex === 'm' ? '男' : '女性'}
+                      </h4>
                       <Pill className="pill--icon">
                         <i className="icon icon-star"></i>{item.likes_count}
                       </Pill>
@@ -136,10 +139,12 @@ const ScoutList = (props) => {
                         <p>{item.intro_text}</p>
                       </li>
                     ) : null }
-                    {/* <li className="scout-list__item-content-list-item">
-                      <h5>この先やってみたいこと</h5>
-                      <p>好きなことをやり続けたい</p>
-                    </li> */}
+                    { item.what_text ? (
+                      <li className="scout-list__item-content-list-item">
+                        <h5>この先やってみたいこと</h5>
+                        <p>{item.what_text}</p>
+                      </li>
+                    ) : null }
                     {/* <li className="scout-list__item-content-list-item">
                       <h5>学歴</h5>
                       <p>{`日本工学院専門学校

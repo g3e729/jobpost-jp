@@ -18,7 +18,6 @@ const ScoutsList = ({data}) => {
   const handleClick = (id) => {
     dispatch(setModal(modalType.STUDENT_SCOUT, {id}));
   }
-
   return (
     <ul className="scouts-list">
       { jobsData.map(item => (
@@ -31,13 +30,10 @@ const ScoutsList = ({data}) => {
                 </div>
               </div>
               <div className="scouts__left-inner">
-                <div className="scouts__company">
-                  <img src={avatarPlaceholder} alt=""/>
-                  <div className="scouts__company-name">
-                    title
-                  </div>
-                </div>
                 <h4 className="scouts__title">{item.title}</h4>
+                <p className="scouts__desc">
+                  {_.truncate(item.description, { 'length': 125, 'separator': '...'})}
+                </p>
               </div>
             </div>
             <div className="scouts__right">

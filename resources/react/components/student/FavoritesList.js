@@ -35,7 +35,7 @@ const FavoritesList = ({jobs, type = ''}) => {
               </div>
               <p className="favorites__description">
                 {_.truncate(((type === 'job' ? job.description : job.job_post.description)), { 'length': 125, 'separator': '...'})}
-                </p>
+              </p>
             </div>
           </div>
         </li>
