@@ -65,7 +65,9 @@ class CompanyProfile extends Model
         'why_photos',
         'how_photos',
 
-        'industry'
+        'industry',
+        
+        'display_prefecture',
     ];
 
     public static function boot()
@@ -82,6 +84,17 @@ class CompanyProfile extends Model
     public function getIndustryAttribute()
     {
         return isset(self::$industries[$this->industry_id]) ? ucwords(self::$industries[$this->industry_id]) : null;
+    }
+
+    public function getDisplayPrefectureAttribute()
+    {
+        $prefecture = $this->prefecture;
+    
+        if (empty($prefecture)) {
+            return '--';
+        }
+
+        return getPrefecture($prefecture);
     }
 
     // Relationships
