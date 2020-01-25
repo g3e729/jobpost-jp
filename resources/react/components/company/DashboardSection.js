@@ -12,7 +12,9 @@ const DashboardSection = (props) => {
     scouted,
     applied,
     liked,
-    isLoading = false,
+    isScoutedLoading = false,
+    isAppliedLoading = false,
+    isLikedLoading = false,
     user
   } = props;
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const DashboardSection = (props) => {
       <div className="dashboard-section__content">
         <SeekerList title="最近スカウト"
           students={scouted}
-          isLoading={isLoading}
+          isLoading={isScoutedLoading}
           link={{
             pathname: routes.CANDIDATES,
             search: "?scouted=1",
@@ -44,7 +46,7 @@ const DashboardSection = (props) => {
           }} />
         <SeekerList title="最近の応募"
           students={applied}
-          isLoading={isLoading}
+          isLoading={isAppliedLoading}
           link={{
             pathname: routes.CANDIDATES,
             search: "?applied=1",
@@ -52,7 +54,7 @@ const DashboardSection = (props) => {
           }} />
         <SeekerList title="最近のお気に入り"
           students={liked}
-          isLoading={isLoading}
+          isLoading={isLikedLoading}
           link={{
             pathname: routes.CANDIDATES,
             search: "?liked=1",

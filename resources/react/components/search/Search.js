@@ -61,7 +61,7 @@ const Search = _ => {
 
         setIsLoading(false);
       });
-  }, [location.search]);
+    }, [location.search]);
 
   return (
     <div className="search">
@@ -69,10 +69,10 @@ const Search = _ => {
         <TabList className="search-tab__list">
           <Tab className="search-tab__list-item" selectedClassName={state.ACTIVE} onClick={_ => handleTabChange(0)}>すべて</Tab>
           <Tab className="search-tab__list-item" selectedClassName={state.ACTIVE}
-            disabled={companies.total <= 3}
+            disabled={companies.length === 0 || companies.total <= 3}
             onClick={_ => handleTabChange(1)}>会社</Tab>
           <Tab className="search-tab__list-item" selectedClassName={state.ACTIVE}
-            disabled={jobs.total <= 3}
+            disabled={jobs.length === 0 || jobs.total <= 3}
             onClick={_ => handleTabChange(2)}>募集</Tab>
         </TabList>
 

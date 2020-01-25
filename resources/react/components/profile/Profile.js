@@ -31,6 +31,10 @@ const Profile = (props) => {
   } = props;
   const [jobs, setJobs] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [formValues, setFormValues] = useState({
+    title: '',
+    description: ''
+  });
   const data = isOwner == true ? (user.userData && user.userData.profile) : user;
   const filterData = filters && filters.filtersData;
   const {
@@ -43,8 +47,6 @@ const Profile = (props) => {
   const frameworkFilter = Object.keys(frameworks);
   const otherFilter = Object.keys(others);
   const programmingFilter = Object.keys(programming_languages);
-
-  console.log('expie :', experiences);
 
   const handleModal = type => {
     dispatch(setModal(type));
@@ -67,11 +69,9 @@ const Profile = (props) => {
   }, 400)
 
   const handleAddFeature = _.debounce((value, type) => {
-    const formdata = new FormData();
-    formdata.append(type, (value || ''));
-
-    dispatch(addUserFeature(formdata));
-    setIsEditing(false);
+    setFormValues(prevState => {
+      return { ...prevState, [type]: value }
+    });
   }, 400)
 
   const handleUpdateFeature = _.debounce((value, type, id) => {
@@ -99,6 +99,18 @@ const Profile = (props) => {
         .catch(error => console.log('[Jobs ERROR]', error));
     }
   }, []);
+
+  useEffect(_ => {
+    if (formValues.title && formValues.description) {
+      const formdata = new FormData();
+      formdata.append('title', formValues.title);
+      formdata.append('description', formValues.description);
+
+      dispatch(addUserFeature(formdata));
+      setIsEditing(false);
+      setFormValues({ title: '', description: ''});
+    }
+  }, [formValues])
 
   return (
     accountType === 'student' ? (
@@ -456,45 +468,24 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <ul className="profile__data-websites">
-                    <li className="profile__data-websites-item">
-                      <div className="profile__data-websites-eyecatch">
-                        <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-                      </div>
-                      <div className="profile__data-websites-content">
-                        <h4 className="profile__data-websites-name">Myzn.io</h4>
-                        <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
-                        <div className="profile__data-link">
-                          <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                          <Clipboard value="https://github.com/MyznEiji" />
-                        </div>
-                      </div>
-                    </li>
-                    <li className="profile__data-websites-item">
-                      <div className="profile__data-websites-eyecatch">
-                        <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-                      </div>
-                      <div className="profile__data-websites-content">
-                        <h4 className="profile__data-websites-name">Myzn.io</h4>
-                        <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
-                        <div className="profile__data-link">
-                          <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                          <Clipboard value="https://github.com/MyznEiji" />
-                        </div>
-                      </div>
-                    </li>
-                    <li className="profile__data-websites-item">
-                      <div className="profile__data-websites-eyecatch">
-                        <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-                      </div>
-                      <div className="profile__data-websites-content">
-                        <h4 className="profile__data-websites-name">Myzn.io</h4>
-                        <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
-                        <div className="profile__data-link">
-                          <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                          <Clipboard value="https://github.com/MyznEiji" />
-                        </div>
-                      </div>
-                    </li>
+                    { data.portfolios && data.portfolios.length > 0 && data.portfolios
+                      .slice(0,3)
+                      .map((item, idx) => (
+                        <li className="profile__data-websites-item" key={idx}>
+                          <div className="profile__data-websites-eyecatch">
+                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                          </div>
+                          <div className="profile__data-websites-content">
+                            <h4 className="profile__data-websites-name">Myzn.io</h4>
+                            <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
+                            <div className="profile__data-link">
+                              <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                              <Clipboard value="https://github.com/MyznEiji" />
+                            </div>
+                          </div>
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </li>
@@ -549,6 +540,21 @@ const Profile = (props) => {
                 <dt className="profile__sidebar-content-basic-term">ステータス</dt>
                 <dd className="profile__sidebar-content-basic-data">{data.student_status}</dd>
               </dl>
+              { data.social_media && data.social_media.length ? (
+                <ul className="profile__sidebar-content-profile">
+                  <li className="profile__sidebar-content-profile-items">
+                    <ul className="profile__sidebar-content-sns">
+                      { data.social_media.map((item, idx) => (
+                        <li className="profile__sidebar-content-sns-item" key={item.id}>
+                          <a href={item.url} target="_blank">
+                            <i className={`icon icon-${item.social_media}`}></i>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ul>
+              ) : null}
             </div>
           </div>
           <div className="profile__sidebar-inner">
@@ -559,10 +565,11 @@ const Profile = (props) => {
                   <h4 className="profile__sidebar-content-scores-category">IT</h4>
                   <dl>
                     <dt>受講済み</dt>
-                    <dd>Basic</dd>
-                    <dd>Develop 1</dd>
+                    { Object.values(data.taken_class).map((item, idx) => (
+                      <dd key={idx}>{item}</dd>
+                    ))}
                     <dt>受講中</dt>
-                    <dd>Develop 2</dd>
+                    <dd>{data.course}</dd>
                   </dl>
                 </li>
                 <li className="profile__sidebar-content-scores-item">
@@ -570,22 +577,22 @@ const Profile = (props) => {
                   <dl>
                     <dt>TOEIC</dt>
                     <dd>
-                      Reading<span>80点(CEFR - B1)</span>
+                      Reading<span>{data.reading}</span>
                     </dd>
                     <dd>
-                      Listening<span>70点(CEFR- B2)</span>
+                      Listening<span>{data.listening}</span>
                     </dd>
                     <dd>
-                      Total<span>65点(CEFR- B1)</span>
+                      Total<span>{data.toeic_score}</span>
                     </dd>
                     <dd>
-                      Speaking<span>65点(CEFR- A2)</span>
+                      Speaking<span>{data.speaking}</span>
                     </dd>
                     <dd>
-                      Writing<span>40点(CEFR - A2)</span>
+                      Writing<span>{data.writing}</span>
                     </dd>
                     <dd>
-                      レベル<span>CEFR - B1</span>
+                      レベル<span>{data.english_level}</span>
                     </dd>
                   </dl>
                 </li>
@@ -680,14 +687,14 @@ const Profile = (props) => {
                         </React.Fragment>
                       ))
                     }
-                    { data.features && data.features.length < 3 && [...Array(3 - (data.features && data.features.length))]
+                    { data.features && data.features.length < 3 && [...Array(1)]
                       .map((_, idx) => (
                         <React.Fragment key={idx}>
                           <dt className="profile__data-skills-term">
                             { isEdit ?
                               <EdiText
                                 submitOnEnter
-                                value=''
+                                value={formValues.title}
                                 type="text"
                                 onSave={e => handleAddFeature(e, 'title')}
                                 editing={isEditing}
@@ -698,7 +705,7 @@ const Profile = (props) => {
                             { isEdit ?
                               <EdiText
                                 submitOnEnter
-                                value=''
+                                value={formValues.description}
                                 type="text"
                                 onSave={e => handleAddFeature(e, 'description')}
                                 editing={isEditing}
@@ -723,45 +730,24 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <ul className="profile__data-websites">
-                    <li className="profile__data-websites-item">
-                      <div className="profile__data-websites-eyecatch">
-                        <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-                      </div>
-                      <div className="profile__data-websites-content">
-                        <h4 className="profile__data-websites-name">Myzn.io</h4>
-                        <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
-                        <div className="profile__data-link">
-                          <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                          <Clipboard value="https://github.com/MyznEiji" />
-                        </div>
-                      </div>
-                    </li>
-                    <li className="profile__data-websites-item">
-                      <div className="profile__data-websites-eyecatch">
-                        <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-                      </div>
-                      <div className="profile__data-websites-content">
-                        <h4 className="profile__data-websites-name">Myzn.io</h4>
-                        <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
-                        <div className="profile__data-link">
-                          <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                          <Clipboard value="https://github.com/MyznEiji" />
-                        </div>
-                      </div>
-                    </li>
-                    <li className="profile__data-websites-item">
-                      <div className="profile__data-websites-eyecatch">
-                        <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
-                      </div>
-                      <div className="profile__data-websites-content">
-                        <h4 className="profile__data-websites-name">Myzn.io</h4>
-                        <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
-                        <div className="profile__data-link">
-                          <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                          <Clipboard value="https://github.com/MyznEiji" />
-                        </div>
-                      </div>
-                    </li>
+                    { data.portfolios && data.portfolios.length > 0 && data.portfolios
+                      .slice(0,3)
+                      .map((item, idx) => (
+                        <li className="profile__data-websites-item" key={idx}>
+                          <div className="profile__data-websites-eyecatch">
+                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                          </div>
+                          <div className="profile__data-websites-content">
+                            <h4 className="profile__data-websites-name">Myzn.io</h4>
+                            <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
+                            <div className="profile__data-link">
+                              <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
+                              <Clipboard value="https://github.com/MyznEiji" />
+                            </div>
+                          </div>
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </li>
@@ -784,15 +770,15 @@ const Profile = (props) => {
           <div className="profile__sidebar-inner">
             <h3 className="profile__sidebar-header">企業情報</h3>
             <div className="profile__sidebar-content">
-              <ul className="profile__sidebar-content-company">
-                <li className="profile__sidebar-content-company-items">
+              <ul className="profile__sidebar-content-profile">
+                <li className="profile__sidebar-content-profile-items">
                   <div className="profile__sidebar-content-avatar">
                     <img src={data.avatar || avatarPlaceholder} alt=""/>
                     <h4 className="profile__sidebar-content-avatar-name">{data.company_name}</h4>
                   </div>
                 </li>
                 { data.address1 || data.address2 || data.address3 || data.display_prefecture || data.homepage ? (
-                  <li className="profile__sidebar-content-company-items">
+                  <li className="profile__sidebar-content-profile-items">
                     { data.address1 || data.address2 || data.address3 || data.display_prefecture ? (
                       <div className="profile__sidebar-content-misc">
                         <i className="icon icon-marker text-dark-yellow"></i>
@@ -807,33 +793,27 @@ const Profile = (props) => {
                     ) : null}
                   </li>
                 ) : null}
-                <li className="profile__sidebar-content-company-items">
+                <li className="profile__sidebar-content-profile-items">
                   <div className="profile__sidebar-content-misc">
                     <i className="icon icon-building text-dark-yellow"></i>
                     <p className="profile__sidebar-content-misc-copy">{`${moment(data.created_at).format('YYYY/MM')} に設立
                       ${data.ceo}`}</p>
                   </div>
                 </li>
-                <li className="profile__sidebar-content-company-items">
-                  <ul className="profile__sidebar-content-sns">
-                    <li className="profile__sidebar-content-sns-item">
-                      <a href="#" target="_blank">
-                        <i className="icon icon-twitter"></i>
-                      </a>
-                    </li>
-                    <li className="profile__sidebar-content-sns-item">
-                      <a href="#" target="_blank">
-                        <i className="icon icon-facebook"></i>
-                      </a>
-                    </li>
-                    <li className="profile__sidebar-content-sns-item">
-                      <a href="#" target="_blank">
-                        <i className="icon icon-instagram"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li className="profile__sidebar-content-company-items">
+                { data.social_media && data.social_media.length ? (
+                  <li className="profile__sidebar-content-profile-items">
+                    <ul className="profile__sidebar-content-sns">
+                      { data.social_media.map((item, idx) => (
+                        <li className="profile__sidebar-content-sns-item" key={item.id}>
+                          <a href={item.url} target="_blank">
+                            <i className={`icon icon-${item.social_media}`}></i>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ) : null }
+                <li className="profile__sidebar-content-profile-items">
                   <Mapped
                     address={`${data.address1} ${data.address2}`}
                     zoom={10}

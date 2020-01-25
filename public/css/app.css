@@ -4736,6 +4736,7 @@ a.pagination__item-link:hover {
   -webkit-box-pack: justify;
           justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .profile__sidebar-content-basic-term {
@@ -4803,16 +4804,16 @@ a.pagination__item-link:hover {
   border-bottom: solid 1px #d9d6d6;
 }
 
-.profile__sidebar-content-company {
+.profile__sidebar-content-profile {
   margin: 0 -32px;
 }
 
-.profile__sidebar-content-company-items {
+.profile__sidebar-content-profile-items {
   border-top: solid 1px #fff;
   padding: 35px 32px;
 }
 
-.profile__sidebar-content-company-items:first-child {
+.profile__sidebar-content-profile-items:first-child {
   padding-top: 0;
   border-top: none;
 }

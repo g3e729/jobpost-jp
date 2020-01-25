@@ -82,9 +82,11 @@ const RecruitmentList = (props) => {
             </Button>
           </li>
         </ul>
-        <Fraction numerator={jobsData.length}
-          denominator={data.total}
-        />
+        { isLoading ? null : (
+          <Fraction numerator={jobsData.length}
+            denominator={data.total}
+          />
+        )}
       </div>
       <>
         <ul className="recruitment-list">

@@ -87,9 +87,11 @@ const ScoutList = (props) => {
             />
           </li>
         </ul>
-        <Fraction numerator={studentsData.length}
-          denominator={data.total}
-        />
+        { isLoading ? null : (
+          <Fraction numerator={studentsData.length}
+            denominator={data.total}
+          />
+        )}
       </div>
       { isLoading ? (
         <Loading className="loading--padded" />
@@ -108,6 +110,7 @@ const ScoutList = (props) => {
                   </div>
                   <div className="scout-list__item-top-right">
                     <div className="scout-list__item-top-header">
+
                       <h4 className="scout-list__item-top-name">
                         {(item.applications_count > 0) ? (
                           <>

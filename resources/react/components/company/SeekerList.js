@@ -82,9 +82,11 @@ const SeekerList = (props) => {
                 </Button>
               </li>
             </ul>
-            <Fraction numerator={studentsData.length}
-              denominator={data.total}
-            />
+            { isLoading ? null : (
+              <Fraction numerator={studentsData.length}
+                denominator={data.total}
+              />
+            )}
           </div>
         </>
       ) : null }

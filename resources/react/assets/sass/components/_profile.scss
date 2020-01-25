@@ -410,6 +410,8 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  margin-bottom: 50px;
 }
 
 .profile__sidebar-content-basic-term {
@@ -485,11 +487,11 @@
   border-bottom: solid 1px $color-dark-gray;
 }
 
-.profile__sidebar-content-company {
+.profile__sidebar-content-profile {
   margin: 0 -32px;
 }
 
-.profile__sidebar-content-company-items {
+.profile__sidebar-content-profile-items {
   border-top: solid 1px $color-white;
   padding: 35px 32px;
 
