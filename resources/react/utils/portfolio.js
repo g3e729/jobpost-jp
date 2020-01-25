@@ -14,13 +14,15 @@ export default class Portfolio {
       .catch(error => error);
   }
 
-  static deletePortfolio(formdata) {
+  static deletePortfolio(id) {
     formdata.append('_method', 'DELETE');
 
     const payload = {
       url: endpoints.PORTFOLIOS,
       method: 'post',
-      data: formdata
+      params: {
+        id
+      }
     }
 
     return API.request(payload, true)

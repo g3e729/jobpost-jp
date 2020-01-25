@@ -1,27 +1,32 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
 import Input from '../../common/Input';
 import Radio from '../../common/Radio';
 import Textarea from '../../common/Textarea';
+import Work from '../../../utils/work';
+import { unSetModal } from '../../../actions/modal';
+import { getUser } from '../../../actions/user';
 import { defaultSelectStyles } from '../../../constants/config';
 
-const ProfileWorkModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
+const ProfileWorkModal = ({modal}) => {
+  const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({
-    companyname: '',
-    position: '',
+    company_name: '',
+    role: '',
+    content: '',
+    is_present: false,
     monthfrom: '',
     yearfrom: '',
     monthto: '',
     yearto: '',
-    isCurrent: false,
-    description: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
   const monthsFilter = new Array(12)
     .fill(null)
     .map((e, idx) => {
@@ -63,6 +68,41 @@ const ProfileWorkModal = _ => {
     });
   }
 
+  const handleCloseModal = _ => {
+    dispatch(unSetModal());
+  }
+
+  const handleSubmit = _ => {
+    setIsLoading(true);
+
+    const formdata = new FormData();
+    formdata.append('company_name', formValues.company_name);
+    formdata.append('role', formValues.role);
+    formdata.append('content', formValues.content);
+    formdata.append('is_present', formValues.is_present);
+
+    Work.addWork(formdata)
+      .then(result => {
+        setTimeout(_ => {
+          dispatch(getUser())
+            .then(_ => {
+              setIsLoading(false);
+              dispatch(unSetModal());
+            })
+            .catch(error => {
+              setIsLoading(false);
+              dispatch(unSetModal());
+            });
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
+        handleCloseModal();
+
+        console.log('[Add work ERROR] :', error);
+      });
+  }
+
   return (
     <BaseModal title="職歴">
       <div className="modal__content">
@@ -72,9 +112,9 @@ const ProfileWorkModal = _ => {
               企業名
             </div>
             <Input className="modal__form-group-input"
-              value={formValues.companyname}
+              value={formValues.company_name}
               onChange={e => handleChange(e)}
-              name="companyname"
+              name="company_name"
               type="text"
             />
           </div>
@@ -83,9 +123,9 @@ const ProfileWorkModal = _ => {
               役職
             </div>
             <Input className="modal__form-group-input"
-              value={formValues.position}
+              value={formValues.role}
               onChange={e => handleChange(e)}
-              name="position"
+              name="role"
               type="text"
             />
           </div>
@@ -118,9 +158,9 @@ const ProfileWorkModal = _ => {
             </div>
             <Radio className="radio--labeled modal__form-group-radio"
               label="在職中"
-              checked={formValues.isCurrent}
+              checked={formValues.is_present}
               onChange={e => toggleChange(e)}
-              name="isCurrent"
+              name="is_present"
               type="checkbox"
             />
           </div>
@@ -129,24 +169,31 @@ const ProfileWorkModal = _ => {
               学んだこと
             </div>
             <Textarea className="modal__form-group-input"
-              value={formValues.description}
+              value={formValues.content}
               onChange={e => handleChange(e)}
-              name="description"
+              name="content"
               row="4"
             />
           </div>
         </form>
         <div className="modal__actions">
-          <Button className="button--icon">
+          <Button className="button--icon" onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
               セーブ
             </>
           </Button>
         </div>
+        { isLoading ? (
+          <Loading className="loading--overlay"/>
+        ) : null }
       </div>
     </BaseModal>
   )
 }
 
-export default ProfileWorkModal;
+const mapStateToProps = (state) => ({
+  modal: state.modal
+});
+
+export default connect(mapStateToProps)(ProfileWorkModal);

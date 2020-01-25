@@ -101,6 +101,8 @@ export const endpoints = {
 
   PORTFOLIOS: '/portfolios',
   TRANSACTIONS: '/transactions',
+  WORK_HISTORIES: '/work-histories',
+  EDUCATION_HISTORIES: '/education-histories',
 
   APPLY: 'apply',
   APPLICATIONS: 'applications',
