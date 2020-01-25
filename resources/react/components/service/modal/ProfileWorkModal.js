@@ -22,9 +22,9 @@ const ProfileWorkModal = ({modal}) => {
     content: '',
     is_present: false,
     monthfrom: '',
-    yearfrom: '',
+    yearfrom: moment().year(),
     monthto: '',
-    yearto: '',
+    yearto: moment().year(),
   });
   const [isLoading, setIsLoading] = useState(false);
   const monthsFilter = new Array(12)
@@ -80,6 +80,15 @@ const ProfileWorkModal = ({modal}) => {
     formdata.append('role', formValues.role);
     formdata.append('content', formValues.content);
     formdata.append('is_present', formValues.is_present);
+    formdata.append('started_at', moment(new Date(
+      new Date(`${formValues.yearfrom}-${formValues.monthfrom}`)
+    )).format('YYYY-MM-DD'));
+
+    if (!formValues.is_present) {
+      formdata.append('ended_at', moment(new Date(
+        new Date(`${formValues.yearto}-${formValues.monthto}`)
+      )).format('YYYY-MM-DD'));
+    }
 
     Work.addWork(formdata)
       .then(result => {
@@ -149,11 +158,13 @@ const ProfileWorkModal = ({modal}) => {
                 styles={defaultSelectStyles}
                 placeholder='MM'
                 onChange={e => handleSelect(e, 'monthto')}
+                isDisabled={formValues.is_present}
               />
               <Select options={yearsFilter}
                 styles={defaultSelectStyles}
                 placeholder='YYYY'
                 onChange={e => handleSelect(e, 'yearto')}
+                isDisabled={formValues.is_present}
               />
             </div>
             <Radio className="radio--labeled modal__form-group-radio"
