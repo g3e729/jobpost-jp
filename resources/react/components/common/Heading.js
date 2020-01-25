@@ -38,7 +38,6 @@ const Heading = (props) => {
     children,
     ...rest
   } = props;
-  const [isEditing, setIsEditing] = useState(false);
   const [hasUserLiked, setHasUserLiked] = useState(false);
   const [userLikes, setUserLikes] = useState(rest['data-likes'] || 0);
   const avatarImg = rest['data-avatar'] || '';
@@ -59,14 +58,6 @@ const Heading = (props) => {
     dispatch(setModal(type, data));
   }
 
-  const handleEdit = _ => {
-    setIsEditing(true);
-  }
-
-  const handleSave = _ => {
-    setIsEditing(false);
-  }
-
   const handleScout = (id, name) => {
     localStorage.setItem('seeker_id', id);
     localStorage.setItem('seeker_name', name);
@@ -85,7 +76,6 @@ const Heading = (props) => {
     }
 
     dispatch(updateUser(formdata));
-    setIsEditing(false);
   }, 400)
 
   useEffect(_ => {
@@ -128,7 +118,6 @@ const Heading = (props) => {
                     value={title}
                     type="text"
                     onSave={handleSubmit}
-                    editing={isEditing}
                   />
                 : (hasScouted || isOwner === true) ? title : accountType }
               </h2>
@@ -136,23 +125,7 @@ const Heading = (props) => {
                 {subTitle}
               </p>
               { isOwner == true ? (
-                isEdit ? (
-                  isEditing ? (
-                    <Button className="button--pill heading__user-pill" onClick={_ => handleSave()}>
-                      <>
-                        <i className="icon icon-disk text-dark-yellow"></i>
-                        更新
-                      </>
-                    </Button>
-                  ) : (
-                    <Button className="button--pill heading__user-pill" onClick={_ => handleEdit()}>
-                      <>
-                        <i className="icon icon-pencil text-dark-yellow"></i>
-                        編集
-                      </>
-                    </Button>
-                  )
-                ) : (
+                isEdit ? null : (
                   <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">
                     <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
                   </Link>
