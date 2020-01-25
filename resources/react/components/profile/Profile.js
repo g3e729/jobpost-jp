@@ -19,6 +19,7 @@ import { setModal } from '../../actions/modal';
 import { updateUser, addUserFeature, updateUserFeature } from '../../actions/user';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
+import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const Profile = (props) => {
   const dispatch = useDispatch();
@@ -473,14 +474,14 @@ const Profile = (props) => {
                       .map((item, idx) => (
                         <li className="profile__data-websites-item" key={idx}>
                           <div className="profile__data-websites-eyecatch">
-                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
                           </div>
                           <div className="profile__data-websites-content">
-                            <h4 className="profile__data-websites-name">Myzn.io</h4>
-                            <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
+                            <h4 className="profile__data-websites-name">{item.title}</h4>
+                            <p className="profile__data-websites-desc">{item.description}</p>
                             <div className="profile__data-link">
-                              <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                              <Clipboard value="https://github.com/MyznEiji" />
+                              <a href={item.url} className="button button--profile" target="_blank">{item.url}</a>
+                              <Clipboard value={item.url} />
                             </div>
                           </div>
                         </li>
@@ -735,14 +736,14 @@ const Profile = (props) => {
                       .map((item, idx) => (
                         <li className="profile__data-websites-item" key={idx}>
                           <div className="profile__data-websites-eyecatch">
-                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: 'url("https://source.unsplash.com/user/erondu/1600x900")' }}></div>
+                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
                           </div>
                           <div className="profile__data-websites-content">
-                            <h4 className="profile__data-websites-name">Myzn.io</h4>
-                            <p className="profile__data-websites-desc">自分の情報まとめて掲載しているページ</p>
+                            <h4 className="profile__data-websites-name">{item.title}</h4>
+                            <p className="profile__data-websites-desc">{item.description}</p>
                             <div className="profile__data-link">
-                              <a href="https://github.com/MyznEiji" className="button button--profile" target="_blank">https://github.com/MyznEiji</a>
-                              <Clipboard value="https://github.com/MyznEiji" />
+                              <a href={item.url} className="button button--profile" target="_blank">{item.url}</a>
+                              <Clipboard value={item.url} />
                             </div>
                           </div>
                         </li>

@@ -550,6 +550,8 @@
   letter-spacing: 0.06em;
 
   white-space: pre-line;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .profile__sidebar-content-avatar {

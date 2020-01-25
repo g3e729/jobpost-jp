@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
 import { css } from 'emotion';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, connect } from 'react-redux';
@@ -11,7 +10,7 @@ import Apply from '../../../utils/apply';
 import Transantion from '../../../utils/transaction';
 import { state, tier } from '../../../constants/state';
 import { prefix } from '../../../constants/routes';
-import { unSetModal } from '../../../actions/modal';;
+import { unSetModal } from '../../../actions/modal';
 import { getUser } from '../../../actions/user';
 
 const StudentScoutModal = ({user, modal}) => {
@@ -50,7 +49,7 @@ const StudentScoutModal = ({user, modal}) => {
       });
   }
 
-  const handleScout = _.debounce(_ => {
+  const handleScout = _ => {
     setIsLoading(true);
 
     const formdata = new FormData();
@@ -85,8 +84,8 @@ const StudentScoutModal = ({user, modal}) => {
         handleCloseModal();
 
         console.log('[Scout ERROR] :', error);
-      })
-  }, 400);
+      });
+  }
 
   return (
     <BaseModal>

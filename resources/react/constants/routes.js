@@ -99,6 +99,7 @@ export const endpoints = {
   FEATURES: '/features',
   FEATURES_DETAIL: '/features/:id',
 
+  PORTFOLIOS: '/portfolios',
   TRANSACTIONS: '/transactions',
 
   APPLY: 'apply',

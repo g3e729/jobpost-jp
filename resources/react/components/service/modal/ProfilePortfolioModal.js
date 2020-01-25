@@ -1,23 +1,28 @@
 import React, { useState, useEffect, createRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
 import Input from '../../common/Input';
 import Textarea from '../../common/Textarea';
+import Portfolio from '../../../utils/portfolio';
 import { state } from '../../../constants/state';
+import { unSetModal } from '../../../actions/modal';
+import { getUser } from '../../../actions/user';
 
 import ecPlaceholder from '../../../../img/eyecatch-default.jpg';
 
-const ProfilePortfolioModal = _ => {
-  const dispatch = useDispatch(); // TODO on other events
+const ProfilePortfolioModal = ({modal}) => {
+  const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({
     title: '',
-    eyecatch: '',
+    cover_photo: '',
     description: '',
     url: '',
   });
   const [file, setFile] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
@@ -47,11 +52,49 @@ const ProfilePortfolioModal = _ => {
     });
   }
 
+  const handleCloseModal = _ => {
+    dispatch(unSetModal());
+  }
+
+  const handleSubmit = _ => {
+    setIsLoading(true);
+
+    const formdata = new FormData();
+    formdata.append('title', formValues.title);
+    formdata.append('description', formValues.description);
+    formdata.append('url', formValues.url);
+    formdata.append('cover_photo', formValues.cover_photo || '');
+
+    Portfolio.addPortfolio(formdata)
+      .then(result => {
+        setTimeout(_ => {
+          dispatch(getUser())
+            .then(_ => {
+              setIsLoading(false);
+              dispatch(unSetModal());
+            })
+            .catch(error => {
+              setIsLoading(false);
+              dispatch(unSetModal());
+            });
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
+        handleCloseModal();
+
+        console.log('[Add portfolio ERROR] :', error);
+      });
+  }
+
   useEffect(_ => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onload = ev => {
         eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
+        setFormValues(prevState => {
+          return { ...prevState, cover_photo: file }
+        });
       }
     }
   }, [file]);
@@ -126,21 +169,27 @@ const ProfilePortfolioModal = _ => {
                   type="url"
                 />
               </div>
-
             </div>
           </div>
         </form>
         <div className="modal__actions">
-          <Button className="button--icon">
+          <Button className="button--icon" onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
               セーブ
             </>
           </Button>
         </div>
+        { isLoading ? (
+          <Loading className="loading--overlay"/>
+        ) : null }
       </div>
     </BaseModal>
   )
 }
 
-export default ProfilePortfolioModal;
+const mapStateToProps = (state) => ({
+  modal: state.modal
+});
+
+export default connect(mapStateToProps)(ProfilePortfolioModal);
