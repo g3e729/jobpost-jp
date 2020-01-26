@@ -458,7 +458,7 @@ const Profile = (props) => {
                       editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
                       hideIcons={true}
                     />
-                  : <span className="profile__main-list-item-desc">{data.todo_language}</span>}
+                  : <span className="profile__main-list-item-desc">{data.language}</span>}
                 </div>
               </li>
               <li className="profile__main-list-item">

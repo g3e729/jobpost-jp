@@ -29,6 +29,8 @@ const CandidatesPage = _ => {
   }
 
   useEffect(_ => {
+    setIsLoading(true);
+
     getFilteredStudents()
       .then(res => {
         setStudents(res);

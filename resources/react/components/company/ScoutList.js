@@ -53,12 +53,12 @@ const ScoutList = (props) => {
   return (
     <div className="scout-list__container">
       <h3 className="scout-list__title">候補者一覧</h3>
-      <div className="scout-list__search">
+      {/* <div className="scout-list__search">
         <Search placeholder="検索候補" />
-      </div>
+      </div> */}
       <div className="scout-list__filter">
         <ul className="scout-list__filters">
-          <li className="scout-list__filters-item">
+          {/* <li className="scout-list__filters-item">
             <Select options={filterList}
               styles={dashboardSelectStyles}
               placeholder="コース"
@@ -85,7 +85,7 @@ const ScoutList = (props) => {
               placeholder="留学費用"
               width='112px'
             />
-          </li>
+          </li> */}
         </ul>
         { isLoading ? null : (
           <Fraction numerator={studentsData.length}
@@ -129,12 +129,16 @@ const ScoutList = (props) => {
                       <li className="scout-list__item-top-pills-item">
                         <Pill className="pill--clear">{moment().diff(item.birthday, 'years',false)}代</Pill>
                       </li>
-                      <li className="scout-list__item-top-pills-item">
-                        <Pill className="pill--clear">PHPコース</Pill>
-                      </li>
-                      {/* <li className="scout-list__item-top-pills-item">
-                        <Pill className="pill--clear">留学費 50万円</Pill>
-                      </li> */}
+                      { Object.values(item.taken_class).length ? (
+                        <li className="scout-list__item-top-pills-item">
+                          <Pill className="pill--clear">{Object.values(item.taken_class).toString()}</Pill>
+                        </li>
+                      ) : null }
+                      { item.course ? (
+                        <li className="scout-list__item-top-pills-item">
+                          <Pill className="pill--clear">{item.course}</Pill>
+                        </li>
+                      ) : null }
                     </ul>
                   </div>
                   <Button className="button button--large scout-list__item-top-button" onClick={_ => handleScout(item.id, item.display_name)}>

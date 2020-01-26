@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import moment from 'moment';
 moment.locale('ja');
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
@@ -26,6 +26,10 @@ const filterList = [
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const SeekerList = (props) => {
+  const history = useHistory();
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+  const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '');
   const {
     type = null,
     title = '',
@@ -35,18 +39,46 @@ const SeekerList = (props) => {
   } = props;
   const data = students || {};
   const studentsData = students.data || data;
+  const kindFilter = [
+    {value: 'scouted', label: 'scouted'},
+    {value: 'applied', label: 'applied'},
+    {value: 'liked', label: 'liked'},
+  ];
+
+  const handleKindChange = e => {
+    const totalParams = Array.from(urlParams.keys())
+      .filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      }).length;
+
+    urlParams.delete('scouted');
+    urlParams.delete('applied');
+    urlParams.delete('liked');
+
+    if (totalParams === 1) {
+      setUrlParamsTmp(`?${urlParams.toString()}${e.value}=1`);
+    } else {
+      setUrlParamsTmp(`?${urlParams.toString()}&${e.value}=1`);
+    }
+  }
+
+  useEffect(_ => {
+    if (urlParamsTmp) {
+      history.push(urlParamsTmp);
+    }
+  }, [urlParamsTmp])
 
   return (
     <div className="seeker-list__container">
       <h3 className="seeker-list__title">{title}</h3>
       { type ? (
         <>
-          <div className="seeker-list__search">
+          {/* <div className="seeker-list__search">
             <Search placeholder="検索候補" />
-          </div>
+          </div> */}
           <div className="seeker-list__filter">
             <ul className="seeker-list__filters">
-              <li className="seeker-list__filters-item">
+              {/* <li className="seeker-list__filters-item">
                 <Select options={filterList}
                   styles={dashboardSelectStyles}
                   placeholder="ポジション"
@@ -66,21 +98,22 @@ const SeekerList = (props) => {
                   placeholder="募集"
                   width='82px'
                 />
-              </li>
+              </li> */}
               <li className="seeker-list__filters-item">
-                <Select options={filterList}
+                <Select options={kindFilter}
                   styles={dashboardSelectStyles}
                   placeholder="並び替え"
                   width='112px'
+                  onChange={e => handleKindChange(e)}
                 />
               </li>
-              <li className="seeker-list__filters-item">
+              {/* <li className="seeker-list__filters-item">
                 <Button className="button--link">
                   <Pill className="pill--icon text-medium-black">
                     <i className="icon icon-star"></i>気になる生徒
                   </Pill>
                 </Button>
-              </li>
+              </li> */}
             </ul>
             { isLoading ? null : (
               <Fraction numerator={studentsData.length}

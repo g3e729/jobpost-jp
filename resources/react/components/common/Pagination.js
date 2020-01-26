@@ -19,9 +19,9 @@ const Pagination = (props) => {
     if (urlParams.toString()) {
       if (urlParams.has(searchUrl)) {
         const totalParams = Array.from(urlParams.keys())
-        .filter((value, index, self) => {
-          return self.indexOf(value) === index;
-        }).length;
+          .filter((value, index, self) => {
+            return self.indexOf(value) === index;
+          }).length;
 
         urlParams.delete(searchUrl);
         if ( totalParams === 1) {
