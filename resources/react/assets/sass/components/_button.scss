@@ -67,6 +67,26 @@
 
     margin-right: 4px;
   }
+
+  &.is-disabled {
+    border: solid 1px $color-light-gray;
+    background: $color-light-gray;
+    color: $color-white;
+
+    i {
+      color: $color-white;
+    }
+  }
+}
+
+.button--danger {
+  border: solid 1px $color-red;
+  background: $color-red;
+  color: $color-white;
+
+  i {
+    color: $color-white;
+  }
 }
 
 .button--profile {

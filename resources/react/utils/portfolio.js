@@ -15,8 +15,6 @@ export default class Portfolio {
   }
 
   static deletePortfolio(id) {
-    formdata.append('_method', 'DELETE');
-
     const payload = {
       url: endpoints.PORTFOLIOS,
       method: 'post',

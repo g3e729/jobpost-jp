@@ -12,11 +12,12 @@ import Embed from '../common/Embed';
 import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
+import Portfolio from '../../utils/portfolio';
 import { routes } from '../../constants/routes';
-import { sex, skills } from '../../constants/state';
+import { sex, skills, state } from '../../constants/state';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
-import { updateUser, addUserFeature, updateUserFeature } from '../../actions/user';
+import { getUser, updateUser, addUserFeature, updateUserFeature } from '../../actions/user';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
@@ -32,6 +33,7 @@ const Profile = (props) => {
   } = props;
   const [jobs, setJobs] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [currentPortfolio, setCurrentPortfolio] = useState(null);
   const [formValues, setFormValues] = useState({
     title: '',
     description: ''
@@ -82,6 +84,21 @@ const Profile = (props) => {
     dispatch(updateUserFeature(formdata, id));
     setIsEditing(false);
   }, 400)
+
+  const handleDeletePortfolio = id => {
+    // TODO: no destroy on BE
+    // Portfolio.deletePortfolio(id)
+    //   .then(result => {
+    //     setTimeout(_ => {
+    //       dispatch(getUser())
+    //     }, 500);
+    //   })
+    //   .catch(error => {
+    //     setIsLoading(false);
+
+    //     console.log('[delete portfolio ERROR] :', error);
+    //   });
+  }
 
   async function getFilteredJobs() {
     const companyId = data.id;
@@ -387,7 +404,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
+                    <Button className={`button--pill ${data.portfolios && data.portfolios.length > 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -527,7 +544,7 @@ const Profile = (props) => {
                       onSave={e => handleSubmit(e, 'description')}
                       editing={isEditing}
                     />
-                  : <p className="profile__main-list-item-copy">data.description</p> }
+                  : <p className="profile__main-list-item-copy">{data.description}</p> }
                 </div>
               </li>
               <li className="profile__main-list-item">
@@ -598,7 +615,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
+                    <Button className={`button--pill ${data.portfolios && data.portfolios.length >= 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -608,8 +625,8 @@ const Profile = (props) => {
                   <ul className="profile__data-websites">
                     { data.portfolios && data.portfolios.length > 0 && data.portfolios
                       .slice(0,3)
-                      .map((item, idx) => (
-                        <li className="profile__data-websites-item" key={idx}>
+                      .map(item => (
+                        <li className="profile__data-websites-item" key={item.id}>
                           <div className="profile__data-websites-eyecatch">
                             <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
                           </div>
@@ -621,6 +638,16 @@ const Profile = (props) => {
                               <Clipboard value={item.url} />
                             </div>
                           </div>
+                          { isEdit ? (
+                            <div className="profile__data-websites-action">
+                              <Button className="button--pill button--danger" onClick={_ => handleDeletePortfolio(item.id)}>
+                                <>
+                                  <i className="icon icon-cross text-dark-gray"></i>
+                                  削除
+                                </>
+                              </Button>
+                            </div>
+                          ) : null }
                         </li>
                       ))
                     }

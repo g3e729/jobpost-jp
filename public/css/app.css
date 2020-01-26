@@ -1022,6 +1022,26 @@ And you should not feel free to add a new Utility class.
   margin-right: 4px;
 }
 
+.button--pill.is-disabled {
+  border: solid 1px #f2f2f0;
+  background: #f2f2f0;
+  color: #fff;
+}
+
+.button--pill.is-disabled i {
+  color: #fff;
+}
+
+.button--danger {
+  border: solid 1px #ec1b42;
+  background: #ec1b42;
+  color: #fff;
+}
+
+.button--danger i {
+  color: #fff;
+}
+
 .button--profile {
   font-size: 14px;
   letter-spacing: 0.06em;
@@ -4496,6 +4516,7 @@ a.pagination__item-link:hover {
           justify-content: space-between;
   -webkit-box-align: end;
           align-items: flex-end;
+  position: relative;
   margin-top: 32px;
 }
 
@@ -4568,6 +4589,13 @@ a.pagination__item-link:hover {
   line-height: 1.857;
   letter-spacing: 0.06em;
   margin-bottom: 8px;
+}
+
+.profile__data-websites-action {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 .profile__data-video {

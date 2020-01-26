@@ -180,6 +180,7 @@
   justify-content: space-between;
   align-items: flex-end;
 
+  position: relative;
   margin-top: 32px;
 
   @include max-screen($breakpoint-mobile) {
@@ -244,6 +245,14 @@
   letter-spacing: 0.06em;
 
   margin-bottom: 8px;
+}
+
+.profile__data-websites-action {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  z-index: $z-min;
 }
 
 .profile__data-video {
