@@ -26,7 +26,8 @@ class SeekerService extends BaseService
 
     public function show($id)
     {
-        return ServiceModel::popular()
+        return ServiceModel::with('educationHistory', 'workHistory')
+            ->popular()
             ->applied()
             ->whereId($id)
             ->first();

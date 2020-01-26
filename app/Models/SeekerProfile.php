@@ -327,9 +327,14 @@ class SeekerProfile extends Model
         return $this->hasMany(Applicant::class, 'seeker_profile_id');
     }
 
-    public function likes()
+    public function educationHistory()
     {
-        return $this->morphMany(Like::class, 'likeable');
+        return $this->morphMany(EducationHistory::class, 'historiable');
+    }
+
+    public function workHistory()
+    {
+        return $this->morphMany(WorkHistory::class, 'historiable');
     }
 
     // Attributes

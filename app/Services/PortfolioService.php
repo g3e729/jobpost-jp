@@ -61,9 +61,23 @@ class PortfolioService extends BaseService
         return $this->item;
     }
 
-    public function insert($model, $request_data)
+    public function insert($model, $request_data, $file = null)
     {
-    	return $model->portfolios()->create($request_data);
+    	$portfolio = $model->portfolios()->create($request_data);
+
+        if ($file) {
+        	$path = FileService::uploadFile($file, 'portfolio');
+        	
+	        $portfolio->file()->create([
+	            'url' => $path,
+	            'file_name' => $file->getClientOriginalName(),
+	            'type' => 'portfolio',
+	            'mime_type' => $file->getMimeType(),
+	            'size' => $file->getSize()
+	        ]);
+	    }
+
+    	return $portfolio;
     }
 
     public function revise($id, $request_data)
