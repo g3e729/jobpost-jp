@@ -17,7 +17,7 @@ class PortfolioController extends BaseController
 			apiAbort(404);
 		}
 
-		return (new PortfolioService)->insert($profile, $request->only('title', 'description', 'url'));
+		return (new PortfolioService)->insert($profile, $request->only('title', 'description', 'url'), $request->file);
 	}
 
 	public function update(Portfolio $portfolio, Request $request)
@@ -28,6 +28,6 @@ class PortfolioController extends BaseController
 			apiAbort(404);
 		}
 
-		return (new PortfolioService)->revise($portfolio->id, $request->only('title', 'description', 'url'));
+		return (new PortfolioService)->revise($portfolio->id, $request->only('title', 'description'), $request->get('file_delete'));
 	}
 }

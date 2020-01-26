@@ -97,6 +97,11 @@ class AccountController extends BaseController
 			$profile->features = $profile->features ?? [];
 		}
 
+		if ($user->account_type == 'student') {
+			$profile->load('educationHistory');
+			$profile->load('workHistory');
+		}
+
 		$profile->portfolios = $profile->portfolios ?? [];
 
 		$user->profile = $profile;
