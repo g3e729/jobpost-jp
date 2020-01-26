@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import faker from 'faker';
 faker.locale = "ja";
@@ -8,7 +8,6 @@ import Button from '../common/Button';
 import Pill from '../common/Pill';
 import generateRoute from '../../utils/generateRoute';
 import { routes } from '../../constants/routes';
-import { state } from '../../constants/state';
 
 const dummyNotifications = new Array(10)
   .fill(null)
@@ -23,12 +22,10 @@ const dummyNotifications = new Array(10)
   })
 
 const NotificationsList = _ => {
-  const [currentItem, setCurrentItem] = useState(null);
-
   return (
     <ul className="notifications-list">
-      { dummyNotifications.map((item) => (
-        <li className="notifications-list__item" onMouseOver={_ => setCurrentItem(item.id)} onMouseOut={_ => setCurrentItem(null)} key={item.id}>
+      { dummyNotifications.map(item => (
+        <li className="notifications-list__item" key={item.id}>
           <div className="notifications-list__item-main">
             <time className="notifications-list__item-schedule" dateTime={ moment(item.schedule).format('YYYY-MM-DD') }>{ moment(item.schedule).format('YYYY/MM/DD') }</time>
             { item.isNew ? <Pill>New</Pill> : null }
@@ -37,8 +34,8 @@ const NotificationsList = _ => {
               <h4 className="notifications-list__item-title">{item.title}</h4>
             </Link>
 
-            <div className={`notifications-list__item-action ${currentItem === item.id ? state.ACTIVE : ''}`}>
-              <Button className="button--link" onClick={_ => console.log(currentItem)}>
+            <div className="notifications-list__item-action">
+              <Button className="button--link" onClick={_ => console.log(item.id)}>
                 <i className="icon icon-cross text-dark-gray"></i>
               </Button>
             </div>

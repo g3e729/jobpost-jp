@@ -3849,6 +3849,12 @@ And you should not feel free to add a new Utility class.
   }
 }
 
+.notifications-list__item-main:hover .notifications-list__item-action {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
 .notifications-list__item-title {
   font-size: 16px;
   font-weight: 700;
@@ -3892,12 +3898,6 @@ And you should not feel free to add a new Utility class.
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
   transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99), -webkit-transform 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
-}
-
-.notifications-list__item-action.is-active {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
 }
 
 .notifications-list__item-action:hover i {

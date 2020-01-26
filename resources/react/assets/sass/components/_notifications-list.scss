@@ -20,6 +20,13 @@
   @include max-screen($breakpoint-mobile) {
     padding: 20px 0 22px;
   }
+
+  &:hover {
+    .notifications-list__item-action {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 .notifications-list__item-title {
@@ -62,11 +69,6 @@
 
   transition: opacity $duration $easing-cubic,
     transform $duration $easing-cubic;
-
-  &.is-active {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   &:hover i {
     color: $color-dark-yellow;
