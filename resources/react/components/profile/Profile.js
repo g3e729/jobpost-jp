@@ -53,8 +53,8 @@ const Profile = (props) => {
   const programmingFilter = Object.keys(programming_languages);
   const youtube = new Youtube(data.movie_url || '');
 
-  const handleModal = type => {
-    dispatch(setModal(type));
+  const handleModal = (type, data) => {
+    dispatch(setModal(type, data));
   }
 
   const handleEdit = _ => {
@@ -152,6 +152,10 @@ const Profile = (props) => {
                       type="textarea"
                       onSave={e => handleSubmit(e, 'intro_text')}
                       editing={isEditing}
+                      saveButtonContent={<i className="icon icon-checkmark"></i>}
+                      cancelButtonContent={<i className="icon icon-close"></i>}
+                      editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                      hideIcons={true}
                     />
                   : <p className="profile__main-list-item-copy">{data.intro_text}</p> }
                 </div>
@@ -166,6 +170,10 @@ const Profile = (props) => {
                       type="textarea"
                       onSave={e => handleSubmit(e, 'what_text')}
                       editing={isEditing}
+                      saveButtonContent={<i className="icon icon-checkmark"></i>}
+                      cancelButtonContent={<i className="icon icon-close"></i>}
+                      editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                      hideIcons={true}
                     />
                   : <p className="profile__main-list-item-copy">{data.what_text}</p> }
                 </div>
@@ -240,6 +248,10 @@ const Profile = (props) => {
                               type="text"
                               onSave={e => handleSubmit(e, 'movie_url')}
                               editing={isEditing}
+                              saveButtonContent={<i className="icon icon-checkmark"></i>}
+                              cancelButtonContent={<i className="icon icon-close"></i>}
+                              editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                              hideIcons={true}
                             />
                           : <a href={data.movie_url} className="button button--profile" target="_blank">{data.movie_url}</a>  }
                           <Clipboard value={data.movie_url} />
@@ -260,7 +272,9 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">プログラミング言語</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PROGRAMMING)}>
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_PROGRAMMING, {
+                      ...data.skills.filter(item => programmingFilter.includes(item.skill_id))
+                    })}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -286,7 +300,9 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">フレームワーク</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_FRAMEWORK)}>
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_FRAMEWORK, {
+                      ...data.skills.filter(item => frameworkFilter.includes(item.skill_id))
+                    })}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -312,7 +328,9 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">その他</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_OTHER)}>
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_OTHER, {
+                      ...data.skills.filter(item => otherFilter.includes(item.skill_id))
+                    })}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -338,7 +356,9 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">経験分野</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_EXPERIENCE)}>
+                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_EXPERIENCE, {
+                      ...data.skills.filter(item => experienceFilter.includes(item.skill_id))
+                    })}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -378,6 +398,10 @@ const Profile = (props) => {
                       type="text"
                       onSave={e => handleSubmit(e, 'language')}
                       editing={isEditing}
+                      saveButtonContent={<i className="icon icon-checkmark"></i>}
+                      cancelButtonContent={<i className="icon icon-close"></i>}
+                      editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                      hideIcons={true}
                     />
                   : <span className="profile__main-list-item-desc">{data.todo_language}</span>}
                 </div>
@@ -392,6 +416,10 @@ const Profile = (props) => {
                       type="number"
                       onSave={e => handleSubmit(e, 'toeic_score')}
                       editing={isEditing}
+                      saveButtonContent={<i className="icon icon-checkmark"></i>}
+                      cancelButtonContent={<i className="icon icon-close"></i>}
+                      editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                      hideIcons={true}
                     />
                   : <span className="profile__main-list-item-desc">{data.toeic_score}</span>}
                 </div>
@@ -448,6 +476,10 @@ const Profile = (props) => {
                         type="text"
                         onSave={e => handleSubmit(e, 'github')}
                         editing={isEditing}
+                        saveButtonContent={<i className="icon icon-checkmark"></i>}
+                        cancelButtonContent={<i className="icon icon-close"></i>}
+                        editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                        hideIcons={true}
                       />
                     : <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a> }
                     <Clipboard value={data.github} />
@@ -547,6 +579,10 @@ const Profile = (props) => {
                       type="textarea"
                       onSave={e => handleSubmit(e, 'description')}
                       editing={isEditing}
+                      saveButtonContent={<i className="icon icon-checkmark"></i>}
+                      cancelButtonContent={<i className="icon icon-close"></i>}
+                      editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                      hideIcons={true}
                     />
                   : <p className="profile__main-list-item-copy">{data.description}</p> }
                 </div>
@@ -567,6 +603,10 @@ const Profile = (props) => {
                                 type="text"
                                 onSave={e => handleUpdateFeature(e, 'title', item.id)}
                                 editing={isEditing}
+                                saveButtonContent={<i className="icon icon-checkmark"></i>}
+                                cancelButtonContent={<i className="icon icon-close"></i>}
+                                editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                                hideIcons={true}
                               />
                             : item.title }
                           </dt>
@@ -578,6 +618,10 @@ const Profile = (props) => {
                                 type="text"
                                 onSave={e => handleUpdateFeature(e, 'description', item.id)}
                                 editing={isEditing}
+                                saveButtonContent={<i className="icon icon-checkmark"></i>}
+                                cancelButtonContent={<i className="icon icon-close"></i>}
+                                editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                                hideIcons={true}
                               />
                             : item.description }
                           </dd>
@@ -595,6 +639,10 @@ const Profile = (props) => {
                                 type="text"
                                 onSave={e => handleAddFeature(e, 'title')}
                                 editing={isEditing}
+                                saveButtonContent={<i className="icon icon-checkmark"></i>}
+                                cancelButtonContent={<i className="icon icon-close"></i>}
+                                editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                                hideIcons={true}
                               />
                             : null }
                           </dt>
@@ -606,6 +654,10 @@ const Profile = (props) => {
                                 type="text"
                                 onSave={e => handleAddFeature(e, 'description')}
                                 editing={isEditing}
+                                saveButtonContent={<i className="icon icon-checkmark"></i>}
+                                cancelButtonContent={<i className="icon icon-close"></i>}
+                                editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                                hideIcons={true}
                               />
                             : null }
                           </dd>

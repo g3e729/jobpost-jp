@@ -18,7 +18,7 @@
   font-style: normal;
 }
 
-$suffix: '?2nyp2f';
+$suffix: '?hp1bu5';
 
 @font-face {
   font-family: 'kredo';
@@ -121,6 +121,12 @@ $suffix: '?2nyp2f';
 }
 .icon-squares-list:before {
   content: "\e903";
+}
+.icon-close:before {
+  content: "\e91d";
+}
+.icon-checkmark:before {
+  content: "\e91c";
 }
 .icon-arrow-right:before {
   content: "\e91a";

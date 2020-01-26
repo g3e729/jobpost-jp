@@ -13,8 +13,9 @@ const ProfileFrameworkModal = (props) => {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const { filters } = props;
+  const { filters, modal } = props;
   const data = (filters.filtersData && filters.filtersData.students);
+  const modalData = modal.data;
   const frameworkFilter = data.frameworks;
 
   const toggleChange = e => {
@@ -49,9 +50,13 @@ const ProfileFrameworkModal = (props) => {
   useEffect(_ => {
     if (frameworkFilter) {
       let filterTmp = {...frameworkFilter};
-      for (const key in filterTmp){
-        if (filterTmp.hasOwnProperty(key)){
-          filterTmp[key] = '1';
+
+      for (const key in filterTmp) {
+        if (filterTmp.hasOwnProperty(key)) {
+          filterTmp[key] =
+            Object.entries(modalData)
+              .find(item => item[1].skill_id == key)[1]
+              .skill_rate || 1;
         }
       }
 
@@ -144,7 +149,8 @@ const ProfileFrameworkModal = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  filters: state.filters
+  filters: state.filters,
+  modal: state.modal
 });
 
 export default connect(mapStateToProps)(ProfileFrameworkModal);

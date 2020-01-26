@@ -118,6 +118,10 @@ const Heading = (props) => {
                     value={title}
                     type="text"
                     onSave={handleSubmit}
+                    saveButtonContent={<i className="icon icon-checkmark"></i>}
+                    cancelButtonContent={<i className="icon icon-close"></i>}
+                    editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                    hideIcons={true}
                   />
                 : (hasScouted || isOwner === true) ? title : accountType }
               </h2>

@@ -505,8 +505,8 @@ input:focus {
 
 @font-face {
   font-family: "kredo";
-  src: url(/fonts/kredo.eot?5c8f375ff9c71b73babcf1620f16e256);
-  src: url(/fonts/kredo.eot?5c8f375ff9c71b73babcf1620f16e256) format("embedded-opentype"), url(/fonts/kredo.ttf?16144bc1dedfd6ada020766d95a88b88) format("truetype"), url(/fonts/kredo.woff?b7081d604b63b202d8dfe1b68b3e6837) format("woff"), url(/fonts/kredo.svg?a721eb1141b6dc5f61c1c209dd064b20) format("svg");
+  src: url(/fonts/kredo.eot?182d29dd93bf6fa9dcbb5b69c2fb1470);
+  src: url(/fonts/kredo.eot?182d29dd93bf6fa9dcbb5b69c2fb1470) format("embedded-opentype"), url(/fonts/kredo.ttf?4ecc11722aba66c0ee600c42d349317f) format("truetype"), url(/fonts/kredo.woff?6ca6d07f483735ab2b32029d93bba3dd) format("woff"), url(/fonts/kredo.svg?843be17a253def26af58d42981612be7) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -625,6 +625,14 @@ input:focus {
 
 .icon-squares-list:before {
   content: "\E903";
+}
+
+.icon-close:before {
+  content: "\E91D";
+}
+
+.icon-checkmark:before {
+  content: "\E91C";
 }
 
 .icon-arrow-right:before {
