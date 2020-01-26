@@ -4630,6 +4630,10 @@ a.pagination__item-link:hover {
   margin-top: 0;
 }
 
+.profile__data-work-term-button {
+  margin-left: 20px;
+}
+
 .profile__data-work-data h4 {
   font-weight: 700;
   letter-spacing: 0.06em;

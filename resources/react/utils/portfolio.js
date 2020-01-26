@@ -1,4 +1,5 @@
 import API from './api';
+import generateRoute from './generateRoute';
 import { endpoints } from '../constants/routes';
 
 export default class Portfolio {
@@ -15,12 +16,13 @@ export default class Portfolio {
   }
 
   static deletePortfolio(id) {
+    const formdata = new FormData();
+    formdata.append('_method', 'DELETE');
+
     const payload = {
-      url: endpoints.PORTFOLIOS,
+      url: generateRoute(endpoints.PORTFOLIOS_DETAIL, { id }),
       method: 'post',
-      params: {
-        id
-      }
+      data: formdata
     }
 
     return API.request(payload, true)

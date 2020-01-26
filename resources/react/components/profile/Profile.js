@@ -11,8 +11,10 @@ import Clipboard from '../common/Clipboard';
 import Embed from '../common/Embed';
 import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
+import Education from '../../utils/education';
 import Job from '../../utils/job';
 import Portfolio from '../../utils/portfolio';
+import Work from '../../utils/work';
 import Youtube from '../../utils/youtube';
 import { routes } from '../../constants/routes';
 import { sex, skills, state } from '../../constants/state';
@@ -88,18 +90,46 @@ const Profile = (props) => {
   }, 400)
 
   const handleDeletePortfolio = id => {
-    // TODO: no destroy on BE
-    // Portfolio.deletePortfolio(id)
-    //   .then(result => {
-    //     setTimeout(_ => {
-    //       dispatch(getUser())
-    //     }, 500);
-    //   })
-    //   .catch(error => {
-    //     setIsLoading(false);
+    // TODO: not able to delete on BE
+    Portfolio.deletePortfolio(id)
+      .then(_ => {
+        setTimeout(_ => {
+          dispatch(getUser())
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
 
-    //     console.log('[delete portfolio ERROR] :', error);
-    //   });
+        console.log('[Delete portfolio ERROR] :', error);
+      });
+  }
+
+  const handleDeleteWork = id => {
+    Work.deleteWork(id)
+      .then(_ => {
+        setTimeout(_ => {
+          dispatch(getUser())
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
+
+        console.log('[Delete work ERROR] :', error);
+      });
+  }
+
+  const handleDeleteEducation = id => {
+    Education.deleteEducation(id)
+      .then(_ => {
+        setTimeout(_ => {
+          dispatch(getUser())
+        }, 500);
+      })
+      .catch(error => {
+        setIsLoading(false);
+
+        console.log('[Delete education ERROR] :', error);
+      });
   }
 
   async function getFilteredJobs() {
@@ -182,7 +212,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">職歴</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_WORK)}>
+                    <Button className={`button--pill ${data.work_history && data.work_history.length >= 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_WORK)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -190,19 +220,29 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-work">
-                    <dt className="profile__data-work-term">社長室　広報</dt>
-                    <dd className="profile__data-work-data">
-                      <h4>株式会社ＢＮＧパートナーズ （馬鹿が日本を元気にする）</h4>
-                      <time>2015-10</time>
-                      <p>{`自社の良いところを知ってもらいたい。という思いから社長室で広報と人材開発室で採用/広報に携わっています。そのためにイベント企画/運営やメディア発信、自社ブログの運用を行い、知名度のUPだけでなく認知度の向上に努めています。
-                        ほかにも自社内のメンバーにより深く自社を知ってもらうために社内広報誌の発刊、メンバー誌のリニューアル等を行い、自社の理解度を深めました。`}</p>
-                    </dd>
-                    <dt className="profile__data-work-term">スタッフ</dt>
-                    <dd className="profile__data-work-data">
-                      <h4>STB 139 スイートベイジル</h4>
-                      <time>2014-05</time>
-                      <p>{`主に日本のミュージシャンの演奏を鑑賞しながら飲食も楽しめるライブレストラン。好きなミュージシャンや音楽を生で感じ、お客さんにも楽しんでもらえるようにしていました。2014.5.25閉館とともに退職しました。`}</p>
-                    </dd>
+                    { data.work_history && data.work_history.length > 0 && data.work_history
+                      .slice(0,3)
+                      .map(item => (
+                        <React.Fragment key={item.id}>
+                          <dt className="profile__data-work-term">
+                            {item.role}
+                            { isEdit ? (
+                              <Button className="button--pill button--danger profile__data-work-term-button" onClick={_ => handleDeleteWork(item.id)}>
+                                <>
+                                  <i className="icon icon-cross text-dark-gray"></i>
+                                  削除
+                                </>
+                              </Button>
+                            ) : null }
+                          </dt>
+                          <dd className="profile__data-work-data">
+                            <h4>{item.company_name}</h4>
+                            <time>{`${moment(item.started_at).format('YYYY/MM')} ${item.ended_at ? `- ${moment(item.ended_at).format('YYYY/MM')}`: 'current'}`}</time>
+                            <p>{item.content}</p>
+                          </dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>
@@ -210,7 +250,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">学歴</h3>
                   { isEdit ? (
-                    <Button className="button--pill" onClick={_ => handleModal(modalType.PROFILE_EDUCATION)}>
+                    <Button className={`button--pill ${data.education_history && data.education_history.length >= 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_EDUCATION)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -218,13 +258,28 @@ const Profile = (props) => {
                     </Button>
                   ) : null }
                   <dl className="profile__data-work">
-                    <dt className="profile__data-work-term">日本工学院専門学校</dt>
-                    <dd className="profile__data-work-data">
-                      <h4>ミュージックアーティスト科</h4>
-                      <time>2013 - 2016</time>
-                      <p>{`作曲・編曲を専攻していました。得意分野はバンド編成での歌物。2年次には合唱曲プロジェクトを始動。またゴスペルにも参加。専攻外ながらもバンド活動に参加し赤坂BRITZや川崎チッタ等のライブハウスでの演奏も行ないました。
-                        担当はキーボードとちょっと歌。`}</p>
-                    </dd>
+                    { data.education_history && data.education_history.length > 0 && data.education_history
+                      .slice(0,3)
+                      .map(item => (
+                        <React.Fragment key={item.id}>
+                          <dt className="profile__data-work-term">{item.school_name}
+                            { isEdit ? (
+                              <Button className="button--pill button--danger profile__data-work-term-button" onClick={_ => handleDeleteEducation(item.id)}>
+                                <>
+                                  <i className="icon icon-cross text-dark-gray"></i>
+                                  削除
+                                </>
+                              </Button>
+                            ) : null }
+                          </dt>
+                          <dd className="profile__data-work-data">
+                            <h4>{item.major}</h4>
+                            <time>{moment(item.graduated_at).format('YYYY/MM')}</time>
+                            <p>{item.content}</p>
+                          </dd>
+                        </React.Fragment>
+                      ))
+                    }
                   </dl>
                 </div>
               </li>

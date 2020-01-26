@@ -1,4 +1,5 @@
 import API from './api';
+import generateRoute from './generateRoute';
 import { endpoints } from '../constants/routes';
 
 export default class Education {
@@ -15,14 +16,13 @@ export default class Education {
   }
 
   static deleteEducation(id) {
+    const formdata = new FormData();
     formdata.append('_method', 'DELETE');
 
     const payload = {
-      url: endpoints.EDUCATION_HISTORIES,
+      url: generateRoute(endpoints.EDUCATION_HISTORIES_DETAIL, { id }),
       method: 'post',
-      params: {
-        id
-      }
+      data: formdata
     }
 
     return API.request(payload, true)

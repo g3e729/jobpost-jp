@@ -100,9 +100,15 @@ export const endpoints = {
   FEATURES_DETAIL: '/features/:id',
 
   PORTFOLIOS: '/portfolios',
+  PORTFOLIOS_DETAIL: '/portfolios/:id',
+
   TRANSACTIONS: '/transactions',
+
   WORK_HISTORIES: '/work-histories',
+  WORK_HISTORIES_DETAIL: '/work-histories/:id',
+
   EDUCATION_HISTORIES: '/education-histories',
+  EDUCATION_HISTORIES_DETAIL: '/education-histories/:id',
 
   APPLY: 'apply',
   APPLICATIONS: 'applications',
