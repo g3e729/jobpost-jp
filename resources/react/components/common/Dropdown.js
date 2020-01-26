@@ -36,7 +36,7 @@ const Dropdown = (props) => {
           { accountType === 'student' ? (
             <ul className="dropdown__menu">
               <li className="dropdown__menu-item">
-                <NavLink onClick={_ => setDropdown(false)} to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
                   マイページ
                 </NavLink>
               </li>

@@ -226,9 +226,11 @@ const Profile = (props) => {
                     <h3 className="profile__main-list-item-heading">ムービー</h3>
                       <div className="profile__data-video">
                         { isEdit ? null : (
-                          <Embed src={data.movie_url}
-                            className={`embed--16by9 ${css`margin-bottom: 22px`}`}
-                            allowFullScreen />
+                          youtube.isValid() ? (
+                            <Embed src={`https://www.youtube.com/embed/${youtube.getHash()}?autoplay=0`}
+                              className={`embed--16by9 ${css`margin-bottom: 22px`}`}
+                              allowFullScreen />
+                          ) : null
                         )}
                         <div className="profile__data-link">
                           { isEdit ?
