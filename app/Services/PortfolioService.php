@@ -80,11 +80,15 @@ class PortfolioService extends BaseService
     	return $portfolio;
     }
 
-    public function revise($id, $request_data)
+    public function revise($id, $request_data, bool $file_delete = false)
     {
     	$portfolio = Portfolio::find($id);
 
     	$portfolio->update($request_data);
+
+        if ($file_delete) {
+        	$portfolio->file()->delete();
+        }
 
     	return $portfolio;
     }

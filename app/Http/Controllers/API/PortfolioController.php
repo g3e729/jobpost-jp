@@ -28,6 +28,6 @@ class PortfolioController extends BaseController
 			apiAbort(404);
 		}
 
-		return (new PortfolioService)->revise($portfolio->id, $request->only('title', 'description'));
+		return (new PortfolioService)->revise($portfolio->id, $request->only('title', 'description'), $request->get('file_delete'));
 	}
 }
