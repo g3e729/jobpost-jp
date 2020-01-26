@@ -76,8 +76,9 @@
     }
 
     &.is-active {
-      background-color: $color-light-gray;
+      font-weight: 700;
 
+      background-color: $color-light-gray;
       pointer-events: none;
     }
   }

@@ -13,6 +13,7 @@ import Mapped from '../common/Mapped';
 import JobsList from '../jobs/JobsList';
 import Job from '../../utils/job';
 import Portfolio from '../../utils/portfolio';
+import Youtube from '../../utils/youtube';
 import { routes } from '../../constants/routes';
 import { sex, skills, state } from '../../constants/state';
 import { modalType } from '../../constants/config';
@@ -50,6 +51,7 @@ const Profile = (props) => {
   const frameworkFilter = Object.keys(frameworks);
   const otherFilter = Object.keys(others);
   const programmingFilter = Object.keys(programming_languages);
+  const youtube = new Youtube(data.movie_url || '');
 
   const handleModal = type => {
     dispatch(setModal(type));
