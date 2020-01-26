@@ -17,7 +17,8 @@ const ProfilePortfolioModal = ({modal}) => {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({
     title: '',
-    cover_photo: '',
+    file: '',
+    file_delete: null,
     description: '',
     url: '',
   });
@@ -41,6 +42,10 @@ const ProfilePortfolioModal = ({modal}) => {
     e.preventDefault();
 
     setFile('');
+    setFormValues(prevState => {
+      return { ...prevState, file_delete: 1 }
+    });
+
     eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
   }
 
@@ -63,7 +68,10 @@ const ProfilePortfolioModal = ({modal}) => {
     formdata.append('title', formValues.title);
     formdata.append('description', formValues.description);
     formdata.append('url', formValues.url);
-    formdata.append('cover_photo', formValues.cover_photo || '');
+    formdata.append('file', formValues.file || '');
+    if (formValues.file) {
+      formdata.append('file_delete', parseInt(formValues.file_delete));
+    }
 
     Portfolio.addPortfolio(formdata)
       .then(result => {
@@ -93,7 +101,7 @@ const ProfilePortfolioModal = ({modal}) => {
       reader.onload = ev => {
         eyecatchRef.current.style.backgroundImage = `url("${ev.target.result}")`;
         setFormValues(prevState => {
-          return { ...prevState, cover_photo: file }
+          return { ...prevState, file, file_delete: 1 }
         });
       }
     }

@@ -446,10 +446,10 @@ const Profile = (props) => {
                   <ul className="profile__data-websites">
                     { data.portfolios && data.portfolios.length > 0 && data.portfolios
                       .slice(0,3)
-                      .map((item, idx) => (
-                        <li className="profile__data-websites-item" key={idx}>
+                      .map(item => (
+                        <li className="profile__data-websites-item" key={item.id}>
                           <div className="profile__data-websites-eyecatch">
-                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
+                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.image || ecPlaceholder}")` }}></div>
                           </div>
                           <div className="profile__data-websites-content">
                             <h4 className="profile__data-websites-name">{item.title}</h4>
@@ -459,6 +459,16 @@ const Profile = (props) => {
                               <Clipboard value={item.url} />
                             </div>
                           </div>
+                          { isEdit ? (
+                            <div className="profile__data-websites-action">
+                              <Button className="button--pill button--danger" onClick={_ => handleDeletePortfolio(item.id)}>
+                                <>
+                                  <i className="icon icon-cross text-dark-gray"></i>
+                                  削除
+                                </>
+                              </Button>
+                            </div>
+                          ) : null }
                         </li>
                       ))
                     }
@@ -684,7 +694,7 @@ const Profile = (props) => {
                       .map(item => (
                         <li className="profile__data-websites-item" key={item.id}>
                           <div className="profile__data-websites-eyecatch">
-                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.cover_photo || ecPlaceholder}")` }}></div>
+                            <div className="profile__data-websites-eyecatch-img" style={{ backgroundImage: `url("${item.image || ecPlaceholder}")` }}></div>
                           </div>
                           <div className="profile__data-websites-content">
                             <h4 className="profile__data-websites-name">{item.title}</h4>
