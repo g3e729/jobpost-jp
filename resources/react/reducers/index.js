@@ -4,6 +4,7 @@ import modalReducer from './modal';
 import jobsReducer from './jobs';
 import myJobsReducer from './myjobs';
 import filtersReducer from './filters';
+import notificationsReducer from './notifications';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   jobs: jobsReducer,
   myJobs: myJobsReducer,
   filters: filtersReducer,
+  notifications: notificationsReducer,
 });
 
 export default rootReducer;
