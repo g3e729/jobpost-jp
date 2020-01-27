@@ -24,4 +24,20 @@ export default class Notification {
       .then(res => res)
       .catch(error => error);
   }
+
+  static seenNotification(id) {
+    const formdata = new FormData();
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.NOTIFICATIONS_DETAIL, { ids: [id] }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true)
+      .then(res => res)
+      .catch(error => error);
+
+  }
 }
