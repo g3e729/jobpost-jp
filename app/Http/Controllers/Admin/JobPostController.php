@@ -13,11 +13,14 @@ class JobPostController extends BaseController
 {
 	public function index(Request $request)
 	{
+		$filters = (new JobPostService)->jobFilters()->toArray();
 		$job_posts = (new JobPostService)->search($request->except('page'));
-        $prefectures = getPrefecture();
-		$range = JobPost::getRange();
 
-		return view('admin.job_posts.index', compact('job_posts', 'prefectures', 'range'));
+		$data = array_merge($filters, compact('job_posts'));
+
+		// dd($data);
+
+		return view('admin.job_posts.index', $data);
 	}
 
 	public function show(JobPost $recruitment)

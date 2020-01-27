@@ -12,9 +12,45 @@
       <div class="col">
         <div class="form-group">
           <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <select class="form-control" id="formArea" name="position">
+            <option value="" {{ empty(request()->get('position')) ? 'selected' : '' }}>All Positions</option>
+            @foreach($positions as $name)
+              <option value="{{ $name }}" {{ request()->get('position') == $name ? 'selected' : '' }}>{{ $name }}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <select class="form-control" id="formArea" name="programming_language">
+            <option value="" {{ empty(request()->get('programming_language')) ? 'selected' : '' }}>All Programming languages</option>
+            @foreach($programming_languages as $name)
+              <option value="{{ $name }}" {{ request()->get('programming_language') == $name ? 'selected' : '' }}>{{ $name }}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <select class="form-control" id="formArea" name="framework">
+            <option value="" {{ empty(request()->get('frameworks')) ? 'selected' : '' }}>All Frameworks</option>
+            @foreach($frameworks as $name)
+              <option value="{{ $name }}" {{ request()->get('framework') == $name ? 'selected' : '' }}>{{ $name }}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
           <select class="form-control" id="formArea" name="prefecture">
             <option value="" {{ empty(request()->get('prefecture')) ? 'selected' : '' }}>All Prefecture</option>
-            @foreach($prefectures as $index => $name)
+            @foreach($regions as $index => $name)
               <option value="{{ $index }}" {{ request()->get('prefecture') == $index ? 'selected' : '' }}>{{ $name }}</option>
             @endforeach
           </select>
@@ -26,7 +62,7 @@
           <label for="formIncome" class="font-weight-bold text-muted">年収</label>
           <select class="form-control" id="formIncome" name="salary">
             <option value="" {{ empty(request()->get('salary')) ? 'selected' : '' }}>Choose income</option>
-            @foreach($range as $value)
+            @foreach($ranges as $value)
               <option value="{{ $value }}" {{ request()->get('salary') == $value ? 'selected' : '' }}>{{ $value }}</option>
             @endforeach
           </select>

@@ -96,6 +96,32 @@ class JobPostService extends BaseService
                     case 'search':
                         $que = $que->search($fields['search']);
                     break;
+                    case 'salary':
+                        $first = substr($value, 0, 1);
+                        $digits = strlen($value);
+
+                        if (strpos($value, '~1') !== false) {
+                            $between[] = $first * 10;
+                            $between[] = ($first * 10) + 9;
+                        }
+
+                        if (strpos($value, '0~') !== false) {
+                            $between[] = 1999;
+                            $between[] = ($first * 10000000) + 9999;
+                        }
+
+                        if ($digits == 3) {
+                            $between[] = $first * 100;
+                            $between[] = ($first * 100) + 99;
+                        }
+
+                        if ($digits == 4) {
+                            $between[] = $first * 1000;
+                            $between[] = ($first * 1000) + 999;
+                        }
+
+                        $que = $que->whereBetween('salary', $between);
+                    break;
                     case 'liked':
                         $que = $que->whereHas('likes', function ($q) {
                             $q->where('user_id', auth()->user()->id);
@@ -187,7 +213,9 @@ class JobPostService extends BaseService
 
         $status = ServiceModel::getEmploymentTypes();
 
-        return collect(compact('frameworks', 'positions', 'programming_languages', 'regions', 'status'));
+        $ranges = ServiceModel::getRange();
+
+        return collect(compact('frameworks', 'positions', 'programming_languages', 'regions', 'status', 'ranges'));
     }
 
     public function setCompany(CompanyProfile $company)
