@@ -179,23 +179,21 @@
 
 @section('js')
   <script>
-    const deleteButtons = document.querySelectorAll('.js-post-delete');
+    const deleteButton = document.querySelector('#js-item-delete');
     const modalSubmit = document.querySelector('#js-modal-submit');
     const modal = document.querySelector('#js-delete-modal');
     let currTarget;
 
-    deleteButtons.forEach(btn => {
-      btn.addEventListener('click', function(event) {
-        $(modal).modal('show');
-        currTarget = event.currentTarget.href;
+    deleteButton.addEventListener('click', function(event) {
+      $(modal).modal('show');
+      currTarget = event.currentTarget.getAttribute('form');
 
-        event.preventDefault();
-      })
+      event.preventDefault();
     });
 
     modalSubmit.addEventListener('click', function(event) {
       $(modal).modal('hide');
-      window.location.replace(currTarget);
+      document.querySelector(`#${currTarget}`).submit();
     });
   </script>
 @endsection
