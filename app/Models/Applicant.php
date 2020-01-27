@@ -35,6 +35,7 @@ class Applicant extends Model
             $description = '';
             $about_type = JobPost::class;
             $about_id = $model->job_post_id;
+            $group_id = substr(md5(now()), 0, 8);
 
             if ($model->scouted) {
                 $title = auth()->user()->profile->display_name . ' scouted you.';
@@ -44,7 +45,7 @@ class Applicant extends Model
                 $user = $model->employer->user;
             }
 
-            $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id'));
+            $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
         });
         static::deleting(function ($model) {
             $model->chat_channel()->forceDelete();

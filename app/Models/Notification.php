@@ -46,12 +46,25 @@ class Notification extends Model
         static::creating(function ($model) {
             if (!$model->genre_id) {
                 $model->genre_id = 'g5';
-            };
-            
+            }
+
             if (!$model->published_at) {
                 $model->published_at = now();
-            };
+            }
+
+            if (!$model->group_id) {
+                $model->group_id = substr(md5(now()), 0, 8);
+            }
+
+            if (!$model->target_id) {
+                $model->group_id = 'all';
+            }
         });
+    }
+
+    public function scopeSearch($query, $value)
+    {
+        return $query->where('title', 'LIKE', "%{$value}%");
     }
 
     public function notifiable()

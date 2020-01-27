@@ -45,11 +45,12 @@ class Chat extends Model
             $description = '';
             $about_type = ChatChannel::class;
             $about_id = $model->channel_id;
+            $group_id = substr(md5(now()), 0, 8);
 
             $users = User::whereIn('id', $user_ids)->get();
 
             foreach ($users as $user) {
-                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id'));
+                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
             }
         });
     }

@@ -74,9 +74,10 @@ class JobPost extends Model
             $description = '';
             $about_type = JobPost::class;
             $about_id = $model->id;
+            $group_id = substr(md5(now()), 0, 8);
 
             foreach ($users as $user) {
-                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id'));
+                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
             }
         });
         static::updating(function ($model) {

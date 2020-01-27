@@ -35,6 +35,7 @@ class Like extends Model
             $user = $model->likeable->user;
             $title = auth()->user()->profile->display_name . ' likes your ';
             $description = '';
+            $group_id = substr(md5(now()), 0, 8);
 
             if ($model->likeable instanceof JobPost) {
                 $about_type = JobPost::class;
@@ -46,7 +47,7 @@ class Like extends Model
                 $title .= 'profile.';
             }
 
-            $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id'));
+            $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
         });
     }
 

@@ -166,11 +166,10 @@ class SeekerService extends BaseService
 
             switch ($status) {
                 case 1:
-                    $que = $que->where('enrollment_date', '<', now());
+                    $que = $que->where('enrollment_date', '>', now());
                 break;
                 case 2:
                     $enrollment_date = now()->startOfMonth();
-                    $graduation_date = now()->endOfMonth();
                     $from = !empty(array_get($fields, 'from')) ? explode('-', array_get($fields, 'from')) : [];
                     $to = !empty(array_get($fields, 'to')) ? explode('-', array_get($fields, 'to')) : [];
 
@@ -178,11 +177,13 @@ class SeekerService extends BaseService
                         $enrollment_date = $enrollment_date->createFromDate($from[0], $from[1], 1)->subDay();
                     }
 
+                    $graduation_date = $enrollment_date->copy()->endOfMonth();
+
                     if ($to && count($to) > 1) {
                         $graduation_date = $graduation_date->createFromDate($to[0], $to[1], 1)->endOfMonth()->addDay();
                     }
 
-                    if (count($from) && count($to)) {
+                    if (count($from)) {
                         $que = $que->where('enrollment_date', '>', $enrollment_date)
                         ->where('graduation_date', '<', $graduation_date);
                     } else {
@@ -192,7 +193,6 @@ class SeekerService extends BaseService
                 break;
                 case 3:
                     $grad_1 = now()->startOfMonth();
-                    $grad_2 = now()->endOfMonth();
                     $from = !empty(array_get($fields, 'from')) ? explode('-', array_get($fields, 'from')) : [];
                     $to = !empty(array_get($fields, 'to')) ? explode('-', array_get($fields, 'to')) : [];
 
@@ -200,11 +200,13 @@ class SeekerService extends BaseService
                         $grad_1 = $grad_1->createFromDate($from[0], $from[1], 1)->startOfMonth()->subDay();
                     }
 
+                    $grad_2 = $grad_1->copy()->endOfMonth();
+
                     if ($to && count($to) > 1) {
                         $grad_2 = $grad_2->createFromDate($to[0], $to[1], 1)->endOfMonth()->addDay();
                     }
 
-                    if (count($from) && count($to)) {
+                    if (count($from)) {
                         $que = $que->where('graduation_date', '>', $grad_1)
                             ->where('graduation_date', '<', $grad_2);
                     } else {

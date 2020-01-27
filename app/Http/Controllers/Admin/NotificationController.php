@@ -6,14 +6,23 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Models\User;
+use App\Services\NotificationService;
 
 class NotificationController extends BaseController
 {
-	public function index()
+	public function index(Request $request)
 	{
-		$notifications = Notification::groupBy('group_id')->get();
+		$genres = Notification::getGenres();
+		$targets = Notification::getTargets();
 
-		return view('admin.notifications.index', compact('notifications'));
+		$notifications = (new NotificationService)->search(
+			$request->only('genre_id', 'from', 'to', 'target_id'),
+			false,
+			$request->get('sort', 'DESC'),
+			true
+		);
+
+		return view('admin.notifications.index', compact('genres', 'notifications', 'targets'));
 	}
 
 	public function show(Notification $notification)
@@ -41,37 +50,21 @@ class NotificationController extends BaseController
 	
 	public function store(Request $request)
 	{
-		$role_slugs = [];
-		$target_id = $request->get('target_id');
-
-		if ($target_id == 'companies' || $target_id == 'all') {
-			$role_slugs[] = 'company';
-		}
-
-		if ($target_id == 'students' || $target_id == 'all') {
-			$role_slugs[] = 'seeker';
-		}
-
-		$users = User::whereHas('roles', function ($q) use ($role_slugs) {
-			$q->whereIn('slug', $role_slugs);
-		})->get();
-
-		$field_org = $request->only('title', 'description', 'genre_id', 'published_at', 'target_id');
-		$field_org['group_id'] = substr(md5(now()), 0, 8);
-
-		foreach ($users as $user) {
-			$notification = $user->notifications()->create($field_org);
-		}
+		$total = (new NotificationService)->insertAdmin(
+			$request->only('title', 'description', 'genre_id', 'published_at', 'target_id'),
+			$request->get('target_id')
+		);
 
 		return redirect()->back()
-			->withSuccess("Success! Notication sent to {$users->count()} users and will be notified on {$notification->published_at->format('Y年m月d日')}!");
+			->withSuccess("Success! Notication sent to {$total} users and will be notified on {$notification->published_at->format('Y年m月d日')}!");
 	}
 
 	public function update(Notification $notification, Request $request)
 	{
-		$notifications = Notification::whereGroupId($notification->group_id);
-		$total = $notifications->count();
-		$notifications->update($request->only('title', 'description', 'genre_id', 'published_at', 'target_id'));
+		$total = (new NotificationService)->updateAdmin(
+			$request->only('title', 'description', 'genre_id', 'published_at', 'target_id'),
+			$notification->group_id
+		);
 
 		return redirect()->route('admin.notifications.show', $notification)
 			->withSuccess("Success! {$total} notications was updated!");

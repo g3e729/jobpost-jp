@@ -345,15 +345,17 @@ class SeekerProfile extends Model
 
     public function getStudentStatusAttribute()
     {
-        if ($this->graduation_date > now()) {
+        if ($this->enrollment_date > now()) {
+            return self::getStudentStatus(1);
+        }
+
+        if ($this->graduation_date < now()) {
             return self::getStudentStatus(3);
         }
 
-        if ($this->enrollment_date < now()) {
+        if ($this->graduation_date > now()) {
             return self::getStudentStatus(2);
         }
-
-        return self::getStudentStatus(1);
     }
 
     public function getTakenClassAttribute()

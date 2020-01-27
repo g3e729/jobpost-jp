@@ -2,53 +2,45 @@
   <form class="py-2 mb-4">
     <h2 class="py-4 text-center alt-font">Search Notification</h2>
     <div class="form-group pb-3 row">
-      <label for="formName" class="col-2 col-form-label font-weight-bold text-muted">お知らせ</label>
+      <label for="formSearch" class="col-2 col-form-label font-weight-bold text-muted">お知らせ</label>
       <div class="col-10">
-        <input type="text" class="form-control" id="formName" name="formName" placeholder="Please enter company name">
+      <input type="text" class="form-control" id="formName" name="search" placeholder="Please enter a name" value="{{ request()->get('search') }}">
       </div>
     </div>
     <div class="pb-3 row">
       <div class="col-3">
         <div class="form-group">
-          <label for="formCategory" class="font-weight-bold text-muted">ジャンル</label>
-          <select class="form-control" id="formCategory" name="formCategory">
+          <label for="formGenre" class="font-weight-bold text-muted">ジャンル</label>
+          <select class="form-control" id="formGenre" name="genre_id">
             <option value="" selected hidden disabled>Choose category</option>
-            <option value="category-a">Category A</option>
-            <option value="category-b">Category B</option>
-            <option value="category-c">Category C</option>
+            @foreach($genres as $index => $name)
+              <option value="{{ $index }}" {{ request()->get('genre_id') == $index ? 'selected' : '' }}>{{ $name }}</option>
+            @endforeach
           </select>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="formPeriod" class="font-weight-bold text-muted">期</label>
+          <div class="input-group input-daterange js-monthpicker">
+            <input type="text" class="form-control text-left" name="from" value="{{ request()->get('from') }}"
+              data-name="students_range_from" placeholder="">
+            <div class="input-group-text">
+              <i class="fas fa-fw fa-arrows-alt-h"></i>
+            </div>
+            <input type="text" class="form-control text-left" name="to" value="{{ request()->get('to') }}"
+              data-name="students_range_to" placeholder="">
+          </div>
         </div>
       </div>
       <div class="col-3">
         <div class="form-group">
-          <label for="formFrom" class="font-weight-bold text-muted">通知日(from)</label>
-          <select class="form-control" id="formFrom" name="formFrom">
-            <option value="" selected hidden disabled>Choose from</option>
-            <option value="from-a">From A</option>
-            <option value="from-b">From B</option>
-            <option value="from-c">From C</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="formTo" class="font-weight-bold text-muted">to</label>
-          <select class="form-control" id="formTo" name="formTo">
-            <option value="" selected hidden disabled>Choose to</option>
-            <option value="to-a">To A</option>
-            <option value="to-b">To B</option>
-            <option value="to-c">To C</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="formStatus" class="font-weight-bold text-muted">ステータス</label>
-          <select class="form-control" id="formStatus" name="formStatus">
-            <option value="" selected hidden disabled>Choose status</option>
-            <option value="status-a">Status A</option>
-            <option value="status-b">Status B</option>
-            <option value="status-c">Status C</option>
+          <label for="formTarget" class="font-weight-bold text-muted">ステータス</label>
+          <select class="form-control" id="formTarget" name="target_id">
+            <option value="" selected hidden disabled>Choose target</option>
+            @foreach($targets as $index => $name)
+              <option value="{{ $index }}" {{ request()->get('target_id') == $index ? 'selected' : '' }}>{{ $name }}</option>
+            @endforeach
           </select>
         </div>
       </div>
