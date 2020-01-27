@@ -28,7 +28,10 @@ class ChatChannel extends Model
         'updated_at'
     ];
 
-    protected $appends = ['chattable_item', 'last_chat'];
+    protected $appends = [
+        'last_chat',
+        'messages'
+    ];
 
     // Relations
     public function chattable()
@@ -44,11 +47,6 @@ class ChatChannel extends Model
     public function chat_status()
     {
         return $this->hasMany(ChatStatus::class, 'channel_id');
-    }
-
-    public function getChattableItemsAttribute()
-    {
-        return $this->chats()->orderBy('created_at', 'DESC')->first();
     }
 
     public function getLastChatAttribute()
@@ -74,5 +72,10 @@ class ChatChannel extends Model
     public function getImgAttribute()
     {
         return $this->chattable->employer->avatar;
+    }
+
+    public function getMessagesAttribute()
+    {
+        return $this->chats()->orderBy('created_at', 'DESC')->get();
     }
 }

@@ -33,7 +33,7 @@ Route::group([
 
 		Route::resource('notifications', 'NotificationController')->only('index', 'update');
 
-		Route::resource('portfolios', 'PortfolioController')->only('store', 'update');
+		Route::resource('portfolios', 'PortfolioController')->only('store', 'update', 'destroy');
 	});
 
 	Route::group([

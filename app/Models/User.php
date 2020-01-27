@@ -56,9 +56,9 @@ class User extends Authenticatable
         return $this->hasOne(CompanyProfile::class);
     }
 
-    public function hasRole(string $slug)
+    public function hasRole(...$slugs)
     {
-        return (bool) $this->roles()->whereSlug($slug)->count();
+        return (bool) $this->roles()->whereIn('slug', $slugs)->count();
     }
 
     public function notifications()

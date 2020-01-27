@@ -30,4 +30,11 @@ class PortfolioController extends BaseController
 
 		return (new PortfolioService)->revise($portfolio->id, $request->only('title', 'description'), $request->get('file_delete'));
 	}
+
+	public function destroy(Portfolio $portfolio)
+	{
+		$portfolio->delete();
+
+		return $portfolio;
+	}
 }

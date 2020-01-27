@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Applicant;
 use App\Models\ChatChannel;
+use App\Models\SeekerProfile;
+use App\Models\CompanyProfile;
 use App\Models\User;
 use Exception;
 
@@ -74,7 +76,12 @@ class ChatService extends BaseService
         }
 
         foreach($profiles as $profile) {
-            $user_id = $profile instanceof User ? $profile->id : $profile->user_id;
+            $user_id = $profile['id'];
+
+            if ($profile instanceof CompanyProfile || $profile instanceof SeekerProfile) {
+                $user_id = $profile['user_id'];
+            }
+
             $seen = 0;
 
             if ($this->user->id == $user_id) {
