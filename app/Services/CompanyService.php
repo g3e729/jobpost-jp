@@ -144,7 +144,7 @@ class CompanyService extends BaseService
     {
         $company = $this->item;
 
-        $que = (new Applicant)->with('applicant')->whereHas('job_post', function ($q) use ($company) {
+        $que = (new Applicant)->with('applicant', 'chat_channel')->whereHas('job_post', function ($q) use ($company) {
             $q->whereCompanyProfileId($company->id);
         });
 

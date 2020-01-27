@@ -21,18 +21,23 @@ class MessageController extends BaseController
 	
 	public function show(ChatChannel $message)
 	{
-		$message->load('chats');
+		$message->load('chats', 'chattable');
 
 		return $message;
 	}
 	
 	public function store(Request $request)
 	{
+		$content = $request->get('message');
+
+		if (empty($content)) {
+			apiAbort('Server Error');
+		}
+
 		$chatService = (new ChatService);
 		$channel = $chatService->find($request->get('channel_id'));
 
 		$chatService->setUser(auth()->user());
-		$content = $request->get('message');
 
 		return $chatService->sendMessage(compact('content'));
 	}
