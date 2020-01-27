@@ -14,7 +14,6 @@
                   <i class="fas fa-chevron-circle-left"></i> Back
                 </a>
                 <a href="{{ route('admin.messages.index', ['user_id' => $student->user_id]) }}" class="card-link">メッセージ</a>
-                <button type="submit" form="editForm" class="alt-font btn btn-primary btn-submit">更新する</button>
               </div>
               <div class="card-body-img text-center">
                 <img src="{{ $student->avatar }}" class="avatar avatar-md">
