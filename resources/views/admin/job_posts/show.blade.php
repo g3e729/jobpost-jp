@@ -166,7 +166,7 @@
           </button>
         </div>
         <div class="modal-body">
-          [TODO] Are you sure you want to delete job post ？
+          本当に削除してもよろしいですか？
         </div>
         <div class="modal-footer">
           <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
