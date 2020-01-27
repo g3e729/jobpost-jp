@@ -36,7 +36,6 @@
               <h3 class="font-weight-bold h6">{{ $job_post->company->company_name }}</h3>
               <p class="small text-muted mb-0">{{ $job_post->title }}</p>
               <div class="d-flex justify-content-between">
-                <p class="small mt-1">{{ $job_post->position }}</p>
                 <a href="{{ route('admin.recruitments.show', $job_post) }}" class="btn btn-link p-0">詳細</a>
               </div>
             </div>
