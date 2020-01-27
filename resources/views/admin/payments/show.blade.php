@@ -44,6 +44,7 @@
             <thead>
               <tr>
                 <th width="420px">アカウント</th>
+                <th>Tickets</th>
                 <th>価格</th>
                 @if (! $payment->is_approved)
                   <th width="120px">&nbsp;</th>
@@ -60,6 +61,7 @@
                       <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
                     </div>
                   </td>
+                  <td>{{ $ticket->tickets }}</td>
                   <td>{{ price($ticket->amount) }}</td>
                   @if (! $payment->is_approved)
                     <td>

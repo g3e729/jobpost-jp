@@ -14,6 +14,7 @@ class PaymentController extends BaseController
 			'COUNT(*) as items',
 	    	'COUNT(IF(is_approved = 1, 1, NULL)) as total_approved',
 			'sum(amount) as total',
+			'sum(tickets) as total_tickets',
 		];
 
 		$data = Transaction::selectRaw(implode(',', $selectRaw))

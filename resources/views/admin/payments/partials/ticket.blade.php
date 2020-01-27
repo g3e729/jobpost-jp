@@ -17,6 +17,7 @@
 	    @endif
 	  </div>
 	</td>
+  	<td>{{ $payment->total_tickets ?? $payment->tickets }}</td>
 	<td>{{ price($payment->total) }}</td>
   @if (! $payment->is_approved || $model == 'payments')
 		<td>
