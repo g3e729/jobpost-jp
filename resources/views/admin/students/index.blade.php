@@ -88,7 +88,7 @@
         el.removeAttribute('disabled');
       });
 
-      if ( this.value == 1 ) {
+      if ( this.value == 1 || this.value == 3 ) {
         elementsRange.forEach(el => {
           el.setAttribute('disabled', 'disabled');
         });
