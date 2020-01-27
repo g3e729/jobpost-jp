@@ -266,7 +266,7 @@ class SeekerService extends BaseService
 
     public function getAppliedJobs($search, $paginated = true, $sort = 'DESC')
     {
-        $que = $this->item->applications()->where('scouted', request()->get('scouted', 0));
+        $que = $this->item->applications()->with('chat_channel')->where('scouted', request()->get('scouted', 0));
 
         $que = $que->search($search, $this->item);
 

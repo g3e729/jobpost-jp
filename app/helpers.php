@@ -131,7 +131,7 @@ if (! function_exists('requestExcept')) {
 }
 
 if (! function_exists('apiAbort')) {
-    function apiAbort($code)
+    function apiAbort($code = null)
     {
         if ($code === null) {
             $code = 404;

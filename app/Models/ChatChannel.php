@@ -29,8 +29,8 @@ class ChatChannel extends Model
     ];
 
     protected $appends = [
-        'last_chat',
-        'messages'
+        'messages',
+        'title',
     ];
 
     // Relations
@@ -47,11 +47,6 @@ class ChatChannel extends Model
     public function chat_status()
     {
         return $this->hasMany(ChatStatus::class, 'channel_id');
-    }
-
-    public function getLastChatAttribute()
-    {
-        return $this->chattable;
     }
 
     public function getOwnerAttribute()
