@@ -92,6 +92,8 @@ class RegisterController extends Controller
                 $companyService = (new CompanyService);
                 $profile = $companyService->find(session('profile_id', 0));
 
+                $profile->user->update($request->only('password'));
+
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
@@ -121,6 +123,8 @@ class RegisterController extends Controller
                 $employeeService = (new EmployeeService);
                 $profile = $employeeService->find(session('profile_id', 0));
 
+                $profile->user->update($request->only('password'));
+
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
@@ -145,6 +149,8 @@ class RegisterController extends Controller
             case 2:
                 $seekerService = (new SeekerService);
                 $profile = $seekerService->find(session('profile_id', 0));
+
+                $profile->user->update($request->only('password'));
 
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')

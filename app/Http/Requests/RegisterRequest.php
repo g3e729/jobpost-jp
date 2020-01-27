@@ -34,20 +34,18 @@ class RegisterRequest extends FormRequest
         $rules = [
             1 => [
                 'company_name' => 'required',
-                'password' => 'required|confirmed',
+                // 'password' => 'required|confirmed',
                 'prefecture' => 'required',
                 'address1' => 'required',
                 'address2' => 'required',
                 'address3' => 'required',
                 'ceo' => 'required',
                 'number_of_employees' => '',
-                'contact_number' => 'required'
-            ],
-            2 => [
+
                 'description' => 'required',
                 'industry_id' => 'required',
-                'homepage' => '',
                 'established_date' => 'required',
+                'homepage' => '',
 
                 'avatar' => [
                     'file',
@@ -55,12 +53,17 @@ class RegisterRequest extends FormRequest
                     'mimes:jpeg,png',
                     'max:1500',
                 ],
+                
                 'cover_photo' => [
                     'file',
                     'image',
                     'mimes:jpeg,png',
                     'max:1500',
                 ]
+            ],
+            2 => [
+                'password' => 'required|confirmed',
+                // 'contact_number' => 'required',
             ],
         ];
 
@@ -73,19 +76,21 @@ class RegisterRequest extends FormRequest
             1 => [
                 'name' => 'required',
                 'japanese_name' => 'required',
-                'password' => 'required|confirmed',
+                // 'password' => 'required|confirmed',
                 'birthday' => 'required',
                 'prefecture' => 'required',
                 'address1' => 'required',
                 'address2' => 'required',
                 'address3' => 'required',
                 'sex' => 'required',
-                'contact_number' => 'required'
-            ],
-            2 => [
+                'contact_number' => 'required',
+                
                 'country' => 'required',
                 'position_id' => 'required',
                 'status' => 'required',
+            ],
+            2 => [
+                'password' => 'required|confirmed',
                 
                 'avatar' => [
                     'file',
@@ -105,19 +110,21 @@ class RegisterRequest extends FormRequest
             1 => [
                 'name' => 'required',
                 'japanese_name' => 'required',
-                'password' => 'required|confirmed',
+                // 'password' => 'required|confirmed',
                 'birthday' => 'required',
                 'prefecture' => 'required',
                 'address1' => 'required',
                 'address2' => 'required',
                 'address3' => 'required',
                 'sex' => 'required',
-                'contact_number' => 'required'
-            ],
-            2 => [
+                'contact_number' => 'required',
+
                 'enrollment_date' => 'required',
                 'graduation_date' => 'required',
                 'occupation' => 'required',
+            ],
+            2 => [
+                'password' => 'required|confirmed',
                 
                 'avatar' => [
                     'file',
