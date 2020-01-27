@@ -7,6 +7,9 @@
 
     <div class="shadow-sm card card-payment-detail">
       <div class="card-body pt-5 px-5">
+        <a href="{{ route('employee.payments.index') }}" class="card-link d-block mb-4">
+          <i class="fas fa-chevron-circle-left"></i> Back
+        </a>
         <h2 class="card-title w-100 text-truncate">{{ $payment->transactionable->display_name }} {{ $payment->bill_date }}</h2>
         @if ($payment->tickets->count())
           <p class="card-text text-muted h5 mb-3">購入履歴</p>
