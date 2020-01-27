@@ -290,6 +290,19 @@
         </div>
       </div>
 
+      <div class="form-group pb-3 row">
+        <label for="formStation" class="col-3 col-form-label font-weight-bold">Status</label>
+        <div class="col-9">
+            <select class="form-control" id="formPrefecture" name="employment_type" data-action="change"
+              data-condition="" data-text="Please choose status.">
+              <option value="" selected hidden disabled>Choose status</option>
+              @foreach($employment_types as $index => $name)
+                <option value="{{ $index }}" {{ ($index == old('employment_type', $job_post->employment_type)) ? 'selected' : null }}>{{ $name }}</option>
+              @endforeach
+            </select>
+        </div>
+      </div>
+
       <div class="form-group row">
         <div class="col-6 py-4 mx-auto">
           <button type="submit" class="alt-font btn btn-primary btn-submit w-100">送信</button>
