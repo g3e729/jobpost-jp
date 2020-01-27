@@ -35,6 +35,23 @@ class Chat extends Model
         	
         	$model->user_id = $user_id;
         });
+        static::created(function ($model) {
+            $user_ids = $model->channel->chat_status()
+                ->where('user_id', '!=', [1, auth()->user()->id])
+                ->get()
+                ->pluck('user_id')
+                ->toArray();
+            $title = auth()->user()->profile->display_name . ' sent a message.';
+            $description = '';
+            $about_type = ChatChannel::class;
+            $about_id = $model->channel_id;
+
+            $users = User::whereIn('id', $user_ids)->get();
+
+            foreach ($users as $user) {
+                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id'));
+            }
+        });
     }
 
     // Relations

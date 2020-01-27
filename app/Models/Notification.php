@@ -21,7 +21,9 @@ class Notification extends Model
         'group_id',
         'target_id',
         'notifiable_id',
-        'notifiable_type'
+        'notifiable_type',
+        'about_type',
+        'about_id'
     ];
 
     static protected $genres = [
@@ -37,6 +39,20 @@ class Notification extends Model
         'students' => '生徒',
         'all' => 'すべて',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (!$model->genre_id) {
+                $model->genre_id = 'g5';
+            };
+            
+            if (!$model->published_at) {
+                $model->published_at = now();
+            };
+        });
+    }
 
     public function notifiable()
     {
