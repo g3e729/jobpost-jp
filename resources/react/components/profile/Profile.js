@@ -90,7 +90,6 @@ const Profile = (props) => {
   }, 400)
 
   const handleDeletePortfolio = id => {
-    // TODO: not able to delete on BE
     Portfolio.deletePortfolio(id)
       .then(_ => {
         setTimeout(_ => {
