@@ -32,6 +32,7 @@
               <thead>
                 <tr>
                   <th width="420px">アカウント</th>
+                  <th>Tickets</th>
                   <th>価格</th>
                   <th width="120px">&nbsp;</th>
                 </tr>
