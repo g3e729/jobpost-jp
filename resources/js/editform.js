@@ -1,14 +1,4 @@
-import ImageUpload from './components/image-upload';
 import CopyInput from './components/copy-input';
-
-new ImageUpload({
-  browse: '[data-avatar="browse"]',
-  file: '[data-avatar="file"]',
-  name: '[data-avatar="name"]',
-  preview: '[data-avatar="preview"]',
-  hidden: '[data-avatar="hidden"]',
-  delete: '[data-avatar="delete"]',
-});
 
 new CopyInput({
   button: '#js-group-add',
