@@ -211,7 +211,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">職歴</h3>
                   { isEdit ? (
-                    <Button className={`button--pill ${data.work_history && data.work_history.length >= 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_WORK)}>
+                    <Button className={`button--pill ${data.work_history && data.work_history.length >= 5 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_WORK)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -220,7 +220,7 @@ const Profile = (props) => {
                   ) : null }
                   <dl className="profile__data-work">
                     { data.work_history && data.work_history.length > 0 && data.work_history
-                      .slice(0,3)
+                      .slice(0,5)
                       .map(item => (
                         <React.Fragment key={item.id}>
                           <dt className="profile__data-work-term">
@@ -249,7 +249,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box profile__data">
                   <h3 className="profile__main-list-item-heading">学歴</h3>
                   { isEdit ? (
-                    <Button className={`button--pill ${data.education_history && data.education_history.length >= 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_EDUCATION)}>
+                    <Button className={`button--pill ${data.education_history && data.education_history.length >= 1 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_EDUCATION)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
@@ -258,7 +258,7 @@ const Profile = (props) => {
                   ) : null }
                   <dl className="profile__data-work">
                     { data.education_history && data.education_history.length > 0 && data.education_history
-                      .slice(0,3)
+                      .slice(0,1)
                       .map(item => (
                         <React.Fragment key={item.id}>
                           <dt className="profile__data-work-term">{item.school_name}
