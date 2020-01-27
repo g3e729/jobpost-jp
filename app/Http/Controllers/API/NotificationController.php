@@ -11,18 +11,24 @@ class NotificationController extends BaseController
 {
 	public function index(Request $request)
 	{
-		if (auth()->user()) {
+		$user = auth()->user();
+
+		if ($user) {
 			$paginate = $request->has('all') ? 0 : 1;
 
-			$notifications = auth()->user()->notifications()
+			$notifications = $user->notifications()
 				->select('id', 'title', 'description', 'published_at', 'seen')
 				->orderBy('published_at', 'ASC');
 
+			$unseen_total = $user->notifications()->where('seen', 0)->count();
+
 			if ($paginate) {
-				return $notifications->paginate(10);
+				$notifications = $notifications->paginate(10);
+				return compact('notifications', 'unseen_total');
 			}
 
-			return $notifications->get();
+			$notifications = $notifications->get();
+			return compact('notifications', 'unseen_total');
 		}
 
 		return response()->json(['message' => 'Not Found.'], 404);
