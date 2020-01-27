@@ -69,6 +69,10 @@
   </div>
 
   @foreach ($student->education_history as $k => $education_history)
+
+  @if ($k > 0)
+    @php continue; @endphp
+  @endif
     <div class="pb-3 row">
       <div class="col-3 font-weight-bold">学歴</div>
       <div class="col-9">
