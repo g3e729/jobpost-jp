@@ -53,7 +53,7 @@ const CompanyPage = (props) => {
       { isLoading ? (
         <Loading className="loading--full" />
       ) : (
-        !_.isEmpty(company) ? (
+        company.code != 404 ? (
           <>
             <Heading type="user"
               style={{ backgroundImage: `url("${company.cover_photo || ecPlaceholder}")` }}

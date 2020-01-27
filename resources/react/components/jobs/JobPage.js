@@ -68,7 +68,7 @@ const JobPage = (props) => {
       { isLoading ? (
         <Loading className="loading--full" />
       ) : (
-        !_.isEmpty(job) ? (
+        job.code != 404 ? (
           <>
             <Heading type="job"
               style={{ backgroundImage: `url("${job.cover_photo || ecPlaceholder}")` }}

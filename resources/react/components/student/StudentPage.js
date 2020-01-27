@@ -55,7 +55,7 @@ const StudentPage = (props) => {
       { isLoading ? (
         <Loading className="loading--full" />
       ) : (
-        !_.isEmpty(student) ? (
+        student.code != 404 ? (
           <>
             <Heading type="user"
               style={{ backgroundImage: `url("${student.cover_photo || ecPlaceholder}")` }}

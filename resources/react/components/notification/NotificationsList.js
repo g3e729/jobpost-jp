@@ -22,6 +22,7 @@ const dummyNotifications = new Array(10)
   })
 
 const NotificationsList = _ => {
+
   return (
     <ul className="notifications-list">
       { dummyNotifications.map(item => (
