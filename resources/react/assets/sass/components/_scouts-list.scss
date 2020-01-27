@@ -18,6 +18,10 @@
   &:hover {
     background-color: $color-light-gray;
   }
+
+  &.is-active {
+    background-image: $gradient;
+  }
 }
 
 .scouts__left {

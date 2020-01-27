@@ -20,7 +20,7 @@ const ScoutsPage = _ => {
 
   async function getMyJobs() {
     const page = urlParams.get('page');
-    const request = await Job.getMyJobs({page, status: 1, excluded: seekerId});
+    const request = await Job.getMyJobs({page, status: 1});
 
     return request.data;
   }

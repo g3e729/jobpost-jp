@@ -1074,6 +1074,12 @@ And you should not feel free to add a new Utility class.
   background: none;
 }
 
+.button--message {
+  color: #fff;
+  border: solid 2px #fff;
+  background: none;
+}
+
 .button--link-form {
   font-size: 14px;
   color: #d9d6d6;
@@ -6367,6 +6373,11 @@ a.pagination__item-link:hover {
 
 .scouts:hover {
   background-color: #f2f2f0;
+}
+
+.scouts.is-active {
+  background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
+  background-image: linear-gradient(to right, #fdb834, #f7954d);
 }
 
 .scouts__left {

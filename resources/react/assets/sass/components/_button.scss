@@ -116,6 +116,13 @@
   background: none;
 }
 
+.button--message {
+  color: $color-white;
+
+  border: solid 2px $color-white;
+  background: none;
+}
+
 .button--link-form {
   font-size: 14px;
   color: $color-dark-gray;

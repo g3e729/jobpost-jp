@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Button from '../common/Button';
@@ -13,16 +13,36 @@ import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 const ScoutsList = ({data}) => {
   const dispatch = useDispatch();
   const [currentItem, setCurrentItem] = useState(null);
+  const [jobsTmp, setJobsTmp] = useState([]);
   const jobsData = data.data || {};
 
   const handleClick = (id) => {
     dispatch(setModal(modalType.STUDENT_SCOUT, {id, text: localStorage.getItem('seeker_name')}));
   }
+
+  useEffect(_ => {
+    const seekerID = localStorage.getItem('seeker_id');
+
+    setJobsTmp(jobsData
+      .map(job => {
+        return {
+          ...job,
+          isScouted: job.applicants.some(applicant => {
+            return applicant.seeker_profile_id == seekerID
+          })
+        }
+      })
+      .sort((currJob, nextJob) => {
+        return (currJob.isScouted === nextJob.isScouted)? 0 : currJob.isScouted ? 1 : -1;
+      })
+    );
+  }, [jobsData])
+
   return (
     <ul className="scouts-list">
-      { jobsData.map(item => (
+      { jobsTmp.map(item => (
         <li className="scouts-list__item" onMouseOver={_ => setCurrentItem(item.id)} onMouseOut={_ => setCurrentItem(null)} key={item.id}>
-          <div className="scouts">
+          <div className={`scouts ${item.isScouted ? state.ACTIVE : ''}`}>
             <div className="scouts__left">
               <div className="scouts__left-inner">
                 <div className="scouts__eyecatch">
@@ -70,9 +90,15 @@ const ScoutsList = ({data}) => {
                 ) : null }
               </dl>
               <div className={`scouts__action ${currentItem === item.id ? state.ACTIVE : ''}`}>
-                <Button onClick={_ => handleClick(item.id)}>
-                  応募する
-                </Button>
+                { item.isScouted ? (
+                  <Button className="button--message">
+                    メッセージ
+                  </Button>
+                ) : (
+                  <Button onClick={_ => handleClick(item.id)}>
+                    応募する
+                  </Button>
+                )}
               </div>
             </div>
           </div>

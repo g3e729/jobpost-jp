@@ -20,7 +20,6 @@ class Applicant extends Model
     ];
 
     protected $hidden = [
-        'seeker_profile_id',
         'job_post_id'
     ];
 
