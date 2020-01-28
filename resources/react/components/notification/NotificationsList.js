@@ -16,7 +16,11 @@ const NotificationsList = ({notifications}) => {
           <div className="notifications-list__item-main">
             <time className="notifications-list__item-schedule" dateTime={ moment(item.published_at).format('YYYY-MM-DD') }>{ moment(item.published_at).format('YYYY/MM/DD') }</time>
             { !item.seen ? <Pill>New</Pill> : null }
-            <Link to={generateRoute(routes.NOTIFICATIONS_DETAIL, { id: item.id })}
+            <Link
+              to={{
+                pathname: generateRoute(routes.NOTIFICATIONS_DETAIL, { id: item.id }),
+                state: { notification: item }
+              }}
               className="button button--link notifications-list__item-button">
               <h4 className="notifications-list__item-title">{item.title}</h4>
             </Link>

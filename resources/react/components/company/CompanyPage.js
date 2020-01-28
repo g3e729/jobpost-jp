@@ -74,9 +74,7 @@ const CompanyPage = (props) => {
               </div>
             </div>
           </>
-        ) : (
-          <Four0FourPage />
-        )
+        ) : <Four0FourPage />
       )}
     </Page>
   );
