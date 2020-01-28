@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
 import Loading from '../common/Loading';
 import { state } from '../../constants/state';
+import { setActiveChannel } from '../../actions/messages';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const MessagesSidebar = (props) => {
+  const dispatch = useDispatch();
   const { isLoading, messages } = props;
-  const [currentItem, setCurrentItem] = useState(0);
   const data = messages.messagesData || {};
   const messagesData = data.data || {};
+  const [isLoadingTmp, setIsLoadingTmp] = useState(isLoading);
+  const [currentChannel, setCurrentChannel] = useState(0);
+
+  const handleChangeChannel = id => {
+    setIsLoadingTmp(true);
+
+    dispatch(setActiveChannel(id))
+  }
+
+  useEffect(_ => {
+    setCurrentChannel(messages.activeChannel)
+  }, [messages])
 
   return (
     <aside className="messages-sidebar">
@@ -21,8 +34,8 @@ const MessagesSidebar = (props) => {
           <Loading className="loading--full" />
         ) : (
           messagesData.map(item => (
-            <li className={`messages-sidebar__chatroom-item ${item.id === currentItem ? state.ACTIVE : ''}`}
-              onClick={_ => setCurrentItem(item.id)} key={item.id}>
+            <li className={`messages-sidebar__chatroom-item ${item.id === currentChannel ? state.ACTIVE : ''}`}
+              onClick={_ => handleChangeChannel(item.id)} key={item.id}>
               <div className="messages-sidebar__chatroom-item-left">
                 <div className="messages-sidebar__chatroom-item-avatar">
                   <Avatar className="avatar--message"

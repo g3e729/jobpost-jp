@@ -11,6 +11,11 @@ const messagesReducer = (state = initialState, action) => {
         messagesData: action.payload,
         activeChannel: action.id
       };
+    case 'MESSAGES_ACTIVE_SET':
+      return {
+        ...state,
+        activeChannel: action.id
+      };
     case 'MESSAGES_UNSET':
       return {
         ...state,

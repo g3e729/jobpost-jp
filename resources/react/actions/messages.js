@@ -6,6 +6,11 @@ export const setMessages = (payload = '', id = null) => ({
   id
 });
 
+export const setMessagesActive = (id = null) => ({
+  type: 'MESSAGES_ACTIVE_SET',
+  id
+});
+
 export const unsetMessages = _ => ({
   type: 'MESSAGES_UNSET'
 });
@@ -13,7 +18,7 @@ export const unsetMessages = _ => ({
 export const getMessages = (id = null) => {
   return (dispatch) => {
     return Message.getMessages().then(result => {
-      dispatch(setMessages(result.data, (result.data.data[0].id || id)));
+      dispatch(setMessages(result.data, (id || result.data.data[0].id)));
     }).catch(error => {
       dispatch(unsetMessages());
 
@@ -22,7 +27,7 @@ export const getMessages = (id = null) => {
   }
 }
 
-export const postMessage = (formdata) => {
+export const postMessage = formdata => {
   return (dispatch) => {
     return Message.postMessage(formdata).then(_ => {
       dispatch(getMessages())
@@ -30,4 +35,8 @@ export const postMessage = (formdata) => {
       console.log('[Post message ERROR]', error);
     })
   }
+}
+
+export const setActiveChannel = id => {
+  return (dispatch) => dispatch(setMessagesActive(id));
 }
