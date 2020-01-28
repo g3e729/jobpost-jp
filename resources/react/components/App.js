@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import Header from './common/Header';
 import Footer from './common/Footer';
@@ -9,15 +9,20 @@ import { getFilters } from '../actions/filters';
 import { getNotifications } from '../actions/notifications';
 import { unSetModal } from '../actions/modal';
 
-const App = _ => {
+const App = ({user}) => {
   const dispatch = useDispatch();
 
   useEffect(_ => {
     dispatch(getUser());
     dispatch(getFilters());
-    dispatch(getNotifications());
     dispatch(unSetModal());
   }, []);
+
+  useEffect(() => {
+    if (user.isLogged) {
+      dispatch(getNotifications());
+    }
+  }, [user])
 
   return (
     <div className="l-wrap" id="js-wrap">
@@ -28,4 +33,8 @@ const App = _ => {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(App);

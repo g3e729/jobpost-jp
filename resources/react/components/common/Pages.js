@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import JobsPage from '../jobs/JobsPage';
 import JobPage from '../jobs/JobPage';
@@ -42,10 +43,10 @@ import requireAuth from '../../utils/requireAuth';
 
 import { routes } from '../../constants/routes';
 
-const Pages = _ => (
+const Pages = ({user}) => (
   <div className="pages">
     <ModalService />
-    <NotificationService />
+    { user.isLogged ? <NotificationService /> : null }
     <PageTopService />
     <Switch>
       <Route
@@ -178,4 +179,8 @@ const Pages = _ => (
   </div>
 );
 
-export default Pages;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Pages);
