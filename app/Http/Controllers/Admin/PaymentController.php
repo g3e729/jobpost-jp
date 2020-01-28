@@ -44,7 +44,7 @@ class PaymentController extends BaseController
 		$between = [$payment->created_at->firstOfMonth(), $payment->created_at->endOfMonth()];
 		$transactionable = $payment->transactionable;
 
-		$transactions = $transactionable->transactions()->withTrashed()->whereBetween('created_at', $between)->get();
+		$transactions = $transactionable->transactions()->whereBetween('created_at', $between)->get();
 		$num_approved = $transactions->where('is_approved', 1)->count();
 		$num_tickets = $transactions->where('deleted_at', '!=', null)->count();
 		$is_approved = $num_approved > 0 && $num_approved >= $num_tickets;
