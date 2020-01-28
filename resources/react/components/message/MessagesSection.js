@@ -6,7 +6,7 @@ import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Loading from '../common/Loading';
-import { state } from '../../constants/state';
+import { postMessage } from '../../actions/messages';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
@@ -14,10 +14,19 @@ const MessagesSection = (props) => {
   const { isLoading, messages } = props;
   const [acceptedTerm, setAcceptedTerm] = useState(false);
   const [messageValue, setMessageValue] = useState('');
+  const dispatch = useDispatch();
   const data = messages.messagesData || {};
   const messagesData = data.data || {};
 
-  console.log('messagesData :', messagesData);
+  const handleClick = e => {
+    e.preventDefault();
+
+    const formdata = new FormData();
+    formdata.append('channel_id', '1');
+    formdata.append('message', messageValue);
+
+    dispatch(postMessage(formdata));
+  }
 
   const handleSubmit = _ => {
     console.log('[Message]');
@@ -64,7 +73,7 @@ const MessagesSection = (props) => {
                   type="text"
                   placeholder="Type a message"
                 />
-                <Button className="button--icon" type="submit">
+                <Button className="button--icon" onClick={e => handleClick(e)}>
                   <>
                     <i className="icon icon-paperplane"></i>
                     送信

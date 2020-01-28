@@ -42,7 +42,7 @@ class ChatChannel extends Model
 
     public function chats()
     {
-        return $this->hasMany(Chat::class, 'channel_id', 'id');
+        return $this->hasMany(Chat::class, 'channel_id', 'id')->orderBy('created_at', 'ASC');
     }
 
     public function chat_status()

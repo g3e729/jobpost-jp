@@ -21,3 +21,13 @@ export const getMessages = (id = null) => {
     })
   }
 }
+
+export const postMessage = (formdata) => {
+  return (dispatch) => {
+    return Message.postMessage(formdata).then(_ => {
+      dispatch(getMessages())
+    }).catch(error => {
+      console.log('[Post message ERROR]', error);
+    })
+  }
+}

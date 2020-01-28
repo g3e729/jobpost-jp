@@ -12,18 +12,20 @@ class MessageController extends BaseController
 {
 	public function index()
 	{
-		return ChatChannel::whereHas('chats', function ($q) {
-			$q->where('user_id', auth()->user()->id);
-		})->paginate(config('site_settings.per_page'));
+		// return ChatChannel::whereHas('chats', function ($q) {
+		// 	$q->where('user_id', auth()->user()->id);
+    // })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+
+    return ChatChannel::orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
 	}
-	
+
 	public function show(ChatChannel $message)
 	{
 		$message->load('chats', 'chattable');
 
 		return $message;
 	}
-	
+
 	public function store(Request $request)
 	{
 		$content = $request->get('message');
@@ -39,7 +41,7 @@ class MessageController extends BaseController
 
 		return $chatService->sendMessage(compact('content'));
 	}
-	
+
 	public function seen(ChatChannel $channel, Request $request)
 	{
 		$chatService = (new ChatService($channel));
