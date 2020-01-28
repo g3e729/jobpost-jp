@@ -18,7 +18,7 @@ class NotificationController extends BaseController
 
 			$notifications = $user->notifications()
 				->select('id', 'title', 'description', 'published_at', 'seen')
-				->orderBy('published_at', 'ASC');
+				->orderBy('published_at', 'DESC');
 
 			$unseen_total = $user->notifications()->where('seen', 0)->count();
 

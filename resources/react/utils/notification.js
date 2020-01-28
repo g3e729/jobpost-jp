@@ -28,9 +28,10 @@ export default class Notification {
   static seenNotification(id) {
     const formdata = new FormData();
     formdata.append('_method', 'PATCH');
+    formdata.append('ids', id);
 
     const payload = {
-      url: generateRoute(endpoints.NOTIFICATIONS_DETAIL, { ids: [id] }),
+      url: generateRoute(endpoints.NOTIFICATIONS_DETAIL, { id: id }),
       method: 'post',
       data: formdata
     }
