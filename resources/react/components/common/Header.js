@@ -11,8 +11,9 @@ import logo from '../../../img/logo-kredo-horizontal.png';
 import logoSp from '../../../img/logo-kredo-icon.png';
 
 const Header = (props) => {
-  const { user } = props;
+  const { user, notifications } = props;
   const accountType = (user.userData && user.userData.account_type) || '';
+  const newNotifications = notifications.notificationsData && notifications.notificationsData.unseen_total;
 
   return (
     <header className="l-header header">
@@ -46,7 +47,7 @@ const Header = (props) => {
                 <li className="header__actions-item">
                   <NavLink exact to={routes.NOTIFICATIONS} activeClassName={state.ACTIVE}>
                     <i className="icon icon-bell text-dark-yellow">
-                      <span className="badge badge--bell">10</span>
+                      { newNotifications ? <span className="badge badge--bell">{newNotifications}</span> : null }
                     </i>
                   </NavLink>
                 </li>
@@ -63,7 +64,8 @@ const Header = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  notifications: state.notifications
 });
 
 export default connect(mapStateToProps)(Header);
