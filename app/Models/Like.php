@@ -32,22 +32,24 @@ class Like extends Model
     {
         parent::boot();
         static::created(function ($model) {
-            $user = $model->likeable->user;
             $title = auth()->user()->profile->display_name . ' likes your ';
             $description = '';
             $group_id = substr(md5(now()), 0, 8);
+            $about_id = $model->likeable->id;
 
             if ($model->likeable instanceof JobPost) {
+                $user = $model->likeable->company->user;
                 $about_type = JobPost::class;
-                $about_id = $model->likeable->id;
                 $title .= 'job post.';
             } else {
+                $user = $model->likeable->user;
                 $about_type = ($model->likeable instanceof SeekerProfile) ? SeekerProfile::class : CompanyProfile::class;
-                $about_id = $model->likeable->id;
                 $title .= 'profile.';
             }
 
-            $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            if ($user) {
+                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            }
         });
     }
 
