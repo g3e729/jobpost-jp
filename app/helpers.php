@@ -123,7 +123,7 @@ if (! function_exists('getProfileUrl')) {
     }
 }
 
-if (! function_exists('requestExcept')) {
+if (! function_exists('searchInputs')) {
     function searchInputs()
     {
         return request()->except('_token', 'page', 'per_page', 'sort', 'paginated', 'sort_by');
@@ -162,5 +162,20 @@ if (! function_exists('apiAbort')) {
         header('Content-Type: application/json');
         print json_encode(compact('code', 'message'));
         die;
+    }
+}
+
+if (! function_exists('adminProfileUrl')) {
+    function adminProfileUrl($profile)
+    {
+        if ($profile instanceof \App\Models\CompanyProfile) {
+            return route('admin.companies.show', $profile);
+        }
+
+        if ($profile instanceof \App\Models\SeekerProfile) {
+            return route('admin.students.show', $profile);
+        }
+
+        return '#';
     }
 }

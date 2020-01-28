@@ -96,8 +96,10 @@
                         <span class="chat-hour">{{ $chat->created_at->diffForHumans() }}</span>
                       @else
                         <div class="chat-avatar text-center">
-                          <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
-                          <div class="chat-name">{{ $channel->name }}</div>
+                          <a href="{{ adminProfileUrl($chat->user->profile) }}" target="_blank">
+                            <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
+                            <div class="chat-name">{{ $channel->name }}</div>
+                          </a>
                         </div>
                       @endif
                       <div class="chat-text">
@@ -107,8 +109,10 @@
                         <span class="chat-hour">{{ $chat->created_at->diffForHumans() }}</span>
                       @else
                         <div class="chat-avatar text-center">
-                          <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
-                          <div class="chat-name">{{ $channel->name }}</div>
+                          <a href="{{ adminProfileUrl($chat->user->profile) }}" target="_blank">
+                            <img src="{{ $chat->user->profile->avatar }}" alt="{{ $chat->user->profile->display_name }}">
+                            <div class="chat-name">{{ $channel->name }}</div>
+                          </a>
                         </div>
                       @endif
                     </li>
