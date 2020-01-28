@@ -17,17 +17,29 @@ class NotificationController extends BaseController
 			$paginate = $request->has('all') ? 0 : 1;
 
 			$notifications = $user->notifications()
-				->select('id', 'title', 'description', 'published_at', 'seen')
+				->select('id', 'title', 'description', 'published_at', 'seen', 'about_type', 'about_id')
 				->orderBy('published_at', 'DESC');
 
 			$unseen_total = $user->notifications()->where('seen', 0)->count();
 
 			if ($paginate) {
 				$notifications = $notifications->paginate(10);
+
+				$notifications->each(function ($item) {
+					$exploded = explode("\\", $item->about_type);
+					$item->about_type = array_last($exploded);
+				});
+
 				return compact('notifications', 'unseen_total');
 			}
 
 			$notifications = $notifications->get();
+
+			$notifications->each(function ($item) {
+				$exploded = explode("\\", $item->about_type);
+				$item->about_type = array_last($exploded);
+			});
+			
 			return compact('notifications', 'unseen_total');
 		}
 
