@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
-import faker from 'faker';
-faker.locale = "ja";
+import { useDispatch, connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
 import Loading from '../common/Loading';
 import { state } from '../../constants/state';
 
-const dummyMessages = new Array(10)
-  .fill(null)
-  .map(e => {
-    e = {};
-    e.id = faker.random.uuid();
-    e.contact = faker.company.companyName();
-    e.message = `Apply${faker.lorem.words(2)}`;
+import avatarPlaceholder from '../../../img/avatar-default.png';
 
-    return e;
-  })
-
-const MessagesSidebar = ({isLoading}) => {
+const MessagesSidebar = (props) => {
+  const { isLoading, messages } = props;
   const [currentItem, setCurrentItem] = useState(0);
+  const data = messages.messagesData || {};
+  const messagesData = data.data || {};
 
   return (
     <aside className="messages-sidebar">
@@ -27,22 +20,22 @@ const MessagesSidebar = ({isLoading}) => {
         { isLoading ? (
           <Loading className="loading--full" />
         ) : (
-          dummyMessages.map((item, idx) => (
-            <li className={`messages-sidebar__chatroom-item ${idx === currentItem ? state.ACTIVE : ''}`}
-              onClick={_ => setCurrentItem(idx)} key={item.id}>
+          messagesData.map(item => (
+            <li className={`messages-sidebar__chatroom-item ${item.id === currentItem ? state.ACTIVE : ''}`}
+              onClick={_ => setCurrentItem(item.id)} key={item.id}>
               <div className="messages-sidebar__chatroom-item-left">
                 <div className="messages-sidebar__chatroom-item-avatar">
                   <Avatar className="avatar--message"
-                    style={{ backgroundImage: 'url("https://lorempixel.com/640/640/business/")' }}
+                    style={{ backgroundImage: `url("${item.chattable.job_post.cover_photo || avatarPlaceholder}")` }}
                   />
                 </div>
               </div>
               <div className="messages-sidebar__chatroom-item-right">
                 <h4 className="messages-sidebar__chatroom-item-contact">
-                  {item.contact}
+                  {item.chattable.todo_name}
                 </h4>
                 <p className="messages-sidebar__chatroom-item-message">
-                  {item.message}
+                  {item.chattable.job_post.title}
                 </p>
               </div>
             </li>
@@ -53,4 +46,8 @@ const MessagesSidebar = ({isLoading}) => {
   );
 }
 
-export default MessagesSidebar;
+const mapStateToProps = (state) => ({
+  messages: state.messages
+});
+
+export default connect(mapStateToProps)(MessagesSidebar);

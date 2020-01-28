@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import faker from 'faker';
 faker.locale = "ja";
+import { useDispatch, connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
@@ -20,7 +21,8 @@ const dummyMessage = {
   ]
 }
 
-const MessagesSection = ({isLoading}) => {
+const MessagesSection = (props) => {
+  const { isLoading, messages } = props;
   const [hasForm, setHasForm] = useState(false);
   const [messageValue, setMessageValue] = useState('');
 
@@ -88,4 +90,8 @@ const MessagesSection = ({isLoading}) => {
   );
 }
 
-export default MessagesSection;
+const mapStateToProps = (state) => ({
+  messages: state.messages
+});
+
+export default connect(mapStateToProps)(MessagesSection);
