@@ -31,20 +31,23 @@ class NotificationController extends BaseController
 			return compact('notifications', 'unseen_total');
 		}
 
-		return response()->json(['message' => 'Not Found.'], 404);
+		apiAbort(404);
 	}
 
 	public function update(Request $request)
 	{
-		if (auth()->user()) {
-			$ids = $request->get('ids');
-			$ids = explode(',', $ids);
+		$user = auth()->user();
+		$ids = $request->get('ids');
+		$ids = !empty($ids) ? explode(',', $ids) : [];
 
-			auth()->user()->notifications()->update(['seen' => 1]);
+		if ($user && count($ids)) {
+			$user->notifications()
+				->whereIn('id', $ids)
+				->update(['seen' => true]);
 
-			return ['success' => true];
+			apiAbort(200);
 		}
 
-		return response()->json(['message' => 'Not Found.'], 404);
+		apiAbort(404);
 	}
 }

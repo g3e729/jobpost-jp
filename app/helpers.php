@@ -138,6 +138,9 @@ if (! function_exists('apiAbort')) {
         }
 
         switch ($code) {
+            case '200':
+                $message = 'Success.';
+            break;
             case '403':
                 $message = 'Unauthorized.';
             break;

@@ -26,7 +26,7 @@ class LikeController extends BaseController
 			}
 		}
 
-		return response()->json(['message' => 'Not Found.'], 404);
+		apiAbort(404);
 	}
 
 	private function getModel($type = null, $type_id = null)
