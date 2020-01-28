@@ -67,17 +67,26 @@ class JobPost extends Model
             $model->slug = urldecode(strtolower($model->name));
         });
         static::created(function ($model) {
-            $users = User::whereHas('roles', function ($q) {
-                $q->whereIn('slug', ['seeker']);
-            })->get();
-            $title = auth()->user()->profile->display_name . ' created a new job.';
-            $description = '';
-            $about_type = JobPost::class;
-            $about_id = $model->id;
-            $group_id = substr(md5(now()), 0, 8);
+            $user = auth()->user();
 
-            foreach ($users as $user) {
-                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            if ($user) {
+                $user = User::find($model->company->user_id ?? null);
+            }
+
+            if ($user) {
+                $users = User::whereHas('roles', function ($q) {
+                    $q->whereIn('slug', ['seeker']);
+                })->get();
+                
+                $title = $user->profile->display_name . ' created a new job.';
+                $description = '';
+                $about_type = JobPost::class;
+                $about_id = $model->id;
+                $group_id = substr(md5(now()), 0, 8);
+
+                foreach ($users as $user) {
+                    $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+                }
             }
         });
         static::updating(function ($model) {
