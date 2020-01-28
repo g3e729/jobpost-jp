@@ -5,6 +5,7 @@ faker.locale = "ja";
 import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Input from '../common/Input';
+import Loading from '../common/Loading';
 import { state } from '../../constants/state';
 
 const dummyMessage = {
@@ -19,7 +20,7 @@ const dummyMessage = {
   ]
 }
 
-const MessagesSection = _ => {
+const MessagesSection = ({isLoading}) => {
   const [hasForm, setHasForm] = useState(false);
   const [messageValue, setMessageValue] = useState('');
 
@@ -36,22 +37,26 @@ const MessagesSection = _ => {
       <h3 className="messages-section__header">{dummyMessage.contact}</h3>
       <div className="messages-section__main">
         <ul className="messages-section__main-list">
-          { dummyMessage.messageFull.map((item, idx) => (
-            <li className="messages-section__main-list-item" key={idx}>
-              <div className={`message ${idx % 2 === 1 ? 'message--right': ''}`}>
-                <div className="message__avatar">
-                  <Avatar className="avatar--message"
-                    style={{ backgroundImage: 'url("https://lorempixel.com/640/640/business/")' }}
-                  />
+          { isLoading ? (
+            <Loading className="loading--padded loading--center" />
+          ) : (
+            dummyMessage.messageFull.map((item, idx) => (
+              <li className="messages-section__main-list-item" key={idx}>
+                <div className={`message ${idx % 2 === 1 ? 'message--right': ''}`}>
+                  <div className="message__avatar">
+                    <Avatar className="avatar--message"
+                      style={{ backgroundImage: 'url("https://lorempixel.com/640/640/business/")' }}
+                    />
+                  </div>
+                  <div className="message__main">
+                    <h4 className="message__name">{dummyMessage.contact}</h4>
+                    <time className="message__time">2019年 9月 12日 16 : 35</time>
+                    <p className="message__text">{item}</p>
+                  </div>
                 </div>
-                <div className="message__main">
-                  <h4 className="message__name">{dummyMessage.contact}</h4>
-                  <time className="message__time">2019年 9月 12日 16 : 35</time>
-                  <p className="message__text">{item}</p>
-                </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))
+          )}
         </ul>
         <div className={`messages-section__main-footer ${hasForm ? state.HIDDEN : ''}`}>
           <p className="messages-section__main-footer-intro">

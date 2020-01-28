@@ -1,14 +1,20 @@
-const messagesReducer = (state = {}, action) => {
+const initialState = {
+  messagesData: {},
+  activeChannel: null
+};
+
+const messagesReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'MESSAGES_SET':
       return {
         ...state,
-        messagesData: action.payload
+        messagesData: action.payload,
+        activeChannel: action.id
       };
     case 'MESSAGES_UNSET':
       return {
         ...state,
-        messagesData: {}
+        ...initialState
       };
     default:
       return state;

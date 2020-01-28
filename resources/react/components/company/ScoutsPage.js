@@ -6,7 +6,6 @@ import Heading from '../common/Heading';
 import Loading from '../common/Loading';
 import Nada from '../common/Nada';
 import ScoutsSection from './ScoutsSection';
-import Apply from '../../utils/apply';
 import Job from '../../utils/job';
 import { prefix } from '../../constants/routes';
 

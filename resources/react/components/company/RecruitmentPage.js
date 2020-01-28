@@ -8,10 +8,10 @@ import CompanySidebar from './CompanySidebar';
 import { getMyJobs } from '../../actions/myjobs';
 
 const RecruitmentPage = _ => {
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(_ => {
     setIsLoading(true);

@@ -16,9 +16,7 @@ const modalReducer = (state = initialState, action) => {
     case 'MODAL_UNSET':
       return {
         ...state,
-        visible: false,
-        data: {},
-        modalType: ''
+        ...initialState
       };
     default:
       return state;
