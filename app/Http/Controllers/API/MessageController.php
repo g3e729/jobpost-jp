@@ -12,11 +12,9 @@ class MessageController extends BaseController
 {
 	public function index()
 	{
-		$messages = ChatChannel::whereHas('chats', function ($q) {
+		return ChatChannel::whereHas('chats', function ($q) {
 			$q->where('user_id', auth()->user()->id);
-		})->get();
-
-		return $messages;
+		})->paginate(config('site_settings.per_page'));
 	}
 	
 	public function show(ChatChannel $message)
