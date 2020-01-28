@@ -14,7 +14,7 @@ const NotificationsList = ({notifications}) => {
       { notifications.map(item => (
         <li className="notifications-list__item" key={item.id}>
           <div className="notifications-list__item-main">
-            <time className="notifications-list__item-schedule" dateTime={ moment(item.published_at).format('YYYY-MM-DD HH:mm') }>{ moment(item.published_at).format('YYYY/MM/DD HH:mm') }</time>
+            <time className="notifications-list__item-schedule" dateTime={moment(item.published_at).format('YYYY-MM-DD HH:mm')}>{ moment(item.published_at).format('YYYY/MM/DD HH:mm') }</time>
             { !item.seen ? <Pill>New</Pill> : null }
             <Link
               to={{

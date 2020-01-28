@@ -23,7 +23,6 @@
     "browser-sync-webpack-plugin": "^2.0.1",
     "cross-env": "^5.1",
     "emotion": "^10.0.23",
-    "faker": "^4.1.0",
     "jquery": "^3.4.1",
     "laravel-mix": "^4.0.7",
     "laravel-mix-copy-watched": "^2.2.1",

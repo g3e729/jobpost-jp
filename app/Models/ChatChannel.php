@@ -31,6 +31,7 @@ class ChatChannel extends Model
     protected $appends = [
         'messages',
         'title',
+        'recipient'
     ];
 
     // Relations
