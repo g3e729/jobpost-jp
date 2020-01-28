@@ -30,19 +30,27 @@ class Transaction extends Model
     {
         parent::boot();
         static::created(function ($model) {
-            $name = auth()->user()->profile->display_name;
-            $users = User::whereHas('roles', function ($q) {
-                $q->whereIn('slug', ['admin']);
-            })->get();
+            $user = auth()->user();
 
-            $title = "{$name} submitted a payment record for review.";
-            $description = '';
-            $about_id = $model->id;
-            $about_type = Transaction::class;
-            $group_id = substr(md5(now()), 0, 8);
+            if (!$user) {
+                $user = User::find($model->transactionable->user_id ?? null);
+            }
 
-            foreach ($users as $user) {
-                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            if ($user) {
+                $name = $user->profile->display_name;
+                $users = User::whereHas('roles', function ($q) {
+                    $q->whereIn('slug', ['admin']);
+                })->get();
+
+                $title = "{$name} submitted a payment record for review.";
+                $description = '';
+                $about_id = $model->id;
+                $about_type = Transaction::class;
+                $group_id = substr(md5(now()), 0, 8);
+
+                foreach ($users as $user) {
+                    $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+                }
             }
         });
     }
