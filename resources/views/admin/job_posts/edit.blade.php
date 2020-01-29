@@ -293,11 +293,11 @@
       <div class="form-group pb-3 row">
         <label for="formStatus" class="col-3 col-form-label font-weight-bold">Status</label>
         <div class="col-9">
-            <select class="form-control" id="formStatus" name="Status" data-action="change"
+            <select class="form-control" id="formStatus" name="status" data-action="change"
               data-condition="" data-text="Please choose status.">
               <option value="" selected hidden disabled>Choose status</option>
-              <option value="1" {{ (1 == old('status', $job_post->status)) ? 'selected' : null }}>Hiring</option>
-              <option value="0" {{ (0 == old('status', $job_post->status)) ? 'selected' : null }}>Stop hiring</option>
+              <option value="1" {{ (1 == old('status', $job_post->display_status)) ? 'selected' : null }}>Hiring</option>
+              <option value="0" {{ (0 == old('status', $job_post->display_status)) ? 'selected' : null }}>Stop hiring</option>
             </select>
         </div>
       </div>
