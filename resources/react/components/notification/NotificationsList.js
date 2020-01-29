@@ -1,27 +1,50 @@
 import React from 'react';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Button from '../common/Button';
 import Pill from '../common/Pill';
+import NotificationAPI from '../../utils/notification';
 import generateRoute from '../../utils/generateRoute';
 import { routes } from '../../constants/routes';
+import { getNotifications } from '../../actions/notifications';
 
 const notificationType = {
   CHAT: 'ChatChannel',
+  COMPANY: 'CompanyProfile',
   JOB: 'JobPost',
   SEEKER: 'SeekerProfile',
 }
 
 const NotificationsList = ({notifications}) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleRedirect = (item) => {
-    const { about_id, about_type } = item;
+    const {
+      id,
+      about_id,
+      about_type
+    } = item;
+
+    if (item.seen === 0) {
+      NotificationAPI.seenNotification(id)
+        .then(_ => dispatch(getNotifications()))
+        .catch(error => {
+          console.log('Notication ERROR:', error);
+        })
+    }
 
     switch(about_type) {
       case notificationType.CHAT:
-        // TODO
+        history.push({
+          pathname: routes.MESSAGES,
+          state: { activeChannel: about_id }
+        });
+        break;
+      case notificationType.COMPANY:
+        history.push(generateRoute(routes.COMPANY_DETAIL, { id: about_id }));
         break;
       case notificationType.JOB:
         history.push(generateRoute(routes.JOB_DETAIL, { id: about_id }));
