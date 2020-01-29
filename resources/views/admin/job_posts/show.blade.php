@@ -124,7 +124,7 @@
                     <dd>{{ $job_post->address3 ?? '--' }}</dd>
                   </dl>
                 </td>
-                <td class="bg-light text-dark p-3 font-weight-bold">Company Details</td>
+                <td class="bg-light text-dark p-3 font-weight-bold">アバター</td>
                 <td colspan="3" class="text-center">
                   <a href="{{ route('admin.companies.show', $job_post->company) }}" target="_blank">
                     @if($job_post->company->avatar)
@@ -138,7 +138,7 @@
               <tr>
                 <td class="bg-light text-dark p-3 font-weight-bold">最寄駅</td>
                 <td>{{ $job_post->station ?? '--' }}</td>
-                <td class="bg-light text-dark p-3 font-weight-bold">Status</td>
+                <td class="bg-light text-dark p-3 font-weight-bold">求人ステータス</td>
                 <td>{{ $job_post->display_status ? 'Hiring' : 'Stop Hiring' }}</td>
               </tr>
             </tbody>
