@@ -1,8 +1,6 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 <p align="center">
 	<a href="https://kredo.jp/">
-		<img src="https://kredo.jp/wp/wp-content/themes/kreedo-theme/images/common/logo_top.png">
+		<img src="http://kredo.local/img/logo-kredo-vertical.png">
 	</a>
 </p>
 
@@ -26,7 +24,28 @@ Setup
 `npm install`
 
 7. Render your css and js files<br>
-`npm run dev` or `npm run production`
+`npm run dev`
 
 7. Setup file storage<br>
 `php artisan storage:link`
+
+<p align="center">Powered By:</p>
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center">developed by these wonderful people:</p>
+<p>
+	<div style="width: 100px; border: 1px solid #f0f0f0; padding: 5px 90px; float: left; margin: 0 5px;">
+		<p align="center"><img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t1.0-9/1094987_135644919979284_150251426_n.jpg?_nc_cat=101&_nc_ohc=d1Y6l2fN6hsAX-brJb0&_nc_ht=scontent.fmnl4-2.fna&oh=a18da0e0b2c9c2ca5c90bb2f7fa2351d&oe=5EC3307A" width="100" height="100" style="border-radius: 50%;"></p>
+		<p align="center" style="margin: 0">Eiji Miyazono</p>
+		<p align="center" style="font-size: 10px; margin: 0">Project Manager</p>
+	</div>
+	<div style="width: 100px; border: 1px solid #f0f0f0; padding: 5px 90px; float: left; margin: 0 5px;">
+		<p align="center"><img src="https://liginc.co.jp/wp-content/uploads/2019/07/01_Paul_A-400x400.png" width="100" height="100" style="border-radius: 50%;"></p>
+		<p align="center" style="margin: 0">Kam Curacha</p>
+		<p align="center" style="font-size: 10px; margin: 0">Frontend Developer</p>
+	</div>
+	<div style="width: 100px; border: 1px solid #f0f0f0; padding: 5px 90px; float: left; margin: 0 5px;">
+		<p align="center"><img src="https://liginc.co.jp/wp-content/uploads/2019/07/01_Jim_A-400x400.png" width="100" height="100" style="border-radius: 50%;"></p>
+		<p align="center" style="margin: 0">Jim Callanta</p>
+		<p align="center" style="font-size: 10px; margin: 0">Backend Developer</p>
+	</div>
+</p>
