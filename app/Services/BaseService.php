@@ -98,11 +98,11 @@ class BaseService
      */
     public function updateUser(array $fields = [])
     {
-        if (! $this->user) {
+        if (!$this->user) {
             $this->user = $this->item->user;
         }
 
-        if (! $this->user) {
+        if (!$this->user) {
             abort(505);
         }
 
@@ -117,16 +117,16 @@ class BaseService
                     $file->delete();
                 });
             }
-            
+
             if ($form_file) {
                 $path = FileService::uploadFile($form_file, $type);
 
                 $this->item->files()->create([
-                    'url' => $path,
+                    'url'       => $path,
                     'file_name' => $form_file->getClientOriginalName(),
-                    'type' => $type,
+                    'type'      => $type,
                     'mime_type' => $form_file->getMimeType(),
-                    'size' => $form_file->getSize(),
+                    'size'      => $form_file->getSize(),
                 ]);
             }
         } catch (Exception $e) {

@@ -23,73 +23,73 @@ class PortfolioService extends BaseService
 
     public function insertOrUpdate($model, $request_data)
     {
-		$i = 0;
+        $i = 0;
         $model_portfolios = $model->portfolios()->orderBy('created_at', 'ASC')->get();
 
-		foreach($request_data as $portfolio) {
-		    if (! empty($portfolio['title']) && ! empty($portfolio['description'])) {
-		        $field = array_except($portfolio, 'file');
-		        $req_file = $portfolio['file'] ?? null;
+        foreach ($request_data as $portfolio) {
+            if (!empty($portfolio['title']) && !empty($portfolio['description'])) {
+                $field = array_except($portfolio, 'file');
+                $req_file = $portfolio['file'] ?? null;
 
-		        if (isset($model_portfolios[$i])) {
-		            $portfolio = $model_portfolios[$i];
+                if (isset($model_portfolios[$i])) {
+                    $portfolio = $model_portfolios[$i];
 
-		            $portfolio->update($field);
-		        } else {
-		            $portfolio = $model->portfolios()->create($field);
-		        }
+                    $portfolio->update($field);
+                } else {
+                    $portfolio = $model->portfolios()->create($field);
+                }
 
-		        if ($field['delete'] == 1) {
-		        	$portfolio->file()->delete();
-		        }
+                if ($field['delete'] == 1) {
+                    $portfolio->file()->delete();
+                }
 
-		        if ($req_file) {
+                if ($req_file) {
                     $path = FileService::uploadFile($req_file, 'portfolio');
 
-		            $portfolio->file()->create([
-		                'url' => $path,
-		                'file_name' => $req_file->getClientOriginalName(),
-		                'type' => 'portfolio',
-		                'mime_type' => $req_file->getMimeType(),
-		                'size' => $req_file->getSize()
-		            ]);
-		        }
-		    }
+                    $portfolio->file()->create([
+                        'url'       => $path,
+                        'file_name' => $req_file->getClientOriginalName(),
+                        'type'      => 'portfolio',
+                        'mime_type' => $req_file->getMimeType(),
+                        'size'      => $req_file->getSize()
+                    ]);
+                }
+            }
 
-		    $i++;
-		}
+            $i++;
+        }
         return $this->item;
     }
 
     public function insert($model, $request_data, $file = null)
     {
-    	$portfolio = $model->portfolios()->create($request_data);
+        $portfolio = $model->portfolios()->create($request_data);
 
         if ($file) {
-        	$path = FileService::uploadFile($file, 'portfolio');
-        	
-	        $portfolio->file()->create([
-	            'url' => $path,
-	            'file_name' => $file->getClientOriginalName(),
-	            'type' => 'portfolio',
-	            'mime_type' => $file->getMimeType(),
-	            'size' => $file->getSize()
-	        ]);
-	    }
+            $path = FileService::uploadFile($file, 'portfolio');
 
-    	return $portfolio;
+            $portfolio->file()->create([
+                'url'       => $path,
+                'file_name' => $file->getClientOriginalName(),
+                'type'      => 'portfolio',
+                'mime_type' => $file->getMimeType(),
+                'size'      => $file->getSize()
+            ]);
+        }
+
+        return $portfolio;
     }
 
     public function revise($id, $request_data, bool $file_delete = false)
     {
-    	$portfolio = Portfolio::find($id);
+        $portfolio = Portfolio::find($id);
 
-    	$portfolio->update($request_data);
+        $portfolio->update($request_data);
 
         if ($file_delete) {
-        	$portfolio->file()->delete();
+            $portfolio->file()->delete();
         }
 
-    	return $portfolio;
+        return $portfolio;
     }
 }

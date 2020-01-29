@@ -52,10 +52,10 @@ class NotificationService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     default:
                         $que = $que->where($column, $value);
-                    break;
+                        break;
                 }
             }
 

@@ -32,11 +32,11 @@ class SearchService extends BaseService
     {
         return $this->returnData(
             (new JobPostService)->search(compact('search'), 'que')
-            ->orWhere('programming_language', 'LIKE', "%{$search}%")
-            ->orWhereHas('company', function ($q) use ($search) {
-                $q->where('company_name', 'LIKE', "%{$search}%");
-            }), 
-        'jobs_page');
+                ->orWhere('programming_language', 'LIKE', "%{$search}%")
+                ->orWhereHas('company', function ($q) use ($search) {
+                    $q->where('company_name', 'LIKE', "%{$search}%");
+                }),
+            'jobs_page');
     }
 
     private function companies($search)

@@ -52,13 +52,13 @@ class JobPostService extends BaseService
     public function createJob($fields = [])
     {
         try {
-    		$this->item = $this->company->jobPosts()->create($fields);
+            $this->item = $this->company->jobPosts()->create($fields);
 
-    		if (isset($fields['cover_photo']) && $fields['cover_photo']) {
-    			$this->acPhotoUploader($fields['cover_photo'], 'cover_photo');
-    		}
+            if (isset($fields['cover_photo']) && $fields['cover_photo']) {
+                $this->acPhotoUploader($fields['cover_photo'], 'cover_photo');
+            }
 
-    		return $this->item;
+            return $this->item;
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             abort(505, $e->getMessage());
@@ -105,7 +105,7 @@ class JobPostService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     case 'salary':
                         $first = substr($value, 0, 1);
                         $digits = strlen($value);
@@ -131,15 +131,15 @@ class JobPostService extends BaseService
                         }
 
                         $que = $que->whereBetween('salary', $between);
-                    break;
+                        break;
                     case 'liked':
                         $que = $que->whereHas('likes', function ($q) {
                             $q->where('user_id', auth()->user()->id);
                         });
-                    break;
+                        break;
                     default:
                         $que = $que->where($column, $value);
-                    break;
+                        break;
                 }
             }
 
@@ -149,10 +149,10 @@ class JobPostService extends BaseService
                 case 'DESC':
                 case 'ASC':
                     $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
-                break;
+                    break;
                 case 'POPULAR':
                     $que = $que->orderByDesc('likes_count');
-                break;
+                    break;
             }
 
             return $this->toReturn($que, $paginated);
@@ -230,6 +230,6 @@ class JobPostService extends BaseService
 
     public function setCompany(CompanyProfile $company)
     {
-    	$this->company = $company;
+        $this->company = $company;
     }
 }
