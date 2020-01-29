@@ -3,10 +3,13 @@ import generateRoute from './generateRoute';
 import { endpoints } from '../constants/routes';
 
 export default class Notification {
-  static getNotifications() {
+  static getNotifications(page) {
     const payload = {
       url: endpoints.NOTIFICATIONS,
-      method: 'get'
+      method: 'get',
+      params: {
+        page
+      }
     }
 
     return API.request(payload, true)

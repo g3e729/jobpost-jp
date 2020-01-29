@@ -19,7 +19,7 @@ const NotificationsPage = ({notifications}) => {
       { notificationsData.length ? (
         <div className="l-section l-section--notifications section">
           <div className="l-container">
-            <NotificationsSection data={notificationsData} />
+            <NotificationsSection data={data} />
           </div>
         </div>
       ) : null }
