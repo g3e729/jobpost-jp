@@ -24,8 +24,8 @@
               <thead>
                 <tr>
                   <th width="420px">アカウント</th>
+                  <th>Tickets</th>
                   <th>価格</th>
-                  <th width="120px">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
@@ -39,12 +39,8 @@
                         <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
                       </div>
                     </td>
+                    <td>{{ $ticket->tickets }}</td>
                     <td>{{ price($ticket->amount) }}</td>
-                    <td>
-                      <div class="payment-actions d-flex justify-content-between">
-                        <a href="#" class="btn btn-link p-0 js-ticket-delete">削除</a>
-                      </div>
-                    </td>
                   </tr>
                 @endforeach
               </tbody>
@@ -55,6 +51,7 @@
               <thead>
                 <tr>
                   <th width="420px">アカウント</th>
+                  <th>Tickets</th>
                   <th>価格</th>
                 </tr>
               </thead>
@@ -69,12 +66,8 @@
                         <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
                       </div>
                     </td>
+                    <td>{{ $ticket->tickets }}</td>
                     <td>{{ price($ticket->amount) }}</td>
-                    <td>
-                      <div class="payment-actions d-flex justify-content-between">
-                        <a href="#" class="btn btn-link p-0 js-ticket-delete">削除</a>
-                      </div>
-                    </td>
                   </tr>
                 @endforeach
               </tbody>

@@ -41,10 +41,8 @@
             <thead>
               <tr>
                 <th width="420px">アカウント</th>
+                <th>Tickets</th>
                 <th>価格</th>
-                @if (! $payment->is_approved)
-                  <th width="120px">&nbsp;</th>
-                @endif
               </tr>
             </thead>
             <tbody>
@@ -57,16 +55,8 @@
                       <time>{{ $ticket->created_at->format('Y年m月d日') }}</time>
                     </div>
                   </td>
+                  <td>{{ $ticket->tickets }}</td>
                   <td>{{ price($ticket->amount) }}</td>
-                  @if (! $payment->is_approved)
-                    <td>
-                      @if (! $ticket->deleted_at)
-                        <div class="payment-actions d-flex justify-content-between">
-                          <a href="#" class="btn btn-link p-0 js-ticket-delete" data-type="delete">削除</a>
-                        </div>
-                      @endif
-                    </td>
-                  @endif
                 </tr>
               @endforeach
             </tbody>
