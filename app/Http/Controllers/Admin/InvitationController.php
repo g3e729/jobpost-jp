@@ -10,17 +10,17 @@ use App\Mail\SendInvite;
 
 class InvitationController extends BaseController
 {
-	public function create()
-	{
-		$types = Invitation::getTypes();
+    public function create()
+    {
+        $types = Invitation::getTypes();
 
-		return view('admin.invite', compact('types'));
-	}
-	
-	public function store(InvitationRequest $request)
-	{
-		$invitation = Invitation::create($request->only('email', 'type'));
+        return view('admin.invite', compact('types'));
+    }
 
-		return back()->withSuccess("Success! Invitation was sent to {$invitation->email}");
-	}
+    public function store(InvitationRequest $request)
+    {
+        $invitation = Invitation::create($request->only('email', 'type'));
+
+        return back()->withSuccess("Success! Invitation was sent to {$invitation->email}");
+    }
 }

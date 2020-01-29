@@ -10,27 +10,27 @@ use Illuminate\Http\Request;
 
 class MessageController extends BaseController
 {
-	public function index(Request $request)
-	{
-		$user_id = $request->get('user_id');
-		$profile = null;
+    public function index(Request $request)
+    {
+        $user_id = $request->get('user_id');
+        $profile = null;
 
-		$channels = (new ChatService)->getChannels($user_id);
+        $channels = (new ChatService)->getChannels($user_id);
 
-		if ($user_id) {
-			$user = (new UserService)->find($user_id);
+        if ($user_id) {
+            $user = (new UserService)->find($user_id);
 
-			$profile = $user->profile ?? null;
-		}
+            $profile = $user->profile ?? null;
+        }
 
-		return view('admin.messages.index', compact('channels', 'profile'));
-	}
+        return view('admin.messages.index', compact('channels', 'profile'));
+    }
 
-	public function destroy(ChatChannel $channel)
-	{
-		$chatService = (new ChatService($channel));
-		$chatService->destroy();
+    public function destroy(ChatChannel $channel)
+    {
+        $chatService = (new ChatService($channel));
+        $chatService->destroy();
 
-		return redirect()->back()->withSuccess('Messages successfully deleted!');;
-	}
+        return redirect()->back()->withSuccess('Messages successfully deleted!');;
+    }
 }
