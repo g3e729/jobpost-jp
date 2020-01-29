@@ -30,7 +30,7 @@ export const routes = {
   MESSAGES: `${prefix}messages`, // student, company
 
   NOTIFICATIONS: `${prefix}notifications`, // student, company
-  NOTIFICATIONS_DETAIL: `${prefix}notifications/:id`, // student, company
+  NOTIFICATIONS_DETAIL: `${prefix}notification/:id`, // student, company
 
   TERMS: `${prefix}terms`,
   HELP: `${prefix}help`,

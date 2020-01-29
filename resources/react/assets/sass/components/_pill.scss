@@ -66,3 +66,10 @@
   padding: 0;
   border: none;
 }
+
+.pill--button {
+  font-weight: 700;
+  color: $color-white;
+
+  background-image: $gradient;
+}

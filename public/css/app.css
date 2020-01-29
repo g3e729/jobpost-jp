@@ -4183,6 +4183,13 @@ a.pagination__item-link:hover {
   border: none;
 }
 
+.pill--button {
+  font-weight: 700;
+  color: #fff;
+  background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
+  background-image: linear-gradient(to right, #fdb834, #f7954d);
+}
+
 .privacy__note {
   font-weight: 400;
   line-height: 1.857;
