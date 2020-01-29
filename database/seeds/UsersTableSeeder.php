@@ -15,22 +15,22 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $data = [
-        	[
-        		'name' => 'Admin',
-        		'email' => 'admin@kredo.com',
-        		'password' => 'password',
-        	],
+            [
+                'name'     => 'Admin',
+                'email'    => 'admin@kredo.com',
+                'password' => 'password',
+            ],
         ];
 
-        foreach($data as $fields) {
-    		$userService = (new UserService);
-        	$user = $userService->findEmail($fields['email']);
+        foreach ($data as $fields) {
+            $userService = (new UserService);
+            $user = $userService->findEmail($fields['email']);
 
-        	if (! $user) {
-        		$userService->create($fields);
-        	}
+            if (!$user) {
+                $userService->create($fields);
+            }
 
-        	$userService->attachRole('admin');
+            $userService->attachRole('admin');
         }
     }
 }

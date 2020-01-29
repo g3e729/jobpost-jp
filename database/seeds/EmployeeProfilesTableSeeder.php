@@ -21,14 +21,14 @@ class EmployeeProfilesTableSeeder extends Seeder
         $prefectures = getPrefecture()->keys();
 
         $employee = [
-            'name' => '',
-            'email' => '@gmail.com',
-            'password' => 'password',
-            'sex' => null,
-            'contact_number' => null,
-            'status' => 0,
+            'name'            => '',
+            'email'           => '@gmail.com',
+            'password'        => 'password',
+            'sex'             => null,
+            'contact_number'  => null,
+            'status'          => 0,
             'passport_number' => null,
-            'position_id' => 0,
+            'position_id'     => 0,
         ];
 
         for ($i = 1; $i < 30; $i++) {
@@ -42,9 +42,9 @@ class EmployeeProfilesTableSeeder extends Seeder
             $fields['japanese_name'] = null;
             $fields['email'] = str_replace(' ', '', strtolower($fields['name'])) . '+' . $i . $fields['email'];
             $fields['sex'] = array_last($t);
-            $fields['contact_number'] = rand(100, 999).rand(100, 999).rand(1000, 9999);
+            $fields['contact_number'] = rand(100, 999) . rand(100, 999) . rand(1000, 9999);
             $fields['status'] = rand(1, 7);
-            $fields['passport_number'] = rand(100, 9999).rand(1111, 9999);
+            $fields['passport_number'] = rand(100, 9999) . rand(1111, 9999);
             $fields['prefecture'] = $prefectures->random();
             $fields['address1'] = $fields['name'] . ' ' . rand(1, 99);
             $fields['address2'] = $lname[rand(0, count($lname) - 1)];
