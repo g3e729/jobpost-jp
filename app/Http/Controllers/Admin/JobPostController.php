@@ -14,18 +14,16 @@ class JobPostController extends BaseController
 	public function index(Request $request)
 	{
 		$filters = (new JobPostService)->jobFilters()->toArray();
-		$job_posts = (new JobPostService)->search($request->except('page'));
+		$job_posts = (new JobPostService)->search($request->except('page'), true, 'DESC', true);
 
 		$data = array_merge($filters, compact('job_posts'));
-
-		// dd($data);
 
 		return view('admin.job_posts.index', $data);
 	}
 
-	public function show(JobPost $recruitment)
+	public function show($id)
 	{
-		$job_post = $recruitment;
+		$job_post = JobPost::withTrashed()->find($id);
 
 		return view('admin.job_posts.show', compact('job_post'));
 	}
@@ -60,9 +58,9 @@ class JobPostController extends BaseController
 		return redirect()->route('admin.recruitments.show', $job_post)->withSuccess("Success! A new job has been created!");
 	}
 
-	public function edit(JobPost $recruitment)
+	public function edit($id)
 	{
-		$job_post = $recruitment;
+		$job_post = JobPost::withTrashed()->find($id);
 
 		$employment_types = JobPost::getEmploymentTypes();
         $prefectures = getPrefecture();
@@ -71,9 +69,9 @@ class JobPostController extends BaseController
 		return view('admin.job_posts.edit', compact('employment_types', 'job_post', 'prefectures', 'range'));
 	}
 
-	public function update(JobPost $recruitment, Request $request)
+	public function update($id, Request $request)
 	{
-		$job_post = $recruitment;
+		$job_post = JobPost::withTrashed()->find($id);
 		
 		$jobPostService = (new JobPostService($job_post));
 		$jobPostService->updateJob($request->except('_token', '_method', 'company_id'));

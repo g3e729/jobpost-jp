@@ -78,6 +78,14 @@ class JobPostService extends BaseService
                 $this->acPhotoUploader($fields['cover_photo'], 'cover_photo');
             }
 
+            $fields['status'] = 1;
+
+            if ($this->item->trashed() && $fields['status'] == 1) {
+                $this->item->restore();
+            } elseif (!$job->trashed() && $fields['status'] == 0) {
+                $this->item->delete();
+            }
+
             return $this->item;
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
@@ -85,11 +93,15 @@ class JobPostService extends BaseService
         }
     }
 
-    public function search($fields, $paginated = true, $sort = 'DESC')
+    public function search($fields, $paginated = true, $sort = 'DESC', $withTrashed = false)
     {
         try {
             $fields = array_filter($fields);
             $que = (new $this->model)->with('company')->popular();
+
+            if ($withTrashed) {
+                $que = $que->withTrashed();
+            }
 
             foreach ($fields as $column => $value) {
                 switch ($column) {
