@@ -110,7 +110,7 @@
                 <td class="bg-light text-dark p-3 font-weight-bold">住所</td>
                 <td>
                   <dl>
-                    <dt>Prefecture</dt>
+                    <dt>都道府県</dt>
                     <dd>
                       <a href="{{ route('admin.recruitments.index', ['prefecture' => $job_post->prefecture]) }}">
                         {{ $job_post->prefecture ? getPrefecture($job_post->prefecture) : '--' }}
