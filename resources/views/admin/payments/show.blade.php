@@ -46,8 +46,8 @@
           <table class="table table-striped table-hover mt-5 mb-4">
             <thead>
               <tr>
-                <th width="420px">アカウント</th>
-                <th>Tickets</th>
+                <th width="420px">企業名</th>
+                <th>チケット枚数</th>
                 <th>価格</th>
                 @if (! $payment->is_approved)
                   <th width="120px">&nbsp;</th>

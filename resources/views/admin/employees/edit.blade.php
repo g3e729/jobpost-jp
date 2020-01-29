@@ -81,7 +81,7 @@
             <div class="col-3 font-weight-bold">住所</div>
             <div class="col-9">
               <div class="form-group position-relative">
-                <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
+                <label for="formPrefecture" class="form-label pt-0">都道府県</label>
                 <select class="form-control" id="formPrefecture" name="prefecture" data-action="change"
                   data-condition="" data-text="Please choose your prefecture.">
                   <option value="" selected hidden disabled>Choose prefecture</option>
@@ -95,7 +95,7 @@
               </div>
 
               <div class="form-group position-relative">
-                <label for="formAddress1" class="form-label pt-0">番地</label>
+                <label for="formAddress1" class="form-label pt-0">番地まで</label>
                 <input type="text" class="form-control" id="formAddress1" name="address1" value="{{ $employee->address1 }}" placeholder="" required>
                 <div class="invalid-tooltip">
                   Please enter your house number.

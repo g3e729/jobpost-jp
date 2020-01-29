@@ -31,8 +31,8 @@
             <table class="table table-striped table-hover js-sortable">
               <thead>
                 <tr>
-                  <th width="420px">アカウント</th>
-                  <th>Tickets</th>
+                  <th width="420px">企業名</th>
+                  <th>チケット枚数</th>
                   <th>価格</th>
                   <th width="120px">&nbsp;</th>
                 </tr>
@@ -48,7 +48,7 @@
             <table class="table table-striped table-hover js-sortable">
               <thead>
                 <tr>
-                  <th width="420px">アカウント</th>
+                  <th width="420px">企業名</th>
                   <th>価格</th>
                 </tr>
               </thead>

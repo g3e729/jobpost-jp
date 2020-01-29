@@ -41,7 +41,7 @@
     <div class="col-3 font-weight-bold">住所</div>
     <div class="col-9">
       <div class="form-group position-relative">
-        <label for="formPrefecture" class="form-label pt-0">Prefecture</label>
+        <label for="formPrefecture" class="form-label pt-0">都道府県</label>
         <select class="form-control" id="formPrefecture" name="prefecture" data-action="change"
           data-condition="" data-text="Please choose your prefecture.">
           <option value="" selected hidden disabled>Choose prefecture</option>
