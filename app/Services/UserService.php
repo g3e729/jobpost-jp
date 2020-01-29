@@ -29,7 +29,7 @@ class UserService extends BaseService
 
     public function findApiToken($api_token = null)
     {
-        if (! $api_token) {
+        if (!$api_token) {
             return null;
         }
 
@@ -40,7 +40,7 @@ class UserService extends BaseService
 
     public function attachRole($slug)
     {
-        if (! $this->item) {
+        if (!$this->item) {
             return false;
         }
 
@@ -70,7 +70,7 @@ class UserService extends BaseService
     public function generateApiToken()
     {
         if ($this->item) {
-            $api_token = md5(now().$this->item->email);
+            $api_token = md5(now() . $this->item->email);
             $this->item->update(compact('api_token'));
 
             if ($this->item->hasRole('admin') || $this->item->hasRole('employee')) {

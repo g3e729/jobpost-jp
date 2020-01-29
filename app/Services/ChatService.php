@@ -18,7 +18,7 @@ class ChatService extends BaseService
     public function __construct($item = null)
     {
         parent::__construct(ChatChannel::class);
-        
+
         if ($item instanceof ChatChannel) {
             $this->item = $item;
         }
@@ -44,7 +44,7 @@ class ChatService extends BaseService
                 $channel->seen = 0;
                 $channel->chat_status()->create([
                     'user_id' => $user->id,
-                    'seen' => 0
+                    'seen'    => 0
                 ]);
             }
 
@@ -75,7 +75,7 @@ class ChatService extends BaseService
             $profiles[] = $model->employer;
         }
 
-        foreach($profiles as $profile) {
+        foreach ($profiles as $profile) {
             $user_id = $profile['id'];
 
             if ($profile instanceof CompanyProfile || $profile instanceof SeekerProfile) {
@@ -113,7 +113,7 @@ class ChatService extends BaseService
     public function destroy()
     {
         $this->item->chats()->delete();
-        
+
         return $this->item->delete();
     }
 }

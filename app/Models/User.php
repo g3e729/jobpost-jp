@@ -37,12 +37,12 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
-    
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user');
     }
-    
+
     public function profile()
     {
         if ($this->hasRole('seeker')) {
@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function hasRole(...$slugs)
     {
-        return (bool) $this->roles()->whereIn('slug', $slugs)->count();
+        return (bool)$this->roles()->whereIn('slug', $slugs)->count();
     }
 
     public function notifications()

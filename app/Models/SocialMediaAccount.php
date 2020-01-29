@@ -20,11 +20,11 @@ class SocialMediaAccount extends Model
     ];
 
     protected $fillable = [
-		'id',
-		'url',
-		'social_media',
-		'accountable_id',
-		'accountable_type'
+        'id',
+        'url',
+        'social_media',
+        'accountable_id',
+        'accountable_type'
     ];
 
     public static function boot()

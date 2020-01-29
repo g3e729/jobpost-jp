@@ -13,16 +13,16 @@ class StudentController extends BaseController
     protected $student;
     protected $profile;
 
-	public function index(Request $request)
-	{
+    public function index(Request $request)
+    {
         $this->routine();
 
-		return (new ModelService)->search(
+        return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
         );
-	}
+    }
 
     public function show($id)
     {
@@ -31,8 +31,8 @@ class StudentController extends BaseController
         return $this->student;
     }
 
-	public function update($id, Request $request)
-	{
+    public function update($id, Request $request)
+    {
         $this->routine($id);
 
         $seekerService = new ModelService($this->student);
@@ -56,9 +56,9 @@ class StudentController extends BaseController
         if ($request->has('portfolios')) {
             (new PortfolioService)->insertOrUpdate($this->student, $request->portfolios);
         }
-        
+
         return (new ModelService)->show($this->student->id);
-	}
+    }
 
     public function getStudentFilters(Request $request)
     {

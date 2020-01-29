@@ -25,14 +25,14 @@ class ForgotPasswordRequest extends FormRequest
     public function rules()
     {
         $data = [];
-        
+
         switch ($this->getMethod()) {
             case 'PATCH':
                 $data = ['password' => 'required|confirmed'];
-            break;
+                break;
             case 'POST':
                 $data = ['email' => 'required|exists:users,email'];
-            break;
+                break;
         }
 
         return $data;

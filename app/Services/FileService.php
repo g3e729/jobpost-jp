@@ -20,10 +20,9 @@ class FileService extends BaseService
             $this->item = $item;
         }
     }
-    
+
     public function search($fields, $paginated = true)
     {
-
         try {
             $fields = array_filter($fields);
             $que = (new $this->model);
@@ -32,7 +31,7 @@ class FileService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     // default:
                     //     $que = $que->where($column, $value);
                     // break;
@@ -58,10 +57,10 @@ class FileService extends BaseService
 
         $command = $client->getCommand('GetObject', [
             'Bucket' => $bucket,
-            'Key' => $url
+            'Key'    => $url
         ]);
 
-        return (string) $client->createPresignedRequest($command, '+20 minutes')->getUri();
+        return (string)$client->createPresignedRequest($command, '+20 minutes')->getUri();
     }
 
     static function uploadFile($form_file, $relation)

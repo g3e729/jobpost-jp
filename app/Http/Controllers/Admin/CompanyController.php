@@ -12,43 +12,43 @@ use Illuminate\Routing\Controller as BaseController;
 
 class CompanyController extends BaseController
 {
-	public function index(Request $request)
-	{
+    public function index(Request $request)
+    {
         $prefectures = getPrefecture();
         $industries = Company::getIndustries();
-        
-		$companies = (new CompanyService)->search($request->except('page'));
 
-		return view('admin.companies.index', compact('companies', 'industries', 'prefectures'));
-	}
-	
-	public function show(Company $company)
-	{
-		return view('admin.companies.show', compact('company'));
-	}
-	
-	public function edit(Company $company, Request $request)
-	{
-      	$step = $request->get('step', 1);
-		$data = compact('company', 'step');
+        $companies = (new CompanyService)->search($request->except('page'));
 
-      	switch ($step) {
+        return view('admin.companies.index', compact('companies', 'industries', 'prefectures'));
+    }
+
+    public function show(Company $company)
+    {
+        return view('admin.companies.show', compact('company'));
+    }
+
+    public function edit(Company $company, Request $request)
+    {
+        $step = $request->get('step', 1);
+        $data = compact('company', 'step');
+
+        switch ($step) {
             case 1:
                 $countries = getCountries();
                 $industries = Company::getIndustries();
                 $prefectures = getPrefecture();
 
                 $data = array_merge($data, compact('company', 'countries', 'industries', 'prefectures'));
-            break;
-      		case 2:
-      		break;
-      	}
+                break;
+            case 2:
+                break;
+        }
 
-		return view('admin.companies.edit', $data);
-  	}
-	
-	public function update(Company $company, CompanyRequest $request)
-	{
+        return view('admin.companies.edit', $data);
+    }
+
+    public function update(Company $company, CompanyRequest $request)
+    {
         $companyService = new CompanyService($company);
 
         switch ($request->get('step')) {
@@ -64,10 +64,10 @@ class CompanyController extends BaseController
                 if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
                     $companyService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
                 }
-            break;
+                break;
             case 2:
                 $companyService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
-                
+
                 if ($request->photos) {
                     $companyService->wwhPhotoUploader($request->photos);
                 }
@@ -76,7 +76,7 @@ class CompanyController extends BaseController
                     $company->features()->delete();
                     $features = $request->get('features');
 
-                    foreach([0, 1, 2] as $i) {
+                    foreach ([0, 1, 2] as $i) {
                         $feature = $features[$i];
 
                         if (empty($feature['title']) && empty($feature['description'])) {
@@ -90,13 +90,13 @@ class CompanyController extends BaseController
                 if ($request->has('portfolios')) {
                     (new PortfolioService)->insertOrUpdate($company, $request->portfolios);
                 }
-            break;
+                break;
         }
 
         return redirect()->route('admin.companies.show', $company)
             ->withSuccess("Success! Employee details is updated!");
-	}
-    
+    }
+
     public function destroy(Company $company)
     {
         $userService = (new UserService($company->user));

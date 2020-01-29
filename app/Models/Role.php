@@ -17,7 +17,7 @@ class Role extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-        	$model->slug = urldecode(strtolower($model->name));
+            $model->slug = urldecode(strtolower($model->name));
         });
     }
 }

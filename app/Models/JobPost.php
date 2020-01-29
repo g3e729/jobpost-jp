@@ -19,38 +19,38 @@ class JobPost extends Model
     ];
 
     protected $fillable = [
-		'company_profile_id',
-		'title',
-		'description',
-		'slug',
+        'company_profile_id',
+        'title',
+        'description',
+        'slug',
 
-		'position',
-		'programming_language',
-		'framework',
-		'environment',
-		'database',
-		'requirements',
-		'employment_type',
-		'number_of_applicants',
-		'work_time',
+        'position',
+        'programming_language',
+        'framework',
+        'environment',
+        'database',
+        'requirements',
+        'employment_type',
+        'number_of_applicants',
+        'work_time',
         'salary',
-		'holidays',
-		'allowance',
-		'incentive',
-		'salary_increase',
-		'insurance',
-		'contract_period',
-		'screening_flow',
+        'holidays',
+        'allowance',
+        'incentive',
+        'salary_increase',
+        'insurance',
+        'contract_period',
+        'screening_flow',
 
-		'prefecture',
-		'address1',
-		'address2',
-		'address3',
-		'city',
-		'country',
-		'station',
-		'published_at'
-	];
+        'prefecture',
+        'address1',
+        'address2',
+        'address3',
+        'city',
+        'country',
+        'station',
+        'published_at'
+    ];
 
     static protected $employment_types = [
         'em' => 'Employee',
@@ -77,7 +77,7 @@ class JobPost extends Model
                 $users = User::whereHas('roles', function ($q) {
                     $q->whereIn('slug', ['seeker']);
                 })->get();
-                
+
                 $title = $user->profile->display_name . ' created a new job.';
                 $description = '';
                 $about_type = JobPost::class;
@@ -98,11 +98,11 @@ class JobPost extends Model
     {
         return $query->where('title', 'LIKE', "%{$value}%")
             ->orWhere('description', 'LIKE', "%{$value}%");
-            // ->orWhere('position', 'LIKE', "%{$value}%")
-            // ->orWhere('programming_language', 'LIKE', "%{$value}%")
-            // ->orWhere('framework', 'LIKE', "%{$value}%")
-            // ->orWhere('environment', 'LIKE', "%{$value}%")
-            // ->orWhere('database', 'LIKE', "%{$value}%");
+        // ->orWhere('position', 'LIKE', "%{$value}%")
+        // ->orWhere('programming_language', 'LIKE', "%{$value}%")
+        // ->orWhere('framework', 'LIKE', "%{$value}%")
+        // ->orWhere('environment', 'LIKE', "%{$value}%")
+        // ->orWhere('database', 'LIKE', "%{$value}%");
     }
 
     public function scopeNumberApplicants($query)
@@ -115,7 +115,7 @@ class JobPost extends Model
     {
         $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
 
-        if (! $url) {
+        if (!$url) {
             return null;
         }
 
@@ -125,7 +125,7 @@ class JobPost extends Model
     public function getDisplayEmploymentTypeAttribute()
     {
         $type = $this->employment_type;
-    
+
         if (empty($type)) {
             return '--';
         }
@@ -136,7 +136,7 @@ class JobPost extends Model
     public function getDisplayPrefectureAttribute()
     {
         $prefecture = $this->prefecture;
-    
+
         if (empty($prefecture)) {
             return '--';
         }

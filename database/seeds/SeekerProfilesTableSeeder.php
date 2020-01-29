@@ -30,32 +30,32 @@ class SeekerProfilesTableSeeder extends Seeder
         );
 
         $seeker = [
-            'name' => '',
-            'email' => '@gmail.com',
+            'name'     => '',
+            'email'    => '@gmail.com',
             'password' => 'password',
 
-            'sex' => 'm',
-            'contact_number' => null,
+            'sex'              => 'm',
+            'contact_number'   => null,
             'study_abroad_fee' => rand(1000, 99999),
-            'passport_number' => null,
+            'passport_number'  => null,
 
-            'type_of_room' => null,
+            'type_of_room'    => null,
             'enrollment_date' => null,
             'graduation_date' => null,
-            'course_id' => 0,
-            'study_period' => 0,
-            'travel_ticket' => 0,
-            'for_pickup' => 0,
+            'course_id'       => 0,
+            'study_period'    => 0,
+            'travel_ticket'   => 0,
+            'for_pickup'      => 0,
 
             'description' => null,
-            'prefecture' => null,
-            'address1' => null,
-            'address2' => null,
-            'address3' => null,
-            'city' => null,
-            'country' => null,
-            'birthday' => null,
-            'github' => null,
+            'prefecture'  => null,
+            'address1'    => null,
+            'address2'    => null,
+            'address3'    => null,
+            'city'        => null,
+            'country'     => null,
+            'birthday'    => null,
+            'github'      => null,
         ];
 
         for ($i = 1; $i < 30; $i++) {
@@ -70,9 +70,9 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['email'] = str_replace(' ', '', strtolower($fields['name'])) . '+' . $i . $fields['email'];
             $fields['sex'] = array_last($t);
             $fields['description'] = rand(0, 1) ? $desc[rand(0, count($desc) - 1)] : ' ' . strrev($desc[rand(0, count($desc) - 1)]);
-            $fields['contact_number'] = rand(100, 999).rand(100, 999).rand(1000, 9999);
+            $fields['contact_number'] = rand(100, 999) . rand(100, 999) . rand(1000, 9999);
             $fields['study_abroad_fee'] = rand(1000, 99999);
-            $fields['passport_number'] = rand(100, 9999).rand(1111, 9999);
+            $fields['passport_number'] = rand(100, 9999) . rand(1111, 9999);
             $fields['enrollment_date'] = now()->addMonths(rand(1, 5));
             $fields['graduation_date'] = $fields['enrollment_date']->copy()->addMonths(rand(1, 12));
             $fields['occupation_id'] = rand(1, 3);
@@ -108,10 +108,10 @@ class SeekerProfilesTableSeeder extends Seeder
             }
 
             foreach ([
-                'facebook' => 'https://www.facebook.com/',
-                'instagram' => 'https://www.instagram.com/',
-                'twitter' => 'https://twitter.com/'
-            ] as $social_media => $url) {
+                         'facebook'  => 'https://www.facebook.com/',
+                         'instagram' => 'https://www.instagram.com/',
+                         'twitter'   => 'https://twitter.com/'
+                     ] as $social_media => $url) {
                 if (rand(0, 1)) continue;
                 $data = compact('social_media', 'url');
 

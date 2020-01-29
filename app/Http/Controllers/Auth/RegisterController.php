@@ -22,7 +22,7 @@ class RegisterController extends Controller
     {
         $invitation = Invitation::where('code', $request->get('code'))->first();
 
-        if (! $invitation) {
+        if (!$invitation) {
             abort(404);
         }
 
@@ -36,7 +36,7 @@ class RegisterController extends Controller
         $profile_id = session('profile_id', 0);
         $type = Invitation::getTypes($invitation->type);
 
-        $image = asset('img/register/'.$type.'-bg.png');
+        $image = asset('img/register/' . $type . '-bg.png');
 
         $data = compact(
             'image',
@@ -47,18 +47,18 @@ class RegisterController extends Controller
             'type'
         );
 
-        $method = 'form'.ucwords($type);
+        $method = 'form' . ucwords($type);
 
         $data = $this->$method($step, $data);
 
-        return view('register.'.$type, $data);
+        return view('register.' . $type, $data);
     }
 
     public function store(RegisterRequest $request)
     {
         $invitation = Invitation::where('code', $request->get('code'))->first();
 
-        if (! $invitation) {
+        if (!$invitation) {
             abort(404);
         }
 
@@ -87,7 +87,7 @@ class RegisterController extends Controller
                 $profile = (new CompanyService)->create(
                     $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
-            break;
+                break;
             case 2:
                 $companyService = (new CompanyService);
                 $profile = $companyService->find(session('profile_id', 0));
@@ -105,7 +105,7 @@ class RegisterController extends Controller
                 if ($request->has('cover_photo')) {
                     $companyService->acPhotoUploader($request->cover_photo, 'cover_photo');
                 }
-            break;
+                break;
         }
 
         return $profile;
@@ -118,7 +118,7 @@ class RegisterController extends Controller
                 $profile = (new EmployeeService)->create(
                     $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
-            break;
+                break;
             case 2:
                 $employeeService = (new EmployeeService);
                 $profile = $employeeService->find(session('profile_id', 0));
@@ -132,7 +132,7 @@ class RegisterController extends Controller
                 if ($request->has('avatar')) {
                     $employeeService->acPhotoUploader($request->avatar);
                 }
-            break;
+                break;
         }
 
         return $profile;
@@ -145,7 +145,7 @@ class RegisterController extends Controller
                 $profile = (new SeekerService)->create(
                     $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
-            break;
+                break;
             case 2:
                 $seekerService = (new SeekerService);
                 $profile = $seekerService->find(session('profile_id', 0));
@@ -159,7 +159,7 @@ class RegisterController extends Controller
                 if ($request->has('avatar')) {
                     $seekerService->acPhotoUploader($request->avatar);
                 }
-            break;
+                break;
         }
 
         return $profile;
@@ -171,10 +171,10 @@ class RegisterController extends Controller
             case 1:
                 $data['prefectures'] = getPrefecture();
                 $data['industries'] = CompanyProfile::getIndustries();
-            break;
+                break;
             case 2:
                 // $data['countries'] = getCountries();
-            break;
+                break;
         }
 
         return $data;
@@ -188,9 +188,9 @@ class RegisterController extends Controller
                 $data['employment_status'] = EmployeeProfile::getEmploymentStatus();
                 $data['countries'] = getCountries();
                 $data['positions'] = EmployeeProfile::getPositions();
-            break;
+                break;
             case 2:
-            break;
+                break;
         }
 
         return $data;
@@ -202,11 +202,11 @@ class RegisterController extends Controller
             case 1:
                 $data['prefectures'] = getPrefecture();
                 $data['occupations'] = SeekerProfile::getOccupations();
-            break;
+                break;
             case 2:
                 // $data['countries'] = getCountries();
                 $data['student_status'] = SeekerProfile::getStudentStatus();
-            break;
+                break;
         }
 
         return $data;

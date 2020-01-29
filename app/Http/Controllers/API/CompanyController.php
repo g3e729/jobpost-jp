@@ -13,24 +13,24 @@ class CompanyController extends BaseController
     protected $company;
     protected $profile;
 
-	public function index(Request $request)
-	{
-		return (new ModelService)->search(
+    public function index(Request $request)
+    {
+        return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
             $request->get('sort', 'ASC')
         );
-	}
+    }
 
-	public function show($id)
-	{
+    public function show($id)
+    {
         $this->routine($id);
 
         return $this->company;
-	}
+    }
 
-	public function update($id, Request $request)
-	{
+    public function update($id, Request $request)
+    {
         $this->routine($id);
 
         $companyService = new ModelService($this->company);
@@ -42,11 +42,11 @@ class CompanyController extends BaseController
         if ($request->file('avatar') || $request->get('avatar_delete')) {
             $companyService->acPhotoUploader($request->avatar, 'avatar', $request->get('avatar_delete'));
         }
-        
+
         if ($request->file('cover_photo') || $request->get('cover_photo_delete')) {
             $companyService->acPhotoUploader($request->cover_photo, 'cover_photo', $request->get('cover_photo_delete'));
         }
-        
+
         if ($request->photos) {
             $companyService->wwhPhotoUploader($request->photos);
         }
@@ -55,7 +55,7 @@ class CompanyController extends BaseController
             $this->company->features()->delete();
             $features = $request->get('features');
 
-            foreach([0, 1, 2] as $i) {
+            foreach ([0, 1, 2] as $i) {
                 $feature = $features[$i];
 
                 if (empty($feature['title']) && empty($feature['description'])) {
@@ -65,13 +65,13 @@ class CompanyController extends BaseController
                 $this->company->features()->create($feature);
             }
         }
-        
+
         if ($request->has('portfolios')) {
             (new PortfolioService)->insertOrUpdate($this->company, $request->portfolios);
         }
 
         return (new ModelService)->show($this->company->id);
-	}
+    }
 
     public function getCompanyFilters(Request $request)
     {

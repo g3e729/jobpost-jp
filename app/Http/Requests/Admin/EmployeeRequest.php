@@ -24,20 +24,20 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email,'.$this->employee->user->id,
-            'name' => 'required',
-            'japanese_name' => 'required',
-            'birthday' => 'required',
-            'prefecture' => 'required',
-            'address1' => 'required',
-            'address2' => 'required',
-            'address3' => 'required',
-            'sex' => 'required',
+            'email'          => 'required|unique:users,email,' . $this->employee->user->id,
+            'name'           => 'required',
+            'japanese_name'  => 'required',
+            'birthday'       => 'required',
+            'prefecture'     => 'required',
+            'address1'       => 'required',
+            'address2'       => 'required',
+            'address3'       => 'required',
+            'sex'            => 'required',
             'contact_number' => 'required',
-            'country' => 'required',
-            'position_id' => 'required',
-            'status' => 'required',
-            
+            'country'        => 'required',
+            'position_id'    => 'required',
+            'status'         => 'required',
+
             'avatar' => [
                 'file',
                 'image',

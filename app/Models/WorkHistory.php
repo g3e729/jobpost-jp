@@ -14,14 +14,14 @@ class WorkHistory extends Model
     ];
 
     protected $fillable = [
-		'company_name',
-		'role',
-		'content',
-		'historiable_id',
-		'historiable_type',
-		'is_present',
-		'started_at',
-		'ended_at',
+        'company_name',
+        'role',
+        'content',
+        'historiable_id',
+        'historiable_type',
+        'is_present',
+        'started_at',
+        'ended_at',
     ];
 
     public function historiable()

@@ -36,13 +36,13 @@ class CompanyService extends BaseService
         try {
             $this->createUser($fields);
 
-            if (! $this->user) {
+            if (!$this->user) {
                 return null;
             }
 
             $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
 
-            if (! count($profile_fields)) {
+            if (!count($profile_fields)) {
                 return $this->item;
             }
 
@@ -78,7 +78,7 @@ class CompanyService extends BaseService
     public function wwhPhotoUploader(array $photos = [])
     {
         try {
-            foreach($photos as $key => $files) {
+            foreach ($photos as $key => $files) {
                 $relation = $key . '_photo';
                 $collection = $key . '_photos';
                 $type_files = $this->item->files()->where('type', $relation)->orderBy('sort')->get();
@@ -93,12 +93,12 @@ class CompanyService extends BaseService
                         $path = FileService::uploadFile($req_file['file'], $relation);
 
                         $this->item->files()->create([
-                            'url' => $path,
+                            'url'       => $path,
                             'file_name' => $req_file['file']->getClientOriginalName(),
-                            'type' => $relation,
+                            'type'      => $relation,
                             'mime_type' => $req_file['file']->getMimeType(),
-                            'size' => $req_file['file']->getSize(),
-                            'sort' => $sort,
+                            'size'      => $req_file['file']->getSize(),
+                            'sort'      => $sort,
                         ]);
                     }
                 }
@@ -108,7 +108,7 @@ class CompanyService extends BaseService
             abort(505, $req_file['file']->getClientOriginalName() . '<br/>' . $e->getMessage());
         }
     }
-    
+
     public function search($fields, $paginated = true, $sort = 'ASC')
     {
         try {
@@ -119,18 +119,18 @@ class CompanyService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     case 'liked':
                         $que = $que->whereHas('likes', function ($q) {
                             $q->where('user_id', auth()->user()->id);
                         });
-                    break;
+                        break;
                     default:
                         $que = $que->where($column, $value);
-                    break;
+                        break;
                 }
             }
-            
+
             $que = $que->orderBy(request()->get('sort_by', 'company_name'), $sort);
 
             return $this->toReturn($que, $paginated);
@@ -173,7 +173,7 @@ class CompanyService extends BaseService
             $user_fields = array_only($fields, ['email', 'password']);
             $user_fields['name'] = $fields['name'] ?? $fields['company_name'];
 
-            if (! $user) {
+            if (!$user) {
                 $user = $userService->create($user_fields);
 
                 $userService->attachRole($this->model::ROLE);

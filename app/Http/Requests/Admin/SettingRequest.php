@@ -36,12 +36,12 @@ class SettingRequest extends FormRequest
                         'max:1500',
                     ],
                 ];
-            break;
+                break;
             case 'password':
                 $data = [
                     'password' => 'required|confirmed',
                 ];
-            break;
+                break;
         }
 
         return $data;

@@ -10,44 +10,44 @@ use Illuminate\Http\Request;
 
 class MessageController extends BaseController
 {
-	public function index()
-	{
-		// return ChatChannel::whereHas('chats', function ($q) {
-		// 	$q->where('user_id', auth()->user()->id);
-    // })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+    public function index()
+    {
+        // return ChatChannel::whereHas('chats', function ($q) {
+        // 	$q->where('user_id', auth()->user()->id);
+        // })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
 
-    return ChatChannel::orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
-	}
+        return ChatChannel::orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+    }
 
-	public function show(ChatChannel $message)
-	{
-		$message->load('chats', 'chattable');
+    public function show(ChatChannel $message)
+    {
+        $message->load('chats', 'chattable');
 
-		return $message;
-	}
+        return $message;
+    }
 
-	public function store(Request $request)
-	{
-		$content = $request->get('message');
+    public function store(Request $request)
+    {
+        $content = $request->get('message');
 
-		if (empty($content)) {
-			apiAbort('Server Error');
-		}
+        if (empty($content)) {
+            apiAbort('Server Error');
+        }
 
-		$chatService = (new ChatService);
-		$channel = $chatService->find($request->get('channel_id'));
+        $chatService = (new ChatService);
+        $channel = $chatService->find($request->get('channel_id'));
 
-		$chatService->setUser(auth()->user());
+        $chatService->setUser(auth()->user());
 
-		return $chatService->sendMessage(compact('content'));
-	}
+        return $chatService->sendMessage(compact('content'));
+    }
 
-	public function seen(ChatChannel $channel, Request $request)
-	{
-		$chatService = (new ChatService($channel));
-		$chatService->seen();
-		$channel = $chatService->getItem();
+    public function seen(ChatChannel $channel, Request $request)
+    {
+        $chatService = (new ChatService($channel));
+        $chatService->seen();
+        $channel = $chatService->getItem();
 
-		return $channel->chats()->orderBy('created_at', 'DESC')->first();
-	}
+        return $channel->chats()->orderBy('created_at', 'DESC')->first();
+    }
 }

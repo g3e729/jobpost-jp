@@ -8,29 +8,29 @@ use Illuminate\Http\Request;
 
 class AccountController extends BaseController
 {
-	public function index()
-	{
-		return view('admin.settings.index');
-	}
+    public function index()
+    {
+        return view('admin.settings.index');
+    }
 
-	public function store(SettingRequest $request)
-	{
-		$user = auth()->user();
-		$user->update($request->only('password'));
+    public function store(SettingRequest $request)
+    {
+        $user = auth()->user();
+        $user->update($request->only('password'));
 
-		return redirect()->back()->with('message', 'Account successfully updated!');
-	}
+        return redirect()->back()->with('message', 'Account successfully updated!');
+    }
 
-	public function toggleSidebar(Request $request)
-	{
+    public function toggleSidebar(Request $request)
+    {
         $class = session()->get('sidebarState', '');
 
         if ($class == 'toggled') {
-        	$class = '';
+            $class = '';
         } else {
-        	$class = 'toggled';
+            $class = 'toggled';
         }
 
-		session()->put('sidebarState', $class);
-	}
+        session()->put('sidebarState', $class);
+    }
 }

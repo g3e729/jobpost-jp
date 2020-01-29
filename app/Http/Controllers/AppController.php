@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class AppController extends BaseController
 {
-	public function index()
-	{
-		// $userService = (new UserService);
-		// $token = session()->get('api_token');
-  //       $userService->findApiToken($token);
-		// $userService->generateApiToken();
+    public function index()
+    {
+        // $userService = (new UserService);
+        // $token = session()->get('api_token');
+        // $userService->findApiToken($token);
+        // $userService->generateApiToken();
 
-		return view('app');
-	}
+        return view('app');
+    }
 }

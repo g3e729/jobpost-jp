@@ -21,26 +21,26 @@ class CompanyProfilesTableSeeder extends Seeder
         $prefectures = getPrefecture()->keys();
 
         $company = [
-            'name' => null,
-            'email' => null,
+            'name'     => null,
+            'email'    => null,
             'password' => 'password',
 
-            'user_id' => null,
-            'company_name' => null,
-            'description' => null,
-            'contact_number' => null,
-            'prefecture' => null,
-            'address1' => null,
-            'address2' => null,
-            'address3' => null,
-            'city' => null,
-            'country' => null,
-            'industry_id' => null,
-            'cover_photo' => null,
-            'homepage' => null,
-            'ceo' => null,
+            'user_id'             => null,
+            'company_name'        => null,
+            'description'         => null,
+            'contact_number'      => null,
+            'prefecture'          => null,
+            'address1'            => null,
+            'address2'            => null,
+            'address3'            => null,
+            'city'                => null,
+            'country'             => null,
+            'industry_id'         => null,
+            'cover_photo'         => null,
+            'homepage'            => null,
+            'ceo'                 => null,
             'number_of_employees' => null,
-            'established_date' => null
+            'established_date'    => null
         ];
 
         for ($i = 1; $i < 11; $i++) {
@@ -67,7 +67,7 @@ class CompanyProfilesTableSeeder extends Seeder
             $fields['city'] = ucwords(array_first($t) . ' ' . substr(md5(microtime()), rand(0, 26), rand(3, 5)) . ' city');
             $fields['country'] = 'JPN';
 
-            $fields['contact_number'] = rand(100, 999).rand(100, 999).rand(1000, 9999);
+            $fields['contact_number'] = rand(100, 999) . rand(100, 999) . rand(1000, 9999);
             $fields['industry_id'] = rand(0, 1) ? 'others' : 1;
             $fields['number_of_employees'] = rand(3, 111);
             $fields['established_date'] = now()->subYears(rand(1, 10))->subMonths(rand(1, 7))->subDays(rand(2, 30));

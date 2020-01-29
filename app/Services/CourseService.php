@@ -13,7 +13,7 @@ class CourseService extends BaseService
     public function __construct($item = null)
     {
         parent::__construct(Course::class);
-        
+
         if ($item instanceof Course) {
             $this->item = $item;
         }

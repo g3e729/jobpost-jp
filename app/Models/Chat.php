@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Chat extends Model
 {
     use SoftDeletes;
-    
+
     protected $dates = [
         'created_at',
         'deleted_at',
@@ -16,9 +16,9 @@ class Chat extends Model
     ];
 
     protected $fillable = [
-    	'channel_id',
-    	'user_id',
-    	'content'
+        'channel_id',
+        'user_id',
+        'content'
     ];
 
     protected $hidden = [
@@ -30,10 +30,10 @@ class Chat extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-        	$user = auth()->user();
-        	$user_id = !$model->user_id && $user ? $user->id : $model->user_id;
-        	
-        	$model->user_id = $user_id;
+            $user = auth()->user();
+            $user_id = !$model->user_id && $user ? $user->id : $model->user_id;
+
+            $model->user_id = $user_id;
         });
         static::created(function ($model) {
             $user_ids = $model->channel->chat_status()

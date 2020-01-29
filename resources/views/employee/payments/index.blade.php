@@ -24,6 +24,7 @@
               <thead>
                 <tr>
                   <th width="420px">アカウント</th>
+                  <th>Tickets</th>
                   <th>価格</th>
                   <th width="120px">&nbsp;</th>
                 </tr>
@@ -39,11 +40,11 @@
                         <time>{{ $payment->created_at->format('Y年m月') }}</time>
                       </div>
                     </td>
+                    <td>{{ $payment->total_tickets ?? $payment->tickets }}</td>
                     <td>{{ price($payment->total) }}</td>
                     <td>
                       <div class="payment-actions d-flex justify-content-between">
                         <a href="{{ route('employee.payments.show', $payment) }}" class="btn btn-link p-0">詳細</a>
-                        <a href="#" class="btn btn-link p-0 js-payment-delete">削除</a>
                       </div>
                     </td>
                   </tr>
@@ -56,6 +57,7 @@
               <thead>
                 <tr>
                   <th width="420px">アカウント</th>
+                  <th>Tickets</th>
                   <th>価格</th>
                   <th width="120px">&nbsp;</th>
                 </tr>
@@ -71,11 +73,11 @@
                         <time>{{ $payment->created_at->format('Y年m月') }}</time>
                       </div>
                     </td>
+                    <td>{{ $payment->total_tickets ?? $payment->tickets }}</td>
                     <td>{{ price($payment->total) }}</td>
                     <td>
                       <div class="payment-actions d-flex justify-content-between">
                         <a href="{{ route('employee.payments.show', $payment) }}" class="btn btn-link p-0">詳細</a>
-                        <a href="#" class="btn btn-link p-0 js-payment-delete">削除</a>
                       </div>
                     </td>
                   </tr>
@@ -89,26 +91,6 @@
   </div>
 
   @include('employee.partials.pagination', ['data' => collect()])
-
-  <div class="modal fade" id="js-delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">削除</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          株式会社Rettyの10月分の請求を削除しても良いですか？
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
-          <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 
 @section('js')

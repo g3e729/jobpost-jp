@@ -9,10 +9,10 @@ use Illuminate\Routing\Controller as BaseController;
 
 class FileController extends BaseController
 {
-	public function index(Request $request)
-	{
-		$files = (new FileService)->search($request->except('page'));
+    public function index(Request $request)
+    {
+        $files = (new FileService)->search($request->except('page'));
 
-		return view('employee.files.index', compact('files'));
-	}
+        return view('employee.files.index', compact('files'));
+    }
 }

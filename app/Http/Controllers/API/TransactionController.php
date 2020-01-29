@@ -8,75 +8,75 @@ use Illuminate\Http\Request;
 
 class TransactionController extends BaseController
 {
-	protected $profile;
-	protected $transaction;
+    protected $profile;
+    protected $transaction;
 
-	public function index(Request $request)
-	{
-		$this->routine();
+    public function index(Request $request)
+    {
+        $this->routine();
 
-		return (new ModelService(null, $this->profile))->search(
-			searchInputs(),
+        return (new ModelService(null, $this->profile))->search(
+            searchInputs(),
             $request->get('paginated', true),
-			$request->get('sort', 'DESC')
-		);
-	}
+            $request->get('sort', 'DESC')
+        );
+    }
 
-	public function show($id)
-	{
-		$this->routine();
+    public function show($id)
+    {
+        $this->routine();
 
-		return (new ModelService)->find($id);
-	}
+        return (new ModelService)->find($id);
+    }
 
-	public function store(Request $request)
-	{
-		$this->routine();
+    public function store(Request $request)
+    {
+        $this->routine();
 
-		return $this->profile->transactions()->create($this->requestField());
-	}
+        return $this->profile->transactions()->create($this->requestField());
+    }
 
-	public function update($id, Request $request)
-	{
-		$this->routine($id);
+    public function update($id, Request $request)
+    {
+        $this->routine($id);
 
-		$this->transaction->update($this->requestField());
+        $this->transaction->update($this->requestField());
 
-		return $this->profile->transactions()->find($id);
-	}
+        return $this->profile->transactions()->find($id);
+    }
 
-	public function destroy($id)
-	{
-		$this->routine($id);
+    public function destroy($id)
+    {
+        $this->routine($id);
 
-		$this->transaction->delete();
+        $this->transaction->delete();
 
-		return $this->transaction;
-	}
+        return $this->transaction;
+    }
 
-	private function routine($id = null)
-	{
-		$this->profile = auth()->user()->profile ?? null;
+    private function routine($id = null)
+    {
+        $this->profile = auth()->user()->profile ?? null;
 
-		if (!$this->profile) {
-			apiAbort(404);
-		}
+        if (!$this->profile) {
+            apiAbort(404);
+        }
 
-		if ($id) {
-			$this->transaction = $this->profile->transactions()->find($id);
+        if ($id) {
+            $this->transaction = $this->profile->transactions()->find($id);
 
-			if (!$this->transaction) {
-				apiAbort(404);
-			}
+            if (!$this->transaction) {
+                apiAbort(404);
+            }
 
-			if ($this->transaction->is_approved) {
-				apiAbort(403);
-			}
-		}
-	}
+            if ($this->transaction->is_approved) {
+                apiAbort(403);
+            }
+        }
+    }
 
-	private function requestField($request = null)
-	{
-		return request()->only('amount', 'type', 'type_id', 'description');
-	}
+    private function requestField($request = null)
+    {
+        return request()->only('amount', 'type', 'type_id', 'description');
+    }
 }

@@ -40,13 +40,13 @@ class TransactionService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     case 'date':
                         $que = $que->where('created_at', 'LIKE', $date);
-                    break;
+                        break;
                 }
             }
-            
+
             $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);

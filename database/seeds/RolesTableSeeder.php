@@ -13,26 +13,26 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         $data = [
-        	[
-        		'name' => 'Admin',
+            [
+                'name' => 'Admin',
                 'slug' => '',
-        	],
-        	[
-        		'name' => 'Company',
+            ],
+            [
+                'name' => 'Company',
                 'slug' => '',
-        	],
-        	[
-        		'name' => 'Seeker',
+            ],
+            [
+                'name' => 'Seeker',
                 'slug' => '',
-        	],
+            ],
             [
                 'name' => 'Employee',
                 'slug' => '',
             ],
         ];
 
-        foreach($data as $item) {
-        	Role::firstOrCreate($item);
+        foreach ($data as $item) {
+            Role::firstOrCreate($item);
         }
     }
 }

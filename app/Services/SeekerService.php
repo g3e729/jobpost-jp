@@ -37,13 +37,13 @@ class SeekerService extends BaseService
     {
         $this->createUser($fields);
 
-        if (! $this->user) {
+        if (!$this->user) {
             return null;
         }
 
         $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
 
-        if (! count($profile_fields)) {
+        if (!count($profile_fields)) {
             return $this->item;
         }
 
@@ -60,7 +60,7 @@ class SeekerService extends BaseService
 
     public function updateWorkHistory($works = [])
     {
-        if (! $this->item || empty($works)) {
+        if (!$this->item || empty($works)) {
             return null;
         }
 
@@ -68,7 +68,7 @@ class SeekerService extends BaseService
             if (count(array_filter(array_flatten($works, 1)))) {
                 $this->item->work_history()->delete();
 
-                foreach($works as $k => $work) {
+                foreach ($works as $k => $work) {
                     $start = isset($work['started_at']) ? explode('-', $work['started_at']) : null;
                     $end = isset($work['ended_at']) ? explode('-', $work['ended_at']) : null;
                     $work['started_at'] = null;
@@ -95,7 +95,7 @@ class SeekerService extends BaseService
 
     public function updateEducationHistory($educations = [])
     {
-        if (! $this->item || empty($educations)) {
+        if (!$this->item || empty($educations)) {
             return null;
         }
 
@@ -103,7 +103,7 @@ class SeekerService extends BaseService
             if (count(array_filter(array_flatten($educations, 1)))) {
                 $this->item->education_history()->delete();
 
-                foreach($educations as $education) {
+                foreach ($educations as $education) {
                     if (empty($education['school_name']) && empty($education['content'])) {
                         continue;
                     }
@@ -141,7 +141,7 @@ class SeekerService extends BaseService
         $skills = array_keys($skills);
         // $this->item->skills()->delete();
 
-        foreach($request->only($skills) as $skill_id => $skill_rate) {
+        foreach ($request->only($skills) as $skill_id => $skill_rate) {
             $skill_rate = $skill_rate ?? 1;
 
             $skill = $student_skills->where('skill_id', $skill_id)->first();
@@ -167,7 +167,7 @@ class SeekerService extends BaseService
             switch ($status) {
                 case 1:
                     $que = $que->where('enrollment_date', '>', now());
-                break;
+                    break;
                 case 2:
                     $enrollment_date = now()->startOfMonth();
                     $from = !empty(array_get($fields, 'from')) ? explode('-', array_get($fields, 'from')) : [];
@@ -185,12 +185,12 @@ class SeekerService extends BaseService
 
                     if (count($from)) {
                         $que = $que->where('enrollment_date', '>', $enrollment_date)
-                        ->where('graduation_date', '<', $graduation_date);
+                            ->where('graduation_date', '<', $graduation_date);
                     } else {
                         $que = $que->where('enrollment_date', '<', now()->startOfDay());
                     }
 
-                break;
+                    break;
                 case 3:
                     $grad_1 = now()->startOfMonth();
                     $from = !empty(array_get($fields, 'from')) ? explode('-', array_get($fields, 'from')) : [];
@@ -213,7 +213,7 @@ class SeekerService extends BaseService
                         $que = $que->where('graduation_date', '<', now()->startOfDay());
                     }
 
-                break;
+                    break;
             }
 
             $user = auth()->user();
@@ -226,7 +226,7 @@ class SeekerService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     case 'scouted':
                         if ($user->hasRole('company')) {
                             $que = $que->whereHas('applications', function ($q) use ($user) {
@@ -236,14 +236,14 @@ class SeekerService extends BaseService
                                     });
                             });
                         }
-                    break;
+                        break;
                     case 'liked':
                         if ($user->hasRole('company')) {
                             $que = $que->whereHas('likes', function ($q) use ($user) {
                                 $q->where('user_id', $user->id);
                             });
                         }
-                    break;
+                        break;
                     case 'applied':
                         if ($user->hasRole('company')) {
                             $que = $que->whereHas('applications', function ($q) use ($user) {
@@ -253,10 +253,10 @@ class SeekerService extends BaseService
                                     });
                             });
                         }
-                    break;
+                        break;
                     default:
                         $que = $que->where($column, $value);
-                    break;
+                        break;
                 }
             }
 
@@ -296,9 +296,9 @@ class SeekerService extends BaseService
         $que = $this->item->applications()->whereJobPostId($job_post->id);
 
         if (!$que->count()) {
-          $this->item->applications()->create([
-            'job_post_id' => $job_post->id,
-            'scouted' => $scouted
+            $this->item->applications()->create([
+                'job_post_id' => $job_post->id,
+                'scouted'     => $scouted
             ]);
 
             if ($scouted && $auth_user->hasRole('company')) {
@@ -333,7 +333,7 @@ class SeekerService extends BaseService
         $userService = (new UserService);
         $user = $userService->findEmail($fields['email']);
 
-        if (! $user) {
+        if (!$user) {
             $user = $userService->create(array_only($fields, ['name', 'japanese_name', 'email', 'password']));
 
             $userService->attachRole($this->model::ROLE);

@@ -33,19 +33,19 @@ class RegisterRequest extends FormRequest
     {
         $rules = [
             1 => [
-                'company_name' => 'required',
+                'company_name'        => 'required',
                 // 'password' => 'required|confirmed',
-                'prefecture' => 'required',
-                'address1' => 'required',
-                'address2' => 'required',
-                'address3' => 'required',
-                'ceo' => 'required',
+                'prefecture'          => 'required',
+                'address1'            => 'required',
+                'address2'            => 'required',
+                'address3'            => 'required',
+                'ceo'                 => 'required',
                 'number_of_employees' => '',
 
-                'description' => 'required',
-                'industry_id' => 'required',
+                'description'      => 'required',
+                'industry_id'      => 'required',
                 'established_date' => 'required',
-                'homepage' => '',
+                'homepage'         => '',
 
                 'avatar' => [
                     'file',
@@ -53,7 +53,7 @@ class RegisterRequest extends FormRequest
                     'mimes:jpeg,png',
                     'max:1500',
                 ],
-                
+
                 'cover_photo' => [
                     'file',
                     'image',
@@ -74,24 +74,24 @@ class RegisterRequest extends FormRequest
     {
         $rules = [
             1 => [
-                'name' => 'required',
-                'japanese_name' => 'required',
+                'name'           => 'required',
+                'japanese_name'  => 'required',
                 // 'password' => 'required|confirmed',
-                'birthday' => 'required',
-                'prefecture' => 'required',
-                'address1' => 'required',
-                'address2' => 'required',
-                'address3' => 'required',
-                'sex' => 'required',
+                'birthday'       => 'required',
+                'prefecture'     => 'required',
+                'address1'       => 'required',
+                'address2'       => 'required',
+                'address3'       => 'required',
+                'sex'            => 'required',
                 'contact_number' => 'required',
-                
-                'country' => 'required',
+
+                'country'     => 'required',
                 'position_id' => 'required',
-                'status' => 'required',
+                'status'      => 'required',
             ],
             2 => [
                 'password' => 'required|confirmed',
-                
+
                 'avatar' => [
                     'file',
                     'image',
@@ -108,24 +108,24 @@ class RegisterRequest extends FormRequest
     {
         $rules = [
             1 => [
-                'name' => 'required',
-                'japanese_name' => 'required',
+                'name'           => 'required',
+                'japanese_name'  => 'required',
                 // 'password' => 'required|confirmed',
-                'birthday' => 'required',
-                'prefecture' => 'required',
-                'address1' => 'required',
-                'address2' => 'required',
-                'address3' => 'required',
-                'sex' => 'required',
+                'birthday'       => 'required',
+                'prefecture'     => 'required',
+                'address1'       => 'required',
+                'address2'       => 'required',
+                'address3'       => 'required',
+                'sex'            => 'required',
                 'contact_number' => 'required',
 
                 'enrollment_date' => 'required',
                 'graduation_date' => 'required',
-                'occupation' => 'required',
+                'occupation'      => 'required',
             ],
             2 => [
                 'password' => 'required|confirmed',
-                
+
                 'avatar' => [
                     'file',
                     'image',

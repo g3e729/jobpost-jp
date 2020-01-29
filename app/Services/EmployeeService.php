@@ -26,13 +26,13 @@ class EmployeeService extends BaseService
     {
         $this->createUser($fields);
 
-        if (! $this->user) {
+        if (!$this->user) {
             return null;
         }
 
         $profile_fields = array_except($fields, ['name', 'japanese_name', 'email', 'password']);
 
-        if (! count($profile_fields)) {
+        if (!count($profile_fields)) {
             return $this->item;
         }
 
@@ -46,10 +46,9 @@ class EmployeeService extends BaseService
 
         return $this->item;
     }
-    
+
     public function search($fields, $paginated = true)
     {
-
         try {
             $fields = array_filter($fields);
             $que = (new $this->model);
@@ -58,10 +57,10 @@ class EmployeeService extends BaseService
                 switch ($column) {
                     case 'search':
                         $que = $que->search($fields['search']);
-                    break;
+                        break;
                     default:
                         $que = $que->where($column, $value);
-                    break;
+                        break;
                 }
             }
 
@@ -81,7 +80,7 @@ class EmployeeService extends BaseService
         $userService = (new UserService);
         $user = $userService->findEmail($fields['email']);
 
-        if (! $user) {
+        if (!$user) {
             $user = $userService->create(array_only($fields, ['name', 'japanese_name', 'email', 'password']));
 
             $userService->attachRole($this->model::ROLE);

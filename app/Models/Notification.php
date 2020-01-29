@@ -36,8 +36,8 @@ class Notification extends Model
 
     static protected $targets = [
         'companies' => '企業',
-        'students' => '生徒',
-        'all' => 'すべて',
+        'students'  => '生徒',
+        'all'       => 'すべて',
     ];
 
     public static function boot()

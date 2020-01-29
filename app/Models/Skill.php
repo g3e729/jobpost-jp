@@ -19,12 +19,12 @@ class Skill extends Model
     ];
 
     protected $fillable = [
-		'id',
-		'skill_id',
-		'description',
-		'skill_rate',
-		'skillable_id',
-		'skillable_type'
+        'id',
+        'skill_id',
+        'description',
+        'skill_rate',
+        'skillable_id',
+        'skillable_type'
     ];
 
     public function skillable()
