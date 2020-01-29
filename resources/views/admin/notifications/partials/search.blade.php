@@ -35,7 +35,7 @@
       </div>
       <div class="col-3">
         <div class="form-group">
-          <label for="formTarget" class="font-weight-bold text-muted">ステータス</label>
+          <label for="formTarget" class="font-weight-bold text-muted">ターゲット</label>
           <select class="form-control" id="formTarget" name="target_id">
             <option value="" selected hidden disabled>Choose target</option>
             @foreach($targets as $index => $name)
