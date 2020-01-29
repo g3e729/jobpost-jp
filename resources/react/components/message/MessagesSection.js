@@ -65,7 +65,9 @@ const MessagesSection = (props) => {
 
   return (
     <div className="messages-section">
-      <h3 className="messages-section__header">{isLoading ? null : messagesList && messagesList.recipient.display_name}</h3>
+      <h3 className="messages-section__header">{isLoading ? null : (
+        accountType === 'company' ? messagesList.chattable.applicant.display_name : messagesList.chattable.employer.display_name
+      )}</h3>
       <div className="messages-section__main">
         <ul className="messages-section__main-list">
           { isLoading ? (

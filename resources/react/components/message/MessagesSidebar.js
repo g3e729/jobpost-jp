@@ -15,20 +15,24 @@ const MessagesSidebar = (props) => {
   const [currentChannel, setCurrentChannel] = useState(null);
 
   const handleChangeChannel = id => {
-    dispatch(setActiveChannel(id))
+    setCurrentChannel(id);
+    dispatch(setActiveChannel(id));
   }
 
   useEffect(_ => {
-    if (!currentChannel) {
+    if (!messages.activeChannel) {
       const activeChannel = (history.state && history.state.state) ? history.state.state.activeChannel : null;
-      dispatch(setActiveChannel(activeChannel));
       setCurrentChannel(activeChannel);
-    }
 
-    if (messages && messages.activeChannel) {
+      if (activeChannel) {
+        dispatch(setActiveChannel(activeChannel))
+      };
+    } else {
+      dispatch(setActiveChannel(messages.activeChannel))
       setCurrentChannel(messages.activeChannel);
+
     }
-  }, [messages])
+  }, [messages.activeChannel])
 
   return (
     <aside className="messages-sidebar">
