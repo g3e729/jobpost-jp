@@ -13,7 +13,7 @@ const MessagesPage = _ => {
   useEffect(_ => {
     setIsLoading(true);
 
-    dispatch(getMessages())
+    dispatch(getMessages((history.state && history.state.state) ? history.state.state.activeChannel : null))
       .then(_ => setIsLoading(false))
       .catch(_ => setIsLoading(false));
 

@@ -6,22 +6,28 @@ import Loading from '../common/Loading';
 import { state } from '../../constants/state';
 import { setActiveChannel } from '../../actions/messages';
 
-import avatarPlaceholder from '../../../img/avatar-default.png';
-
 const MessagesSidebar = (props) => {
   const dispatch = useDispatch();
   const { isLoading, messages, user } = props;
   const data = messages.messagesData || {};
   const messagesData = data.data || {};
   const accountType = (user.userData && user.userData.account_type) || 'company';
-  const [currentChannel, setCurrentChannel] = useState(0);
+  const [currentChannel, setCurrentChannel] = useState(null);
 
   const handleChangeChannel = id => {
     dispatch(setActiveChannel(id))
   }
 
   useEffect(_ => {
-    setCurrentChannel(messages.activeChannel)
+    if (!currentChannel) {
+      const activeChannel = (history.state && history.state.state) ? history.state.state.activeChannel : null;
+      dispatch(setActiveChannel(activeChannel));
+      setCurrentChannel(activeChannel);
+    }
+
+    if (messages && messages.activeChannel) {
+      setCurrentChannel(messages.activeChannel);
+    }
   }, [messages])
 
   return (
