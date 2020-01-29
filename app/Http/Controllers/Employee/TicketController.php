@@ -7,11 +7,11 @@ use App\Models\Transaction;
 
 class TicketController extends BaseController
 {
-	public function index()
-	{
-		$approved = Transaction::whereType('ticket')->where('is_approved', 1)->get();
-		$not_approved = Transaction::whereType('ticket')->where('is_approved', 0)->get();
+    public function index()
+    {
+        $approved = Transaction::whereType('ticket')->where('is_approved', 1)->get();
+        $not_approved = Transaction::whereType('ticket')->where('is_approved', 0)->get();
 
-		return view('employee.tickets.index', compact('approved', 'not_approved'));
-	}
+        return view('employee.tickets.index', compact('approved', 'not_approved'));
+    }
 }

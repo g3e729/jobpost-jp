@@ -10,7 +10,7 @@ class EmployeeProfile extends Model
 {
     use HasUser, SoftDeletes;
 
-	const ROLE = 'employee';
+    const ROLE = 'employee';
 
     protected $dates = [
         'birthday',
@@ -18,7 +18,7 @@ class EmployeeProfile extends Model
         'deleted_at',
         'updated_at'
     ];
-    
+
     protected $fillable = [
         'sex',
         'contact_number',
@@ -31,7 +31,7 @@ class EmployeeProfile extends Model
         'passport_number',
         'position_id',
         'birthday',
-        
+
         'deleted_at'
     ];
 

@@ -11,7 +11,7 @@ class SeekerProfile extends Model
 {
     use HasLike, HasUser, SoftDeletes;
 
-	const ROLE = 'seeker';
+    const ROLE = 'seeker';
 
     protected $dates = [
         'birthday',
@@ -81,29 +81,29 @@ class SeekerProfile extends Model
         'english_level'
     ];
 
-	static protected $courses = [
-		1 => 'Basic',
-		2 => 'Rails Standard',
-		3 => 'Rails Advance',
-		4 => 'Rails Expert',
-		5 => 'Develop Standard',
-		6 => 'Develop Advance',
-		7 => 'Design Standard',
-		8 => 'Design Advance',
-		9 => 'Python Standard',
+    static protected $courses = [
+        1  => 'Basic',
+        2  => 'Rails Standard',
+        3  => 'Rails Advance',
+        4  => 'Rails Expert',
+        5  => 'Develop Standard',
+        6  => 'Develop Advance',
+        7  => 'Design Standard',
+        8  => 'Design Advance',
+        9  => 'Python Standard',
         10 => 'Python Advance'
     ];
 
     static protected $student_status = [
-		1 => '入学前 / Pre-Student',
-		2 => '生徒 / Student',
-		3 => '卒業 / Graduate'
+        1 => '入学前 / Pre-Student',
+        2 => '生徒 / Student',
+        3 => '卒業 / Graduate'
     ];
 
     static protected $occupations = [
-		1 => '学生 / Student',
-		2 => '就業者 / Worker',
-		3 => 'フリー / Part-time worker'
+        1 => '学生 / Student',
+        2 => '就業者 / Worker',
+        3 => 'フリー / Part-time worker'
     ];
 
     static protected $english_levels = [
@@ -117,15 +117,15 @@ class SeekerProfile extends Model
 
     // Skills
     static protected $programming_languages = [
-        'pl1' => 'Java',
-        'pl2' => 'C',
-        'pl3' => 'C ++',
-        'pl4' => 'C#',
-        'pl5' => 'PHP',
-        'pl6' => 'Ruby',
-        'pl7' => 'Python2',
-        'pl8' => 'Python3',
-        'pl9' => 'Perl',
+        'pl1'  => 'Java',
+        'pl2'  => 'C',
+        'pl3'  => 'C ++',
+        'pl4'  => 'C#',
+        'pl5'  => 'PHP',
+        'pl6'  => 'Ruby',
+        'pl7'  => 'Python2',
+        'pl8'  => 'Python3',
+        'pl9'  => 'Perl',
         'pl10' => 'Objective-C',
         'pl11' => 'Swift',
         'pl12' => 'VB',
@@ -150,15 +150,15 @@ class SeekerProfile extends Model
 
     // Skills
     static protected $frameworks = [
-        'f1' => 'Spring',
-        'f2' => 'Java EE',
-        'f3' => 'Symfony',
-        'f4' => 'CakePHP',
-        'f5' => 'FuelPHP',
-        'f6' => 'Zend Framework',
-        'f7' => 'Laravel',
-        'f8' => 'Phalcon',
-        'f9' => 'Slim',
+        'f1'  => 'Spring',
+        'f2'  => 'Java EE',
+        'f3'  => 'Symfony',
+        'f4'  => 'CakePHP',
+        'f5'  => 'FuelPHP',
+        'f6'  => 'Zend Framework',
+        'f7'  => 'Laravel',
+        'f8'  => 'Phalcon',
+        'f9'  => 'Slim',
         'f10' => 'Ruby on Rails',
         'f11' => 'Sinatra',
         'f12' => 'Django',
@@ -203,15 +203,15 @@ class SeekerProfile extends Model
 
     // Skills
     static protected $others = [
-        'o1' => 'Linux',
-        'o2' => 'Cent OS',
-        'o3' => 'Debian',
-        'o4' => 'Mac OS',
-        'o5' => 'Apache',
-        'o6' => 'nginx',
-        'o7' => 'Unicorn',
-        'o8' => 'Amazon Web Service',
-        'o9' => 'Wordpress',
+        'o1'  => 'Linux',
+        'o2'  => 'Cent OS',
+        'o3'  => 'Debian',
+        'o4'  => 'Mac OS',
+        'o5'  => 'Apache',
+        'o6'  => 'nginx',
+        'o7'  => 'Unicorn',
+        'o8'  => 'Amazon Web Service',
+        'o9'  => 'Wordpress',
         'o10' => 'Vim'
     ];
 
@@ -239,14 +239,14 @@ class SeekerProfile extends Model
     ];
 
     static protected $databases = [
-        'd1' =>'Oracle',
-        'd2' =>'SQL Server',
-        'd3' =>'Sybase',
-        'd4' =>'MySQL',
-        'd5' =>'MariaDB',
-        'd6' =>'Postgres',
-        'd7' =>'Jet',
-        'd8' =>'SQLite'
+        'd1' => 'Oracle',
+        'd2' => 'SQL Server',
+        'd3' => 'Sybase',
+        'd4' => 'MySQL',
+        'd5' => 'MariaDB',
+        'd6' => 'Postgres',
+        'd7' => 'Jet',
+        'd8' => 'SQLite'
     ];
 
     static protected $employment_status = [
@@ -256,15 +256,15 @@ class SeekerProfile extends Model
     ];
 
     static protected $income = [
-        'i1' => '~100',
-        'i2' => '150',
-        'i3' => '200',
-        'i4' => '250',
-        'i5' => '300',
-        'i6' => '350',
-        'i7' => '400',
-        'i8' => '450',
-        'i9' => '500',
+        'i1'  => '~100',
+        'i2'  => '150',
+        'i3'  => '200',
+        'i4'  => '250',
+        'i5'  => '300',
+        'i6'  => '350',
+        'i7'  => '400',
+        'i8'  => '450',
+        'i9'  => '500',
         'i10' => '550',
         'i11' => '600',
         'i12' => '650',

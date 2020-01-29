@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends BaseController
 {
-	public function index(Request $request)
-	{
+    public function index(Request $request)
+    {
         $countries = getCountries();
         $employment_status = Employee::getEmploymentStatus();
         $positions = Employee::getPositions();
-        
-		$employees = (new EmployeeService)->search($request->except('page'));
 
-	    return view('employee.employees.index', compact('countries', 'employees', 'employment_status', 'positions'));
-	}
-	
-	public function show(Employee $employee)
-	{
-		return view('employee.employees.show', compact('employee'));
-	}
+        $employees = (new EmployeeService)->search($request->except('page'));
+
+        return view('employee.employees.index', compact('countries', 'employees', 'employment_status', 'positions'));
+    }
+
+    public function show(Employee $employee)
+    {
+        return view('employee.employees.show', compact('employee'));
+    }
 }

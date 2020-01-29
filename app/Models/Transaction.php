@@ -16,12 +16,12 @@ class Transaction extends Model
     ];
 
     protected $fillable = [
-		'amount',
-		'type',
-		'type_id',
+        'amount',
+        'type',
+        'type_id',
         'tickets',
-		'description',
-		'is_approved',
+        'description',
+        'is_approved',
         'transactionable_id',
         'transactionable_type'
     ];

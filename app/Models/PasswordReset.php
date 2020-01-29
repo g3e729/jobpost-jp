@@ -10,9 +10,9 @@ class PasswordReset extends Model
     protected $primaryKey = 'email';
     public $incrementing = false;
     public $timestamps = false;
-    
+
     protected $dates = [
-    	'requested_at'
+        'requested_at'
     ];
 
     protected $fillable = [
@@ -30,9 +30,9 @@ class PasswordReset extends Model
             $model->requested_at = $model->freshTimestamp();
         });
         static::created(function ($model) {
-        	$url = route('password.reset', ['token' => $model->token]);
+            $url = route('password.reset', ['token' => $model->token]);
 
-        	\Mail::to($model->email)->send(new ForgotPassword($url));
+            \Mail::to($model->email)->send(new ForgotPassword($url));
         });
     }
 

@@ -13,14 +13,14 @@ class EducationHistory extends Model
     ];
 
     protected $fillable = [
-		'school_name',
-		'faculty',
-		'major',
-		'department',
-		'content',
-		'historiable_id',
-		'historiable_type',
-		'graduated_at'
+        'school_name',
+        'faculty',
+        'major',
+        'department',
+        'content',
+        'historiable_id',
+        'historiable_type',
+        'graduated_at'
     ];
 
     public function historiable()

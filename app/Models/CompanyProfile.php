@@ -36,7 +36,7 @@ class CompanyProfile extends Model
         'ceo',
         'number_of_employees',
         'established_date',
-        
+
         'what_text',
         'why_text',
         'how_text',
@@ -47,7 +47,7 @@ class CompanyProfile extends Model
     ];
 
     static protected $industries = [
-        1 => 'IT',
+        1        => 'IT',
         'others' => 'others'
     ];
 
@@ -66,7 +66,7 @@ class CompanyProfile extends Model
         'how_photos',
 
         'industry',
-        
+
         'display_prefecture',
     ];
 
@@ -89,7 +89,7 @@ class CompanyProfile extends Model
     public function getDisplayPrefectureAttribute()
     {
         $prefecture = $this->prefecture;
-    
+
         if (empty($prefecture)) {
             return '--';
         }

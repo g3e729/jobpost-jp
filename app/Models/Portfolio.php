@@ -21,14 +21,14 @@ class Portfolio extends Model
         'portfolable_type',
     ];
     protected $appends = ['image'];
-    
+
     // Attributes
     public function getImageAttribute()
     {
-        if (! $this->file) {
+        if (!$this->file) {
             return null;
         }
-        
+
         return FileService::retrievePath($this->file->url);
     }
 

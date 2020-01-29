@@ -28,19 +28,19 @@ class CompanyRequest extends FormRequest
                 $url_regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
 
                 return [
-                    'company_name' => 'required',
+                    'company_name'        => 'required',
                     // 'password' => 'required|confirmed',
-                    'prefecture' => 'required',
-                    'address1' => 'required',
-                    'address2' => 'required',
-                    'address3' => 'required',
-                    'ceo' => 'required',
+                    'prefecture'          => 'required',
+                    'address1'            => 'required',
+                    'address2'            => 'required',
+                    'address3'            => 'required',
+                    'ceo'                 => 'required',
                     'number_of_employees' => '',
                     // 'contact_number' => 'required',
 
-                    'description' => 'required',
-                    'industry_id' => 'required',
-                    'homepage' => '',
+                    'description'      => 'required',
+                    'industry_id'      => 'required',
+                    'homepage'         => '',
                     'established_date' => 'required',
 
                     'avatar' => [
@@ -57,11 +57,11 @@ class CompanyRequest extends FormRequest
                         'max:1500',
                     ],
 
-                    "social_media.facebook" => $this->facebook ? 'regex:' . $url_regex : '',
-                    "social_media.twitter" => $this->twitter ? 'regex:' . $url_regex : '',
+                    "social_media.facebook"  => $this->facebook ? 'regex:' . $url_regex : '',
+                    "social_media.twitter"   => $this->twitter ? 'regex:' . $url_regex : '',
                     "social_media.instagram" => $this->instagram ? 'regex:' . $url_regex : '',
                 ];
-            break;
+                break;
             case 2:
                 return [
                     'portfolios.*.file' => [
@@ -71,7 +71,7 @@ class CompanyRequest extends FormRequest
                         'max:1500',
                     ]
                 ];
-            break;
+                break;
         }
 
         return [];
