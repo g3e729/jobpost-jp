@@ -80,4 +80,22 @@ class NotificationController extends BaseController
         return redirect()->route('admin.notifications.index')
             ->withSuccess("Success! {$total} notifications are deleted!");
 	}
+
+	public function myNotifications(Request $request)
+	{
+		$genres = Notification::getGenres();
+		$targets = Notification::getTargets();
+		$fields = $request->only('genre_id', 'from', 'to', 'target_id');
+		$fields['notifiable_id'] = auth()->user()->id;
+		$fields['notifiable_type'] = User::class;
+
+		$notifications = (new NotificationService)->search(
+			$fields,
+			false,
+			$request->get('sort', 'DESC'),
+			true
+		);
+
+		return view('admin.notifications.index', compact('genres', 'notifications', 'targets'));
+	}
 }

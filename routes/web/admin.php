@@ -26,7 +26,6 @@ Route::group([
 			// 'job_post' => 'recruitment',
 		],
 	]);
-
 	
 	Route::get('messages', 'MessageController@index')->name('messages.index');
 	Route::delete('messages/{channel}', 'MessageController@destroy')->name('messages.destroy');
