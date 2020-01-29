@@ -58,7 +58,7 @@ class JobPost extends Model
         'in' => 'Internship',
     ];
 
-    protected $appends = ['cover_photo', 'display_employment_type', 'display_prefecture'];
+    protected $appends = ['cover_photo', 'display_employment_type', 'display_prefecture', 'display_status'];
 
     public static function boot()
     {
@@ -142,6 +142,15 @@ class JobPost extends Model
         }
 
         return getPrefecture($prefecture);
+    }
+
+    public function getDisplayStatusAttribute()
+    {
+        if ($this->trashed()) {
+            return false;
+        }
+
+        return true;
     }
 
     // Relationships

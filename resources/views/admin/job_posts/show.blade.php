@@ -139,7 +139,7 @@
                 <td class="bg-light text-dark p-3 font-weight-bold">最寄駅</td>
                 <td>{{ $job_post->station ?? '--' }}</td>
                 <td class="bg-light text-dark p-3 font-weight-bold">Status</td>
-                <td>{{ $job_post->display_employment_type ?? '--' }}</td>
+                <td>{{ $job_post->display_status ? 'Hiring' : 'Stop Hiring' }}</td>
               </tr>
             </tbody>
           </table>

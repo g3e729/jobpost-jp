@@ -78,11 +78,9 @@ class JobPostService extends BaseService
                 $this->acPhotoUploader($fields['cover_photo'], 'cover_photo');
             }
 
-            $fields['status'] = 1;
-
             if ($this->item->trashed() && $fields['status'] == 1) {
                 $this->item->restore();
-            } elseif (!$job->trashed() && $fields['status'] == 0) {
+            } elseif (!$this->item->trashed() && $fields['status'] == 0) {
                 $this->item->delete();
             }
 
