@@ -11,7 +11,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <label for="formArea" class="font-weight-bold text-muted">ポジション</label>
           <select class="form-control" id="formArea" name="position">
             <option value="" {{ empty(request()->get('position')) ? 'selected' : '' }}>All Positions</option>
             @foreach($positions as $name)
@@ -23,7 +23,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <label for="formArea" class="font-weight-bold text-muted">プログラミング言語</label>
           <select class="form-control" id="formArea" name="programming_language">
             <option value="" {{ empty(request()->get('programming_language')) ? 'selected' : '' }}>All Programming languages</option>
             @foreach($programming_languages as $name)
@@ -35,7 +35,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <label for="formArea" class="font-weight-bold text-muted">フレームワーク</label>
           <select class="form-control" id="formArea" name="framework">
             <option value="" {{ empty(request()->get('frameworks')) ? 'selected' : '' }}>All Frameworks</option>
             @foreach($frameworks as $name)
@@ -47,7 +47,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formArea" class="font-weight-bold text-muted">エリア</label>
+          <label for="formArea" class="font-weight-bold text-muted">出身</label>
           <select class="form-control" id="formArea" name="prefecture">
             <option value="" {{ empty(request()->get('prefecture')) ? 'selected' : '' }}>All Prefecture</option>
             @foreach($regions as $index => $name)
