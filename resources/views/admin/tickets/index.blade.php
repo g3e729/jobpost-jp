@@ -90,7 +90,7 @@
 @section('js')
   <script>
     const sortTables = document.querySelectorAll('.js-sortable');
-    const deleteButtons = document.querySelectorAll('.js-payment-delete');
+    const deleteButtons = document.querySelectorAll('.js-ticket-delete');
     const modalSubmit = document.querySelector('#js-modal-submit');
     const modal = document.querySelector('#js-delete-modal');
     let currTarget;
@@ -98,7 +98,7 @@
     deleteButtons.forEach(btn => {
       btn.addEventListener('click', function(event) {
         $(modal).modal('show');
-        currTarget = event.currentTarget.href;
+        currTarget = event.currentTarget.getAttribute('form');
 
         event.preventDefault();
       })
@@ -106,7 +106,7 @@
 
     modalSubmit.addEventListener('click', function(event) {
       $(modal).modal('hide');
-      window.location.replace(currTarget);
+      document.querySelector(`#${currTarget}`).submit();
     });
 
     sortTables.forEach((sortTable) => {
