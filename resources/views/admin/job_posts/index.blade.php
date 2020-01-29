@@ -21,9 +21,9 @@
         <tr>
           <th width="250px">求人</th>
           <th>ポジション</th>
-          <th>言語</th>
+          <th>プログラミング言語</th>
           <th>フレームワーク</th>
-          <th>エリア</th>
+          <th>地域</th>
           <th>年収</th>
         </tr>
       </thead>
