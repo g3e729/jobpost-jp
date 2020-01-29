@@ -45,7 +45,7 @@
     </div>
     <div class="col">
       <div class="form-group">
-        <label for="formEnglish" class="font-weight-bold text-muted">English level</label>
+        <label for="formEnglish" class="font-weight-bold text-muted">英語レベル</label>
         <select class="form-control" id="formEnglish" name="english_level_id">
           <option value="" {{ empty(request()->get('english_level_id')) ? 'selected' : '' }}>All English Level</option>
           @foreach($english_levels as $value => $english_level)
