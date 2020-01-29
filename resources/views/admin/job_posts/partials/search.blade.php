@@ -47,7 +47,7 @@
 
       <div class="col">
         <div class="form-group">
-          <label for="formArea" class="font-weight-bold text-muted">出身</label>
+          <label for="formArea" class="font-weight-bold text-muted">地域</label>
           <select class="form-control" id="formArea" name="prefecture">
             <option value="" {{ empty(request()->get('prefecture')) ? 'selected' : '' }}>All Prefecture</option>
             @foreach($regions as $index => $name)
