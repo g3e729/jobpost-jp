@@ -4,7 +4,7 @@ namespace App\Traits;
 
 trait SeederData
 {
-	protected $fname = [
+    protected $fname = [
         'Alvin:f',
         'Anthony:m',
         'Antonia:f',

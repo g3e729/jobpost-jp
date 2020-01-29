@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('getCountries')) {
+if (!function_exists('getCountries')) {
     function getCountries($index = null)
     {
         $data = config('countries');
@@ -13,20 +13,20 @@ if (! function_exists('getCountries')) {
     }
 }
 
-if (! function_exists('getPrefecture')) {
+if (!function_exists('getPrefecture')) {
     function getPrefecture($index = null)
     {
-    	$data = config('prefecture');
+        $data = config('prefecture');
 
-		if ($index) {
-			return $data[$index] ?? null;
-		}
+        if ($index) {
+            return $data[$index] ?? null;
+        }
 
-		return collect($data);
+        return collect($data);
     }
 }
 
-if (! function_exists('getSex')) {
+if (!function_exists('getSex')) {
     function getSex($index = null)
     {
         $data = [
@@ -42,7 +42,7 @@ if (! function_exists('getSex')) {
     }
 }
 
-if (! function_exists('price')) {
+if (!function_exists('price')) {
     function price($amount = 0, $decimals = 0)
     {
         $price = number_format($amount, $decimals);
@@ -55,7 +55,7 @@ if (! function_exists('price')) {
     }
 }
 
-if (! function_exists('skillRate')) {
+if (!function_exists('skillRate')) {
     function skillRate($index = null)
     {
         $data = [
@@ -63,8 +63,8 @@ if (! function_exists('skillRate')) {
             '1' => '受講中',
             '2' => '受講済み'
         ];
-        
-        $index = (int) $index > 2 ? 2 : $index;
+
+        $index = (int)$index > 2 ? 2 : $index;
 
         if ($index || $index === 0) {
             return $data[$index] ?? null;
@@ -74,31 +74,20 @@ if (! function_exists('skillRate')) {
     }
 }
 
-if (! function_exists('formatSizeUnits')) {
+if (!function_exists('formatSizeUnits')) {
     function formatSizeUnits($bytes)
     {
-        if ($bytes >= 1073741824)
-        {
+        if ($bytes >= 1073741824) {
             $bytes = number_format($bytes / 1073741824, 2) . ' GB';
-        }
-        elseif ($bytes >= 1048576)
-        {
+        } elseif ($bytes >= 1048576) {
             $bytes = number_format($bytes / 1048576, 2) . ' MB';
-        }
-        elseif ($bytes >= 1024)
-        {
+        } elseif ($bytes >= 1024) {
             $bytes = number_format($bytes / 1024, 2) . ' KB';
-        }
-        elseif ($bytes > 1)
-        {
+        } elseif ($bytes > 1) {
             $bytes = $bytes . ' bytes';
-        }
-        elseif ($bytes == 1)
-        {
+        } elseif ($bytes == 1) {
             $bytes = $bytes . ' byte';
-        }
-        else
-        {
+        } else {
             $bytes = '0 bytes';
         }
 
@@ -106,7 +95,7 @@ if (! function_exists('formatSizeUnits')) {
     }
 }
 
-if (! function_exists('getProfileUrl')) {
+if (!function_exists('getProfileUrl')) {
     function getProfileUrl($model)
     {
         $role = auth()->user()->hasRole('admin') ? 'admin' : 'employee';
@@ -123,14 +112,14 @@ if (! function_exists('getProfileUrl')) {
     }
 }
 
-if (! function_exists('searchInputs')) {
+if (!function_exists('searchInputs')) {
     function searchInputs()
     {
         return request()->except('_token', 'page', 'per_page', 'sort', 'paginated', 'sort_by');
     }
 }
 
-if (! function_exists('apiAbort')) {
+if (!function_exists('apiAbort')) {
     function apiAbort($code = null)
     {
         if ($code === null) {
@@ -140,23 +129,23 @@ if (! function_exists('apiAbort')) {
         switch ($code) {
             case '200':
                 $message = 'Success.';
-            break;
+                break;
             case '403':
                 $message = 'Unauthorized.';
-            break;
+                break;
             case '404':
                 $message = 'Not Found.';
-            break;
+                break;
             case '419':
                 $message = 'Page Expired.';
-            break;
+                break;
             case '503':
                 $message = 'Service Currently Not Available.';
-            break;
+                break;
             case '505':
             default:
                 $message = 'Internal Server Error.';
-            break;
+                break;
         }
 
         header('Content-Type: application/json');
@@ -165,7 +154,7 @@ if (! function_exists('apiAbort')) {
     }
 }
 
-if (! function_exists('adminProfileUrl')) {
+if (!function_exists('adminProfileUrl')) {
     function adminProfileUrl($profile)
     {
         if ($profile instanceof \App\Models\CompanyProfile) {

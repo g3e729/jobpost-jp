@@ -12,7 +12,7 @@ use App\Models\WorkHistory;
 use App\Services\FileService;
 
 trait HasUser
-{   
+{
     // Attributes
     public function getEmailAttribute()
     {
@@ -31,7 +31,7 @@ trait HasUser
 
     public function getDisplayNameAttribute()
     {
-        if (! $this->user) {
+        if (!$this->user) {
             return null;
         }
 
@@ -46,7 +46,7 @@ trait HasUser
     {
         $url = $this->files()->where('type', 'avatar')->first()->url ?? null;
 
-        if (! $url) {
+        if (!$url) {
             return asset('img/avatar-default.png');
         }
 
@@ -58,7 +58,7 @@ trait HasUser
     {
         $url = $this->files()->where('type', 'cover_photo')->first()->url ?? null;
 
-        if (! $url) {
+        if (!$url) {
             return null;
         }
 
@@ -107,7 +107,7 @@ trait HasUser
     {
         return $this->skills->pluck('skill_rate', 'skill_id');
     }
-	
+
     // Relationships
     public function user()
     {
