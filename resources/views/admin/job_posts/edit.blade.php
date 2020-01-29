@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="l-container l-container-narrow">
-    
+
     @if (session()->has('success'))
       <div class="alert alert-success" role="alert">
         {{ session()->get('success') }}
@@ -291,14 +291,13 @@
       </div>
 
       <div class="form-group pb-3 row">
-        <label for="formStation" class="col-3 col-form-label font-weight-bold">Status</label>
+        <label for="formStatus" class="col-3 col-form-label font-weight-bold">Status</label>
         <div class="col-9">
-            <select class="form-control" id="formPrefecture" name="employment_type" data-action="change"
+            <select class="form-control" id="formStatus" name="Status" data-action="change"
               data-condition="" data-text="Please choose status.">
               <option value="" selected hidden disabled>Choose status</option>
-              @foreach($employment_types as $index => $name)
-                <option value="{{ $index }}" {{ ($index == old('employment_type', $job_post->employment_type)) ? 'selected' : null }}>{{ $name }}</option>
-              @endforeach
+              <option value="1" {{ (0 == old('status', $job_post->status)) ? 'selected' : null }}>Hiring</option>
+              <option value="0" {{ (1 == old('status', $job_post->status)) ? 'selected' : null }}>Stop hiring</option>
             </select>
         </div>
       </div>
