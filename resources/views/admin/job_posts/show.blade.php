@@ -116,7 +116,7 @@
                         {{ $job_post->prefecture ? getPrefecture($job_post->prefecture) : '--' }}
                       </a>
                     </dd>
-                    <dt>番地</dt>
+                    <dt>番地まで</dt>
                     <dd>{{ $job_post->address1 ?? '--' }}</dd>
                     <dt>ビル名 / 部屋番号</dt>
                     <dd>{{ $job_post->address2 ?? '--' }}</dd>
