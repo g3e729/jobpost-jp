@@ -10,15 +10,13 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const MessagesSidebar = (props) => {
   const dispatch = useDispatch();
-  const { isLoading, messages } = props;
+  const { isLoading, messages, user } = props;
   const data = messages.messagesData || {};
   const messagesData = data.data || {};
-  const [isLoadingTmp, setIsLoadingTmp] = useState(isLoading);
+  const accountType = (user.userData && user.userData.account_type) || 'company';
   const [currentChannel, setCurrentChannel] = useState(0);
 
   const handleChangeChannel = id => {
-    setIsLoadingTmp(true);
-
     dispatch(setActiveChannel(id))
   }
 
@@ -39,13 +37,13 @@ const MessagesSidebar = (props) => {
               <div className="messages-sidebar__chatroom-item-left">
                 <div className="messages-sidebar__chatroom-item-avatar">
                   <Avatar className="avatar--message"
-                    style={{ backgroundImage: `url("${item.chattable.job_post.cover_photo || avatarPlaceholder}")` }}
+                    style={{ backgroundImage: `url("${accountType === 'company' ? item.chattable.applicant.avatar : item.chattable.employer.avatar}")` }}
                   />
                 </div>
               </div>
               <div className="messages-sidebar__chatroom-item-right">
                 <h4 className="messages-sidebar__chatroom-item-contact">
-                  {item.recipient.display_name}
+                  {accountType === 'company' ? item.chattable.applicant.display_name : item.chattable.employer.display_name}
                 </h4>
                 <p className="messages-sidebar__chatroom-item-message">
                   {item.chattable.job_post.title}
@@ -60,7 +58,8 @@ const MessagesSidebar = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  messages: state.messages
+  messages: state.messages,
+  user: state.user
 });
 
 export default connect(mapStateToProps)(MessagesSidebar);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useDispatch, connect } from 'react-redux';
 
@@ -11,21 +11,35 @@ import { postMessage } from '../../actions/messages';
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const MessagesSection = (props) => {
-  const { isLoading, messages } = props;
+  const { isLoading, messages, user } = props;
+  const [messagesList, setMessagesList] = useState([]);
+  const [currentChannel, setCurrentChannel] = useState(1);
   const [acceptedTerm, setAcceptedTerm] = useState(false);
   const [messageValue, setMessageValue] = useState('');
+  const [isPosting, setIsPosting] = useState(false);
   const dispatch = useDispatch();
   const data = messages.messagesData || {};
   const messagesData = data.data || {};
+  const accountId = (user.userData && user.userData.id) || 0;
+  const accountType = (user.userData && user.userData.account_type) || 'company';
 
   const handleClick = e => {
     e.preventDefault();
+    setIsPosting(true);
 
     const formdata = new FormData();
-    formdata.append('channel_id', '1');
+    formdata.append('channel_id', currentChannel);
     formdata.append('message', messageValue);
 
-    dispatch(postMessage(formdata));
+    dispatch(postMessage(formdata))
+      .then(_ => {
+        setMessageValue('');
+        setIsPosting(false);
+      })
+      .catch(_ => {
+        setMessageValue('');
+        setIsPosting(false);
+      });
   }
 
   const handleSubmit = _ => {
@@ -36,34 +50,52 @@ const MessagesSection = (props) => {
     setMessageValue(e.target.value);
   }
 
+  useEffect(_ => {
+    setAcceptedTerm(false);
+
+    if (messagesData.length && messages.activeChannel) {
+      setCurrentChannel(messages.activeChannel)
+      setMessagesList(messagesData.find(item => item.id === messages.activeChannel) || messagesData[0]);
+
+      if (messagesData.find(item => item.id === messages.activeChannel).messages.length) {
+        setAcceptedTerm(true)
+      }
+    }
+  }, [messages, messagesData])
+
   return (
     <div className="messages-section">
-      <h3 className="messages-section__header">{isLoading ? null : messagesData[0].recipient.display_name}</h3>
+      <h3 className="messages-section__header">{isLoading ? null : messagesList && messagesList.recipient.display_name}</h3>
       <div className="messages-section__main">
         <ul className="messages-section__main-list">
           { isLoading ? (
             <Loading className="loading--padded loading--center" />
           ) : (
-            messagesData[0].messages.map((item, idx) => (
-              <li className="messages-section__main-list-item" key={idx}>
-                <div className={`message ${idx % 2 === 1 ? 'message--right': ''}`}>
-                  <div className="message__avatar">
-                    <Avatar className="avatar--message"
-                      style={{ backgroundImage: `url("${messagesData[0].recipient.cover_photo || avatarPlaceholder}")` }}
-                    />
+            messagesList && messagesList.messages.length ? (
+              messagesList.messages.map(item => (
+                <li className="messages-section__main-list-item" key={item.id}>
+                  <div className={`message ${item.user_id == accountId ? 'message--right' : ''}`}>
+                    <div className="message__avatar">
+                      <Avatar className="avatar--message"
+                        style={{ backgroundImage: `url("${item.user_id == accountId ? (accountType === 'company' ? messagesList.chattable.employer.avatar : messagesList.chattable.applicant.avatar) : (accountType === 'company' ? messagesList.chattable.applicant.avatar : messagesList.chattable.employer.avatar)}")`
+                        }}
+                      />
+                    </div>
+                    <div className="message__main">
+                      <h4 className="message__name">
+                        {item.user_id == accountId ? (accountType === 'company' ? messagesList.chattable.employer.display_name : messagesList.chattable.applicant.display_name) : (accountType === 'company' ? messagesList.chattable.applicant.display_name : messagesList.chattable.employer.display_name)}
+                      </h4>
+                      <time className="message__time">{moment(item.created_at).format('YYYY-MM-DD HH:mm')}</time>
+                      <p className="message__text">{item.content}</p>
+                    </div>
                   </div>
-                  <div className="message__main">
-                    <h4 className="message__name">{messagesData[0].recipient.display_name}</h4>
-                    <time className="message__time">{moment(item.created_at).format('YYYY-MM-DD HH:mm')}</time>
-                    <p className="message__text">{item.content}</p>
-                  </div>
-                </div>
-              </li>
-            ))
+                </li>
+              ))
+            ) : null
           )}
         </ul>
         { isLoading ? null : (
-          acceptedTerm || messagesData[0] && messagesData[0].messages.length ? (
+          acceptedTerm || messagesList && messagesList.messages.length && messagesList.length ? (
             <div className="messages-section__main-form">
               <form className="messages-section__main-form-main" onSubmit={_ => handleSubmit()}>
                 <Input className="messages-section__main-form-input"
@@ -82,14 +114,16 @@ const MessagesSection = (props) => {
               </form>
             </div>
           ) : (
-            <div className="messages-section__main-footer">
-              <p className="messages-section__main-footer-intro">
-                返信をするには「名前」、「画像」、「動画」、「生年月日」を公開する必要があります。
-              </p>
-              <Button className="button--large" onClick={_ => setAcceptedTerm(true) }>
-                公開する
-              </Button>
-            </div>
+            isPosting && !acceptedTerm ? null : (
+              <div className="messages-section__main-footer">
+                <p className="messages-section__main-footer-intro">
+                  返信をするには「名前」、「画像」、「動画」、「生年月日」を公開する必要があります。
+                </p>
+                <Button className="button--large" onClick={_ => setAcceptedTerm(true) }>
+                  公開する
+                </Button>
+              </div>
+            )
           )
         )}
       </div>
@@ -98,7 +132,8 @@ const MessagesSection = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  messages: state.messages
+  messages: state.messages,
+  user: state.user
 });
 
 export default connect(mapStateToProps)(MessagesSection);
