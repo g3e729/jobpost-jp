@@ -17,7 +17,7 @@
         <td class="font-weight-bold">住所</td>
         <td>
           <dl>
-            <dt>Prefecture</dt>
+            <dt>都道府県</dt>
             <dd>
               <a href="{{ route('admin.companies.index', ['prefecture' => $student->prefecture]) }}">
                 {{ $student->prefecture ? getPrefecture($student->prefecture) : '--' }}
