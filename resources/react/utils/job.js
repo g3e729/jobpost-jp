@@ -77,7 +77,8 @@ export default class Job {
       programming_language,
       prefecture,
       sort,
-      company_profile_id
+      company_profile_id,
+      paginated
     } = params;
 
     const payload = {
@@ -90,7 +91,8 @@ export default class Job {
         programming_language,
         prefecture,
         sort,
-        company_profile_id
+        company_profile_id,
+        paginated
       }
     }
 

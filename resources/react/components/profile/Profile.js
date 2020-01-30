@@ -135,7 +135,8 @@ const Profile = (props) => {
     const companyId = data.id;
     const request = await Job.getFilteredJobs({
       company_profile_id: companyId,
-      sort: 'desc'
+      sort: 'desc',
+      paginated: 0
     });
 
     return request.data;
@@ -144,7 +145,7 @@ const Profile = (props) => {
   useEffect(_ => {
     if (accountType === 'company') {
       getFilteredJobs()
-        .then(res => setJobs(res.data.splice(0, 3)))
+        .then(res => setJobs(res))
         .catch(error => console.log('[Jobs ERROR]', error));
     }
   }, []);
@@ -780,11 +781,6 @@ const Profile = (props) => {
             <div className="profile__data-jobs">
               <div className="profile__data-jobs-content">
                 <JobsList jobs={jobs} hasTitle="true" />
-              </div>
-              <div className="profile__data-jobs-footer">
-                <Link to={routes.RECRUITMENT} className="button">
-                  もっとみる
-                </Link>
               </div>
             </div>
           </div>
