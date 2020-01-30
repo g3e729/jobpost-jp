@@ -246,7 +246,7 @@ const RecruitmentForm = ({filters}) => {
     <div className="dashboard-section">
       <div className="dashboard-section__content">
         <div className="recruitment-form__container">
-          <h3 className="recruitment-form__title">の編集</h3>
+          <h3 className="recruitment-form__title">求人フォーム</h3>
           { isLoading ? (
             <Loading className="loading--padded" />
           ) : (
