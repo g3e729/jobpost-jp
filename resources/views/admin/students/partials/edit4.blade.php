@@ -7,7 +7,7 @@
   <div class="pb-3 row">
     <div class="col-3 font-weight-bold">IT</div>
     <div class="col-9">
-      <button type="button" data-target="js-class-taken" data-title="" class="js-modal-target mb-3 alt-font btn btn-primary btn-sm">編集する</button>
+      <button type="button" data-target="js-class-taken" data-title="" id="js-modal-target" class="mb-3 alt-font btn btn-primary btn-sm">編集する</button>
 
       <div id="js-class-taken" class="form-group row">
         @foreach($courses as $index => $name)
@@ -112,53 +112,51 @@
 </div>
 
 <script>
-  const targetButtons = document.querySelectorAll('.js-modal-target');
+  const targetButton = document.querySelector('#js-modal-target');
   const modalSubmit = document.querySelector('#js-modal-submit');
   const modal = document.querySelector('#js-modal');
   const elementForm = document.forms['editForm'];
-  const pageButtons = [...targetButtons];
 
-  pageButtons.forEach(btn => {
-    btn.addEventListener('click', function(event) {
-      event.preventDefault();
+  targetButton.addEventListener('click', function(event) {
+    event.preventDefault();
 
-      let title = this.dataset.title;
-      let target = this.dataset.target;
-      let elementTarget = document.querySelector(`#${target}`);
-      let elementClone = elementTarget.cloneNode(true);
-      elementClone.style.display = 'flex';
+    let title = this.dataset.title;
+    let target = this.dataset.target;
+    let elementTarget = document.querySelector(`#${target}`);
+    let elementClone = elementTarget.cloneNode(true);
+    elementClone.style.display = 'flex';
 
-      modal.querySelector('.modal-title').textContent = title;
-      modal.querySelector('.modal-body').textContent = null;
-      modal.querySelector('.modal-body').appendChild(elementClone);
+    modal.querySelector('.modal-title').textContent = title;
+    modal.querySelector('.modal-body').textContent = null;
+    modal.querySelector('.modal-body').appendChild(elementClone);
 
-      $(modal).modal('show');
+    $(modal).modal('show');
 
-      const elementModal = modal.querySelector('.modal-body');
-      const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
+    const elementModal = modal.querySelector('.modal-body');
+    const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
 
-      $(elementsRadio).on('change', (ev) => {
-        let currActive = ev.currentTarget.value;
-        let actualActive;
-        if (currActive == 0) { ctualActive = 2; }
-        else if (currActive == 1) { actualActive = 1; }
-        else { actualActive = 0; }
+    $(elementsRadio).on('change', (ev) => {
+      let currActive = ev.currentTarget.value;
+      let actualActive;
 
-        let elementInput = ev.currentTarget.name;
-        let elementsGroup = elementForm.querySelectorAll(`[name=${elementInput}]`);
-        let elementsParent = [...elementsGroup].map(e => e.parentNode);
+      if (currActive == 0) { actualActive = 2; }
+      else if (currActive == 1) { actualActive = 1; }
+      else { actualActive = 0; }
 
-        elementsParent.forEach((el, idx) => {
-          el.classList.remove('active');
-          el.children[0].removeAttribute('checked');
+      let elementInput = ev.currentTarget.name;
+      let elementsGroup = elementForm.querySelectorAll(`[name="${elementInput}"]`);
+      let elementsParent = [...elementsGroup].map(e => e.parentNode);
 
-          if (idx == actualActive) {
-            el.classList.add('active');
-            el.children[0].setAttribute('checked', 'checked');
-          }
-        });
+      elementsParent.forEach((el, idx) => {
+        el.classList.remove('active');
+        el.children[0].removeAttribute('checked');
+
+        if (idx == actualActive) {
+          el.classList.add('active');
+          el.children[0].setAttribute('checked', 'checked');
+        }
       });
-    })
+    });
   });
 
   modalSubmit.addEventListener('click', function(event) {
