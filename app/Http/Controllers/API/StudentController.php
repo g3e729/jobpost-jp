@@ -20,7 +20,7 @@ class StudentController extends BaseController
         return (new ModelService)->search(
             searchInputs(),
             $request->get('paginated', true),
-            $request->get('sort', 'ASC')
+            $request->get('sort', 'DESC')
         );
     }
 

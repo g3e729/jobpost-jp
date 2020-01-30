@@ -268,7 +268,7 @@ class SeekerService extends BaseService
             //         ->orderBy('users.name', $sort);
             // }
 
-            $que = $que->orderBy('id', 'ASC');
+            $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
