@@ -24,7 +24,7 @@ const Footer = _ => {
         }
         <ul className="footer__menu">
           <li className="footer__menu-item footer__menu-item--external">
-            <a href="#" target="_blank">
+            <a href="https://kredo.jp/" target="_blank">
               運営会社
               <i className="icon icon-external-link"></i>
             </a>
