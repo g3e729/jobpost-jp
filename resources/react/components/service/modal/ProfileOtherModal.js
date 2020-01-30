@@ -47,16 +47,20 @@ const ProfileOtherModal = (props) => {
       });
   }, 400);
 
-  useEffect(_ => {
+  useEffect(() => {
     if (otherFilter) {
       let filterTmp = {...otherFilter};
 
       for (const key in filterTmp) {
         if (filterTmp.hasOwnProperty(key)) {
-          filterTmp[key] =
-            Object.entries(modalData)
-              .find(item => item[1].skill_id == key)[1]
-              .skill_rate || 1;
+          if (!_.isEmpty(modalData)) {
+            filterTmp[key] =
+              Object.entries(modalData)
+                .find(item => item[1].skill_id == key)[1]
+                .skill_rate || 1;
+          } else {
+            filterTmp[key] = 1;
+          }
         }
       }
 
