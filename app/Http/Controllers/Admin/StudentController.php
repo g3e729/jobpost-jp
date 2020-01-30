@@ -106,8 +106,6 @@ class StudentController extends BaseController
 
     public function update(Student $student, StudentRequest $request)
     {
-
-        dd($request->all());
         $seekerService = new SeekerService($student);
 
         switch ($request->get('step')) {
