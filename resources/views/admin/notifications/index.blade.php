@@ -43,3 +43,13 @@
 
   @include('admin.partials.pagination', ['data' => collect()])
 @endsection
+
+@section('js')
+  <script>
+    $('.js-monthpicker').datepicker({
+      format: 'yyyy-mm',
+      viewMode: 'months',
+      minViewMode: 'months',
+    });
+  </script>
+@endsection
