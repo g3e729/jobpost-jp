@@ -109,4 +109,9 @@ class LoginController extends Controller
 
         return $this->parentLogout($request);
     }
+
+    protected function loggedOut(Request $request)
+    {
+        return redirect()->route('login');
+    }
 }
