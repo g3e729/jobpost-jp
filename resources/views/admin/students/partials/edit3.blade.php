@@ -266,10 +266,10 @@
       const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
 
       $(elementsRadio).on('change', (ev) => {
-        let actualActive = ev.currentTarget.value;
+        const actualActive = (ev.currentTarget.value - 1);
 
         let elementInput = ev.currentTarget.name;
-        let elementsGroup = elementForm.querySelectorAll(`[name=${elementInput}]`);
+        let elementsGroup = elementForm.querySelectorAll(`[name="${elementInput}"]`);
         let elementsParent = [...elementsGroup].map(e => e.parentNode);
 
         elementsParent.forEach((el, idx) => {
