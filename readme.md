@@ -29,7 +29,6 @@
 `php artisan storage:link`
 
 <br/>
-------------
 
 <p align="center"><strong>Powered by:</strong><br/><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
@@ -37,12 +36,12 @@
 <p align="center"><strong>developed by these wonderful people:<strong></p>
 
 <p align="center">
-<img src="https://media-exp1.licdn.com/dms/image/C5103AQF8pJuHpoXGtg/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=_bGRQO2tJHrP2mkpMU58ovcw1Us9r3_lqVA6v8E-OiM"></p>
-<p align="center"><strong>Eiji Miyazono</strong><br/>Project Manager</p>
+<img src="https://media-exp1.licdn.com/dms/image/C5103AQF8pJuHpoXGtg/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=_bGRQO2tJHrP2mkpMU58ovcw1Us9r3_lqVA6v8E-OiM">
+<br/><strong>Eiji Miyazono</strong><br/>Project Manager</p>
 
 <p align="center">
-<img src="https://media-exp1.licdn.com/dms/image/C5103AQH7ZFLB8UdZHQ/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=sOIak5RD4DEHCtLTGS4bXTQ66JeKXwsMTMz6tYtqrNg"></p>
-<p align="center"><strong>Kam Curacha</strong><br/>UI/UX Developer</p>
+<img src="https://media-exp1.licdn.com/dms/image/C5103AQH7ZFLB8UdZHQ/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=sOIak5RD4DEHCtLTGS4bXTQ66JeKXwsMTMz6tYtqrNg">
+<br/><strong>Kam Curacha</strong><br/>UI/UX Developer</p>
 
-<p align="center"><img src="https://media-exp1.licdn.com/dms/image/C4E03AQHReqyp-BJ4CA/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=iQ_iBTT5WQ52ZbLNDa17qrWFWk_npNk6PQn0_JbcfqM"></p>
-<p align="center"><strong>Jim Callanta</strong><br/>Backend Developer</p>
+<p align="center"><img src="https://media-exp1.licdn.com/dms/image/C4E03AQHReqyp-BJ4CA/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=iQ_iBTT5WQ52ZbLNDa17qrWFWk_npNk6PQn0_JbcfqM">
+<br/><strong>Jim Callanta</strong><br/>Backend Developer</p>
