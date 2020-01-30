@@ -26,7 +26,7 @@ const ScoutsList = ({data}) => {
   const handleOpenChat = (item) => {
     history.push({
       pathname: routes.MESSAGES,
-      state: { activeChannel: item.applicants[0].chat_channel.id || 0 }
+      state: { activeChannel: item.applicants.find(item => item.chat_channel).id || 0 }
     });
   }
 

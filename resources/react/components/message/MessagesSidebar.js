@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import { useDispatch, connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
@@ -42,7 +43,7 @@ const MessagesSidebar = (props) => {
         { isLoading ? (
           <Loading className="loading--full" />
         ) : (
-          messagesData.length ? (
+          !_.isEmpty(messagesData) ? (
             messagesData.map(item => (
               <li className={`messages-sidebar__chatroom-item ${item.id === currentChannel ? state.ACTIVE : ''}`}
                 onClick={_ => handleChangeChannel(item.id)} key={item.id}>
@@ -58,7 +59,7 @@ const MessagesSidebar = (props) => {
                     {accountType === 'company' ? item.chattable.applicant.display_name : item.chattable.employer.display_name}
                   </h4>
                   <p className="messages-sidebar__chatroom-item-message">
-                    {item.chattable.job_post.title}
+                    {_.truncate(item.chattable.job_post.title, { 'length': 25, 'separator': '...'})}
                   </p>
                 </div>
               </li>
