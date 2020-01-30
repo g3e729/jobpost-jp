@@ -86,6 +86,9 @@ class CompanyController extends BaseController
             apiAbort(404);
         }
 
+
+        $this->company = $this->company->load('features', 'portfolios');
+
         if (in_array(request()->getMethod(), ['PATCH', 'DELETE'])) {
 
             $this->profile = auth()->user()->profile ?? null;
