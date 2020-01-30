@@ -18,6 +18,8 @@ const ProfileProgrammingModal = (props) => {
   const modalData = modal.data;
   const programmingFilter = data.programming_languages;
 
+  debugger
+
   const toggleChange = e => {
     e.persist();
 
@@ -51,6 +53,8 @@ const ProfileProgrammingModal = (props) => {
     if (programmingFilter) {
       let filterTmp = {...programmingFilter};
 
+      console.log('filterTmp :', filterTmp);
+
       for (const key in filterTmp) {
         if (filterTmp.hasOwnProperty(key)) {
           filterTmp[key] =
@@ -59,6 +63,8 @@ const ProfileProgrammingModal = (props) => {
               .skill_rate || 1;
         }
       }
+
+      console.log('filterTmp :', filterTmp);
 
       setFormValues(filterTmp);
     }
