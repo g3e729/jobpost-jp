@@ -134,6 +134,8 @@ class StudentController extends BaseController
                 }
                 break;
             case 4:
+                $seekerService->updateSkills($request);
+
                 $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
                 break;
         }
