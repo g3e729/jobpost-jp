@@ -38,6 +38,7 @@ const JobPage = (props) => {
         setJobData({
           companyAvatar: res.company.avatar,
           companyName: res.company.company_name,
+          companyProfileId: res.company_profile_id,
           time: res.created_at,
           applied: res.applied,
           pills: {

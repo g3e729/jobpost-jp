@@ -1965,6 +1965,7 @@ And you should not feel free to add a new Utility class.
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  color: #393939;
   -webkit-box-flex: 1;
           flex: 1;
   margin-left: 16px;

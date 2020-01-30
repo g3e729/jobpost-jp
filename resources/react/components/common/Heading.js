@@ -10,6 +10,7 @@ import Avatar from '../common/Avatar';
 import Button from '../common/Button';
 import Pill from '../common/Pill';
 import Like from '../../utils/like';
+import generateRoute from '../../utils/generateRoute';
 import { state } from '../../constants/state';
 import { routes, prefix } from '../../constants/routes';
 import { modalType } from '../../constants/config';
@@ -174,9 +175,10 @@ const Heading = (props) => {
             <h2 className="heading__job-title">{title}</h2>
             <div className="heading__job-company">
               <img src={jobData.companyAvatar || avatarPlaceholder} alt=""/>
-              <div className="heading__job-company-name">
-                {jobData.companyName}
-              </div>
+              <Link to={generateRoute(routes.COMPANY_DETAIL, { id: jobData.companyProfileId })}
+                className="button button--link heading__job-company-name">
+                  {jobData.companyName}
+              </Link>
             </div>
             <ul className="heading__job-pills">
               { jobData.pills && jobData.pills.programming_language ? <li className="heading__job-pills-item pill">{jobData.pills.programming_language}</li> : null }
