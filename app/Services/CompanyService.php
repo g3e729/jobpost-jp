@@ -131,7 +131,7 @@ class CompanyService extends BaseService
                 }
             }
 
-            $que = $que->orderBy(request()->get('sort_by', 'company_name'), $sort);
+            $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
             return $this->toReturn($que, $paginated);
         } catch (Exception $e) {

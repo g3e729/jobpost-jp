@@ -47,7 +47,7 @@ class EmployeeService extends BaseService
         return $this->item;
     }
 
-    public function search($fields, $paginated = true)
+    public function search($fields, $paginated = true, $sort = 'ASC')
     {
         try {
             $fields = array_filter($fields);
@@ -63,12 +63,10 @@ class EmployeeService extends BaseService
                         break;
                 }
             }
+            
+            $que = $que->orderBy(request()->get('sort_by', 'created_at'), $sort);
 
-            if ($paginated) {
-                return $que->paginate(config('site_settings.per_page'));
-            }
-
-            return $que->get();
+            return $this->toReturn($que, $paginated);
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return collect([]);

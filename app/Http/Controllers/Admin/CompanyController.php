@@ -17,7 +17,11 @@ class CompanyController extends BaseController
         $prefectures = getPrefecture();
         $industries = Company::getIndustries();
 
-        $companies = (new CompanyService)->search($request->except('page'));
+        $companies = (new CompanyService)->search(
+            $request->except('page'),
+            true,
+            'DESC'
+        );
 
         return view('admin.companies.index', compact('companies', 'industries', 'prefectures'));
     }
