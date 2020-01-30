@@ -77,6 +77,6 @@ class TransactionController extends BaseController
 
     private function requestField($request = null)
     {
-        return request()->only('amount', 'type', 'type_id', 'description');
+        return request()->only('amount', 'type', 'type_id', 'description', 'tickets');
     }
 }
