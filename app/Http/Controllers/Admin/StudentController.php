@@ -86,7 +86,7 @@ class StudentController extends BaseController
                 $languages = $student->getLanguages();
                 $others = $student->getOthers();
                 $programming_languages = $student->getProgrammingLanguages();
-                $rates = skillRate();
+                $rates = experiences();
 
                 $data = array_merge($data, compact(
                     'experiences',

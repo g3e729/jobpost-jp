@@ -74,6 +74,25 @@ if (!function_exists('skillRate')) {
     }
 }
 
+if (!function_exists('experiences')) {
+    function experiences($index = null)
+    {
+        $data = [
+            '1' => 'なし',
+            '2' => '半年以内',
+            '3' => '1年以内',
+            '4' => '1年以上',
+            '5' => '２年以上'
+        ];
+
+        if ($index || $index === 0) {
+            return $data[$index] ?? null;
+        }
+
+        return collect($data);
+    }
+}
+
 if (!function_exists('formatSizeUnits')) {
     function formatSizeUnits($bytes)
     {

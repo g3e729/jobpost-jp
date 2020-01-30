@@ -14,6 +14,8 @@ Route::group([
 
     Route::get('search', 'SearchController@search');
 
+    Route::get('values', 'ValueController@index');
+
     Route::group([
     ], function () {
         Route::get('account', 'AccountController@details');
