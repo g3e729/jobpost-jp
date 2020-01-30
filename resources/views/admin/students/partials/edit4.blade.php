@@ -7,9 +7,22 @@
   <div class="pb-3 row">
     <div class="col-3 font-weight-bold">IT</div>
     <div class="col-9">
-      <button type="button" data-target="js-class-taken" data-title="" id="js-modal-target" class="mb-3 alt-font btn btn-primary btn-sm">編集する</button>
+      <dl class="mb-0">
+        <dt>
+          <button type="button" data-target="js-class-taken" data-title="" id="js-modal-target" class="mb-3 alt-font btn btn-primary btn-sm">編集する</button>
+        </dt>
+        <dd>
+          <dl class="mt-3">
+            @foreach($courses as $index => $name)
+              <dt class="text-muted">{{ $name }}</dt>
+              <dd>{{ skillRate($student->listed_skills[$index] ?? 0) }}</dd>
+            @endforeach
+          </dl>
+        </dd>
 
-      <div id="js-class-taken" class="form-group row">
+      </dl>
+
+      <div id="js-class-taken" class="form-group row" style="display: none;">
         @foreach($courses as $index => $name)
           <div class="col-4 font-weight-bold">{{ ucwords($name) }}</div>
           <div class="col-8 text-right">
@@ -136,12 +149,7 @@
     const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
 
     $(elementsRadio).on('change', (ev) => {
-      let currActive = ev.currentTarget.value;
-      let actualActive;
-
-      if (currActive == 0) { actualActive = 2; }
-      else if (currActive == 1) { actualActive = 1; }
-      else { actualActive = 0; }
+      const actualActive = ev.currentTarget.value;
 
       let elementInput = ev.currentTarget.name;
       let elementsGroup = elementForm.querySelectorAll(`[name="${elementInput}"]`);
