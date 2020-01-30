@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Button from '../common/Button';
 import Loading from '../common/Loading';
 import { state } from '../../constants/state';
+import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 
@@ -11,6 +13,7 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
 const ScoutsList = ({data}) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [currentItem, setCurrentItem] = useState(null);
   const [jobsTmp, setJobsTmp] = useState([]);
@@ -18,6 +21,13 @@ const ScoutsList = ({data}) => {
 
   const handleClick = (id) => {
     dispatch(setModal(modalType.STUDENT_SCOUT, {id, text: localStorage.getItem('seeker_name')}));
+  }
+
+  const handleOpenChat = (item) => {
+    history.push({
+      pathname: routes.MESSAGES,
+      state: { activeChannel: item.applicants[0].chat_channel.id || 0 }
+    });
   }
 
   useEffect(_ => {
@@ -91,7 +101,7 @@ const ScoutsList = ({data}) => {
               </dl>
               <div className={`scouts__action ${currentItem === item.id ? state.ACTIVE : ''}`}>
                 { item.isScouted ? (
-                  <Button className="button--message">
+                  <Button className="button--message" onClick={_ => handleOpenChat(item)}>
                     メッセージ
                   </Button>
                 ) : (

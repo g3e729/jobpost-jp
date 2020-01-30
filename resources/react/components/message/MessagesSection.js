@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import _ from 'lodash';
 import { useDispatch, connect } from 'react-redux';
 
 import Avatar from '../common/Avatar';
@@ -50,15 +51,16 @@ const MessagesSection = (props) => {
     setMessageValue(e.target.value);
   }
 
-  useEffect(_ => {
+  useEffect(() => {
     setAcceptedTerm(false);
 
-    if (messagesData.length && messages.activeChannel) {
+    if (!_.isEmpty(messagesData) && messages.activeChannel) {
       setCurrentChannel(messages.activeChannel)
       setMessagesList(messagesData.find(item => item.id === messages.activeChannel) || messagesData[0]);
 
-      if (messagesData.find(item => item.id === messages.activeChannel).messages.length) {
-        setAcceptedTerm(true)
+      if (messagesData.find(item => item.id === messages.activeChannel) &&
+        messagesData.find(item => item.id === messages.activeChannel).messages.length) {
+          setAcceptedTerm(true)
       }
     }
   }, [messages, messagesData])
