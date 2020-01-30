@@ -3105,6 +3105,7 @@ And you should not feel free to add a new Utility class.
   width: 100%;
   -webkit-box-flex: 1;
           flex: 1;
+  border-top: solid 1px #f2f2f0;
 }
 
 .messages-section__header {

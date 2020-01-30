@@ -67,15 +67,17 @@ const MessagesSection = (props) => {
 
   return (
     <div className="messages-section">
-      <h3 className="messages-section__header">{isLoading ? null : (
-        accountType === 'company' ? messagesList.chattable.applicant.display_name : messagesList.chattable.employer.display_name
-      )}</h3>
+      { messagesList.length ? (
+        <h3 className="messages-section__header">{isLoading ? null : (
+          accountType === 'company' ? messagesList.chattable.applicant.display_name : messagesList.chattable.employer.display_name
+        )}</h3>
+      ) : null }
       <div className="messages-section__main">
         <ul className="messages-section__main-list">
           { isLoading ? (
             <Loading className="loading--padded loading--center" />
           ) : (
-            messagesList && messagesList.messages.length ? (
+            messagesList.length && messagesList.messages.length ? (
               messagesList.messages.map(item => (
                 <li className="messages-section__main-list-item" key={item.id}>
                   <div className={`message ${item.user_id == accountId ? 'message--right' : ''}`}>
@@ -99,7 +101,7 @@ const MessagesSection = (props) => {
           )}
         </ul>
         { isLoading ? null : (
-          acceptedTerm || messagesList && messagesList.messages.length && messagesList.length ? (
+          acceptedTerm || messagesList.length && messagesList.messages.length && messagesList.length ? (
             <div className="messages-section__main-form">
               <form className="messages-section__main-form-main" onSubmit={_ => handleSubmit()}>
                 <Input className="messages-section__main-form-input"
@@ -118,15 +120,17 @@ const MessagesSection = (props) => {
               </form>
             </div>
           ) : (
-            isPosting && !acceptedTerm ? null : (
-              <div className="messages-section__main-footer">
-                <p className="messages-section__main-footer-intro">
-                  返信をするには「名前」、「画像」、「動画」、「生年月日」を公開する必要があります。
-                </p>
-                <Button className="button--large" onClick={_ => setAcceptedTerm(true) }>
-                  公開する
-                </Button>
-              </div>
+            isPosting && !acceptedTerm? null : (
+              messagesList.length ? (
+                <div className="messages-section__main-footer">
+                  <p className="messages-section__main-footer-intro">
+                    返信をするには「名前」、「画像」、「動画」、「生年月日」を公開する必要があります。
+                  </p>
+                  <Button className="button--large" onClick={_ => setAcceptedTerm(true) }>
+                    公開する
+                  </Button>
+                </div>
+              ) : null
             )
           )
         )}
