@@ -130,6 +130,7 @@ class SeekerService extends BaseService
     {
         $student_skills = $this->item->skills;
         $skills = array_merge(
+            $this->item->getCourses()->toArray(),
             $this->item->getEnglishLevels()->toArray(),
             $this->item->getExperiences()->toArray(),
             $this->item->getFrameworks()->toArray(),

@@ -9,7 +9,7 @@
     <div class="col-9">
       <button type="button" data-target="js-class-taken" data-title="" id="js-modal-target" class="mb-3 alt-font btn btn-primary btn-sm">編集する</button>
 
-      <div id="js-class-taken" class="form-group row" style="display: none;">
+      <div id="js-class-taken" class="form-group row">
         @foreach($courses as $index => $name)
           <div class="col-4 font-weight-bold">{{ ucwords($name) }}</div>
           <div class="col-8 text-right">
@@ -19,7 +19,7 @@
                   $skill_rate = isset($student->listed_skills[$index]) ? $student->listed_skills[$index] : 0;
                 @endphp
                 <label class="alt-font btn btn-light {{ $skill_rate == $rate ? 'active' : ''}}">
-                    <input type="radio" name="{{ $rate }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
+                    <input type="radio" name="{{ $index }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
                 </label>
               @endforeach
             </div>
@@ -136,7 +136,12 @@
     const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
 
     $(elementsRadio).on('change', (ev) => {
-      const actualActive = ev.currentTarget.value;
+      let currActive = ev.currentTarget.value;
+      let actualActive;
+
+      if (currActive == 0) { actualActive = 2; }
+      else if (currActive == 1) { actualActive = 1; }
+      else { actualActive = 0; }
 
       let elementInput = ev.currentTarget.name;
       let elementsGroup = elementForm.querySelectorAll(`[name="${elementInput}"]`);

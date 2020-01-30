@@ -82,16 +82,16 @@ class SeekerProfile extends Model
     ];
 
     static protected $courses = [
-        1  => 'Basic',
-        2  => 'Rails Standard',
-        3  => 'Rails Advance',
-        4  => 'Rails Expert',
-        5  => 'Develop Standard',
-        6  => 'Develop Advance',
-        7  => 'Design Standard',
-        8  => 'Design Advance',
-        9  => 'Python Standard',
-        10 => 'Python Advance'
+        'cbs' => 'Basic',
+        'crs' => 'Rails Standard',
+        'cra' => 'Rails Advance',
+        'cre' => 'Rails Expert',
+        'cds' => 'Develop Standard',
+        'cda' => 'Develop Advance',
+        'cds' => 'Design Standard',
+        'cda' => 'Design Advance',
+        'cps' => 'Python Standard',
+        'cpa' => 'Python Advance'
     ];
 
     static protected $student_status = [
