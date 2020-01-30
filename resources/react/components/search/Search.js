@@ -77,7 +77,7 @@ const Search = _ => {
         </TabList>
 
         <TabPanel className="search-tab__panel">
-          <h3 className="search-tab__panel-title">で検索 {searchTerm}</h3>
+          <h3 className="search-tab__panel-title">{searchTerm} で検索</h3>
 
           <div className="search-tab__panel-content">
             <div className="search-tab__panel-content-top">
