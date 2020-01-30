@@ -82,14 +82,15 @@ class RegisterController extends Controller
 
     private function company($step, $request)
     {
+        $companyService = (new CompanyService);
+
         switch ($step) {
             case 1:
-                $profile = (new CompanyService)->create(
+                $profile = $companyService->create(
                     $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
                 break;
             case 2:
-                $companyService = (new CompanyService);
                 $profile = $companyService->find(session('profile_id', 0));
 
                 $profile->user->update($request->only('password'));
@@ -97,15 +98,15 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
-
-                if ($request->has('avatar')) {
-                    $companyService->acPhotoUploader($request->avatar);
-                }
-
-                if ($request->has('cover_photo')) {
-                    $companyService->acPhotoUploader($request->cover_photo, 'cover_photo');
-                }
                 break;
+        }
+
+        if ($request->has('avatar')) {
+            $companyService->acPhotoUploader($request->avatar);
+        }
+
+        if ($request->has('cover_photo')) {
+            $companyService->acPhotoUploader($request->cover_photo, 'cover_photo');
         }
 
         return $profile;
@@ -113,14 +114,15 @@ class RegisterController extends Controller
 
     private function employee($step, $request)
     {
+        $employeeService = (new EmployeeService);
+
         switch ($step) {
             case 1:
-                $profile = (new EmployeeService)->create(
+                $profile = $employeeService->create(
                     $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
                 break;
             case 2:
-                $employeeService = (new EmployeeService);
                 $profile = $employeeService->find(session('profile_id', 0));
 
                 $profile->user->update($request->only('password'));
@@ -128,11 +130,11 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
-
-                if ($request->has('avatar')) {
-                    $employeeService->acPhotoUploader($request->avatar);
-                }
                 break;
+        }
+
+        if ($request->has('avatar')) {
+            $employeeService->acPhotoUploader($request->avatar);
         }
 
         return $profile;
@@ -140,14 +142,15 @@ class RegisterController extends Controller
 
     private function student($step, $request)
     {
+        $seekerService = (new SeekerService);
+                
         switch ($step) {
             case 1:
-                $profile = (new SeekerService)->create(
+                $profile = $seekerService->create(
                     $request->except('_token', 'step', 'code', 'password_confirmation', 'type')
                 );
                 break;
             case 2:
-                $seekerService = (new SeekerService);
                 $profile = $seekerService->find(session('profile_id', 0));
 
                 $profile->user->update($request->only('password'));
@@ -155,11 +158,11 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
-
-                if ($request->has('avatar')) {
-                    $seekerService->acPhotoUploader($request->avatar);
-                }
                 break;
+        }
+
+        if ($request->has('avatar')) {
+            $seekerService->acPhotoUploader($request->avatar);
         }
 
         return $profile;

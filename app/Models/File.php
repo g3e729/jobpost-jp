@@ -28,7 +28,7 @@ class File extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->uploader_id = auth()->user()->id;
+            $model->uploader_id = auth()->user()->id ?? null;
         });
         static::deleting(function ($model) {
             Storage::disk('s3')->delete($model->url);
