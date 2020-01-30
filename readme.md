@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="https://kredo.jp/">
-		<img src="http://kredo.local/img/logo-kredo-vertical.png">
+		<img src="https://github.com/Kredo-It-Abroad/Kredo-Career/blob/master/public/images/logo-kredo-horizontal.png">
 	</a>
 </p>
 

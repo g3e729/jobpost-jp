@@ -20,7 +20,9 @@
             <div class="row">
               <div class="col-6 card-form-left d-flex align-items-center pr-0">
                 <div class="card-form-side text-center w-100">
-                  <img src="{{ asset('img/logo-kredo-vertical.png') }}" alt="Kredo" class="mb-5 pb-5" style="max-width: 112px;">
+                  <a href="{{ route('top.page') }}">
+                    <img src="{{ asset('img/logo-kredo-vertical.png') }}" alt="Kredo" class="mb-5 pb-5" style="max-width: 112px;">
+                  </a>
                 </div>
               </div>
 
