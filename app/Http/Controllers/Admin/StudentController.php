@@ -106,6 +106,8 @@ class StudentController extends BaseController
 
     public function update(Student $student, StudentRequest $request)
     {
+
+        dd($request->all());
         $seekerService = new SeekerService($student);
 
         switch ($request->get('step')) {
@@ -134,6 +136,8 @@ class StudentController extends BaseController
                 }
                 break;
             case 4:
+                $seekerService->updateSkills($request);
+
                 $seekerService->update($request->except('_token', '_method', 'email', 'japanese_name', 'name'));
                 break;
         }
