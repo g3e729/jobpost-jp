@@ -25,6 +25,7 @@ class StudentController extends BaseController
 
     public function show(Student $student)
     {
+        $courses = $student->getCourses();
         $experiences = Student::getExperiences();
         $frameworks = Student::getFrameworks();
         $languages = Student::getLanguages();
@@ -32,6 +33,7 @@ class StudentController extends BaseController
         $programming_languages = Student::getProgrammingLanguages();
 
         return view('admin.students.show', compact(
+                'courses',
                 'experiences',
                 'frameworks',
                 'languages',
@@ -106,6 +108,7 @@ class StudentController extends BaseController
 
     public function update(Student $student, StudentRequest $request)
     {
+        // dd($request->all());
         $seekerService = new SeekerService($student);
 
         switch ($request->get('step')) {
