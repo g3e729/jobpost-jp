@@ -97,15 +97,15 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
-
-                if ($request->has('avatar')) {
-                    $companyService->acPhotoUploader($request->avatar);
-                }
-
-                if ($request->has('cover_photo')) {
-                    $companyService->acPhotoUploader($request->cover_photo, 'cover_photo');
-                }
                 break;
+        }
+
+        if ($request->has('avatar')) {
+            $companyService->acPhotoUploader($request->avatar);
+        }
+
+        if ($request->has('cover_photo')) {
+            $companyService->acPhotoUploader($request->cover_photo, 'cover_photo');
         }
 
         return $profile;
@@ -128,11 +128,11 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
-
-                if ($request->has('avatar')) {
-                    $employeeService->acPhotoUploader($request->avatar);
-                }
                 break;
+        }
+
+        if ($request->has('avatar')) {
+            $employeeService->acPhotoUploader($request->avatar);
         }
 
         return $profile;
@@ -155,11 +155,11 @@ class RegisterController extends Controller
                 $profile->update(
                     $request->except('_token', 'code', 'email', 'password_confirmation', 'step', 'type')
                 );
-
-                if ($request->has('avatar')) {
-                    $seekerService->acPhotoUploader($request->avatar);
-                }
                 break;
+        }
+
+        if ($request->has('avatar')) {
+            $seekerService->acPhotoUploader($request->avatar);
         }
 
         return $profile;
