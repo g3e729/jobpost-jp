@@ -62,7 +62,7 @@ class ChatChannel extends Model
 
     public function getTitleAttribute()
     {
-        return $this->chattable->job_post->title;
+        return $this->chattable->job_post->title ?? '';
     }
 
     public function getImgAttribute()

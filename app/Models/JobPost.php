@@ -107,7 +107,9 @@ class JobPost extends Model
 
     public function scopeNumberApplicants($query)
     {
-        return $query->with('applicants')->withCount(['applicants']);
+        return $query->with(['applicants' => function ($q) {
+        	$q->with('chat_channel');
+        }])->withCount(['applicants']);
     }
 
     // Attributes
