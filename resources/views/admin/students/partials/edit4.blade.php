@@ -7,16 +7,26 @@
   <div class="pb-3 row">
     <div class="col-3 font-weight-bold">IT</div>
     <div class="col-9">
-      <div class="form-group position-relative">
-        <label for="formITAttended" class="form-label pt-0">受講済み</label>
-        <select class="form-control" id="formITAttended" name="taken_id">
-          <option value="" selected hidden disabled>Choose Attended class</option>
-          @foreach($courses as $index => $name)
-          <option value="{{ $index }}" {{ ($index == $student->taken_id) ? 'selected' : null }}>{{ ucwords($name) }}</option>
-          @endforeach
-        </select>
+      <button type="button" data-target="js-class-taken" data-title="" class="js-modal-target mb-3 alt-font btn btn-primary btn-sm">編集する</button>
+
+      <div id="js-class-taken" class="form-group row">
+        @foreach($courses as $index => $name)
+          <div class="col-4 font-weight-bold">{{ ucwords($name) }}</div>
+          <div class="col-8 text-right">
+            <div class="js-btn-group btn-group btn-group-toggle" data-toggle="buttons">
+              @foreach($rates as $rate => $text)
+                @php
+                  $skill_rate = isset($student->listed_skills[$index]) ? $student->listed_skills[$index] : 0;
+                @endphp
+                <label class="alt-font btn btn-light {{ $skill_rate == $rate ? 'active' : ''}}">
+                    <input type="radio" name="{{ $index }}" value="{{ $rate }}" autocomplete="off" {{ $skill_rate == $rate ? 'checked' : ''}}/> {{ $text }}
+                </label>
+              @endforeach
+            </div>
+          </div>
+        @endforeach
       </div>
-      
+
       <div class="form-group position-relative">
         <label for="formITCurrent" class="form-label pt-0">受講中</label>
         <select class="form-control" id="formITCurrent" name="course_id">
@@ -82,3 +92,77 @@
     </div>
   </div>
 </form>
+
+<div class="modal fade" id="js-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="alt-font btn btn-secondary" data-dismiss="modal">キャンセル</button>
+        <button id="js-modal-submit" type="button" class="alt-font btn btn-primary">確認する</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const targetButtons = document.querySelectorAll('.js-modal-target');
+  const modalSubmit = document.querySelector('#js-modal-submit');
+  const modal = document.querySelector('#js-modal');
+  const elementForm = document.forms['editForm'];
+  const pageButtons = [...targetButtons];
+
+  pageButtons.forEach(btn => {
+    btn.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      let title = this.dataset.title;
+      let target = this.dataset.target;
+      let elementTarget = document.querySelector(`#${target}`);
+      let elementClone = elementTarget.cloneNode(true);
+      elementClone.style.display = 'flex';
+
+      modal.querySelector('.modal-title').textContent = title;
+      modal.querySelector('.modal-body').textContent = null;
+      modal.querySelector('.modal-body').appendChild(elementClone);
+
+      $(modal).modal('show');
+
+      const elementModal = modal.querySelector('.modal-body');
+      const elementsRadio = elementModal.querySelectorAll('input[type="radio"]');
+
+      $(elementsRadio).on('change', (ev) => {
+        let currActive = ev.currentTarget.value;
+        let actualActive;
+        if (currActive == 0) { ctualActive = 2; }
+        else if (currActive == 1) { actualActive = 1; }
+        else { actualActive = 0; }
+
+        let elementInput = ev.currentTarget.name;
+        let elementsGroup = elementForm.querySelectorAll(`[name=${elementInput}]`);
+        let elementsParent = [...elementsGroup].map(e => e.parentNode);
+
+        elementsParent.forEach((el, idx) => {
+          el.classList.remove('active');
+          el.children[0].removeAttribute('checked');
+
+          if (idx == actualActive) {
+            el.classList.add('active');
+            el.children[0].setAttribute('checked', 'checked');
+          }
+        });
+      });
+    })
+  });
+
+  modalSubmit.addEventListener('click', function(event) {
+    $(modal).modal('hide');
+    elementForm.submit();
+  });
+</script>

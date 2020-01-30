@@ -55,6 +55,7 @@ class StudentController extends BaseController
                 $occupations = $student->getOccupations();
                 $prefectures = getPrefecture();
                 $student_status = $student->getStudentStatus();
+                $rates = skillRate();
 
                 $data = array_merge($data, compact(
                     'courses',
@@ -62,6 +63,7 @@ class StudentController extends BaseController
                     'english_levels',
                     'occupations',
                     'prefectures',
+                    'rates',
                     'student_status'
                 ));
                 break;
