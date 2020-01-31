@@ -64,8 +64,6 @@ const RecruitmentForm = ({filters}) => {
   const eyecatchRef = createRef();
   const data = (filters.filtersData && filters.filtersData.jobs);
 
-  console.log('data :', data);
-
   const handleChange = e => {
     e.persist();
 
@@ -238,6 +236,7 @@ const RecruitmentForm = ({filters}) => {
 
   useEffect(_ => {
     if (data) {
+      console.log('data :', data);
       setRegionsFilter(Object.keys(data.regions).map((item, idx) => {
         return {value: item, label: Object.values(data.regions)[idx]};
       }));
@@ -246,16 +245,16 @@ const RecruitmentForm = ({filters}) => {
         return {value: item, label: Object.values(data.status)[idx]};
       }));
 
-      setPositionsFilter(data.positions.map(item => {
-        return { value: item, label: item };
+      setPositionsFilter(Object.entries(data.positions).map(item => {
+        return { value: item[0], label: item[1] };
       }));
 
-      setProgrammingFilter(data.programming_languages.map(item => {
-        return { value: item, label: item };
+      setProgrammingFilter(Object.entries(data.programming_languages).map(item => {
+        return { value: item[0], label: item[1] };
       }));
 
-      setFrameworksFilter(data.frameworks.map(item => {
-        return { value: item, label: item };
+      setFrameworksFilter(Object.entries(data.frameworks).map(item => {
+        return { value: item[0], label: item[1] };
       }));
 
       setDatabaseFilter(Object.keys(data.databases).map((item, idx) => {

@@ -43,12 +43,12 @@ const JobsFilter = (props) => {
 
   useEffect(_ => {
     if (data) {
-      setPositionsFilter(data.positions.map(item => {
-        return { value: item, label: item };
+      setPositionsFilter(Object.entries(data.positions).map(item => {
+        return { value: item[0], label: item[1] };
       }));
 
-      setProgrammingFilter(data.programming_languages.map(item => {
-        return { value: item, label: item };
+      setProgrammingFilter(Object.entries(data.programming_languages).map(item => {
+        return { value: item[0], label: item[1] };
       }));
 
       setRegionsFilter(Object.keys(data.regions).map((item, idx) => {

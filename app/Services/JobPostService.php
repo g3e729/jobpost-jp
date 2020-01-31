@@ -224,11 +224,11 @@ class JobPostService extends BaseService
         // $programming_languages = $jobs->groupBy(function ($item, $key) {
         //     return $item->programming_language;
         // })->keys();
-        
-        
-        $frameworks = SeekerProfile::getProgrammingLanguages();
-        $positions = SeekerProfile::getPositions();
-        $programming_languages = SeekerProfile::getProgrammingLanguages();
+
+
+        $frameworks = SeekerProfile::getProgrammingLanguages()->toArray();
+        $positions = SeekerProfile::getPositions()->toArray();
+        $programming_languages = SeekerProfile::getProgrammingLanguages()->toArray();
 
         $regions = getPrefecture();
 
