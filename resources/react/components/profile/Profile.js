@@ -341,9 +341,12 @@ const Profile = (props) => {
                       .filter(item => {
                         return (programmingFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
+                      .map(item => {
+                        return { ...item, name: programming_languages[`${item.skill_id}`]}
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">{Object.values(programming_languages)[idx]}</dt>
+                          <dt className="profile__data-skills-term">{item.name}</dt>
                           <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
                         </React.Fragment>
                       ))
@@ -369,9 +372,12 @@ const Profile = (props) => {
                       .filter(item => {
                         return (frameworkFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
+                      .map(item => {
+                        return { ...item, name: frameworks[`${item.skill_id}`]}
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">{Object.values(frameworks)[idx]}</dt>
+                          <dt className="profile__data-skills-term">{item.name}</dt>
                           <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
                         </React.Fragment>
                       ))
@@ -397,9 +403,12 @@ const Profile = (props) => {
                       .filter(item => {
                         return (otherFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
+                      .map(item => {
+                        return { ...item, name: others[`${item.skill_id}`]}
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">{Object.values(others)[idx]}</dt>
+                          <dt className="profile__data-skills-term">{item.name}</dt>
                           <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
                         </React.Fragment>
                       ))
@@ -425,9 +434,12 @@ const Profile = (props) => {
                       .filter(item => {
                         return (experienceFilter.includes(item.skill_id) && item.skill_rate > 1)
                       })
+                      .map(item => {
+                        return { ...item, name: experiences[`${item.skill_id}`]}
+                      })
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">{Object.values(experiences)[idx]}</dt>
+                          <dt className="profile__data-skills-term">{item.name}</dt>
                           <dd className="profile__data-skills-data">{skills[item.skill_rate]}</dd>
                         </React.Fragment>
                       ))
@@ -491,7 +503,7 @@ const Profile = (props) => {
                 <div className="profile__main-list-item-box">
                   <h3 className="profile__main-list-item-heading">ポートフォリオ</h3>
                   { isEdit ? (
-                    <Button className={`button--pill ${data.portfolios && data.portfolios.length > 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
+                    <Button className={`button--pill ${data.portfolios && data.portfolios.length >= 3 ? state.DISABLED : ''}`} onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO)}>
                       <>
                         <i className="icon icon-plus text-dark-yellow"></i>
                         追加
