@@ -70,7 +70,7 @@ const Heading = (props) => {
     const formdata = new FormData();
 
     if (accountType === 'student') {
-      formdata.append('name', value || '');
+      formdata.append('japanese_name', value || '');
     }
     else {
       formdata.append('company_name', value || '');
