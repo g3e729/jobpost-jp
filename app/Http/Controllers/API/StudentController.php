@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\SeekerProfile;
 use App\Services\SeekerService as ModelService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
@@ -78,6 +79,14 @@ class StudentController extends BaseController
 
         if ($id) {
             $this->student = (new ModelService)->show($id);
+            $courses = [];
+
+            foreach ($this->student->getCourses() as $id => $course) {
+                $course = skillRate($this->student->listed_skills[$id] ?? 0);
+                $courses[$id] = $course;
+            }
+
+            $this->student->courses = $courses;
 
             if (!$this->student) {
                 apiAbort(404);
