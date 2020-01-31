@@ -2679,6 +2679,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-flex: 0;
           flex: 0 0 280px;
   align-self: stretch;
+  min-height: 969px;
 }
 
 @media screen and (max-width: 768px) {

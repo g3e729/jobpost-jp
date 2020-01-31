@@ -576,7 +576,7 @@ const Profile = (props) => {
                 <dt className="profile__sidebar-content-basic-term">性別</dt>
                 <dd className="profile__sidebar-content-basic-data">{sex[`${data.sex}`]}</dd>
                 <dt className="profile__sidebar-content-basic-term">住所</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.address1}</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.address1} {data.address2} {data.address3} {data.display_prefecture}</dd>
                 <dt className="profile__sidebar-content-basic-term">ステータス</dt>
                 <dd className="profile__sidebar-content-basic-data">{data.student_status}</dd>
               </dl>
