@@ -56,7 +56,7 @@ class NotificationController extends BaseController
         );
 
         return redirect()->back()
-            ->withSuccess("Success! Notication sent to {$total} users and will be notified on {$notification->published_at->format('Y年m月d日')}!");
+            ->withSuccess("Success! Notication sent to {$total} users!");
     }
 
     public function update(Notification $notification, Request $request)
