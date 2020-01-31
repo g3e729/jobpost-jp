@@ -59,7 +59,7 @@ const MessagesSection = (props) => {
       setMessagesList(messagesData.find(item => item.id === messages.activeChannel) || messagesData[0]);
 
       if (messagesData.find(item => item.id === messages.activeChannel) &&
-        messagesData.find(item => item.id === messages.activeChannel).messages.length) {
+        messagesData.find(item => item.id === messages.activeChannel).chat_channel.messages.length) {
           setAcceptedTerm(true)
       }
     }
@@ -69,7 +69,7 @@ const MessagesSection = (props) => {
     <div className="messages-section">
       { !_.isEmpty(messagesList) ? (
         <h3 className="messages-section__header">{isLoading ? null : (
-          accountType === 'company' ? messagesList.chattable.applicant.display_name : messagesList.chattable.employer.display_name
+          accountType === 'company' ? messagesList.applicant.display_name : messagesList.employer.display_name
         )}</h3>
       ) : null }
       <div className="messages-section__main">
@@ -77,19 +77,19 @@ const MessagesSection = (props) => {
           { isLoading ? (
             <Loading className="loading--padded loading--center" />
           ) : (
-            !_.isEmpty(messagesList) && messagesList.messages.length ? (
-              messagesList.messages.map(item => (
+            !_.isEmpty(messagesList) && messagesList.chat_channel.messages.length ? (
+              messagesList.chat_channel.messages.map(item => (
                 <li className="messages-section__main-list-item" key={item.id}>
                   <div className={`message ${item.user_id == accountId ? 'message--right' : ''}`}>
                     <div className="message__avatar">
                       <Avatar className="avatar--message"
-                        style={{ backgroundImage: `url("${item.user_id == accountId ? (accountType === 'company' ? messagesList.chattable.employer.avatar : messagesList.chattable.applicant.avatar) : (accountType === 'company' ? messagesList.chattable.applicant.avatar : messagesList.chattable.employer.avatar)}")`
+                        style={{ backgroundImage: `url("${item.user_id == accountId ? (accountType === 'company' ? messagesList.employer.avatar : messagesList.applicant.avatar) : (accountType === 'company' ? messagesList.applicant.avatar : messagesList.employer.avatar)}")`
                         }}
                       />
                     </div>
                     <div className="message__main">
                       <h4 className="message__name">
-                        {item.user_id == accountId ? (accountType === 'company' ? messagesList.chattable.employer.display_name : messagesList.chattable.applicant.display_name) : (accountType === 'company' ? messagesList.chattable.applicant.display_name : messagesList.chattable.employer.display_name)}
+                        {item.user_id == accountId ? (accountType === 'company' ? messagesList.employer.display_name : messagesList.applicant.display_name) : (accountType === 'company' ? messagesList.applicant.display_name : messagesList.employer.display_name)}
                       </h4>
                       <time className="message__time">{moment(item.created_at).format('YYYY-MM-DD HH:mm')}</time>
                       <p className="message__text">{item.content}</p>
@@ -101,7 +101,7 @@ const MessagesSection = (props) => {
           )}
         </ul>
         { isLoading ? null : (
-          acceptedTerm || !_.isEmpty(messagesList) && messagesList.messages.length && messagesList.length ? (
+          acceptedTerm || !_.isEmpty(messagesList) && messagesList.chat_channel.messages.length ? (
             <div className="messages-section__main-form">
               <form className="messages-section__main-form-main" onSubmit={_ => handleSubmit()}>
                 <Input className="messages-section__main-form-input"

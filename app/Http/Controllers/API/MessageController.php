@@ -18,7 +18,7 @@ class MessageController extends BaseController
         $profile = auth()->user()->profile ?? null;
         $que = (new Applicant)->with(['chat_channel' => function ($q) {
             $q->with('chats');
-        }])->whereHas('chat_channel');
+        }, 'applicant'])->whereHas('chat_channel');
 
         if ($profile instanceof SeekerProfile) {
             $que = $que->where('seeker_profile_id', $profile->id);
