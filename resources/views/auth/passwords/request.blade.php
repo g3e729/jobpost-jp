@@ -29,7 +29,7 @@
     <div class="form-group row">
       <div class="col-6 pt-4 mt-1 mx-auto">
         <div class="card-actions text-center">
-          <button type="submit" class="btn btn-capsule btn-rounded w-100">{{ __('リンクを送信')}}</button>
+          <button type="submit" class="btn btn-capsule btn-rounded w-100">{{ __('送信')}}</button>
           <a class="btn btn-link text-warning my-3 p-0" href="{{ route('login') }}">
             <small>{{ __('ログイン') }}</small>
           </a>

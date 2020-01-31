@@ -457,7 +457,7 @@ const Profile = (props) => {
             <ul className="profile__main-list profile__main-list--half">
               <li className="profile__main-list-item">
                 <div className="profile__main-list-item-box">
-                  <h3 className="profile__main-list-item-heading">話し言葉</h3>
+                  <h3 className="profile__main-list-item-heading">話せる言語</h3>
                   { isEdit ?
                     <EdiText
                       submitOnEnter

@@ -106,9 +106,9 @@ const StudentScoutModal = ({user, modal}) => {
               スカウトするには購入する必要があります。`}
             </p>
             <div className="modal__content-pills">
-              <Button className={`modal__content-pills-button ${ticketIndex === 1 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(1)}>3枚</Button>
-              <Button className={`modal__content-pills-button ${ticketIndex === 2 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(2)}>10枚</Button>
-              <Button className={`modal__content-pills-button ${ticketIndex === 3 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(3)}>30枚</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 1 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(1)}>3枚:￥10,000</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 2 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(2)}>10枚:￥90,000</Button>
+              <Button className={`modal__content-pills-button ${ticketIndex === 3 ? state.DISABLED : 'button--pill'}`} onClick={_ => setTicketIndex(3)}>30枚:￥250,000</Button>
             </div>
           </>
         )}

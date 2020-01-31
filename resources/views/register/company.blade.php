@@ -220,7 +220,7 @@
       </div>
 
       <div class="pb-1 row">
-        <div class="col pr-0 pt-2">プロフィール</div>
+        <div class="col pr-0 pt-2">SNSアカウント</div>
         <div class="col-8">
           <div class="form-group position-relative">
             <input type="url" class="form-control rounded-0" id="formFacebook" name="social_media[facebook]" value="{{ old('social_media[facebook]') }}" placeholder="Facebook">
