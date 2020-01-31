@@ -27,7 +27,7 @@ class MessageController extends BaseController
             $que = $que->whereIn('job_post_id', $job_ids);
         }
 
-        return $que->paginate(config('site_settings.per_page'));
+        return $que->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
     }
 
     public function show(ChatChannel $message)

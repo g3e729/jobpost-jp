@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\ChatChannel;
 use App\Models\CompanyProfile;
 use App\Models\JobPost;
 use App\Models\Notification;
@@ -196,6 +197,35 @@ class NotificationService extends BaseService
                     $title .= ' さんがあなたのあなたの求人に応募しました';
                     $users[] = $model->employer->user;
                 }
+
+                $this->sendNotifs($users, compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function chatTrigger($model)
+    {
+        try {
+            $users = [];
+            if (auth()->user()) {
+                $initiator = auth()->user();
+
+                $user_ids = $model->channel->chat_status()
+                    ->where('user_id', '!=', [1, auth()->user()->id])
+                    ->get()
+                    ->pluck('user_id')
+                    ->toArray();
+
+                $users = User::whereIn('id', $user_ids)->get();
+
+                $title = $initiator->profile->display_name . " さんからメッセージが届きました。";
+                $description = '';
+                $about_id = $model->id;
+                $about_type = ChatChannel::class;
+                $group_id = substr(md5(now()), 0, 8);
 
                 $this->sendNotifs($users, compact('title', 'description', 'about_type', 'about_id', 'group_id'));
             }

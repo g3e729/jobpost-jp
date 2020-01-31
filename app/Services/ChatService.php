@@ -68,6 +68,10 @@ class ChatService extends BaseService
 
         $this->item->touch();
 
+        if ($this->item->chattable) {
+            $this->item->chattable->touch();
+        }
+
         $model = $this->item->chattable;
 
         if ($model instanceof Applicant) {
