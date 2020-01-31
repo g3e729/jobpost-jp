@@ -54,17 +54,17 @@ const Footer = _ => {
 
         <ul className="footer__sns">
           <li className="footer__sns-item">
-            <a href="#" target="_blank">
+            <a href="https://www.instagram.com/kredo_it_abroad/" target="_blank">
               <i className="icon icon-twitter"></i>
             </a>
           </li>
           <li className="footer__sns-item">
-            <a href="#" target="_blank">
+            <a href="https://www.facebook.com/kredoitabroad/" target="_blank">
               <i className="icon icon-facebook"></i>
             </a>
           </li>
           <li className="footer__sns-item">
-            <a href="#" target="_blank">
+            <a href="https://twitter.com/Kredo_IT_Abroad" target="_blank">
               <i className="icon icon-instagram"></i>
             </a>
           </li>
