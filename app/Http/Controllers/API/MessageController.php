@@ -17,14 +17,14 @@ class MessageController extends BaseController
         $profile = auth()->user()->profile ?? null;
 
         if ($profile instanceof SeekerProfile) {
-            return ChatChannel::whereHasMorph('chattable', function ($q) use ($profile) {
+            return ChatChannel::with(['chattable' => function ($q) use ($profile) {
                 $q->where('seeker_profile_id', $profile->id);
-            })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+            }])->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
         } elseif ($profile instanceof CompanyProfile) {
-            return ChatChannel::whereHasMorph('chattable', function ($q) use ($profile) {
+            return ChatChannel::with(['chattable' => function ($q) use ($profile) {
                 $job_ids = $profile->jobPosts()->get()->pluck('id')->toArray();
                 $q->whereIn('job_post_id', $job_ids);
-            })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+            }])->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
         }
 
         return [];

@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Queue\SerializesModels;
+
 class ChatChannel extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, SerializesModels;
 
     protected $dates = [
         'created_at',
@@ -57,7 +59,7 @@ class ChatChannel extends Model
 
     public function getRecipientAttribute()
     {
-        return $this->chattable->applicant;
+        return $this->chattable->applicant ?? null;
     }
 
     public function getTitleAttribute()
