@@ -220,7 +220,13 @@
 
     <div class="form-group row">
       <div class="col-6 pt-4 mx-auto">
-        <button type="submit" class="btn btn-capsule btn-rounded w-100">ログイン</button>
+        <button type="submit" class="btn btn-capsule btn-rounded w-100">
+          @if ($step == 1)
+            次のページ
+          @else
+            新規作成
+          @endif
+        </button>
       </div>
     </div>
 
