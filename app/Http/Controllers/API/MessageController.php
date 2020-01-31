@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\ChatChannel;
+use App\Models\CompanyProfile;
+use App\Models\SeekerProfile;
 use App\Services\ChatService;
 use App\Services\UserService;
 use Illuminate\Routing\Controller as BaseController;
@@ -12,11 +14,20 @@ class MessageController extends BaseController
 {
     public function index()
     {
-        // return ChatChannel::whereHas('chats', function ($q) {
-        // 	$q->where('user_id', auth()->user()->id);
-        // })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+        $profile = auth()->user()->profile ?? null;
 
-        return ChatChannel::orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+        if ($profile instanceof SeekerProfile) {
+            return ChatChannel::whereHas('chattable', function ($q) use ($profile) {
+                $q->where('seeker_profile_id', $profile->id);
+            })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+        } elseif ($profile instanceof CompanyProfile) {
+            return ChatChannel::whereHas('chattable', function ($q) use ($profile) {
+                $job_ids = $profile->jobPosts()->get()->pluck('id')->toArray();
+                $q->whereIn('job_post_id', $job_ids);
+            })->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+        }
+
+        return [];
     }
 
     public function show(ChatChannel $message)
