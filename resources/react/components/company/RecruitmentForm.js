@@ -268,7 +268,7 @@ const RecruitmentForm = ({filters}) => {
 
                   <div className="recruitment-form__main-group">
                     <div className="recruitment-form__main-group-label">
-                      会社ロゴ<span>1246 x 420 (px)</span>
+                      アイキャッチ<span>1246 x 420 (px)</span>
                     </div>
                     <div className="recruitment-form__main-group-cluster">
                       <input className="input recruitment-form__main-group-input"
