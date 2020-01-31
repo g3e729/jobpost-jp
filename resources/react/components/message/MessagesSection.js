@@ -32,7 +32,7 @@ const MessagesSection = (props) => {
     formdata.append('channel_id', currentChannel);
     formdata.append('message', messageValue);
 
-    dispatch(postMessage(formdata))
+    dispatch(postMessage(formdata, currentChannel))
       .then(_ => {
         setMessageValue('');
         setIsPosting(false);

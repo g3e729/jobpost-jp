@@ -27,10 +27,10 @@ export const getMessages = (id = null) => {
   }
 }
 
-export const postMessage = formdata => {
+export const postMessage = (formdata, id = null) => {
   return (dispatch) => {
     return Message.postMessage(formdata).then(_ => {
-      dispatch(getMessages())
+      dispatch(getMessages(id))
     }).catch(error => {
       console.log('[Post message ERROR]', error);
     })
