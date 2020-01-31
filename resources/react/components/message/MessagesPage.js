@@ -4,11 +4,13 @@ import { useDispatch } from 'react-redux';
 import Page from '../common/Page';
 import MessagesSidebar from './MessagesSidebar';
 import MessagesSection from './MessagesSection';
+import useInterval from '../../utils/useInterval';
 import { getMessages } from '../../actions/messages';
 
 const MessagesPage = _ => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  const delay = 5000; // TODO: set sweet spot
 
   useEffect(_ => {
     setIsLoading(true);
@@ -17,7 +19,13 @@ const MessagesPage = _ => {
       .then(_ => setIsLoading(false))
       .catch(_ => setIsLoading(false));
 
-  }, [location]);
+  }, []);
+
+  useInterval(_ => {
+    dispatch(getMessages((history.state && history.state.state) ? history.state.state.activeChannel : null))
+      .then(_ => setIsLoading(false))
+      .catch(_ => setIsLoading(false));
+  }, delay);
 
   return (
     <Page>
