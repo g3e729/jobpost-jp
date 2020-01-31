@@ -672,7 +672,7 @@ const Profile = (props) => {
                       .slice(0,3)
                       .map((item, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">
+                          <dt className="profile__data-character-term">
                             { isEdit ?
                               <EdiText
                                 submitOnEnter
@@ -687,7 +687,7 @@ const Profile = (props) => {
                               />
                             : item.title }
                           </dt>
-                          <dd className="profile__data-skills-data">
+                          <dd className="profile__data-character-data">
                             { isEdit ?
                               <EdiText
                                 submitOnEnter
@@ -708,7 +708,7 @@ const Profile = (props) => {
                     { data.features && data.features.length < 3 && [...Array(1)]
                       .map((_, idx) => (
                         <React.Fragment key={idx}>
-                          <dt className="profile__data-skills-term">
+                          <dt className="profile__data-character-term">
                             { isEdit ?
                               <EdiText
                                 submitOnEnter
@@ -723,7 +723,7 @@ const Profile = (props) => {
                               />
                             : null }
                           </dt>
-                          <dd className="profile__data-skills-data">
+                          <dd className="profile__data-character-data">
                             { isEdit ?
                               <EdiText
                                 submitOnEnter
