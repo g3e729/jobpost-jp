@@ -226,7 +226,7 @@ class JobPostService extends BaseService
         // })->keys();
 
 
-        $frameworks = SeekerProfile::getProgrammingLanguages()->toArray();
+        $frameworks = SeekerProfile::getFrameworks()->toArray();
         $positions = SeekerProfile::getPositions()->toArray();
         $programming_languages = SeekerProfile::getProgrammingLanguages()->toArray();
 
