@@ -53,9 +53,9 @@ class JobPost extends Model
     ];
 
     static protected $employment_types = [
-        'em' => 'Employee',
-        'ce' => 'Contract employee',
-        'in' => 'Internship',
+        'em' => '正社員',
+        'ce' => '契約社員',
+        'in' => 'インターンシップ',
     ];
 
     protected $appends = ['cover_photo', 'display_employment_type', 'display_prefecture', 'display_status'];
