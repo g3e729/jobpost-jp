@@ -64,7 +64,7 @@ class JobPost extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->slug = urldecode(strtolower($model->name));
+            $model->slug = urldecode(strtolower($model->title));
         });
         static::created(function ($model) {
             $user = auth()->user();
