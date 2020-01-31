@@ -117,7 +117,7 @@ const ProfileEyecatchModal = ({modal}) => {
           <Button className={`button--icon ${!file ? state.DISABLED : ''}`} onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
-              セーブ
+              保存する
             </>
           </Button>
         </div>

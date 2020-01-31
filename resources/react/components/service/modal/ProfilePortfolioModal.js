@@ -184,7 +184,7 @@ const ProfilePortfolioModal = ({modal}) => {
           <Button className="button--icon" onClick={_ => handleSubmit()}>
             <>
               <i className="icon icon-disk"></i>
-              セーブ
+              保存する
             </>
           </Button>
         </div>
