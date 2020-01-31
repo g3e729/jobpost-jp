@@ -37,11 +37,7 @@ const JobsPage = _ => {
     }
 
     getSliderJobs();
-  }, [location])
-
-  useEffect(_ => {
     setIsLoading(true);
-
     const page = urlParams.get('page');
     const position = urlParams.get('position');
     const employment_type = urlParams.get('employment_type');
@@ -78,7 +74,6 @@ const JobsPage = _ => {
           setIsPageLoading(false);
         });
     }
-
   }, [location]);
 
   return (
@@ -88,7 +83,9 @@ const JobsPage = _ => {
       <>
         <PageScroll />
         <Page>
-          <Slider jobs={sliderJobs} isLoading={isPageLoading} />
+          { isPageLoading ? null : (
+            <Slider jobs={sliderJobs} isLoading={isPageLoading} />
+          )}
           <div className="l-section l-section--main section">
             <div className="l-container l-container--main">
               <JobsFilter />
