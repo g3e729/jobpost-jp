@@ -33,7 +33,13 @@ class TransactionController extends BaseController
     {
         $this->routine();
 
-        return $this->profile->transactions()->create($this->requestField());
+        $transaction = $this->profile->transactions()->create($this->requestField());
+
+        $available_tickets = $this->profile->available_tickets + $request->get('tickets');
+        
+        $this->profile->update(compact('available_tickets'));
+
+        return $transaction;
     }
 
     public function update($id, Request $request)
