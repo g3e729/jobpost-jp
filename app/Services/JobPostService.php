@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\SeekerProfile;
 use App\Models\JobPost as ServiceModel;
 use App\Models\CompanyProfile;
 use Exception;
@@ -205,6 +206,8 @@ class JobPostService extends BaseService
 
     public function jobFilters()
     {
+        $databases = SeekerProfile::getDatabases();
+
         $jobs = ServiceModel::get();
 
         $frameworks = $jobs->groupBy(function ($item, $key) {
@@ -225,7 +228,7 @@ class JobPostService extends BaseService
 
         $ranges = ServiceModel::getRange();
 
-        return collect(compact('frameworks', 'positions', 'programming_languages', 'regions', 'status', 'ranges'));
+        return collect(compact('databases', 'frameworks', 'positions', 'programming_languages', 'regions', 'status', 'ranges'));
     }
 
     public function setCompany(CompanyProfile $company)

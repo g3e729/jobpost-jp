@@ -102,9 +102,7 @@ class JobPostController extends BaseController
 
     public function getJobFilters(Request $request)
     {
-        $filters = (new ModelService)->jobFilters();
-
-        return $filters;
+        return (new ModelService)->jobFilters();
     }
 
     private function getJob($id)
