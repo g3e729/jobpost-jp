@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Applicant;
 use App\Models\ChatChannel;
 use App\Models\CompanyProfile;
 use App\Models\SeekerProfile;
@@ -15,19 +16,18 @@ class MessageController extends BaseController
     public function index()
     {
         $profile = auth()->user()->profile ?? null;
+        $que = (new Applicant)->with(['chat_channel' => function ($q) {
+            $q->with('chats');
+        }]);
 
         if ($profile instanceof SeekerProfile) {
-            return ChatChannel::with(['chattable' => function ($q) use ($profile) {
-                $q->where('seeker_profile_id', $profile->id);
-            }])->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+            $que = $que->where('seeker_profile_id', $profile->id);
         } elseif ($profile instanceof CompanyProfile) {
-            return ChatChannel::with(['chattable' => function ($q) use ($profile) {
-                $job_ids = $profile->jobPosts()->get()->pluck('id')->toArray();
-                $q->whereIn('job_post_id', $job_ids);
-            }])->orderBy('updated_at', 'DESC')->paginate(config('site_settings.per_page'));
+            $job_ids = $profile->jobPosts()->get()->pluck('id')->toArray();
+            $que = $que->whereIn('job_post_id', $job_ids);
         }
 
-        return [];
+        return $que->paginate(config('site_settings.per_page'));
     }
 
     public function show(ChatChannel $message)
