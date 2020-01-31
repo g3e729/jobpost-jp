@@ -1,6 +1,6 @@
 .messages-section {
   height: calc(100vh - 98px);
-  width: 100%;
+  width: calc(100% - 400px);
   flex: 1;
 
   border-top: solid 1px $color-light-gray;
