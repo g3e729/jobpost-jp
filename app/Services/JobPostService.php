@@ -213,17 +213,22 @@ class JobPostService extends BaseService
 
         $jobs = ServiceModel::get();
 
-        $frameworks = $jobs->groupBy(function ($item, $key) {
-            return $item->framework;
-        })->keys();
+        // $frameworks = $jobs->groupBy(function ($item, $key) {
+        //     return $item->framework;
+        // })->keys();
 
-        $positions = $jobs->groupBy(function ($item, $key) {
-            return $item->position;
-        })->keys();
+        // $positions = $jobs->groupBy(function ($item, $key) {
+        //     return $item->position;
+        // })->keys();
 
-        $programming_languages = $jobs->groupBy(function ($item, $key) {
-            return $item->programming_language;
-        })->keys();
+        // $programming_languages = $jobs->groupBy(function ($item, $key) {
+        //     return $item->programming_language;
+        // })->keys();
+        
+        
+        $frameworks = SeekerProfile::getProgrammingLanguages();
+        $positions = SeekerProfile::getPositions();
+        $programming_languages = SeekerProfile::getProgrammingLanguages();
 
         $regions = getPrefecture();
 
