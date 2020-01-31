@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import { useLocation } from 'react-router-dom';
 
 import Button from '../common/Button';
 import { values } from '../../constants/config';
 import { state } from '../../constants/state';
 
 const PageTopService = _ => {
+  const location = useLocation();
   const [hideOnScroll, setHideOnScroll] = useState(false);
+  const [initialPathname, setInitialPathname] = useState('');
+  const [initialSearch, setInitialSearch] = useState('');
+  const elemRoot = document.querySelector('#root');
+  const pages = ['/app', '/app/', '/app/jobs', '/app/jobs/'];
 
   useScrollPosition(({ prevPos, currPos }) => {
     const offset = 100;
@@ -18,9 +24,20 @@ const PageTopService = _ => {
     }
   }, [hideOnScroll]);
 
-  const handleClick = _ => {
-    const elemRoot = document.querySelector('#root');
+  useEffect(_ => {
+    if (initialPathname !== location.pathname || (initialPathname === location.pathname && initialSearch !== location.search)) {
+      setInitialPathname(location.pathname);
+      setInitialSearch(location.search);
 
+      if (pages.includes(location.pathname)) {
+        setTimeout(_ => {
+          scrollIntoView(elemRoot, { block: 'start',  behavior: 'smooth' });
+        }, 300);
+      }
+    }
+  }, [location])
+
+  const handleClick = _ => {
     setTimeout(_ => {
       scrollIntoView(elemRoot, { block: 'start',  behavior: 'smooth' });
     }, 5);
