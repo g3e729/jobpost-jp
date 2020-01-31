@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\NotificationService;
 use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
@@ -32,24 +33,7 @@ class Like extends Model
     {
         parent::boot();
         static::created(function ($model) {
-            $title = auth()->user()->profile->display_name . ' likes your ';
-            $description = '';
-            $group_id = substr(md5(now()), 0, 8);
-            $about_id = $model->likeable->id;
-
-            if ($model->likeable instanceof JobPost) {
-                $user = $model->likeable->company->user;
-                $about_type = JobPost::class;
-                $title .= 'job post.';
-            } else {
-                $user = $model->likeable->user;
-                $about_type = ($model->likeable instanceof SeekerProfile) ? SeekerProfile::class : CompanyProfile::class;
-                $title .= 'profile.';
-            }
-
-            if ($user) {
-                $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
-            }
+            (new NotificationService)->likeTrigger($model);
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\NotificationService;
 use Illuminate\Database\Eloquent\Model;
 
 class Applicant extends Model
@@ -32,20 +33,7 @@ class Applicant extends Model
         parent::boot();
         static::created(function ($model) {
             $model->chat_channel()->create([]);
-            $description = '';
-            $about_type = JobPost::class;
-            $about_id = $model->job_post_id;
-            $group_id = substr(md5(now()), 0, 8);
-
-            if ($model->scouted) {
-                $title = auth()->user()->profile->display_name . ' scouted you.';
-                $user = $model->applicant->user;
-            } else {
-                $title = auth()->user()->profile->display_name . ' applied to your job.';
-                $user = $model->employer->user;
-            }
-
-            $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            (new NotificationService)->applicantTrigger($model);
         });
         static::deleting(function ($model) {
             $model->chat_channel()->forceDelete();

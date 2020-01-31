@@ -56,7 +56,7 @@ class Notification extends Model
                 $model->group_id = substr(md5(now()), 0, 8);
             }
 
-            if (!$model->target_id) {
+            if (!$model->target_id && !$model->group_id) {
                 $model->group_id = 'all';
             }
         });

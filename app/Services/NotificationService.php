@@ -2,7 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\CompanyProfile;
+use App\Models\JobPost;
 use App\Models\Notification;
+use App\Models\SeekerProfile;
+use App\Models\Transaction;
+use App\Models\User;
 use App\Services\UserService;
 use Exception;
 
@@ -113,6 +118,122 @@ class NotificationService extends BaseService
         } catch (Exception $e) {
             \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
             return 0;
+        }
+    }
+
+    public function likeTrigger($model)
+    {
+        try { 
+            $users = [];
+            if (auth()->user()) {
+                $initiator = auth()->user();
+
+                $title = $initiator->profile->display_name . ' さんがあなた';
+                $description = '';
+                $group_id = substr(md5(now()), 0, 8);
+                $about_id = $model->likeable->id;
+
+                if ($model->likeable instanceof JobPost) {
+                    $title .= 'の求人をお気に入りしました';
+                    $about_type = JobPost::class;
+                    $users[] = $model->likeable->company->user;
+                } else {
+                    $title .= 'をお気に入りしました';
+                    $about_type = ($model->likeable instanceof SeekerProfile) ? SeekerProfile::class : CompanyProfile::class;
+                    $users[] = $model->likeable->user;
+                }
+
+                $this->sendNotifs($users, compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function jobPostTrigger($model)
+    {
+        try {
+            $users = [];
+            if (auth()->user()) {
+                $initiator = auth()->user();
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->whereIn('slug', ['seeker']);
+                })->get();
+
+                $title = $initiator->profile->display_name . ' が新しい求人を作成しました';
+                $description = '';
+                $about_id = $model->id;
+                $about_type = JobPost::class;
+                $group_id = substr(md5(now()), 0, 8);
+
+                $this->sendNotifs($users, compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function applicantTrigger($model)
+    {
+        try {
+            $users = [];
+            if (auth()->user()) {
+                $initiator = auth()->user();
+
+                $title = $initiator->profile->display_name;
+                $description = '';
+                $about_id = $model->job_post_id;
+                $about_type = JobPost::class;
+                $group_id = substr(md5(now()), 0, 8);
+
+                if ($model->scouted) {
+                    $title .= ' があなたをスカウトしました。';
+                    $users[] = $model->applicant->user;
+                } else {
+                    $title .= ' さんがあなたのあなたの求人に応募しました';
+                    $users[] = $model->employer->user;
+                }
+
+                $this->sendNotifs($users, compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function transactionTrigger($model)
+    {
+        try {
+            $users = [];
+            if (auth()->user()) {
+                $initiator = auth()->user();
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->whereIn('slug', ['admin']);
+                })->get();
+
+                $title = $initiator->profile->display_name . " の請求データが作成されました。";
+                $description = '';
+                $about_id = $model->id;
+                $about_type = Transaction::class;
+                $group_id = substr(md5(now()), 0, 8);
+
+                $this->sendNotifs($users, compact('title', 'description', 'about_type', 'about_id', 'group_id'));
+            }
+        } catch (Exception $e) {
+            \Log::error(__METHOD__ . '@' . $e->getLine() . ': ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    private function sendNotifs($users = [], $fields = [])
+    {
+        foreach ($users as $user) {
+            $user->notifications()->create($fields);
         }
     }
 }
