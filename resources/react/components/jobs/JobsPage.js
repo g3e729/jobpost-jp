@@ -37,7 +37,7 @@ const JobsPage = _ => {
     }
 
     getSliderJobs();
-  }, [])
+  }, [location])
 
   useEffect(_ => {
     setIsLoading(true);
