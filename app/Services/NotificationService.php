@@ -214,7 +214,7 @@ class NotificationService extends BaseService
                 $initiator = auth()->user();
 
                 $user_ids = $model->channel->chat_status()
-                    ->where('user_id', '!=', [1, $initiator->id])
+                    ->whereNotIn('user_id', [1, $initiator->id])
                     ->get()
                     ->pluck('user_id')
                     ->toArray();
