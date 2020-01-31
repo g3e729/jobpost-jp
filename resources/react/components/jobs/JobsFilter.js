@@ -56,7 +56,7 @@ const JobsFilter = (props) => {
       }));
 
       setStatusFilter(Object.keys(data.status).map((item, idx) => {
-        return {value: item, label: Object.values(data.regions)[idx]};
+        return {value: item, label: Object.values(data.status)[idx]};
       }));
     }
   }, [data])
