@@ -81,9 +81,9 @@ class StudentController extends BaseController
             $this->student = (new ModelService)->show($id);
             $courses = [];
 
-            foreach ($this->student->getCourses() as $id => $course) {
+            foreach ($this->student->getCourses() as $id => $name) {
                 $course = skillRate($this->student->listed_skills[$id] ?? 0);
-                $courses[$id] = $course;
+                $courses[$name] = $course;
             }
 
             $this->student->courses = $courses;
