@@ -899,6 +899,8 @@ And you should not feel free to add a new Utility class.
   width: 50px;
   border-radius: 50%;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .avatar--header {
