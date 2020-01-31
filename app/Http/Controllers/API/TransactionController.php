@@ -35,7 +35,7 @@ class TransactionController extends BaseController
 
         $transaction = $this->profile->transactions()->create($this->requestField());
 
-        $available_tickets = $this->profile + $request->get('tickets');
+        $available_tickets = $this->profile->available_tickets + $request->get('tickets');
         
         $this->profile->update(compact('available_tickets'));
 
