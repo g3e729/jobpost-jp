@@ -39,6 +39,12 @@ class MessageController extends BaseController
 
     public function store(Request $request)
     {
+        $user = auth()->user();
+
+        if (!$user) {
+            apiAbort(403);
+        }
+
         $content = $request->get('message');
 
         if (empty($content)) {
@@ -48,7 +54,7 @@ class MessageController extends BaseController
         $chatService = (new ChatService);
         $channel = $chatService->find($request->get('channel_id'));
 
-        $chatService->setUser(auth()->user());
+        $chatService->setUser($user);
 
         return $chatService->sendMessage(compact('content'));
     }

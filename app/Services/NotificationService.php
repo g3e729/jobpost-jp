@@ -185,7 +185,7 @@ class NotificationService extends BaseService
                 $initiator = auth()->user();
 
                 $title = $initiator->profile->display_name;
-                $description = '';
+                $description = $model->job_post->description ?? '';
                 $about_id = $model->job_post_id;
                 $about_type = JobPost::class;
                 $group_id = substr(md5(now()), 0, 8);
@@ -214,7 +214,7 @@ class NotificationService extends BaseService
                 $initiator = auth()->user();
 
                 $user_ids = $model->channel->chat_status()
-                    ->where('user_id', '!=', [1, auth()->user()->id])
+                    ->where('user_id', '!=', [1, $initiator->id])
                     ->get()
                     ->pluck('user_id')
                     ->toArray();
@@ -222,7 +222,7 @@ class NotificationService extends BaseService
                 $users = User::whereIn('id', $user_ids)->get();
 
                 $title = $initiator->profile->display_name . " さんからメッセージが届きました。";
-                $description = '';
+                $description = $model->content ?? '';
                 $about_id = $model->id;
                 $about_type = ChatChannel::class;
                 $group_id = substr(md5(now()), 0, 8);
