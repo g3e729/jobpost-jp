@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Illuminate\Queue\SerializesModels;
-
 class ChatChannel extends Model
 {
-    use SoftDeletes, SerializesModels;
+    use SoftDeletes;
 
     protected $dates = [
         'created_at',
