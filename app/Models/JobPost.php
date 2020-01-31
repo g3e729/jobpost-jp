@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasLike;
 use App\Services\FileService;
+use App\Services\NotificationService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -67,27 +68,7 @@ class JobPost extends Model
             $model->slug = urldecode(strtolower($model->title));
         });
         static::created(function ($model) {
-            $user = auth()->user();
-
-            if ($user) {
-                $user = User::find($model->company->user_id ?? null);
-            }
-
-            if ($user) {
-                $users = User::whereHas('roles', function ($q) {
-                    $q->whereIn('slug', ['seeker']);
-                })->get();
-
-                $title = $user->profile->display_name . ' created a new job.';
-                $description = '';
-                $about_type = JobPost::class;
-                $about_id = $model->id;
-                $group_id = substr(md5(now()), 0, 8);
-
-                foreach ($users as $user) {
-                    $user->notifications()->create(compact('title', 'description', 'about_type', 'about_id', 'group_id'));
-                }
-            }
+            (new NotificationService)->jobPostTrigger($model);
         });
         static::updating(function ($model) {
             $model->slug = urldecode(strtolower($model->name));
