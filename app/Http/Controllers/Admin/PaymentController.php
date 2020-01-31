@@ -72,11 +72,11 @@ class PaymentController extends BaseController
 
         $to_add = $transactionable->transactions()->whereBetween('created_at', $between)->where('is_approved', 0)->sum('tickets');
 
-        $available_tickets = $transactionable->available_tickets + $to_add;
-
         $transactionable->transactions()->whereBetween('created_at', $between)->update(compact('is_approved'));
 
-        $transactionable->update(compact('available_tickets'));
+        $available_tickets = $transactionable->available_tickets + $to_add;
+
+        // $transactionable->update(compact('available_tickets'));
 
         return back()->withSuccess("Success! Payment succesfully approved!");
     }
