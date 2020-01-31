@@ -55,10 +55,16 @@ const RecruitmentForm = ({filters}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [regionsFilter, setRegionsFilter] = useState([]);
   const [statusFilter, setStatusFilter] = useState([]);
+  const [positionsFilter, setPositionsFilter] = useState([]);
+  const [programmingFilter, setProgrammingFilter] = useState([]);
+  const [frameworksFilter, setFrameworksFilter] = useState([]);
+  const [databaseFilter, setDatabaseFilter] = useState([]);
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
   const data = (filters.filtersData && filters.filtersData.jobs);
+
+  console.log('data :', data);
 
   const handleChange = e => {
     e.persist();
@@ -237,7 +243,23 @@ const RecruitmentForm = ({filters}) => {
       }));
 
       setStatusFilter(Object.keys(data.status).map((item, idx) => {
-        return {value: item, label: Object.values(data.regions)[idx]};
+        return {value: item, label: Object.values(data.status)[idx]};
+      }));
+
+      setPositionsFilter(data.positions.map(item => {
+        return { value: item, label: item };
+      }));
+
+      setProgrammingFilter(data.programming_languages.map(item => {
+        return { value: item, label: item };
+      }));
+
+      setFrameworksFilter(data.frameworks.map(item => {
+        return { value: item, label: item };
+      }));
+
+      setDatabaseFilter(Object.keys(data.databases).map((item, idx) => {
+        return {value: item, label: Object.values(data.databases)[idx]};
       }));
     }
   }, [data]);
@@ -322,18 +344,18 @@ const RecruitmentForm = ({filters}) => {
                       <dl className="recruitment-form__main-group-table">
                         <dt>ポジション</dt>
                         <dd>
-                          <Input
-                            value={formValues.position}
-                            onChange={e => handleChange(e)}
-                            name="position"
-                            type="text"
+                          <Select options={positionsFilter}
+                            styles={jobSelectStyles}
+                            placeholder={formValues.position}
+                            isForm
+                            onChange={e => handleSelect(e, 'position')}
                           />
                         </dd>
                         <dt>ステータス</dt>
                         <dd>
                           <Select options={statusFilter}
                             styles={jobSelectStyles}
-                            placeholder=''
+                            placeholder={formValues.employment_type}
                             isForm
                             onChange={e => handleSelect(e, 'employment_type')}
                           />
@@ -343,29 +365,29 @@ const RecruitmentForm = ({filters}) => {
                           <dl>
                             <dt>言語</dt>
                             <dd>
-                              <Input
-                                value={formValues.programming_language}
-                                onChange={e => handleChange(e)}
-                                name="programming_language"
-                                type="text"
+                              <Select options={programmingFilter}
+                                styles={jobSelectStyles}
+                                placeholder={formValues.programming_language}
+                                isForm
+                                onChange={e => handleSelect(e, 'programming_language')}
                               />
                             </dd>
                             <dt>フレームワーク</dt>
                             <dd>
-                              <Input
-                                value={formValues.framework}
-                                onChange={e => handleChange(e)}
-                                name="framework"
-                                type="text"
+                              <Select options={frameworksFilter}
+                                styles={jobSelectStyles}
+                                placeholder={formValues.framework}
+                                isForm
+                                onChange={e => handleSelect(e, 'framework')}
                               />
                             </dd>
                             <dt>データベース</dt>
                             <dd>
-                              <Input
-                                value={formValues.database}
-                                onChange={e => handleChange(e)}
-                                name="database"
-                                type="text"
+                              <Select options={databaseFilter}
+                                styles={jobSelectStyles}
+                                placeholder={formValues.database}
+                                isForm
+                                onChange={e => handleSelect(e, 'database')}
                               />
                             </dd>
                             <dt>管理</dt>
