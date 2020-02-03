@@ -20,7 +20,7 @@ const Header = (props) => {
       <div className="l-container l-container--wide flex flex--space-between">
         <div className="l-header__left">
           <h1 className="header__logo">
-            <Link to={routes.ROOT}>
+            <Link to={accountType === 'company' ? routes.DASHBOARD : routes.ROOT}>
               <picture>
                 <source srcSet={logo} media="(min-width: 769px)" />
                 <img src={logoSp} alt="Kredo" className="header__logo-image" />
