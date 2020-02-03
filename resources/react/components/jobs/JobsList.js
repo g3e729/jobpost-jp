@@ -79,7 +79,7 @@ const JobsList = (props) => {
                     </div>
                   </div>
                   <Link to={generateRoute(routes.JOB_DETAIL, { id: job.id })}
-                    className="button button--link">
+                    className="button button--link job-list__item-button">
                     <h4 className="job-list__item-title">
                       {job.title}
                     </h4>

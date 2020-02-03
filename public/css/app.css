@@ -2859,12 +2859,18 @@ And you should not feel free to add a new Utility class.
   color: #393939;
   line-height: 1.762;
   letter-spacing: 0.06em;
+  word-break: break-word;
   margin-top: 29px;
 }
 
 .job-list__item-description {
   letter-spacing: 0.06em;
   line-height: 1.857;
+  word-break: break-word;
+}
+
+.job-list__item-button {
+  display: block;
 }
 
 .job-list__item-pills {
