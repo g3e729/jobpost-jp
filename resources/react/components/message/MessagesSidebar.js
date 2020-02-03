@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import _ from 'lodash';
 import { useDispatch, connect } from 'react-redux';
 
@@ -7,6 +7,22 @@ import Loading from '../common/Loading';
 import Nada from '../common/Nada';
 import { state } from '../../constants/state';
 import { setActiveChannel } from '../../actions/messages';
+
+const MemoAvatar = memo(props => {
+  const {
+    accountType,
+    companyAvatar,
+    applicantAvatar,
+  } = props;
+
+  return (
+    <Avatar className="avatar--message"
+      style={{ backgroundImage: `url("${accountType === 'company' ? applicantAvatar : companyAvatar}")`}}
+    />
+  )
+}, (prevProps, nextProps) => {
+  return _.isEqual(prevProps.accountType, nextProps.accountType);
+});
 
 const MessagesSidebar = (props) => {
   const dispatch = useDispatch();
@@ -49,8 +65,10 @@ const MessagesSidebar = (props) => {
                 onClick={_ => handleChangeChannel(item.id)} key={item.id}>
                 <div className="messages-sidebar__chatroom-item-left">
                   <div className="messages-sidebar__chatroom-item-avatar">
-                    <Avatar className="avatar--message"
-                      style={{ backgroundImage: `url("${accountType === 'company' ? item.applicant.avatar : item.employer.avatar}")` }}
+                    <MemoAvatar
+                      accountType={accountType}
+                      companyAvatar={item.employer.avatar}
+                      applicantAvatar={item.applicant.avatar}
                     />
                   </div>
                 </div>

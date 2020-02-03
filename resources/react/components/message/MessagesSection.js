@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
 import { useDispatch, connect } from 'react-redux';
@@ -9,7 +9,23 @@ import Input from '../common/Input';
 import Loading from '../common/Loading';
 import { postMessage } from '../../actions/messages';
 
-import avatarPlaceholder from '../../../img/avatar-default.png';
+const MemoAvatar = memo(props => {
+  const {
+    itemId,
+    accountId,
+    accountType,
+    companyAvatar,
+    applicantAvatar,
+  } = props;
+
+  return (
+    <Avatar className="avatar--message"
+      style={{ backgroundImage: `url("${itemId == accountId ? (accountType === 'company' ? companyAvatar : applicantAvatar) : (accountType === 'company' ? applicantAvatar : companyAvatar)}")`}}
+    />
+  )
+}, (prevProps, nextProps) => {
+  return (_.isEqual(prevProps.itemId, nextProps.itemId) && _.isEqual(prevProps.accountId, nextProps.accountId));
+});
 
 const MessagesSection = (props) => {
   const { isLoading, messages, user } = props;
@@ -82,9 +98,12 @@ const MessagesSection = (props) => {
                 <li className="messages-section__main-list-item" key={item.id}>
                   <div className={`message ${item.user_id == accountId ? 'message--right' : ''}`}>
                     <div className="message__avatar">
-                      <Avatar className="avatar--message"
-                        style={{ backgroundImage: `url("${item.user_id == accountId ? (accountType === 'company' ? messagesList.employer.avatar : messagesList.applicant.avatar) : (accountType === 'company' ? messagesList.applicant.avatar : messagesList.employer.avatar)}")`
-                        }}
+                      <MemoAvatar
+                        itemId={item.user_id}
+                        accountId={accountId}
+                        accountType={accountType}
+                        companyAvatar={messagesList.employer.avatar}
+                        applicantAvatar={messagesList.applicant.avatar}
                       />
                     </div>
                     <div className="message__main">
