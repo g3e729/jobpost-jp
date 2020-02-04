@@ -29,6 +29,7 @@ class SeekerService extends BaseService
         return ServiceModel::with('educationHistory', 'workHistory')
             ->popular()
             ->applied()
+            ->selectRaw("TIMESTAMPDIFF(YEAR, DATE(birthday), current_date) AS age")
             ->whereId($id)
             ->first();
     }
@@ -163,7 +164,8 @@ class SeekerService extends BaseService
             $fields = array_filter($fields);
             $status = array_get($fields, 'status');
             $fields = array_except($fields, 'status');
-            $que = (new $this->model)->popular()->applied();
+            $que = (new $this->model)->popular()->applied()
+                ->selectRaw("TIMESTAMPDIFF(YEAR, DATE(birthday), current_date) AS age");
 
             switch ($status) {
                 case 1:
@@ -254,6 +256,9 @@ class SeekerService extends BaseService
                                     });
                             });
                         }
+                        break;
+                    case 'age':
+                        $que = $que->agedBetween($value);
                         break;
                     default:
                         $que = $que->where($column, $value);
