@@ -322,14 +322,12 @@ class SeekerProfile extends Model
         return $query;
     }
 
-    public function scopeAgedBetween($query, $start, $end = null)
+    public function scopeAgedBetween($query, $start_yr)
     {
-        if (is_null($end)) {
-            $end = $start;
-        }
+	    $now = now();
 
-        $start = now()->subYears($start)->startOfYear();
-        $end = now()->copy()->subYears($end);
+	    $start = $now->copy()->subYear($start_yr + 1)->subDay();
+	    $end = $now->copy()->subYear($start_yr);
 
         return $query->whereBetween('birthday', compact('start', 'end'));
     }
