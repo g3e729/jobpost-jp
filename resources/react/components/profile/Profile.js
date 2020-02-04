@@ -528,6 +528,10 @@ const Profile = (props) => {
                           </div>
                           { isEdit ? (
                             <div className="profile__data-websites-action">
+                              <Button className="button--pill button--pill-negative profile__data-websites-action-button"
+                                onClick={_ => handleModal(modalType.PROFILE_PORTFOLIO, item)}>
+                                <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
+                              </Button>
                               <Button className="button--pill button--danger" onClick={_ => handleDeletePortfolio(item.id)}>
                                 <>
                                   <i className="icon icon-cross text-dark-gray"></i>
