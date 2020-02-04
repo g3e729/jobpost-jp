@@ -261,7 +261,7 @@ class SeekerService extends BaseService
                         $que = $que->agedBetween($value);
                         break;
                     case 'study_abroad_fee':
-                        $que = $que->StudyFee($value);
+                        $que = $que->studyFee($value);
                         break;
                     default:
                         $que = $que->where($column, $value);

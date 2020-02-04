@@ -329,7 +329,7 @@ class SeekerProfile extends Model
 	    $x1 = $range;
 	    $x2 = $range + 9;
 
-	    if ($range > 30) {
+	    if ($range > 39) {
 	    	$x2 = 100;
 	    }
 
