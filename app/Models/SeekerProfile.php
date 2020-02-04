@@ -322,14 +322,36 @@ class SeekerProfile extends Model
         return $query;
     }
 
-    public function scopeAgedBetween($query, $start_yr)
+    public function scopeAgedBetween($query, $range)
     {
 	    $now = now();
 
-	    $start = $now->copy()->subYear($start_yr + 1)->subDay();
-	    $end = $now->copy()->subYear($start_yr);
+	    $x1 = $range;
+	    $x2 = $range + 9;
+
+	    if ($range > 39) {
+	    	$x2 = 100;
+	    }
+
+	    $start = $now->copy()->subYear($x2 + 1)->subDay();
+	    $end = $now->copy()->subYear($x1);
 
         return $query->whereBetween('birthday', compact('start', 'end'));
+    }
+
+    public function scopeStudyFee($query, $range)
+    {
+    	$from = $range * 1000;
+    	$to = ($range + 100) * 1000;
+
+    	if ($range > 999) {
+    		$to = 1000000000;
+    	} elseif ($range < 200) {
+    		$from = 10;
+    		$to = 200 * 1000;
+    	}
+
+        return $query->whereBetween('study_abroad_fee', compact('from', 'to'));
     }
 
     public function applications()
