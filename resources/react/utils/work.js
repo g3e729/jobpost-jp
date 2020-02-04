@@ -15,6 +15,20 @@ export default class Work {
       .catch(error => error);
   }
 
+  static updateWork(formdata, id) {
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.WORK_HISTORIES_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static deleteWork(id) {
     const formdata = new FormData();
     formdata.append('_method', 'DELETE');

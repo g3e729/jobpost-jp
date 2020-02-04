@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import moment from 'moment';
 import { useDispatch, connect } from 'react-redux';
@@ -20,13 +20,15 @@ const ProfileWorkModal = ({modal}) => {
     company_name: '',
     role: '',
     content: '',
-    is_present: false,
-    monthfrom: '',
+    is_present: 0,
+    monthfrom: moment().format('MM'),
     yearfrom: moment().year(),
-    monthto: '',
+    monthto: moment().format('MM'),
     yearto: moment().year(),
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(!_.isEmpty(modal.data));
+  const modalData = modal.data;
   const monthsFilter = new Array(12)
     .fill(null)
     .map((e, idx) => {
@@ -58,7 +60,7 @@ const ProfileWorkModal = ({modal}) => {
     e.persist();
 
     setFormValues(prevState => {
-      return { ...prevState, [e.target.name]: e.target.checked }
+      return { ...prevState, [e.target.name]: +e.target.checked }
     });
   }
 
@@ -90,27 +92,63 @@ const ProfileWorkModal = ({modal}) => {
       )).format('YYYY-MM-DD'));
     }
 
-    Work.addWork(formdata)
-      .then(result => {
-        setTimeout(_ => {
-          dispatch(getUser())
-            .then(_ => {
-              setIsLoading(false);
-              dispatch(unSetModal());
-            })
-            .catch(error => {
-              setIsLoading(false);
-              dispatch(unSetModal());
-            });
-        }, 500);
-      })
-      .catch(error => {
-        setIsLoading(false);
-        handleCloseModal();
+    if (isUpdate) {
+      Work.updateWork(formdata, modalData.id)
+        .then(result => {
+          setTimeout(_ => {
+            dispatch(getUser())
+              .then(_ => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              })
+              .catch(error => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              });
+          }, 500);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          handleCloseModal();
 
-        console.log('[Add work ERROR] :', error);
-      });
+          console.log('[Add work ERROR] :', error);
+        });
+    } else {
+      Work.addWork(formdata)
+        .then(result => {
+          setTimeout(_ => {
+            dispatch(getUser())
+              .then(_ => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              })
+              .catch(error => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              });
+          }, 500);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          handleCloseModal();
+
+          console.log('[Add work ERROR] :', error);
+        });
+    }
   }
+
+  useEffect(_ => {
+    setFormValues({
+      company_name: modalData.company_name,
+      role: modalData.role,
+      content: modalData.content,
+      is_present: +modalData.is_present,
+      monthfrom: modalData.started_at ? moment(modalData.started_at).format('MM') : moment().format('MM'),
+      yearfrom: modalData.started_at ? moment(modalData.started_at).year() : moment().year(),
+      monthto: modalData.ended_at ? moment(modalData.ended_at).format('MM') : moment().format('MM'),
+      yearto: modalData.ended_at ? moment(modalData.ended_at).year() : moment().year(),
+    })
+  }, [modalData])
 
   return (
     <BaseModal title="職歴">
@@ -145,31 +183,31 @@ const ProfileWorkModal = ({modal}) => {
             <div className="modal__form-group-inputs modal__form-group-inputs--enrolment-period">
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
-                placeholder='MM'
+                placeholder={formValues.monthfrom}
                 onChange={e => handleSelect(e, 'monthfrom')}
               />
               <Select options={yearsFilter}
                 styles={defaultSelectStyles}
-                placeholder='YYYY'
+                placeholder={formValues.yearfrom}
                 onChange={e => handleSelect(e, 'yearfrom')}
               />
               <span style={{ flex: 0 }}>-</span>
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
-                placeholder='MM'
+                placeholder={formValues.monthto}
                 onChange={e => handleSelect(e, 'monthto')}
-                isDisabled={formValues.is_present}
+                isDisabled={!!formValues.is_present}
               />
               <Select options={yearsFilter}
                 styles={defaultSelectStyles}
-                placeholder='YYYY'
+                placeholder={formValues.yearto}
                 onChange={e => handleSelect(e, 'yearto')}
-                isDisabled={formValues.is_present}
+                isDisabled={!!formValues.is_present}
               />
             </div>
             <Radio className="radio--labeled modal__form-group-radio"
               label="在職中"
-              checked={formValues.is_present}
+              checked={!!formValues.is_present}
               onChange={e => toggleChange(e)}
               name="is_present"
               type="checkbox"

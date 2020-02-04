@@ -227,17 +227,23 @@ const Profile = (props) => {
                           <dt className="profile__data-work-term">
                             {item.role}
                             { isEdit ? (
-                              <Button className="button--pill button--danger profile__data-work-term-button" onClick={_ => handleDeleteWork(item.id)}>
-                                <>
-                                  <i className="icon icon-cross text-dark-gray"></i>
-                                  削除
-                                </>
-                              </Button>
+                              <>
+                                <Button className="button--pill button--pill-negative profile__data-work-term-button"
+                                  onClick={_ => handleModal(modalType.PROFILE_WORK, item)}>
+                                  <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
+                                </Button>
+                                <Button className="button--pill button--danger profile__data-work-term-button" onClick={_ => handleDeleteWork(item.id)}>
+                                  <>
+                                    <i className="icon icon-cross text-dark-gray"></i>
+                                    削除
+                                  </>
+                                </Button>
+                              </>
                             ) : null }
                           </dt>
                           <dd className="profile__data-work-data">
                             <h4>{item.company_name}</h4>
-                            <time>{`${moment(item.started_at).format('YYYY/MM')} ${item.ended_at ? `- ${moment(item.ended_at).format('YYYY/MM')}`: 'current'}`}</time>
+                            <time>{`${moment(item.started_at).format('YYYY/MM')} ${item.is_current ? 'current' : `- ${moment(item.ended_at).format('YYYY/MM')}`}`}</time>
                             <p>{item.content}</p>
                           </dd>
                         </React.Fragment>
