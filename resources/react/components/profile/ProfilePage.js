@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 import Page from '../common/Page';
 import Heading from '../common/Heading';
+import PageUp from '../common/PageUp';
 import Profile from './Profile';
+import isValidUrl from '../../utils/isvalidurl';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
-import PageUp from '../common/PageUp';
 
 const ProfilePage = (props) => {
   const { user } = props;
@@ -23,7 +24,9 @@ const ProfilePage = (props) => {
           accountType === 'student' ? (
             <span><i className="icon icon-book text-dark-yellow"></i>{data.profile.course}</span>
           ) : accountType === 'company' ? (
-            data.profile.homepage
+            isValidUrl(data.profile.homepage) ? (
+              <a className="button button--profile" href={data.profile.homepage} target="_blank">{data.profile.homepage}</a>
+            ) : data.profile.homepage
           ) : null
         }
         data-avatar={data.profile.avatar || avatarPlaceholder}

@@ -558,7 +558,7 @@ const Profile = (props) => {
                         editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
                         hideIcons={true}
                       />
-                    : <a href="{data.github}" className="button button--profile" target="_blank">{data.github}</a> }
+                    : <a href={data.github} className="button button--profile" target="_blank">{data.github}</a> }
                     <Clipboard value={data.github} />
                   </div>
                 </div>

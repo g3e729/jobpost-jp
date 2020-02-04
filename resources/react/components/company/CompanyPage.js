@@ -8,6 +8,7 @@ import Heading from '../common/Heading';
 import Loading from '../common/Loading';
 import Profile from '../profile/Profile';
 import CompanyAPI from '../../utils/company';
+import isValidUrl from '../../utils/isvalidurl';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
@@ -61,7 +62,11 @@ const CompanyPage = (props) => {
               isLogged={user.isLogged}
               accountType="company"
               title={company.display_name}
-              subTitle={company.homepage}
+              subTitle={
+                isValidUrl(company.homepage) ? (
+                  <a className="button button--profile" href={company.homepage} target="_blank">{company.homepage}</a>
+                ) : company.homepage
+              }
               passedFunction={_ => getCompany().then(res => setCompany(res))}
               hasLiked={hasLiked}
               hasScouted={true}
