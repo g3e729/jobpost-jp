@@ -90,6 +90,18 @@ class PortfolioService extends BaseService
             $portfolio->file()->delete();
         }
 
+        if ($request_data['file'] ?? null) {
+          $path = FileService::uploadFile($request_data['file'], 'portfolio');
+
+          $portfolio->file()->create([
+              'url'       => $path,
+              'file_name' => $request_data['file']->getClientOriginalName(),
+              'type'      => 'portfolio',
+              'mime_type' => $request_data['file']->getMimeType(),
+              'size'      => $request_data['file']->getSize()
+          ]);
+      }
+
         return $portfolio;
     }
 }

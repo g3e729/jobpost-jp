@@ -24,6 +24,7 @@ const ProfilePortfolioModal = ({modal}) => {
     url: '',
   });
   const [file, setFile] = useState('');
+  const [hasFile, setHasFile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUpdate, setIsUpdate] = useState(!_.isEmpty(modal.data));
   const modalData = modal.data;
@@ -48,6 +49,7 @@ const ProfilePortfolioModal = ({modal}) => {
     setFormValues(prevState => {
       return { ...prevState, file_delete: 1 }
     });
+    setHasFile(false);
 
     eyecatchRef.current.style.backgroundImage = `url("${ecPlaceholder}")`;
   }
@@ -131,17 +133,22 @@ const ProfilePortfolioModal = ({modal}) => {
         setFormValues(prevState => {
           return { ...prevState, file, file_delete: 1 }
         });
+        setHasFile(true);
       }
     }
   }, [file]);
 
   useEffect(_ => {
+    if (modalData.image) {
+      setHasFile(true);
+    }
+
     setFormValues({
       title: modalData.title,
       description: modalData.description,
       url: modalData.url,
     })
-  }, [modal])
+  }, [modalData])
 
   return (
     <BaseModal title="ポートフォリオ">
@@ -168,7 +175,7 @@ const ProfilePortfolioModal = ({modal}) => {
                       アップロード
                     </>
                   </Button>
-                  <Button className={`button--link modal__form-actions-button ${!file && state.DISABLED}`}
+                  <Button className={`button--link modal__form-actions-button ${!hasFile ? state.DISABLED : ''}`}
                     onClick={e => handleRemoveFile(e)}>
                     <>
                       <i className="icon icon-cross"></i>
