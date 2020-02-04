@@ -270,12 +270,18 @@ const Profile = (props) => {
                         <React.Fragment key={item.id}>
                           <dt className="profile__data-work-term">{item.school_name}
                             { isEdit ? (
-                              <Button className="button--pill button--danger profile__data-work-term-button" onClick={_ => handleDeleteEducation(item.id)}>
-                                <>
-                                  <i className="icon icon-cross text-dark-gray"></i>
-                                  削除
-                                </>
-                              </Button>
+                              <>
+                                <Button className="button--pill button--pill-negative profile__data-work-term-button"
+                                  onClick={_ => handleModal(modalType.PROFILE_EDUCATION, item)}>
+                                  <span><i className="icon icon-pencil text-dark-yellow"></i>編集</span>
+                                </Button>
+                                <Button className="button--pill button--danger profile__data-work-term-button" onClick={_ => handleDeleteEducation(item.id)}>
+                                  <>
+                                    <i className="icon icon-cross text-dark-gray"></i>
+                                    削除
+                                  </>
+                                </Button>
+                              </>
                             ) : null }
                           </dt>
                           <dd className="profile__data-work-data">

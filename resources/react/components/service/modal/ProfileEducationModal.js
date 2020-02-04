@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import moment from 'moment';
 import { useDispatch, connect } from 'react-redux';
@@ -19,10 +19,12 @@ const ProfileEducationModal = ({modal}) => {
     school_name: '',
     major: '',
     content: '',
-    monthgraduate: '',
-    yeargraduate: '',
+    monthgraduate: moment().format('MM'),
+    yeargraduate: moment().year(),
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(!_.isEmpty(modal.data));
+  const modalData = modal.data;
   const monthsFilter = new Array(12)
     .fill(null)
     .map((e, idx) => {
@@ -71,27 +73,60 @@ const ProfileEducationModal = ({modal}) => {
       new Date(`${formValues.yeargraduate}-${formValues.monthgraduate}`)
     )).format('YYYY-MM-DD'));
 
-    Education.addEducation(formdata)
-      .then(result => {
-        setTimeout(_ => {
-          dispatch(getUser())
-            .then(_ => {
-              setIsLoading(false);
-              dispatch(unSetModal());
-            })
-            .catch(error => {
-              setIsLoading(false);
-              dispatch(unSetModal());
-            });
-        }, 500);
-      })
-      .catch(error => {
-        setIsLoading(false);
-        handleCloseModal();
+    if (isUpdate) {
+      Education.updateEducation(formdata, modalData.id)
+        .then(result => {
+          setTimeout(_ => {
+            dispatch(getUser())
+              .then(_ => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              })
+              .catch(error => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              });
+          }, 500);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          handleCloseModal();
 
-        console.log('[Add education ERROR] :', error);
-      });
+          console.log('[Add education ERROR] :', error);
+        });
+    } else {
+      Education.addEducation(formdata)
+        .then(result => {
+          setTimeout(_ => {
+            dispatch(getUser())
+              .then(_ => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              })
+              .catch(error => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              });
+          }, 500);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          handleCloseModal();
+
+          console.log('[Add education ERROR] :', error);
+        });
+    }
   }
+
+  useEffect(_ => {
+    setFormValues({
+      school_name: modalData.school_name,
+      major: modalData.major,
+      content: modalData.content,
+      monthgraduate: modalData.graduated_at ? moment(modalData.graduated_at).format('MM') : moment().format('MM'),
+      yeargraduate: modalData.graduated_at ? moment(modalData.graduated_at).year() : moment().year(),
+    })
+  }, [modalData])
 
   return (
     <BaseModal title="学歴">
@@ -127,12 +162,12 @@ const ProfileEducationModal = ({modal}) => {
             <div className="modal__form-group-inputs  modal__form-group-inputs--education-period">
               <Select options={monthsFilter}
                 styles={defaultSelectStyles}
-                placeholder='MM'
+                placeholder={formValues.monthgraduate}
                 onChange={e => handleSelect(e, 'monthgraduate')}
               />
               <Select options={yearsFilter}
                 styles={defaultSelectStyles}
-                placeholder='YYYY'
+                placeholder={formValues.yeargraduate}
                 onChange={e => handleSelect(e, 'yeargraduate')}
               />
             </div>

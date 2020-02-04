@@ -15,6 +15,20 @@ export default class Education {
       .catch(error => error);
   }
 
+  static updateEducation(formdata, id) {
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.EDUCATION_HISTORIES_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static deleteEducation(id) {
     const formdata = new FormData();
     formdata.append('_method', 'DELETE');
