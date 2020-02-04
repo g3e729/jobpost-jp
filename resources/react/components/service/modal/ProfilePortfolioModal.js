@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
+import _ from 'lodash';
 import { useDispatch, connect } from 'react-redux';
 
 import BaseModal from './BaseModal';
@@ -24,6 +25,8 @@ const ProfilePortfolioModal = ({modal}) => {
   });
   const [file, setFile] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(!_.isEmpty(modal.data));
+  const modalData = modal.data;
   const reader = new FileReader();
   const imageInputRef = createRef();
   const eyecatchRef = createRef();
@@ -73,26 +76,51 @@ const ProfilePortfolioModal = ({modal}) => {
       formdata.append('file_delete', parseInt(formValues.file_delete));
     }
 
-    Portfolio.addPortfolio(formdata)
-      .then(result => {
-        setTimeout(_ => {
-          dispatch(getUser())
-            .then(_ => {
-              setIsLoading(false);
-              dispatch(unSetModal());
-            })
-            .catch(error => {
-              setIsLoading(false);
-              dispatch(unSetModal());
-            });
-        }, 500);
-      })
-      .catch(error => {
-        setIsLoading(false);
-        handleCloseModal();
+    debugger
 
-        console.log('[Add portfolio ERROR] :', error);
-      });
+    if (isUpdate) {
+      Portfolio.updatePortfolio(formdata, modalData.id)
+        .then(result => {
+          setTimeout(_ => {
+            dispatch(getUser())
+              .then(_ => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              })
+              .catch(error => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              });
+          }, 500);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          handleCloseModal();
+
+          console.log('[Edit portfolio ERROR] :', error);
+        });
+    } else {
+      Portfolio.addPortfolio(formdata)
+        .then(result => {
+          setTimeout(_ => {
+            dispatch(getUser())
+              .then(_ => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              })
+              .catch(error => {
+                setIsLoading(false);
+                dispatch(unSetModal());
+              });
+          }, 500);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          handleCloseModal();
+
+          console.log('[Add portfolio ERROR] :', error);
+        });
+    }
   }
 
   useEffect(_ => {
@@ -106,6 +134,14 @@ const ProfilePortfolioModal = ({modal}) => {
       }
     }
   }, [file]);
+
+  useEffect(_ => {
+    setFormValues({
+      title: modalData.title,
+      description: modalData.description,
+      url: modalData.url,
+    })
+  }, [modal])
 
   return (
     <BaseModal title="ポートフォリオ">
@@ -123,7 +159,7 @@ const ProfilePortfolioModal = ({modal}) => {
                   style={{ display: 'none' }}
                 />
                 <div className="modal__form-eyecatch modal__form-eyecatch--portfolio">
-                  <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${ecPlaceholder}")` }}></div>
+                  <div className="modal__form-eyecatch-img" ref={eyecatchRef} style={{ backgroundImage: `url("${modalData.image || ecPlaceholder}")` }}></div>
                 </div>
                 <div className="modal__form-actions">
                   <Button className="button--pill" onClick={e => handleOpenFile(e)}>

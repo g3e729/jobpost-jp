@@ -79,6 +79,25 @@
   }
 }
 
+.button--pill-negative {
+  font-size: 14px;
+  color: $color-white;
+
+  padding: 0;
+  background: transparent;
+
+  padding: 3px 12px 3px 12px;
+  border: solid 1px $color-dark-yellow;
+  background-color: $color-dark-yellow;
+
+  i {
+    font-size: 12px;
+    color: $color-white;
+
+    margin-right: 4px;
+  }
+}
+
 .button--danger {
   border: solid 1px $color-red;
   background: $color-red;

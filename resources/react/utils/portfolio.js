@@ -15,6 +15,20 @@ export default class Portfolio {
       .catch(error => error);
   }
 
+  static updatePortfolio(formdata, id) {
+    formdata.append('_method', 'PATCH');
+
+    const payload = {
+      url: generateRoute(endpoints.PORTFOLIOS_DETAIL, { id }),
+      method: 'post',
+      data: formdata
+    }
+
+    return API.request(payload, true, true)
+      .then(res => res)
+      .catch(error => error);
+  }
+
   static deletePortfolio(id) {
     const formdata = new FormData();
     formdata.append('_method', 'DELETE');

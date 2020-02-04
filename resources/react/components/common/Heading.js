@@ -66,14 +66,22 @@ const Heading = (props) => {
     history.push(`${prefix}scouts`);
   }
 
-  const handleSubmit = _.debounce((value) => {
+  const handleSubmit = _.debounce((value, type) => {
     const formdata = new FormData();
 
-    if (accountType === 'student') {
-      formdata.append('japanese_name', value || '');
+    if (type === 'account') {
+      if (accountType === 'student') {
+        formdata.append('japanese_name', value || '');
+      }
+      else {
+        formdata.append('company_name', value || '');
+      }
     }
-    else {
-      formdata.append('company_name', value || '');
+
+    if (type === 'desc') {
+      if (accountType === 'company') {
+        formdata.append('homepage', value || '');
+      }
     }
 
     dispatch(updateUser(formdata));
@@ -118,7 +126,7 @@ const Heading = (props) => {
                     submitOnEnter
                     value={title}
                     type="text"
-                    onSave={handleSubmit}
+                    onSave={e => handleSubmit(e, 'account')}
                     saveButtonContent={<i className="icon icon-checkmark"></i>}
                     cancelButtonContent={<i className="icon icon-close"></i>}
                     editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
@@ -126,9 +134,18 @@ const Heading = (props) => {
                   />
                 : (hasScouted || isOwner === true) ? title : accountType }
               </h2>
-              <p className="heading__user-position">
-                {subTitle}
-              </p>
+              { isEdit && accountType === 'company' ?
+                <EdiText
+                  submitOnEnter
+                  value={subTitle}
+                  type="text"
+                  onSave={e => handleSubmit(e, 'desc')}
+                  saveButtonContent={<i className="icon icon-checkmark"></i>}
+                  cancelButtonContent={<i className="icon icon-close"></i>}
+                  editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
+                  hideIcons={true}
+                />
+              : <p className="heading__user-position">{subTitle}</p> }
               { isOwner == true ? (
                 isEdit ? null : (
                   <Link to={routes.PROFILE_EDIT} className="button button--pill heading__user-pill">

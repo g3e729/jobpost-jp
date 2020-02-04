@@ -236,7 +236,6 @@ const RecruitmentForm = ({filters}) => {
 
   useEffect(_ => {
     if (data) {
-      console.log('data :', data);
       setRegionsFilter(Object.keys(data.regions).map((item, idx) => {
         return {value: item, label: Object.values(data.regions)[idx]};
       }));
