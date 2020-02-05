@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import moment from 'moment';
+import _ from 'lodash';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -11,37 +12,60 @@ import Loading from '../common/Loading';
 import Nada from '../common/Nada';
 import Pagination from '../common/Pagination';
 import Pill from '../common/Pill';
-import Search from '../common/Search';
+// import Search from '../common/Search';
 import generateRoute from '../../utils/generateRoute';
 import { routes, prefix } from '../../constants/routes';
 import { sex, skills } from '../../constants/state';
 import { dashboardSelectStyles } from '../../constants/config';
 
-const filterList = [
-  { value: 'chocolate',   label: 'Chocolate' },
-  { value: 'strawberry',  label: 'Strawberry' },
-  { value: 'vanilla',     label: 'Vanilla' }
-];
-
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const ScoutList = (props) => {
   const history = useHistory();
+  const [formValues, setFormValues] = useState({
+    // course_id: 0
+    age: null,
+    prefecture: '',
+    // courses: ''
+  });
   const {
     students = [],
     isLoading = false,
     filters
   } = props;
+  const data = students || {};
+  const studentsData = students.data || data;
   const filterData = filters && filters.filtersData;
   const {
+    courses = [],
     experiences = [],
     frameworks = [],
     others = [],
     programming_languages = []
   } = (filterData !== undefined && filterData.students);
-  const data = students || {};
-  const studentsData = students.data || data;
+  const {
+    regions = []
+  } = (filterData !== undefined && filterData.jobs);
   const skillsFilter = { ...experiences, ...frameworks, ...others, ...programming_languages };
+  const [coursesFilter, setCoursesFilter] = useState([]);
+  const ageFilter = [
+    { label: 'teens', value: 10 },
+    { label: '20s', value: 20 },
+    { label: '30s', value: 30 },
+    { label: 'more than 40s', value: 40 }
+  ];
+  const [regionsFilter, setRegionsFilter] = useState([]);
+  const salaryFilter = [
+    { label: '200k yen ~', value: 200 },
+    { label: '300k yen ~', value: 300 },
+    { label: '400k yen ~', value: 400 },
+    { label: '500k yen ~', value: 500 },
+    { label: '600k yen ~', value: 600 },
+    { label: '700k yen ~', value: 700 },
+    { label: '800k yen ~', value: 800 },
+    { label: '900k yen ~', value: 900 },
+    { label: '1 million yen ~', value: 1000 }
+  ];
 
   const handleScout = (id, name) => {
     localStorage.setItem('seeker_id', id);
@@ -49,6 +73,21 @@ const ScoutList = (props) => {
 
     history.push(`${prefix}scouts`);
   }
+
+  useEffect(() => {
+    if (!_.isEmpty(filterData)) {
+      setCoursesFilter(Object.keys(courses).map((item, idx) => {
+        return {value: item, label: Object.values(courses)[idx]};
+      }));
+
+      setRegionsFilter(Object.keys(regions).map((item, idx) => {
+        return {value: item, label: Object.values(regions)[idx]};
+      }));
+    }
+  }, [filterData])
+
+  console.log('coursesFilter :', coursesFilter);
+  console.log('regionsFilter :', regionsFilter);
 
   return (
     <div className="scout-list__container">
@@ -58,34 +97,34 @@ const ScoutList = (props) => {
       </div> */}
       <div className="scout-list__filter">
         <ul className="scout-list__filters">
-          {/* <li className="scout-list__filters-item">
-            <Select options={filterList}
+          <li className="scout-list__filters-item">
+            <Select options={coursesFilter}
               styles={dashboardSelectStyles}
               placeholder="コース"
               width='97px'
             />
           </li>
           <li className="scout-list__filters-item">
-            <Select options={filterList}
+            <Select options={ageFilter}
               styles={dashboardSelectStyles}
               placeholder="年齢"
               width='82px'
             />
           </li>
           <li className="scout-list__filters-item">
-            <Select options={filterList}
+            <Select options={regionsFilter}
               styles={dashboardSelectStyles}
               placeholder="場所"
               width='82px'
             />
           </li>
           <li className="scout-list__filters-item">
-            <Select options={filterList}
+            <Select options={salaryFilter}
               styles={dashboardSelectStyles}
               placeholder="留学費用"
               width='112px'
             />
-          </li> */}
+          </li>
         </ul>
         { isLoading ? null : (
           <Fraction numerator={studentsData.length}

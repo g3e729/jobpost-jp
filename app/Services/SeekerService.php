@@ -328,13 +328,14 @@ class SeekerService extends BaseService
 
     public function studentFilters()
     {
+        $courses = ServiceModel::getCourses();
         $experiences = ServiceModel::getExperiences();
         $frameworks = ServiceModel::getFrameworks();
         $languages = ServiceModel::getLanguages();
         $others = ServiceModel::getOthers();
         $programming_languages = ServiceModel::getProgrammingLanguages();
 
-        return compact('experiences', 'frameworks', 'languages', 'others', 'programming_languages');
+        return compact('courses', 'experiences', 'frameworks', 'languages', 'others', 'programming_languages');
     }
 
     private function createUser($fields = [])
