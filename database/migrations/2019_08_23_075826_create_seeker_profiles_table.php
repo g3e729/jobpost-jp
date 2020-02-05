@@ -44,7 +44,7 @@ class CreateSeekerProfilesTable extends Migration
             $table->timestamp('birthday')->nullable();
             $table->string('github')->nullable();
 
-            $table->integer('course_id')->default(0);
+            $table->string('course_id')->nullable();
             $table->json('taken_id')->nullable();
             $table->integer('it_level')->default(0);
             $table->integer('reading')->default(0);
