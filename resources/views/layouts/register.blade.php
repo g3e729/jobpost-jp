@@ -60,15 +60,16 @@
                       <div class="step-dot {{ $step == 1 ? 'is-active' : ''}}"></div>
                       <div class="step-dot {{ $step == 2 ? 'is-active' : ''}}"></div>
                     </div>
-                    <div class="pt-4 text-center">
-                      <h1 class="h5 font-weight-bold">新規登録
-                        @if ($step == 1)
-                          <span class="d-block h6 mt-2">基本情報</span>
-                        @else
-                          <span class="d-block h6 mt-2">その他</span>
-                        @endif
-                      </h1>
-                    </div>
+                  </div>
+
+                  <div class="pt-4 text-center">
+                    <h1 class="h5 font-weight-bold">新規登録
+                      @if ($step == 1)
+                        <span class="d-block h6 mt-2">基本情報</span>
+                      @else
+                        <span class="d-block h6 mt-2">その他</span>
+                      @endif
+                    </h1>
                   </div>
 
                   @if ($errors->any())
