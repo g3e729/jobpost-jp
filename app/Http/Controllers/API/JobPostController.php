@@ -67,7 +67,7 @@ class JobPostController extends BaseController
 
     public function toggleStatus($id)
     {
-        $job = $this->getJob($id);
+        $job = Model::withTrashed()->find($id);
 
         if ($job instanceof Model) {
 
