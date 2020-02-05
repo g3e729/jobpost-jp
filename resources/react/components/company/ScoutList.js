@@ -23,11 +23,13 @@ import avatarPlaceholder from '../../../img/avatar-default.png';
 const ScoutList = (props) => {
   const history = useHistory();
   const [formValues, setFormValues] = useState({
-    // course_id: 0
+    course_id: null,
     age: null,
-    prefecture: '',
-    // courses: ''
+    prefecture: null,
+    study_abroad_fee: null
   });
+  const urlParams = new URLSearchParams(location.search);
+  const [urlParamsTmp, setUrlParamsTmp] = useState(urlParams.toString() ? `?${urlParams.toString()}` : '');
   const {
     students = [],
     isLoading = false,
@@ -74,6 +76,24 @@ const ScoutList = (props) => {
     history.push(`${prefix}scouts`);
   }
 
+  const handleChange = (e, type) => {
+    setFormValues(prevState => {
+      return { ...prevState, [type]: e.value }
+    });
+
+    if (urlParamsTmp) {
+      if (urlParamsTmp.includes(type)) {
+        urlParams.set(type, e.value);
+        setUrlParamsTmp(`?${urlParams.toString()}`);
+      }
+      else {
+        setUrlParamsTmp(`${urlParamsTmp}&${type}=${e.value}`);
+      }
+    } else {
+      setUrlParamsTmp(`?${type}=${e.value}`);
+    }
+  }
+
   useEffect(() => {
     if (!_.isEmpty(filterData)) {
       setCoursesFilter(Object.keys(courses).map((item, idx) => {
@@ -86,8 +106,11 @@ const ScoutList = (props) => {
     }
   }, [filterData])
 
-  console.log('coursesFilter :', coursesFilter);
-  console.log('regionsFilter :', regionsFilter);
+  useEffect(_ => {
+    if (urlParamsTmp) {
+      history.push(urlParamsTmp);
+    }
+  }, [urlParamsTmp])
 
   return (
     <div className="scout-list__container">
@@ -102,6 +125,7 @@ const ScoutList = (props) => {
               styles={dashboardSelectStyles}
               placeholder="コース"
               width='97px'
+              onChange={e => handleChange(e, 'course_id')}
             />
           </li>
           <li className="scout-list__filters-item">
@@ -109,6 +133,7 @@ const ScoutList = (props) => {
               styles={dashboardSelectStyles}
               placeholder="年齢"
               width='82px'
+              onChange={e => handleChange(e, 'age')}
             />
           </li>
           <li className="scout-list__filters-item">
@@ -116,6 +141,7 @@ const ScoutList = (props) => {
               styles={dashboardSelectStyles}
               placeholder="場所"
               width='82px'
+              onChange={e => handleChange(e, 'prefecture')}
             />
           </li>
           <li className="scout-list__filters-item">
@@ -123,6 +149,7 @@ const ScoutList = (props) => {
               styles={dashboardSelectStyles}
               placeholder="留学費用"
               width='112px'
+              onChange={e => handleChange(e, 'study_abroad_fee')}
             />
           </li>
         </ul>
