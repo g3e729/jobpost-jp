@@ -29,6 +29,9 @@ class SeekerProfilesTableSeeder extends Seeder
             SeekerProfile::getOthers()->keys()->toArray()
         );
 
+        $courses = SeekerProfile::getCourses()->toArray();
+        $courses = array_keys($courses);
+
         $seeker = [
             'name'     => '',
             'email'    => '@gmail.com',
@@ -84,7 +87,7 @@ class SeekerProfilesTableSeeder extends Seeder
             $fields['country'] = 'JPN';
             $fields['birthday'] = now()->subYears(rand(11, 41))->subMonths(rand(1, 7))->subDays(rand(2, 30));
             $fields['description'] = "Hi! I am " . ucwords($name) . "!";
-            $fields['course_id'] = rand(1, 10);
+            $fields['course_id'] = $courses[rand(0, count($courses) - 1)];
             $fields['it_level'] = rand(1, 7);
             $fields['github'] = 'https://github.com/' . substr(md5(microtime()), rand(0, 26), rand(3, 6));
 
