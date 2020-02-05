@@ -39,6 +39,8 @@ const StudentScoutModal = ({user, modal}) => {
         setTimeout(_ => {
           setIsLoading(false);
           handleCloseModal();
+
+          dispatch(getUser());
         }, 500);
       })
       .catch(error => {
