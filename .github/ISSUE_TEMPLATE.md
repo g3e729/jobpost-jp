@@ -14,8 +14,8 @@ Tell us how to reproduce this issue
 4. Change `email` value
 5. Save
 
-### Actual behaviour
+### Actual behavior
 Tell us what happens instead
 
-### Expected behaviour
+### Expected behavior
 Tell us what should happen
