@@ -14,7 +14,18 @@ const ScoutPage = _ => {
 
   async function getFilteredStudents() {
     const page = urlParams.get('page');
-    const request = await Student.getFilteredStudents({page});
+    const course_id = urlParams.get('course_id');
+    const age = urlParams.get('age');
+    const prefecture = urlParams.get('prefecture');
+    const study_abroad_fee = urlParams.get('study_abroad_fee');
+
+    const request = await Student.getFilteredStudents({
+      page,
+      course_id,
+      age,
+      prefecture,
+      study_abroad_fee
+    });
 
     return request.data;
   }

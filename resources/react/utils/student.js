@@ -23,6 +23,10 @@ export default class Student {
       scouted,
       applied,
       liked,
+      course_id,
+      age,
+      prefecture,
+      study_abroad_fee,
       per_page = 5
     } = params;
 
@@ -34,6 +38,10 @@ export default class Student {
         scouted,
         applied,
         liked,
+        course_id,
+        age,
+        prefecture,
+        study_abroad_fee,
         per_page
       }
     }
