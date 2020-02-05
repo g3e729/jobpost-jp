@@ -164,7 +164,7 @@ class NotificationService extends BaseService
                 })->get();
 
                 $title = $initiator->profile->display_name . ' が新しい求人を作成しました';
-                $description = '';
+                $description = $model->description ?? '';
                 $about_id = $model->id;
                 $about_type = JobPost::class;
                 $group_id = substr(md5(now()), 0, 8);
@@ -194,7 +194,7 @@ class NotificationService extends BaseService
                     $title .= ' があなたをスカウトしました。';
                     $users[] = $model->applicant->user;
                 } else {
-                    $title .= ' さんがあなたのあなたの求人に応募しました';
+                    $title .= ' さんが' . $model->job_post->title .'に応募しました';
                     $users[] = $model->employer->user;
                 }
 
