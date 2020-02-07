@@ -10,6 +10,7 @@
 .job__main {
   flex: 1;
   align-self: stretch;
+  width: calc(100% - 300px);
 
   margin-right: 60px;
 
@@ -231,6 +232,7 @@
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  word-wrap: break-word;
 
   > ul {
     padding: 10px 0 4px;
@@ -308,6 +310,7 @@
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  word-break: break-word;
 
   display: inline-flex;
   align-items: center;
@@ -355,6 +358,8 @@
     }
 
     > dd {
+      word-break: break-word;
+
       width: 72.5%;
       padding: 12.5px 22px;
       flex: 1 0 72.5%;
@@ -450,6 +455,7 @@
     line-height: 1.857;
     letter-spacing: 0.06em;
     white-space: pre-line;
+    word-break: break-word;
 
     margin-top: 3px;
   }

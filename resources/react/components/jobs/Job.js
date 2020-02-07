@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 import Mapped from '../common/Mapped';
 
 import avatarPlaceholder from '../../../img/avatar-default.png';
 
 const Job = (props) => {
-  const { job } = props;
+  const { job, filters } = props;
+  const data = (filters.filtersData && filters.filtersData.jobs);
+  const [positions, setPositions] = useState([]);
+  const [programming, setProgramming] = useState([]);
+  const [frameworks, setFrameworks] = useState([]);
+  const [databases, setDatabases] = useState([]);
   const company = job.company;
+
+  useEffect(_ => {
+    if (data) {
+      setPositions(data.positions);
+      setProgramming(data.programming_languages);
+      setFrameworks(data.frameworks);
+      setDatabases(data.databases);
+    }
+  }, [data])
 
   return (
     <div className="job">
@@ -78,18 +93,18 @@ const Job = (props) => {
           </div>
           <dl className="job__main-list job__main-list--table">
             <dt className="job__main-list-term">ポジション</dt>
-            <dd className="job__main-list-data">{job.position}</dd>
+            <dd className="job__main-list-data">{positions[job.position]}</dd>
             <dt className="job__main-list-term">ステータス</dt>
             <dd className="job__main-list-data">{job.display_employment_type}</dd>
             <dt className="job__main-list-term">開発環境</dt>
             <dd className="job__main-list-data">
               <dl>
                 <dt>言語</dt>
-                <dd>{job.programming_language}</dd>
+                <dd>{programming[job.programming_language]}</dd>
                 <dt>フレームワーク</dt>
-                <dd>{job.framework}</dd>
+                <dd>{frameworks[job.framework]}</dd>
                 <dt>データベース</dt>
-                <dd>{job.database}</dd>
+                <dd>{databases[job.database]}</dd>
                 <dt>管理</dt>
                 <dd>{job.environment}</dd>
               </dl>
@@ -196,4 +211,8 @@ const Job = (props) => {
   );
 }
 
-export default Job;
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(Job);

@@ -2192,6 +2192,7 @@ And you should not feel free to add a new Utility class.
   -webkit-box-flex: 1;
           flex: 1;
   align-self: stretch;
+  width: calc(100% - 300px);
   margin-right: 60px;
 }
 
@@ -2441,6 +2442,7 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  word-wrap: break-word;
 }
 
 .job__main-description > ul {
@@ -2522,6 +2524,7 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  word-break: break-word;
   display: -webkit-inline-box;
   display: inline-flex;
   -webkit-box-align: center;
@@ -2579,6 +2582,7 @@ And you should not feel free to add a new Utility class.
 }
 
 .job__main-list-data > dl > dd {
+  word-break: break-word;
   width: 72.5%;
   padding: 12.5px 22px;
   -webkit-box-flex: 1;
@@ -2688,6 +2692,7 @@ And you should not feel free to add a new Utility class.
   line-height: 1.857;
   letter-spacing: 0.06em;
   white-space: pre-line;
+  word-break: break-word;
   margin-top: 3px;
 }
 
