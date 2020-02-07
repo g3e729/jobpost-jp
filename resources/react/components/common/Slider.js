@@ -28,10 +28,10 @@ const Slider = (props) => {
   const params = {
     noSwiping: true,
     slidesPerView: 1,
-    spaceBetween: 60,
     autoplay: {
       delay: 10000,
     },
+    effect: 'fade',
     loop: true,
     pagination: {
       el: '.swiper-pagination.slider-pagination',
@@ -39,7 +39,7 @@ const Slider = (props) => {
       renderBullet: (index, className) => {
         return (
           `
-          <div class="slider-pagination__item">
+          <div class="slider-pagination__item ${className}">
             <div class="slider-pagination__item-number">
               0${index + 1}
             </div>

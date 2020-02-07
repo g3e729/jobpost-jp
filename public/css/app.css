@@ -5972,6 +5972,7 @@ a.pagination__item-link:hover {
   height: calc(100vh - 98px);
   height: 100vh;
   min-height: 660px;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -6124,6 +6125,11 @@ a.pagination__item-link:hover {
   left: auto !important;
   right: 112px;
   width: auto !important;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
 }
 
 @media screen and (max-width: 768px) {
@@ -6138,6 +6144,9 @@ a.pagination__item-link:hover {
     padding-left: 16px;
     padding-right: 16px;
     padding: 20px 16px 10px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
   }
 }
 
@@ -6145,7 +6154,10 @@ a.pagination__item-link:hover {
   position: relative;
   width: 55px;
   height: 55px;
+  margin: 0 !important;
   cursor: pointer;
+  background-color: transparent;
+  opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
