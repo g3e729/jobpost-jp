@@ -22,7 +22,7 @@ const JobsPage = _ => {
   useEffect(_ => {
     async function getSliderJobs() {
       const apiToken = localStorage.getItem('api_token');
-      const response = await Job.getFilteredJobs({sort: 'popular'});
+      const response = await Job.getFilteredJobs({});
 
       if (response.statusText === 'OK') {
         setSliderJobs(response.data.data.splice(0, 3).map(job => {

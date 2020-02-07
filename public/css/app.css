@@ -6513,6 +6513,7 @@ a.pagination__item-link:hover {
 .scouts__desc {
   line-height: 1.857;
   letter-spacing: 0.06em;
+  word-wrap: break-word;
   margin-top: 10px;
 }
 

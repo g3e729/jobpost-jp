@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 import Button from '../common/Button';
-import Loading from '../common/Loading';
 import { state } from '../../constants/state';
 import { routes } from '../../constants/routes';
 import { modalType } from '../../constants/config';
 import { setModal } from '../../actions/modal';
 
-import avatarPlaceholder from '../../../img/avatar-default.png';
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
-const ScoutsList = ({data}) => {
+const ScoutsList = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [currentItem, setCurrentItem] = useState(null);
+  const { data, filters } = props;
+  const filtersData = (filters.filtersData && filters.filtersData.jobs);
+  const [positions, setPositions] = useState([]);
+  const [programming, setProgramming] = useState([]);
+  const [frameworks, setFrameworks] = useState([]);
   const [jobsTmp, setJobsTmp] = useState([]);
   const jobsData = data.data || {};
 
@@ -29,6 +31,14 @@ const ScoutsList = ({data}) => {
       state: { activeChannel: item.applicants.find(item => item.chat_channel).id || 0 }
     });
   }
+
+  useEffect(_ => {
+    if (filtersData) {
+      setPositions(filtersData.positions);
+      setProgramming(filtersData.programming_languages);
+      setFrameworks(filtersData.frameworks);
+    }
+  }, [filtersData])
 
   useEffect(_ => {
     const seekerID = localStorage.getItem('seeker_id');
@@ -71,19 +81,19 @@ const ScoutsList = ({data}) => {
                 { item.position ? (
                   <>
                     <dt className="scouts__list-term">ポジション</dt>
-                    <dd className="scouts__list-data">{item.position}</dd>
+                    <dd className="scouts__list-data">{positions[item.position]}</dd>
                   </>
                 ) : null }
                 { item.programming_language ? (
                   <>
                     <dt className="scouts__list-term">言語</dt>
-                    <dd className="scouts__list-data">{item.programming_language}</dd>
+                    <dd className="scouts__list-data">{programming[item.programming_language]}</dd>
                   </>
                 ) : null }
                 { item.framework ? (
                   <>
                     <dt className="scouts__list-term">フレームワーク</dt>
-                    <dd className="scouts__list-data">{item.framework}</dd>
+                    <dd className="scouts__list-data">{frameworks[item.framework]}</dd>
                   </>
                 ) : null }
                 { item.display_prefecture ? (
@@ -118,4 +128,8 @@ const ScoutsList = ({data}) => {
   )
 }
 
-export default ScoutsList;
+const mapStateToProps = (state) => ({
+  filters: state.filters
+});
+
+export default connect(mapStateToProps)(ScoutsList);
