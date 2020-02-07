@@ -19,8 +19,11 @@ const JobsList = (props) => {
   const {
     jobs = [],
     user,
+    filters,
     hasTitle
   } = props;
+  const data = (filters.filtersData && filters.filtersData.jobs);
+  const [programming, setProgramming] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const [jobsTmp, setJobsTmp] = useState(jobs);
 
@@ -58,6 +61,12 @@ const JobsList = (props) => {
     }
   }, [user, jobs])
 
+  useEffect(_ => {
+    if (data) {
+      setProgramming(data.programming_languages);
+    }
+  }, [data])
+
   return (
     <>
       { hasTitle ? <h3 className="jobs-list__title">募集</h3> : null }
@@ -93,7 +102,7 @@ const JobsList = (props) => {
               </div>
               <div className="job-list__item-footer">
                 <ul className="job-list__item-pills">
-                  { job.programming_language ? <li className="job-list__item-pills-item pill">{job.programming_language}</li> : null }
+                  { programming[job.programming_language] ? <li className="job-list__item-pills-item pill">{programming[job.programming_language]}</li> : null }
                   { job.display_prefecture ? <li className="job-list__item-pills-item pill">{job.display_prefecture}</li> : null }
                   { job.created_at ? <li className="job-list__item-pills-item pill">{moment(job.created_at).fromNow()}</li> : null }
                 </ul>
@@ -120,7 +129,8 @@ const JobsList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  filters: state.filters
 });
 
 export default connect(mapStateToProps)(JobsList);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.css';
@@ -22,8 +22,11 @@ const Slider = (props) => {
   const {
     jobs,
     user,
+    filters,
     isLoading
   } = props;
+  const data = (filters.filtersData && filters.filtersData.jobs);
+  const [programming, setProgramming] = useState([]);
   const [jobsTmp, setJobsTmp] = useState(jobs);
   const params = {
     noSwiping: true,
@@ -56,6 +59,12 @@ const Slider = (props) => {
       }
     }
   }
+
+  useEffect(_ => {
+    if (data) {
+      setProgramming(data.programming_languages);
+    }
+  }, [data])
 
   const handleLike = _.debounce((type, id) => {
     Like.toggleLike(type, id)
@@ -99,8 +108,8 @@ const Slider = (props) => {
               </div>
               <div className="slider-content__footer">
                 <ul className="slider-content__pills">
-                  { job.programming_language ? (
-                    <li className="slider-content__pills-item"><Pill className="pill--active">{job.programming_language}</Pill></li>
+                  { programming[job.programming_language] ? (
+                    <li className="slider-content__pills-item"><Pill className="pill--active">{programming[job.programming_language]}</Pill></li>
                   ) : null }
                   { job.display_prefecture ? (
                     <li className="slider-content__pills-item"><Pill>{job.display_prefecture}</Pill></li>
@@ -133,7 +142,8 @@ const Slider = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  filters: state.filters
 });
 
 export default connect(mapStateToProps)(Slider);

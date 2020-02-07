@@ -16,7 +16,9 @@ const JobPage = (props) => {
   const [jobData, setJobData] = useState({});
   const [hasLiked, setHasLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = props;
+  const { user, filters } = props;
+  const data = (filters.filtersData && filters.filtersData.jobs);
+  const [programming, setProgramming] = useState([]);
   const accountType = (user.userData && user.userData.account_type) || '';
 
   async function getJob() {
@@ -64,6 +66,22 @@ const JobPage = (props) => {
     }
   }, [user, job])
 
+  useEffect(() => {
+    if (!_.isEmpty(data) && !_.isEmpty(jobData)) {
+      setJobData(prevState => {
+        return {
+          ...prevState,
+          ...{
+            pills: {
+              ...prevState.pills,
+              programming_language: data.programming_languages[prevState.pills.programming_language]
+            }
+          }
+        }
+      })
+    }
+  }, [data])
+
   return (
     <Page>
       { isLoading ? (
@@ -98,7 +116,8 @@ const JobPage = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  filters: state.filters
 });
 
 export default connect(mapStateToProps)(JobPage);
