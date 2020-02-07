@@ -19,6 +19,7 @@ const ScoutsList = (props) => {
   const [programming, setProgramming] = useState([]);
   const [frameworks, setFrameworks] = useState([]);
   const [jobsTmp, setJobsTmp] = useState([]);
+  const [currentItem, setCurrentItem] = useState(null);
   const jobsData = data.data || {};
 
   const handleClick = (id) => {
