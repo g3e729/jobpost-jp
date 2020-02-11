@@ -193,7 +193,22 @@ const ScoutList = (props) => {
                     </div>
                     <ul className="scout-list__item-top-pills">
                       <li className="scout-list__item-top-pills-item">
-                        <Pill className="pill--clear">{moment().diff(item.birthday, 'years',false)}代</Pill>
+                        <Pill className="pill--clear">{ item.applications_count > 0
+                          ? moment().diff(item.birthday, 'years', false)
+                          : (() => {
+                            const currYear = moment().diff(item.birthday, 'years', false);
+
+                            switch (true) {
+                              case (currYear < 20):
+                                return '10代';
+                              case (currYear < 30):
+                                return '20代';
+                              case (currYear < 30):
+                                return '20代';
+                              default:
+                                return '40代';
+                            }
+                          })()}</Pill>
                       </li>
                       { Object.values(item.taken_class).length ? (
                         <li className="scout-list__item-top-pills-item">
