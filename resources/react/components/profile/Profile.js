@@ -588,7 +588,23 @@ const Profile = (props) => {
             <div className="profile__sidebar-content">
               <dl className="profile__sidebar-content-basic">
                 <dt className="profile__sidebar-content-basic-term">生年月日</dt>
-                <dd className="profile__sidebar-content-basic-data">{moment(data.birthday).format('YYYY/MM/DD')}</dd>
+                <dd className="profile__sidebar-content-basic-data">{ data.applications_count
+                  ? moment(data.birthday).format('YYYY/MM/DD')
+                  : (() => {
+                    const currYear = moment().diff(data.birthday, 'years', false);
+
+                    switch (true) {
+                      case (currYear < 20):
+                        return '10代';
+                      case (currYear < 30):
+                        return '20代';
+                      case (currYear < 40):
+                        return '30代';
+                      default:
+                        return '40代';
+                    }
+                  })()
+                }</dd>
                 <dt className="profile__sidebar-content-basic-term">性別</dt>
                 <dd className="profile__sidebar-content-basic-data">{sex[`${data.sex}`]}</dd>
                 <dt className="profile__sidebar-content-basic-term">住所</dt>

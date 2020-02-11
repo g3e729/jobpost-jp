@@ -203,8 +203,8 @@ const ScoutList = (props) => {
                                 return '10代';
                               case (currYear < 30):
                                 return '20代';
-                              case (currYear < 30):
-                                return '20代';
+                              case (currYear < 40):
+                                return '30代';
                               default:
                                 return '40代';
                             }
