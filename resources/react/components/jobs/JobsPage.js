@@ -9,7 +9,7 @@ import PageScroll from '../common/PageScroll';
 import JobsFilter from './JobsFilter';
 import JobsSection from './JobsSection';
 import Job from '../../utils/job';
-import { getJobs, getFilteredJobs  } from '../../actions/jobs';
+import { getJobs, getFilteredJobs } from '../../actions/jobs';
 
 const JobsPage = _ => {
   const [isPageLoading, setIsPageLoading] = useState(true);
@@ -22,10 +22,13 @@ const JobsPage = _ => {
   useEffect(_ => {
     async function getSliderJobs() {
       const apiToken = localStorage.getItem('api_token');
-      const response = await Job.getFilteredJobs({});
+      const response = await Job.getFilteredJobs({
+        sort: 'desc',
+        per_page: 5
+      });
 
       if (response.statusText === 'OK') {
-        setSliderJobs(response.data.data.splice(0, 3).map(job => {
+        setSliderJobs(response.data.data.map(job => {
           return {
             ...job,
             hasUserLiked : job.likes.some(like => {

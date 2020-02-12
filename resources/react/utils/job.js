@@ -78,7 +78,8 @@ export default class Job {
       prefecture,
       sort,
       company_profile_id,
-      paginated
+      paginated,
+      per_page
     } = params;
 
     const payload = {
@@ -92,7 +93,8 @@ export default class Job {
         prefecture,
         sort,
         company_profile_id,
-        paginated
+        paginated,
+        per_page
       }
     }
 
