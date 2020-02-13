@@ -515,6 +515,14 @@ const RecruitmentForm = ({filters}) => {
                       />
 
                       <Input className="recruitment-form__main-group-input"
+                        value={formValues.address3}
+                        onChange={e => handleChange(e)}
+                        name="address3"
+                        type="number"
+                        placeholder="郵便番号"
+                      />
+
+                      <Input className="recruitment-form__main-group-input"
                         value={formValues.address1}
                         onChange={e => handleChange(e)}
                         name="address1"
@@ -529,15 +537,6 @@ const RecruitmentForm = ({filters}) => {
                         type="text"
                         placeholder="ビル名、部屋番号"
                       />
-
-                      <Input className="recruitment-form__main-group-input"
-                        value={formValues.address3}
-                        onChange={e => handleChange(e)}
-                        name="address3"
-                        type="number"
-                        placeholder="郵便番号"
-                      />
-
                     </div>
                   </div>
 

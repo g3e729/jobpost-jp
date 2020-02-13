@@ -608,7 +608,7 @@ const Profile = (props) => {
                 <dt className="profile__sidebar-content-basic-term">性別</dt>
                 <dd className="profile__sidebar-content-basic-data">{sex[`${data.sex}`]}</dd>
                 <dt className="profile__sidebar-content-basic-term">住所</dt>
-                <dd className="profile__sidebar-content-basic-data">{data.address1} {data.address2} {data.address3} {data.display_prefecture}</dd>
+                <dd className="profile__sidebar-content-basic-data">{data.display_prefecture} {data.address1} {data.address2}</dd>
                 <dt className="profile__sidebar-content-basic-term">ステータス</dt>
                 <dd className="profile__sidebar-content-basic-data">{data.student_status}</dd>
               </dl>
@@ -844,15 +844,15 @@ const Profile = (props) => {
                     <h4 className="profile__sidebar-content-avatar-name">{data.company_name}</h4>
                   </div>
                 </li>
-                { data.address1 || data.address2 || data.address3 || data.display_prefecture || data.homepage ? (
+                { data.address1 || data.address2 || data.display_prefecture || data.homepage ? (
                   <li className="profile__sidebar-content-profile-items">
-                    { data.address1 || data.address2 || data.address3 || data.display_prefecture ? (
+                    { data.address1 || data.address2 || data.display_prefecture ? (
                       <div className="profile__sidebar-content-misc">
                         <i className="icon icon-marker text-dark-yellow"></i>
-                        <p className="profile__sidebar-content-misc-copy">{data.address1} {data.address2} {data.address3} {data.display_prefecture}</p>
+                        <p className="profile__sidebar-content-misc-copy">{data.display_prefecture} {data.address1} {data.address2}</p>
                       </div>
                     ) : null}
-                    { data.prefecture ? (
+                    { data.homepage ? (
                       <div className="profile__sidebar-content-misc">
                         <i className="icon icon-globe text-dark-yellow"></i>
                         <p className="profile__sidebar-content-misc-copy">{data.homepage}</p>
