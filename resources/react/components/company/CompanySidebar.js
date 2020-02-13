@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { routes } from '../../constants/routes';
 import { state } from '../../constants/state';
@@ -26,6 +26,17 @@ const CompanySidebar = _ => (
         <NavLink exact to={routes.SCOUT} activeClassName={state.ACTIVE}>
           スカウト
         </NavLink>
+      </li>
+      <li className="company-sidebar__menu-item">
+        <Link to={routes.HELP}>
+          ヘルプ
+        </Link>
+      </li>
+      <li className="company-sidebar__menu-item">
+        <a href="https://docs.google.com/forms/d/16ej6ZdxOwVbfByHDaxPtGkP9st_DnH509WecmU018k4/edit?usp=sharing" target="_blank">
+          お問い合わせ
+          <i className="icon icon-external-link"></i>
+        </a>
       </li>
     </ul>
   </aside>
