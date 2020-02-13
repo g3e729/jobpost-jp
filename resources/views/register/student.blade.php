@@ -216,6 +216,21 @@
         </div>
       </div>
 
+      <div class="form-group pb-1 row">
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="accept_terms" id="accept_terms" required>
+
+            <label class="form-check-label text-dark" for="accept_terms">
+              <small><a href="/app/terms">利用規約</a>と<a href="/app/privacy">プライバシーポリシー</a>に同意する</small>
+            </label>
+            <div class="invalid-tooltip">
+              Please accept terms and privacy.
+            </div>
+          </div>
+        </div>
+      </div>
+
     @endif
 
     <div class="form-group row">
