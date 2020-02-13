@@ -13,7 +13,7 @@ import Textarea from '../common/Textarea';
 import JobAPI from '../../utils/job';
 import { state } from '../../constants/state';
 import { prefix, routes } from '../../constants/routes';
-import { jobSelectStyles } from '../../constants/config';
+import { jobSelectStyles, jobAltSelectStyles } from '../../constants/config';
 
 import ecPlaceholder from '../../../img/eyecatch-default.jpg';
 
@@ -364,7 +364,7 @@ const RecruitmentForm = ({filters}) => {
                             <dt>言語</dt>
                             <dd>
                               <Select options={programmingFilter}
-                                styles={jobSelectStyles}
+                                styles={jobAltSelectStyles}
                                 placeholder={formValues.programming_language}
                                 isForm
                                 onChange={e => handleSelect(e, 'programming_language')}
@@ -373,7 +373,7 @@ const RecruitmentForm = ({filters}) => {
                             <dt>フレームワーク</dt>
                             <dd>
                               <Select options={frameworksFilter}
-                                styles={jobSelectStyles}
+                                styles={jobAltSelectStyles}
                                 placeholder={formValues.framework}
                                 isForm
                                 onChange={e => handleSelect(e, 'framework')}
@@ -382,7 +382,7 @@ const RecruitmentForm = ({filters}) => {
                             <dt>データベース</dt>
                             <dd>
                               <Select options={databaseFilter}
-                                styles={jobSelectStyles}
+                                styles={jobAltSelectStyles}
                                 placeholder={formValues.database}
                                 isForm
                                 onChange={e => handleSelect(e, 'database')}

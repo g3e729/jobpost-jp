@@ -68,6 +68,16 @@ export const jobSelectStyles = {
   }),
 };
 
+export const jobAltSelectStyles = {
+  ...jobSelectStyles,
+  container: (provided) => ({
+    ...provided,
+    margin: '-12px -22px',
+    height: '50px',
+    flex: '1'
+  }),
+};
+
 export const dashboardSelectStyles =  {
   control: (provided, { selectProps: { width }}) => ({
     ...provided,

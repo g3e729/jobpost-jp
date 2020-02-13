@@ -5214,6 +5214,8 @@ a.pagination__item-link:hover {
   -webkit-box-align: stretch;
           align-items: stretch;
   flex-wrap: wrap;
+  -webkit-box-flex: 1;
+          flex: 1;
   margin: -17px -18px;
 }
 
