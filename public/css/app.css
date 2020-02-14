@@ -4160,6 +4160,7 @@ a.pagination__item-link:hover {
 
 .pill {
   font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-align: center;
   padding: 2px 15px;
