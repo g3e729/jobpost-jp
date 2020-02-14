@@ -45,8 +45,6 @@
   }
 
   &.is-active {
-    font-weight: 700;
-
     border: solid 1px $color-light-gray;
 
     &:before {
@@ -61,6 +59,7 @@
 
 .pill--clear {
   font-size: 16px;
+  font-weight: 400;
   text-align: left;
 
   padding: 0;
@@ -68,7 +67,6 @@
 }
 
 .pill--button {
-  font-weight: 700;
   color: $color-white;
 
   background-image: $gradient;

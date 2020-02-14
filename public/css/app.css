@@ -4202,7 +4202,6 @@ a.pagination__item-link:hover {
 }
 
 .pill--icon.is-active {
-  font-weight: 700;
   border: solid 1px #f2f2f0;
 }
 
@@ -4216,13 +4215,13 @@ a.pagination__item-link:hover {
 
 .pill--clear {
   font-size: 16px;
+  font-weight: 400;
   text-align: left;
   padding: 0;
   border: none;
 }
 
 .pill--button {
-  font-weight: 700;
   color: #fff;
   background-image: -webkit-gradient(linear, left top, right top, from(#fdb834), to(#f7954d));
   background-image: linear-gradient(to right, #fdb834, #f7954d);
@@ -6010,6 +6009,7 @@ a.pagination__item-link:hover {
 .swiper-slide .slider-content {
   position: absolute;
   width: calc(50% - 144px);
+  min-height: 290px;
   top: calc(50% - 25px);
   right: 0;
   padding: 55px 62px 100px 58px;

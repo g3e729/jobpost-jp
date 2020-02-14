@@ -50,6 +50,7 @@ $container-width: 60px;
   .slider-content {
     position: absolute;
     width: calc(50% - 144px);
+    min-height: 290px;
     top: calc(50% - 25px);
     right: 0;
 
