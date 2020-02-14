@@ -178,7 +178,7 @@
 .profile__data-websites-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 
   position: relative;
   margin-top: 32px;
@@ -243,6 +243,7 @@
 .profile__data-websites-desc {
   line-height: 1.857;
   letter-spacing: 0.06em;
+  white-space: pre-line;
 
   margin-bottom: 8px;
 }

@@ -4577,8 +4577,8 @@ a.pagination__item-link:hover {
   display: flex;
   -webkit-box-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: end;
-          align-items: flex-end;
+  -webkit-box-align: center;
+          align-items: center;
   position: relative;
   margin-top: 32px;
 }
@@ -4651,6 +4651,7 @@ a.pagination__item-link:hover {
 .profile__data-websites-desc {
   line-height: 1.857;
   letter-spacing: 0.06em;
+  white-space: pre-line;
   margin-bottom: 8px;
 }
 
