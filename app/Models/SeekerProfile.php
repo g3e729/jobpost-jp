@@ -78,7 +78,9 @@ class SeekerProfile extends Model
         'student_status',
         'taken_class',
         'occupation',
-        'english_level'
+        'english_level',
+
+        'display_prefecture',
     ];
 
     static protected $courses = [
@@ -414,6 +416,17 @@ class SeekerProfile extends Model
     public function getEnglishLevelAttribute()
     {
         return $this->english_level_id ? self::getEnglishLevels(strtolower($this->english_level_id)) : null;
+    }
+
+    public function getDisplayPrefectureAttribute()
+    {
+        $prefecture = $this->prefecture;
+
+        if (empty($prefecture)) {
+            return '--';
+        }
+
+        return getPrefecture($prefecture);
     }
 
     // Options

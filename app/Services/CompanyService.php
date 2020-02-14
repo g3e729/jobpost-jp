@@ -49,6 +49,7 @@ class CompanyService extends BaseService
             if ($this->user->profile) {
                 $this->user->profile->update($profile_fields);
             } else {
+                $profile_fields['available_tickets'] = 10;
                 $this->user->profile()->create($profile_fields);
             }
 
