@@ -43,21 +43,33 @@ const JobsFilter = (props) => {
 
   useEffect(_ => {
     if (data) {
-      setPositionsFilter(Object.entries(data.positions).map(item => {
-        return { value: item[1], label: item[1] };
-      }));
+      setPositionsFilter([
+        ...Object.entries(data.positions).map(item => {
+          return { value: item[1], label: item[1] };
+        }),
+        { value: '', label: 'すべて' }
+      ]);
 
-      setProgrammingFilter(Object.entries(data.programming_languages).map(item => {
-        return { value: item[1], label: item[1] };
-      }));
+      setProgrammingFilter([
+        ...Object.entries(data.programming_languages).map(item => {
+          return { value: item[1], label: item[1] };
+        }),
+        { value: '', label: 'すべて' }
+      ]);
 
-      setRegionsFilter(Object.keys(data.regions).map((item, idx) => {
-        return {value: item, label: Object.values(data.regions)[idx]};
-      }));
+      setRegionsFilter([
+        ...Object.keys(data.regions).map((item, idx) => {
+          return {value: item, label: Object.values(data.regions)[idx]};
+        }),
+        { value: '', label: 'すべて' }
+      ]);
 
-      setStatusFilter(Object.keys(data.status).map((item, idx) => {
-        return {value: item, label: Object.values(data.status)[idx]};
-      }));
+      setStatusFilter([
+        ...Object.keys(data.status).map((item, idx) => {
+          return {value: item, label: Object.values(data.status)[idx]};
+        }),
+        { value: '', label: 'すべて' }
+      ]);
     }
   }, [data])
 
