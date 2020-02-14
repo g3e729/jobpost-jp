@@ -13,7 +13,6 @@ const PageTopService = _ => {
   const [initialPathname, setInitialPathname] = useState('');
   const [initialSearch, setInitialSearch] = useState('');
   const elemRoot = document.querySelector('#root');
-  const pages = ['/app', '/app/', '/app/jobs', '/app/jobs/'];
 
   useScrollPosition(({ prevPos, currPos }) => {
     const offset = 100;
@@ -28,12 +27,6 @@ const PageTopService = _ => {
     if (initialPathname !== location.pathname || (initialPathname === location.pathname && initialSearch !== location.search)) {
       setInitialPathname(location.pathname);
       setInitialSearch(location.search);
-
-      if (pages.includes(location.pathname)) {
-        setTimeout(_ => {
-          scrollIntoView(elemRoot, { block: 'start',  behavior: 'smooth' });
-        }, 300);
-      }
     }
   }, [location])
 
