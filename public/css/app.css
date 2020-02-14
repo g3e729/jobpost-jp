@@ -4508,7 +4508,7 @@ a.pagination__item-link:hover {
 .profile__main-list-item-copy {
   line-height: 1.857;
   letter-spacing: 0.06em;
-  white-space: pre-line;
+  white-space: pre;
 }
 
 .profile__data-skills {

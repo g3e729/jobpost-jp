@@ -28,6 +28,11 @@ const CompanySidebar = _ => (
         </NavLink>
       </li>
       <li className="company-sidebar__menu-item">
+        <NavLink exact to={routes.MY_PROFILE} activeClassName={state.ACTIVE}>
+          会社ページ
+        </NavLink>
+      </li>
+      <li className="company-sidebar__menu-item">
         <Link to={routes.HELP}>
           ヘルプ
         </Link>

@@ -186,6 +186,7 @@ const Profile = (props) => {
                       cancelButtonContent={<i className="icon icon-close"></i>}
                       editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
                       hideIcons={true}
+                      mainContainerClassName="profile__main-list-item-copy"
                     />
                   : <p className="profile__main-list-item-copy">{data.intro_text}</p> }
                 </div>
@@ -204,6 +205,7 @@ const Profile = (props) => {
                       cancelButtonContent={<i className="icon icon-close"></i>}
                       editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
                       hideIcons={true}
+                      mainContainerClassName="profile__main-list-item-copy"
                     />
                   : <p className="profile__main-list-item-copy">{data.what_text}</p> }
                 </div>
@@ -692,6 +694,7 @@ const Profile = (props) => {
                       cancelButtonContent={<i className="icon icon-close"></i>}
                       editButtonContent={<i className="icon icon-pencil text-dark-yellow"></i>}
                       hideIcons={true}
+                      mainContainerClassName="profile__main-list-item-copy"
                     />
                   : <p className="profile__main-list-item-copy">{data.description}</p> }
                 </div>
