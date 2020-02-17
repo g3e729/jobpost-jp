@@ -73,7 +73,12 @@ const StudentPage = (props) => {
             />
             <div className="l-section l-section--profile section">
               <div className="l-container">
-                <Profile user={student} accountType="student" isOwner="false" />
+                <Profile
+                  user={student}
+                  accountType="student"
+                  viewerType={user.userData && user.userData.account_type}
+                  isOwner="false"
+                />
               </div>
             </div>
           </>

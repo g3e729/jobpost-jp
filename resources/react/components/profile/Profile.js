@@ -30,13 +30,13 @@ const Profile = (props) => {
   const {
     user,
     accountType,
+    viewerType = null,
     isEdit = false,
     isOwner = true,
     filters
   } = props;
   const [jobs, setJobs] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [currentPortfolio, setCurrentPortfolio] = useState(null);
   const [formValues, setFormValues] = useState({
     title: '',
     description: ''
@@ -673,6 +673,16 @@ const Profile = (props) => {
               </ul>
             </div>
           </div>
+          { viewerType === 'company' ? (
+            <div className="profile__sidebar-inner">
+              <h3 className="profile__sidebar-header">留学費</h3>
+              <div className="profile__sidebar-content">
+                <p className="profile__sidebar-content-desc">
+                  {data.study_abroad_fee}円
+                </p>
+              </div>
+            </div>
+          ) : null }
         </aside>
       </div>
     ) : accountType === 'company' ? (
