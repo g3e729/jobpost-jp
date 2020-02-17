@@ -591,7 +591,7 @@ const Profile = (props) => {
               <dl className="profile__sidebar-content-basic">
                 <dt className="profile__sidebar-content-basic-term">生年月日</dt>
                 <dd className="profile__sidebar-content-basic-data">{ data.applications_count
-                  ? moment(data.birthday).format('YYYY/MM/DD')
+                  ? moment(data.birthday).format('YYYY.MM.DD')
                   : (() => {
                     const currYear = moment().diff(data.birthday, 'years', false);
 
