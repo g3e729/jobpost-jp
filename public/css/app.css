@@ -1495,6 +1495,7 @@ And you should not feel free to add a new Utility class.
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.06em;
+  color: #393939;
   margin-left: 16px;
 }
 
@@ -2192,12 +2193,13 @@ And you should not feel free to add a new Utility class.
   -webkit-box-flex: 1;
           flex: 1;
   align-self: stretch;
-  width: calc(100% - 300px);
+  width: calc(100% - 360px);
   margin-right: 60px;
 }
 
 @media screen and (max-width: 768px) {
   .job__main {
+    width: 100%;
     margin-right: 0;
   }
 }
@@ -4399,11 +4401,13 @@ a.pagination__item-link:hover {
   -webkit-box-flex: 1;
           flex: 1;
   align-self: stretch;
+  width: calc(100% - 360px);
   margin-right: 60px;
 }
 
 @media screen and (max-width: 768px) {
   .profile__main {
+    width: 100%;
     margin-right: 0;
   }
 }
@@ -4508,6 +4512,10 @@ a.pagination__item-link:hover {
 .profile__main-list-item-copy {
   line-height: 1.857;
   letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.profile__main-list-item-copy--edit {
   white-space: pre;
 }
 

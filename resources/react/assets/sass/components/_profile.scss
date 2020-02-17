@@ -10,10 +10,13 @@
 .profile__main {
   flex: 1;
   align-self: stretch;
+  width: calc(100% - 360px);
 
   margin-right: 60px;
 
   @include max-screen($breakpoint-mobile) {
+    width: 100%;
+
     margin-right: 0;
   }
 }
@@ -113,6 +116,10 @@
 .profile__main-list-item-copy {
   line-height: 1.857;
   letter-spacing: 0.06em;
+  white-space: pre-line;
+}
+
+.profile__main-list-item-copy--edit {
   white-space: pre;
 }
 

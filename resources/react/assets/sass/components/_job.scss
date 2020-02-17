@@ -10,11 +10,13 @@
 .job__main {
   flex: 1;
   align-self: stretch;
-  width: calc(100% - 300px);
+  width: calc(100% - 360px);
 
   margin-right: 60px;
 
   @include max-screen($breakpoint-mobile) {
+    width: 100%;
+
     margin-right: 0;
   }
 }

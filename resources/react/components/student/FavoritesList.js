@@ -29,9 +29,10 @@ const FavoritesList = ({jobs, type = ''}) => {
             <div className="favorites__content">
               <div className="favorites__company">
                 <img src={ (type === 'job' ? job.company.avatar : job.employer.avatar) || avatarPlaceholder} alt=""/>
-                <div className="favorites__company-name">
-                  { type === 'job' ? job.company.company_name : job.employer.company_name}
-                </div>
+                <Link to={generateRoute(routes.COMPANY_DETAIL, { id: type === 'job' ? job.company.id : job.employer.id })}
+                  className="button button--link favorites__company-name">
+                    { type === 'job' ? job.company.company_name : job.employer.company_name}
+                </Link>
               </div>
               <p className="favorites__description">
                 {_.truncate(((type === 'job' ? job.description : job.job_post.description)), { 'length': 125, 'separator': '...'})}
