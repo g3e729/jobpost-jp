@@ -1,13 +1,13 @@
 .pagescroll {
   position: absolute;
   left: 20px;
-  top: calc(660px - 86px);
+  top: calc(100vh - 184px);
 
   overflow: visible;
   z-index: $z-min2;
 
   @include max-screen($breakpoint-mobile) {
-    display: none;  
+    display: none;
   }
 }
 

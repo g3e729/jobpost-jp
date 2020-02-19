@@ -3967,7 +3967,7 @@ And you should not feel free to add a new Utility class.
 .pagescroll {
   position: absolute;
   left: 20px;
-  top: calc(660px - 86px);
+  top: calc(100vh - 184px);
   overflow: visible;
   z-index: 2;
 }
@@ -5992,7 +5992,6 @@ a.pagination__item-link:hover {
   position: relative;
   height: calc(100vh - 98px);
   height: 100vh;
-  min-height: 660px;
   width: 100%;
 }
 
@@ -6000,6 +5999,10 @@ a.pagination__item-link:hover {
   .swiper-slide.slider {
     height: calc(100vh - 61px);
   }
+}
+
+.swiper-slide.swiper-slide-active .slider-content {
+  opacity: 1;
 }
 
 .swiper-slide .slider__eyecatch {
@@ -6028,13 +6031,16 @@ a.pagination__item-link:hover {
 .swiper-slide .slider-content {
   position: absolute;
   width: calc(50% - 144px);
-  min-height: 290px;
-  top: calc(50% - 25px);
+  max-height: 400px;
+  bottom: -44px;
   right: 0;
-  padding: 55px 62px 100px 58px;
+  padding: 50px 62px 50px 58px;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0px 0px 60px 0px rgba(57, 57, 57, 0.2);
   z-index: 1;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
+  transition: opacity 0.25s cubic-bezier(0.51, 0.3, 0, 0.99);
 }
 
 @media screen and (max-width: 768px) {

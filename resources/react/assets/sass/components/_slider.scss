@@ -15,11 +15,17 @@ $container-width: 60px;
     position: relative;
     height: calc(100vh - 98px);
     height: 100vh;
-    min-height: 660px;
+    // max-height: 660px;
     width: 100%;
 
     @include max-screen($breakpoint-mobile) {
       height: calc(100vh - 61px);
+    }
+  }
+
+  &.swiper-slide-active {
+    .slider-content {
+      opacity: 1;
     }
   }
 
@@ -50,15 +56,18 @@ $container-width: 60px;
   .slider-content {
     position: absolute;
     width: calc(50% - 144px);
-    min-height: 290px;
-    top: calc(50% - 25px);
+    max-height: 400px;
+    bottom: -44px;
     right: 0;
 
-    padding: 55px 62px 100px 58px;
+    padding: 50px 62px 50px 58px;
 
     background-color: rgba($color-white, 0.95);
     box-shadow: $alt-shadow;
     z-index: 1;
+
+    opacity: 0;
+    transition: opacity $duration $easing-cubic;
 
     @include max-screen($breakpoint-mobile) {
       width: 75%;
