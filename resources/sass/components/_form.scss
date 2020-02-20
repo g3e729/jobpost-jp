@@ -39,6 +39,16 @@
   }
 }
 
+.form-group {
+  .input-group-icon {
+    height: 38px;
+  }
+
+  .input-group-text {
+    background-color: transparent;
+  }
+}
+
 .form-file-browse {
   padding-bottom: 56px;
 

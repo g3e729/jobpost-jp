@@ -164,24 +164,41 @@
 
     @else
 
-      <div class="form-group pb-1 row">
+      <div class="form-group pb-1 row js-password-group">
         <label for="formPassword" class="col col-form-label pr-0">パスワード</label>
         <div class="col-8">
-          <input type="password" class="form-control rounded-0" id="formPassword" name="password" placeholder="" required>
-          <div class="invalid-tooltip">
-            Please enter a password.
+          <div class="input-group">
+            <input type="password" class="form-control rounded-0 border-right-0" id="formPassword" name="password" placeholder="" required>
+            <div class="input-group-append input-group-icon">
+              <div class="input-group-text border-left-0">
+              <button class="btn btn-sm btn-link js-reveal-password" type="button">
+                <i class="fas fa-eye text-dark"></i>
+              </button>
+              </div>
+            </div>
+            <div class="invalid-tooltip">
+              Please enter a password.
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="form-group pb-1 row">
+      <div class="form-group pb-1 row js-password-group">
         <label for="formPasswordConfirmation" class="col col-form-label pr-0">パスワードの確認</label>
         <div class="col-8">
-          <input type="password" class="form-control rounded-0" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
-            data-action="input" data-condition="password" data-text="Passwords do not match."
-          >
-          <div class="invalid-tooltip">
+          <div class="input-group">
+            <input type="password" class="form-control rounded-0 border-right-0" id="formPasswordConfirmation" name="password_confirmation" placeholder="" required
+              data-action="input" data-condition="password" data-text="Passwords do not match.">
+            <div class="input-group-append input-group-icon">
+              <div class="input-group-text border-left-0">
+              <button class="btn btn-sm btn-link js-reveal-password" type="button">
+                <i class="fas fa-eye text-dark"></i>
+              </button>
+              </div>
+            </div>
+            <div class="invalid-tooltip">
             Passwords do not match.
+            </div>
           </div>
         </div>
       </div>
