@@ -160,7 +160,7 @@ const Profile = (props) => {
       setIsEditing(false);
       setFormValues({ title: '', description: ''});
     }
-  }, [formValues])
+  }, [formValues]);
 
   return (
     accountType === 'student' ? (
@@ -638,12 +638,22 @@ const Profile = (props) => {
                 <li className="profile__sidebar-content-scores-item">
                   <h4 className="profile__sidebar-content-scores-category">IT</h4>
                   <dl>
-                    <dt>受講済み</dt>
-                    { Object.values(data.taken_class).map((item, idx) => (
-                      <dd key={idx}>{item}</dd>
-                    ))}
-                    <dt>受講中</dt>
-                    <dd>{data.course}</dd>
+                    { data.taken_id.length ? (
+                      <>
+                        <dt>受講済み</dt>
+                        {(_ => {
+                          return Object.values(data.taken_class).map((item, idx) => (
+                            <dd key={idx}>{item}</dd>
+                          ));
+                        })()}
+                      </>
+                    ) : null }
+                    { data.course ? (
+                      <>
+                        <dt>受講中</dt>
+                        <dd>{data.course}</dd>
+                      </>
+                    ) : null }
                   </dl>
                 </li>
                 <li className="profile__sidebar-content-scores-item">
