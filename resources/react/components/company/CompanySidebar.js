@@ -33,6 +33,11 @@ const CompanySidebar = _ => (
         </NavLink>
       </li>
       <li className="company-sidebar__menu-item">
+        <NavLink exact to={routes.DASHBOARD_PROFILE} activeClassName={state.ACTIVE}>
+          会社情報編集
+        </NavLink>
+      </li>
+      <li className="company-sidebar__menu-item">
         <Link to={routes.HELP}>
           ヘルプ
         </Link>

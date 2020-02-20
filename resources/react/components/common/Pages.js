@@ -16,6 +16,7 @@ import ScoutsPage from '../student/ScoutsPage';
 
 import CompanyPage from '../company/CompanyPage';
 import DashboardPage from '../company/DashboardPage';
+import DashboardProfilePage from '../company/DashboardProfilePage';
 import RecruitmentPage from '../company/RecruitmentPage';
 import AddRecruitmentPage from '../company/AddRecruitmentPage';
 import EditRecruitmentPage from '../company/EditRecruitmentPage';
@@ -108,6 +109,11 @@ const Pages = ({user}) => (
         exact
         path={routes.DASHBOARD}
         component={requireAuth(DashboardPage)}
+      />
+      <Route
+        exact
+        path={routes.DASHBOARD_PROFILE}
+        component={requireAuth(DashboardProfilePage)}
       />
       <Route
         exact

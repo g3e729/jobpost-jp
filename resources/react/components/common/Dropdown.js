@@ -74,7 +74,7 @@ const Dropdown = (props) => {
                 </NavLink>
               </li>
               <li className="dropdown__menu-item">
-                <NavLink onClick={_ => setDropdown(false)} exact to={routes.PROFILE_EDIT} activeClassName={state.ACTIVE}>
+                <NavLink onClick={_ => setDropdown(false)} exact to={routes.DASHBOARD_PROFILE} activeClassName={state.ACTIVE}>
                   会社情報編集
                 </NavLink>
               </li>

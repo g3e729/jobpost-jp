@@ -18,6 +18,7 @@ export const routes = {
 
   COMPANY_DETAIL: `${prefix}company/:id`,
   DASHBOARD: `${prefix}dashboard`, // company
+  DASHBOARD_PROFILE: `${prefix}dashboard/profile`, // company
   RECRUITMENT: `${prefix}dashboard/recruitment`, // company
   RECRUITMENT_ADD: `${prefix}dashboard/recruitment/add`, // company
   RECRUITMENT_EDIT: `${prefix}dashboard/recruitment/:id/edit`, // company
@@ -47,6 +48,7 @@ export const accessTable = [
       routes.PROFILE_SETTINGS,
 
       routes.DASHBOARD,
+      routes.DASHBOARD_PROFILE,
       routes.RECRUITMENT,
       routes.RECRUITMENT_ADD,
       routes.RECRUITMENT_EDIT,
