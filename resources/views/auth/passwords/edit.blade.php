@@ -10,20 +10,38 @@
     <input type="hidden" name="email" value="{{ $password_reset->email }}">
     <input type="hidden" name="token" value="{{ $password_reset->token }}">
 
-    <div class="form-group mb-4">
+    <div class="form-group mb-4 js-password-group">
       <label for="password">
         <small>{{ __('パスワード') }}</small>
       </label>
-      <input id="password" type="password" class="form-control rounded-0 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+      <div class="input-group">
+        <input id="password" type="password" class="form-control rounded-0 @error('password') is-invalid @enderror border-right-0" name="password" required autocomplete="new-password">
+        <div class="input-group-append input-group-icon">
+          <div class="input-group-text border-left-0 rounded-0">
+          <button class="btn btn-sm btn-link js-reveal-password" type="button">
+            <i class="fas fa-eye text-dark"></i>
+          </button>
+          </div>
+        </div>
+      </div>
 
       @error('password')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
       @enderror
     </div>
 
-    <div class="form-group mt-3 mb-4">
+    <div class="form-group mt-3 mb-4 js-password-group">
       <label for="password-confirm">{{ __('パスワードを認証する') }}</label>
-      <input id="password-confirm" type="password" class="form-control rounded-0" name="password_confirmation" required autocomplete="new-password">
+      <div class="input-group">
+        <input id="password-confirm" type="password" class="form-control rounded-0 border-right-0" name="password_confirmation" required autocomplete="new-password">
+        <div class="input-group-append input-group-icon">
+          <div class="input-group-text border-left-0 rounded-0">
+          <button class="btn btn-sm btn-link js-reveal-password" type="button">
+            <i class="fas fa-eye text-dark"></i>
+          </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group row">

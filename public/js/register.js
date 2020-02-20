@@ -10841,80 +10841,6 @@ function () {
 
 /***/ }),
 
-/***/ "./resources/js/components/password-reveal.js":
-/*!****************************************************!*\
-  !*** ./resources/js/components/password-reveal.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PasswordReveal; });
-
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-var PasswordReveal =
-/*#__PURE__*/
-function () {
-  function PasswordReveal(params) {
-    _classCallCheck(this, PasswordReveal);
-
-    this.selectors = params.selectors;
-    this.elements = document.querySelectorAll(this.selectors);
-
-    if (this.elements) {
-      this.initEvents();
-    }
-  }
-
-  _createClass(PasswordReveal, [{
-    key: "initEvents",
-    value: function initEvents() {
-      this.elements.forEach(function (el) {
-        var elementInput = el.querySelector('.form-control');
-        var elementButton = el.querySelector('.btn');
-        var elementIcon = el.querySelector('.fas');
-        elementButton.addEventListener('mousedown', function (_) {
-          elementInput.type = 'text';
-          elementIcon.classList.replace('fa-eye', 'fa-eye-slash');
-        });
-        elementButton.addEventListener('mouseup', function (_) {
-          elementInput.type = 'password';
-          elementIcon.classList.replace('fa-eye-slash', 'fa-eye');
-        });
-      });
-    }
-  }]);
-
-  return PasswordReveal;
-}();
-
-
-
-/***/ }),
-
 /***/ "./resources/js/register.js":
 /*!**********************************!*\
   !*** ./resources/js/register.js ***!
@@ -10925,14 +10851,9 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/form-validation */ "./resources/js/components/form-validation.js");
-/* harmony import */ var _components_password_reveal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/password-reveal */ "./resources/js/components/password-reveal.js");
-
 
 new _components_form_validation__WEBPACK_IMPORTED_MODULE_0__["default"]({
   selector: '.needs-validation'
-});
-new _components_password_reveal__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  selectors: '.js-password-group'
 });
 
 /***/ }),
