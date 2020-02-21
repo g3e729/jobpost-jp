@@ -14,6 +14,18 @@
     <link rel="apple-touch-icon-precomposed" href="/assets/images/common/apple-touch-icon-precomposed.png">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS_TRACKING_CODE') }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config',' {{ env('GOOGLE_ANALYTICS_TRACKING_CODE') }} ' );
+    </script><Paste>
+
 </head>
 <body>
     <noscript>
