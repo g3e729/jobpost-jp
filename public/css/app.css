@@ -1183,6 +1183,52 @@ And you should not feel free to add a new Utility class.
   background-color: #313232;
 }
 
+.dashboard-form__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: #fff;
+}
+
+.dashboard-form__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding-bottom: 14px;
+  border-bottom: solid 1px #fdb834;
+}
+
+.dashboard-form__tab-list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  margin: 45px 0;
+}
+
+.dashboard-form__tab-list-item {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fff;
+  background-color: #fdb834;
+  margin: 0 20px;
+  padding: 10px 55px;
+  cursor: pointer;
+}
+
+.dashboard-form__tab-list-item:focus {
+  outline: none;
+}
+
+.dashboard-form__tab-list-item.is-active {
+  color: #393939;
+  background-color: #f2f2f0;
+  cursor: default;
+}
+
 .dashboard-section {
   padding: 40px 60px 100px 50px;
   background-color: #f2f2f0;

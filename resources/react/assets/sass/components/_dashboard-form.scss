@@ -1,0 +1,50 @@
+.dashboard-form {}
+
+.dashboard-form__container {
+  position: relative;
+  padding: 45px 50px 50px;
+  margin-top: 38px;
+  background-color: $color-white;
+}
+
+.dashboard-form__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  padding-bottom: 14px;
+  border-bottom: solid 1px $color-dark-yellow;
+}
+
+.dashboard-form__tab {}
+
+.dashboard-form__tab-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 45px 0;
+}
+
+.dashboard-form__tab-list-item {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: $color-white;
+
+  background-color: $color-dark-yellow;
+  margin: 0 20px;
+  padding: 10px 55px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.is-active {
+    color: $color-medium-black;
+
+    background-color: $color-light-gray;
+    cursor: default;
+  }
+}
