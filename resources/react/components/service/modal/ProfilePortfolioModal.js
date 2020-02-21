@@ -78,8 +78,6 @@ const ProfilePortfolioModal = ({modal}) => {
       formdata.append('file_delete', parseInt(formValues.file_delete));
     }
 
-    debugger
-
     if (isUpdate) {
       Portfolio.updatePortfolio(formdata, modalData.id)
         .then(result => {
