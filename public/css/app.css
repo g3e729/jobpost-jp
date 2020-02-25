@@ -1257,6 +1257,20 @@ And you should not feel free to add a new Utility class.
   margin-top: 0;
 }
 
+.dashboard-form__main-group-cluster--half {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 0 -10px;
+}
+
+.dashboard-form__main-group-cluster--half > div {
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 0;
+}
+
 .dashboard-form__main-group-cluster--bordered {
   padding: 30px 0 0;
   border: solid 1px #d9d6d6;
