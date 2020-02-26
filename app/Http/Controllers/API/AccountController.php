@@ -56,6 +56,8 @@ class AccountController extends BaseController
                         $profile->features()->create($feature);
                     }
                 }
+
+                $service->updateSocialMedia($request->get('social_media', []));
             }
 
             if ($request->file('avatar') || $request->get('avatar_delete')) {

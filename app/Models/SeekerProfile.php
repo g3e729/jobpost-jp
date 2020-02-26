@@ -394,18 +394,17 @@ class SeekerProfile extends Model
 
     public function getTakenClassAttribute()
     {
-        if ($this->taken_id === null) {
-            return [];
+        $courses = self::getCourses();
+        $classes = $this->skills()
+            ->whereIn('skill_id', $courses->keys()->toArray())
+            ->where('skill_rate', '>', '0')
+            ->get();
+
+        foreach ($classes as $key => $class) {
+            $classes[$key]->class_name = $courses[$class->skill_id];
         }
-
-        $courses = [];
-        $taken = is_array($this->taken_id) ? $this->taken_id : json_decode($this->taken_id);
-
-        foreach ($taken as $course_id) {
-            $courses[$course_id] = self::getCourses($course_id);
-        }
-
-        return $courses;
+        
+        return $classes;
     }
 
     public function getOccupationAttribute()
