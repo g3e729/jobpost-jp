@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Services\UserService;
 use App\Services\CompanyService;
 use App\Services\SeekerService;
+use App\Services\PortfolioService;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -56,6 +57,8 @@ class AccountController extends BaseController
                         $profile->features()->create($feature);
                     }
                 }
+
+                (new PortfolioService)->insertOrUpdate($profile, $request->get('portfolios'));
 
                 $service->updateSocialMedia($request->get('social_media', []));
             }
