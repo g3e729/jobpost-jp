@@ -26,7 +26,7 @@
     "jquery": "^3.4.1",
     "laravel-mix": "^4.0.7",
     "laravel-mix-copy-watched": "^2.2.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "popper.js": "^1.12",
     "react": "^16.12.0",
