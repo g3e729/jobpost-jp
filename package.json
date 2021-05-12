@@ -48,7 +48,7 @@
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0",
     "smooth-scroll-into-view-if-needed": "^1.1.23",
-    "swiper": "^5.2.1",
+    "swiper": "^6.5.1",
     "vue-template-compiler": "^2.6.10"
   }
 }
