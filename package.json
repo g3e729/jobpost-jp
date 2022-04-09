@@ -27,7 +27,7 @@
     "laravel-mix": "^4.0.7",
     "laravel-mix-copy-watched": "^2.2.1",
     "lodash": "^4.17.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "popper.js": "^1.12",
     "react": "^16.12.0",
     "react-copy-to-clipboard": "^5.0.2",
